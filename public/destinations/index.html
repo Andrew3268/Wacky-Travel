@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>여행지 모아보기 | Wacky Travel</title>
+  <meta name="description" content="다낭, 오사카, 도쿄, 방콕 등 여행지별 호텔 추천과 여행 정보를 모아보는 페이지입니다." />
+  <link rel="canonical" href="/destinations/" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260506travel2" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260506travel2" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260506travel2" />
+</head>
+<body>
+  <header class="topbar topbar--editorial topbar--travel">
+    <div class="topbar__inner container">
+      <a class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+      <nav class="topbar__nav"><a class="topbar__link" href="/">홈</a><a class="topbar__link is-active" href="/destinations/">여행지</a><a class="topbar__link" href="/hotels/">호텔</a></nav>
+    </div>
+  </header>
+  <main class="travel-page">
+    <section class="travel-hero travel-hero--compact travel-hero--soft container">
+      <div class="travel-hero__body">
+        <p class="eyebrow">Destinations</p>
+        <h1>여행지 모아보기</h1>
+        <p class="travel-hero__summary">여행지별 숙소 위치, 호텔 추천, 준비 정보를 빠르게 확인하세요. 중심 여행지 페이지에서 관련 글과 호텔을 자연스럽게 연결합니다.</p>
+      </div>
+    </section>
+    <section class="container travel-section">
+      <div class="section-heading section-heading--split">
+        <div>
+          <p class="eyebrow">Travel Hub</p>
+          <h2>도시별 여행 허브</h2>
+          <p>각 여행지는 호텔 목록, 추천 글, 이동 동선까지 묶는 SEO 중심 페이지입니다.</p>
+        </div>
+      </div>
+      <div id="destinationsGrid" class="travel-card-grid"></div>
+    </section>
+  </main>
+  <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
+  <script src="/assets/js/destinations.js?v=20260506travel2" defer></script>
+</body>
+</html>

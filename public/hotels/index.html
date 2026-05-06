@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>호텔 추천 모아보기 | Wacky Travel</title>
+  <meta name="description" content="여행지별 호텔 추천, 위치, 가격대, 장단점과 예약 전 체크포인트를 한곳에서 비교합니다." />
+  <link rel="canonical" href="/hotels/" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260506travel2" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260506travel2" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260506travel2" />
+</head>
+<body>
+  <header class="topbar topbar--editorial topbar--travel">
+    <div class="topbar__inner container">
+      <a class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+      <nav class="topbar__nav"><a class="topbar__link" href="/">홈</a><a class="topbar__link" href="/destinations/">여행지</a><a class="topbar__link is-active" href="/hotels/">호텔</a></nav>
+    </div>
+  </header>
+  <main class="travel-page">
+    <section class="travel-hero travel-hero--compact travel-hero--soft container">
+      <div class="travel-hero__body">
+        <p class="eyebrow">Hotels</p>
+        <h1>호텔 추천 모아보기</h1>
+        <p class="travel-hero__summary">위치, 가격대, 여행 유형별로 호텔을 비교하고 예약 전 체크포인트를 확인하세요. 호텔 상세 페이지는 제휴 버튼까지 연결되는 전환 페이지입니다.</p>
+      </div>
+    </section>
+    <section class="container travel-section">
+      <div class="hotel-filter-note">호텔 카드는 단순 나열이 아니라 <strong>위치·추천 대상·예약 전 확인사항</strong>을 먼저 보여주도록 구성했습니다.</div>
+      <div id="hotelsGrid" class="travel-card-grid travel-card-grid--hotels"></div>
+    </section>
+  </main>
+  <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
+  <script src="/assets/js/hotels.js?v=20260506travel2" defer></script>
+</body>
+</html>

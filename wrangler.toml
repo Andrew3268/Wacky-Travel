@@ -1,0 +1,15 @@
+name = "wacky-travel"
+compatibility_date = "2026-05-06"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "TRAVEL_DB"
+database_name = "wacky-travel-db"
+database_id = "a172c735-910b-44c9-86a1-ee691ebf7ca4"
+
+# 운영 전 실제 값으로 교체하세요!
+# [vars]
+# ADSENSE_CLIENT = "ca-pub-xxxxxxxxxxxxxxxx"
+# ADSENSE_SLOT_SIDEBAR = "1234567890"
+# ADSENSE_SLOT_INARTICLE_1 = "1234567890"
+# ADSENSE_SLOT_INARTICLE_2 = "1234567890"
