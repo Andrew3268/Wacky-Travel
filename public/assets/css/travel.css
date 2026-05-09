@@ -986,3 +986,67 @@ body{
   line-height: 1.35;
   letter-spacing: -0.02em;
 }
+
+/* Home index refinements */
+.travel-hero--text-only {
+  display: block;
+}
+
+.travel-hero--text-only .travel-hero__body {
+  max-width: 860px;
+}
+
+.travel-hero--text-only .travel-hero__summary {
+  max-width: 780px;
+}
+
+.country-destination-list {
+  display: grid;
+  gap: 34px;
+}
+
+.country-destination-group {
+  display: grid;
+  gap: 16px;
+}
+
+.country-destination-group__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 2px 2px 0;
+}
+
+.country-destination-group__head h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  color: #171717;
+}
+
+.country-destination-group .travel-card h4 {
+  margin: 0;
+  font-size: 1.22rem;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  font-weight: 850;
+  color: #171717;
+}
+
+.country-destination-group .travel-card h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.country-destination-group .travel-card h4 a:hover {
+  color: var(--travel-brand);
+}
+
+@media (max-width: 960px) {
+  .country-destination-group__head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

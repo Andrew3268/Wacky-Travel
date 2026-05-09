@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wacky Travel | 빠른 여행·호텔 추천 블로그</title>
-  <meta name="description" content="여행지 정보, 호텔 추천, 예약 전 체크포인트를 빠르게 비교하는 SSR 기반 여행 블로그입니다." />
+  <title>Wacky Travel | 여행지·호텔 추천 블로그</title>
+  <meta name="description" content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." />
   <link rel="canonical" href="/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wacky Travel" />
-  <meta property="og:title" content="Wacky Travel | 빠른 여행·호텔 추천 블로그" />
-  <meta property="og:description" content="여행지 정보, 호텔 추천, 예약 전 체크포인트를 빠르게 비교하는 SSR 기반 여행 블로그입니다." />
+  <meta property="og:title" content="Wacky Travel | 여행지·호텔 추천 블로그" />
+  <meta property="og:description" content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." />
   <meta property="og:url" content="/" />
   <meta property="og:image" content="/assets/images/logo.png" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260506travel2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260506travel2" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260506travel2" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260509home3" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -26,47 +26,28 @@
         <a class="topbar__link is-active" href="/">홈</a>
         <a class="topbar__link" href="/destinations/">여행지</a>
         <a class="topbar__link" href="/hotels/">호텔</a>
-        <a class="topbar__link" href="/?category=여행%20준비">여행 준비</a>
+        <a class="topbar__link" href="#homePostsSection">여행 준비</a>
       </nav>
       <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
     </div>
   </header>
 
   <main class="travel-page travel-home">
-    <section class="travel-hero travel-hero--home container">
+    <section class="travel-hero travel-hero--home travel-hero--text-only container">
       <div class="travel-hero__body">
-        <p class="eyebrow">Fast SSR Travel Blog</p>
-        <h1>여행지와 호텔 선택을<br />더 빠르게 비교하세요</h1>
-        <p class="travel-hero__summary">가벼운 SSR 구조 위에 여행지 허브, 호텔 상세, 예약 전 체크포인트를 묶어 검색 유입과 제휴 전환을 함께 노리는 여행 블로그입니다.</p>
+        <p class="eyebrow">Wacky Travel Guide</p>
+        <h1>어디로 떠날지 고민될 때,<br />여행지와 호텔을 가볍게 비교하세요</h1>
+        <p class="travel-hero__summary">와키트래블은 도시별 호텔 추천, 여행 준비 팁, 예약 전 확인 포인트를 한곳에 정리하는 여행 블로그입니다. 처음 가는 여행지도 복잡한 정보보다 필요한 기준부터 빠르게 살펴볼 수 있게 구성했습니다.</p>
         <div class="travel-hero__actions">
           <a class="btn btn--brand" href="/destinations/">여행지 둘러보기</a>
           <a class="btn btn--soft" href="/hotels/">호텔 추천 보기</a>
         </div>
-        <div class="travel-hero__chips">
-          <span>SSR 상세 페이지</span>
-          <span>Edge Cache</span>
-          <span>여행지 허브</span>
-          <span>호텔 제휴 CTA</span>
+        <div class="travel-hero__chips" aria-label="와키트래블 주요 콘텐츠">
+          <span>도시별 여행지 허브</span>
+          <span>호텔 추천</span>
+          <span>예약 전 체크포인트</span>
+          <span>여행 준비 팁</span>
         </div>
-      </div>
-      <aside class="travel-hero-card" aria-label="여행 블로그 핵심 구조">
-        <div class="travel-hero-card__top">
-          <span class="travel-hero-card__badge">SEO FLOW</span>
-          <strong>정보글 → 여행지 허브 → 호텔 상세</strong>
-        </div>
-        <div class="travel-flow">
-          <div><span>01</span><b>검색 유입</b><p>여행 준비·일정·위치 고민 해결</p></div>
-          <div><span>02</span><b>비교 탐색</b><p>여행지별 호텔과 관련 글 묶음</p></div>
-          <div><span>03</span><b>예약 전환</b><p>호텔 상세에서 제휴 버튼 연결</p></div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="container travel-section travel-section--compact">
-      <div class="travel-metric-grid">
-        <article><strong>가볍게</strong><span>정적 블로그 느낌의 빠른 SSR</span></article>
-        <article><strong>명확하게</strong><span>여행지·호텔·정보글 분리</span></article>
-        <article><strong>전환까지</strong><span>예약 전 고민을 줄이는 CTA</span></article>
       </div>
     </section>
 
@@ -75,11 +56,11 @@
         <div>
           <p class="eyebrow">Destinations</p>
           <h2>여행지 허브</h2>
-          <p>여행지별 호텔, 정보글, 이동 동선을 한 페이지에 묶어 SEO 중심글로 활용합니다.</p>
+          <p>나라별 주요 도시를 모아 여행지별 호텔 추천과 준비 팁을 쉽게 찾아볼 수 있습니다.</p>
         </div>
         <a class="text-link" href="/destinations/">전체 여행지 보기</a>
       </div>
-      <div id="homeDestinations" class="travel-card-grid"></div>
+      <div id="homeDestinations" class="country-destination-list"></div>
     </section>
 
     <section class="container travel-section travel-section--tinted">
@@ -94,12 +75,12 @@
       <div id="homeHotels" class="travel-card-grid travel-card-grid--hotels"></div>
     </section>
 
-    <section class="container travel-section">
+    <section id="homePostsSection" class="container travel-section">
       <div class="section-heading section-heading--split">
         <div>
           <p class="eyebrow">Latest Guides</p>
           <h2>최신 여행 글</h2>
-          <p>애드센스 유입용 정보글과 호텔 추천글을 함께 운영합니다.</p>
+          <p>여행 준비 팁, 호텔 선택 기준, 도시별 이동 정보를 최신순으로 정리합니다.</p>
         </div>
       </div>
       <div id="homePosts" class="travel-list"></div>
@@ -114,20 +95,61 @@
     const safeArray = (value) => { try { const parsed = JSON.parse(value || "[]"); return Array.isArray(parsed) ? parsed : []; } catch { return []; } };
 
     async function loadHome() {
-      const [destRes, hotelRes, postRes] = await Promise.all([
-        fetch('/api/destinations?limit=6').catch(() => null),
+      const [destRes, settingsRes, hotelRes, postRes] = await Promise.all([
+        fetch('/api/destinations?limit=100').catch(() => null),
+        fetch('/api/travel-settings').catch(() => null),
         fetch('/api/hotels?limit=6').catch(() => null),
         fetch('/api/posts?per_page=6').catch(() => null)
       ]);
       const destData = destRes ? await destRes.json().catch(() => ({ items: [] })) : { items: [] };
+      const settingsData = settingsRes ? await settingsRes.json().catch(() => ({ countries: [] })) : { countries: [] };
       const hotelData = hotelRes ? await hotelRes.json().catch(() => ({ items: [] })) : { items: [] };
       const postData = postRes ? await postRes.json().catch(() => ({ items: [] })) : { items: [] };
 
-      $('homeDestinations').innerHTML = (destData.items || []).map((item) => `
-        <article class="travel-card travel-card--destination">
-          ${item.cover_image ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(item.slug)}"><img src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || item.name)}" loading="lazy" decoding="async" /></a>` : ''}
-          <div class="travel-card__body"><div class="travel-card__meta">${escapeHtml([item.country, item.city].filter(Boolean).join(' · '))}</div><h3><a href="/destinations/${encodeURIComponent(item.slug)}">${escapeHtml(item.title || item.name)}</a></h3><p>${escapeHtml(item.summary)}</p><a class="text-link" href="/destinations/${encodeURIComponent(item.slug)}">여행지 보기</a></div>
-        </article>`).join('') || '<div class="empty-card">여행지 샘플 데이터를 추가하세요.</div>';
+      const countrySlugAliases = { 베트남: 'vietnam', 일본: 'japan', 태국: 'thailand', 대한민국: 'korea', 한국: 'korea', 대만: 'taiwan', 싱가포르: 'singapore', 말레이시아: 'malaysia', 인도네시아: 'indonesia', 필리핀: 'philippines', 홍콩: 'hong-kong', 마카오: 'macau', 중국: 'china', 미국: 'usa', 프랑스: 'france', 이탈리아: 'italy', 스페인: 'spain' };
+      const slugifyCountry = (value) => {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+        if (countrySlugAliases[raw]) return countrySlugAliases[raw];
+        return raw.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9가-힣]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+      };
+      const countrySettings = Array.isArray(settingsData.countries) ? settingsData.countries.filter((country) => Number(country.is_active ?? 1) === 1) : [];
+      const countrySlugByName = new Map(countrySettings.map((country) => [String(country.name || '').trim(), String(country.slug || '').trim() || slugifyCountry(country.name)]));
+      const countryOrder = new Map(countrySettings.map((country, index) => [String(country.name || '').trim(), Number(country.sort_order || 0) || index + 1]));
+      const destinations = Array.isArray(destData.items) ? destData.items : [];
+      const groupedDestinations = destinations.reduce((groups, item) => {
+        const countryName = String(item.country || '기타 여행지').trim() || '기타 여행지';
+        if (!groups.has(countryName)) groups.set(countryName, []);
+        groups.get(countryName).push(item);
+        return groups;
+      }, new Map());
+      const sortedCountryGroups = Array.from(groupedDestinations.entries()).sort(([aName], [bName]) => {
+        const aOrder = countryOrder.get(aName) || 999;
+        const bOrder = countryOrder.get(bName) || 999;
+        if (aOrder !== bOrder) return aOrder - bOrder;
+        return aName.localeCompare(bName, 'ko');
+      });
+
+      $('homeDestinations').innerHTML = sortedCountryGroups.map(([countryName, items]) => {
+        const countrySlug = countrySlugByName.get(countryName) || slugifyCountry(countryName);
+        const sortedItems = items.slice().sort((a, b) => String(a.name || a.title || '').localeCompare(String(b.name || b.title || ''), 'ko'));
+        return `<section class="country-destination-group" aria-labelledby="country-${escapeHtml(countrySlug)}">
+          <div class="country-destination-group__head">
+            <div>
+              <p class="eyebrow">${escapeHtml(countryName)}</p>
+              <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)} 여행지</h3>
+            </div>
+            <a class="text-link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기</a>
+          </div>
+          <div class="travel-card-grid">
+            ${sortedItems.map((item) => `
+              <article class="travel-card travel-card--destination">
+                ${item.cover_image ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(item.slug)}"><img src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || item.name)}" loading="lazy" decoding="async" /></a>` : ''}
+                <div class="travel-card__body"><div class="travel-card__meta">${escapeHtml([item.country, item.city].filter(Boolean).join(' · '))}</div><h4><a href="/destinations/${encodeURIComponent(item.slug)}">${escapeHtml(item.title || item.name)}</a></h4><p>${escapeHtml(item.summary)}</p><a class="text-link" href="/destinations/${encodeURIComponent(item.slug)}">여행지 보기</a></div>
+              </article>`).join('')}
+          </div>
+        </section>`;
+      }).join('') || '<div class="empty-card">여행지 샘플 데이터를 추가하세요.</div>';
 
       $('homeHotels').innerHTML = (hotelData.items || []).map((item) => {
         const tags = safeArray(item.suitable_for_json).slice(0, 3);
@@ -138,7 +160,7 @@
       }).join('') || '<div class="empty-card">호텔 샘플 데이터를 추가하세요.</div>';
 
       $('homePosts').innerHTML = (postData.items || []).map((post) => `
-        <article class="travel-list__item"><div><div class="travel-card__meta">${escapeHtml(post.category || '여행')}</div><h3><a href="/post/${encodeURIComponent(post.slug)}">${escapeHtml(post.title)}</a></h3><p>${escapeHtml(post.summary)}</p></div><a class="text-link" href="/post/${encodeURIComponent(post.slug)}">읽기</a></article>
+        <article class="travel-list__item"><div><div class="travel-card__meta">${escapeHtml(post.content_type || '여행 글')}</div><h3><a href="/post/${encodeURIComponent(post.slug)}">${escapeHtml(post.title)}</a></h3><p>${escapeHtml(post.summary)}</p></div><a class="text-link" href="/post/${encodeURIComponent(post.slug)}">읽기</a></article>
       `).join('') || '<div class="empty-card">게시글 샘플 데이터를 추가하세요.</div>';
     }
     loadHome().catch(() => {});
