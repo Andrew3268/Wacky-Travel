@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260505v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260509v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
@@ -87,30 +87,22 @@
                   <option value="draft">초안</option>
                 </select>
               </label>
-              <label class="editor-category-field">
-                <div class="small">카테고리</div>
-                <div class="editor-category-control">
-                  <select class="input" id="category"></select>
-                  <button class="btn btn--icon-only" id="openCategoryModalBtn" type="button" aria-label="카테고리 관리">
-                    <svg class="btn__icon-svg" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 5v14"></path>
-                      <path d="M5 12h14"></path>
-                    </svg>
-                  </button>
-                </div>
-              </label>
+
             </div>
 
             <div class="card editor-option-card editor-travel-placement-card">
-              <div class="h2" style="margin-bottom:12px;">여행 노출 설정</div>
+              <div class="section-heading section-heading--split" style="margin-bottom:12px;">
+                <div>
+                  <div class="h2">여행 노출 설정</div>
+                  <p class="small">글 종류·나라·도시에 따라 노출 섹션이 결정됩니다.</p>
+                </div>
+                <button class="btn" id="openTravelSettingsModalBtn" type="button" aria-expanded="false">항목 관리</button>
+              </div>
               <div class="grid grid--3">
                 <label>
                   <div class="small">글 종류</div>
                   <select class="input" id="content_type">
                     <option value="">글 종류 선택</option>
-                    <option value="top5_series">TOP5 시리즈</option>
-                    <option value="hotel_intro">개별 호텔 소개</option>
-                    <option value="travel_tip">여행 tip</option>
                   </select>
                 </label>
                 <label>
@@ -419,27 +411,62 @@
     </div>
   </aside>
 
-  <div class="modal-backdrop" id="categoryModalBackdrop" hidden></div>
-  <aside class="modal-sheet modal-sheet--category" id="categoryModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="categoryModalTitle">
+  <div class="modal-backdrop" id="travelSettingsModalBackdrop" hidden></div>
+  <aside class="modal-sheet modal-sheet--travel-settings" id="travelSettingsModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="travelSettingsModalTitle">
     <div class="modal-sheet__header">
       <div>
-        <div class="small seo-eyebrow">카테고리 관리</div>
-        <h2 class="h2" id="categoryModalTitle">카테고리 설정</h2>
+        <div class="small seo-eyebrow">여행 노출 설정 관리</div>
+        <h2 class="h2" id="travelSettingsModalTitle">글 종류 · 나라 · 도시 설정</h2>
+        <p class="small">여기서 추가한 항목은 글 작성/수정 화면의 선택 항목과 여행지 페이지 섹션에 반영됩니다.</p>
       </div>
-      <button class="btn" id="closeCategoryModalBtn" type="button">닫기</button>
+      <button class="btn" id="closeTravelSettingsModalBtn" type="button">닫기</button>
     </div>
     <div class="sep"></div>
-    <div class="modal-sheet__body">
-      <div class="category-manager__create">
-        <div class="small">새 카테고리 추가</div>
-        <div class="category-manager__create-row">
-          <input class="input" id="newCategoryName" placeholder="예: 계절 팁" />
-          <button class="btn btn--brand" id="addCategoryBtn" type="button">추가</button>
+    <div class="modal-sheet__body travel-settings-manager">
+      <section class="travel-settings-manager__section">
+        <h3 class="h2">글 종류</h3>
+        <div class="category-manager__create">
+          <div class="category-manager__create-row travel-settings-manager__create-row--3">
+            <input class="input" id="newContentTypeLabel" placeholder="예: 가족여행 코스" />
+            <input class="input" id="newContentTypeSlug" placeholder="slug 예: family-route" />
+            <button class="btn btn--brand" id="addContentTypeBtn" type="button">추가</button>
+          </div>
+          <input class="input" id="newContentTypeDescription" placeholder="설명 예: 가족 단위 여행객을 위한 일정 콘텐츠" />
         </div>
-      </div>
+        <div class="category-manager__list" id="travelContentTypeList"></div>
+      </section>
+
       <div class="sep"></div>
-      <div class="category-manager__list" id="categoryManagerList"></div>
-      <div class="small" id="categoryManagerStatus"></div>
+
+      <section class="travel-settings-manager__section">
+        <h3 class="h2">나라</h3>
+        <div class="category-manager__create-row travel-settings-manager__create-row--3">
+          <input class="input" id="newCountryName" placeholder="예: 베트남" />
+          <input class="input" id="newCountrySlug" placeholder="slug 예: vietnam" />
+          <button class="btn btn--brand" id="addCountryBtn" type="button">추가</button>
+        </div>
+        <div class="category-manager__list" id="travelCountryList"></div>
+      </section>
+
+      <div class="sep"></div>
+
+      <section class="travel-settings-manager__section">
+        <h3 class="h2">도시</h3>
+        <div class="grid grid--3">
+          <select class="input" id="newDestinationCountry">
+            <option value="">나라 선택</option>
+          </select>
+          <input class="input" id="newDestinationName" placeholder="표시 이름 예: 다낭" />
+          <input class="input" id="newDestinationCity" placeholder="도시명 예: 다낭" />
+        </div>
+        <div class="category-manager__create-row" style="margin-top:10px;">
+          <input class="input" id="newDestinationSlug" placeholder="slug 예: da-nang" />
+          <button class="btn btn--brand" id="addDestinationBtn" type="button">추가</button>
+        </div>
+        <div class="category-manager__list" id="travelDestinationList"></div>
+      </section>
+
+      <div class="small" id="travelSettingsManagerStatus"></div>
     </div>
   </aside>
 
@@ -453,6 +480,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/add.js?v=20260509v1" defer></script>
+  <script src="/assets/js/add.js?v=20260509v2" defer></script>
 </body>
 </html>

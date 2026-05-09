@@ -46,17 +46,10 @@ function shouldShowInarticleAdsInEditor() {
 }
 
 
-function normalizeCategoryName(value) {
-  return String(value || "").replace(/\s+/g, " ").trim();
-}
-
-let categoryItems = [];
-let editingCategoryName = "";
-
-const TRAVEL_CONTENT_TYPES = [
-  { value: "top5_series", label: "TOP5 시리즈" },
-  { value: "hotel_intro", label: "개별 호텔 소개" },
-  { value: "travel_tip", label: "여행 tip" }
+const DEFAULT_TRAVEL_CONTENT_TYPES = [
+  { slug: "top5_series", label: "TOP5 시리즈", description: "목적별·조건별 추천 리스트 콘텐츠" },
+  { slug: "hotel_intro", label: "개별 호텔 소개", description: "특정 호텔의 장점과 확인 포인트 콘텐츠" },
+  { slug: "travel_tip", label: "여행 tip", description: "예약 전후로 확인하면 좋은 여행 정보" }
 ];
 
 const TRAVEL_CONTENT_TYPE_ALIASES = {
@@ -66,21 +59,50 @@ const TRAVEL_CONTENT_TYPE_ALIASES = {
   hotel_review: "hotel_intro"
 };
 
+let travelContentTypeItems = [...DEFAULT_TRAVEL_CONTENT_TYPES];
+let countryItems = [];
 let destinationItems = [];
 
 function normalizeContentType(value) {
   const raw = String(value || "").trim();
   const normalized = TRAVEL_CONTENT_TYPE_ALIASES[raw] || raw;
-  return TRAVEL_CONTENT_TYPES.some((item) => item.value === normalized) ? normalized : "";
+  if (!normalized) return "";
+  const hasItem = travelContentTypeItems.some((item) => String(item.slug || item.value || "") === normalized);
+  return hasItem ? normalized : normalized;
 }
 
 function labelContentType(value) {
   const normalized = normalizeContentType(value);
-  return TRAVEL_CONTENT_TYPES.find((item) => item.value === normalized)?.label || "";
+  const found = travelContentTypeItems.find((item) => String(item.slug || item.value || "") === normalized);
+  if (found) return found.label || found.name || normalized;
+  const fallback = DEFAULT_TRAVEL_CONTENT_TYPES.find((item) => item.slug === normalized);
+  return fallback?.label || normalized;
 }
 
 function normalizeCountryName(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function countryToSlug(value) {
+  const raw = normalizeCountryName(value);
+  if (!raw) return "";
+  const alias = { 베트남: "vietnam", 일본: "japan", 태국: "thailand", 한국: "korea", 대한민국: "korea" }[raw];
+  if (alias) return alias;
+  return raw
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9가-힣]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function getCountrySlugFromDestination(destination) {
+  return String(destination?.country_slug || destination?.countrySlug || "").trim() || countryToSlug(destination?.country || "");
+}
+
+function getCountryNameBySlug(slug) {
+  const found = countryItems.find((item) => String(item.slug || "") === String(slug || ""));
+  return found?.name || normalizeCountryName(slug);
 }
 
 function getDestinationLabel(destination) {
@@ -98,10 +120,14 @@ function getSelectedDestination() {
 function renderContentTypeOptions(selectedValue = "") {
   const selectEl = $("content_type");
   if (!selectEl) return;
-  const normalized = normalizeContentType(selectedValue);
+  const normalized = normalizeContentType(selectedValue || selectEl.value);
+  const activeItems = travelContentTypeItems.filter((item) => Number(item.is_active ?? 1) !== 0);
+  const selectedExists = activeItems.some((item) => String(item.slug || "") === normalized);
+  const selectedItem = travelContentTypeItems.find((item) => String(item.slug || "") === normalized);
+  const items = selectedItem && !selectedExists ? [selectedItem, ...activeItems] : activeItems;
   selectEl.innerHTML = [
     '<option value="">글 종류 선택</option>',
-    ...TRAVEL_CONTENT_TYPES.map((item) => `<option value="${escapeHtml(item.value)}">${escapeHtml(item.label)}</option>`)
+    ...items.map((item) => `<option value="${escapeHtml(item.slug || item.value || "")}">${escapeHtml(item.label || item.name || item.slug || "")}</option>`)
   ].join("");
   selectEl.value = normalized || "";
 }
@@ -109,13 +135,14 @@ function renderContentTypeOptions(selectedValue = "") {
 function renderCountryOptions(selectedValue = "") {
   const selectEl = $("country");
   if (!selectEl) return;
-  const current = normalizeCountryName(selectedValue || selectEl.value);
-  const countries = [...new Set(destinationItems.map((item) => normalizeCountryName(item.country)).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b, "ko"));
-  if (current && !countries.includes(current)) countries.unshift(current);
+  const current = String(selectedValue || selectEl.value || "").trim();
+  const activeCountries = countryItems.filter((item) => Number(item.is_active ?? 1) !== 0);
+  const selectedExists = activeCountries.some((item) => String(item.slug || "") === current);
+  const selectedCountry = countryItems.find((item) => String(item.slug || "") === current);
+  const items = selectedCountry && !selectedExists ? [selectedCountry, ...activeCountries] : activeCountries;
   selectEl.innerHTML = [
     '<option value="">나라 선택</option>',
-    ...countries.map((country) => `<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`)
+    ...items.map((country) => `<option value="${escapeHtml(country.slug || "")}">${escapeHtml(country.name || country.slug || "")}</option>`)
   ].join("");
   selectEl.value = current || "";
 }
@@ -124,10 +151,11 @@ function renderDestinationOptions(selectedValue = "") {
   const selectEl = $("destination_slug");
   if (!selectEl) return;
   const selectedSlug = String(selectedValue || selectEl.value || "").trim();
-  const selectedCountry = normalizeCountryName($("country")?.value || "");
+  const selectedCountrySlug = String($("country")?.value || "").trim();
   const selectedDestination = destinationItems.find((item) => String(item.slug || "") === selectedSlug) || null;
   const filtered = destinationItems
-    .filter((item) => !selectedCountry || normalizeCountryName(item.country) === selectedCountry)
+    .filter((item) => Number(item.is_active ?? 1) !== 0)
+    .filter((item) => !selectedCountrySlug || getCountrySlugFromDestination(item) === selectedCountrySlug)
     .sort((a, b) => getDestinationLabel(a).localeCompare(getDestinationLabel(b), "ko"));
 
   if (selectedDestination && !filtered.some((item) => String(item.slug || "") === selectedSlug)) {
@@ -146,34 +174,57 @@ function updateTravelPlacementStatus() {
   if (!statusEl) return;
   const contentTypeLabel = labelContentType($("content_type")?.value || "");
   const destination = getSelectedDestination();
-  const country = normalizeCountryName($("country")?.value || destination?.country || "");
+  const countryName = getCountryNameBySlug($("country")?.value || getCountrySlugFromDestination(destination));
   const destinationLabel = getDestinationLabel(destination);
 
-  if (!contentTypeLabel || !country || !destinationLabel) {
+  if (!contentTypeLabel || !countryName || !destinationLabel) {
     statusEl.textContent = "글 종류, 나라, 도시를 모두 선택하면 어느 섹션에 노출되는지 확인할 수 있습니다.";
     return;
   }
 
-  statusEl.textContent = `${country} · ${destinationLabel} 페이지의 '${contentTypeLabel}' 섹션에 노출됩니다.`;
+  statusEl.textContent = `${countryName} · ${destinationLabel} 페이지의 '${contentTypeLabel}' 섹션에 노출됩니다.`;
 }
 
-async function loadDestinations(selectedDestinationSlug = "") {
+async function requestTravelSettingsApi(method = "GET", payload = null) {
+  const options = {
+    method,
+    credentials: "same-origin",
+    cache: "no-store",
+    headers: { Accept: "application/json" }
+  };
+  if (payload && method !== "GET") {
+    options.headers["content-type"] = "application/json";
+    options.body = JSON.stringify(payload);
+  }
+  const res = await fetch(`/api/travel-settings?ts=${Date.now()}`, options);
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(json?.message || "여행 노출 설정 요청에 실패했습니다.");
+  return json;
+}
+
+async function loadTravelSettings(selectedDestinationSlug = "", selectedContentType = "") {
   try {
-    const res = await fetch("/api/destinations?status=all&limit=100");
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(json?.message || "여행지 목록을 불러오지 못했습니다.");
-    destinationItems = Array.isArray(json.items) ? json.items : [];
+    const json = await requestTravelSettingsApi("GET");
+    travelContentTypeItems = Array.isArray(json.content_types) && json.content_types.length ? json.content_types : [...DEFAULT_TRAVEL_CONTENT_TYPES];
+    countryItems = Array.isArray(json.countries) ? json.countries : [];
+    destinationItems = Array.isArray(json.destinations) ? json.destinations : [];
 
     const selectedDestination = destinationItems.find((item) => String(item.slug || "") === String(selectedDestinationSlug || ""));
-    const selectedCountry = selectedDestination ? normalizeCountryName(selectedDestination.country) : normalizeCountryName($("country")?.value || "");
-    renderCountryOptions(selectedCountry);
+    const selectedCountrySlug = selectedDestination ? getCountrySlugFromDestination(selectedDestination) : String($("country")?.value || "").trim();
+    renderContentTypeOptions(selectedContentType || $("content_type")?.value || "");
+    renderCountryOptions(selectedCountrySlug);
     renderDestinationOptions(selectedDestinationSlug);
+    renderTravelSettingsManager();
     updateTravelPlacementStatus();
     renderPreview();
   } catch (error) {
     const statusEl = $("travelPlacementStatus");
-    if (statusEl) statusEl.textContent = error.message || "여행지 목록을 불러오지 못했습니다.";
+    if (statusEl) statusEl.textContent = error.message || "여행 노출 설정을 불러오지 못했습니다.";
   }
+}
+
+async function loadDestinations(selectedDestinationSlug = "") {
+  await loadTravelSettings(selectedDestinationSlug, $("content_type")?.value || "");
 }
 
 function bindTravelPlacementEvents() {
@@ -193,211 +244,271 @@ function bindTravelPlacementEvents() {
   });
 }
 
-
-function getCurrentCategoryValue() {
-  return $("category")?.value?.trim() || "";
-}
-
-function renderCategoryOptions(selectedValue = "") {
-  const selectEl = $("category");
-  if (!selectEl) return;
-  const currentValue = normalizeCategoryName(selectedValue || getCurrentCategoryValue());
-  const names = categoryItems.map((item) => normalizeCategoryName(item.name || item)).filter(Boolean);
-  const uniqueNames = [...new Set(names)];
-  if (currentValue && !uniqueNames.includes(currentValue)) uniqueNames.unshift(currentValue);
-  selectEl.innerHTML = [
-    '<option value="">카테고리 선택</option>',
-    ...uniqueNames.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`)
-  ].join("");
-  selectEl.value = currentValue || "";
-}
-
-function setCategoryManagerStatus(message = "", isError = false) {
-  const statusEl = $("categoryManagerStatus");
+function setTravelSettingsStatus(message = "", isError = false) {
+  const statusEl = $("travelSettingsManagerStatus");
   if (!statusEl) return;
   statusEl.textContent = message;
   statusEl.style.color = isError ? "#b91c1c" : "";
 }
 
-function renderCategoryManagerList() {
-  const listEl = $("categoryManagerList");
-  if (!listEl) return;
-  if (!categoryItems.length) {
-    listEl.innerHTML = '<div class="category-manager__empty small">등록된 카테고리가 없습니다. 위 입력창에서 새 카테고리를 추가해 주세요.</div>';
-    return;
-  }
+function renderTravelSettingsManager() {
+  renderTravelContentTypeManager();
+  renderCountryManager();
+  renderDestinationManager();
+}
 
-  listEl.innerHTML = categoryItems.map((item) => {
-    const name = normalizeCategoryName(item.name || item);
-    const isEditing = editingCategoryName === name;
-    return `
-      <div class="category-manager__item" data-category-item="${escapeHtml(name)}">
+function renderTravelContentTypeManager() {
+  const listEl = $("travelContentTypeList");
+  if (!listEl) return;
+  listEl.innerHTML = travelContentTypeItems.length
+    ? travelContentTypeItems.map((item) => `
+      <div class="category-manager__item">
         <div>
-          ${isEditing
-            ? `<input class="input" data-category-edit-input="${escapeHtml(name)}" value="${escapeHtml(name)}" />`
-            : `<div class="category-manager__name">${escapeHtml(name)}</div>`}
+          <div class="category-manager__name">${escapeHtml(item.label || item.slug)}</div>
+          <div class="small">slug: ${escapeHtml(item.slug || "")} ${Number(item.is_active ?? 1) === 0 ? " · 미사용" : ""}</div>
+          ${item.description ? `<div class="small">${escapeHtml(item.description)}</div>` : ""}
         </div>
         <div class="category-manager__actions">
-          ${isEditing
-            ? `
-              <button class="btn btn--brand" type="button" data-category-save="${escapeHtml(name)}">저장</button>
-              <button class="btn" type="button" data-category-cancel>취소</button>
-            `
-            : `
-              <button class="btn" type="button" data-category-edit="${escapeHtml(name)}">수정</button>
-              <button class="btn" type="button" data-category-delete="${escapeHtml(name)}">삭제</button>
-            `}
+          <button class="btn" type="button" data-travel-edit-content-type="${escapeHtml(item.slug || "")}">수정</button>
+          <button class="btn" type="button" data-travel-delete-content-type="${escapeHtml(item.slug || "")}">삭제</button>
         </div>
-      </div>
-    `;
-  }).join("");
+      </div>`).join("")
+    : '<div class="category-manager__empty small">등록된 글 종류가 없습니다.</div>';
 }
 
-async function requestCategoryApi(method, payload = {}) {
-  const res = await fetch('/api/categories', {
-    method,
-    headers: { 'content-type': 'application/json' },
-    body: method === 'GET' ? undefined : JSON.stringify(payload)
-  });
-  const json = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(json?.message || '카테고리 요청에 실패했습니다.');
-  return json;
-}
+function renderCountryManager() {
+  const listEl = $("travelCountryList");
+  if (!listEl) return;
+  listEl.innerHTML = countryItems.length
+    ? countryItems.map((item) => `
+      <div class="category-manager__item">
+        <div>
+          <div class="category-manager__name">${escapeHtml(item.name || item.slug)}</div>
+          <div class="small">slug: ${escapeHtml(item.slug || "")} ${Number(item.is_active ?? 1) === 0 ? " · 미사용" : ""}</div>
+        </div>
+        <div class="category-manager__actions">
+          <button class="btn" type="button" data-travel-edit-country="${escapeHtml(item.slug || "")}">수정</button>
+          <button class="btn" type="button" data-travel-delete-country="${escapeHtml(item.slug || "")}">삭제</button>
+        </div>
+      </div>`).join("")
+    : '<div class="category-manager__empty small">등록된 나라가 없습니다.</div>';
 
-async function loadCategories(selectedValue = "") {
-  try {
-    const json = await requestCategoryApi('GET');
-    categoryItems = Array.isArray(json.items) ? json.items : [];
-    renderCategoryOptions(selectedValue);
-    renderCategoryManagerList();
-  } catch (error) {
-    setCategoryManagerStatus(error.message || '카테고리를 불러오지 못했습니다.', true);
+  const selectEl = $("newDestinationCountry");
+  if (selectEl) {
+    selectEl.innerHTML = [
+      '<option value="">나라 선택</option>',
+      ...countryItems.map((country) => `<option value="${escapeHtml(country.slug || "")}">${escapeHtml(country.name || country.slug || "")}</option>`)
+    ].join("");
   }
 }
 
-function openCategoryModal() {
-  const modal = $('categoryModal');
-  const backdrop = $('categoryModalBackdrop');
-  const openBtn = $('openCategoryModalBtn');
+function renderDestinationManager() {
+  const listEl = $("travelDestinationList");
+  if (!listEl) return;
+  listEl.innerHTML = destinationItems.length
+    ? destinationItems.map((item) => `
+      <div class="category-manager__item">
+        <div>
+          <div class="category-manager__name">${escapeHtml(getDestinationLabel(item))}</div>
+          <div class="small">${escapeHtml(item.country || getCountryNameBySlug(getCountrySlugFromDestination(item)) || "나라 미지정")} · slug: ${escapeHtml(item.slug || "")} ${Number(item.is_active ?? 1) === 0 ? " · 미사용" : ""}</div>
+        </div>
+        <div class="category-manager__actions">
+          <button class="btn" type="button" data-travel-edit-destination="${escapeHtml(item.slug || "")}">수정</button>
+          <button class="btn" type="button" data-travel-delete-destination="${escapeHtml(item.slug || "")}">삭제</button>
+        </div>
+      </div>`).join("")
+    : '<div class="category-manager__empty small">등록된 도시가 없습니다.</div>';
+}
+
+function openTravelSettingsModal() {
+  const modal = $("travelSettingsModal");
+  const backdrop = $("travelSettingsModalBackdrop");
+  const openBtn = $("openTravelSettingsModalBtn");
   if (!modal || !backdrop || !openBtn) return;
   backdrop.hidden = false;
-  modal.classList.add('is-open');
-  modal.setAttribute('aria-hidden', 'false');
-  openBtn.setAttribute('aria-expanded', 'true');
-  document.body.classList.add('has-preview-open');
-  setCategoryManagerStatus('');
-  $('newCategoryName')?.focus();
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  openBtn.setAttribute("aria-expanded", "true");
+  document.body.classList.add("has-preview-open");
+  setTravelSettingsStatus("");
+  renderTravelSettingsManager();
 }
 
-function closeCategoryModal() {
-  const modal = $('categoryModal');
-  const backdrop = $('categoryModalBackdrop');
-  const openBtn = $('openCategoryModalBtn');
+function closeTravelSettingsModal() {
+  const modal = $("travelSettingsModal");
+  const backdrop = $("travelSettingsModalBackdrop");
+  const openBtn = $("openTravelSettingsModalBtn");
   if (!modal || !backdrop || !openBtn) return;
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
   backdrop.hidden = true;
-  openBtn.setAttribute('aria-expanded', 'false');
-  editingCategoryName = '';
-  renderCategoryManagerList();
-  document.body.classList.remove('has-preview-open');
+  openBtn.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("has-preview-open");
 }
 
-async function addCategory() {
-  const inputEl = $('newCategoryName');
-  const name = normalizeCategoryName(inputEl?.value || '');
-  if (!name) {
-    setCategoryManagerStatus('카테고리 이름을 입력해 주세요.', true);
-    inputEl?.focus();
-    return;
-  }
+async function afterTravelSettingsChanged(message, selectedDestinationSlug = $("destination_slug")?.value || "", selectedContentType = $("content_type")?.value || "") {
+  await loadTravelSettings(selectedDestinationSlug, selectedContentType);
+  setTravelSettingsStatus(message);
+  handleRealtimeChange();
+}
+
+async function addTravelContentType() {
+  const label = normalizeCountryName($("newContentTypeLabel")?.value || "");
+  const slug = slugify($("newContentTypeSlug")?.value || label);
+  const description = normalizeCountryName($("newContentTypeDescription")?.value || "");
+  if (!label || !slug) return setTravelSettingsStatus("글 종류 이름과 slug를 입력해 주세요.", true);
   try {
-    const json = await requestCategoryApi('POST', { name });
-    categoryItems = Array.isArray(json.items) ? json.items : categoryItems;
-    renderCategoryOptions(name);
-    renderCategoryManagerList();
-    if (inputEl) inputEl.value = '';
-    setCategoryManagerStatus('카테고리가 추가되었습니다.');
-    handleRealtimeChange();
+    await requestTravelSettingsApi("POST", { entity: "content_type", slug, label, description });
+    ["newContentTypeLabel", "newContentTypeSlug", "newContentTypeDescription"].forEach((id) => { if ($(id)) $(id).value = ""; });
+    await afterTravelSettingsChanged("글 종류가 추가되었습니다.", $("destination_slug")?.value || "", slug);
   } catch (error) {
-    setCategoryManagerStatus(error.message || '카테고리 추가에 실패했습니다.', true);
+    setTravelSettingsStatus(error.message || "글 종류 추가에 실패했습니다.", true);
   }
 }
 
-async function saveEditedCategory(currentName) {
-  const inputEl = document.querySelector(`[data-category-edit-input="${CSS.escape(currentName)}"]`);
-  const newName = normalizeCategoryName(inputEl?.value || '');
-  if (!newName) {
-    setCategoryManagerStatus('새 카테고리 이름을 입력해 주세요.', true);
-    inputEl?.focus();
-    return;
-  }
+async function editTravelContentType(slug) {
+  const item = travelContentTypeItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  if (!item) return;
+  const nextLabel = window.prompt("글 종류 이름", item.label || "");
+  if (nextLabel === null) return;
+  const nextSlug = window.prompt("글 종류 slug", item.slug || "");
+  if (nextSlug === null) return;
+  const nextDescription = window.prompt("설명", item.description || "");
+  if (nextDescription === null) return;
   try {
-    const json = await requestCategoryApi('PUT', { current_name: currentName, new_name: newName });
-    const previousSelected = getCurrentCategoryValue();
-    categoryItems = Array.isArray(json.items) ? json.items : categoryItems;
-    editingCategoryName = '';
-    renderCategoryOptions(previousSelected === currentName ? newName : previousSelected);
-    renderCategoryManagerList();
-    setCategoryManagerStatus('카테고리가 수정되었습니다.');
-    handleRealtimeChange();
+    await requestTravelSettingsApi("PUT", { entity: "content_type", current_slug: item.slug, slug: slugify(nextSlug), label: normalizeCountryName(nextLabel), description: normalizeCountryName(nextDescription), is_active: Number(item.is_active ?? 1) });
+    await afterTravelSettingsChanged("글 종류가 수정되었습니다.", $("destination_slug")?.value || "", slugify(nextSlug));
   } catch (error) {
-    setCategoryManagerStatus(error.message || '카테고리 수정에 실패했습니다.', true);
+    setTravelSettingsStatus(error.message || "글 종류 수정에 실패했습니다.", true);
   }
 }
 
-async function deleteCategory(name) {
-  const ok = window.confirm(`'${name}' 카테고리를 삭제할까요?\n기존 글에 연결된 카테고리는 비워집니다.`);
+async function deleteTravelContentType(slug) {
+  const item = travelContentTypeItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  const ok = window.confirm(`'${item?.label || slug}' 글 종류를 삭제할까요?\n기존 글의 값은 보존되며, 선택 목록에서만 제거됩니다.`);
   if (!ok) return;
   try {
-    const json = await requestCategoryApi('DELETE', { name });
-    const previousSelected = getCurrentCategoryValue();
-    categoryItems = Array.isArray(json.items) ? json.items : categoryItems;
-    editingCategoryName = '';
-    renderCategoryOptions(previousSelected === name ? '' : previousSelected);
-    renderCategoryManagerList();
-    setCategoryManagerStatus('카테고리가 삭제되었습니다.');
-    handleRealtimeChange();
+    await requestTravelSettingsApi("DELETE", { entity: "content_type", slug });
+    await afterTravelSettingsChanged("글 종류가 삭제되었습니다.", $("destination_slug")?.value || "", $("content_type")?.value === slug ? "" : $("content_type")?.value || "");
   } catch (error) {
-    setCategoryManagerStatus(error.message || '카테고리 삭제에 실패했습니다.', true);
+    setTravelSettingsStatus(error.message || "글 종류 삭제에 실패했습니다.", true);
   }
 }
 
-function bindCategoryManagerEvents() {
-  $('openCategoryModalBtn')?.addEventListener('click', openCategoryModal);
-  $('closeCategoryModalBtn')?.addEventListener('click', closeCategoryModal);
-  $('categoryModalBackdrop')?.addEventListener('click', closeCategoryModal);
-  $('addCategoryBtn')?.addEventListener('click', addCategory);
-  $('newCategoryName')?.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
+async function addTravelCountry() {
+  const name = normalizeCountryName($("newCountryName")?.value || "");
+  const slug = slugify($("newCountrySlug")?.value || name);
+  if (!name || !slug) return setTravelSettingsStatus("나라 이름과 slug를 입력해 주세요.", true);
+  try {
+    await requestTravelSettingsApi("POST", { entity: "country", slug, name });
+    ["newCountryName", "newCountrySlug"].forEach((id) => { if ($(id)) $(id).value = ""; });
+    await afterTravelSettingsChanged("나라가 추가되었습니다.");
+  } catch (error) {
+    setTravelSettingsStatus(error.message || "나라 추가에 실패했습니다.", true);
+  }
+}
+
+async function editTravelCountry(slug) {
+  const item = countryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  if (!item) return;
+  const nextName = window.prompt("나라 이름", item.name || "");
+  if (nextName === null) return;
+  const nextSlug = window.prompt("나라 slug", item.slug || "");
+  if (nextSlug === null) return;
+  try {
+    await requestTravelSettingsApi("PUT", { entity: "country", current_slug: item.slug, slug: slugify(nextSlug), name: normalizeCountryName(nextName), is_active: Number(item.is_active ?? 1) });
+    await afterTravelSettingsChanged("나라가 수정되었습니다.");
+  } catch (error) {
+    setTravelSettingsStatus(error.message || "나라 수정에 실패했습니다.", true);
+  }
+}
+
+async function deleteTravelCountry(slug) {
+  const item = countryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  const ok = window.confirm(`'${item?.name || slug}' 나라를 삭제할까요?\n도시 데이터는 삭제되지 않지만 선택 목록에서는 제외됩니다.`);
+  if (!ok) return;
+  try {
+    await requestTravelSettingsApi("DELETE", { entity: "country", slug });
+    await afterTravelSettingsChanged("나라가 삭제되었습니다.");
+  } catch (error) {
+    setTravelSettingsStatus(error.message || "나라 삭제에 실패했습니다.", true);
+  }
+}
+
+async function addTravelDestination() {
+  const countrySlug = $("newDestinationCountry")?.value || "";
+  const countryName = getCountryNameBySlug(countrySlug);
+  const name = normalizeCountryName($("newDestinationName")?.value || "");
+  const city = normalizeCountryName($("newDestinationCity")?.value || name);
+  const slug = slugify($("newDestinationSlug")?.value || name);
+  if (!countrySlug || !name || !slug) return setTravelSettingsStatus("나라, 도시명, slug를 입력해 주세요.", true);
+  try {
+    await requestTravelSettingsApi("POST", { entity: "destination", slug, name, city, country_slug: countrySlug, country: countryName, status: "published" });
+    ["newDestinationName", "newDestinationCity", "newDestinationSlug"].forEach((id) => { if ($(id)) $(id).value = ""; });
+    await afterTravelSettingsChanged("도시가 추가되었습니다.", slug);
+  } catch (error) {
+    setTravelSettingsStatus(error.message || "도시 추가에 실패했습니다.", true);
+  }
+}
+
+async function editTravelDestination(slug) {
+  const item = destinationItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  if (!item) return;
+  const nextName = window.prompt("도시 표시 이름", item.name || "");
+  if (nextName === null) return;
+  const nextSlug = window.prompt("도시 slug", item.slug || "");
+  if (nextSlug === null) return;
+  const nextCity = window.prompt("도시명", item.city || item.name || "");
+  if (nextCity === null) return;
+  const currentCountrySlug = getCountrySlugFromDestination(item);
+  const nextCountrySlug = window.prompt("나라 slug", currentCountrySlug);
+  if (nextCountrySlug === null) return;
+  const countryName = getCountryNameBySlug(nextCountrySlug);
+  try {
+    await requestTravelSettingsApi("PUT", { entity: "destination", current_slug: item.slug, slug: slugify(nextSlug), name: normalizeCountryName(nextName), city: normalizeCountryName(nextCity), country_slug: nextCountrySlug, country: countryName, status: item.status || "published" });
+    await afterTravelSettingsChanged("도시가 수정되었습니다.", slugify(nextSlug));
+  } catch (error) {
+    setTravelSettingsStatus(error.message || "도시 수정에 실패했습니다.", true);
+  }
+}
+
+async function deleteTravelDestination(slug) {
+  const item = destinationItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  const ok = window.confirm(`'${item?.name || slug}' 도시를 삭제할까요?\n이 도시와 연결된 글의 도시 연결값은 비워집니다.`);
+  if (!ok) return;
+  try {
+    await requestTravelSettingsApi("DELETE", { entity: "destination", slug });
+    await afterTravelSettingsChanged("도시가 삭제되었습니다.", $("destination_slug")?.value === slug ? "" : $("destination_slug")?.value || "");
+  } catch (error) {
+    setTravelSettingsStatus(error.message || "도시 삭제에 실패했습니다.", true);
+  }
+}
+
+function bindTravelSettingsManagerEvents() {
+  $("openTravelSettingsModalBtn")?.addEventListener("click", openTravelSettingsModal);
+  $("closeTravelSettingsModalBtn")?.addEventListener("click", closeTravelSettingsModal);
+  $("travelSettingsModalBackdrop")?.addEventListener("click", closeTravelSettingsModal);
+  $("addContentTypeBtn")?.addEventListener("click", addTravelContentType);
+  $("addCountryBtn")?.addEventListener("click", addTravelCountry);
+  $("addDestinationBtn")?.addEventListener("click", addTravelDestination);
+  ["newContentTypeLabel", "newContentTypeSlug", "newContentTypeDescription", "newCountryName", "newCountrySlug", "newDestinationName", "newDestinationCity", "newDestinationSlug"].forEach((id) => {
+    $(id)?.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
       event.preventDefault();
-      addCategory();
-    }
+      if (id.startsWith("newContentType")) addTravelContentType();
+      else if (id.startsWith("newCountry")) addTravelCountry();
+      else addTravelDestination();
+    });
   });
-  $('categoryManagerList')?.addEventListener('click', (event) => {
-    const target = event.target.closest('button');
+  $("travelSettingsModal")?.addEventListener("click", (event) => {
+    const target = event.target.closest("button");
     if (!target) return;
-    const editName = target.dataset.categoryEdit;
-    const saveName = target.dataset.categorySave;
-    const deleteName = target.dataset.categoryDelete;
-    if (editName) {
-      editingCategoryName = editName;
-      renderCategoryManagerList();
-      document.querySelector(`[data-category-edit-input="${CSS.escape(editName)}"]`)?.focus();
-      return;
-    }
-    if (saveName) {
-      saveEditedCategory(saveName);
-      return;
-    }
-    if (deleteName) {
-      deleteCategory(deleteName);
-      return;
-    }
-    if (target.hasAttribute('data-category-cancel')) {
-      editingCategoryName = '';
-      renderCategoryManagerList();
-    }
+    if (target.dataset.travelEditContentType) return editTravelContentType(target.dataset.travelEditContentType);
+    if (target.dataset.travelDeleteContentType) return deleteTravelContentType(target.dataset.travelDeleteContentType);
+    if (target.dataset.travelEditCountry) return editTravelCountry(target.dataset.travelEditCountry);
+    if (target.dataset.travelDeleteCountry) return deleteTravelCountry(target.dataset.travelDeleteCountry);
+    if (target.dataset.travelEditDestination) return editTravelDestination(target.dataset.travelEditDestination);
+    if (target.dataset.travelDeleteDestination) return deleteTravelDestination(target.dataset.travelDeleteDestination);
   });
 }
 
@@ -2118,7 +2229,6 @@ function renderPreview() {
   if (!previewEl) return;
 
   const title = $("title").value.trim() || "제목을 입력해 주세요";
-  const category = $("category").value.trim();
   const contentTypeLabel = labelContentType($("content_type")?.value || "");
   const destination = getSelectedDestination();
   const destinationMeta = [destination?.country, getDestinationLabel(destination)].filter(Boolean).join(" · ");
@@ -2151,9 +2261,9 @@ function renderPreview() {
       <header class="preview-article__head">
         <div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
           <div class="row" style="gap:6px;flex-wrap:wrap;">
-            ${category ? `<span class="badge">${escapeHtml(category)}</span>` : '<span class="badge">미분류</span>'}
             ${contentTypeLabel ? `<span class="badge">${escapeHtml(contentTypeLabel)}</span>` : ""}
             ${destinationMeta ? `<span class="badge">${escapeHtml(destinationMeta)}</span>` : ""}
+            ${!contentTypeLabel && !destinationMeta ? '<span class="badge">여행 노출 미설정</span>' : ""}
           </div>
           <span class="small">${new Date().toISOString().slice(0, 10)}</span>
         </div>
@@ -2221,7 +2331,7 @@ function setPreviewDevice(device) {
 async function load() {
   const slug = qs("slug");
   const statusEl = $("saveStatus");
-  const requiredFields = ["slug", "title", "content_md", "tags", "category", "content_type", "country", "destination_slug"];
+  const requiredFields = ["slug", "title", "content_md", "tags", "content_type", "country", "destination_slug"];
   const missingRequiredField = requiredFields.some((id) => !$(id));
 
   if (missingRequiredField) {
@@ -2249,7 +2359,6 @@ async function load() {
   $("published_at").value = item.published_at || "";
   $("updated_at").value = item.updated_at || "";
   $("title").value = item.title || "";
-  const loadedCategory = item.category || "";
   const loadedContentType = normalizeContentType(item.content_type || "") || "travel_tip";
   const loadedDestinationSlug = item.destination_slug || "";
   renderContentTypeOptions(loadedContentType);
@@ -2276,9 +2385,7 @@ async function load() {
   $("tags").value = Array.isArray(tags) ? tags.join(", ") : "";
   if ($("viewBtn")) $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}`;
 
-  $("category").value = loadedCategory;
-  await loadCategories(loadedCategory);
-  await loadDestinations(loadedDestinationSlug);
+  await loadTravelSettings(loadedDestinationSlug, loadedContentType);
   updateSlugPreview();
   syncTocControlsFromContent();
   updateAllCounts();
@@ -2297,7 +2404,7 @@ async function save() {
 
   const payload = {
     title,
-    category: $("category").value.trim(),
+    category: "",
     content_type: normalizeContentType($("content_type")?.value || ""),
     destination_slug: $("destination_slug")?.value.trim() || "",
     meta_description: $("meta_description").value.trim(),
@@ -2359,7 +2466,7 @@ function handleRealtimeChange() {
   renderPreview();
 }
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "category", "content_type", "country", "destination_slug", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && el.tagName === "SELECT") el.addEventListener("change", handleRealtimeChange);
@@ -2375,7 +2482,7 @@ document.querySelectorAll("[data-affiliate-remove]").forEach((button) => {
   button.addEventListener("click", () => { removeAffiliateItemCard(Number(button.dataset.affiliateRemove || "0")); handleRealtimeChange(); });
 });
 if ($("saveBtn")) $("saveBtn").addEventListener("click", save);
-bindCategoryManagerEvents();
+bindTravelSettingsManagerEvents();
 bindTravelPlacementEvents();
 $("enableToc")?.addEventListener("change", applyTocControls);
 $("includeTocH3")?.addEventListener("change", () => {
@@ -2390,7 +2497,7 @@ document.querySelectorAll("[data-preview-width]").forEach((button) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") { closePreview(); closeCategoryModal(); }
+  if (event.key === "Escape") { closePreview(); closeTravelSettingsModal(); }
 });
 
 if ($("title") && $("content_md")) {

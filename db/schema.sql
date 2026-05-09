@@ -63,6 +63,8 @@ CREATE TABLE IF NOT EXISTS destinations (
   airport_info TEXT DEFAULT '',
   transport_summary TEXT DEFAULT '',
   status TEXT DEFAULT 'published',
+  is_active INTEGER DEFAULT 1,
+  sort_order INTEGER DEFAULT 0,
   published_at TEXT NOT NULL,
   updated_at TEXT NOT NULL
 );
@@ -159,3 +161,41 @@ VALUES ('site_name', 'Wacky Travel', datetime('now'));
 
 INSERT OR IGNORE INTO site_settings (key, value, updated_at)
 VALUES ('site_description', '여행지 정보, 호텔 선택 기준, 예약 전 체크포인트를 빠르게 정리하는 여행 블로그', datetime('now'));
+
+-- Travel exposure settings
+CREATE TABLE IF NOT EXISTS content_types (
+  slug TEXT PRIMARY KEY,
+  label TEXT NOT NULL,
+  description TEXT DEFAULT '',
+  sort_order INTEGER DEFAULT 0,
+  is_active INTEGER DEFAULT 1,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_content_types_sort_order ON content_types(sort_order ASC, label ASC);
+
+CREATE TABLE IF NOT EXISTS countries (
+  slug TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  sort_order INTEGER DEFAULT 0,
+  is_active INTEGER DEFAULT 1,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_countries_sort_order ON countries(sort_order ASC, name ASC);
+
+INSERT OR IGNORE INTO content_types (slug, label, description, sort_order, is_active, created_at, updated_at)
+VALUES
+  ('top5_series', 'TOP5 시리즈', '목적별·조건별 추천 리스트 콘텐츠', 1, 1, datetime('now'), datetime('now')),
+  ('hotel_intro', '개별 호텔 소개', '특정 호텔의 장점과 확인 포인트 콘텐츠', 2, 1, datetime('now'), datetime('now')),
+  ('travel_tip', '여행 tip', '예약 전후로 확인하면 좋은 여행 정보', 3, 1, datetime('now'), datetime('now'));
+
+INSERT OR IGNORE INTO countries (slug, name, sort_order, is_active, created_at, updated_at)
+VALUES
+  ('vietnam', '베트남', 1, 1, datetime('now'), datetime('now')),
+  ('japan', '일본', 2, 1, datetime('now'), datetime('now')),
+  ('thailand', '태국', 3, 1, datetime('now'), datetime('now'));
+CREATE INDEX IF NOT EXISTS idx_destinations_country ON destinations(country, status, name ASC);
+CREATE INDEX IF NOT EXISTS idx_destinations_sort_order ON destinations(sort_order ASC, name ASC);

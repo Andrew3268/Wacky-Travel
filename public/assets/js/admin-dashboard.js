@@ -18,7 +18,6 @@ async function initDashboard() {
   const draftEl = document.getElementById('dashboardDraftCount');
   const popularListEl = document.getElementById('dashboardPopularList');
   const recentListEl = document.getElementById('dashboardRecentList');
-  const categoryChipsEl = document.getElementById('dashboardCategoryChips');
   const indexSidebarAdToggleEl = document.getElementById('indexSidebarAdToggle');
   const indexSidebarAdStatusEl = document.getElementById('indexSidebarAdStatus');
 
@@ -85,7 +84,7 @@ async function initDashboard() {
     }
   });
 
-  if (!totalEl || !publishedEl || !draftEl || !popularListEl || !recentListEl || !categoryChipsEl) {
+  if (!totalEl || !publishedEl || !draftEl || !popularListEl || !recentListEl) {
     console.error('대시보드 필수 요소를 찾을 수 없습니다.');
     return;
   }
@@ -102,7 +101,6 @@ async function initDashboard() {
     const sidebar = postsJson.sidebar || {};
     const counts = sidebar.counts || {};
     const popular = Array.isArray(sidebar.popular) ? sidebar.popular : [];
-    const categories = Array.isArray(sidebar.categories) ? sidebar.categories : [];
     const items = Array.isArray(postsJson.items) ? postsJson.items : [];
 
     totalEl.textContent = formatNumber(counts.total || 0);
@@ -133,9 +131,6 @@ async function initDashboard() {
         `).join('')
       : '<li class="small">최근 수정 글이 없습니다.</li>';
 
-    categoryChipsEl.innerHTML = categories.length
-      ? categories.slice(0, 8).map((item) => `<span class="chip">${escapeHtml(item.name)} <strong>${formatNumber(item.count)}</strong></span>`).join('')
-      : '<span class="chip">카테고리 없음</span>';
   } catch (err) {
     console.error(err);
     totalEl.textContent = '-';
@@ -143,7 +138,6 @@ async function initDashboard() {
     draftEl.textContent = '-';
     popularListEl.innerHTML = '<li class="small">글 목록 정보를 불러오지 못했습니다.</li>';
     recentListEl.innerHTML = '<li class="small">최근 글을 불러오지 못했습니다.</li>';
-    categoryChipsEl.innerHTML = '<span class="chip">카테고리 확인 실패</span>';
   }
 }
 

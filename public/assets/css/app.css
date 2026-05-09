@@ -1264,3 +1264,14 @@ body.has-preview-open{overflow:hidden}
     padding: 12px 13px !important;
   }
 }
+
+/* Travel exposure settings manager */
+.modal-sheet--travel-settings { width: min(920px, calc(100vw - 32px)); }
+.travel-settings-manager { display: grid; gap: 18px; }
+.travel-settings-manager__section { display: grid; gap: 12px; }
+.travel-settings-manager__section .h2 { margin: 0; }
+.travel-settings-manager__create-row--3 { grid-template-columns: 1fr 1fr auto; }
+.travel-settings-manager .category-manager__list { margin-top: 12px; }
+@media (max-width: 760px) {
+  .travel-settings-manager__create-row--3 { grid-template-columns: 1fr; }
+}
