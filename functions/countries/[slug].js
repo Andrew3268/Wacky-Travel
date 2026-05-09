@@ -1,7 +1,7 @@
 import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
 import { buildBreadcrumbJsonLd } from "../../lib/travel/seo-jsonld.js";
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
-import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
+import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
 const COUNTRY_SLUG_ALIASES = {
   "베트남": "vietnam",
@@ -36,12 +36,14 @@ export async function onRequestGet({ params, env, request }) {
     cacheKeyUrl,
     ttlSeconds: 900,
     buildResponse: async () => {
+      await ensureTravelSettingsTables(env.TRAVEL_DB);
       const [destinationRows, contentTypes] = await Promise.all([
         env.TRAVEL_DB.prepare(`
-          SELECT slug, name, country, city, title, summary, cover_image, cover_image_alt, updated_at
+          SELECT slug, name, country, city, title, summary, cover_image, cover_image_alt,
+                 card_title, card_description, card_image, card_image_alt, updated_at
           FROM destinations
-          WHERE status = 'published'
-          ORDER BY country COLLATE NOCASE ASC, name COLLATE NOCASE ASC
+          WHERE status = 'published' AND COALESCE(is_active, 1) = 1
+          ORDER BY country COLLATE NOCASE ASC, COALESCE(sort_order, 0) ASC, name COLLATE NOCASE ASC
           LIMIT 500
         `).all(),
         getActiveContentTypes(env.TRAVEL_DB)
@@ -138,14 +140,30 @@ function countryToSlug(value) {
 
 function renderDestinationCard(destination) {
   return `<article class="travel-card">
-    ${destination.cover_image ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(destination.slug)}"><img src="${escapeHtml(destination.cover_image)}" alt="${escapeHtml(destination.cover_image_alt || `${destination.name} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
+    ${getDestinationCardImage(destination) ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(destination.slug)}"><img src="${escapeHtml(getDestinationCardImage(destination))}" alt="${escapeHtml(getDestinationCardImageAlt(destination))}" loading="lazy" decoding="async" /></a>` : ""}
     <div class="travel-card__body">
       <div class="travel-card__meta">${escapeHtml([destination.country, destination.city].filter(Boolean).join(" · "))}</div>
-      <h3><a href="/destinations/${encodeURIComponent(destination.slug)}">${escapeHtml(destination.title || destination.name)}</a></h3>
-      <p>${escapeHtml(destination.summary || "도시별 호텔과 여행 정보를 확인하세요.")}</p>
+      <h3><a href="/destinations/${encodeURIComponent(destination.slug)}">${escapeHtml(getDestinationCardTitle(destination))}</a></h3>
+      <p>${escapeHtml(getDestinationCardDescription(destination))}</p>
       <a class="text-link" href="/destinations/${encodeURIComponent(destination.slug)}">도시 페이지 보기</a>
     </div>
   </article>`;
+}
+
+function getDestinationCardTitle(destination) {
+  return destination.card_title || destination.title || destination.name;
+}
+
+function getDestinationCardDescription(destination) {
+  return destination.card_description || destination.summary || "도시별 호텔과 여행 정보를 확인하세요.";
+}
+
+function getDestinationCardImage(destination) {
+  return destination.card_image || destination.cover_image || "";
+}
+
+function getDestinationCardImageAlt(destination) {
+  return destination.card_image_alt || destination.cover_image_alt || `${destination.name} 대표 이미지`;
 }
 
 function groupPostsByDestination(posts = []) {

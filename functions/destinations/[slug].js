@@ -47,8 +47,12 @@ export async function onRequestGet({ params, env, request }) {
       const posts = postRows.results || [];
       const postGroups = groupPostsByContentType(posts, contentTypes);
       const canonical = `${origin}/destinations/${encodeURIComponent(slug)}`;
-      const title = `${destination.title || `${destination.name} 여행 가이드`} | Wacky Travel`;
-      const description = destination.meta_description || destination.summary || `${destination.name} 여행지 정보와 호텔 선택 기준을 정리합니다.`;
+      const heroTitle = getDestinationHeroTitle(destination);
+      const heroSummary = getDestinationHeroSummary(destination);
+      const heroImage = getDestinationHeroImage(destination);
+      const heroImageAlt = getDestinationHeroImageAlt(destination);
+      const title = `${heroTitle} | Wacky Travel`;
+      const description = destination.meta_description || heroSummary || `${destination.name} 여행지 정보와 호텔 선택 기준을 정리합니다.`;
       const breadcrumbItems = [
         { name: "홈", url: `${origin}/`, href: "/" },
         { name: "여행지", url: `${origin}/destinations/`, href: "/destinations/" },
@@ -70,7 +74,7 @@ export async function onRequestGet({ params, env, request }) {
       const html = `<!doctype html>
 <html lang="ko">
 <head>
-  ${renderTravelHead({ title, description, canonical, image: destination.cover_image })}
+  ${renderTravelHead({ title, description, canonical, image: heroImage })}
   ${renderJsonLdScripts(jsonLdItems)}
 </head>
 <body>
@@ -79,16 +83,16 @@ export async function onRequestGet({ params, env, request }) {
   <main class="travel-page">
     <section class="travel-hero container">
       <div class="travel-hero__body">
-        <p class="eyebrow">${escapeHtml(destination.country || "여행지")}</p>
-        <h1>${escapeHtml(destination.title || `${destination.name} 여행 가이드`)}</h1>
-        <p class="travel-hero__summary">${escapeHtml(destination.summary || "여행 일정과 숙소 선택 기준을 한 번에 정리합니다.")}</p>
+        <p class="eyebrow">${escapeHtml(destination.hero_eyebrow || destination.country || "여행지")}</p>
+        <h1>${escapeHtml(heroTitle)}</h1>
+        <p class="travel-hero__summary">${escapeHtml(heroSummary || "여행 일정과 숙소 선택 기준을 한 번에 정리합니다.")}</p>
         <div class="travel-hero__chips">
           ${destination.best_season ? `<span>추천 시기: ${escapeHtml(destination.best_season)}</span>` : ""}
           ${destination.airport_info ? `<span>공항: ${escapeHtml(destination.airport_info)}</span>` : ""}
           ${destination.transport_summary ? `<span>동선: ${escapeHtml(destination.transport_summary)}</span>` : ""}
         </div>
       </div>
-      ${destination.cover_image ? `<figure class="travel-hero__image"><img src="${escapeHtml(destination.cover_image)}" alt="${escapeHtml(destination.cover_image_alt || `${destination.name} 여행 대표 이미지`)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
+      ${heroImage ? `<figure class="travel-hero__image"><img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
     </section>
 
     <section class="container travel-section">
@@ -120,6 +124,22 @@ export async function onRequestGet({ params, env, request }) {
       return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
     }
   });
+}
+
+function getDestinationHeroTitle(destination) {
+  return destination.hero_title || destination.title || `${destination.name} 여행 가이드`;
+}
+
+function getDestinationHeroSummary(destination) {
+  return destination.hero_summary || destination.summary || "";
+}
+
+function getDestinationHeroImage(destination) {
+  return destination.hero_image || destination.cover_image || "";
+}
+
+function getDestinationHeroImageAlt(destination) {
+  return destination.hero_image_alt || destination.cover_image_alt || `${destination.name} 여행 대표 이미지`;
 }
 
 function renderHotelCard(hotel) {

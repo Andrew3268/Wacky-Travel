@@ -16,6 +16,58 @@ function requireSlug(value, fallback = "") {
   return slug;
 }
 
+function hasBodyField(body, key) {
+  return Object.prototype.hasOwnProperty.call(body || {}, key);
+}
+
+function readBodyField(body, key, fallback = "") {
+  return normalizeText(hasBodyField(body, key) ? body[key] : fallback);
+}
+
+function readDestinationPayload(body, { current = null } = {}) {
+  const name = readBodyField(body, "name", current?.name);
+  const countryName = readBodyField(body, "country", current?.country) || readBodyField(body, "country_name", current?.country);
+  const city = readBodyField(body, "city", current?.city) || name;
+  const summary = readBodyField(body, "summary", current?.summary);
+  const coverImage = readBodyField(body, "cover_image", current?.cover_image);
+  const coverImageAlt = readBodyField(body, "cover_image_alt", current?.cover_image_alt);
+  const cardTitle = readBodyField(body, "card_title", current?.card_title) || name;
+  const cardDescription = readBodyField(body, "card_description", current?.card_description) || summary;
+  const cardImage = readBodyField(body, "card_image", current?.card_image) || coverImage;
+  const cardImageAlt = readBodyField(body, "card_image_alt", current?.card_image_alt) || coverImageAlt;
+  const heroEyebrow = readBodyField(body, "hero_eyebrow", current?.hero_eyebrow) || countryName;
+  const heroTitle = readBodyField(body, "hero_title", current?.hero_title) || readBodyField(body, "title", current?.title) || `${name} 여행 가이드`;
+  const heroSummary = readBodyField(body, "hero_summary", current?.hero_summary) || summary;
+  const heroImage = readBodyField(body, "hero_image", current?.hero_image) || coverImage;
+  const heroImageAlt = readBodyField(body, "hero_image_alt", current?.hero_image_alt) || coverImageAlt;
+
+  return {
+    name,
+    countryName,
+    city,
+    title: heroTitle || readBodyField(body, "title", current?.title) || name,
+    metaDescription: readBodyField(body, "meta_description", current?.meta_description),
+    summary,
+    coverImage,
+    coverImageAlt,
+    cardTitle,
+    cardDescription,
+    cardImage,
+    cardImageAlt,
+    heroEyebrow,
+    heroTitle,
+    heroSummary,
+    heroImage,
+    heroImageAlt,
+    bestSeason: readBodyField(body, "best_season", current?.best_season),
+    airportInfo: readBodyField(body, "airport_info", current?.airport_info),
+    transportSummary: readBodyField(body, "transport_summary", current?.transport_summary),
+    status: readBodyField(body, "status", current?.status) || "published",
+    isActive: Number(body.is_active ?? current?.is_active ?? 1) ? 1 : 0,
+    sortOrder: Number(body.sort_order ?? current?.sort_order ?? 0) || 0
+  };
+}
+
 export async function onRequestGet({ env }) {
   const settings = await getTravelSettings(env.TRAVEL_DB, { includeInactive: true });
   return okJson(settings, { headers: { "cache-control": "private, no-store" } });
@@ -61,44 +113,54 @@ export async function onRequestPost({ env, request }) {
     }
 
     if (entity === "destination") {
-      const name = normalizeText(body.name);
-      const slug = requireSlug(body.slug, name);
-      const countryName = normalizeText(body.country) || normalizeText(body.country_name);
-      if (!name || !countryName) return okJson({ message: "도시 이름과 나라를 입력해 주세요." }, { status: 400 });
+      const payload = readDestinationPayload(body);
+      const slug = requireSlug(body.slug, payload.name);
+      if (!payload.name || !payload.countryName) return okJson({ message: "도시 이름과 나라를 입력해 주세요." }, { status: 400 });
       const exists = await env.TRAVEL_DB.prepare(`SELECT slug FROM destinations WHERE slug = ?`).bind(slug).first();
       if (exists) return okJson({ message: "같은 slug의 도시가 이미 있습니다." }, { status: 409 });
-      const sortOrder = Number(body.sort_order || 0) || await getNextSortOrder(env.TRAVEL_DB, "destinations");
+      const sortOrder = payload.sortOrder || await getNextSortOrder(env.TRAVEL_DB, "destinations");
       await env.TRAVEL_DB.prepare(`
         INSERT INTO destinations (
           slug, name, country, city, title, meta_description, summary, cover_image, cover_image_alt,
+          card_title, card_description, card_image, card_image_alt,
+          hero_eyebrow, hero_title, hero_summary, hero_image, hero_image_alt,
           best_season, airport_info, transport_summary, status, is_active, sort_order, published_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `).bind(
         slug,
-        name,
-        countryName,
-        normalizeText(body.city) || name,
-        normalizeText(body.title) || name,
-        normalizeText(body.meta_description),
-        normalizeText(body.summary),
-        normalizeText(body.cover_image),
-        normalizeText(body.cover_image_alt),
-        normalizeText(body.best_season),
-        normalizeText(body.airport_info),
-        normalizeText(body.transport_summary),
-        normalizeText(body.status) || "published",
-        Number(body.is_active ?? 1) ? 1 : 0,
+        payload.name,
+        payload.countryName,
+        payload.city,
+        payload.title,
+        payload.metaDescription,
+        payload.summary,
+        payload.coverImage,
+        payload.coverImageAlt,
+        payload.cardTitle,
+        payload.cardDescription,
+        payload.cardImage,
+        payload.cardImageAlt,
+        payload.heroEyebrow,
+        payload.heroTitle,
+        payload.heroSummary,
+        payload.heroImage,
+        payload.heroImageAlt,
+        payload.bestSeason,
+        payload.airportInfo,
+        payload.transportSummary,
+        payload.status,
+        payload.isActive,
         sortOrder,
         now,
         now
       ).run();
-      const countrySlug = slugifySetting(body.country_slug || countryToSlug(countryName));
+      const countrySlug = slugifySetting(body.country_slug || countryToSlug(payload.countryName));
       const countryExists = await env.TRAVEL_DB.prepare(`SELECT slug FROM countries WHERE slug = ?`).bind(countrySlug).first();
       if (countrySlug && !countryExists) {
         await env.TRAVEL_DB.prepare(`
           INSERT OR IGNORE INTO countries (slug, name, sort_order, is_active, created_at, updated_at)
           VALUES (?, ?, ?, 1, ?, ?)
-        `).bind(countrySlug, countryName, await getNextSortOrder(env.TRAVEL_DB, "countries"), now, now).run();
+        `).bind(countrySlug, payload.countryName, await getNextSortOrder(env.TRAVEL_DB, "countries"), now, now).run();
       }
       return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
     }
@@ -165,24 +227,61 @@ export async function onRequestPut({ env, request }) {
   }
 
   if (entity === "destination") {
-    const nextSlug = requireSlug(body.slug, currentSlug);
-    const name = normalizeText(body.name);
-    const countryName = normalizeText(body.country) || normalizeText(body.country_name);
-    if (!name || !countryName) return okJson({ message: "도시 이름과 나라를 입력해 주세요." }, { status: 400 });
-    const current = await env.TRAVEL_DB.prepare(`SELECT slug FROM destinations WHERE slug = ?`).bind(currentSlug).first();
+    const current = await env.TRAVEL_DB.prepare(`SELECT * FROM destinations WHERE slug = ?`).bind(currentSlug).first();
     if (!current) return okJson({ message: "수정할 도시를 찾지 못했습니다." }, { status: 404 });
+    const nextSlug = requireSlug(body.slug, currentSlug);
+    const payload = readDestinationPayload(body, { current });
+    if (!payload.name || !payload.countryName) return okJson({ message: "도시 이름과 나라를 입력해 주세요." }, { status: 400 });
     if (nextSlug !== currentSlug) {
       const duplicate = await env.TRAVEL_DB.prepare(`SELECT slug FROM destinations WHERE slug = ?`).bind(nextSlug).first();
       if (duplicate) return okJson({ message: "같은 slug의 도시가 이미 있습니다." }, { status: 409 });
     }
     await env.TRAVEL_DB.prepare(`
       UPDATE destinations
-      SET slug = ?, name = ?, country = ?, city = ?, title = ?, status = ?, is_active = ?, updated_at = ?
+      SET slug = ?, name = ?, country = ?, city = ?, title = ?, meta_description = ?, summary = ?, cover_image = ?, cover_image_alt = ?,
+          card_title = ?, card_description = ?, card_image = ?, card_image_alt = ?,
+          hero_eyebrow = ?, hero_title = ?, hero_summary = ?, hero_image = ?, hero_image_alt = ?,
+          best_season = ?, airport_info = ?, transport_summary = ?, status = ?, is_active = ?, sort_order = ?, updated_at = ?
       WHERE slug = ?
-    `).bind(nextSlug, name, countryName, normalizeText(body.city) || name, normalizeText(body.title) || name, normalizeText(body.status) || "published", Number(body.is_active ?? 1) ? 1 : 0, now, currentSlug).run();
+    `).bind(
+      nextSlug,
+      payload.name,
+      payload.countryName,
+      payload.city,
+      payload.title,
+      payload.metaDescription,
+      payload.summary,
+      payload.coverImage,
+      payload.coverImageAlt,
+      payload.cardTitle,
+      payload.cardDescription,
+      payload.cardImage,
+      payload.cardImageAlt,
+      payload.heroEyebrow,
+      payload.heroTitle,
+      payload.heroSummary,
+      payload.heroImage,
+      payload.heroImageAlt,
+      payload.bestSeason,
+      payload.airportInfo,
+      payload.transportSummary,
+      payload.status,
+      payload.isActive,
+      payload.sortOrder,
+      now,
+      currentSlug
+    ).run();
     if (nextSlug !== currentSlug) {
       await env.TRAVEL_DB.prepare(`UPDATE posts SET destination_slug = ?, updated_at = ? WHERE destination_slug = ?`).bind(nextSlug, now, currentSlug).run();
       await env.TRAVEL_DB.prepare(`UPDATE hotels SET destination_slug = ?, updated_at = ? WHERE destination_slug = ?`).bind(nextSlug, now, currentSlug).run();
+    }
+    const countrySlug = slugifySetting(body.country_slug || countryToSlug(payload.countryName));
+    const countryExists = await env.TRAVEL_DB.prepare(`SELECT slug FROM countries WHERE slug = ?`).bind(countrySlug).first();
+    if (countrySlug && !countryExists) {
+      await env.TRAVEL_DB.prepare(`
+        INSERT OR IGNORE INTO countries (slug, name, sort_order, is_active, created_at, updated_at)
+        VALUES (?, ?, ?, 1, ?, ?)
+      `).bind(countrySlug, payload.countryName, await getNextSortOrder(env.TRAVEL_DB, "countries"), now, now).run();
     }
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
@@ -208,13 +307,12 @@ export async function onRequestDelete({ env, request }) {
   }
 
   if (entity === "country") {
-    await env.TRAVEL_DB.prepare(`DELETE FROM countries WHERE slug = ?`).bind(slug).run();
+    await env.TRAVEL_DB.prepare(`UPDATE countries SET is_active = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
 
   if (entity === "destination") {
-    await env.TRAVEL_DB.prepare(`DELETE FROM destinations WHERE slug = ?`).bind(slug).run();
-    await env.TRAVEL_DB.prepare(`UPDATE posts SET destination_slug = '', updated_at = ? WHERE destination_slug = ?`).bind(now, slug).run();
+    await env.TRAVEL_DB.prepare(`UPDATE destinations SET status = 'draft', is_active = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
 

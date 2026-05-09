@@ -1,6 +1,8 @@
 import { okJson, requireAdmin } from "../../_utils.js";
+import { ensureTravelSettingsTables } from "../../../lib/travel/travel-settings.js";
 
 export async function onRequestGet({ params, env }) {
+  await ensureTravelSettingsTables(env.TRAVEL_DB);
   const slug = decodeURIComponent(String(params.slug || ""));
   const item = await env.TRAVEL_DB.prepare(`
     SELECT * FROM destinations WHERE slug = ?
@@ -29,7 +31,8 @@ export async function onRequestGet({ params, env }) {
 export async function onRequestDelete({ params, env, request }) {
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
+  await ensureTravelSettingsTables(env.TRAVEL_DB);
   const slug = decodeURIComponent(String(params.slug || ""));
-  await env.TRAVEL_DB.prepare(`UPDATE destinations SET status = 'draft', updated_at = ? WHERE slug = ?`).bind(new Date().toISOString(), slug).run();
+  await env.TRAVEL_DB.prepare(`UPDATE destinations SET status = 'draft', is_active = 0, updated_at = ? WHERE slug = ?`).bind(new Date().toISOString(), slug).run();
   return okJson({ ok: true, slug });
 }

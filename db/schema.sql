@@ -59,6 +59,15 @@ CREATE TABLE IF NOT EXISTS destinations (
   summary TEXT DEFAULT '',
   cover_image TEXT DEFAULT '',
   cover_image_alt TEXT DEFAULT '',
+  card_title TEXT DEFAULT '',
+  card_description TEXT DEFAULT '',
+  card_image TEXT DEFAULT '',
+  card_image_alt TEXT DEFAULT '',
+  hero_eyebrow TEXT DEFAULT '',
+  hero_title TEXT DEFAULT '',
+  hero_summary TEXT DEFAULT '',
+  hero_image TEXT DEFAULT '',
+  hero_image_alt TEXT DEFAULT '',
   best_season TEXT DEFAULT '',
   airport_info TEXT DEFAULT '',
   transport_summary TEXT DEFAULT '',
@@ -70,6 +79,7 @@ CREATE TABLE IF NOT EXISTS destinations (
 );
 
 CREATE INDEX IF NOT EXISTS idx_destinations_status_updated ON destinations(status, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_destinations_country_sort ON destinations(country, sort_order ASC, name ASC);
 
 CREATE TABLE IF NOT EXISTS hotels (
   slug TEXT PRIMARY KEY,

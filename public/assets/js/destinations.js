@@ -22,6 +22,10 @@
   };
 
   const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch]));
+  const getCardTitle = (item) => item.card_title || item.title || item.name || "";
+  const getCardDescription = (item) => item.card_description || item.summary || "여행 정보와 호텔 추천을 확인하세요.";
+  const getCardImage = (item) => item.card_image || item.cover_image || "";
+  const getCardImageAlt = (item) => item.card_image_alt || item.cover_image_alt || item.name || "여행지 이미지";
 
   async function init() {
     grid.innerHTML = `<div class="empty-card">여행지를 불러오는 중입니다.</div>`;
@@ -35,13 +39,13 @@
       }
       grid.innerHTML = items.map((item) => `
         <article class="travel-card">
-          ${item.cover_image ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(item.slug)}"><img src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || item.name)}" loading="lazy" decoding="async" /></a>` : ""}
+          ${getCardImage(item) ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(item.slug)}"><img src="${escapeHtml(getCardImage(item))}" alt="${escapeHtml(getCardImageAlt(item))}" loading="lazy" decoding="async" /></a>` : ""}
           <div class="travel-card__body">
             <div class="travel-card__meta">
               ${item.country ? `<a href="/countries/${encodeURIComponent(countryToSlug(item.country))}">${escapeHtml(item.country)}</a>` : ""}${item.country && item.city ? " · " : ""}${escapeHtml(item.city || "")}
             </div>
-            <h2><a href="/destinations/${encodeURIComponent(item.slug)}">${escapeHtml(item.title || item.name)}</a></h2>
-            <p>${escapeHtml(item.summary || "여행 정보와 호텔 추천을 확인하세요.")}</p>
+            <h2><a href="/destinations/${encodeURIComponent(item.slug)}">${escapeHtml(getCardTitle(item))}</a></h2>
+            <p>${escapeHtml(getCardDescription(item))}</p>
             <a class="btn btn--brand" href="/destinations/${encodeURIComponent(item.slug)}">여행지 보기</a>
           </div>
         </article>
