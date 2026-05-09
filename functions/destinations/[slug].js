@@ -36,13 +36,26 @@ export async function onRequestGet({ params, env, request }) {
           SELECT slug, title, category, summary, cover_image, cover_image_alt, content_type, updated_at
           FROM posts
           WHERE destination_slug = ? AND status = 'published'
-          ORDER BY updated_at DESC, published_at DESC
-          LIMIT 10
+          ORDER BY
+            CASE COALESCE(content_type, '')
+              WHEN 'top5_series' THEN 1
+              WHEN 'hotel_roundup' THEN 1
+              WHEN 'hotel_intro' THEN 2
+              WHEN 'hotel_review' THEN 2
+              WHEN 'travel_tip' THEN 3
+              WHEN 'guide' THEN 3
+              WHEN 'checklist' THEN 3
+              ELSE 4
+            END,
+            updated_at DESC,
+            published_at DESC
+          LIMIT 30
         `).bind(slug).all()
       ]);
 
       const hotels = hotelRows.results || [];
       const posts = postRows.results || [];
+      const postGroups = groupPostsByContentType(posts);
       const canonical = `${origin}/destinations/${encodeURIComponent(slug)}`;
       const title = `${destination.title || `${destination.name} 여행 가이드`} | Wacky Travel`;
       const description = destination.meta_description || destination.summary || `${destination.name} 여행지 정보와 호텔 선택 기준을 정리합니다.`;
@@ -102,12 +115,12 @@ export async function onRequestGet({ params, env, request }) {
 
     <section class="container travel-section">
       <div class="section-heading">
-        <p class="eyebrow">Travel Guides</p>
-        <h2>${escapeHtml(destination.name)} 여행 정보글</h2>
-        <p>예약 전 고민을 줄이는 실용형 글을 함께 확인하세요.</p>
+        <p class="eyebrow">Travel Contents</p>
+        <h2>${escapeHtml(destination.name)} 여행 콘텐츠</h2>
+        <p>글 종류에 따라 TOP5, 개별 호텔 소개, 여행 tip을 나누어 확인할 수 있습니다.</p>
       </div>
-      <div class="travel-list">
-        ${posts.length ? posts.map(renderPostItem).join("") : `<div class="empty-card">아직 등록된 여행 정보글이 없습니다.</div>`}
+      <div class="travel-content-sections">
+        ${renderPostSections(destination, postGroups)}
       </div>
     </section>
   </main>
@@ -133,6 +146,65 @@ function renderHotelCard(hotel) {
   </article>`;
 }
 
+function groupPostsByContentType(posts = []) {
+  const groups = {
+    top5_series: [],
+    hotel_intro: [],
+    travel_tip: []
+  };
+
+  posts.forEach((post) => {
+    const type = normalizeContentType(post.content_type);
+    if (!groups[type]) groups[type] = [];
+    groups[type].push(post);
+  });
+
+  return groups;
+}
+
+function renderPostSections(destination, groups) {
+  const sections = [
+    {
+      key: "top5_series",
+      eyebrow: "TOP5 Series",
+      title: `${destination.name} TOP5 시리즈`,
+      description: "숙소, 동선, 여행 목적별로 빠르게 비교할 수 있는 추천형 글입니다.",
+      empty: "아직 등록된 TOP5 시리즈 글이 없습니다."
+    },
+    {
+      key: "hotel_intro",
+      eyebrow: "Hotel Intro",
+      title: `${destination.name} 개별 호텔 소개`,
+      description: "특정 호텔의 위치, 장점, 확인 포인트를 정리한 글입니다.",
+      empty: "아직 등록된 개별 호텔 소개 글이 없습니다."
+    },
+    {
+      key: "travel_tip",
+      eyebrow: "Travel Tip",
+      title: `${destination.name} 여행 tip`,
+      description: "예약 전후로 확인하면 좋은 준비 정보와 현지 이동 팁입니다.",
+      empty: "아직 등록된 여행 tip 글이 없습니다."
+    }
+  ];
+
+  return sections.map((section) => {
+    const items = groups[section.key] || [];
+    return `<section class="travel-content-section" aria-labelledby="${section.key}-heading">
+      <div class="travel-content-section__head">
+        <div>
+          <p class="eyebrow">${escapeHtml(section.eyebrow)}</p>
+          <h3 id="${section.key}-heading">${escapeHtml(section.title)}</h3>
+          <p>${escapeHtml(section.description)}</p>
+        </div>
+        <span class="travel-content-section__count">${items.length}개</span>
+      </div>
+      <div class="travel-list">
+        ${items.length ? items.map(renderPostItem).join("") : `<div class="empty-card">${escapeHtml(section.empty)}</div>`}
+      </div>
+    </section>`;
+  }).join("");
+}
+
 function renderPostItem(post) {
   return `<article class="travel-list__item">
     <div>
@@ -144,9 +216,26 @@ function renderPostItem(post) {
   </article>`;
 }
 
+function normalizeContentType(value) {
+  const map = {
+    top5_series: "top5_series",
+    hotel_roundup: "top5_series",
+    hotel_intro: "hotel_intro",
+    hotel_review: "hotel_intro",
+    travel_tip: "travel_tip",
+    guide: "travel_tip",
+    checklist: "travel_tip"
+  };
+  return map[String(value || "travel_tip").trim()] || "travel_tip";
+}
+
 function labelContentType(value) {
-  const map = { guide: "가이드", hotel_roundup: "호텔 추천", hotel_review: "호텔 분석", checklist: "체크리스트" };
-  return map[String(value || "guide")] || "가이드";
+  const map = {
+    top5_series: "TOP5 시리즈",
+    hotel_intro: "개별 호텔 소개",
+    travel_tip: "여행 tip"
+  };
+  return map[normalizeContentType(value)] || "여행 tip";
 }
 
 function renderNotFound(slug) {

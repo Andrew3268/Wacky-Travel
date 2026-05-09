@@ -921,3 +921,68 @@ body{
     border-radius:26px;
   }
 }
+
+
+.travel-content-sections {
+  display: grid;
+  gap: 22px;
+}
+
+.travel-content-section {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--travel-line);
+  border-radius: var(--travel-radius);
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(25, 35, 60, 0.06);
+}
+
+.travel-content-section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.travel-content-section__head h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  letter-spacing: -0.03em;
+}
+
+.travel-content-section__head p:not(.eyebrow) {
+  margin: 8px 0 0;
+  color: var(--travel-muted);
+  line-height: 1.65;
+}
+
+.travel-content-section__count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--travel-soft);
+  color: var(--travel-brand-deep);
+  font-size: 0.88rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .travel-content-section {
+    padding: 18px;
+  }
+
+  .travel-content-section__head {
+    display: grid;
+  }
+}
+
+.travel-list h4 {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}

@@ -53,6 +53,147 @@ function normalizeCategoryName(value) {
 let categoryItems = [];
 let editingCategoryName = "";
 
+const TRAVEL_CONTENT_TYPES = [
+  { value: "top5_series", label: "TOP5 시리즈" },
+  { value: "hotel_intro", label: "개별 호텔 소개" },
+  { value: "travel_tip", label: "여행 tip" }
+];
+
+const TRAVEL_CONTENT_TYPE_ALIASES = {
+  guide: "travel_tip",
+  checklist: "travel_tip",
+  hotel_roundup: "top5_series",
+  hotel_review: "hotel_intro"
+};
+
+let destinationItems = [];
+
+function normalizeContentType(value) {
+  const raw = String(value || "").trim();
+  const normalized = TRAVEL_CONTENT_TYPE_ALIASES[raw] || raw;
+  return TRAVEL_CONTENT_TYPES.some((item) => item.value === normalized) ? normalized : "";
+}
+
+function labelContentType(value) {
+  const normalized = normalizeContentType(value);
+  return TRAVEL_CONTENT_TYPES.find((item) => item.value === normalized)?.label || "";
+}
+
+function normalizeCountryName(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function getDestinationLabel(destination) {
+  if (!destination) return "";
+  const city = String(destination.city || destination.name || "").trim();
+  const name = String(destination.name || "").trim();
+  return city && name && city !== name ? `${name} (${city})` : (name || city || destination.slug || "");
+}
+
+function getSelectedDestination() {
+  const slug = $("destination_slug")?.value || "";
+  return destinationItems.find((item) => String(item.slug || "") === slug) || null;
+}
+
+function renderContentTypeOptions(selectedValue = "") {
+  const selectEl = $("content_type");
+  if (!selectEl) return;
+  const normalized = normalizeContentType(selectedValue);
+  selectEl.innerHTML = [
+    '<option value="">글 종류 선택</option>',
+    ...TRAVEL_CONTENT_TYPES.map((item) => `<option value="${escapeHtml(item.value)}">${escapeHtml(item.label)}</option>`)
+  ].join("");
+  selectEl.value = normalized || "";
+}
+
+function renderCountryOptions(selectedValue = "") {
+  const selectEl = $("country");
+  if (!selectEl) return;
+  const current = normalizeCountryName(selectedValue || selectEl.value);
+  const countries = [...new Set(destinationItems.map((item) => normalizeCountryName(item.country)).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "ko"));
+  if (current && !countries.includes(current)) countries.unshift(current);
+  selectEl.innerHTML = [
+    '<option value="">나라 선택</option>',
+    ...countries.map((country) => `<option value="${escapeHtml(country)}">${escapeHtml(country)}</option>`)
+  ].join("");
+  selectEl.value = current || "";
+}
+
+function renderDestinationOptions(selectedValue = "") {
+  const selectEl = $("destination_slug");
+  if (!selectEl) return;
+  const selectedSlug = String(selectedValue || selectEl.value || "").trim();
+  const selectedCountry = normalizeCountryName($("country")?.value || "");
+  const selectedDestination = destinationItems.find((item) => String(item.slug || "") === selectedSlug) || null;
+  const filtered = destinationItems
+    .filter((item) => !selectedCountry || normalizeCountryName(item.country) === selectedCountry)
+    .sort((a, b) => getDestinationLabel(a).localeCompare(getDestinationLabel(b), "ko"));
+
+  if (selectedDestination && !filtered.some((item) => String(item.slug || "") === selectedSlug)) {
+    filtered.unshift(selectedDestination);
+  }
+
+  selectEl.innerHTML = [
+    '<option value="">도시 선택</option>',
+    ...filtered.map((item) => `<option value="${escapeHtml(item.slug || "")}">${escapeHtml(getDestinationLabel(item))}</option>`)
+  ].join("");
+  selectEl.value = selectedSlug && filtered.some((item) => String(item.slug || "") === selectedSlug) ? selectedSlug : "";
+}
+
+function updateTravelPlacementStatus() {
+  const statusEl = $("travelPlacementStatus");
+  if (!statusEl) return;
+  const contentTypeLabel = labelContentType($("content_type")?.value || "");
+  const destination = getSelectedDestination();
+  const country = normalizeCountryName($("country")?.value || destination?.country || "");
+  const destinationLabel = getDestinationLabel(destination);
+
+  if (!contentTypeLabel || !country || !destinationLabel) {
+    statusEl.textContent = "글 종류, 나라, 도시를 모두 선택하면 어느 섹션에 노출되는지 확인할 수 있습니다.";
+    return;
+  }
+
+  statusEl.textContent = `${country} · ${destinationLabel} 페이지의 '${contentTypeLabel}' 섹션에 노출됩니다.`;
+}
+
+async function loadDestinations(selectedDestinationSlug = "") {
+  try {
+    const res = await fetch("/api/destinations?status=all&limit=100");
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(json?.message || "여행지 목록을 불러오지 못했습니다.");
+    destinationItems = Array.isArray(json.items) ? json.items : [];
+
+    const selectedDestination = destinationItems.find((item) => String(item.slug || "") === String(selectedDestinationSlug || ""));
+    const selectedCountry = selectedDestination ? normalizeCountryName(selectedDestination.country) : normalizeCountryName($("country")?.value || "");
+    renderCountryOptions(selectedCountry);
+    renderDestinationOptions(selectedDestinationSlug);
+    updateTravelPlacementStatus();
+    renderPreview();
+  } catch (error) {
+    const statusEl = $("travelPlacementStatus");
+    if (statusEl) statusEl.textContent = error.message || "여행지 목록을 불러오지 못했습니다.";
+  }
+}
+
+function bindTravelPlacementEvents() {
+  renderContentTypeOptions($("content_type")?.value || "");
+  $("content_type")?.addEventListener("change", () => {
+    updateTravelPlacementStatus();
+    handleRealtimeChange();
+  });
+  $("country")?.addEventListener("change", () => {
+    renderDestinationOptions("");
+    updateTravelPlacementStatus();
+    handleRealtimeChange();
+  });
+  $("destination_slug")?.addEventListener("change", () => {
+    updateTravelPlacementStatus();
+    handleRealtimeChange();
+  });
+}
+
+
 function getCurrentCategoryValue() {
   return $("category")?.value?.trim() || "";
 }
@@ -1978,6 +2119,9 @@ function renderPreview() {
 
   const title = $("title").value.trim() || "제목을 입력해 주세요";
   const category = $("category").value.trim();
+  const contentTypeLabel = labelContentType($("content_type")?.value || "");
+  const destination = getSelectedDestination();
+  const destinationMeta = [destination?.country, getDestinationLabel(destination)].filter(Boolean).join(" · ");
   const summary = $("summary").value.trim();
   const metaDescription = $("meta_description").value.trim();
   const coverImage = sanitizeImageUrlValue($("cover_image").value);
@@ -2006,7 +2150,11 @@ function renderPreview() {
       <div class="preview-post-card">
       <header class="preview-article__head">
         <div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
-          ${category ? `<span class="badge">${escapeHtml(category)}</span>` : '<span class="badge">미분류</span>'}
+          <div class="row" style="gap:6px;flex-wrap:wrap;">
+            ${category ? `<span class="badge">${escapeHtml(category)}</span>` : '<span class="badge">미분류</span>'}
+            ${contentTypeLabel ? `<span class="badge">${escapeHtml(contentTypeLabel)}</span>` : ""}
+            ${destinationMeta ? `<span class="badge">${escapeHtml(destinationMeta)}</span>` : ""}
+          </div>
           <span class="small">${new Date().toISOString().slice(0, 10)}</span>
         </div>
         <h1 class="preview-title">${escapeHtml(title)}</h1>
@@ -2073,7 +2221,7 @@ function setPreviewDevice(device) {
 async function load() {
   const slug = qs("slug");
   const statusEl = $("saveStatus");
-  const requiredFields = ["slug", "title", "content_md", "tags", "category"];
+  const requiredFields = ["slug", "title", "content_md", "tags", "category", "content_type", "country", "destination_slug"];
   const missingRequiredField = requiredFields.some((id) => !$(id));
 
   if (missingRequiredField) {
@@ -2102,6 +2250,9 @@ async function load() {
   $("updated_at").value = item.updated_at || "";
   $("title").value = item.title || "";
   const loadedCategory = item.category || "";
+  const loadedContentType = normalizeContentType(item.content_type || "") || "travel_tip";
+  const loadedDestinationSlug = item.destination_slug || "";
+  renderContentTypeOptions(loadedContentType);
   $("meta_description").value = item.meta_description || "";
   $("summary").value = item.summary || "";
   $("cover_image").value = sanitizeImageUrlValue(item.cover_image || "");
@@ -2127,6 +2278,7 @@ async function load() {
 
   $("category").value = loadedCategory;
   await loadCategories(loadedCategory);
+  await loadDestinations(loadedDestinationSlug);
   updateSlugPreview();
   syncTocControlsFromContent();
   updateAllCounts();
@@ -2146,6 +2298,8 @@ async function save() {
   const payload = {
     title,
     category: $("category").value.trim(),
+    content_type: normalizeContentType($("content_type")?.value || ""),
+    destination_slug: $("destination_slug")?.value.trim() || "",
     meta_description: $("meta_description").value.trim(),
     summary: $("summary").value.trim(),
     cover_image: sanitizeImageUrlValue($("cover_image").value),
@@ -2162,6 +2316,11 @@ async function save() {
 
   if (!slug || !title || !payload.content_md.trim()) {
     statusEl.textContent = "슬러그, 제목, 본문은 필수입니다.";
+    return;
+  }
+
+  if (!payload.content_type || !payload.destination_slug) {
+    statusEl.textContent = "글 종류, 나라, 도시를 모두 선택해 주세요.";
     return;
   }
 
@@ -2200,7 +2359,7 @@ function handleRealtimeChange() {
   renderPreview();
 }
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "category", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "category", "content_type", "country", "destination_slug", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && el.tagName === "SELECT") el.addEventListener("change", handleRealtimeChange);
@@ -2217,6 +2376,7 @@ document.querySelectorAll("[data-affiliate-remove]").forEach((button) => {
 });
 if ($("saveBtn")) $("saveBtn").addEventListener("click", save);
 bindCategoryManagerEvents();
+bindTravelPlacementEvents();
 $("enableToc")?.addEventListener("change", applyTocControls);
 $("includeTocH3")?.addEventListener("change", () => {
   if (!$("enableToc")?.checked) return;

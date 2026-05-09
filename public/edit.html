@@ -101,6 +101,34 @@
               </label>
             </div>
 
+            <div class="card editor-option-card editor-travel-placement-card">
+              <div class="h2" style="margin-bottom:12px;">여행 노출 설정</div>
+              <div class="grid grid--3">
+                <label>
+                  <div class="small">글 종류</div>
+                  <select class="input" id="content_type">
+                    <option value="">글 종류 선택</option>
+                    <option value="top5_series">TOP5 시리즈</option>
+                    <option value="hotel_intro">개별 호텔 소개</option>
+                    <option value="travel_tip">여행 tip</option>
+                  </select>
+                </label>
+                <label>
+                  <div class="small">나라 선택</div>
+                  <select class="input" id="country">
+                    <option value="">나라 선택</option>
+                  </select>
+                </label>
+                <label>
+                  <div class="small">도시 선택</div>
+                  <select class="input" id="destination_slug">
+                    <option value="">도시 선택</option>
+                  </select>
+                </label>
+              </div>
+              <div class="small" id="travelPlacementStatus" style="margin-top:10px;"></div>
+            </div>
+
 <div class="grid grid--3">
             <label>
               <div class="small">슬러그</div>
@@ -440,6 +468,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/edit.js?v=20260505v4" defer></script>
+  <script src="/assets/js/edit.js?v=20260509v1" defer></script>
 </body>
 </html>
