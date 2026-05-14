@@ -1551,3 +1551,70 @@ body{
     font-size: clamp(2rem, 12vw, 3rem);
   }
 }
+
+
+/* Destination manager modal v6: fixed visible footer + robust detail width */
+.modal-sheet--destination-manager #destinationManagerForm {
+  display: flex;
+  flex-direction: column;
+  max-height: min(90vh, 860px);
+}
+
+.modal-sheet--destination-manager .modal-sheet__body.destination-manager {
+  flex: 1 1 auto;
+  max-height: none;
+  overflow: auto;
+  padding-bottom: 18px;
+}
+
+.modal-sheet--destination-manager .destination-manager__actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(148, 163, 184, 0.26);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.modal-sheet--destination-manager .destination-manager__actions-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.destination-detail-hero__content {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.destination-detail-hero__content > *,
+.destination-detail-hero h1,
+.destination-detail-hero__summary {
+  max-width: none !important;
+}
+
+@media (max-width: 720px) {
+  .modal-sheet--destination-manager #destinationManagerForm {
+    max-height: min(92vh, 860px);
+  }
+
+  .modal-sheet--destination-manager .destination-manager__actions {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 14px 18px 16px;
+  }
+
+  .modal-sheet--destination-manager .destination-manager__actions-right {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0;
+  }
+}
