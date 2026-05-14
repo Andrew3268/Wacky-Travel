@@ -1467,7 +1467,9 @@ body{
 }
 
 .destination-detail-hero__content {
-  max-width: 940px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
 }
 
 .destination-detail-hero h1 {

@@ -12,7 +12,7 @@ export async function onRequestGet({ params, env, request }) {
 
   const requestUrl = new URL(request.url);
   const origin = requestUrl.origin;
-  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(String(meta.updated_at || ""))}&layout=destination-detail-v3`;
+  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(String(meta.updated_at || ""))}&layout=destination-detail-v4`;
 
   return edgeCache({
     request,

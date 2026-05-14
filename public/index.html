@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260509travel4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260514home2" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260514home3" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -120,13 +120,13 @@
         <section class="destination-manager__section">
           <h3>도시 상세 페이지 정보</h3>
           <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지" /></label>
-            <label class="form-field"><span>페이지 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드" /></label>
+            <label class="form-field"><span>대표 이미지 URL</span><input class="input" id="dmHeroImage" placeholder="https://..." /></label>
+            <label class="form-field"><span>대표 이미지 alt</span><input class="input" id="dmHeroImageAlt" placeholder="예: 나트랑 여행 대표 이미지" /></label>
           </div>
           <label class="form-field"><span>도시 소개 문구</span><textarea class="input textarea" id="dmHeroSummary" rows="3" placeholder="도시 상세 페이지 상단에 표시될 소개 문장"></textarea></label>
           <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>대표 이미지 URL</span><input class="input" id="dmHeroImage" placeholder="https://..." /></label>
-            <label class="form-field"><span>대표 이미지 alt</span><input class="input" id="dmHeroImageAlt" placeholder="예: 나트랑 여행 대표 이미지" /></label>
+            <label class="form-field"><span>상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지" /></label>
+            <label class="form-field"><span>페이지 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드" /></label>
           </div>
         </section>
 
@@ -144,7 +144,8 @@
           <button class="btn btn--danger" id="deleteDestinationBtn" type="button" hidden>삭제(비공개)</button>
           <div class="destination-manager__actions-right">
             <span class="small" id="destinationManagerStatus"></span>
-            <button class="btn btn--brand" type="submit">저장</button>
+            <button class="btn" id="cancelDestinationManagerBtn" type="button">취소하기</button>
+            <button class="btn btn--brand" id="destinationSubmitBtn" type="submit">저장하기</button>
           </div>
         </div>
       </div>
@@ -355,6 +356,7 @@
       $('destinationMode').value = mode;
       $('destinationCurrentSlug').value = item?.slug || '';
       $('destinationManagerTitle').textContent = mode === 'edit' ? '도시 수정' : '도시 추가';
+      $('destinationSubmitBtn').textContent = mode === 'edit' ? '수정하기' : '저장하기';
       $('deleteDestinationBtn').hidden = mode !== 'edit';
       fillDestinationForm(item || {}, countrySlug);
       $('destinationManagerBackdrop').hidden = false;
@@ -456,6 +458,7 @@
         }
       });
       $('closeDestinationManagerBtn').addEventListener('click', closeDestinationManager);
+      $('cancelDestinationManagerBtn').addEventListener('click', closeDestinationManager);
       $('destinationManagerBackdrop').addEventListener('click', closeDestinationManager);
       $('destinationManagerForm').addEventListener('submit', saveDestination);
       $('deleteDestinationBtn').addEventListener('click', deleteDestination);
