@@ -81,7 +81,8 @@ export async function onRequestGet({ params, env, request }) {
   ${renderSiteHeader({ active: "destinations" })}
   ${renderBreadcrumbs(breadcrumbItems)}
   <main class="travel-page">
-    <section class="travel-hero container">
+    <section class="travel-hero travel-hero--destination-detail container">
+      ${heroImage ? `<figure class="travel-hero__image"><img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
       <div class="travel-hero__body">
         <p class="eyebrow">${escapeHtml(destination.hero_eyebrow || destination.country || "여행지")}</p>
         <h1>${escapeHtml(heroTitle)}</h1>
@@ -92,7 +93,6 @@ export async function onRequestGet({ params, env, request }) {
           ${destination.transport_summary ? `<span>동선: ${escapeHtml(destination.transport_summary)}</span>` : ""}
         </div>
       </div>
-      ${heroImage ? `<figure class="travel-hero__image"><img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
     </section>
 
     <section class="container travel-section">
