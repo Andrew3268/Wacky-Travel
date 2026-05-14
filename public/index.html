@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260509travel4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260514home1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260514home2" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -94,7 +94,7 @@
         <div>
           <div class="small seo-eyebrow">도시 페이지 관리</div>
           <h2 class="h2" id="destinationManagerTitle">도시 추가</h2>
-          <p class="small">index의 travel-card 정보와 도시 상세 페이지 travel-hero 정보를 함께 관리합니다.</p>
+          <p class="small">도시 상세 페이지와 SEO에 필요한 정보만 관리합니다.</p>
         </div>
         <button class="btn" id="closeDestinationManagerBtn" type="button">닫기</button>
       </div>
@@ -118,30 +118,20 @@
         </section>
 
         <section class="destination-manager__section">
-          <h3>index travel-card 정보</h3>
+          <h3>도시 상세 페이지 정보</h3>
           <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>카드 제목</span><input class="input" id="dmCardTitle" placeholder="예: 나트랑" /></label>
-            <label class="form-field"><span>카드 이미지 URL</span><input class="input" id="dmCardImage" placeholder="https://..." /></label>
+            <label class="form-field"><span>상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지" /></label>
+            <label class="form-field"><span>페이지 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드" /></label>
           </div>
-          <label class="form-field"><span>카드 설명</span><textarea class="input textarea" id="dmCardDescription" rows="3" placeholder="index 여행지 카드에 표시될 짧은 설명"></textarea></label>
-          <label class="form-field"><span>카드 이미지 alt</span><input class="input" id="dmCardImageAlt" placeholder="예: 나트랑 해변과 리조트 여행 이미지" /></label>
-        </section>
-
-        <section class="destination-manager__section">
-          <h3>도시 페이지 travel-hero 정보</h3>
+          <label class="form-field"><span>도시 소개 문구</span><textarea class="input textarea" id="dmHeroSummary" rows="3" placeholder="도시 상세 페이지 상단에 표시될 소개 문장"></textarea></label>
           <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>hero 상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지" /></label>
-            <label class="form-field"><span>hero 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드" /></label>
-          </div>
-          <label class="form-field"><span>hero 설명</span><textarea class="input textarea" id="dmHeroSummary" rows="3" placeholder="도시 상세 페이지 상단에 표시될 소개 문장"></textarea></label>
-          <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>hero 이미지 URL</span><input class="input" id="dmHeroImage" placeholder="https://..." /></label>
-            <label class="form-field"><span>hero 이미지 alt</span><input class="input" id="dmHeroImageAlt" placeholder="예: 나트랑 여행 대표 이미지" /></label>
+            <label class="form-field"><span>대표 이미지 URL</span><input class="input" id="dmHeroImage" placeholder="https://..." /></label>
+            <label class="form-field"><span>대표 이미지 alt</span><input class="input" id="dmHeroImageAlt" placeholder="예: 나트랑 여행 대표 이미지" /></label>
           </div>
         </section>
 
         <section class="destination-manager__section">
-          <h3>도시 페이지 보조 정보</h3>
+          <h3>여행 정보와 SEO</h3>
           <div class="grid grid--3 destination-manager__grid">
             <label class="form-field"><span>추천 시기</span><input class="input" id="dmBestSeason" placeholder="예: 1월~8월" /></label>
             <label class="form-field"><span>공항 정보</span><input class="input" id="dmAirportInfo" placeholder="예: 깜란국제공항" /></label>
@@ -195,22 +185,6 @@
     function getCountryNameBySlug(slug) {
       const found = state.countries.find((country) => String(country.slug || '') === String(slug || ''));
       return found?.name || '';
-    }
-
-    function getDestinationCardTitle(item) {
-      return item.card_title || item.title || item.name || '';
-    }
-
-    function getDestinationCardDescription(item) {
-      return item.card_description || item.summary || '도시별 호텔과 여행 정보를 확인하세요.';
-    }
-
-    function getDestinationCardImage(item) {
-      return item.card_image || item.cover_image || '';
-    }
-
-    function getDestinationCardImageAlt(item) {
-      return item.card_image_alt || item.cover_image_alt || `${item.name || '여행지'} 대표 이미지`;
     }
 
     async function fetchJson(url, options = {}) {
@@ -316,7 +290,7 @@
     }
 
     function renderDestinationCard(item) {
-      const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(getDestinationCardTitle(item)) || '여행지';
+      const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
       const href = `/destinations/${encodeURIComponent(item.slug || '')}`;
       return `<div class="destination-chip destination-chip--editable">
         <a class="destination-chip__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
@@ -365,10 +339,6 @@
       $('dmCity').value = item.city || item.name || '';
       $('dmStatus').value = item.status || 'published';
       $('dmSortOrder').value = Number(item.sort_order || 0) || '';
-      $('dmCardTitle').value = item.card_title || item.title || item.name || '';
-      $('dmCardDescription').value = item.card_description || item.summary || '';
-      $('dmCardImage').value = item.card_image || item.cover_image || '';
-      $('dmCardImageAlt').value = item.card_image_alt || item.cover_image_alt || '';
       $('dmHeroEyebrow').value = item.hero_eyebrow || item.country || countryName || '';
       $('dmHeroTitle').value = item.hero_title || item.title || (item.name ? `${item.name} 여행 가이드` : '');
       $('dmHeroSummary').value = item.hero_summary || item.summary || '';
@@ -405,11 +375,10 @@
       const countrySlug = $('dmCountry').value;
       const country = getCountryNameBySlug(countrySlug);
       const name = normalizeText($('dmName').value);
-      const cardDescription = normalizeText($('dmCardDescription').value);
-      const heroSummaryValue = normalizeText($('dmHeroSummary').value);
-      const summary = cardDescription || heroSummaryValue;
-      const coverImage = normalizeText($('dmCardImage').value);
-      const coverImageAlt = normalizeText($('dmCardImageAlt').value);
+      const heroTitle = normalizeText($('dmHeroTitle').value) || `${name} 여행 가이드`;
+      const summary = normalizeText($('dmHeroSummary').value);
+      const heroImage = normalizeText($('dmHeroImage').value);
+      const heroImageAlt = normalizeText($('dmHeroImageAlt').value);
       return {
         entity: 'destination',
         current_slug: $('destinationCurrentSlug').value,
@@ -422,18 +391,18 @@
         is_active: $('dmStatus').value === 'published' ? 1 : 0,
         sort_order: Number($('dmSortOrder').value || 0) || 0,
         summary,
-        cover_image: coverImage,
-        cover_image_alt: coverImageAlt,
-        card_title: normalizeText($('dmCardTitle').value) || name,
-        card_description: cardDescription || summary,
-        card_image: coverImage,
-        card_image_alt: coverImageAlt,
+        cover_image: heroImage,
+        cover_image_alt: heroImageAlt,
+        card_title: name,
+        card_description: summary,
+        card_image: heroImage,
+        card_image_alt: heroImageAlt,
         hero_eyebrow: normalizeText($('dmHeroEyebrow').value) || country,
-        hero_title: normalizeText($('dmHeroTitle').value) || `${name} 여행 가이드`,
-        hero_summary: heroSummaryValue || summary,
-        hero_image: normalizeText($('dmHeroImage').value) || coverImage,
-        hero_image_alt: normalizeText($('dmHeroImageAlt').value) || coverImageAlt,
-        title: normalizeText($('dmHeroTitle').value) || `${name} 여행 가이드`,
+        hero_title: heroTitle,
+        hero_summary: summary,
+        hero_image: heroImage,
+        hero_image_alt: heroImageAlt,
+        title: heroTitle,
         meta_description: normalizeText($('dmMetaDescription').value),
         best_season: normalizeText($('dmBestSeason').value),
         airport_info: normalizeText($('dmAirportInfo').value),
@@ -493,7 +462,6 @@
       $('dmName').addEventListener('input', () => {
         if ($('destinationMode').value === 'create' && !$('dmSlug').value.trim()) $('dmSlug').value = slugify($('dmName').value);
         if (!$('dmCity').value.trim()) $('dmCity').value = $('dmName').value;
-        if (!$('dmCardTitle').value.trim()) $('dmCardTitle').value = $('dmName').value;
         if (!$('dmHeroTitle').value.trim()) $('dmHeroTitle').value = `${$('dmName').value} 여행 가이드`;
       });
     }

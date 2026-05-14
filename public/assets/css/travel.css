@@ -1131,7 +1131,7 @@ body{
   }
 }
 
-/* Destination management on index */
+/* Destination management on index: city detail fields only */
 .country-destination-group__actions {
   display: flex;
   align-items: center;
