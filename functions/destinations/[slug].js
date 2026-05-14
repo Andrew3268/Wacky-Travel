@@ -12,7 +12,7 @@ export async function onRequestGet({ params, env, request }) {
 
   const requestUrl = new URL(request.url);
   const origin = requestUrl.origin;
-  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(String(meta.updated_at || ""))}`;
+  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(String(meta.updated_at || ""))}&layout=destination-detail-v3`;
 
   return edgeCache({
     request,
@@ -81,13 +81,13 @@ export async function onRequestGet({ params, env, request }) {
   ${renderSiteHeader({ active: "destinations" })}
   ${renderBreadcrumbs(breadcrumbItems)}
   <main class="travel-page">
-    <section class="travel-hero travel-hero--destination-detail container">
-      ${heroImage ? `<figure class="travel-hero__image"><img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
-      <div class="travel-hero__body">
+    <section class="destination-detail-hero container">
+      ${heroImage ? `<figure class="destination-detail-hero__media"><img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
+      <div class="destination-detail-hero__content">
         <p class="eyebrow">${escapeHtml(destination.hero_eyebrow || destination.country || "여행지")}</p>
         <h1>${escapeHtml(heroTitle)}</h1>
-        <p class="travel-hero__summary">${escapeHtml(heroSummary || "여행 일정과 숙소 선택 기준을 한 번에 정리합니다.")}</p>
-        <div class="travel-hero__chips">
+        <p class="destination-detail-hero__summary">${escapeHtml(heroSummary || "여행 일정과 숙소 선택 기준을 한 번에 정리합니다.")}</p>
+        <div class="destination-detail-hero__chips">
           ${destination.best_season ? `<span>추천 시기: ${escapeHtml(destination.best_season)}</span>` : ""}
           ${destination.airport_info ? `<span>공항: ${escapeHtml(destination.airport_info)}</span>` : ""}
           ${destination.transport_summary ? `<span>동선: ${escapeHtml(destination.transport_summary)}</span>` : ""}
