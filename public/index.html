@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260516admin1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260516logout1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260516destui1" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
@@ -282,9 +282,11 @@
         });
         return `<section class="country-destination-group country-destination-group--compact" aria-labelledby="country-${escapeHtml(countrySlug)}">
           <div class="country-destination-group__head">
-            <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
+            <div class="country-destination-group__title">
+              <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
+              ${state.isAdmin ? `<button class="country-destination-group__add" type="button" data-add-destination-country="${escapeHtml(countrySlug)}" aria-label="${escapeHtml(countryName)} 도시 추가">+</button>` : ''}
+            </div>
             <div class="country-destination-group__actions">
-              ${state.isAdmin ? `<button class="btn btn--soft btn--small" type="button" data-add-destination-country="${escapeHtml(countrySlug)}">도시 추가</button>` : ''}
               <a class="text-link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기</a>
             </div>
           </div>

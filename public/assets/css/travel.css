@@ -1068,6 +1068,13 @@ body{
   padding: 0;
 }
 
+.country-destination-group__title {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+}
+
 .country-destination-group__head h3 {
   margin: 0;
   font-size: clamp(1.12rem, 2vw, 1.42rem);
@@ -1076,54 +1083,113 @@ body{
   color: #171717;
 }
 
+.country-destination-group__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border: 1px solid rgba(21, 112, 239, 0.16);
+  border-radius: 10px;
+  background: #f8fbff;
+  color: var(--travel-brand-deep);
+  font-size: 1.05rem;
+  font-weight: 850;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.country-destination-group__add:hover {
+  transform: translateY(-1px);
+  border-color: rgba(21, 112, 239, 0.34);
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(21, 112, 239, 0.12);
+}
+
 .destination-chip-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .destination-chip {
   position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 8px;
+  min-width: 154px;
+  min-height: 48px;
+  padding: 5px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.destination-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(21, 112, 239, 0.25);
+  background: #fcfdff;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 }
 
 .destination-chip__link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+  min-width: 0;
   min-height: 38px;
-  padding: 9px 15px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 999px;
-  background: #ffffff;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
   color: #2f3340;
-  font-size: 0.95rem;
-  font-weight: 760;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  font-size: 0.96rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   text-decoration: none;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
-  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+  transition: color 0.16s ease, background 0.16s ease;
+}
+
+.destination-chip__link span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .destination-chip__link:hover {
-  transform: translateY(-1px);
-  border-color: rgba(21, 112, 239, 0.35);
   color: var(--travel-brand);
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+  background: rgba(21, 112, 239, 0.045);
 }
 
 .destination-chip__edit {
-  margin-left: 6px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  min-height: 36px;
+  margin-left: 0;
+  border: 1px solid rgba(21, 112, 239, 0.12);
+  border-radius: 12px;
   background: var(--travel-soft);
   color: var(--travel-brand-deep);
   font-size: 12px;
-  font-weight: 800;
-  padding: 7px 10px;
+  font-weight: 850;
+  padding: 0 12px;
   cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+
+.destination-chip__edit:hover {
+  transform: translateY(-1px);
+  border-color: rgba(21, 112, 239, 0.28);
+  background: #eef6ff;
 }
 
 .empty-card--compact {
@@ -1149,27 +1215,43 @@ body{
     border-radius: 20px;
   }
 
+  .country-destination-group__head {
+    gap: 10px;
+  }
+
+  .country-destination-group__title {
+    width: 100%;
+  }
+
+  .country-destination-group__add {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
   .destination-chip-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 9px;
   }
 
   .destination-chip {
     width: 100%;
+    min-width: 0;
   }
 
   .destination-chip__link {
     flex: 1;
     width: auto;
-    min-height: 40px;
+    min-height: 42px;
     padding: 10px 12px;
-    font-size: 0.92rem;
+    font-size: 0.94rem;
   }
 
   .destination-chip__edit {
-    margin-left: 4px;
-    padding: 7px 8px;
+    min-width: 58px;
+    min-height: 38px;
+    padding: 0 12px;
   }
 }
 
