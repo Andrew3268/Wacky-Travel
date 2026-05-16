@@ -161,7 +161,20 @@ function renderNearby(value) {
 
 function renderRelatedPosts(posts) {
   if (!posts.length) return "";
-  return `<section class="content-card"><h2>이 호텔이 함께 언급된 글</h2><div class="travel-list travel-list--compact">${posts.map((post) => `<article class="travel-list__item"><div><div class="travel-card__meta">${escapeHtml([post.category, formatDate(post.updated_at)].filter(Boolean).join(" · "))}</div><h3><a href="/post/${encodeURIComponent(post.slug)}">${escapeHtml(post.title)}</a></h3><p>${escapeHtml(post.summary || "관련 여행 글입니다.")}</p></div><a class="text-link" href="/post/${encodeURIComponent(post.slug)}">읽기</a></article>`).join("")}</div></section>`;
+  return `<section class="content-card"><h2>이 호텔이 함께 언급된 글</h2><div class="travel-list travel-list--compact">${posts.map((post) => {
+    const slug = String(post.slug || "");
+    return `<article class="travel-list__item"><div><div class="travel-card__meta">${escapeHtml([post.category, formatDate(post.updated_at)].filter(Boolean).join(" · "))}</div><h3><a href="/post/${encodeURIComponent(slug)}">${escapeHtml(post.title)}</a></h3><p>${escapeHtml(post.summary || "관련 여행 글입니다.")}</p></div><div class="travel-list__actions"><a class="text-link" href="/post/${encodeURIComponent(slug)}">읽기</a>${renderPostAdminActions(post)}</div></article>`;
+  }).join("")}</div></section>`;
+}
+
+function renderPostAdminActions(post, { hidden = true } = {}) {
+  const slug = String(post.slug || "");
+  if (!slug) return "";
+  const hiddenAttrs = hidden ? " data-admin-only hidden" : "";
+  return `<div class="post-admin-mini-actions" aria-label="글 관리"${hiddenAttrs}>
+    <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
+    <button class="post-admin-mini-btn post-admin-mini-btn--danger js-delete-post" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(post.title || slug)}">삭제</button>
+  </div>`;
 }
 
 function renderNotFound(slug) {

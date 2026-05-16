@@ -116,6 +116,10 @@ async function initDashboard() {
             <div class="dashboard-popular__main">
               <a href="/post/${encodeURIComponent(item.slug)}" target="_blank" rel="noopener noreferrer">${index + 1}. ${escapeHtml(item.title)}</a>
               <div class="dashboard-popular__meta">작성 ${escapeHtml(publishedAt)} · 수정 ${escapeHtml(updatedAt)}</div>
+              <div class="post-admin-mini-actions dashboard-post-actions" aria-label="글 관리">
+                <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(item.slug)}">수정</a>
+                <button class="post-admin-mini-btn post-admin-mini-btn--danger js-delete-post" type="button" data-slug="${escapeHtml(item.slug)}" data-title="${escapeHtml(item.title)}" data-delete-redirect="reload">삭제</button>
+              </div>
             </div>
             <span class="dashboard-popular__views">조회수 ${formatNumber(item.view_count)}</span>
           </li>

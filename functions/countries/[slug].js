@@ -246,14 +246,28 @@ function renderPostSections(destination, groups, contentTypes = []) {
 }
 
 function renderPostItem(post, contentTypes = []) {
+  const slug = String(post.slug || "");
   return `<article class="travel-list__item">
     <div>
       <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), formatDate(post.updated_at)].filter(Boolean).join(" · "))}</div>
-      <h4><a href="/post/${encodeURIComponent(post.slug)}">${escapeHtml(post.title)}</a></h4>
+      <h4><a href="/post/${encodeURIComponent(slug)}">${escapeHtml(post.title)}</a></h4>
       <p>${escapeHtml(post.summary || "여행 전 확인하면 좋은 정보를 정리했습니다.")}</p>
     </div>
-    <a class="text-link" href="/post/${encodeURIComponent(post.slug)}">읽기</a>
+    <div class="travel-list__actions">
+      <a class="text-link" href="/post/${encodeURIComponent(slug)}">읽기</a>
+      ${renderPostAdminActions(post)}
+    </div>
   </article>`;
+}
+
+function renderPostAdminActions(post, { hidden = true } = {}) {
+  const slug = String(post.slug || "");
+  if (!slug) return "";
+  const hiddenAttrs = hidden ? " data-admin-only hidden" : "";
+  return `<div class="post-admin-mini-actions" aria-label="글 관리"${hiddenAttrs}>
+    <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
+    <button class="post-admin-mini-btn post-admin-mini-btn--danger js-delete-post" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(post.title || slug)}">삭제</button>
+  </div>`;
 }
 
 function renderNotFound(slug) {
