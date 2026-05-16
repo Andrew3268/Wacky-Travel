@@ -14,6 +14,31 @@
     });
   }
 
+
+  function syncTravelLogoutButtons(isAdmin) {
+    document.querySelectorAll('.topbar--travel .topbar__inner').forEach((header) => {
+      let actions = header.querySelector('.topbar__actions--travel');
+      if (!actions) {
+        actions = document.createElement('div');
+        actions.className = 'topbar__actions topbar__actions--travel';
+        header.appendChild(actions);
+      }
+
+      let logoutBtn = actions.querySelector('[data-admin-logout]');
+      if (!logoutBtn) {
+        logoutBtn = document.createElement('button');
+        logoutBtn.type = 'button';
+        logoutBtn.className = 'topbar__logout';
+        logoutBtn.dataset.adminLogout = 'true';
+        logoutBtn.textContent = '로그아웃';
+        actions.appendChild(logoutBtn);
+      }
+
+      bindLogout(logoutBtn);
+      logoutBtn.hidden = !isAdmin;
+    });
+  }
+
   function syncLogoutButtons(isAdmin) {
     const desktopNavs = document.querySelectorAll('.nav--utility.nav--right');
     desktopNavs.forEach((nav) => {
@@ -88,6 +113,11 @@
       el.hidden = !isAdmin;
     });
 
+    document.querySelectorAll('[data-admin-logout]').forEach((el) => {
+      bindLogout(el);
+      el.hidden = !isAdmin;
+    });
+
     document.querySelectorAll('[data-dashboard-link]').forEach((el) => {
       const href = '/admin/dashboard.html';
       if (isAdmin) {
@@ -132,6 +162,7 @@
     });
 
     syncLogoutButtons(isAdmin);
+    syncTravelLogoutButtons(isAdmin);
   }
 
   statePromise.then(applyAdminUi);

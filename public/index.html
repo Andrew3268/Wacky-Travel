@@ -16,7 +16,8 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260516admin1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260514home4" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260516logout1" />
+  <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -28,7 +29,11 @@
         <a class="topbar__link" href="/hotels/">호텔</a>
         <a class="topbar__link" href="#homePostsSection">여행 준비</a>
       </nav>
-      <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
+      <div class="topbar__actions topbar__actions--travel">
+        <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
+        <a class="btn btn--ghost topbar__dashboard" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+        <button class="topbar__logout" type="button" data-admin-logout hidden>로그아웃</button>
+      </div>
     </div>
   </header>
 

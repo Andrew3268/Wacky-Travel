@@ -8,13 +8,19 @@
   <link rel="canonical" href="/hotels/" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260506travel2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260506travel2" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260506travel2" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260516logout1" />
+  <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body>
   <header class="topbar topbar--editorial topbar--travel">
     <div class="topbar__inner container">
       <a class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
       <nav class="topbar__nav"><a class="topbar__link" href="/">홈</a><a class="topbar__link" href="/destinations/">여행지</a><a class="topbar__link is-active" href="/hotels/">호텔</a></nav>
+      <div class="topbar__actions topbar__actions--travel">
+        <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
+        <a class="btn btn--ghost topbar__dashboard" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+        <button class="topbar__logout" type="button" data-admin-logout hidden>로그아웃</button>
+      </div>
     </div>
   </header>
   <main class="travel-page">

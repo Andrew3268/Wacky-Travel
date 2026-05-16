@@ -531,6 +531,43 @@ body{
   color:#fff;
   background:#171717;
 }
+
+.topbar__actions--travel{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex:0 0 auto;
+}
+.topbar__dashboard,
+.topbar__logout{
+  min-height:38px;
+  border-radius:999px !important;
+  padding:0 14px !important;
+  border:1px solid rgba(23,23,23,.10) !important;
+  background:#fff !important;
+  color:#171717 !important;
+  box-shadow:0 8px 20px rgba(15,23,42,.06) !important;
+  font:inherit;
+  font-size:13px !important;
+  font-weight:900 !important;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.topbar__logout{
+  background:#171717 !important;
+  color:#fff !important;
+  border-color:#171717 !important;
+}
+.topbar__dashboard:hover,
+.topbar__logout:hover{
+  transform:translateY(-1px);
+}
+
 .topbar__admin,
 .site-search-toggle{
   min-height:38px;
@@ -873,11 +910,16 @@ body{
   .topbar--travel .topbar__nav{
     display:none;
   }
+  .topbar__actions--travel{
+    gap:6px;
+  }
   .topbar__admin,
+  .topbar__dashboard,
+  .topbar__logout,
   .site-search-toggle{
     min-height:34px;
-    padding:0 12px !important;
-    font-size:13px;
+    padding:0 10px !important;
+    font-size:12px !important;
   }
   .brand__mark{
     width:34px;
