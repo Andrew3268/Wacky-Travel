@@ -1048,6 +1048,18 @@ body{
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(18px, 2.2vw, 28px);
   align-items: start;
+  width: 100%;
+}
+
+
+@media (min-width: 768px) {
+  .country-destination-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .country-destination-group--compact {
+    width: 100%;
+  }
 }
 
 .country-destination-group {
@@ -1181,7 +1193,7 @@ body{
 .destination-chip {
   position: relative;
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) auto auto;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
   min-width: 0;
@@ -1218,15 +1230,27 @@ body{
   border-radius: 12px;
   background: #f8fbff;
   color: var(--travel-brand);
-  font-size: 0.95rem;
-  font-weight: 900;
+}
+
+.destination-chip__icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.destination-chip__icon svg circle {
+  fill: currentColor;
+  stroke: none;
 }
 
 .destination-chip__link {
-  display: grid;
+  display: inline-flex;
   align-items: center;
   min-width: 0;
-  gap: 4px;
   min-height: 0;
   padding: 0;
   border: 0;
@@ -1237,8 +1261,7 @@ body{
   transition: color 0.16s ease;
 }
 
-.destination-chip__name,
-.destination-chip__desc {
+.destination-chip__name {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1256,11 +1279,7 @@ body{
 }
 
 .destination-chip__desc {
-  color: #64748b;
-  font-size: 0.84rem;
-  font-weight: 650;
-  letter-spacing: -0.025em;
-  line-height: 1.35;
+  display: none;
 }
 
 .destination-chip__link:hover .destination-chip__name {
@@ -1293,14 +1312,7 @@ body{
 }
 
 .destination-chip__more {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 34px;
-  color: #64748b;
-  font-size: 1.12rem;
-  font-weight: 900;
+  display: none !important;
 }
 
 .empty-card--compact {
@@ -1386,9 +1398,6 @@ body{
     padding: 0 12px;
   }
 
-  .destination-chip__more {
-    display: none;
-  }
 }
 
 /* Destination management on index: city detail fields only */

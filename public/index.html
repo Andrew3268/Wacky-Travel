@@ -338,15 +338,18 @@
 
     function renderDestinationCard(item) {
       const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
-      const description = getDestinationPreviewText(item, label);
       const href = `/destinations/${encodeURIComponent(item.slug || '')}`;
       return `<div class="destination-chip destination-chip--editable">
-        <span class="destination-chip__icon" aria-hidden="true">⌖</span>
+        <span class="destination-chip__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
+            <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"></path>
+            <circle cx="12" cy="10" r="2.2"></circle>
+          </svg>
+        </span>
         <a class="destination-chip__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
           <span class="destination-chip__name">${escapeHtml(label)}</span>
-          <span class="destination-chip__desc">${escapeHtml(description)}</span>
         </a>
-        ${state.isAdmin ? `<button class="destination-chip__edit" type="button" data-edit-destination="${escapeHtml(item.slug || '')}" aria-label="${escapeHtml(label)} 수정">수정</button><span class="destination-chip__more" aria-hidden="true">⋮</span>` : ''}
+        ${state.isAdmin ? `<button class="destination-chip__edit" type="button" data-edit-destination="${escapeHtml(item.slug || '')}" aria-label="${escapeHtml(label)} 수정">수정</button>` : ''}
       </div>`;
     }
 
