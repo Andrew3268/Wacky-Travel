@@ -283,11 +283,13 @@
         return `<section class="country-destination-group country-destination-group--compact" aria-labelledby="country-${escapeHtml(countrySlug)}">
           <div class="country-destination-group__head">
             <div class="country-destination-group__title">
+              <span class="country-destination-group__flag" aria-hidden="true">${getCountryFlag(countryName)}</span>
               <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
-              ${state.isAdmin ? `<button class="country-destination-group__add" type="button" data-add-destination-country="${escapeHtml(countrySlug)}" aria-label="${escapeHtml(countryName)} 도시 추가">+</button>` : ''}
+              <span class="country-destination-group__count">${items.length}개 도시</span>
             </div>
             <div class="country-destination-group__actions">
-              <a class="text-link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기</a>
+              <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기 <span aria-hidden="true">→</span></a>
+              ${state.isAdmin ? `<button class="country-destination-group__add" type="button" data-add-destination-country="${escapeHtml(countrySlug)}" aria-label="${escapeHtml(countryName)} 도시 추가">+</button>` : ''}
             </div>
           </div>
           <div class="destination-chip-list" aria-label="${escapeHtml(countryName)} 도시 목록">
@@ -297,14 +299,39 @@
       }).join('') || '<div class="empty-card">여행지 샘플 데이터를 추가하세요.</div>';
     }
 
+    function getCountryFlag(countryName) {
+      const flags = {
+        '베트남': '🇻🇳',
+        '일본': '🇯🇵',
+        '태국': '🇹🇭',
+        '대만': '🇹🇼',
+        '대한민국': '🇰🇷',
+        '한국': '🇰🇷',
+        '홍콩': '🇭🇰',
+        '싱가포르': '🇸🇬',
+        '말레이시아': '🇲🇾',
+        '인도네시아': '🇮🇩',
+        '필리핀': '🇵🇭',
+        '중국': '🇨🇳',
+        '미국': '🇺🇸',
+        '프랑스': '🇫🇷',
+        '이탈리아': '🇮🇹',
+        '스페인': '🇪🇸'
+      };
+      return flags[normalizeText(countryName)] || '🌍';
+    }
+
     function renderDestinationCard(item) {
       const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
+      const description = normalizeText(item.card_description) || normalizeText(item.summary) || normalizeText(item.hero_summary) || `${label} 여행 정보와 호텔 추천을 모아볼 수 있는 도시`;
       const href = `/destinations/${encodeURIComponent(item.slug || '')}`;
       return `<div class="destination-chip destination-chip--editable">
+        <span class="destination-chip__icon" aria-hidden="true">⌖</span>
         <a class="destination-chip__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-          <span>${escapeHtml(label)}</span>
+          <span class="destination-chip__name">${escapeHtml(label)}</span>
+          <span class="destination-chip__desc">${escapeHtml(description)}</span>
         </a>
-        ${state.isAdmin ? `<button class="destination-chip__edit" type="button" data-edit-destination="${escapeHtml(item.slug || '')}" aria-label="${escapeHtml(label)} 수정">수정</button>` : ''}
+        ${state.isAdmin ? `<button class="destination-chip__edit" type="button" data-edit-destination="${escapeHtml(item.slug || '')}" aria-label="${escapeHtml(label)} 수정">수정</button><span class="destination-chip__more" aria-hidden="true">⋮</span>` : ''}
       </div>`;
     }
 
