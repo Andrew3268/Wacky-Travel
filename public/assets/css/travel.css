@@ -1193,7 +1193,7 @@ body{
 .destination-chip {
   position: relative;
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) auto;
+  grid-template-columns: 42px minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 12px;
   min-width: 0;
@@ -1308,6 +1308,38 @@ body{
   box-shadow: 0 10px 20px rgba(21, 112, 239, 0.1);
 }
 
+.destination-chip__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(21, 112, 239, 0.16);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--travel-brand-deep);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.destination-chip__arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.destination-chip__arrow:hover {
+  transform: translateY(-1px);
+  border-color: rgba(21, 112, 239, 0.3);
+  background: #f8fbff;
+  box-shadow: 0 10px 20px rgba(21, 112, 239, 0.1);
+}
+
 
 .empty-card--compact {
   width: 100%;
@@ -1375,7 +1407,7 @@ body{
   }
 
   .destination-chip {
-    grid-template-columns: 36px minmax(0, 1fr) auto;
+    grid-template-columns: 36px minmax(0, 1fr) auto auto;
     gap: 10px;
     min-height: 64px;
     padding: 12px 0;
@@ -1390,6 +1422,11 @@ body{
     min-width: 54px;
     min-height: 34px;
     padding: 0 12px;
+  }
+
+  .destination-chip__arrow {
+    width: 34px;
+    height: 34px;
   }
 
 }
