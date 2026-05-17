@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260516admin1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260516destui1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260517section1" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
@@ -285,7 +285,6 @@
             <div class="country-destination-group__title">
               <span class="country-destination-group__flag" aria-hidden="true">${getCountryFlag(countryName)}</span>
               <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
-              <span class="country-destination-group__count">${items.length}개 도시</span>
             </div>
             <div class="country-destination-group__actions">
               <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기 <span aria-hidden="true">→</span></a>

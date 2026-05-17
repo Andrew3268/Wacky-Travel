@@ -121,7 +121,7 @@
 }
 
 .travel-section {
-  padding: 36px 0;
+  padding: 36px clamp(16px, 4vw, 24px);
 }
 
 .section-heading {
@@ -729,8 +729,7 @@ body{
   line-height:1.65;
 }
 .travel-section{
-  padding-top:44px;
-  padding-bottom:44px;
+  padding:44px clamp(18px, 4vw, 28px);
 }
 .travel-section--compact{
   padding-top:0;
@@ -1119,19 +1118,6 @@ body{
   color: #111827;
 }
 
-.country-destination-group__count {
-  display: inline-flex;
-  align-items: center;
-  min-height: 26px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: #f1f5f9;
-  color: #64748b;
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-}
 
 .country-destination-group__actions {
   display: inline-flex;
@@ -1345,6 +1331,20 @@ body{
   width: 100%;
   min-height: auto;
   padding: 16px;
+}
+
+@media (max-width: 1080px) {
+  .travel-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  .travel-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 }
 
 @media (max-width: 1080px) and (min-width: 768px) {
