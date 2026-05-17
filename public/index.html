@@ -321,9 +321,24 @@
       return flags[normalizeText(countryName)] || '🌍';
     }
 
+    function getDestinationPreviewText(item, label) {
+      const raw = normalizeText(item.card_description)
+        || normalizeText(item.hero_summary)
+        || normalizeText(item.meta_description)
+        || normalizeText(item.summary)
+        || `${label} 여행 정보와 호텔 추천을 모아볼 수 있는 도시입니다.`;
+      const cleaned = raw
+        .replace(/[#*_`>\[\](){}|~]/g, ' ')
+        .replace(/https?:\/\/\S+/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      const withoutDuplicate = cleaned.startsWith(label) ? cleaned.slice(label.length).replace(/^[\s·:：,.-]+/, '') : cleaned;
+      return withoutDuplicate.length > 48 ? `${withoutDuplicate.slice(0, 48).trim()}…` : withoutDuplicate;
+    }
+
     function renderDestinationCard(item) {
       const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
-      const description = normalizeText(item.card_description) || normalizeText(item.summary) || normalizeText(item.hero_summary) || `${label} 여행 정보와 호텔 추천을 모아볼 수 있는 도시`;
+      const description = getDestinationPreviewText(item, label);
       const href = `/destinations/${encodeURIComponent(item.slug || '')}`;
       return `<div class="destination-chip destination-chip--editable">
         <span class="destination-chip__icon" aria-hidden="true">⌖</span>
