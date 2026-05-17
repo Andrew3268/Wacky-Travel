@@ -1045,16 +1045,16 @@ body{
 
 .country-destination-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(18px, 2.2vw, 28px);
+  grid-template-columns: 1fr;
+  gap: 16px;
   align-items: start;
   width: 100%;
 }
 
-
 @media (min-width: 768px) {
   .country-destination-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(18px, 2.2vw, 28px);
   }
 
   .country-destination-group--compact {
@@ -1278,9 +1278,6 @@ body{
   line-height: 1.2;
 }
 
-.destination-chip__desc {
-  display: none;
-}
 
 .destination-chip__link:hover .destination-chip__name {
   color: var(--travel-brand);
@@ -1311,9 +1308,6 @@ body{
   box-shadow: 0 10px 20px rgba(21, 112, 239, 0.1);
 }
 
-.destination-chip__more {
-  display: none !important;
-}
 
 .empty-card--compact {
   width: 100%;
