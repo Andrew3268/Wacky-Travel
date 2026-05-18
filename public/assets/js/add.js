@@ -830,6 +830,29 @@ function removeAffiliateItemCard(no) {
 }
 
 
+function encodeKeywordTokenValue(value = "") {
+  return String(value || "").replace(/"/g, "&quot;").trim();
+}
+
+function parseSeoKeywordsToken(line = "") {
+  const raw = String(line || "").trim();
+  return raw.match(/^\[\[POST_SEO\s+.+\]\]$/);
+}
+
+function buildSeoKeywordsToken({ focus = "", longtail = [], lsi = [] } = {}) {
+  const safeFocus = encodeKeywordTokenValue(focus);
+  const safeLongtail = (Array.isArray(longtail) ? longtail : [])
+    .map(encodeKeywordTokenValue)
+    .filter(Boolean)
+    .join("||");
+  const safeLsi = (Array.isArray(lsi) ? lsi : [])
+    .map(encodeKeywordTokenValue)
+    .filter(Boolean)
+    .join("||");
+  if (!safeFocus && !safeLongtail && !safeLsi) return "";
+  return `[[POST_SEO focus="${safeFocus}" longtail="${safeLongtail}" lsi="${safeLsi}"]]`;
+}
+
 function parseLsiKeywordsToken(line = "") {
   const match = String(line || "").trim().match(/^\[\[POST_LSI\s+keywords="([^"]*)"\]\]$/);
   if (!match) return null;
@@ -843,7 +866,7 @@ function parseLsiKeywordsToken(line = "") {
 function stripLsiKeywordsTokenLines(md = "") {
   return String(md || "")
     .split("\n")
-    .filter((line) => !parseLsiKeywordsToken(line))
+    .filter((line) => !parseLsiKeywordsToken(line) && !parseSeoKeywordsToken(line))
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -876,7 +899,10 @@ function buildContentWithMetaTokens(md = "") {
   const cleanMd = stripLsiKeywordsTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(md)));
   const imageMeta = collectInlineImageFormData();
   const affiliateMeta = collectAffiliateFormData();
+  const focusKeyword = $("focusKeyword")?.value.trim() || "";
+  const longtailKeywords = parseKeywords($("longtailKeywords")?.value || "");
   const lsiKeywords = parseKeywords($("lsiKeywords")?.value || "");
+  const seoToken = buildSeoKeywordsToken({ focus: focusKeyword, longtail: longtailKeywords, lsi: lsiKeywords });
   const lsiToken = buildLsiKeywordsToken(lsiKeywords);
   const imageTokens = [
     buildInlineImageToken("POST_IMAGE_1", imageMeta.image1),
@@ -885,7 +911,7 @@ function buildContentWithMetaTokens(md = "") {
   const affiliateTokens = affiliateMeta.enabled
     ? affiliateMeta.items.map((item, index) => buildAffiliateToken(index + 1, item)).filter(Boolean)
     : [];
-  return [lsiToken, ...imageTokens, ...affiliateTokens, cleanMd].filter(Boolean).join("\n\n").trim();
+  return [seoToken, lsiToken, ...imageTokens, ...affiliateTokens, cleanMd].filter(Boolean).join("\n\n").trim();
 }
 
 function renderAffiliatePreviewCard(data = {}, index = 1) {
@@ -2389,6 +2415,11 @@ async function save() {
     cover_image_alt: $("cover_image_alt").value.trim(),
     focus_keyword: $("focusKeyword")?.value.trim() || "",
     longtail_keywords: parseKeywords($("longtailKeywords")?.value || ""),
+    seo_keywords: {
+      focus: $("focusKeyword")?.value.trim() || "",
+      longtail: parseKeywords($("longtailKeywords")?.value || ""),
+      lsi: parseKeywords($("lsiKeywords")?.value || "")
+    },
     status: $("status").value,
     enable_sidebar_ad: Boolean($("enable_sidebar_ad")?.checked),
     enable_inarticle_ads: Boolean($("enable_inarticle_ads")?.checked),

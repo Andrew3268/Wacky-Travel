@@ -48,6 +48,98 @@ function parseKeywordListValue(value) {
   return parseKeywords(raw);
 }
 
+function normalizeKeywordCompare(value = "") {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/[^a-z0-9가-힣ぁ-んァ-ン一-龥]/gi, "");
+}
+
+function isSameKeywordText(a = "", b = "") {
+  const left = normalizeKeywordCompare(a);
+  const right = normalizeKeywordCompare(b);
+  return Boolean(left && right && left === right);
+}
+
+function isLikelyHotelNameOnly(keyword = "", hotelNames = []) {
+  const value = String(keyword || "").trim();
+  if (!value) return false;
+  const normalized = normalizeKeywordCompare(value);
+  if (!normalized) return false;
+  const hotelOnlyMatch = (Array.isArray(hotelNames) ? hotelNames : [])
+    .map((name) => String(name || "").trim())
+    .filter(Boolean)
+    .some((name) => {
+      const hotel = normalizeKeywordCompare(name);
+      return hotel && (normalized === hotel || normalized.includes(hotel) || hotel.includes(normalized));
+    });
+  if (!hotelOnlyMatch) return false;
+  return !/(추천|후기|가격|위치|예약|조식|숙소|호텔|리뷰|비교|가성비|여행)/.test(value);
+}
+
+function extractFocusKeywordFromTitle(title = "", hotelNames = []) {
+  const cleanTitle = String(title || "").replace(/^#+\s*/, "").trim();
+  if (!cleanTitle) return "";
+  const firstClause = cleanTitle.split(/[,.，、|｜?？!！]/)[0].trim();
+  const recommendMatch = cleanTitle.match(/^(.{2,80}?추천)(?:[,.，、|｜?？!！\s]|$)/);
+  if (recommendMatch?.[1]) return recommendMatch[1].trim();
+  if (firstClause && !isLikelyHotelNameOnly(firstClause, hotelNames)) return firstClause;
+  const primaryHotelName = (hotelNames || []).find(Boolean) || firstClause;
+  if (primaryHotelName) return `${primaryHotelName} 추천`;
+  return firstClause;
+}
+
+function deriveLongtailKeywordsFromPost(item = {}, rawContentMd = "", hotelNames = []) {
+  const title = String(item.title || "").trim();
+  const summary = String(item.summary || "").trim();
+  const primaryHotelName = (hotelNames || []).find(Boolean) || "";
+  const focusFromTitle = extractFocusKeywordFromTitle(title, hotelNames);
+  const candidates = [];
+
+  if (focusFromTitle) candidates.push(focusFromTitle);
+  if (primaryHotelName) {
+    candidates.push(`${primaryHotelName} 추천`);
+    candidates.push(`${primaryHotelName} 후기`);
+    candidates.push(`${primaryHotelName} 위치`);
+    candidates.push(`${primaryHotelName} 가격`);
+    candidates.push(`${primaryHotelName} 예약`);
+  }
+
+  [title, summary, rawContentMd].join("\n").split(/\n+/).forEach((line) => {
+    const text = String(line || "").replace(/^#+\s*/, "").trim();
+    if (!text) return;
+    const clause = text.split(/[,.，、|｜?？!！]/)[0].trim();
+    if (clause && clause.length >= 4 && clause.length <= 32 && /(추천|호텔|숙소|후기|가격|위치|예약|조식|시내|가성비)/.test(clause)) {
+      candidates.push(clause);
+    }
+  });
+
+  return uniqueKeywordList(candidates)
+    .filter((keyword) => !isLikelyHotelNameOnly(keyword, hotelNames))
+    .slice(0, 8);
+}
+
+function deriveLsiKeywordsFromPost(item = {}, rawContentMd = "", hotelNames = []) {
+  const text = [item.title, item.summary, rawContentMd].join("\n");
+  const candidates = [];
+  const topicMap = [
+    [/(조식|아침)/, "조식"],
+    [/(위치|동선|시내|중심|거리|근처)/, "위치"],
+    [/(공항|이동|접근)/, "공항 접근성"],
+    [/(객실|룸|침대|컨디션)/, "객실 컨디션"],
+    [/(수영장|피트니스|세탁|코워킹|라운지)/, "부대시설"],
+    [/(가격|가성비|요금|비용)/, "가성비"],
+    [/(체크인|체크아웃)/, "체크인"],
+    [/(가족|아이|커플|혼자|출장)/, "여행자 유형"]
+  ];
+  topicMap.forEach(([re, keyword]) => { if (re.test(text)) candidates.push(keyword); });
+  if (!candidates.length && (hotelNames || []).some(Boolean)) {
+    candidates.push("호텔 위치", "객실 컨디션", "예약", "가격", "조식", "여행 동선");
+  }
+  return uniqueKeywordList(candidates).slice(0, 8);
+}
+
 function pickMarkdownSeoLineValue(line = "", labels = []) {
   const normalized = String(line || "")
     .replace(/^\s*[-*+]\s*/, "")
@@ -67,8 +159,15 @@ function extractSeoKeywordFieldsFromMarkdown(md = "") {
   const lines = String(md || "").replace(/\r\n/g, "\n").split("\n").slice(0, 80);
 
   lines.forEach((line) => {
+    const seoToken = parseSeoKeywordsToken(line);
+    if (seoToken) {
+      if (!result.focus && seoToken.focus) result.focus = seoToken.focus;
+      if (!result.longtail.length && seoToken.longtail?.length) result.longtail = seoToken.longtail;
+      if (!result.lsi.length && seoToken.lsi?.length) result.lsi = seoToken.lsi;
+    }
+
     const lsiToken = parseLsiKeywordsToken(line);
-    if (lsiToken?.keywords?.length) result.lsi = lsiToken.keywords;
+    if (!result.lsi.length && lsiToken?.keywords?.length) result.lsi = lsiToken.keywords;
 
     const focusValue = pickMarkdownSeoLineValue(line, [
       "메인\\s*키워드",
@@ -98,42 +197,53 @@ function extractSeoKeywordFieldsFromMarkdown(md = "") {
 
 function hydrateEditorKeywordFields(item = {}, rawContentMd = "") {
   const markdownKeywords = extractSeoKeywordFieldsFromMarkdown(rawContentMd);
-  const hotelNames = [item.hotel_hero?.name, item.hotel_hero?.name_ko, item.hotel_hero?.name_en]
+  const hotelNames = [
+    item.hotel_hero?.name,
+    item.hotel_hero?.name_ko,
+    item.hotel_hero?.name_en,
+    item.hotel_name,
+    item.name
+  ]
     .map((name) => String(name || "").trim())
     .filter(Boolean);
 
-  const deriveFocusKeywordFromTitle = () => {
-    const title = String(item.title || "").trim();
-    if (!title) return "";
-    const hotelName = hotelNames[0] || "";
-    const firstClause = title.split(/[,.，、|｜?？!！]/)[0].trim();
-    if (firstClause && !hotelNames.includes(firstClause)) return firstClause;
-    if (hotelName && title.includes(`${hotelName} 추천`)) return `${hotelName} 추천`;
-    return "";
-  };
-
   let focusKeyword = String(item.focus_keyword || item.main_keyword || "").trim();
-  if ((!focusKeyword || hotelNames.includes(focusKeyword)) && markdownKeywords.focus) {
+  if ((!focusKeyword || isLikelyHotelNameOnly(focusKeyword, hotelNames)) && markdownKeywords.focus) {
     focusKeyword = markdownKeywords.focus;
   }
-  if (focusKeyword && hotelNames.includes(focusKeyword)) {
-    focusKeyword = deriveFocusKeywordFromTitle() || focusKeyword;
+  if (focusKeyword && !/(추천|후기|가격|위치|예약|조식|숙소|호텔|리뷰|비교|가성비|여행)/.test(focusKeyword)) {
+    const titleText = String(item.title || "");
+    const focusRecommend = `${focusKeyword} 추천`;
+    if (titleText.includes(focusRecommend)) focusKeyword = focusRecommend;
+  }
+  if (!focusKeyword || isLikelyHotelNameOnly(focusKeyword, hotelNames)) {
+    focusKeyword = extractFocusKeywordFromTitle(item.title || "", hotelNames) || focusKeyword;
   }
 
-  const longtailKeywords = parseKeywordListValue(
+  const savedLongtailKeywords = parseKeywordListValue(
     item.longtail_keywords_json ?? item.longtail_keywords ?? item.longtailKeywords ?? ""
   );
-  const lsiKeywords = parseKeywordListValue(
+  const savedLsiKeywords = parseKeywordListValue(
     item.lsi_keywords_json ?? item.lsi_keywords ?? item.lsiKeywords ?? ""
   );
 
+  const finalLongtailKeywords = uniqueKeywordList([
+    ...(savedLongtailKeywords.length ? savedLongtailKeywords : markdownKeywords.longtail),
+    ...(!savedLongtailKeywords.length && !markdownKeywords.longtail.length
+      ? deriveLongtailKeywordsFromPost(item, rawContentMd, hotelNames)
+      : [])
+  ]).filter((keyword) => !isLikelyHotelNameOnly(keyword, hotelNames));
+
+  const finalLsiKeywords = uniqueKeywordList([
+    ...(savedLsiKeywords.length ? savedLsiKeywords : markdownKeywords.lsi),
+    ...(!savedLsiKeywords.length && !markdownKeywords.lsi.length
+      ? deriveLsiKeywordsFromPost(item, rawContentMd, hotelNames)
+      : [])
+  ]);
+
   if ($("focusKeyword")) $("focusKeyword").value = focusKeyword;
-  if ($("longtailKeywords")) {
-    $("longtailKeywords").value = (longtailKeywords.length ? longtailKeywords : markdownKeywords.longtail).join(", ");
-  }
-  if ($("lsiKeywords")) {
-    $("lsiKeywords").value = (lsiKeywords.length ? lsiKeywords : markdownKeywords.lsi).join(", ");
-  }
+  if ($("longtailKeywords")) $("longtailKeywords").value = finalLongtailKeywords.join(", ");
+  if ($("lsiKeywords")) $("lsiKeywords").value = finalLsiKeywords.join(", ");
 }
 
 function parseBadgeInput(raw) {
@@ -952,6 +1062,48 @@ function removeAffiliateItemCard(no) {
 }
 
 
+function encodeKeywordTokenValue(value = "") {
+  return String(value || "").replace(/"/g, "&quot;").trim();
+}
+
+function decodeKeywordTokenValue(value = "") {
+  return String(value || "").replace(/&quot;/g, '"').trim();
+}
+
+function parseSeoKeywordsToken(line = "") {
+  const raw = String(line || "").trim();
+  const match = raw.match(/^\[\[POST_SEO\s+(.+)\]\]$/);
+  if (!match) return null;
+  const attrs = {};
+  String(match[1] || "").replace(/(focus|longtail|lsi)="([^"]*)"/g, (_, key, value) => {
+    attrs[key] = decodeKeywordTokenValue(value);
+    return "";
+  });
+  return {
+    focus: attrs.focus || "",
+    longtail: parseKeywordListValue(attrs.longtail || ""),
+    lsi: parseKeywordListValue(attrs.lsi || "")
+  };
+}
+
+function buildSeoKeywordsToken({ focus = "", longtail = [], lsi = [] } = {}) {
+  const safeFocus = encodeKeywordTokenValue(focus);
+  const safeLongtail = (Array.isArray(longtail) ? longtail : [])
+    .map(encodeKeywordTokenValue)
+    .filter(Boolean)
+    .join("||");
+  const safeLsi = (Array.isArray(lsi) ? lsi : [])
+    .map(encodeKeywordTokenValue)
+    .filter(Boolean)
+    .join("||");
+  if (!safeFocus && !safeLongtail && !safeLsi) return "";
+  return `[[POST_SEO focus="${safeFocus}" longtail="${safeLongtail}" lsi="${safeLsi}"]]`;
+}
+
+function isHiddenSeoKeywordTokenLine(line = "") {
+  return Boolean(parseSeoKeywordsToken(line) || parseLsiKeywordsToken(line));
+}
+
 function parseLsiKeywordsToken(line = "") {
   const match = String(line || "").trim().match(/^\[\[POST_LSI\s+keywords="([^"]*)"\]\]$/);
   if (!match) return null;
@@ -965,7 +1117,7 @@ function parseLsiKeywordsToken(line = "") {
 function stripLsiKeywordsTokenLines(md = "") {
   return String(md || "")
     .split("\n")
-    .filter((line) => !parseLsiKeywordsToken(line))
+    .filter((line) => !isHiddenSeoKeywordTokenLine(line))
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
@@ -1001,7 +1153,10 @@ function buildContentWithMetaTokens(md = "") {
   const cleanMd = stripLsiKeywordsTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(md)));
   const imageMeta = collectInlineImageFormData();
   const affiliateMeta = collectAffiliateFormData();
+  const focusKeyword = $("focusKeyword")?.value.trim() || "";
+  const longtailKeywords = parseKeywords($("longtailKeywords")?.value || "");
   const lsiKeywords = parseKeywords($("lsiKeywords")?.value || "");
+  const seoToken = buildSeoKeywordsToken({ focus: focusKeyword, longtail: longtailKeywords, lsi: lsiKeywords });
   const lsiToken = buildLsiKeywordsToken(lsiKeywords);
   const imageTokens = [
     buildInlineImageToken("POST_IMAGE_1", imageMeta.image1),
@@ -1010,7 +1165,7 @@ function buildContentWithMetaTokens(md = "") {
   const affiliateTokens = affiliateMeta.enabled
     ? affiliateMeta.items.map((item, index) => buildAffiliateToken(index + 1, item)).filter(Boolean)
     : [];
-  return [lsiToken, ...imageTokens, ...affiliateTokens, cleanMd].filter(Boolean).join("\n\n").trim();
+  return [seoToken, lsiToken, ...imageTokens, ...affiliateTokens, cleanMd].filter(Boolean).join("\n\n").trim();
 }
 
 function renderAffiliatePreviewCard(data = {}, index = 1) {
@@ -2586,6 +2741,11 @@ async function save() {
     cover_image_alt: $("cover_image_alt").value.trim(),
     focus_keyword: $("focusKeyword")?.value.trim() || "",
     longtail_keywords: parseKeywords($("longtailKeywords")?.value || ""),
+    seo_keywords: {
+      focus: $("focusKeyword")?.value.trim() || "",
+      longtail: parseKeywords($("longtailKeywords")?.value || ""),
+      lsi: parseKeywords($("lsiKeywords")?.value || "")
+    },
     status: $("status").value,
     enable_sidebar_ad: Boolean($("enable_sidebar_ad")?.checked),
     enable_inarticle_ads: Boolean($("enable_inarticle_ads")?.checked),
