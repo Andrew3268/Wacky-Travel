@@ -27,6 +27,13 @@ function parseJsonArray(value) {
   }
 }
 
+function normalizeKeywordArray(value) {
+  const source = Array.isArray(value)
+    ? value
+    : String(value || "").split(/[,.，、|]/);
+  return [...new Set(source.map((item) => String(item || "").trim()).filter(Boolean))];
+}
+
 async function ensureHotelColumns(db) {
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN badges_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN name_en TEXT DEFAULT ''`).run(); } catch (_) {}
@@ -219,7 +226,7 @@ export async function onRequestPut({ env, params, request }) {
   }
 
   const current = await env.TRAVEL_DB
-    .prepare(`SELECT published_at, hotel_slug FROM posts WHERE slug = ?`)
+    .prepare(`SELECT published_at, hotel_slug, focus_keyword, longtail_keywords_json FROM posts WHERE slug = ?`)
     .bind(slug)
     .first();
 
@@ -229,6 +236,14 @@ export async function onRequestPut({ env, params, request }) {
 
   const now = new Date().toISOString();
   const publishedAt = String(current.published_at || now);
+  const heroName = String(body.hotel_hero?.name || body.hotel_hero?.name_ko || "").trim();
+  const currentFocusKeyword = String(current.focus_keyword || "").trim();
+  const currentLongtailKeywords = normalizeKeywordArray(parseJsonArray(current.longtail_keywords_json));
+  const finalFocusKeyword = (!focusKeyword || (heroName && focusKeyword === heroName && currentFocusKeyword && currentFocusKeyword !== heroName))
+    ? currentFocusKeyword
+    : focusKeyword;
+  const finalLongtailKeywords = longtailKeywords.length ? normalizeKeywordArray(longtailKeywords) : currentLongtailKeywords;
+
   if (hotelSlug === null) hotelSlug = String(current.hotel_slug || "").trim();
   hotelSlug = await syncHotelHeroData(env.TRAVEL_DB, body, {
     destinationSlug,
@@ -269,8 +284,8 @@ export async function onRequestPut({ env, params, request }) {
     summary,
     coverImage,
     coverImageAlt,
-    focusKeyword,
-    JSON.stringify(longtailKeywords),
+    finalFocusKeyword,
+    JSON.stringify(finalLongtailKeywords),
     JSON.stringify(tags),
     contentMd,
     faqMd,

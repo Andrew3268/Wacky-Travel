@@ -24,6 +24,105 @@ function parseKeywords(raw) {
     .filter((item, index, arr) => arr.indexOf(item) === index);
 }
 
+function uniqueKeywordList(items = []) {
+  return [...new Set((Array.isArray(items) ? items : [])
+    .map((item) => String(item || "").trim())
+    .filter(Boolean))];
+}
+
+function parseKeywordListValue(value) {
+  if (Array.isArray(value)) return uniqueKeywordList(value);
+  const raw = String(value || "").trim();
+  if (!raw || raw === "[]" || raw === "null") return [];
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return uniqueKeywordList(parsed);
+    if (typeof parsed === "string") return parseKeywordListValue(parsed);
+  } catch (_) {}
+
+  if (raw.includes("||")) {
+    return uniqueKeywordList(raw.split("||"));
+  }
+
+  return parseKeywords(raw);
+}
+
+function pickMarkdownSeoLineValue(line = "", labels = []) {
+  const normalized = String(line || "")
+    .replace(/^\s*[-*+]\s*/, "")
+    .replace(/^\s{0,3}#{1,6}\s*/, "")
+    .trim();
+
+  for (const label of labels) {
+    const re = new RegExp(`^${label}\\s*[:：]\\s*(.+)$`, "i");
+    const match = normalized.match(re);
+    if (match) return String(match[1] || "").trim();
+  }
+  return "";
+}
+
+function extractSeoKeywordFieldsFromMarkdown(md = "") {
+  const result = { focus: "", longtail: [], lsi: [] };
+  const lines = String(md || "").replace(/\r\n/g, "\n").split("\n").slice(0, 80);
+
+  lines.forEach((line) => {
+    const lsiToken = parseLsiKeywordsToken(line);
+    if (lsiToken?.keywords?.length) result.lsi = lsiToken.keywords;
+
+    const focusValue = pickMarkdownSeoLineValue(line, [
+      "메인\\s*키워드",
+      "대표\\s*키워드",
+      "focus\\s*keyword",
+      "main\\s*keyword"
+    ]);
+    if (!result.focus && focusValue) result.focus = focusValue;
+
+    const longtailValue = pickMarkdownSeoLineValue(line, [
+      "롱테일\\s*키워드",
+      "long\\s*tail\\s*keywords?",
+      "longtail\\s*keywords?"
+    ]);
+    if (!result.longtail.length && longtailValue) result.longtail = parseKeywordListValue(longtailValue);
+
+    const lsiValue = pickMarkdownSeoLineValue(line, [
+      "LSI\\s*키워드",
+      "연관\\s*키워드",
+      "lsi\\s*keywords?"
+    ]);
+    if (!result.lsi.length && lsiValue) result.lsi = parseKeywordListValue(lsiValue);
+  });
+
+  return result;
+}
+
+function hydrateEditorKeywordFields(item = {}, rawContentMd = "") {
+  const markdownKeywords = extractSeoKeywordFieldsFromMarkdown(rawContentMd);
+  const hotelNames = [item.hotel_hero?.name, item.hotel_hero?.name_ko, item.hotel_hero?.name_en]
+    .map((name) => String(name || "").trim())
+    .filter(Boolean);
+
+  let focusKeyword = String(item.focus_keyword || item.main_keyword || "").trim();
+  if ((!focusKeyword || hotelNames.includes(focusKeyword)) && markdownKeywords.focus) {
+    focusKeyword = markdownKeywords.focus;
+  }
+
+  const longtailKeywords = parseKeywordListValue(
+    item.longtail_keywords_json ?? item.longtail_keywords ?? item.longtailKeywords ?? ""
+  );
+  const lsiKeywords = parseKeywordListValue(
+    item.lsi_keywords_json ?? item.lsi_keywords ?? item.lsiKeywords ?? ""
+  );
+
+  if ($("focusKeyword")) $("focusKeyword").value = focusKeyword;
+  if ($("longtailKeywords")) {
+    $("longtailKeywords").value = (longtailKeywords.length ? longtailKeywords : markdownKeywords.longtail).join(", ");
+  }
+  if ($("lsiKeywords")) {
+    $("lsiKeywords").value = (lsiKeywords.length ? lsiKeywords : markdownKeywords.lsi).join(", ");
+  }
+}
+
 function parseBadgeInput(raw) {
   return String(raw || "")
     .split(/[,.，、|]/)
@@ -2420,14 +2519,11 @@ async function load() {
   $("summary").value = item.summary || "";
   $("cover_image").value = sanitizeImageUrlValue(item.cover_image || "");
   if ($("cover_image_alt")) $("cover_image_alt").value = item.cover_image_alt || "";
-  if ($("focusKeyword")) $("focusKeyword").value = item.focus_keyword || "";
-  let longtailKeywords = [];
-  try { longtailKeywords = JSON.parse(item.longtail_keywords_json || "[]"); } catch {}
-  if ($("longtailKeywords")) $("longtailKeywords").value = Array.isArray(longtailKeywords) ? longtailKeywords.join(", ") : "";
+  const rawContentMd = item.content_md || "";
+  hydrateEditorKeywordFields(item, rawContentMd);
   $("status").value = item.status || "published";
   if ($("enable_sidebar_ad")) $("enable_sidebar_ad").checked = !(String(item.enable_sidebar_ad ?? 1) === "0");
   if ($("enable_inarticle_ads")) $("enable_inarticle_ads").checked = !(String(item.enable_inarticle_ads ?? 1) === "0");
-  const rawContentMd = item.content_md || "";
   applyInlineImageFormData(parseInlineImageMetaFromMarkdown(rawContentMd));
   applyAffiliateFormData(parseAffiliateMetaFromMarkdown(rawContentMd));
   applyLsiKeywordsFromMarkdown(rawContentMd);
