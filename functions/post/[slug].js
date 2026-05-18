@@ -1,8 +1,9 @@
 import { escapeHtml, jsonld, okHtml, edgeCache } from "../_utils.js";
-import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens } from "../../lib/posts/renderer.js";
+import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
+const POST_RENDER_VERSION = "20260518postseo-hide-v14";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -29,7 +30,7 @@ export async function onRequestGet({ params, env, request }) {
   `).bind(slug).run();
 
   const updatedAt = String(meta.updated_at || "");
-  const cacheKeyUrl = `${SITE_ORIGIN}/post/${encodeURIComponent(slug)}?v=${encodeURIComponent(updatedAt)}`;
+  const cacheKeyUrl = `${SITE_ORIGIN}/post/${encodeURIComponent(slug)}?v=${encodeURIComponent(updatedAt)}&r=${POST_RENDER_VERSION}`;
 
   return edgeCache({
     request,
@@ -103,11 +104,12 @@ export async function onRequestGet({ params, env, request }) {
       const hotelHeroData = await getHotelHeroData(env.TRAVEL_DB, row, slug);
 
       const adConfig = buildAdsenseConfig(env);
-      const contentTextLength = stripMarkdown(stripInlineImageTokens(row.content_md || "")).replace(/\s+/g, "").length;
+      const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
+      const contentTextLength = stripMarkdown(stripInlineImageTokens(cleanContentMd)).replace(/\s+/g, "").length;
       const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, true);
       const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, true);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
-      const bodyHtml = buildArticleBodyHtml(row.content_md || "", inArticleAds, contentTextLength, env);
+      const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env);
       const faqSectionHtml = renderFaqSection(faqItems);
       const relatedPostsHtml = renderRelatedPostsSection(relatedRows, row.category);
       const popularPostsHtml = renderPopularPosts(popularRows);
@@ -119,7 +121,7 @@ export async function onRequestGet({ params, env, request }) {
       const descriptionText = buildDescription(
         row.meta_description,
         row.summary,
-        row.content_md,
+        cleanContentMd,
         titleText
       );
       const pageTitle = `${titleText} | ${siteName}`;
@@ -205,7 +207,7 @@ export async function onRequestGet({ params, env, request }) {
         url: canonical.toString(),
         inLanguage: "ko-KR",
         articleSection: row.category || "블로그",
-        wordCount: stripMarkdown(row.content_md || "").split(/\s+/).filter(Boolean).length
+        wordCount: stripMarkdown(cleanContentMd).split(/\s+/).filter(Boolean).length
       };
 
       const webPageJsonLd = {
@@ -313,7 +315,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -733,8 +735,9 @@ function buildInArticleAds(config, count) {
 }
 
 function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0, env = {}) {
-  const inlineImages = parseInlineImages(contentMd || "");
-  const blocks = renderMarkdownBlocks(contentMd || "", { inlineImages, origin: SITE_ORIGIN });
+  const visibleContentMd = stripSeoMetaTokenLines(contentMd || "");
+  const inlineImages = parseInlineImages(visibleContentMd || "");
+  const blocks = renderMarkdownBlocks(visibleContentMd || "", { inlineImages, origin: SITE_ORIGIN });
   if (!blocks.length) return "";
 
   const tocBlock = blocks.find((block) => block.type === "toc");
@@ -938,7 +941,7 @@ function buildDescription(metaDescription, summary, markdown, title) {
 }
 
 function stripMarkdown(md) {
-  return String(md || "")
+  return stripSeoMetaTokenLines(String(md || ""))
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`[^`]*`/g, " ")
     .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
@@ -1000,7 +1003,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
