@@ -4,6 +4,7 @@ import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
 
+
 export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
   if (!slug) return okHtml("Not Found", { status: 404 });
@@ -312,7 +313,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -344,6 +345,9 @@ export async function onRequestGet({ params, env, request }) {
           </header>
 
           <section class="card post-body" aria-label="본문">
+            <header class="post-body-head">
+              <h1 class="h1 post-title post-body-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+            </header>
             <div class="post-content" itemprop="articleBody">
               ${bodyHtml}
             </div>
@@ -423,31 +427,7 @@ async function getHotelHeroData(db, row = {}, postSlug = "") {
 
     if (!hotelSlug) return null;
 
-    const hotel = await db.prepare(`
-      SELECT
-        h.slug,
-        h.destination_slug,
-        h.name,
-        h.name_en,
-        h.area,
-        h.address,
-        h.star_rating,
-        h.price_level,
-        h.summary,
-        h.checkin_time,
-        h.checkout_time,
-        h.distance_summary,
-        h.review_summary,
-        h.updated_at,
-        d.name AS destination_name,
-        d.country AS destination_country,
-        d.city AS destination_city
-      FROM hotels h
-      LEFT JOIN destinations d ON d.slug = h.destination_slug
-      WHERE h.slug = ?
-        AND h.status = 'published'
-      LIMIT 1
-    `).bind(hotelSlug).first();
+    const hotel = await getHotelHeroRow(db, hotelSlug);
 
     if (!hotel) return null;
 
@@ -469,13 +449,49 @@ async function getHotelHeroData(db, row = {}, postSlug = "") {
   }
 }
 
+async function getHotelHeroRow(db, hotelSlug) {
+  const baseSelect = `
+      SELECT
+        h.slug,
+        h.destination_slug,
+        h.name,
+        h.name_en,
+        h.area,
+        h.address,
+        h.star_rating,
+        __BADGES_COLUMN__
+        h.price_level,
+        h.summary,
+        h.checkin_time,
+        h.checkout_time,
+        h.distance_summary,
+        h.review_summary,
+        h.updated_at,
+        d.name AS destination_name,
+        d.country AS destination_country,
+        d.city AS destination_city
+      FROM hotels h
+      LEFT JOIN destinations d ON d.slug = h.destination_slug
+      WHERE h.slug = ?
+        AND h.status = 'published'
+      LIMIT 1
+    `;
+
+  try {
+    return await db.prepare(baseSelect.replace('__BADGES_COLUMN__', 'h.badges_json,')).bind(hotelSlug).first();
+  } catch (_) {
+    const row = await db.prepare(baseSelect.replace('__BADGES_COLUMN__', "'' AS badges_json,")).bind(hotelSlug).first();
+    return row;
+  }
+}
+
 function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categoryLink = "/", summaryText = "", hotelHeroData = null, publishedIso = "", updatedIso = "", updatedDateText = "" }) {
   const hotel = hotelHeroData?.hotel || null;
+  if (!hotel) return "";
+
   const links = Array.isArray(hotelHeroData?.links) ? hotelHeroData.links : [];
-  const hasHotel = !!hotel;
-  const displayTitle = hasHotel ? String(hotel.name || titleText || "").trim() : String(titleText || "").trim();
-  const subtitle = hasHotel ? String(hotel.name_en || "").trim() : "";
-  const description = String(row.summary || hotel?.summary || summaryText || "").trim();
+  const displayTitle = String(hotel.name || "").trim();
+  const subtitle = String(hotel.name_en || "").trim();
   const eyebrowItems = buildHeroEyebrowItems(row, hotel);
   const badges = buildHeroBadges(row, hotel, updatedDateText);
   const ctaHtml = renderHeroCtas(links);
@@ -483,7 +499,7 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
   return `
     <div class="post-hero-product-panel">
       ${eyebrowItems.length ? `
-        <nav class="post-hero-kicker" aria-label="글 분류">
+        <nav class="post-hero-kicker" aria-label="호텔 위치 정보">
           ${eyebrowItems.map((item, index) => {
             const label = escapeHtml(item.label);
             const body = item.href ? `<a href="${escapeHtml(item.href)}">${label}</a>` : `<span>${label}</span>`;
@@ -492,12 +508,11 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
         </nav>
       ` : ""}
 
-      <h1 class="h1 post-title post-hero-product-title" itemprop="headline">${escapeHtml(displayTitle)}</h1>
+      ${displayTitle ? `<div class="post-hero-product-title" aria-label="호텔명">${escapeHtml(displayTitle)}</div>` : ""}
       ${subtitle ? `<p class="post-hero-subtitle">${escapeHtml(subtitle)}</p>` : ""}
-      ${description ? `<p class="p post-summary post-hero-product-summary" itemprop="description">${escapeHtml(description)}</p>` : ""}
 
       ${badges.length ? `
-        <div class="post-hero-info-pills" aria-label="핵심 정보">
+        <div class="post-hero-info-pills" aria-label="호텔 뱃지 정보">
           ${badges.map((badge) => `<span class="post-hero-info-pill">${escapeHtml(badge)}</span>`).join("")}
         </div>
       ` : ""}
@@ -538,22 +553,25 @@ function buildHeroEyebrowItems(row = {}, hotel = null) {
 }
 
 function buildHeroBadges(row = {}, hotel = null, updatedDateText = "") {
+  if (!hotel) return [];
   const badges = [];
-  if (hotel) {
-    const star = formatStarRating(hotel.star_rating);
-    const checkin = String(hotel.checkin_time || "").trim();
-    const checkout = String(hotel.checkout_time || "").trim();
-    if (star) badges.push(star);
-    if (checkin) badges.push(`체크인 ${checkin}`);
-    if (checkout) badges.push(`체크아웃 ${checkout}`);
-  } else {
-    const category = String(row.category || "").trim();
-    if (category) badges.push(category);
-  }
+  const star = formatStarRating(hotel.star_rating);
+  if (star) badges.push(star);
+  parseBadgeList(hotel.badges_json).forEach((badge) => {
+    if (!badges.includes(badge)) badges.push(badge);
+  });
+  return badges.slice(0, 6);
+}
 
-  const updated = String(updatedDateText || "").trim();
-  if (updated && updated !== "-") badges.push(`수정 ${updated}`);
-  return badges.slice(0, 4);
+function parseBadgeList(value = "") {
+  if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+  const raw = String(value || "").trim();
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed.map((item) => String(item || "").trim()).filter(Boolean);
+  } catch (_) {}
+  return raw.split(/[,.，、|]/).map((item) => item.trim()).filter(Boolean);
 }
 
 function renderHeroCtas(links = []) {
@@ -982,7 +1000,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>

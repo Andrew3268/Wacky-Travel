@@ -6,6 +6,106 @@ function clampInt(value, fallback, min, max) {
   return Math.min(max, Math.max(min, num));
 }
 
+function slugifyValue(value = "") {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-가-힣]/g, "")
+    .replace(/\-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function normalizeBadgeArray(value) {
+  const source = Array.isArray(value)
+    ? value
+    : String(value || "").split(/[,.，、|]/);
+  return [...new Set(source.map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 12);
+}
+
+async function ensureHotelBadgeColumn(db) {
+  try {
+    await db.prepare(`ALTER TABLE hotels ADD COLUMN badges_json TEXT DEFAULT '[]'`).run();
+  } catch (_) {}
+}
+
+async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallbackSlug = "", title = "", now = "" } = {}) {
+  const hero = body.hotel_hero && typeof body.hotel_hero === "object" ? body.hotel_hero : {};
+  const name = String(hero.name || hero.name_ko || "").trim();
+  const nameEn = String(hero.name_en || "").trim();
+  const explicitHotelSlug = String(body.hotel_slug || hero.slug || "").trim();
+  const hotelSlug = explicitHotelSlug || (name ? slugifyValue(nameEn || name) : "");
+
+  if (!hotelSlug || !name || !destinationSlug) return hotelSlug;
+
+  const starRating = String(hero.star_rating || "").trim();
+  const badges = normalizeBadgeArray(hero.badges || hero.badges_json || "");
+  const summary = String(hero.summary || body.summary || "").trim();
+  const coverImage = String(body.cover_image || "").trim();
+  const coverImageAlt = String(body.cover_image_alt || name || title || "").trim();
+  const publishedAt = String(body.published_at || now);
+
+  await ensureHotelBadgeColumn(db);
+
+  await db.prepare(`
+    INSERT INTO hotels (
+      slug, destination_slug, name, name_en, star_rating, badges_json, summary,
+      cover_image, cover_image_alt, status, published_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, ?)
+    ON CONFLICT(slug) DO UPDATE SET
+      destination_slug = excluded.destination_slug,
+      name = excluded.name,
+      name_en = excluded.name_en,
+      star_rating = excluded.star_rating,
+      badges_json = excluded.badges_json,
+      summary = excluded.summary,
+      cover_image = excluded.cover_image,
+      cover_image_alt = excluded.cover_image_alt,
+      status = 'published',
+      updated_at = excluded.updated_at
+  `).bind(
+    hotelSlug,
+    destinationSlug,
+    name,
+    nameEn,
+    starRating,
+    JSON.stringify(badges),
+    summary,
+    coverImage,
+    coverImageAlt,
+    publishedAt,
+    now
+  ).run();
+
+  const primaryUrl = String(hero.price_url || hero.primary_url || "").trim();
+  const secondaryUrl = String(hero.availability_url || hero.secondary_url || "").trim();
+  const links = [
+    primaryUrl ? { provider: "hero_price", label: "객실 가격 확인하기", affiliate_url: primaryUrl, button_text: "객실 가격 확인하기", sort_order: 1 } : null,
+    secondaryUrl ? { provider: "hero_availability", label: "예약 가능 여부 보기", affiliate_url: secondaryUrl, button_text: "예약 가능 여부 보기", sort_order: 2 } : null
+  ].filter(Boolean);
+
+  if (links.length) {
+    await db.prepare(`DELETE FROM hotel_affiliate_links WHERE hotel_slug = ? AND provider IN ('hero_price', 'hero_availability')`).bind(hotelSlug).run();
+    for (const link of links) {
+      await db.prepare(`
+        INSERT INTO hotel_affiliate_links (hotel_slug, provider, label, affiliate_url, button_text, sort_order, is_active, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, 1, ?, ?)
+      `).bind(
+        hotelSlug,
+        link.provider,
+        link.label,
+        link.affiliate_url,
+        link.button_text,
+        link.sort_order,
+        now,
+        now
+      ).run();
+    }
+  }
+
+  return hotelSlug;
+}
+
 export async function onRequestGet({ env, request }) {
   const url = new URL(request.url);
   const status = String(url.searchParams.get("status") || "published").trim().toLowerCase();
@@ -217,7 +317,7 @@ export async function onRequestPost({ env, request }) {
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = String(body.content_type || "guide").trim() || "guide";
   const destinationSlug = String(body.destination_slug || "").trim();
-  const hotelSlug = String(body.hotel_slug || "").trim();
+  let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const searchIntent = String(body.search_intent || "").trim();
 
@@ -229,6 +329,7 @@ export async function onRequestPost({ env, request }) {
   }
 
   const now = new Date().toISOString();
+  hotelSlug = await syncHotelHeroData(env.TRAVEL_DB, body, { destinationSlug, fallbackSlug: slug, title, now });
 
   await env.TRAVEL_DB.prepare(`
     INSERT INTO posts (

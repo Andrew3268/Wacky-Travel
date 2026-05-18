@@ -6,7 +6,15 @@ function safeJson(value) {
   try { JSON.parse(text); return text; } catch { return "[]"; }
 }
 
+
+async function ensureHotelBadgeColumn(db) {
+  try {
+    await db.prepare(`ALTER TABLE hotels ADD COLUMN badges_json TEXT DEFAULT '[]'`).run();
+  } catch (_) {}
+}
+
 export async function onRequestGet({ env, request }) {
+  await ensureHotelBadgeColumn(env.TRAVEL_DB);
   const url = new URL(request.url);
   const destination = String(url.searchParams.get("destination") || "").trim();
   const status = String(url.searchParams.get("status") || "published").trim();
@@ -34,6 +42,7 @@ export async function onRequestPost({ env, request }) {
   const body = await request.json().catch(() => null);
   if (!body) return okJson({ message: "JSON이 필요합니다." }, { status: 400 });
   const now = new Date().toISOString();
+  await ensureHotelBadgeColumn(env.TRAVEL_DB);
   const slug = String(body.slug || "").trim();
   const destinationSlug = String(body.destination_slug || "").trim();
   const name = String(body.name || "").trim();
@@ -41,11 +50,11 @@ export async function onRequestPost({ env, request }) {
 
   await env.TRAVEL_DB.prepare(`
     INSERT INTO hotels (
-      slug, destination_slug, name, name_en, area, address, star_rating, price_level, summary, meta_description,
+      slug, destination_slug, name, name_en, area, address, star_rating, badges_json, price_level, summary, meta_description,
       cover_image, cover_image_alt, gallery_json, pros_json, cons_json, suitable_for_json,
       checkin_time, checkout_time, distance_summary, nearby_spots_json, review_summary,
       status, published_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       destination_slug = excluded.destination_slug,
       name = excluded.name,
@@ -53,6 +62,7 @@ export async function onRequestPost({ env, request }) {
       area = excluded.area,
       address = excluded.address,
       star_rating = excluded.star_rating,
+      badges_json = excluded.badges_json,
       price_level = excluded.price_level,
       summary = excluded.summary,
       meta_description = excluded.meta_description,
@@ -75,6 +85,7 @@ export async function onRequestPost({ env, request }) {
     String(body.area || "").trim(),
     String(body.address || "").trim(),
     String(body.star_rating || "").trim(),
+    safeJson(body.badges_json || body.badges),
     String(body.price_level || "").trim(),
     String(body.summary || "").trim(),
     String(body.meta_description || "").trim(),

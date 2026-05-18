@@ -1482,3 +1482,89 @@ body.has-preview-open{overflow:hidden}
     min-height:50px;
   }
 }
+
+/* Post body title moved below product hero */
+.post-body-head{
+  max-width:820px;
+  margin:0 auto 34px;
+  padding-bottom:24px;
+  border-bottom:1px solid #e5e7eb;
+}
+.post-body-title{
+  margin:0 !important;
+  font-size:clamp(30px,4.6vw,46px);
+  line-height:1.2;
+  letter-spacing:-1.35px;
+  color:#111827;
+  font-weight:950;
+}
+
+/* Add page preview: hotel product hero */
+.preview-hotel-hero-panel{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:28px 20px 30px;
+  text-align:center;
+  background:linear-gradient(180deg,#f8f9ff 0%,#f7f8fc 100%);
+  border-bottom:1px solid #edf0f7;
+}
+.preview-hotel-hero-kicker{
+  color:#5368d6;
+  font-size:12px;
+  font-weight:900;
+}
+.preview-hotel-hero-title{
+  font-size:clamp(30px,5vw,44px);
+  line-height:1.08;
+  letter-spacing:-1.25px;
+  color:#111827;
+  font-weight:950;
+}
+.preview-hotel-hero-subtitle{
+  margin:0;
+  color:#7a8192;
+  font-size:15px;
+  line-height:1.4;
+}
+.preview-hotel-hero-pills,
+.preview-hotel-hero-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:5px;
+}
+.preview-hotel-hero-pills span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:28px;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,.10);
+  background:#fff;
+  color:#4b5563;
+  font-size:11px;
+  font-weight:900;
+}
+.preview-hotel-hero-buttons span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:178px;
+  min-height:44px;
+  padding:12px 18px;
+  border-radius:8px;
+  background:#050505;
+  color:#fff;
+  font-size:13px;
+  font-weight:950;
+}
+@media (max-width:767px){
+  .post-body-head{margin-bottom:28px;padding-bottom:20px;}
+  .post-body-title{font-size:28px;letter-spacing:-1px;}
+  .preview-hotel-hero-buttons{width:100%;flex-direction:column;}
+  .preview-hotel-hero-buttons span{width:100%;min-width:0;}
+}

@@ -72,7 +72,7 @@ export async function onRequestPut({ env, params, request }) {
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = String(body.content_type || "guide").trim() || "guide";
   const destinationSlug = String(body.destination_slug || "").trim();
-  const hotelSlug = String(body.hotel_slug || "").trim();
+  let hotelSlug = body.hotel_slug === undefined ? null : String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const searchIntent = String(body.search_intent || "").trim();
 
@@ -84,7 +84,7 @@ export async function onRequestPut({ env, params, request }) {
   }
 
   const current = await env.TRAVEL_DB
-    .prepare(`SELECT published_at FROM posts WHERE slug = ?`)
+    .prepare(`SELECT published_at, hotel_slug FROM posts WHERE slug = ?`)
     .bind(slug)
     .first();
 
@@ -94,6 +94,7 @@ export async function onRequestPut({ env, params, request }) {
 
   const now = new Date().toISOString();
   const publishedAt = String(current.published_at || now);
+  if (hotelSlug === null) hotelSlug = String(current.hotel_slug || "").trim();
 
   await env.TRAVEL_DB.prepare(`
     UPDATE posts

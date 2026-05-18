@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260509v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518hotelhero1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
@@ -119,6 +119,52 @@
                 </label>
               </div>
               <div class="small" id="travelPlacementStatus" style="margin-top:10px;"></div>
+            </div>
+
+            <div class="card editor-option-card editor-hotel-hero-card">
+              <div class="section-heading" style="margin-bottom:12px;">
+                <div>
+                  <div class="h2">호텔 히어로 정보</div>
+                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 성급 뱃지, CTA 버튼 정보를 입력합니다.</p>
+                </div>
+              </div>
+              <div class="grid grid--2">
+                <label>
+                  <div class="small">한글 호텔명</div>
+                  <input class="input" id="heroHotelName" placeholder="예: 윙크 호텔 다낭 센터" />
+                </label>
+                <label>
+                  <div class="small">영어 호텔명</div>
+                  <input class="input" id="heroHotelNameEn" placeholder="예: Wink Hotel Danang Centre" />
+                </label>
+              </div>
+              <div class="grid grid--2" style="margin-top:12px;">
+                <label>
+                  <div class="small">성급 뱃지</div>
+                  <select class="input" id="heroHotelStarRating">
+                    <option value="">성급 선택</option>
+                    <option value="1">1성급</option>
+                    <option value="2">2성급</option>
+                    <option value="3">3성급</option>
+                    <option value="4">4성급</option>
+                    <option value="5">5성급</option>
+                  </select>
+                </label>
+                <label>
+                  <div class="small">추가 뱃지 정보</div>
+                  <input class="input" id="heroHotelBadges" placeholder="예: 시내 중심, 수영장, 조식 가능" />
+                </label>
+              </div>
+              <div class="grid grid--2" style="margin-top:12px;">
+                <label>
+                  <div class="small">객실 가격 확인 링크</div>
+                  <input class="input" id="heroHotelPriceUrl" placeholder="https://..." />
+                </label>
+                <label>
+                  <div class="small">예약 가능 여부 링크</div>
+                  <input class="input" id="heroHotelAvailabilityUrl" placeholder="https://..." />
+                </label>
+              </div>
             </div>
 
 <label>
@@ -480,6 +526,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/add.js?v=20260509v2" defer></script>
+  <script src="/assets/js/add.js?v=20260518hotelhero1" defer></script>
 </body>
 </html>

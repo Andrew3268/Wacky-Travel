@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS hotels (
   area TEXT DEFAULT '',
   address TEXT DEFAULT '',
   star_rating TEXT DEFAULT '',
+  badges_json TEXT DEFAULT '[]',
   price_level TEXT DEFAULT '',
   summary TEXT DEFAULT '',
   meta_description TEXT DEFAULT '',
