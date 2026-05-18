@@ -860,12 +860,16 @@ function buildLsiKeywordsToken(keywords = []) {
 
 function applyLsiKeywordsFromMarkdown(md = "") {
   let lsiKeywords = [];
+  let foundToken = false;
   String(md || "").split("\n").forEach((line) => {
     const token = parseLsiKeywordsToken(line);
     if (!token) return;
+    foundToken = true;
     lsiKeywords = token.keywords || [];
   });
-  if ($("lsiKeywords")) $("lsiKeywords").value = Array.isArray(lsiKeywords) ? lsiKeywords.join(", ") : "";
+  if (foundToken && $("lsiKeywords")) {
+    $("lsiKeywords").value = Array.isArray(lsiKeywords) ? lsiKeywords.join(", ") : "";
+  }
 }
 
 function buildContentWithMetaTokens(md = "") {

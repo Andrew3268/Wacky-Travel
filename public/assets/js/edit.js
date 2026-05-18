@@ -102,9 +102,22 @@ function hydrateEditorKeywordFields(item = {}, rawContentMd = "") {
     .map((name) => String(name || "").trim())
     .filter(Boolean);
 
+  const deriveFocusKeywordFromTitle = () => {
+    const title = String(item.title || "").trim();
+    if (!title) return "";
+    const hotelName = hotelNames[0] || "";
+    const firstClause = title.split(/[,.，、|｜?？!！]/)[0].trim();
+    if (firstClause && !hotelNames.includes(firstClause)) return firstClause;
+    if (hotelName && title.includes(`${hotelName} 추천`)) return `${hotelName} 추천`;
+    return "";
+  };
+
   let focusKeyword = String(item.focus_keyword || item.main_keyword || "").trim();
   if ((!focusKeyword || hotelNames.includes(focusKeyword)) && markdownKeywords.focus) {
     focusKeyword = markdownKeywords.focus;
+  }
+  if (focusKeyword && hotelNames.includes(focusKeyword)) {
+    focusKeyword = deriveFocusKeywordFromTitle() || focusKeyword;
   }
 
   const longtailKeywords = parseKeywordListValue(
@@ -969,12 +982,19 @@ function buildLsiKeywordsToken(keywords = []) {
 
 function applyLsiKeywordsFromMarkdown(md = "") {
   let lsiKeywords = [];
+  let foundToken = false;
   String(md || "").split("\n").forEach((line) => {
     const token = parseLsiKeywordsToken(line);
     if (!token) return;
+    foundToken = true;
     lsiKeywords = token.keywords || [];
   });
-  if ($("lsiKeywords")) $("lsiKeywords").value = Array.isArray(lsiKeywords) ? lsiKeywords.join(", ") : "";
+
+  // 기존 글에 POST_LSI 토큰이 없을 때는 이미 채워진 LSI 입력값을 비우지 않는다.
+  // V11에서 이 함수가 hydrateEditorKeywordFields() 뒤에 실행되며 LSI가 빈칸으로 덮이는 문제가 있었다.
+  if (foundToken && $("lsiKeywords")) {
+    $("lsiKeywords").value = Array.isArray(lsiKeywords) ? lsiKeywords.join(", ") : "";
+  }
 }
 
 function buildContentWithMetaTokens(md = "") {
