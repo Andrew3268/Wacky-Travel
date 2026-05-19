@@ -33,6 +33,48 @@ function parseBadgeInput(raw) {
     .slice(0, 12);
 }
 
+function normalizeHeroLocationType(value = "") {
+  const raw = String(value || "").replace(/\s+/g, " ").trim();
+  const aliases = {
+    "시내중심": "시내 중심",
+    "도심": "시내 중심",
+    "도심권": "시내 중심",
+    "중심부": "시내 중심",
+    "중심가": "중심가 인근",
+    "관광지근처": "관광지 인근",
+    "관광지 주변": "관광지 인근",
+    "해변근처": "해변 근처",
+    "비치 근처": "해변 근처",
+    "공항근처": "공항 근처",
+    "역 근처": "역세권",
+    "역 주변": "역세권",
+    "외각": "외곽"
+  };
+  return aliases[raw] || raw;
+}
+
+function setSelectValuePreservingOption(selectEl, value = "") {
+  if (!selectEl) return;
+  const normalized = normalizeHeroLocationType(value);
+  if (!normalized) {
+    selectEl.value = "";
+    return;
+  }
+  const exists = Array.from(selectEl.options || []).some((option) => option.value === normalized);
+  if (!exists) {
+    const option = document.createElement("option");
+    option.value = normalized;
+    option.textContent = normalized;
+    selectEl.appendChild(option);
+  }
+  selectEl.value = normalized;
+}
+
+function isHeroValueBadgeChecked(value = "") {
+  const raw = String(value ?? "").trim().toLowerCase();
+  return value === true || raw === "1" || raw === "true" || raw === "yes" || raw.includes("가성비");
+}
+
 function formatHeroStarRating(value = "") {
   const raw = String(value || "").trim();
   if (!raw) return "";
@@ -44,7 +86,7 @@ function collectHotelHeroFormData() {
   return {
     name: $("heroHotelName")?.value.trim() || "",
     name_en: $("heroHotelNameEn")?.value.trim() || "",
-    area: $("heroHotelLocationType")?.value.trim() || "",
+    area: normalizeHeroLocationType($("heroHotelLocationType")?.value || ""),
     star_rating: $("heroHotelStarRating")?.value.trim() || "",
     price_level: $("heroHotelValueBadge")?.checked ? "가성비" : "",
     badges: parseBadgeInput($("heroHotelBadges")?.value || ""),

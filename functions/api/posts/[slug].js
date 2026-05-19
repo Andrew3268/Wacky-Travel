@@ -172,16 +172,57 @@ async function ensureHotelColumns(db) {
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN price_level TEXT DEFAULT ''`).run(); } catch (_) {}
 }
 
+function isHeroValueBadgeEnabled(value = "") {
+  const raw = String(value ?? "").trim().toLowerCase();
+  return value === true || raw === "1" || raw === "true" || raw === "yes" || raw.includes("가성비");
+}
+
+function normalizeHeroLocationType(value = "") {
+  const raw = String(value || "").replace(/\s+/g, " ").trim();
+  const aliases = {
+    "시내중심": "시내 중심",
+    "도심": "시내 중심",
+    "도심권": "시내 중심",
+    "중심부": "시내 중심",
+    "중심가": "중심가 인근",
+    "관광지근처": "관광지 인근",
+    "관광지 주변": "관광지 인근",
+    "해변근처": "해변 근처",
+    "비치 근처": "해변 근처",
+    "공항근처": "공항 근처",
+    "역 근처": "역세권",
+    "역 주변": "역세권",
+    "외각": "외곽"
+  };
+  return aliases[raw] || raw;
+}
+
+function hasHotelHeroInput(hero = {}) {
+  const badges = Array.isArray(hero.badges) ? hero.badges : String(hero.badges || hero.badges_json || "").trim();
+  return Boolean(
+    String(hero.name || hero.name_ko || "").trim() ||
+    String(hero.name_en || "").trim() ||
+    normalizeHeroLocationType(hero.area || hero.location_type || "") ||
+    String(hero.star_rating || "").trim() ||
+    isHeroValueBadgeEnabled(hero.price_level || hero.value_badge || "") ||
+    badges ||
+    String(hero.price_url || hero.primary_url || "").trim() ||
+    String(hero.availability_url || hero.secondary_url || "").trim()
+  );
+}
+
 async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallbackSlug = "", title = "", now = "" } = {}) {
   const hero = body.hotel_hero && typeof body.hotel_hero === "object" ? body.hotel_hero : {};
-  const name = String(hero.name || hero.name_ko || "").trim();
+  const nameInput = String(hero.name || hero.name_ko || "").trim();
   const nameEn = String(hero.name_en || "").trim();
-  const area = String(hero.area || hero.location_type || "").trim();
-  const priceLevel = hero.price_level || hero.value_badge ? "가성비" : "";
+  const area = normalizeHeroLocationType(hero.area || hero.location_type || "");
+  const priceLevel = isHeroValueBadgeEnabled(hero.price_level || hero.value_badge || "") ? "가성비" : "";
+  const hasHeroInput = hasHotelHeroInput(hero);
+  const name = nameInput || (hasHeroInput ? String(title || "").trim() : "");
   const explicitHotelSlug = String(body.hotel_slug || hero.slug || fallbackSlug || "").trim();
   const hotelSlug = explicitHotelSlug || (name ? slugifyValue(nameEn || name) : "");
 
-  if (!hotelSlug || !name || !destinationSlug) return hotelSlug;
+  if (!hasHeroInput || !hotelSlug || !name || !destinationSlug) return hotelSlug;
 
   const starRating = String(hero.star_rating || "").trim();
   const badges = normalizeBadgeArray(hero.badges || hero.badges_json || "");

@@ -427,9 +427,13 @@ async function getHotelHeroData(db, row = {}, postSlug = "") {
       hotelSlug = String(relation?.hotel_slug || "").trim();
     }
 
-    if (!hotelSlug) return null;
-
-    const hotel = await getHotelHeroRow(db, hotelSlug);
+    const candidateSlugs = [hotelSlug, postSlug].map((value) => String(value || "").trim()).filter(Boolean);
+    let hotel = null;
+    for (const candidateSlug of [...new Set(candidateSlugs)]) {
+      hotelSlug = candidateSlug;
+      hotel = await getHotelHeroRow(db, hotelSlug);
+      if (hotel) break;
+    }
 
     if (!hotel) return null;
 
@@ -536,8 +540,8 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
 
 function buildHeroEyebrowItems(row = {}, hotel = null) {
   if (hotel) {
-    const destination = String(hotel.destination_city || hotel.destination_name || "").trim();
-    const destinationSlug = String(hotel.destination_slug || "").trim();
+    const destination = String(hotel.destination_city || hotel.destination_name || row.destination_name || row.destination_slug || "").trim();
+    const destinationSlug = String(hotel.destination_slug || row.destination_slug || "").trim();
     const area = String(hotel.area || "").trim();
     const star = formatStarRating(hotel.star_rating);
     const priceLevel = String(hotel.price_level || "").trim();
