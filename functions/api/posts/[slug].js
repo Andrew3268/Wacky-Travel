@@ -167,13 +167,17 @@ function ensureSeoKeywordTokens(md = "", keywords = {}) {
 async function ensureHotelColumns(db) {
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN badges_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN name_en TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN area TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN star_rating TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN price_level TEXT DEFAULT ''`).run(); } catch (_) {}
 }
 
 async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallbackSlug = "", title = "", now = "" } = {}) {
   const hero = body.hotel_hero && typeof body.hotel_hero === "object" ? body.hotel_hero : {};
   const name = String(hero.name || hero.name_ko || "").trim();
   const nameEn = String(hero.name_en || "").trim();
+  const area = String(hero.area || hero.location_type || "").trim();
+  const priceLevel = hero.price_level || hero.value_badge ? "가성비" : "";
   const explicitHotelSlug = String(body.hotel_slug || hero.slug || fallbackSlug || "").trim();
   const hotelSlug = explicitHotelSlug || (name ? slugifyValue(nameEn || name) : "");
 
@@ -190,15 +194,17 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallback
 
   await db.prepare(`
     INSERT INTO hotels (
-      slug, destination_slug, name, name_en, star_rating, badges_json, summary,
+      slug, destination_slug, name, name_en, area, star_rating, badges_json, price_level, summary,
       cover_image, cover_image_alt, status, published_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       destination_slug = excluded.destination_slug,
       name = excluded.name,
       name_en = excluded.name_en,
+      area = excluded.area,
       star_rating = excluded.star_rating,
       badges_json = excluded.badges_json,
+      price_level = excluded.price_level,
       summary = excluded.summary,
       cover_image = excluded.cover_image,
       cover_image_alt = excluded.cover_image_alt,
@@ -209,8 +215,10 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallback
     destinationSlug,
     name,
     nameEn,
+    area,
     starRating,
     JSON.stringify(badges),
+    priceLevel,
     summary,
     coverImage,
     coverImageAlt,
@@ -249,7 +257,7 @@ async function getHotelHeroData(db, hotelSlug = "") {
   const slug = String(hotelSlug || "").trim();
   if (!slug) return null;
   await ensureHotelColumns(db);
-  const hotel = await db.prepare(`SELECT slug, name, name_en, star_rating, badges_json FROM hotels WHERE slug = ?`).bind(slug).first();
+  const hotel = await db.prepare(`SELECT slug, name, name_en, area, star_rating, badges_json, price_level FROM hotels WHERE slug = ?`).bind(slug).first();
   if (!hotel) return null;
   const links = await db.prepare(`
     SELECT provider, affiliate_url
@@ -264,7 +272,9 @@ async function getHotelHeroData(db, hotelSlug = "") {
     slug,
     name: hotel.name || "",
     name_en: hotel.name_en || "",
+    area: hotel.area || "",
     star_rating: hotel.star_rating || "",
+    price_level: hotel.price_level || "",
     badges: parseJsonArray(hotel.badges_json),
     price_url: price?.affiliate_url || "",
     availability_url: availability?.affiliate_url || ""

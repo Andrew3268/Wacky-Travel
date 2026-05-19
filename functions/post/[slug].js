@@ -539,12 +539,13 @@ function buildHeroEyebrowItems(row = {}, hotel = null) {
     const destination = String(hotel.destination_city || hotel.destination_name || "").trim();
     const destinationSlug = String(hotel.destination_slug || "").trim();
     const area = String(hotel.area || "").trim();
+    const star = formatStarRating(hotel.star_rating);
     const priceLevel = String(hotel.price_level || "").trim();
-    const category = String(row.category || "").trim();
     return [
       destination ? { label: destination, href: destinationSlug ? `/destinations/${encodeURIComponent(destinationSlug)}` : "" } : null,
       area ? { label: area } : null,
-      priceLevel ? { label: priceLevel } : (category ? { label: category, href: `/?category=${encodeURIComponent(category)}` } : null)
+      star ? { label: star } : null,
+      priceLevel ? { label: priceLevel } : null
     ].filter(Boolean);
   }
 
@@ -559,8 +560,6 @@ function buildHeroEyebrowItems(row = {}, hotel = null) {
 function buildHeroBadges(row = {}, hotel = null, updatedDateText = "") {
   if (!hotel) return [];
   const badges = [];
-  const star = formatStarRating(hotel.star_rating);
-  if (star) badges.push(star);
   parseBadgeList(hotel.badges_json).forEach((badge) => {
     if (!badges.includes(badge)) badges.push(badge);
   });

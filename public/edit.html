@@ -125,7 +125,7 @@
               <div class="section-heading" style="margin-bottom:12px;">
                 <div>
                   <div class="h2">호텔 히어로 정보</div>
-                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 성급 뱃지, CTA 버튼 정보를 수정합니다.</p>
+                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 위치 유형, 성급, 가성비 여부, CTA 버튼 정보를 수정합니다.</p>
                 </div>
               </div>
               <div class="grid grid--2">
@@ -140,7 +140,21 @@
               </div>
               <div class="grid grid--2" style="margin-top:12px;">
                 <label>
-                  <div class="small">성급 뱃지</div>
+                  <div class="small">호텔 위치 유형</div>
+                  <select class="input" id="heroHotelLocationType">
+                    <option value="">위치 선택</option>
+                    <option value="시내 중심">시내 중심</option>
+                    <option value="중심가 인근">중심가 인근</option>
+                    <option value="관광지 인근">관광지 인근</option>
+                    <option value="해변 근처">해변 근처</option>
+                    <option value="공항 근처">공항 근처</option>
+                    <option value="역세권">역세권</option>
+                    <option value="외곽">외곽</option>
+                    <option value="조용한 주거지역">조용한 주거지역</option>
+                  </select>
+                </label>
+                <label>
+                  <div class="small">성급</div>
                   <select class="input" id="heroHotelStarRating">
                     <option value="">성급 선택</option>
                     <option value="1">1성급</option>
@@ -150,9 +164,18 @@
                     <option value="5">5성급</option>
                   </select>
                 </label>
+              </div>
+              <div class="grid grid--2" style="margin-top:12px;">
+                <div>
+                  <div class="small">가성비 여부</div>
+                  <label class="checkbox-line" style="margin-top:10px;">
+                    <input type="checkbox" id="heroHotelValueBadge" />
+                    <span>가성비 호텔로 표기</span>
+                  </label>
+                </div>
                 <label>
                   <div class="small">추가 뱃지 정보</div>
-                  <input class="input" id="heroHotelBadges" placeholder="예: 시내 중심, 수영장, 조식 가능" />
+                  <input class="input" id="heroHotelBadges" placeholder="예: 수영장, 조식 가능, 야경 전망" />
                 </label>
               </div>
               <div class="grid grid--2" style="margin-top:12px;">
