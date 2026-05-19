@@ -1311,11 +1311,23 @@ body.has-preview-open{overflow:hidden}
   border-radius:0;
 }
 .post-hero-product-panel{
+  --post-hero-kicker-title-gap:10px;
+  --post-hero-title-subtitle-gap:6px;
+  --post-hero-subtitle-summary-gap:16px;
+  --post-hero-title-summary-gap:14px;
+  --post-hero-summary-pills-gap:18px;
+  --post-hero-subtitle-pills-gap:17px;
+  --post-hero-title-pills-gap:15px;
+  --post-hero-pills-cta-gap:21px;
+  --post-hero-summary-cta-gap:20px;
+  --post-hero-subtitle-cta-gap:18px;
+  --post-hero-title-cta-gap:19px;
+  --post-hero-cta-admin-gap:12px;
   width:100%;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:13px;
+  gap:0;
   padding:32px 28px 34px;
   text-align:center;
   background:linear-gradient(180deg,#f8f9ff 0%,#f7f8fc 100%);
@@ -1326,6 +1338,7 @@ body.has-preview-open{overflow:hidden}
   justify-content:center;
   flex-wrap:wrap;
   gap:7px;
+  margin:0 0 var(--post-hero-kicker-title-gap);
   color:#5368d6;
   font-size:13px;
   font-weight:900;
@@ -1346,26 +1359,41 @@ body.has-preview-open{overflow:hidden}
   font-weight:950;
 }
 .post-hero-subtitle{
-  margin:-4px 0 0;
+  margin:0;
   color:#7a8192;
   font-size:17px;
   line-height:1.45;
   letter-spacing:.01em;
 }
+.post-hero-product-title + .post-hero-subtitle{
+  margin-top:var(--post-hero-title-subtitle-gap);
+}
 .post-hero-product-summary{
   max-width:720px;
-  margin:2px auto 0;
+  margin:0 auto;
   color:#5f6878;
   font-size:16px;
   line-height:1.85;
   word-break:keep-all;
+}
+.post-hero-subtitle + .post-hero-product-summary{
+  margin-top:var(--post-hero-subtitle-summary-gap);
+}
+.post-hero-product-title + .post-hero-product-summary{
+  margin-top:var(--post-hero-title-summary-gap);
 }
 .post-hero-info-pills{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:8px;
+  margin-top:var(--post-hero-title-pills-gap);
+}
+.post-hero-subtitle + .post-hero-info-pills{
+  margin-top:var(--post-hero-subtitle-pills-gap);
+}
+.post-hero-product-summary + .post-hero-info-pills{
+  margin-top:var(--post-hero-summary-pills-gap);
 }
 .post-hero-info-pill{
   display:inline-flex;
@@ -1387,7 +1415,16 @@ body.has-preview-open{overflow:hidden}
   justify-content:center;
   flex-wrap:wrap;
   gap:16px;
-  margin-top:12px;
+  margin-top:var(--post-hero-title-cta-gap);
+}
+.post-hero-info-pills + .post-hero-cta-row{
+  margin-top:var(--post-hero-pills-cta-gap);
+}
+.post-hero-product-summary + .post-hero-cta-row{
+  margin-top:var(--post-hero-summary-cta-gap);
+}
+.post-hero-subtitle + .post-hero-cta-row{
+  margin-top:var(--post-hero-subtitle-cta-gap);
 }
 .post-hero-cta{
   display:inline-flex;
@@ -1421,7 +1458,7 @@ body.has-preview-open{overflow:hidden}
   transform:translateY(-1px);
 }
 .post-hero-admin-actions{
-  margin-top:8px;
+  margin-top:var(--post-hero-cta-admin-gap);
   justify-content:center;
 }
 
@@ -1445,8 +1482,19 @@ body.has-preview-open{overflow:hidden}
     box-shadow:0 10px 24px rgba(15,23,42,.07);
   }
   .post-hero-product-panel{
+    --post-hero-kicker-title-gap:9px;
+    --post-hero-title-subtitle-gap:5px;
+    --post-hero-subtitle-summary-gap:12px;
+    --post-hero-title-summary-gap:11px;
+    --post-hero-summary-pills-gap:15px;
+    --post-hero-subtitle-pills-gap:13px;
+    --post-hero-title-pills-gap:14px;
+    --post-hero-pills-cta-gap:17px;
+    --post-hero-summary-cta-gap:16px;
+    --post-hero-subtitle-cta-gap:15px;
+    --post-hero-title-cta-gap:18px;
+    --post-hero-cta-admin-gap:10px;
     padding:24px 16px 26px;
-    gap:11px;
   }
   .post-hero-kicker{
     font-size:12px;
@@ -1474,7 +1522,6 @@ body.has-preview-open{overflow:hidden}
     width:100%;
     flex-direction:column;
     gap:10px;
-    margin-top:10px;
   }
   .post-hero-cta{
     width:100%;

@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260518postseo-hide-v14";
+const POST_RENDER_VERSION = "20260518posthero-gap-summary-v15";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -315,7 +315,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero3" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero-gap-summary-v15" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -497,6 +497,7 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
   const eyebrowItems = buildHeroEyebrowItems(row, hotel);
   const badges = buildHeroBadges(row, hotel, updatedDateText);
   const ctaHtml = renderHeroCtas(links);
+  const productSummary = String(summaryText || hotel.summary || "").trim();
 
   return `
     <div class="post-hero-product-panel">
@@ -512,6 +513,7 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
 
       ${displayTitle ? `<div class="post-hero-product-title" aria-label="호텔명">${escapeHtml(displayTitle)}</div>` : ""}
       ${subtitle ? `<p class="post-hero-subtitle">${escapeHtml(subtitle)}</p>` : ""}
+      ${productSummary ? `<p class="post-hero-product-summary">${escapeHtml(productSummary)}</p>` : ""}
 
       ${badges.length ? `
         <div class="post-hero-info-pills" aria-label="호텔 뱃지 정보">
@@ -1003,7 +1005,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero3" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero-gap-summary-v15" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
