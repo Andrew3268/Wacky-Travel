@@ -1369,7 +1369,7 @@ body.has-preview-open{overflow:hidden}
   margin-top:var(--post-hero-title-subtitle-gap);
 }
 .post-hero-product-summary{
-  max-width:720px;
+  max-width:550px;
   margin:0 auto;
   color:#5f6878;
   font-size:16px;
@@ -1455,7 +1455,7 @@ body.has-preview-open{overflow:hidden}
 .post-hero-cta__icon{
   font-size:18px;
   line-height:1;
-  transform:translateY(-1px);
+  transform:translateY(2px);
 }
 .post-hero-admin-actions{
   margin-top:var(--post-hero-cta-admin-gap);
