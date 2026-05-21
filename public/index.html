@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260516admin1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260521v20" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260521v21" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
@@ -246,10 +246,23 @@
       });
     }
 
+    function mergeDestinationSources(primaryItems = [], settingItems = []) {
+      const bySlug = new Map();
+      const mergeItem = (item = {}) => {
+        const slug = String(item.slug || '').trim();
+        if (!slug) return;
+        const previous = bySlug.get(slug) || {};
+        bySlug.set(slug, { ...previous, ...item });
+      };
+      primaryItems.forEach(mergeItem);
+      settingItems.forEach(mergeItem);
+      return Array.from(bySlug.values());
+    }
+
     async function loadHome() {
       const [destRes, settingsRes, hotelRes, postRes, adminRes] = await Promise.all([
-        fetch('/api/destinations?limit=100').catch(() => null),
-        fetch('/api/travel-settings').catch(() => null),
+        fetch('/api/destinations?limit=100', { cache: 'no-store' }).catch(() => null),
+        fetch(`/api/travel-settings?ts=${Date.now()}`, { cache: 'no-store' }).catch(() => null),
         fetch('/api/hotels?limit=6').catch(() => null),
         fetch('/api/posts?per_page=6').catch(() => null),
         fetch('/api/admin/session', { credentials: 'same-origin' }).catch(() => null)
@@ -262,7 +275,10 @@
 
       state.isAdmin = Boolean(adminData.authenticated);
       state.countries = Array.isArray(settingsData.countries) ? settingsData.countries : [];
-      state.destinations = Array.isArray(destData.items) ? destData.items : [];
+      state.destinations = mergeDestinationSources(
+        Array.isArray(destData.items) ? destData.items : [],
+        Array.isArray(settingsData.destinations) ? settingsData.destinations : []
+      );
       state.hotels = Array.isArray(hotelData.items) ? hotelData.items : [];
       state.posts = Array.isArray(postData.items) ? postData.items : [];
 
@@ -276,7 +292,10 @@
         fetchJson('/api/destinations?limit=100'),
         fetchJson('/api/travel-settings')
       ]);
-      state.destinations = Array.isArray(destData.items) ? destData.items : [];
+      state.destinations = mergeDestinationSources(
+        Array.isArray(destData.items) ? destData.items : [],
+        Array.isArray(settingsData.destinations) ? settingsData.destinations : []
+      );
       state.countries = Array.isArray(settingsData.countries) ? settingsData.countries : [];
       renderDestinations();
     }
@@ -325,21 +344,34 @@
       return Boolean(normalizedCountrySlug && itemCountrySlug === normalizedCountrySlug);
     }
 
-    function getHomeHubDestinationsForCountry(countryName = '', countrySlug = '') {
+    function getFallbackHubDestinationsForCountry(countryName = '', countrySlug = '') {
       return state.destinations
+        .filter((item) => isPublishedDestination(item) && destinationBelongsToCountry(item, countryName, countrySlug))
+        .sort(compareDestinations)
+        .slice(0, HOME_DESTINATION_LIMIT);
+    }
+
+    function getHomeHubDestinationsForCountry(countryName = '', countrySlug = '', { includeFallback = false } = {}) {
+      const featuredItems = state.destinations
         .filter((item) => isPublishedDestination(item) && Number(item.home_featured || 0) === 1 && destinationBelongsToCountry(item, countryName, countrySlug))
         .sort(compareHomeDestinations)
         .slice(0, HOME_DESTINATION_LIMIT);
+      if (featuredItems.length || !includeFallback) return featuredItems;
+      return getFallbackHubDestinationsForCountry(countryName, countrySlug);
     }
 
     function renderDestinations() {
       const container = $('homeDestinations');
       const countries = getActiveCountriesForHub();
-      const visibleCountries = countries.filter((country) => state.isAdmin || getHomeHubDestinationsForCountry(country.name, country.slug).length);
-      container.innerHTML = visibleCountries.map((country) => {
-        const countryName = country.name || '기타 여행지';
-        const countrySlug = country.slug || slugifyCountry(countryName);
-        const items = getHomeHubDestinationsForCountry(countryName, countrySlug);
+      const countryGroups = countries
+        .map((country) => {
+          const countryName = country.name || '기타 여행지';
+          const countrySlug = country.slug || slugifyCountry(countryName);
+          const items = getHomeHubDestinationsForCountry(countryName, countrySlug, { includeFallback: !state.isAdmin });
+          return { country, countryName, countrySlug, items };
+        })
+        .filter((group) => state.isAdmin || group.items.length);
+      container.innerHTML = countryGroups.map(({ countryName, countrySlug, items }) => {
         return `<section class="country-destination-group country-destination-group--compact" aria-labelledby="country-${escapeHtml(countrySlug)}">
           <div class="country-destination-group__head">
             <div class="country-destination-group__title">
