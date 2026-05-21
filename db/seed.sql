@@ -14,7 +14,7 @@ INSERT OR IGNORE INTO categories (name, sort_order, created_at, updated_at) VALU
 
 INSERT OR REPLACE INTO destinations (
   slug, name, country, city, title, meta_description, summary, cover_image, cover_image_alt,
-  best_season, airport_info, transport_summary, status, published_at, updated_at
+  best_season, airport_info, transport_summary, status, is_active, sort_order, home_featured, published_at, updated_at
 ) VALUES
   (
     'danang', '다낭', '베트남', '다낭', '다낭 여행 가이드',
@@ -25,7 +25,7 @@ INSERT OR REPLACE INTO destinations (
     '2월~5월은 비교적 맑은 날이 많아 초행 여행자가 일정을 짜기 좋습니다.',
     '다낭국제공항에서 시내와 미케비치까지 차량 이동이 비교적 짧은 편입니다.',
     '시내, 미케비치, 호이안 이동 목적에 따라 숙소 위치를 먼저 정하는 것이 좋습니다.',
-    'published', '2026-05-06T09:00:00.000Z', '2026-05-06T09:00:00.000Z'
+    'published', 1, 1, 1, '2026-05-06T09:00:00.000Z', '2026-05-06T09:00:00.000Z'
   ),
   (
     'osaka', '오사카', '일본', '오사카', '오사카 여행 가이드',
@@ -36,7 +36,7 @@ INSERT OR REPLACE INTO destinations (
     '봄과 가을은 야외 이동이 편하고, 여름·겨울은 실내 동선을 함께 고려하는 것이 좋습니다.',
     '간사이공항에서 난바·우메다까지 철도와 리무진버스 선택지가 다양합니다.',
     '첫 여행은 난바, 쇼핑 중심은 신사이바시, 교토 이동은 우메다 접근성을 함께 봅니다.',
-    'published', '2026-05-06T09:00:00.000Z', '2026-05-06T09:00:00.000Z'
+    'published', 1, 2, 1, '2026-05-06T09:00:00.000Z', '2026-05-06T09:00:00.000Z'
   );
 
 INSERT OR REPLACE INTO hotels (

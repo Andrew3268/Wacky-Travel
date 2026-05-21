@@ -24,6 +24,37 @@ function readBodyField(body, key, fallback = "") {
   return normalizeText(hasBodyField(body, key) ? body[key] : fallback);
 }
 
+
+function readHomeDestinationSlugs(body) {
+  const raw = Array.isArray(body?.slugs) ? body.slugs : [];
+  const seen = new Set();
+  const slugs = [];
+  for (const value of raw) {
+    const slug = slugifySetting(value);
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    slugs.push(slug);
+  }
+  return slugs;
+}
+
+async function updateHomeDestinations(db, body) {
+  const slugs = readHomeDestinationSlugs(body);
+  if (slugs.length > 5) return okJson({ message: "여행지 허브 노출 도시는 최대 5개까지 선택할 수 있습니다." }, { status: 400 });
+  const now = new Date().toISOString();
+  await db.prepare(`UPDATE destinations SET home_featured = 0, updated_at = ?`).bind(now).run();
+  if (slugs.length) {
+    const placeholders = slugs.map(() => "?").join(", ");
+    await db.prepare(`
+      UPDATE destinations
+      SET home_featured = 1, status = CASE WHEN status = 'draft' THEN 'published' ELSE status END,
+          is_active = 1, updated_at = ?
+      WHERE slug IN (${placeholders})
+    `).bind(now, ...slugs).run();
+  }
+  return okJson({ ok: true, ...(await getTravelSettings(db, { includeInactive: true })) });
+}
+
 function readDestinationPayload(body, { current = null } = {}) {
   const name = readBodyField(body, "name", current?.name);
   const countryName = readBodyField(body, "country", current?.country) || readBodyField(body, "country_name", current?.country);
@@ -64,7 +95,8 @@ function readDestinationPayload(body, { current = null } = {}) {
     transportSummary: readBodyField(body, "transport_summary", current?.transport_summary),
     status: readBodyField(body, "status", current?.status) || "published",
     isActive: Number(body.is_active ?? current?.is_active ?? 1) ? 1 : 0,
-    sortOrder: Number(body.sort_order ?? current?.sort_order ?? 0) || 0
+    sortOrder: Number(body.sort_order ?? current?.sort_order ?? 0) || 0,
+    homeFeatured: Number(body.home_featured ?? current?.home_featured ?? 0) ? 1 : 0
   };
 }
 
@@ -112,6 +144,10 @@ export async function onRequestPost({ env, request }) {
       return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
     }
 
+    if (entity === "home_destinations") {
+      return updateHomeDestinations(env.TRAVEL_DB, body);
+    }
+
     if (entity === "destination") {
       const payload = readDestinationPayload(body);
       const slug = requireSlug(body.slug, payload.name);
@@ -124,8 +160,8 @@ export async function onRequestPost({ env, request }) {
           slug, name, country, city, title, meta_description, summary, cover_image, cover_image_alt,
           card_title, card_description, card_image, card_image_alt,
           hero_eyebrow, hero_title, hero_summary, hero_image, hero_image_alt,
-          best_season, airport_info, transport_summary, status, is_active, sort_order, published_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          best_season, airport_info, transport_summary, status, is_active, sort_order, home_featured, published_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `).bind(
         slug,
         payload.name,
@@ -151,6 +187,7 @@ export async function onRequestPost({ env, request }) {
         payload.status,
         payload.isActive,
         sortOrder,
+        payload.homeFeatured,
         now,
         now
       ).run();
@@ -226,6 +263,10 @@ export async function onRequestPut({ env, request }) {
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
 
+  if (entity === "home_destinations") {
+    return updateHomeDestinations(env.TRAVEL_DB, body);
+  }
+
   if (entity === "destination") {
     const current = await env.TRAVEL_DB.prepare(`SELECT * FROM destinations WHERE slug = ?`).bind(currentSlug).first();
     if (!current) return okJson({ message: "수정할 도시를 찾지 못했습니다." }, { status: 404 });
@@ -241,7 +282,7 @@ export async function onRequestPut({ env, request }) {
       SET slug = ?, name = ?, country = ?, city = ?, title = ?, meta_description = ?, summary = ?, cover_image = ?, cover_image_alt = ?,
           card_title = ?, card_description = ?, card_image = ?, card_image_alt = ?,
           hero_eyebrow = ?, hero_title = ?, hero_summary = ?, hero_image = ?, hero_image_alt = ?,
-          best_season = ?, airport_info = ?, transport_summary = ?, status = ?, is_active = ?, sort_order = ?, updated_at = ?
+          best_season = ?, airport_info = ?, transport_summary = ?, status = ?, is_active = ?, sort_order = ?, home_featured = ?, updated_at = ?
       WHERE slug = ?
     `).bind(
       nextSlug,
@@ -268,6 +309,7 @@ export async function onRequestPut({ env, request }) {
       payload.status,
       payload.isActive,
       payload.sortOrder,
+      payload.homeFeatured,
       now,
       currentSlug
     ).run();
@@ -312,7 +354,7 @@ export async function onRequestDelete({ env, request }) {
   }
 
   if (entity === "destination") {
-    await env.TRAVEL_DB.prepare(`UPDATE destinations SET status = 'draft', is_active = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
+    await env.TRAVEL_DB.prepare(`UPDATE destinations SET status = 'draft', is_active = 0, home_featured = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
 

@@ -32,7 +32,8 @@ function pickDestinationBody(body = {}) {
     transport_summary: normalizeText(body.transport_summary),
     status: normalizeText(body.status) || "published",
     is_active: Number(body.is_active ?? 1) ? 1 : 0,
-    sort_order: Number(body.sort_order || 0) || 0
+    sort_order: Number(body.sort_order || 0) || 0,
+    home_featured: Number(body.home_featured ?? 0) ? 1 : 0
   };
 }
 
@@ -48,6 +49,7 @@ export async function onRequestGet({ env, request }) {
            best_season, airport_info, transport_summary, status,
            COALESCE(is_active, CASE WHEN status = 'published' THEN 1 ELSE 0 END) AS is_active,
            COALESCE(sort_order, 0) AS sort_order,
+           COALESCE(home_featured, 0) AS home_featured,
            published_at, updated_at
     FROM destinations
     WHERE (? = 'all' OR status = ?) AND (? = 'all' OR COALESCE(is_active, 1) = 1)
@@ -73,8 +75,8 @@ export async function onRequestPost({ env, request }) {
       slug, name, country, city, title, meta_description, summary, cover_image, cover_image_alt,
       card_title, card_description, card_image, card_image_alt,
       hero_eyebrow, hero_title, hero_summary, hero_image, hero_image_alt,
-      best_season, airport_info, transport_summary, status, is_active, sort_order, published_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      best_season, airport_info, transport_summary, status, is_active, sort_order, home_featured, published_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       name = excluded.name,
       country = excluded.country,
@@ -99,6 +101,7 @@ export async function onRequestPost({ env, request }) {
       status = excluded.status,
       is_active = excluded.is_active,
       sort_order = excluded.sort_order,
+      home_featured = excluded.home_featured,
       updated_at = excluded.updated_at
   `).bind(
     item.slug,
@@ -125,6 +128,7 @@ export async function onRequestPost({ env, request }) {
     item.status,
     item.is_active,
     item.sort_order,
+    item.home_featured,
     String(body.published_at || now),
     now
   ).run();

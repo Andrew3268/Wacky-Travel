@@ -1,0 +1,5 @@
+-- 인덱스 여행지 허브 노출 도시 관리
+-- SQLite/D1의 ALTER TABLE ADD COLUMN은 IF NOT EXISTS를 안정적으로 사용할 수 없어서,
+-- 실제 컬럼 보강은 lib/travel/travel-settings.js의 ensureTravelSettingsTables()에서
+-- 중복 컬럼 오류를 안전하게 무시하는 방식으로 처리합니다.
+-- 관련 컬럼: home_featured
