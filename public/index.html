@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260516admin1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260521save1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260521v20" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
@@ -145,20 +145,6 @@
           <label class="form-field"><span>SEO 메타 설명</span><textarea class="input textarea" id="dmMetaDescription" rows="2" placeholder="검색 결과에 표시될 수 있는 설명"></textarea></label>
         </section>
 
-        <section class="destination-manager__section destination-manager__home-section">
-          <div class="destination-manager__section-head">
-            <div>
-              <h3>인덱스 여행지 허브 노출 도시 선택</h3>
-              <p class="small">메인 index 페이지의 여행지 허브에는 현재 나라에서 선택한 도시만 최대 5개까지 출력됩니다. 순서는 아래 버튼으로 조정할 수 있습니다.</p>
-            </div>
-            <span class="home-destination-count small" id="homeDestinationCount">0/5 선택</span>
-          </div>
-          <label class="home-destination-current" id="homeDestinationCurrentWrap" hidden>
-            <input type="checkbox" id="dmHomeFeatured" />
-            <span>현재 작성 중인 도시를 저장 후 여행지 허브에 노출</span>
-          </label>
-          <div class="home-destination-checklist" id="homeDestinationChecklist" aria-label="여행지 허브 노출 도시 선택"></div>
-        </section>
       </div>
       <div class="destination-manager__actions" aria-label="도시 관리 작업 버튼">
         <button class="btn btn--danger" id="deleteDestinationBtn" type="button" hidden>삭제(비공개)</button>
@@ -166,6 +152,42 @@
           <span class="small" id="destinationManagerStatus"></span>
           <button class="btn" id="cancelDestinationManagerBtn" type="button">취소하기</button>
           <button class="btn btn--brand" id="destinationSubmitBtn" type="submit">저장하기</button>
+        </div>
+      </div>
+    </form>
+  </aside>
+
+  <div class="modal-backdrop" id="homeDestinationManagerBackdrop" hidden></div>
+  <aside class="modal-sheet modal-sheet--destination-manager modal-sheet--home-destination-manager" id="homeDestinationManagerModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="homeDestinationManagerTitle">
+    <form id="homeDestinationManagerForm" novalidate>
+      <div class="modal-sheet__header">
+        <div>
+          <div class="small seo-eyebrow">여행지 허브 관리</div>
+          <h2 class="h2" id="homeDestinationManagerTitle">인기 도시 관리</h2>
+          <p class="small">선택한 나라의 index 여행지 허브 노출 도시와 출력 순서를 관리합니다.</p>
+        </div>
+        <button class="btn" id="closeHomeDestinationManagerBtn" type="button">닫기</button>
+      </div>
+      <div class="sep"></div>
+      <div class="modal-sheet__body destination-manager">
+        <input type="hidden" id="homeDestinationCountrySlug" value="" />
+        <input type="hidden" id="homeDestinationCountryName" value="" />
+        <section class="destination-manager__section destination-manager__home-section">
+          <div class="destination-manager__section-head">
+            <div>
+              <h3 id="homeDestinationCountryHeading">인기 도시 노출 선택</h3>
+              <p class="small">이 나라의 여행지 허브에는 최대 5개 도시만 노출됩니다. 선택된 도시는 아래 ↑ ↓ 버튼으로 순서를 조정할 수 있습니다.</p>
+            </div>
+            <span class="home-destination-count small" id="homeDestinationCount">0/5 선택</span>
+          </div>
+          <div class="home-destination-checklist" id="homeDestinationChecklist" aria-label="여행지 허브 노출 도시 선택"></div>
+        </section>
+      </div>
+      <div class="destination-manager__actions" aria-label="인기 도시 관리 작업 버튼">
+        <span class="small" id="homeDestinationManagerStatus"></span>
+        <div class="destination-manager__actions-right">
+          <button class="btn" id="cancelHomeDestinationManagerBtn" type="button">취소하기</button>
+          <button class="btn btn--brand" id="homeDestinationSubmitBtn" type="submit">저장하기</button>
         </div>
       </div>
     </form>
@@ -322,7 +344,7 @@
           <div class="country-destination-group__head">
             <div class="country-destination-group__title">
               <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
-              ${state.isAdmin ? `<button class="country-destination-group__add" type="button" data-add-destination-country="${escapeHtml(countrySlug)}" aria-label="${escapeHtml(countryName)} 도시 추가">+</button>` : ''}
+              ${state.isAdmin ? `<button class="country-destination-group__add" type="button" data-add-destination-country="${escapeHtml(countrySlug)}" aria-label="${escapeHtml(countryName)} 도시 추가">+</button><button class="country-destination-group__manage" type="button" data-manage-home-destinations="${escapeHtml(countrySlug)}" data-manage-home-destinations-name="${escapeHtml(countryName)}" aria-label="${escapeHtml(countryName)} 인기 도시 관리">인기 도시 관리</button>` : ''}
             </div>
             <div class="country-destination-group__actions">
               <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기 <span aria-hidden="true">→</span></a>
@@ -408,9 +430,9 @@
       }).join('') || '<div class="empty-card">게시글 샘플 데이터를 추가하세요.</div>';
     }
 
-    function getDestinationFormCountry() {
-      const countrySlug = String($('dmCountry')?.value || '').trim();
-      const countryName = getCountryNameBySlug(countrySlug) || normalizeText($('dmCountry')?.selectedOptions?.[0]?.textContent) || '';
+    function getHomeManagerCountry() {
+      const countrySlug = String($('homeDestinationCountrySlug')?.value || '').trim();
+      const countryName = normalizeText($('homeDestinationCountryName')?.value || getCountryNameBySlug(countrySlug));
       return { countrySlug, countryName };
     }
 
@@ -434,16 +456,13 @@
     }
 
     function getHomeDestinationSelectionCount() {
-      const selected = new Set(getSelectedHomeDestinationSlugs());
-      const currentInput = $('dmHomeFeatured');
-      if (currentInput && currentInput.checked && currentInput.dataset.slug) selected.add(currentInput.dataset.slug);
-      return selected.size;
+      return new Set(getSelectedHomeDestinationSlugs()).size;
     }
 
     function updateHomeDestinationCount() {
       const countEl = $('homeDestinationCount');
       if (!countEl) return;
-      const { countryName } = getDestinationFormCountry();
+      const { countryName } = getHomeManagerCountry();
       countEl.textContent = `${countryName || '현재 나라'} ${getHomeDestinationSelectionCount()}/${HOME_DESTINATION_LIMIT} 선택`;
     }
 
@@ -470,24 +489,16 @@
       updateHomeDestinationCount();
     }
 
-    function renderHomeDestinationChecklist(currentSlug = '') {
+    function renderHomeDestinationChecklist() {
       const list = $('homeDestinationChecklist');
-      const currentWrap = $('homeDestinationCurrentWrap');
-      const currentInput = $('dmHomeFeatured');
-      const { countrySlug, countryName } = getDestinationFormCountry();
+      const { countrySlug, countryName } = getHomeManagerCountry();
       const items = getSortedDestinationList(countrySlug, countryName);
-      const normalizedCurrentSlug = String(currentSlug || '').trim();
-
-      if (currentWrap && currentInput) {
-        const isCreate = $('destinationMode')?.value === 'create';
-        currentWrap.hidden = !isCreate;
-        currentInput.dataset.slug = slugify($('dmSlug')?.value || $('dmName')?.value || '');
-        currentInput.checked = false;
-        currentWrap.querySelector('span').textContent = `현재 작성 중인 도시를 저장 후 ${countryName || '현재 나라'} 여행지 허브에 노출`;
+      if ($('homeDestinationCountryHeading')) {
+        $('homeDestinationCountryHeading').textContent = `${countryName || '현재 나라'} 인기 도시 노출 선택`;
       }
 
       if (!items.length) {
-        list.innerHTML = `<div class="home-destination-empty small">${escapeHtml(countryName || '현재 나라')}에 아직 추가된 도시가 없습니다. 도시를 먼저 저장한 뒤 여행지 허브 노출 여부를 선택할 수 있습니다.</div>`;
+        list.innerHTML = `<div class="home-destination-empty small">${escapeHtml(countryName || '현재 나라')}에 아직 추가된 도시가 없습니다. 먼저 + 도시추가로 도시를 등록한 뒤 인기 도시를 선택해 주세요.</div>`;
         updateHomeDestinationCount();
         return;
       }
@@ -496,13 +507,12 @@
         const slug = String(item.slug || '');
         const label = normalizeText(item.city) || normalizeText(item.name) || slug;
         const isChecked = Number(item.home_featured || 0) === 1;
-        const isCurrent = normalizedCurrentSlug && slug === normalizedCurrentSlug;
-        return `<div class="home-destination-option ${isCurrent ? 'is-current' : ''} ${isChecked ? 'is-selected' : ''}" data-home-destination-row="${escapeHtml(slug)}">
+        return `<div class="home-destination-option ${isChecked ? 'is-selected' : ''}" data-home-destination-row="${escapeHtml(slug)}">
           <label class="home-destination-option__main">
             <input type="checkbox" value="${escapeHtml(slug)}" data-home-destination-slug="${escapeHtml(slug)}" ${isChecked ? 'checked' : ''} />
             <span class="home-destination-option__body">
               <strong>${escapeHtml(label)}</strong>
-              <em>${escapeHtml(countryName || item.country || '기타')}${isCurrent ? ' · 현재 수정 중' : ''}</em>
+              <em>${escapeHtml(countryName || item.country || '기타')}</em>
             </span>
           </label>
           <div class="home-destination-option__controls" data-home-destination-controls ${isChecked ? '' : 'hidden'}>
@@ -523,7 +533,7 @@
       }
       if (changedInput) changedInput.checked = false;
       updateHomeDestinationOrderBadges();
-      setDestinationManagerStatus(`해당 나라의 여행지 허브에는 최대 ${HOME_DESTINATION_LIMIT}개 도시만 노출할 수 있습니다.`, true);
+      setHomeDestinationManagerStatus(`해당 나라의 여행지 허브에는 최대 ${HOME_DESTINATION_LIMIT}개 도시만 노출할 수 있습니다.`, true);
       return false;
     }
 
@@ -546,20 +556,12 @@
       updateHomeDestinationOrderBadges();
     }
 
-    async function saveHomeDestinationSelection(savedSlug = '') {
+    async function saveHomeDestinationSelection() {
       const slugs = getSelectedHomeDestinationSlugs();
-      const currentInput = $('dmHomeFeatured');
-      const currentSlug = String(savedSlug || currentInput?.dataset.slug || '').trim();
-      const previousSlug = String($('destinationCurrentSlug')?.value || '').trim();
-      const currentIndex = slugs.indexOf(previousSlug);
-      if (previousSlug && currentSlug && previousSlug !== currentSlug && currentIndex >= 0) {
-        slugs[currentIndex] = currentSlug;
-      }
-      if (currentInput?.checked && currentSlug && !slugs.includes(currentSlug)) slugs.push(currentSlug);
       if (slugs.length > HOME_DESTINATION_LIMIT) {
         throw new Error(`해당 나라의 여행지 허브에는 최대 ${HOME_DESTINATION_LIMIT}개 도시만 노출할 수 있습니다.`);
       }
-      const { countrySlug, countryName } = getDestinationFormCountry();
+      const { countrySlug, countryName } = getHomeManagerCountry();
       await requestTravelSettings('PUT', {
         entity: 'home_destinations',
         current_slug: countrySlug || 'home-destinations',
@@ -569,8 +571,53 @@
       });
     }
 
+    function openHomeDestinationManager(countrySlug = '', fallbackCountryName = '') {
+      if (!state.isAdmin) return;
+      const countryName = normalizeText(fallbackCountryName) || getCountryNameBySlug(countrySlug) || getActiveCountriesForHub().find((country) => String(country.slug || '') === String(countrySlug || ''))?.name || '';
+      $('homeDestinationCountrySlug').value = countrySlug || slugifyCountry(countryName);
+      $('homeDestinationCountryName').value = countryName;
+      $('homeDestinationManagerTitle').textContent = `${countryName || '현재 나라'} 인기 도시 관리`;
+      $('homeDestinationManagerBackdrop').hidden = false;
+      $('homeDestinationManagerModal').classList.add('is-open');
+      $('homeDestinationManagerModal').setAttribute('aria-hidden', 'false');
+      document.body.classList.add('has-preview-open');
+      setHomeDestinationManagerStatus('');
+      renderHomeDestinationChecklist();
+    }
+
+    function closeHomeDestinationManager() {
+      $('homeDestinationManagerModal').classList.remove('is-open');
+      $('homeDestinationManagerModal').setAttribute('aria-hidden', 'true');
+      $('homeDestinationManagerBackdrop').hidden = true;
+      document.body.classList.remove('has-preview-open');
+    }
+
+    async function submitHomeDestinationManager(event) {
+      event.preventDefault();
+      if (getHomeDestinationSelectionCount() > HOME_DESTINATION_LIMIT) {
+        setHomeDestinationManagerStatus(`해당 나라의 여행지 허브에는 최대 ${HOME_DESTINATION_LIMIT}개 도시만 노출할 수 있습니다.`, true);
+        return;
+      }
+      try {
+        setHomeDestinationManagerStatus('저장 중입니다...');
+        await saveHomeDestinationSelection();
+        await reloadDestinations();
+        setHomeDestinationManagerStatus('저장되었습니다.');
+        closeHomeDestinationManager();
+      } catch (error) {
+        setHomeDestinationManagerStatus(error.message || '저장에 실패했습니다.', true);
+      }
+    }
+
     function setDestinationManagerStatus(message = '', isError = false) {
       const el = $('destinationManagerStatus');
+      if (!el) return;
+      el.textContent = message;
+      el.style.color = isError ? '#b91c1c' : '';
+    }
+
+    function setHomeDestinationManagerStatus(message = '', isError = false) {
+      const el = $('homeDestinationManagerStatus');
       if (!el) return;
       el.textContent = message;
       el.style.color = isError ? '#b91c1c' : '';
@@ -601,7 +648,6 @@
       $('dmAirportInfo').value = item.airport_info || '';
       $('dmTransportSummary').value = item.transport_summary || '';
       $('dmMetaDescription').value = item.meta_description || '';
-      renderHomeDestinationChecklist(item.slug || '');
     }
 
     function openDestinationManager({ mode = 'create', item = null, countrySlug = '' } = {}) {
@@ -631,11 +677,6 @@
       const country = getCountryNameBySlug(countrySlug);
       const name = normalizeText($('dmName').value);
       const formSlug = slugify($('dmSlug').value || name);
-      const selectedHomeSlugs = getSelectedHomeDestinationSlugs();
-      const currentSavedSlug = String($('destinationCurrentSlug').value || '').trim();
-      const homeSlug = $('destinationMode').value === 'create' ? formSlug : currentSavedSlug;
-      const homeOrderIndex = selectedHomeSlugs.indexOf(homeSlug);
-      const createHomeOrder = $('dmHomeFeatured')?.checked ? selectedHomeSlugs.length + 1 : 0;
       const heroTitle = normalizeText($('dmHeroTitle').value) || `${name} 여행 가이드`;
       const summary = normalizeText($('dmHeroSummary').value);
       const heroImage = normalizeText($('dmHeroImage').value);
@@ -651,8 +692,6 @@
         status: $('dmStatus').value || 'published',
         is_active: $('dmStatus').value === 'published' ? 1 : 0,
         sort_order: Number($('dmSortOrder').value || 0) || 0,
-        home_featured: $('destinationMode').value === 'create' ? ($('dmHomeFeatured')?.checked ? 1 : 0) : (selectedHomeSlugs.includes(currentSavedSlug) ? 1 : 0),
-        home_featured_order: $('destinationMode').value === 'create' ? createHomeOrder : (homeOrderIndex >= 0 ? homeOrderIndex + 1 : 0),
         summary,
         cover_image: heroImage,
         cover_image_alt: heroImageAlt,
@@ -681,14 +720,9 @@
         setDestinationManagerStatus('나라, 도시명, slug를 입력해 주세요.', true);
         return;
       }
-      if (getHomeDestinationSelectionCount() > HOME_DESTINATION_LIMIT) {
-        setDestinationManagerStatus(`해당 나라의 여행지 허브에는 최대 ${HOME_DESTINATION_LIMIT}개 도시만 노출할 수 있습니다.`, true);
-        return;
-      }
       try {
         setDestinationManagerStatus('저장 중입니다...');
         await requestTravelSettings(mode === 'edit' ? 'PUT' : 'POST', payload);
-        await saveHomeDestinationSelection(payload.slug);
         await reloadDestinations();
         setDestinationManagerStatus('저장되었습니다.');
         closeDestinationManager();
@@ -717,6 +751,8 @@
       $('homeDestinations').addEventListener('click', (event) => {
         const addBtn = event.target.closest('[data-add-destination-country]');
         if (addBtn) return openDestinationManager({ mode: 'create', countrySlug: addBtn.dataset.addDestinationCountry });
+        const manageBtn = event.target.closest('[data-manage-home-destinations]');
+        if (manageBtn) return openHomeDestinationManager(manageBtn.dataset.manageHomeDestinations || '', manageBtn.dataset.manageHomeDestinationsName || '');
         const editBtn = event.target.closest('[data-edit-destination]');
         if (editBtn) {
           const item = state.destinations.find((destination) => String(destination.slug || '') === String(editBtn.dataset.editDestination || ''));
@@ -728,6 +764,10 @@
       $('destinationManagerBackdrop').addEventListener('click', closeDestinationManager);
       $('destinationManagerForm').addEventListener('submit', saveDestination);
       $('deleteDestinationBtn').addEventListener('click', deleteDestination);
+      $('closeHomeDestinationManagerBtn').addEventListener('click', closeHomeDestinationManager);
+      $('cancelHomeDestinationManagerBtn').addEventListener('click', closeHomeDestinationManager);
+      $('homeDestinationManagerBackdrop').addEventListener('click', closeHomeDestinationManager);
+      $('homeDestinationManagerForm').addEventListener('submit', submitHomeDestinationManager);
       $('homeDestinationChecklist').addEventListener('change', (event) => {
         const input = event.target.closest('[data-home-destination-slug]');
         if (input) enforceHomeDestinationLimit(input);
@@ -739,20 +779,10 @@
         event.stopPropagation();
         moveHomeDestinationRow(moveBtn.dataset.slug || '', moveBtn.dataset.homeDestinationMove || 'up');
       });
-      $('dmHomeFeatured').addEventListener('change', (event) => enforceHomeDestinationLimit(event.target));
-      $('dmCountry').addEventListener('change', () => {
-        renderHomeDestinationChecklist($('destinationCurrentSlug').value);
-      });
-      $('dmSlug').addEventListener('input', () => {
-        const currentInput = $('dmHomeFeatured');
-        if (currentInput) currentInput.dataset.slug = slugify($('dmSlug').value || $('dmName').value);
-      });
       $('dmName').addEventListener('input', () => {
         if ($('destinationMode').value === 'create' && !$('dmSlug').value.trim()) $('dmSlug').value = slugify($('dmName').value);
         if (!$('dmCity').value.trim()) $('dmCity').value = $('dmName').value;
         if (!$('dmHeroTitle').value.trim()) $('dmHeroTitle').value = `${$('dmName').value} 여행 가이드`;
-        const currentInput = $('dmHomeFeatured');
-        if (currentInput) currentInput.dataset.slug = slugify($('dmSlug').value || $('dmName').value);
       });
     }
 

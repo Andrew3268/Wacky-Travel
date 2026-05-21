@@ -2116,3 +2116,59 @@ body{
     justify-content: flex-end;
   }
 }
+
+/* Travel hub manager v20: separate add/edit city modal and country featured-city modal */
+.country-destination-group__manage {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid rgba(21, 112, 239, 0.14);
+  border-radius: 13px;
+  background: #ffffff;
+  color: var(--travel-brand-deep);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.country-destination-group__manage:hover {
+  transform: translateY(-1px);
+  border-color: rgba(21, 112, 239, 0.32);
+  background: #f8fbff;
+  box-shadow: 0 14px 28px rgba(21, 112, 239, 0.12);
+}
+
+.modal-sheet--home-destination-manager {
+  width: min(760px, calc(100vw - 32px));
+}
+
+.modal-sheet--home-destination-manager .home-destination-checklist {
+  grid-template-columns: 1fr;
+  max-height: min(52vh, 460px);
+}
+
+.modal-sheet--home-destination-manager #homeDestinationSubmitBtn {
+  min-width: 148px;
+}
+
+@media (max-width: 720px) {
+  .country-destination-group__title {
+    flex-wrap: wrap;
+  }
+
+  .country-destination-group__manage {
+    min-height: 34px;
+    padding: 0 11px;
+    font-size: 0.78rem;
+  }
+
+  .modal-sheet--home-destination-manager #homeDestinationSubmitBtn {
+    width: 100%;
+  }
+}
