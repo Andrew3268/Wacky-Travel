@@ -2172,3 +2172,23 @@ body{
     width: 100%;
   }
 }
+
+
+/* Destinations archive v22: reuse index travel hub UI for all cities by country */
+.country-destination-list--all {
+  align-items: stretch;
+}
+
+.country-destination-list--all .country-destination-group--compact {
+  background: #ffffff;
+}
+
+.destination-chip.destination-chip--public {
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+}
+
+@media (max-width: 767px) {
+  .destination-chip.destination-chip--public {
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+  }
+}

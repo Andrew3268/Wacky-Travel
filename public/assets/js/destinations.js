@@ -14,45 +14,152 @@
     "인도네시아": "indonesia",
     "필리핀": "philippines"
   };
+
+  const normalizeText = (value) => String(value || "").trim();
+  const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch]));
   const countryToSlug = (value) => {
-    const raw = String(value || "").trim();
+    const raw = normalizeText(value);
     if (!raw) return "";
     if (countrySlugAliases[raw]) return countrySlugAliases[raw];
     return raw.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9가-힣]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
   };
+  const getDestinationSlug = (item) => normalizeText(item.slug);
+  const getDestinationName = (item) => normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.card_title) || normalizeText(item.title) || "여행지";
+  const getCountryName = (item) => normalizeText(item.country) || "기타 여행지";
+  const getCountrySlug = (country) => normalizeText(country?.slug) || countryToSlug(country?.name || "");
+  const isPublishedDestination = (item) => String(item.status || "published") === "published" && Number(item.is_active ?? 1) === 1;
 
-  const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch]));
-  const getCardTitle = (item) => item.card_title || item.title || item.name || "";
-  const getCardDescription = (item) => item.card_description || item.summary || "여행 정보와 호텔 추천을 확인하세요.";
-  const getCardImage = (item) => item.card_image || item.cover_image || "";
-  const getCardImageAlt = (item) => item.card_image_alt || item.cover_image_alt || item.name || "여행지 이미지";
+  function compareDestinations(a, b) {
+    const ao = Number(a.sort_order || 0) || 999;
+    const bo = Number(b.sort_order || 0) || 999;
+    if (ao !== bo) return ao - bo;
+    return getDestinationName(a).localeCompare(getDestinationName(b), "ko");
+  }
+
+  function mergeDestinationSources(primaryItems = [], settingItems = []) {
+    const bySlug = new Map();
+    const mergeItem = (item = {}) => {
+      const slug = getDestinationSlug(item);
+      if (!slug) return;
+      const previous = bySlug.get(slug) || {};
+      bySlug.set(slug, { ...previous, ...item });
+    };
+    primaryItems.forEach(mergeItem);
+    settingItems.forEach(mergeItem);
+    return Array.from(bySlug.values()).filter(isPublishedDestination);
+  }
+
+  function buildCountryGroups(destinations = [], countries = []) {
+    const groupedItems = new Map();
+    destinations.forEach((item) => {
+      const countryName = getCountryName(item);
+      const key = countryToSlug(countryName) || countryName;
+      if (!groupedItems.has(key)) groupedItems.set(key, { countryName, countrySlug: key, items: [] });
+      groupedItems.get(key).items.push(item);
+    });
+
+    const activeCountries = (countries || [])
+      .filter((country) => Number(country.is_active ?? 1) === 1)
+      .map((country) => ({
+        countryName: normalizeText(country.name) || "기타 여행지",
+        countrySlug: getCountrySlug(country),
+        sortOrder: Number(country.sort_order || 0) || 999
+      }));
+
+    const ordered = [];
+    const used = new Set();
+    activeCountries
+      .sort((a, b) => a.sortOrder - b.sortOrder || a.countryName.localeCompare(b.countryName, "ko"))
+      .forEach((country) => {
+        const key = country.countrySlug || countryToSlug(country.countryName) || country.countryName;
+        const group = groupedItems.get(key);
+        if (!group || !group.items.length) return;
+        ordered.push({ ...group, countryName: country.countryName, countrySlug: key });
+        used.add(key);
+      });
+
+    Array.from(groupedItems.values())
+      .filter((group) => !used.has(group.countrySlug) && group.items.length)
+      .sort((a, b) => a.countryName.localeCompare(b.countryName, "ko"))
+      .forEach((group) => ordered.push(group));
+
+    return ordered.map((group) => ({
+      ...group,
+      items: group.items.slice().sort(compareDestinations)
+    }));
+  }
+
+  function renderDestinationChip(item) {
+    const label = getDestinationName(item);
+    const slug = getDestinationSlug(item);
+    const href = `/destinations/${encodeURIComponent(slug)}`;
+    return `<div class="destination-chip destination-chip--public">
+      <span class="destination-chip__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
+          <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"></path>
+          <circle cx="12" cy="10" r="2.2"></circle>
+        </svg>
+      </span>
+      <a class="destination-chip__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
+        <span class="destination-chip__name">${escapeHtml(label)}</span>
+      </a>
+      <a class="destination-chip__arrow" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
+        <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
+          <path d="M5 12h12"></path>
+          <path d="m13 6 6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>`;
+  }
+
+  function renderCountryGroup(group) {
+    const countryName = group.countryName || "기타 여행지";
+    const countrySlug = group.countrySlug || countryToSlug(countryName);
+    return `<section class="country-destination-group country-destination-group--compact" aria-labelledby="country-${escapeHtml(countrySlug)}">
+      <div class="country-destination-group__head">
+        <div class="country-destination-group__title">
+          <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
+        </div>
+        <div class="country-destination-group__actions">
+          <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="destination-chip-list" aria-label="${escapeHtml(countryName)} 도시 목록">
+        ${group.items.map(renderDestinationChip).join("")}
+      </div>
+    </section>`;
+  }
+
+  async function fetchJson(url, fallback) {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return fallback;
+      return await res.json();
+    } catch (error) {
+      return fallback;
+    }
+  }
 
   async function init() {
     grid.innerHTML = `<div class="empty-card">여행지를 불러오는 중입니다.</div>`;
-    try {
-      const res = await fetch("/api/destinations?limit=100");
-      const data = await res.json();
-      const items = data.items || [];
-      if (!items.length) {
-        grid.innerHTML = `<div class="empty-card">등록된 여행지가 없습니다.</div>`;
-        return;
-      }
-      grid.innerHTML = items.map((item) => `
-        <article class="travel-card">
-          ${getCardImage(item) ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(item.slug)}"><img src="${escapeHtml(getCardImage(item))}" alt="${escapeHtml(getCardImageAlt(item))}" loading="lazy" decoding="async" /></a>` : ""}
-          <div class="travel-card__body">
-            <div class="travel-card__meta">
-              ${item.country ? `<a href="/countries/${encodeURIComponent(countryToSlug(item.country))}">${escapeHtml(item.country)}</a>` : ""}${item.country && item.city ? " · " : ""}${escapeHtml(item.city || "")}
-            </div>
-            <h2><a href="/destinations/${encodeURIComponent(item.slug)}">${escapeHtml(getCardTitle(item))}</a></h2>
-            <p>${escapeHtml(getCardDescription(item))}</p>
-            <a class="btn btn--brand" href="/destinations/${encodeURIComponent(item.slug)}">여행지 보기</a>
-          </div>
-        </article>
-      `).join("");
-    } catch (error) {
-      grid.innerHTML = `<div class="empty-card">여행지를 불러오지 못했습니다.</div>`;
+    const [destData, settingsData] = await Promise.all([
+      fetchJson("/api/destinations?limit=500", { items: [] }),
+      fetchJson(`/api/travel-settings?ts=${Date.now()}`, { countries: [], destinations: [] })
+    ]);
+
+    const items = mergeDestinationSources(
+      Array.isArray(destData.items) ? destData.items : [],
+      Array.isArray(settingsData.destinations) ? settingsData.destinations : []
+    );
+    const groups = buildCountryGroups(items, Array.isArray(settingsData.countries) ? settingsData.countries : []);
+
+    if (!groups.length) {
+      grid.innerHTML = `<div class="empty-card">등록된 여행지가 없습니다.</div>`;
+      return;
     }
+
+    grid.innerHTML = groups.map(renderCountryGroup).join("");
   }
+
   init();
 })();

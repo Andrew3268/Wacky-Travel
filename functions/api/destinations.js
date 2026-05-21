@@ -42,7 +42,7 @@ export async function onRequestGet({ env, request }) {
   await ensureTravelSettingsTables(env.TRAVEL_DB);
   const url = new URL(request.url);
   const status = String(url.searchParams.get("status") || "published").trim();
-  const limit = Math.min(100, Math.max(1, Number.parseInt(url.searchParams.get("limit") || "50", 10)));
+  const limit = Math.min(500, Math.max(1, Number.parseInt(url.searchParams.get("limit") || "50", 10)));
   const rows = await env.TRAVEL_DB.prepare(`
     SELECT slug, name, country, city, title, meta_description, summary, cover_image, cover_image_alt,
            card_title, card_description, card_image, card_image_alt,
