@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS destinations (
   is_active INTEGER DEFAULT 1,
   sort_order INTEGER DEFAULT 0,
   home_featured INTEGER DEFAULT 0,
+  home_featured_order INTEGER DEFAULT 0,
   published_at TEXT NOT NULL,
   updated_at TEXT NOT NULL
 );
@@ -82,6 +83,7 @@ CREATE TABLE IF NOT EXISTS destinations (
 CREATE INDEX IF NOT EXISTS idx_destinations_status_updated ON destinations(status, updated_at DESC);
 CREATE INDEX IF NOT EXISTS idx_destinations_country_sort ON destinations(country, sort_order ASC, name ASC);
 CREATE INDEX IF NOT EXISTS idx_destinations_home_featured ON destinations(home_featured, status, sort_order ASC, name ASC);
+CREATE INDEX IF NOT EXISTS idx_destinations_home_featured_country_order ON destinations(country, home_featured, home_featured_order ASC, sort_order ASC, name ASC);
 
 CREATE TABLE IF NOT EXISTS hotels (
   slug TEXT PRIMARY KEY,
