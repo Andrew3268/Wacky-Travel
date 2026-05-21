@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260518posthero-gap-summary-v15";
+const POST_RENDER_VERSION = "20260521-breadcrumb-city-hotel-panel-white-v16";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -150,20 +150,12 @@ export async function onRequestGet({ params, env, request }) {
         </div>
       `;
 
-      const breadcrumbItems = [
-        { name: "홈", url: `${origin}/` }
-      ];
-
-      if (row.category) {
-        breadcrumbItems.push({
-          name: String(row.category),
-          url: `${origin}/?category=${encodeURIComponent(String(row.category))}`
-        });
-      }
-
-      breadcrumbItems.push({
-        name: titleText,
-        url: canonical.toString()
+      const breadcrumbItems = buildPostBreadcrumbItems({
+        origin,
+        canonical,
+        row,
+        titleText,
+        hotelHeroData
       });
 
       const breadcrumbHtml = renderBreadcrumbs(breadcrumbItems);
@@ -315,7 +307,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero-gap-summary-v15" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260521-breadcrumb-city-hotel-panel-white-v16" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -976,6 +968,51 @@ function formatDate(value) {
   return d.toISOString().slice(0, 10);
 }
 
+function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row = {}, titleText = "", hotelHeroData = null } = {}) {
+  const homeUrl = `${origin}/`;
+  const postUrl = canonical ? canonical.toString() : homeUrl;
+  const hotel = hotelHeroData?.hotel || null;
+
+  if (hotel) {
+    const cityName = String(hotel.destination_city || hotel.destination_name || row.destination_slug || "").trim();
+    const destinationSlug = String(hotel.destination_slug || row.destination_slug || "").trim();
+    const hotelName = String(hotel.name || titleText || "").trim();
+
+    const items = [{ name: "홈", url: homeUrl }];
+
+    if (cityName) {
+      items.push({
+        name: cityName,
+        url: destinationSlug ? `${origin}/destinations/${encodeURIComponent(destinationSlug)}` : homeUrl
+      });
+    }
+
+    items.push({
+      name: hotelName || titleText || "호텔",
+      url: postUrl
+    });
+
+    return items;
+  }
+
+  const fallbackItems = [{ name: "홈", url: homeUrl }];
+  const category = String(row.category || "").trim();
+
+  if (category) {
+    fallbackItems.push({
+      name: category,
+      url: `${origin}/?category=${encodeURIComponent(category)}`
+    });
+  }
+
+  fallbackItems.push({
+    name: titleText || "글",
+    url: postUrl
+  });
+
+  return fallbackItems;
+}
+
 function renderBreadcrumbs(items) {
   const list = items
     .map((item, index) => {
@@ -1008,7 +1045,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260518posthero-gap-summary-v15" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260521-breadcrumb-city-hotel-panel-white-v16" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
