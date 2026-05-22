@@ -1,6 +1,13 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 import { normalizeContentType } from "../../../lib/travel/travel-settings.js";
 
+
+function normalizeStatusValue(value = "published") {
+  const raw = String(value || "published").trim().toLowerCase();
+  if (["draft", "초안", "임시저장", "임시 저장"].includes(raw)) return "draft";
+  return "published";
+}
+
 function slugifyValue(value = "") {
   return String(value || "")
     .trim()
@@ -413,7 +420,7 @@ export async function onRequestPut({ env, params, request }) {
   const faqMd = String(body.faq_md || "").trim();
   const enableSidebarAd = body.enable_sidebar_ad === false ? 0 : 1;
   const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
-  const status = String(body.status || "published").trim() || "published";
+  const status = normalizeStatusValue(body.status || "published");
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = normalizeContentType(body.content_type || "travel_tip");
   const destinationSlug = String(body.destination_slug || "").trim();

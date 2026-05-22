@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v9-hotel-tabs-limit-3";
+const DESTINATION_RENDER_VERSION = "destination-detail-v10-dashboard-refresh-v29";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -133,6 +133,7 @@ export async function onRequestGet({ params, env, request }) {
   </main>
   ${renderFooter()}
   ${renderHotelTabsScript()}
+  ${renderPostUpdateNoticeScript()}
 </body>
 </html>`;
       return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
@@ -258,6 +259,54 @@ function renderHotelTabPanel({ type, label, posts = [], contentTypes = [], activ
     </div>
     ${hasMore ? `<div class="hotel-tabs__footer"><button class="hotel-load-more" type="button" data-hotel-more="${escapeHtml(type)}" data-offset="${HOTEL_INITIAL_LIMIT}">더보기</button></div>` : ""}
   </div>`;
+}
+
+function renderPostUpdateNoticeScript() {
+  return `<script>
+(() => {
+  const root = document.querySelector('.hotel-tabs');
+  const destinationSlug = String(root?.dataset.destinationSlug || '').trim();
+  if (!destinationSlug) return;
+
+  const STORAGE_KEY = 'wackyTravelPostUpdated';
+  const pageLoadedAt = Date.now();
+
+  const parsePayload = (raw) => {
+    try { return JSON.parse(String(raw || '{}')); } catch (_) { return null; }
+  };
+
+  const shouldShowNotice = (payload) => {
+    if (!payload || String(payload.status || 'published') !== 'published') return false;
+    if (String(payload.destination_slug || '').trim() !== destinationSlug) return false;
+    const ts = Number(payload.ts || 0);
+    return !ts || ts >= pageLoadedAt - 1000;
+  };
+
+  const showNotice = () => {
+    if (document.querySelector('[data-post-update-notice]')) return;
+    const notice = document.createElement('div');
+    notice.setAttribute('data-post-update-notice', '');
+    notice.style.cssText = 'position:fixed;left:50%;bottom:18px;z-index:9999;transform:translateX(-50%);display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);padding:12px 14px;border:1px solid rgba(15,23,42,.12);border-radius:999px;background:#111827;color:#fff;box-shadow:0 16px 36px rgba(15,23,42,.24);font-size:14px;font-weight:700;';
+    notice.innerHTML = '<span>새 글이 저장되었습니다. 최신 도시 페이지로 갱신할까요?</span><button type="button" style="border:0;border-radius:999px;background:#fff;color:#111827;font-weight:800;padding:8px 10px;cursor:pointer;">새로고침</button>';
+    notice.querySelector('button')?.addEventListener('click', () => {
+      const url = new URL(location.href);
+      url.searchParams.set('v', String(Date.now()));
+      location.href = url.toString();
+    });
+    document.body.appendChild(notice);
+  };
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== STORAGE_KEY) return;
+    if (shouldShowNotice(parsePayload(event.newValue))) showNotice();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) return;
+    if (shouldShowNotice(parsePayload(localStorage.getItem(STORAGE_KEY)))) showNotice();
+  });
+})();
+</script>`;
 }
 
 function renderHotelTabsScript() {

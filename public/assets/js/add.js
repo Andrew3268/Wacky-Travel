@@ -2468,6 +2468,19 @@ function setPreviewDevice(device) {
   });
 }
 
+
+function broadcastPostSaved(payload = {}, slug = "") {
+  try {
+    localStorage.setItem("wackyTravelPostUpdated", JSON.stringify({
+      slug,
+      destination_slug: payload.destination_slug || "",
+      content_type: payload.content_type || "",
+      status: payload.status || "published",
+      ts: Date.now()
+    }));
+  } catch (_) {}
+}
+
 async function save() {
   const statusEl = $("saveStatus");
   statusEl.textContent = "저장 중…";
@@ -2523,6 +2536,8 @@ async function save() {
     console.error(json);
     return;
   }
+
+  broadcastPostSaved(payload, slug);
 
   if (payload.status === "draft") {
     statusEl.textContent = "초안 저장 완료! 편집 페이지로 이동합니다…";

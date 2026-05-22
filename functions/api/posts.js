@@ -17,6 +17,17 @@ function slugifyValue(value = "") {
     .replace(/^-|-$/g, "");
 }
 
+
+function normalizeStatusValue(value = "published") {
+  const raw = String(value || "published").trim().toLowerCase();
+  if (["draft", "초안", "임시저장", "임시 저장"].includes(raw)) return "draft";
+  return "published";
+}
+
+function normalizedStatusSql() {
+  return "LOWER(TRIM(COALESCE(status, 'published')))";
+}
+
 function normalizeBadgeArray(value) {
   const source = Array.isArray(value)
     ? value
@@ -179,7 +190,7 @@ export async function onRequestGet({ env, request }) {
   const binds = [];
 
   if (safeStatus !== "all") {
-    where.push("status = ?");
+    where.push(`${normalizedStatusSql()} = ?`);
     binds.push(safeStatus);
   }
 
@@ -294,10 +305,10 @@ export async function onRequestGet({ env, request }) {
       LIMIT 10
     `).bind(...binds).all(),
     env.TRAVEL_DB.prepare(`
-      SELECT status, COUNT(*) AS count
+      SELECT ${normalizedStatusSql()} AS status, COUNT(*) AS count
       FROM posts
       ${whereSql}
-      GROUP BY status
+      GROUP BY ${normalizedStatusSql()}
     `).bind(...binds).all(),
     env.TRAVEL_DB.prepare(`SELECT key, value FROM site_settings WHERE key = 'index_sidebar_ad_enabled'`).all()
   ]);
@@ -371,7 +382,7 @@ export async function onRequestPost({ env, request }) {
   const faqMd = String(body.faq_md || "").trim();
   const enableSidebarAd = body.enable_sidebar_ad === false ? 0 : 1;
   const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
-  const status = String(body.status || "published").trim() || "published";
+  const status = normalizeStatusValue(body.status || "published");
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = normalizeContentType(body.content_type || "travel_tip");
   const destinationSlug = String(body.destination_slug || "").trim();
