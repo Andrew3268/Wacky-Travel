@@ -2192,3 +2192,112 @@ body{
     grid-template-columns: 36px minmax(0, 1fr) auto;
   }
 }
+
+/* V26: destination hotel tabs */
+.travel-card-grid--hotels{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.travel-card-grid--hotels .empty-card{
+  grid-column:1/-1;
+}
+.hotel-tabs{
+  margin-top:18px;
+}
+.hotel-tabs__nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:18px;
+  padding:6px;
+  border:1px solid rgba(23,23,23,.08);
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  box-shadow:0 12px 30px rgba(25,35,60,.05);
+}
+.hotel-tabs__button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:42px;
+  padding:10px 16px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#555;
+  font-weight:800;
+  letter-spacing:-.02em;
+  cursor:pointer;
+  transition:background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.hotel-tabs__button strong{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:32px;
+  height:24px;
+  padding:0 8px;
+  border-radius:999px;
+  background:rgba(23,23,23,.06);
+  color:#333;
+  font-size:.78rem;
+}
+.hotel-tabs__button.is-active{
+  background:#171717;
+  color:#fff;
+  box-shadow:0 10px 26px rgba(23,23,23,.16);
+}
+.hotel-tabs__button.is-active strong{
+  background:rgba(255,255,255,.18);
+  color:#fff;
+}
+.hotel-tabs__button:hover{
+  transform:translateY(-1px);
+}
+.hotel-tab-panel[hidden]{
+  display:none !important;
+}
+.hotel-tabs__footer{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+.hotel-load-more{
+  min-width:150px;
+  min-height:44px;
+  padding:11px 18px;
+  border:1px solid rgba(23,23,23,.12);
+  border-radius:999px;
+  background:#fff;
+  color:#171717;
+  font-weight:850;
+  cursor:pointer;
+  box-shadow:0 12px 26px rgba(25,35,60,.08);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.hotel-load-more:hover{
+  transform:translateY(-2px);
+  border-color:rgba(35,104,255,.24);
+  box-shadow:0 16px 34px rgba(25,35,60,.12);
+}
+@media (max-width: 960px){
+  .travel-card-grid--hotels{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .hotel-tabs__nav{
+    border-radius:22px;
+  }
+}
+@media (max-width: 640px){
+  .travel-card-grid--hotels{
+    grid-template-columns:1fr;
+  }
+  .hotel-tabs__nav{
+    display:grid;
+    grid-template-columns:1fr;
+    border-radius:22px;
+  }
+  .hotel-tabs__button{
+    width:100%;
+  }
+}

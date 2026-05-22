@@ -3,8 +3,10 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v7-travel-tip-fallback";
-const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro", "hotel_roundup", "hotel_review"];
+const DESTINATION_RENDER_VERSION = "destination-detail-v8-hotel-tabs-more";
+const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
+const HOTEL_INITIAL_LIMIT = 6;
+const HOTEL_MORE_LIMIT = 6;
 
 export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
@@ -44,7 +46,7 @@ export async function onRequestGet({ params, env, request }) {
                 CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
                 updated_at DESC,
                 published_at DESC
-              LIMIT 80
+              LIMIT 160
             `,
             orderBinds: [slug]
           });
@@ -54,7 +56,9 @@ export async function onRequestGet({ params, env, request }) {
       ]);
 
       const posts = postRows.results || [];
-      const hotelPosts = posts.filter(isHotelPost).slice(0, 8);
+      const top5HotelPosts = posts.filter((post) => getHotelPostGroup(post) === "top5_series");
+      const hotelIntroPosts = posts.filter((post) => getHotelPostGroup(post) === "hotel_intro");
+      const hotelPosts = [...top5HotelPosts, ...hotelIntroPosts];
       const nonHotelPosts = posts.filter((post) => !isHotelPost(post));
       const travelContentTypes = contentTypes.filter((type) => !isHotelContentType(type.slug));
       const postGroups = groupPostsByContentType(nonHotelPosts, travelContentTypes);
@@ -113,9 +117,7 @@ export async function onRequestGet({ params, env, request }) {
         <h2>${escapeHtml(destination.name)} 호텔 추천</h2>
         <p>여행 목적과 위치를 기준으로 비교하기 좋은 호텔을 모았습니다.</p>
       </div>
-      <div class="travel-card-grid travel-card-grid--hotels">
-        ${hotelPosts.length ? hotelPosts.map((post) => renderHotelPostCard(post, contentTypes)).join("") : `<div class="empty-card">아직 등록된 호텔 추천 글이 없습니다.</div>`}
-      </div>
+      ${renderHotelTabs(destination, top5HotelPosts, hotelIntroPosts, contentTypes)}
     </section>
 
     <section class="container travel-section">
@@ -130,6 +132,7 @@ export async function onRequestGet({ params, env, request }) {
     </section>
   </main>
   ${renderFooter()}
+  ${renderHotelTabsScript()}
 </body>
 </html>`;
       return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
@@ -212,11 +215,112 @@ function getDestinationHeroImageAlt(destination) {
 
 function isHotelContentType(value = "") {
   const type = normalizeContentType(value);
-  return type === "top5_series" || type === "hotel_intro";
+  return HOTEL_CONTENT_TYPES.includes(type);
+}
+
+function getHotelPostGroup(post = {}) {
+  const type = normalizeContentType(post.content_type);
+  if (type === "top5_series") return "top5_series";
+  if (type === "hotel_intro") return "hotel_intro";
+  return "";
 }
 
 function isHotelPost(post = {}) {
-  return isHotelContentType(post.content_type);
+  return Boolean(getHotelPostGroup(post));
+}
+
+function renderHotelTabs(destination, top5Posts = [], hotelIntroPosts = [], contentTypes = []) {
+  const destinationSlug = String(destination.slug || "").trim();
+  const activeType = top5Posts.length ? "top5_series" : "hotel_intro";
+  return `<div class="hotel-tabs" data-destination-slug="${escapeHtml(destinationSlug)}" data-page-size="${HOTEL_MORE_LIMIT}">
+    <div class="hotel-tabs__nav" role="tablist" aria-label="${escapeHtml(destination.name || "도시")} 호텔 글 종류">
+      ${renderHotelTabButton({ type: "top5_series", label: "TOP5 호텔 추천", count: top5Posts.length, active: activeType === "top5_series" })}
+      ${renderHotelTabButton({ type: "hotel_intro", label: "개별 호텔 소개", count: hotelIntroPosts.length, active: activeType === "hotel_intro" })}
+    </div>
+    ${renderHotelTabPanel({ type: "top5_series", label: "TOP5 호텔 추천", posts: top5Posts, contentTypes, active: activeType === "top5_series" })}
+    ${renderHotelTabPanel({ type: "hotel_intro", label: "개별 호텔 소개", posts: hotelIntroPosts, contentTypes, active: activeType === "hotel_intro" })}
+  </div>`;
+}
+
+function renderHotelTabButton({ type, label, count, active }) {
+  return `<button class="hotel-tabs__button${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" aria-controls="hotel-panel-${escapeHtml(type)}" data-hotel-tab="${escapeHtml(type)}">
+    <span>${escapeHtml(label)}</span>
+    <strong>${Number(count || 0)}개</strong>
+  </button>`;
+}
+
+function renderHotelTabPanel({ type, label, posts = [], contentTypes = [], active = false }) {
+  const initialPosts = posts.slice(0, HOTEL_INITIAL_LIMIT);
+  const hasMore = posts.length > HOTEL_INITIAL_LIMIT;
+  return `<div id="hotel-panel-${escapeHtml(type)}" class="hotel-tab-panel${active ? " is-active" : ""}" role="tabpanel" data-hotel-panel="${escapeHtml(type)}" ${active ? "" : "hidden"}>
+    <div class="travel-card-grid travel-card-grid--hotels" data-hotel-grid="${escapeHtml(type)}">
+      ${initialPosts.length ? initialPosts.map((post) => renderHotelPostCard(post, contentTypes)).join("") : `<div class="empty-card">아직 등록된 ${escapeHtml(label)} 글이 없습니다.</div>`}
+    </div>
+    ${hasMore ? `<div class="hotel-tabs__footer"><button class="hotel-load-more" type="button" data-hotel-more="${escapeHtml(type)}" data-offset="${HOTEL_INITIAL_LIMIT}">더보기</button></div>` : ""}
+  </div>`;
+}
+
+function renderHotelTabsScript() {
+  return `<script>
+(() => {
+  const root = document.querySelector('.hotel-tabs');
+  if (!root) return;
+
+  const setActiveTab = (type) => {
+    root.querySelectorAll('[data-hotel-tab]').forEach((button) => {
+      const active = button.dataset.hotelTab === type;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    root.querySelectorAll('[data-hotel-panel]').forEach((panel) => {
+      const active = panel.dataset.hotelPanel === type;
+      panel.classList.toggle('is-active', active);
+      panel.hidden = !active;
+    });
+  };
+
+  root.addEventListener('click', async (event) => {
+    const tabButton = event.target.closest('[data-hotel-tab]');
+    if (tabButton) {
+      setActiveTab(tabButton.dataset.hotelTab);
+      return;
+    }
+
+    const moreButton = event.target.closest('[data-hotel-more]');
+    if (!moreButton || moreButton.dataset.loading === '1') return;
+
+    const type = moreButton.dataset.hotelMore;
+    const panel = root.querySelector('[data-hotel-panel="' + type + '"]');
+    const grid = panel?.querySelector('[data-hotel-grid="' + type + '"]');
+    const destination = root.dataset.destinationSlug || '';
+    const limit = Number(root.dataset.pageSize || 6);
+    const offset = Number(moreButton.dataset.offset || 0);
+    if (!grid || !destination || !type) return;
+
+    moreButton.dataset.loading = '1';
+    const originalText = moreButton.textContent;
+    moreButton.textContent = '불러오는 중...';
+
+    try {
+      const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
+      const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' } });
+      if (!response.ok) throw new Error('load_failed');
+      const data = await response.json();
+      if (data.html) grid.insertAdjacentHTML('beforeend', data.html);
+      moreButton.dataset.offset = String(data.nextOffset || offset + limit);
+      if (!data.hasMore) moreButton.remove();
+    } catch (error) {
+      moreButton.textContent = '다시 시도';
+      moreButton.removeAttribute('data-loading');
+      return;
+    }
+
+    moreButton.textContent = originalText;
+    moreButton.removeAttribute('data-loading');
+  });
+})();
+</script>`;
 }
 
 function renderHotelPostCard(post, contentTypes = []) {
