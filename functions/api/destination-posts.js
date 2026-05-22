@@ -2,8 +2,8 @@ import { escapeHtml, okJson } from "../_utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
-const DEFAULT_LIMIT = 6;
-const MAX_LIMIT = 12;
+const DEFAULT_LIMIT = 3;
+const MAX_LIMIT = 3;
 const MAX_SOURCE_ROWS = 240;
 
 export async function onRequestGet({ env, request }) {

@@ -3,10 +3,10 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v8-hotel-tabs-more";
+const DESTINATION_RENDER_VERSION = "destination-detail-v9-hotel-tabs-limit-3";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
-const HOTEL_INITIAL_LIMIT = 6;
-const HOTEL_MORE_LIMIT = 6;
+const HOTEL_INITIAL_LIMIT = 3;
+const HOTEL_MORE_LIMIT = 3;
 
 export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
