@@ -354,14 +354,34 @@ function shouldShowInarticleAdsInEditor() {
 const DEFAULT_TRAVEL_CONTENT_TYPES = [
   { slug: "top5_series", label: "TOP5 시리즈", description: "목적별·조건별 추천 리스트 콘텐츠" },
   { slug: "hotel_intro", label: "개별 호텔 소개", description: "특정 호텔의 장점과 확인 포인트 콘텐츠" },
-  { slug: "travel_tip", label: "여행 tip", description: "예약 전후로 확인하면 좋은 여행 정보" }
+  { slug: "travel_tip", label: "여행팁", description: "예약 전후로 확인하면 좋은 여행 정보" }
 ];
 
 const TRAVEL_CONTENT_TYPE_ALIASES = {
   guide: "travel_tip",
   checklist: "travel_tip",
+  tip: "travel_tip",
+  tips: "travel_tip",
+  traveltip: "travel_tip",
+  traveltips: "travel_tip",
+  "travel-tip": "travel_tip",
+  "travel tips": "travel_tip",
+  "여행팁": "travel_tip",
+  "여행 팁": "travel_tip",
+  "여행-tip": "travel_tip",
+  "여행 tip": "travel_tip",
+  "여행 tips": "travel_tip",
+  "여행준비": "travel_tip",
+  "여행 준비": "travel_tip",
   hotel_roundup: "top5_series",
-  hotel_review: "hotel_intro"
+  hotel_review: "hotel_intro",
+  "hotel-roundup": "top5_series",
+  "hotel review": "hotel_intro",
+  "top5": "top5_series",
+  "top5-series": "top5_series",
+  "top5 시리즈": "top5_series",
+  "개별호텔소개": "hotel_intro",
+  "개별 호텔 소개": "hotel_intro"
 };
 
 let travelContentTypeItems = [...DEFAULT_TRAVEL_CONTENT_TYPES];
@@ -369,16 +389,19 @@ let countryItems = [];
 let destinationItems = [];
 
 function normalizeContentType(value) {
-  const raw = String(value || "").trim();
-  const normalized = TRAVEL_CONTENT_TYPE_ALIASES[raw] || raw;
-  if (!normalized) return "";
-  const hasItem = travelContentTypeItems.some((item) => String(item.slug || item.value || "") === normalized);
-  return hasItem ? normalized : normalized;
+  const raw = String(value || "").replace(/\s+/g, " ").trim();
+  if (!raw) return "";
+  const lower = raw.toLowerCase();
+  const compact = lower.replace(/[\s_-]+/g, "");
+  return TRAVEL_CONTENT_TYPE_ALIASES[raw]
+    || TRAVEL_CONTENT_TYPE_ALIASES[lower]
+    || TRAVEL_CONTENT_TYPE_ALIASES[compact]
+    || raw;
 }
 
 function labelContentType(value) {
   const normalized = normalizeContentType(value);
-  const found = travelContentTypeItems.find((item) => String(item.slug || item.value || "") === normalized);
+  const found = travelContentTypeItems.find((item) => normalizeContentType(item.slug || item.value || item.label || "") === normalized);
   if (found) return found.label || found.name || normalized;
   const fallback = DEFAULT_TRAVEL_CONTENT_TYPES.find((item) => item.slug === normalized);
   return fallback?.label || normalized;
@@ -427,12 +450,12 @@ function renderContentTypeOptions(selectedValue = "") {
   if (!selectEl) return;
   const normalized = normalizeContentType(selectedValue || selectEl.value);
   const activeItems = travelContentTypeItems.filter((item) => Number(item.is_active ?? 1) !== 0);
-  const selectedExists = activeItems.some((item) => String(item.slug || "") === normalized);
-  const selectedItem = travelContentTypeItems.find((item) => String(item.slug || "") === normalized);
+  const selectedExists = activeItems.some((item) => normalizeContentType(item.slug || item.value || item.label || "") === normalized);
+  const selectedItem = travelContentTypeItems.find((item) => normalizeContentType(item.slug || item.value || item.label || "") === normalized);
   const items = selectedItem && !selectedExists ? [selectedItem, ...activeItems] : activeItems;
   selectEl.innerHTML = [
     '<option value="">글 종류 선택</option>',
-    ...items.map((item) => `<option value="${escapeHtml(item.slug || item.value || "")}">${escapeHtml(item.label || item.name || item.slug || "")}</option>`)
+    ...items.map((item) => `<option value="${escapeHtml(normalizeContentType(item.slug || item.value || item.label || ""))}">${escapeHtml(item.label || item.name || item.slug || "")}</option>`)
   ].join("");
   selectEl.value = normalized || "";
 }

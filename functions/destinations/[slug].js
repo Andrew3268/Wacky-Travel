@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v6-hotel-card-post-image";
+const DESTINATION_RENDER_VERSION = "destination-detail-v7-travel-tip-fallback";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro", "hotel_roundup", "hotel_review"];
 
 export async function onRequestGet({ params, env, request }) {
@@ -140,7 +140,6 @@ export async function onRequestGet({ params, env, request }) {
 function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
   const destinationSlug = String(destination.slug || "").trim();
   const terms = getDestinationSearchTerms(destination);
-  const hotelTypePlaceholders = HOTEL_CONTENT_TYPES.map(() => "?").join(", ");
   const fallbackBinds = [];
   const fallbackConditions = [];
 
@@ -156,8 +155,8 @@ function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql
     fallbackBinds.push(term.toLowerCase());
   });
 
-  const hotelFallbackSql = fallbackConditions.length
-    ? `OR (TRIM(COALESCE(content_type, '')) IN (${hotelTypePlaceholders}) AND (${fallbackConditions.join(" OR ")}))`
+  const fallbackSql = fallbackConditions.length
+    ? `OR (${fallbackConditions.join(" OR ")})`
     : "";
 
   return {
@@ -167,13 +166,12 @@ function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql
       WHERE status = 'published'
         AND (
           TRIM(COALESCE(destination_slug, '')) = ?
-          ${hotelFallbackSql}
+          ${fallbackSql}
         )
       ${orderSql || ""}
     `,
     binds: [
       destinationSlug,
-      ...(fallbackConditions.length ? HOTEL_CONTENT_TYPES : []),
       ...fallbackBinds,
       ...(Array.isArray(orderBinds) ? orderBinds : [])
     ]

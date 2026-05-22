@@ -1,4 +1,5 @@
 import { okJson, getAdminSession, requireAdmin } from "../_utils.js";
+import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -161,7 +162,7 @@ export async function onRequestGet({ env, request }) {
   const category = String(url.searchParams.get("category") || "").trim();
   const tag = String(url.searchParams.get("tag") || "").trim();
   const contentTypeParam = String(url.searchParams.get("content_type") || url.searchParams.get("content_types") || "").trim();
-  const contentTypes = [...new Set(contentTypeParam.split(/[,.，、|]/).map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 10);
+  const contentTypes = [...new Set(contentTypeParam.split(/[,.，、|]/).map((item) => normalizeContentType(item)).filter(Boolean))].slice(0, 10);
   const query = String(url.searchParams.get("q") || "").trim().toLowerCase();
   const searchTitle = String(url.searchParams.get("search_title") || "1").trim() !== "0";
   const searchContent = String(url.searchParams.get("search_content") || "0").trim() === "1";
@@ -372,7 +373,7 @@ export async function onRequestPost({ env, request }) {
   const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
   const status = String(body.status || "published").trim() || "published";
   const tags = Array.isArray(body.tags) ? body.tags : [];
-  const contentType = String(body.content_type || "guide").trim() || "guide";
+  const contentType = normalizeContentType(body.content_type || "travel_tip");
   const destinationSlug = String(body.destination_slug || "").trim();
   let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;

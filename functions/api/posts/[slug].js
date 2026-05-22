@@ -1,4 +1,5 @@
 import { okJson, requireAdmin } from "../../_utils.js";
+import { normalizeContentType } from "../../../lib/travel/travel-settings.js";
 
 function slugifyValue(value = "") {
   return String(value || "")
@@ -414,7 +415,7 @@ export async function onRequestPut({ env, params, request }) {
   const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
   const status = String(body.status || "published").trim() || "published";
   const tags = Array.isArray(body.tags) ? body.tags : [];
-  const contentType = String(body.content_type || "guide").trim() || "guide";
+  const contentType = normalizeContentType(body.content_type || "travel_tip");
   const destinationSlug = String(body.destination_slug || "").trim();
   let hotelSlug = body.hotel_slug === undefined ? null : String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
