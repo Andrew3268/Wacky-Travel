@@ -160,6 +160,8 @@ export async function onRequestGet({ env, request }) {
   const status = String(url.searchParams.get("status") || "published").trim().toLowerCase();
   const category = String(url.searchParams.get("category") || "").trim();
   const tag = String(url.searchParams.get("tag") || "").trim();
+  const contentTypeParam = String(url.searchParams.get("content_type") || url.searchParams.get("content_types") || "").trim();
+  const contentTypes = [...new Set(contentTypeParam.split(/[,.，、|]/).map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 10);
   const query = String(url.searchParams.get("q") || "").trim().toLowerCase();
   const searchTitle = String(url.searchParams.get("search_title") || "1").trim() !== "0";
   const searchContent = String(url.searchParams.get("search_content") || "0").trim() === "1";
@@ -188,6 +190,11 @@ export async function onRequestGet({ env, request }) {
   if (tag) {
     where.push("EXISTS (SELECT 1 FROM json_each(COALESCE(tags_json, '[]')) WHERE TRIM(json_each.value) = ?)");
     binds.push(tag);
+  }
+
+  if (contentTypes.length) {
+    where.push(`TRIM(COALESCE(content_type, '')) IN (${contentTypes.map(() => "?").join(", ")})`);
+    binds.push(...contentTypes);
   }
 
   if (query) {
@@ -307,6 +314,7 @@ export async function onRequestGet({ env, request }) {
       status: safeStatus,
       category,
       tag,
+      content_type: contentTypes.join(","),
       q: query
     },
     pagination: {

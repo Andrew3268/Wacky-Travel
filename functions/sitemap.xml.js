@@ -49,7 +49,7 @@ export async function onRequestGet({ env, request }) {
   const requestOrigin = new URL(request.url).origin;
   const origin = requestOrigin || DEFAULT_SITE_ORIGIN;
 
-  const [posts, destinations, hotels] = await Promise.all([
+  const [posts, destinations] = await Promise.all([
     safeAll(env.TRAVEL_DB, `
       SELECT slug, updated_at
       FROM posts
@@ -63,13 +63,6 @@ export async function onRequestGet({ env, request }) {
       WHERE status = 'published'
       ORDER BY updated_at DESC
       LIMIT 500
-    `),
-    safeAll(env.TRAVEL_DB, `
-      SELECT slug, destination_slug, updated_at
-      FROM hotels
-      WHERE status = 'published'
-      ORDER BY updated_at DESC
-      LIMIT 2000
     `)
   ]);
 
@@ -87,11 +80,8 @@ export async function onRequestGet({ env, request }) {
     { loc: `${origin}/` },
     { loc: `${origin}/about/` },
     { loc: `${origin}/destinations/` },
-    { loc: `${origin}/hotels/` },
     ...Array.from(countryMap.values()).map((item) => ({ loc: `${origin}/countries/${encodeURIComponent(item.slug)}`, lastmod: item.lastmod })),
     ...destinations.map((item) => ({ loc: `${origin}/destinations/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
-    ...destinations.map((item) => ({ loc: `${origin}/hotels/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
-    ...hotels.map((item) => ({ loc: `${origin}/hotels/${encodeURIComponent(item.destination_slug)}/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
     ...posts.map((item) => ({ loc: `${origin}/post/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at }))
   ];
 

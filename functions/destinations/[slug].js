@@ -1,6 +1,6 @@
 import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
 import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } from "../../lib/travel/seo-jsonld.js";
-import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, safeJsonArray, formatDate } from "../../lib/travel/travel-utils.js";
+import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
 export async function onRequestGet({ params, env, request }) {
@@ -24,17 +24,9 @@ export async function onRequestGet({ params, env, request }) {
       `).bind(slug).first();
       if (!destination) return okHtml(renderNotFound(slug), { status: 404, headers: { "cache-control": "no-store" } });
 
-      const [hotelRows, postRows, contentTypes] = await Promise.all([
+      const [postRows, contentTypes] = await Promise.all([
         env.TRAVEL_DB.prepare(`
-          SELECT slug, destination_slug, name, area, price_level, summary, cover_image, cover_image_alt,
-                 suitable_for_json, updated_at
-          FROM hotels
-          WHERE destination_slug = ? AND status = 'published'
-          ORDER BY updated_at DESC, name ASC
-          LIMIT 8
-        `).bind(slug).all(),
-        env.TRAVEL_DB.prepare(`
-          SELECT slug, title, summary, cover_image, cover_image_alt, content_type, updated_at
+          SELECT slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, updated_at
           FROM posts
           WHERE destination_slug = ? AND status = 'published'
           ORDER BY updated_at DESC, published_at DESC
@@ -43,9 +35,11 @@ export async function onRequestGet({ params, env, request }) {
         getActiveContentTypes(env.TRAVEL_DB)
       ]);
 
-      const hotels = hotelRows.results || [];
       const posts = postRows.results || [];
-      const postGroups = groupPostsByContentType(posts, contentTypes);
+      const hotelPosts = posts.filter(isHotelPost).slice(0, 8);
+      const nonHotelPosts = posts.filter((post) => !isHotelPost(post));
+      const travelContentTypes = contentTypes.filter((type) => !isHotelContentType(type.slug));
+      const postGroups = groupPostsByContentType(nonHotelPosts, travelContentTypes);
       const canonical = `${origin}/destinations/${encodeURIComponent(slug)}`;
       const heroTitle = getDestinationHeroTitle(destination);
       const heroSummary = getDestinationHeroSummary(destination);
@@ -64,9 +58,9 @@ export async function onRequestGet({ params, env, request }) {
         buildDestinationJsonLd({ destination, url: canonical, siteName: "Wacky Travel" }),
         buildItemListJsonLd({
           url: canonical,
-          items: hotels.map((hotel) => ({
-            name: hotel.name,
-            url: `${origin}/hotels/${encodeURIComponent(hotel.destination_slug)}/${encodeURIComponent(hotel.slug)}`
+          items: hotelPosts.map((post) => ({
+            name: post.title,
+            url: `${origin}/post/${encodeURIComponent(post.slug)}`
           }))
         })
       ];
@@ -102,9 +96,8 @@ export async function onRequestGet({ params, env, request }) {
         <p>여행 목적과 위치를 기준으로 비교하기 좋은 호텔을 모았습니다.</p>
       </div>
       <div class="travel-card-grid travel-card-grid--hotels">
-        ${hotels.length ? hotels.map(renderHotelCard).join("") : `<div class="empty-card">아직 등록된 호텔이 없습니다.</div>`}
+        ${hotelPosts.length ? hotelPosts.map((post) => renderHotelPostCard(post, contentTypes)).join("") : `<div class="empty-card">아직 등록된 호텔 추천 글이 없습니다.</div>`}
       </div>
-      <div class="section-action"><a class="btn btn--brand" href="/hotels/${encodeURIComponent(slug)}">${escapeHtml(destination.name)} 호텔 더보기</a></div>
     </section>
 
     <section class="container travel-section">
@@ -114,7 +107,7 @@ export async function onRequestGet({ params, env, request }) {
         <p>관리자가 설정한 글 종류에 따라 여행 콘텐츠를 나누어 확인할 수 있습니다.</p>
       </div>
       <div class="travel-content-sections">
-        ${renderPostSections(destination, postGroups, contentTypes)}
+        ${renderPostSections(destination, postGroups, travelContentTypes)}
       </div>
     </section>
   </main>
@@ -142,18 +135,38 @@ function getDestinationHeroImageAlt(destination) {
   return destination.hero_image_alt || destination.cover_image_alt || `${destination.name} 여행 대표 이미지`;
 }
 
-function renderHotelCard(hotel) {
-  const suitableFor = safeJsonArray(hotel.suitable_for_json).slice(0, 3);
+function isHotelContentType(value = "") {
+  const type = normalizeContentType(value);
+  return type === "top5_series" || type === "hotel_intro";
+}
+
+function isHotelPost(post = {}) {
+  return isHotelContentType(post.content_type);
+}
+
+function renderHotelPostCard(post, contentTypes = []) {
+  const slug = String(post.slug || "");
+  const href = `/post/${encodeURIComponent(slug)}`;
+  const tags = safeTags(post.tags_json).slice(0, 3);
   return `<article class="travel-card hotel-card">
-    ${hotel.cover_image ? `<a class="travel-card__media" href="/hotels/${encodeURIComponent(hotel.destination_slug)}/${encodeURIComponent(hotel.slug)}"><img src="${escapeHtml(hotel.cover_image)}" alt="${escapeHtml(hotel.cover_image_alt || `${hotel.name} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
+    ${post.cover_image ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(post.cover_image)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
     <div class="travel-card__body">
-      <div class="travel-card__meta">${escapeHtml([hotel.area, hotel.price_level].filter(Boolean).join(" · "))}</div>
-      <h3><a href="/hotels/${encodeURIComponent(hotel.destination_slug)}/${encodeURIComponent(hotel.slug)}">${escapeHtml(hotel.name)}</a></h3>
-      <p>${escapeHtml(hotel.summary || "예약 전 위치와 장단점을 비교해보세요.")}</p>
-      ${suitableFor.length ? `<div class="tag-row">${suitableFor.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
-      <a class="text-link" href="/hotels/${encodeURIComponent(hotel.destination_slug)}/${encodeURIComponent(hotel.slug)}">자세히 보기</a>
+      <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
+      <h3><a href="${href}">${escapeHtml(post.title || "호텔 추천 글")}</a></h3>
+      <p>${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
+      ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
+      <a class="text-link" href="${href}">글 보기</a>
     </div>
   </article>`;
+}
+
+function safeTags(value = "") {
+  if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+  try {
+    const parsed = JSON.parse(String(value || "[]"));
+    if (Array.isArray(parsed)) return parsed.map((item) => String(item || "").trim()).filter(Boolean);
+  } catch (_) {}
+  return String(value || "").split(/[,.，、|]/).map((item) => item.trim()).filter(Boolean);
 }
 
 function groupPostsByContentType(posts = [], contentTypes = []) {

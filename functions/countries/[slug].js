@@ -108,7 +108,7 @@ export async function onRequestGet({ params, env, request }) {
       <div class="section-heading">
         <p class="eyebrow">Cities</p>
         <h2>${escapeHtml(countryName)} 도시별 바로가기</h2>
-        <p>도시 상세 페이지에서는 호텔 목록과 관련 글을 더 좁은 기준으로 확인할 수 있습니다.</p>
+        <p>도시 상세 페이지에서는 호텔 추천 글과 관련 여행 글을 더 좁은 기준으로 확인할 수 있습니다.</p>
       </div>
       <div class="travel-card-grid">
         ${destinations.map(renderDestinationCard).join("")}
