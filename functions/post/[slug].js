@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260521-breadcrumb-city-hotel-panel-white-v16";
+const POST_RENDER_VERSION = "20260522-post-cover-image-refresh-v17";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -125,7 +125,8 @@ export async function onRequestGet({ params, env, request }) {
         titleText
       );
       const pageTitle = `${titleText} | ${siteName}`;
-      const ogImage = row.cover_image || `${origin}/assets/images/logo.png`;
+      const versionedCoverImage = appendImageVersion(row.cover_image, row.updated_at);
+      const ogImage = versionedCoverImage || `${origin}/assets/images/logo.png`;
       const coverImageAltText = String(row.cover_image_alt || `${titleText} 대표 이미지`).trim();
 
       const publishedDate = formatDate(row.published_at);
@@ -232,8 +233,8 @@ export async function onRequestGet({ params, env, request }) {
           }
         : null;
 
-      const coverImage = row.cover_image
-        ? buildImageAttrs(row.cover_image, {
+      const coverImage = versionedCoverImage
+        ? buildImageAttrs(versionedCoverImage, {
             widths: [480, 768, 960, 1200],
             sizes: "(max-width: 900px) 100vw, 900px",
             fallbackWidth: 960,
@@ -307,7 +308,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260521-breadcrumb-city-hotel-panel-white-v16" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260522-post-cover-image-refresh-v17" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -402,6 +403,14 @@ export async function onRequestGet({ params, env, request }) {
   });
 }
 
+
+function appendImageVersion(src = "", version = "") {
+  const value = String(src || "").trim();
+  const stamp = String(version || "").trim();
+  if (!value || !stamp || /^(data|blob):/i.test(value)) return value;
+  const separator = value.includes("?") ? "&" : "?";
+  return `${value}${separator}v=${encodeURIComponent(stamp)}`;
+}
 
 async function getHotelHeroData(db, row = {}, postSlug = "") {
   const directHotelSlug = String(row.hotel_slug || "").trim();
@@ -1045,7 +1054,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260521-breadcrumb-city-hotel-panel-white-v16" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260522-post-cover-image-refresh-v17" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>

@@ -3,16 +3,27 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
+const DESTINATION_RENDER_VERSION = "destination-detail-v6-hotel-card-post-image";
+const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro", "hotel_roundup", "hotel_review"];
+
 export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
   if (!slug) return okHtml("Not Found", { status: 404 });
 
-  const meta = await env.TRAVEL_DB.prepare(`SELECT updated_at FROM destinations WHERE slug = ? AND status = 'published'`).bind(slug).first();
+  const meta = await env.TRAVEL_DB.prepare(`
+    SELECT slug, name, city, updated_at
+    FROM destinations
+    WHERE slug = ? AND status = 'published'
+  `).bind(slug).first();
   if (!meta) return okHtml(renderNotFound(slug), { status: 404, headers: { "cache-control": "no-store" } });
+
+  const postStampQuery = buildDestinationPostQuery(meta, { selectSql: "MAX(updated_at) AS posts_updated_at", orderSql: "" });
+  const postStamp = await env.TRAVEL_DB.prepare(postStampQuery.sql).bind(...postStampQuery.binds).first();
 
   const requestUrl = new URL(request.url);
   const origin = requestUrl.origin;
-  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(String(meta.updated_at || ""))}&layout=destination-detail-v5`;
+  const destinationVersion = [meta.updated_at, postStamp?.posts_updated_at, DESTINATION_RENDER_VERSION].filter(Boolean).join("|");
+  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(destinationVersion)}`;
 
   return edgeCache({
     request,
@@ -25,13 +36,20 @@ export async function onRequestGet({ params, env, request }) {
       if (!destination) return okHtml(renderNotFound(slug), { status: 404, headers: { "cache-control": "no-store" } });
 
       const [postRows, contentTypes] = await Promise.all([
-        env.TRAVEL_DB.prepare(`
-          SELECT slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, updated_at
-          FROM posts
-          WHERE destination_slug = ? AND status = 'published'
-          ORDER BY updated_at DESC, published_at DESC
-          LIMIT 60
-        `).bind(slug).all(),
+        (() => {
+          const postQuery = buildDestinationPostQuery(destination, {
+            selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, updated_at, published_at",
+            orderSql: `
+              ORDER BY
+                CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
+                updated_at DESC,
+                published_at DESC
+              LIMIT 80
+            `,
+            orderBinds: [slug]
+          });
+          return env.TRAVEL_DB.prepare(postQuery.sql).bind(...postQuery.binds).all();
+        })(),
         getActiveContentTypes(env.TRAVEL_DB)
       ]);
 
@@ -119,6 +137,65 @@ export async function onRequestGet({ params, env, request }) {
   });
 }
 
+function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
+  const destinationSlug = String(destination.slug || "").trim();
+  const terms = getDestinationSearchTerms(destination);
+  const hotelTypePlaceholders = HOTEL_CONTENT_TYPES.map(() => "?").join(", ");
+  const fallbackBinds = [];
+  const fallbackConditions = [];
+
+  terms.forEach((term) => {
+    const like = `%${term.toLowerCase()}%`;
+    fallbackConditions.push("LOWER(COALESCE(title, '')) LIKE ?");
+    fallbackBinds.push(like);
+    fallbackConditions.push("LOWER(COALESCE(summary, '')) LIKE ?");
+    fallbackBinds.push(like);
+    fallbackConditions.push("LOWER(COALESCE(tags_json, '')) LIKE ?");
+    fallbackBinds.push(like);
+    fallbackConditions.push("LOWER(TRIM(COALESCE(category, ''))) = ?");
+    fallbackBinds.push(term.toLowerCase());
+  });
+
+  const hotelFallbackSql = fallbackConditions.length
+    ? `OR (TRIM(COALESCE(content_type, '')) IN (${hotelTypePlaceholders}) AND (${fallbackConditions.join(" OR ")}))`
+    : "";
+
+  return {
+    sql: `
+      SELECT ${selectSql}
+      FROM posts
+      WHERE status = 'published'
+        AND (
+          TRIM(COALESCE(destination_slug, '')) = ?
+          ${hotelFallbackSql}
+        )
+      ${orderSql || ""}
+    `,
+    binds: [
+      destinationSlug,
+      ...(fallbackConditions.length ? HOTEL_CONTENT_TYPES : []),
+      ...fallbackBinds,
+      ...(Array.isArray(orderBinds) ? orderBinds : [])
+    ]
+  };
+}
+
+function getDestinationSearchTerms(destination = {}) {
+  return [...new Set([
+    destination.name,
+    destination.city,
+    destination.slug
+  ].map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter((value) => value.length >= 2))];
+}
+
+function appendImageVersion(src = "", version = "") {
+  const value = String(src || "").trim();
+  const stamp = String(version || "").trim();
+  if (!value || !stamp || /^(data|blob):/i.test(value)) return value;
+  const separator = value.includes("?") ? "&" : "?";
+  return `${value}${separator}v=${encodeURIComponent(stamp)}`;
+}
+
 function getDestinationHeroTitle(destination) {
   return destination.hero_title || destination.title || `${destination.name} 여행 가이드`;
 }
@@ -148,8 +225,9 @@ function renderHotelPostCard(post, contentTypes = []) {
   const slug = String(post.slug || "");
   const href = `/post/${encodeURIComponent(slug)}`;
   const tags = safeTags(post.tags_json).slice(0, 3);
+  const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   return `<article class="travel-card hotel-card">
-    ${post.cover_image ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(post.cover_image)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
+    ${coverImage ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
     <div class="travel-card__body">
       <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
       <h3><a href="${href}">${escapeHtml(post.title || "호텔 추천 글")}</a></h3>
