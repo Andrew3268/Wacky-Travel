@@ -1629,3 +1629,239 @@ main,
 .app-shell {
   background-color: #fff !important;
 }
+
+/* =========================================================
+   V28: shared white + warm editorial base
+   Applies to common pages and article/about layouts.
+========================================================= */
+:root {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --text: #231f1a;
+  --muted: #756f66;
+  --border: rgba(35, 31, 26, 0.11);
+  --brand: #b8875b;
+  --accent: #7a5131;
+  --shadow: 0 14px 36px rgba(35, 31, 26, 0.075);
+  --radius: 20px;
+  --radius2: 28px;
+}
+
+html,
+body {
+  background: #ffffff !important;
+}
+
+body {
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.card,
+.post-hero,
+.post-body,
+.post-side .card,
+.posts-summary-card,
+.seo-check,
+.notice,
+.form-card {
+  border-color: var(--border);
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  border-color: var(--border);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(35, 31, 26, 0.055);
+}
+
+.btn--brand {
+  background: #231f1a;
+  color: #ffffff;
+}
+
+.input,
+textarea,
+select,
+.checkbox-line {
+  border-color: var(--border);
+  border-radius: 16px;
+}
+
+.input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgba(184, 135, 91, 0.5);
+  box-shadow: 0 0 0 4px rgba(184, 135, 91, 0.12);
+}
+
+.topbar--editorial:not(.topbar--travel) {
+  border-bottom: 1px solid rgba(35, 31, 26, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: saturate(1.08) blur(18px);
+  box-shadow: 0 10px 28px rgba(35, 31, 26, 0.035);
+}
+
+.topbar--editorial:not(.topbar--travel) .brand__text {
+  color: #231f1a;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.nav__icon-btn,
+.topbar-hamburger {
+  border-radius: 999px;
+}
+
+.nav__icon-btn:hover,
+.nav__icon-btn:focus-visible,
+.topbar-hamburger:hover,
+.topbar-hamburger:focus-visible {
+  background: #fffaf5;
+}
+
+.post-card--row,
+.post-cover,
+.post-affiliate-card,
+.preview-affiliate-card {
+  border-radius: 28px;
+}
+
+.post-card__thumb,
+.post-card__thumb-placeholder {
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fffaf5, #f1e0ce);
+}
+
+.post-card__title,
+.post-title,
+.post-hero-product-title {
+  color: #231f1a;
+  letter-spacing: -0.045em;
+}
+
+.post-card__summary,
+.post-summary,
+.post-hero-product-summary,
+.post-body p,
+.post-body li {
+  color: #5f5951;
+  word-break: keep-all;
+}
+
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  color: #231f1a;
+  letter-spacing: -0.04em;
+}
+
+.post-body blockquote {
+  background: #fffaf5;
+  border: 1px solid rgba(184, 135, 91, 0.12);
+}
+
+.post-hero--product {
+  border-radius: 32px;
+}
+
+.post-hero-info-pill,
+.tag-chip {
+  background: #fff7ef;
+  color: #7a5131;
+}
+
+.post-hero-cta,
+.preview-affiliate-card__button,
+.post-affiliate-card__button {
+  background: #231f1a;
+  border-radius: 999px;
+}
+
+/* About page mood alignment */
+.ww-wrapper {
+  --ww-bg: #ffffff;
+  --ww-text: #231f1a;
+  --ww-text-sub: #756f66;
+  --ww-line-light: rgba(35, 31, 26, 0.11);
+  --ww-spacing: clamp(86px, 10vw, 130px);
+  background: #ffffff !important;
+  color: var(--ww-text);
+}
+
+.ww-container {
+  width: min(1200px, calc(100% - 32px));
+}
+
+.ww-hero {
+  min-height: 82vh;
+  border-bottom: 1px solid var(--ww-line-light);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(184, 135, 91, 0.16), transparent 24rem),
+    linear-gradient(135deg, #ffffff 0%, #fffaf5 64%, #f7efe6 100%);
+}
+
+.ww-hero-title,
+.ww-topic-title,
+.ww-big-btn {
+  color: var(--ww-text);
+  letter-spacing: -0.065em;
+}
+
+.ww-hero-desc,
+.ww-text-sub,
+.ww-topic-desc,
+.ww-value-card p,
+.ww-cta-desc {
+  color: var(--ww-text-sub);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.ww-label-tag {
+  border-color: rgba(122, 81, 49, 0.22);
+  background: #fffaf5;
+  color: #7a5131;
+}
+
+.ww-topic-list {
+  border-top: 1px solid rgba(35, 31, 26, 0.18);
+}
+
+.ww-topic-row {
+  border-bottom: 1px solid var(--ww-line-light);
+}
+
+.ww-value-card {
+  border-left-color: rgba(35, 31, 26, 0.18);
+}
+
+.ww-quote-wrap {
+  background: #231f1a;
+  color: #fffaf5;
+}
+
+.ww-big-btn {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 10px;
+}
+
+.ww-footer {
+  border-top-color: var(--ww-line-light);
+  color: #8b8277;
+}
+
+@media (max-width: 900px) {
+  .ww-hero {
+    min-height: auto;
+    padding: 96px 0 82px;
+  }
+
+  .ww-value-card {
+    border-left: 0;
+    border-top: 1px solid rgba(35, 31, 26, 0.16);
+  }
+}

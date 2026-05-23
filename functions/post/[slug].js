@@ -284,7 +284,7 @@ export async function onRequestGet({ params, env, request }) {
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(descriptionText)}" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <meta name="theme-color" content="#5B7CFF" />
+  <meta name="theme-color" content="#B8875B" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
@@ -308,7 +308,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260523white1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260523v28" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -1053,8 +1053,8 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
-  <meta name="theme-color" content="#5B7CFF" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260523white1" />
+  <meta name="theme-color" content="#B8875B" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260523v28" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
