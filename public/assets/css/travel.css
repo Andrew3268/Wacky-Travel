@@ -2860,3 +2860,9 @@ body::after {
     transition: none !important;
   }
 }
+
+/* V29: prevent destination manager modals from flashing before JS opens them */
+#destinationManagerModal[aria-hidden="true"],
+#homeDestinationManagerModal[aria-hidden="true"] {
+  display: none !important;
+}

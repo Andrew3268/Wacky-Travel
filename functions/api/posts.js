@@ -262,6 +262,7 @@ export async function onRequestGet({ env, request }) {
       content_type,
       destination_slug,
       hotel_slug,
+      (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
       affiliate_enabled,
       search_intent,
       status,

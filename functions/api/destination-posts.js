@@ -28,7 +28,7 @@ export async function onRequestGet({ env, request }) {
   }
 
   const postQuery = buildDestinationPostQuery(destination, {
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, updated_at, published_at",
+    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
     orderSql: `
       ORDER BY
         CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -121,6 +121,23 @@ function getHotelPostGroup(post = {}) {
   return "";
 }
 
+function extractHotelNameFromTitle(title = "") {
+  const clean = String(title || "").replace(/^#+\s*/, "").trim();
+  if (!clean) return "";
+  const firstClause = clean.split(/[,.，、|｜?？!！]/)[0].trim();
+  return firstClause
+    .replace(/\s*(추천|후기|리뷰|가격|위치|예약|조식|가성비|숙소|호텔 선택|체크포인트).*$/i, "")
+    .trim() || firstClause;
+}
+
+function getHotelCardTitle(post = {}) {
+  const type = normalizeContentType(post.content_type);
+  if (type === "hotel_intro") {
+    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "개별 호텔 소개";
+  }
+  return post.title || "호텔 추천 글";
+}
+
 function appendImageVersion(src = "", version = "") {
   const value = String(src || "").trim();
   const stamp = String(version || "").trim();
@@ -147,7 +164,7 @@ function renderHotelPostCard(post, contentTypes = []) {
     ${coverImage ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
     <div class="travel-card__body">
       <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
-      <h3><a href="${href}">${escapeHtml(post.title || "호텔 추천 글")}</a></h3>
+      <h3><a href="${href}">${escapeHtml(getHotelCardTitle(post))}</a></h3>
       <p>${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
       ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
       <a class="text-link" href="${href}">글 보기</a>
