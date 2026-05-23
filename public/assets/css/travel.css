@@ -2301,3 +2301,31 @@ body{
     width:100%;
   }
 }
+
+
+/* V27: 페이지 배경 흰색 통일 + 인덱스 추천 호텔 3열 고정 */
+.travel-page,
+.travel-home,
+.travel-home-body {
+  background-color: #fff !important;
+}
+
+.travel-section--tinted::before {
+  background: #fff !important;
+}
+
+.travel-card-grid--hotels {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 960px) {
+  .travel-card-grid--hotels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .travel-card-grid--hotels {
+    grid-template-columns: 1fr;
+  }
+}

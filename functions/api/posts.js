@@ -177,6 +177,7 @@ export async function onRequestGet({ env, request }) {
   const query = String(url.searchParams.get("q") || "").trim().toLowerCase();
   const searchTitle = String(url.searchParams.get("search_title") || "1").trim() !== "0";
   const searchContent = String(url.searchParams.get("search_content") || "0").trim() === "1";
+  const sort = String(url.searchParams.get("sort") || url.searchParams.get("order") || "").trim().toLowerCase();
   const page = clampInt(url.searchParams.get("page"), 1, 1, 9999);
   const perPage = clampInt(url.searchParams.get("per_page"), 8, 1, 24);
   const offset = (page - 1) * perPage;
@@ -240,6 +241,9 @@ export async function onRequestGet({ env, request }) {
   }
 
   const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
+  const orderSql = sort === "published" || sort === "published_at"
+    ? "ORDER BY published_at DESC, updated_at DESC"
+    : "ORDER BY updated_at DESC, published_at DESC";
 
   const itemsSql = `
     SELECT
@@ -266,7 +270,7 @@ export async function onRequestGet({ env, request }) {
       updated_at
     FROM posts
     ${whereSql}
-    ORDER BY updated_at DESC, published_at DESC
+    ${orderSql}
     LIMIT ? OFFSET ?
   `;
 
