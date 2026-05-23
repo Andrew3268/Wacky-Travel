@@ -2970,3 +2970,13 @@ body::after {
     padding-top: 10px !important;
   }
 }
+
+/* V31: hotel cards keep summaries compact */
+.travel-card.hotel-card .travel-card__body p {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-height: calc(1.74em * 3) !important;
+}

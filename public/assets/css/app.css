@@ -1865,3 +1865,39 @@ select:focus {
     border-top: 1px solid rgba(35, 31, 26, 0.16);
   }
 }
+
+/* V31: post tables keep header labels readable on one line */
+.post-body .post-content .table-wrap,
+.preview-body .table-wrap,
+.post-body .table-wrap,
+.preview-body .table-wrap {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.post-body .post-content table,
+.preview-body table,
+.post-body table,
+.preview-body table {
+  width: max-content !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
+
+.post-body .post-content table thead th,
+.preview-body table thead th,
+.post-body table thead th,
+.preview-body table thead th {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+@media (max-width: 900px) {
+  .post-body .post-content table,
+  .preview-body table,
+  .post-body table,
+  .preview-body table {
+    min-width: 620px !important;
+  }
+}
