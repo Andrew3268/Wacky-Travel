@@ -160,14 +160,17 @@ function renderHotelPostCard(post, contentTypes = []) {
   const href = `/post/${encodeURIComponent(slug)}`;
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
-  return `<article class="travel-card hotel-card">
-    ${coverImage ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
-    <div class="travel-card__body">
-      <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
-      <h3><a href="${href}">${escapeHtml(getHotelCardTitle(post))}</a></h3>
-      <p>${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
-      ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
-      <a class="text-link" href="${href}">글 보기</a>
-    </div>
+  const title = getHotelCardTitle(post);
+  return `<article class="travel-card hotel-card travel-card--clickable">
+    <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
+      ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
+      <div class="travel-card__body">
+        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
+        <h3 class="travel-card__title">${escapeHtml(title)}</h3>
+        <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
+        ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
+        <span class="text-link">글 보기</span>
+      </div>
+    </a>
   </article>`;
 }

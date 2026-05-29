@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v13-mobile-list-v32";
+const DESTINATION_RENDER_VERSION = "destination-detail-v19-card-title-admin-count-clickable-v33";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -101,7 +101,7 @@ export async function onRequestGet({ params, env, request }) {
       ${heroImage ? `<figure class="destination-detail-hero__media"><img src="${escapeHtml(heroImage)}" alt="${escapeHtml(heroImageAlt)}" loading="eager" decoding="async" fetchpriority="high" /></figure>` : ""}
       <div class="destination-detail-hero__content">
         <p class="eyebrow">${escapeHtml(destination.hero_eyebrow || destination.country || "여행지")}</p>
-        <h1>${escapeHtml(heroTitle)}</h1>
+        <h1>${escapeHtml(getDestinationDetailHeading(destination))}</h1>
         <p class="destination-detail-hero__summary">${escapeHtml(heroSummary || "여행 일정과 숙소 선택 기준을 한 번에 정리합니다.")}</p>
         <div class="destination-detail-hero__chips">
           ${destination.best_season ? `<span>추천 시기: ${escapeHtml(destination.best_season)}</span>` : ""}
@@ -202,6 +202,10 @@ function getDestinationHeroTitle(destination) {
   return destination.hero_title || destination.title || `${destination.name} 여행 가이드`;
 }
 
+function getDestinationDetailHeading(destination) {
+  return String(destination.card_title || "").trim() || getDestinationHeroTitle(destination);
+}
+
 function getDestinationHeroSummary(destination) {
   return destination.hero_summary || destination.summary || "";
 }
@@ -263,7 +267,7 @@ function renderHotelTabs(destination, top5Posts = [], hotelIntroPosts = [], cont
 function renderHotelTabButton({ type, label, count, active }) {
   return `<button class="hotel-tabs__button${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" aria-controls="hotel-panel-${escapeHtml(type)}" data-hotel-tab="${escapeHtml(type)}">
     <span>${escapeHtml(label)}</span>
-    <strong>${Number(count || 0)}개</strong>
+    <strong class="hotel-tabs__count" data-admin-only hidden>${Number(count || 0)}개</strong>
   </button>`;
 }
 
@@ -394,15 +398,18 @@ function renderHotelPostCard(post, contentTypes = []) {
   const href = `/post/${encodeURIComponent(slug)}`;
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
-  return `<article class="travel-card hotel-card">
-    ${coverImage ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></a>` : ""}
-    <div class="travel-card__body">
-      <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
-      <h3><a href="${href}">${escapeHtml(getHotelCardTitle(post))}</a></h3>
-      <p>${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
-      ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
-      <a class="text-link" href="${href}">글 보기</a>
-    </div>
+  const title = getHotelCardTitle(post);
+  return `<article class="travel-card hotel-card travel-card--clickable">
+    <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
+      ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
+      <div class="travel-card__body">
+        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
+        <h3 class="travel-card__title">${escapeHtml(title)}</h3>
+        <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
+        ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
+        <span class="text-link">글 보기</span>
+      </div>
+    </a>
   </article>`;
 }
 
@@ -459,7 +466,7 @@ function renderPostSections(destination, groups, contentTypes = []) {
 function renderPostItem(post, destination = {}) {
   const slug = String(post.slug || "");
   const href = `/post/${encodeURIComponent(slug)}`;
-  const meta = [destination.name, formatDate(post.updated_at)].filter(Boolean).join(" · ");
+  const meta = formatDate(post.updated_at);
   return `<article class="travel-list__item">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">
       <div class="travel-list__content">

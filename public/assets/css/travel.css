@@ -3358,3 +3358,33 @@ body::after {
     flex: 0 0 26px;
   }
 }
+
+
+/* V19: destination detail cleaner cards and admin-only tab counts */
+.travel-content-section--plain {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.hotel-tabs__button .hotel-tabs__count[hidden] {
+  display: none !important;
+}
+
+.hotel-card.travel-card--clickable .travel-card__full-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hotel-card.travel-card--clickable .travel-card__media {
+  margin: 0;
+}
+
+.hotel-card.travel-card--clickable .text-link {
+  pointer-events: none;
+}
