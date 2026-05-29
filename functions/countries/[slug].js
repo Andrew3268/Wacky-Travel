@@ -36,7 +36,7 @@ export async function onRequestGet({ params, env, request }) {
     env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
   ]);
   const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v4-${cacheVersion}`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v5-${cacheVersion}`;
 
   return edgeCache({
     request,
@@ -191,7 +191,7 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
       title: "개별 호텔",
       description: "호텔 위치, 객실 분위기, 숙소 선택 포인트를 자세히 정리한 글입니다.",
       empty: `아직 등록된 ${countryName} 개별 호텔 글이 없습니다.`,
-      limit: 6
+      limit: 5
     },
     {
       key: "travel_tip",
@@ -199,7 +199,7 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
       title: "여행 팁",
       description: "일정, 교통, 준비물처럼 여행 전에 함께 확인하면 좋은 정보를 모았습니다.",
       empty: `아직 등록된 ${countryName} 여행 팁 글이 없습니다.`,
-      limit: 6
+      limit: 5
     }
   ];
 
@@ -250,7 +250,7 @@ function inferCountryPostSectionKey(post) {
 }
 
 function renderCountryPostSection(countryName, section, items = [], contentTypes = []) {
-  const visibleItems = items.slice(0, section.limit || 6);
+  const visibleItems = items.slice(0, 5);
   return `<section class="travel-content-section" aria-labelledby="country-${section.key}-heading">
     <div class="travel-content-section__head">
       <div>
@@ -258,7 +258,6 @@ function renderCountryPostSection(countryName, section, items = [], contentTypes
         <h3 id="country-${section.key}-heading">${escapeHtml(section.title)}</h3>
         <p>${escapeHtml(section.description)}</p>
       </div>
-      <span class="travel-content-section__count">${items.length}개</span>
     </div>
     <div class="travel-list">
       ${visibleItems.length ? visibleItems.map((post) => renderPostItem(post, contentTypes)).join("") : `<div class="empty-card">${escapeHtml(section.empty)}</div>`}
@@ -266,18 +265,21 @@ function renderCountryPostSection(countryName, section, items = [], contentTypes
   </section>`;
 }
 
-function renderPostItem(post, contentTypes = []) {
+function renderPostItem(post) {
   const slug = String(post.slug || "");
+  const href = `/post/${encodeURIComponent(slug)}`;
+  const meta = [post.destination_city || post.destination_name, formatDate(post.updated_at)].filter(Boolean).join(" · ");
   return `<article class="travel-list__item">
-    <div>
-      <div class="travel-card__meta">${escapeHtml([labelContentType(inferCountryPostSectionKey(post), contentTypes), post.destination_name || post.destination_city, formatDate(post.updated_at)].filter(Boolean).join(" · "))}</div>
-      <h4><a href="/post/${encodeURIComponent(slug)}">${escapeHtml(post.title)}</a></h4>
-      <p>${escapeHtml(post.summary || "여행 전 확인하면 좋은 정보를 정리했습니다.")}</p>
-    </div>
-    <div class="travel-list__actions">
-      <a class="text-link" href="/post/${encodeURIComponent(slug)}">읽기</a>
-      ${renderPostAdminActions(post)}
-    </div>
+    <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">
+      <div class="travel-list__content">
+        <div class="travel-card__meta">${escapeHtml(meta)}</div>
+        <h4>${escapeHtml(post.title)}</h4>
+      </div>
+      <div class="travel-list__actions" aria-hidden="true">
+        <span class="travel-list__arrow">→</span>
+      </div>
+    </a>
+    ${renderPostAdminActions(post)}
   </article>`;
 }
 
