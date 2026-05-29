@@ -36,7 +36,7 @@ export async function onRequestGet({ params, env, request }) {
     env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
   ]);
   const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v7-content-labels-${cacheVersion}`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v8-breadcrumb-card-link-${cacheVersion}`;
 
   return edgeCache({
     request,
@@ -134,14 +134,18 @@ function countryToSlug(value) {
 }
 
 function renderDestinationCard(destination) {
-  return `<article class="travel-card">
-    ${getDestinationCardImage(destination) ? `<a class="travel-card__media" href="/destinations/${encodeURIComponent(destination.slug)}"><img src="${escapeHtml(getDestinationCardImage(destination))}" alt="${escapeHtml(getDestinationCardImageAlt(destination))}" loading="lazy" decoding="async" /></a>` : ""}
-    <div class="travel-card__body">
-      <div class="travel-card__meta">${escapeHtml([destination.country, destination.city].filter(Boolean).join(" · "))}</div>
-      <h3><a href="/destinations/${encodeURIComponent(destination.slug)}">${escapeHtml(getDestinationCardTitle(destination))}</a></h3>
-      <p>${escapeHtml(getDestinationCardDescription(destination))}</p>
-      <a class="text-link" href="/destinations/${encodeURIComponent(destination.slug)}">도시 페이지 보기</a>
-    </div>
+  const href = `/destinations/${encodeURIComponent(destination.slug)}`;
+  const image = getDestinationCardImage(destination);
+  return `<article class="travel-card travel-card--clickable">
+    <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${getDestinationCardTitle(destination)} 도시 페이지 보기`)}">
+      ${image ? `<span class="travel-card__media"><img src="${escapeHtml(image)}" alt="${escapeHtml(getDestinationCardImageAlt(destination))}" loading="lazy" decoding="async" /></span>` : ""}
+      <span class="travel-card__body">
+        <span class="travel-card__meta">${escapeHtml([destination.country, destination.city].filter(Boolean).join(" · "))}</span>
+        <span class="travel-card__title">${escapeHtml(getDestinationCardTitle(destination))}</span>
+        <span class="travel-card__description">${escapeHtml(getDestinationCardDescription(destination))}</span>
+        <span class="text-link">도시 페이지 보기</span>
+      </span>
+    </a>
   </article>`;
 }
 
@@ -193,7 +197,7 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
   return `<section class="container travel-section travel-section--country-posts">
     <div class="section-heading">
       <p class="eyebrow">Latest Posts</p>
-      <h2>최근 업데이트된 ${escapeHtml(countryName)} 관련 글</h2>
+      <h2>최근 업데이트된 ${escapeHtml(countryName)} 여행 관련 글</h2>
       <p>호텔을 고르기 전 확인하면 좋은 숙소 추천 글부터, 여행이 쉬워지는 작은 팁까지 ${escapeHtml(countryName)} 여행 준비에 도움이 되는 글을 모았습니다.</p>
     </div>
     <div class="travel-content-sections travel-content-sections--country">
