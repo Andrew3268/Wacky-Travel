@@ -36,7 +36,7 @@ export async function onRequestGet({ params, env, request }) {
     env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
   ]);
   const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v5-${cacheVersion}`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v6-${cacheVersion}`;
 
   return edgeCache({
     request,
@@ -99,23 +99,10 @@ export async function onRequestGet({ params, env, request }) {
   ${renderSiteHeader({ active: "destinations" })}
   ${renderBreadcrumbs(breadcrumbItems)}
   <main class="travel-page">
-    <section class="travel-hero travel-hero--compact travel-hero--soft container">
-      <div class="travel-hero__body">
-        <p class="eyebrow">Country Hub</p>
-        <h1>${escapeHtml(countryName)} 여행 허브</h1>
-        <p class="travel-hero__summary">도시별 호텔 추천과 여행 준비 정보를 관리자가 설정한 글 종류별로 나누어 확인할 수 있습니다.</p>
-        <div class="travel-hero__chips">
-          <span>도시 ${destinations.length}개</span>
-          <span>콘텐츠 ${posts.length}개</span>
-          ${latestUpdatedAt ? `<span>최근 업데이트: ${escapeHtml(formatDate(latestUpdatedAt))}</span>` : ""}
-        </div>
-      </div>
-    </section>
-
     <section class="container travel-section">
       <div class="section-heading">
         <p class="eyebrow">Cities</p>
-        <h2>${escapeHtml(countryName)}에서 어디로 떠나시나요?</h2>
+        <h1>${escapeHtml(countryName)}에서 어디로 떠나시나요?</h1>
         <p>도시마다 다른 분위기와 여행 동선을 살펴보며, 마음이 가는 여행지의 호텔 추천 글과 준비 팁을 천천히 확인해보세요.</p>
       </div>
       <div class="travel-card-grid">
@@ -272,8 +259,8 @@ function renderPostItem(post) {
   return `<article class="travel-list__item">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">
       <div class="travel-list__content">
-        <div class="travel-card__meta">${escapeHtml(meta)}</div>
         <h4>${escapeHtml(post.title)}</h4>
+        <div class="travel-card__meta">${escapeHtml(meta)}</div>
       </div>
       <div class="travel-list__actions" aria-hidden="true">
         <span class="travel-list__arrow">→</span>

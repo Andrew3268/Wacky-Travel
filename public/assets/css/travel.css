@@ -3040,3 +3040,95 @@ body::after {
 .travel-content-sections--country .travel-content-section__count {
   display: none;
 }
+
+/* V15: country hub without compact hero + mobile-friendly country post list */
+.section-heading h1 {
+  margin: 0;
+  color: var(--travel-ink);
+  font-size: clamp(1.72rem, 3vw, 2.45rem);
+  font-weight: 850;
+  letter-spacing: -0.055em;
+  line-height: 1.18;
+}
+
+.travel-page > .travel-section:first-child {
+  padding-top: clamp(24px, 4vw, 40px);
+}
+
+.travel-content-sections--country .travel-list__content {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.travel-content-sections--country .travel-list h4 {
+  margin: 0;
+  line-height: 1.42;
+}
+
+.travel-content-sections--country .travel-list .travel-card__meta {
+  margin: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .travel-content-sections--country {
+    gap: 16px;
+  }
+
+  .travel-content-sections--country .travel-content-section {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .travel-content-sections--country .travel-content-section__head {
+    margin-bottom: 12px;
+  }
+
+  .travel-content-sections--country .travel-content-section__head p:not(.eyebrow) {
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  .travel-content-sections--country .travel-list {
+    gap: 4px;
+  }
+
+  .travel-content-sections--country .travel-list__item {
+    display: block;
+    padding: 12px 10px;
+    border-radius: 12px;
+  }
+
+  .travel-content-sections--country .travel-list__link {
+    align-items: flex-start;
+    gap: 10px;
+    min-height: 48px;
+  }
+
+  .travel-content-sections--country .travel-list h4 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 1rem;
+    line-height: 1.45;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .travel-content-sections--country .travel-list .travel-card__meta {
+    font-size: 0.78rem;
+    line-height: 1.42;
+    white-space: normal;
+  }
+
+  .travel-content-sections--country .travel-list__actions {
+    min-width: 26px;
+    height: 26px;
+    margin-top: 2px;
+    flex: 0 0 26px;
+  }
+}
