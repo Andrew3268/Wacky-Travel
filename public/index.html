@@ -97,7 +97,7 @@
         <div>
           <div class="small seo-eyebrow">도시 페이지 관리</div>
           <h2 class="h2" id="destinationManagerTitle">도시 추가</h2>
-          <p class="small">도시 상세 페이지와 SEO에 필요한 정보만 관리합니다.</p>
+          <p class="small">도시 상세 페이지, 나라별 카드 문구, SEO 정보를 함께 관리합니다.</p>
         </div>
         <button class="btn" id="closeDestinationManagerBtn" type="button">닫기</button>
       </div>
@@ -131,6 +131,13 @@
             <label class="form-field"><span>상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지" /></label>
             <label class="form-field"><span>페이지 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드" /></label>
           </div>
+        </section>
+
+        <section class="destination-manager__section">
+          <h3>나라별 카드 전용 문구</h3>
+          <p class="small">/countries/나라 페이지의 도시 카드에 표시될 제목과 설명입니다. 비워두면 도시명과 도시 소개 문구가 대신 표시됩니다.</p>
+          <label class="form-field"><span>카드 전용 제목</span><input class="input" id="dmCardTitle" placeholder="예: 바다와 리조트 중심의 여유로운 휴양지" /></label>
+          <label class="form-field"><span>카드 전용 설명</span><textarea class="input textarea" id="dmCardDescription" rows="3" placeholder="예: 해변 근처 숙소를 찾거나 짧은 휴양 일정을 계획하는 여행자에게 어울리는 도시입니다."></textarea></label>
         </section>
 
         <section class="destination-manager__section">
@@ -722,6 +729,8 @@
       $('dmHeroSummary').value = item.hero_summary || item.summary || '';
       $('dmHeroImage').value = item.hero_image || item.cover_image || '';
       $('dmHeroImageAlt').value = item.hero_image_alt || item.cover_image_alt || '';
+      $('dmCardTitle').value = item.card_title || '';
+      $('dmCardDescription').value = item.card_description || '';
       $('dmBestSeason').value = item.best_season || '';
       $('dmAirportInfo').value = item.airport_info || '';
       $('dmTransportSummary').value = item.transport_summary || '';
@@ -761,6 +770,8 @@
       const summary = normalizeText($('dmHeroSummary').value);
       const heroImage = normalizeText($('dmHeroImage').value);
       const heroImageAlt = normalizeText($('dmHeroImageAlt').value);
+      const cardTitle = normalizeText($('dmCardTitle').value);
+      const cardDescription = normalizeText($('dmCardDescription').value);
       return {
         entity: 'destination',
         current_slug: $('destinationCurrentSlug').value,
@@ -775,8 +786,8 @@
         summary,
         cover_image: heroImage,
         cover_image_alt: heroImageAlt,
-        card_title: name,
-        card_description: summary,
+        card_title: cardTitle,
+        card_description: cardDescription,
         card_image: heroImage,
         card_image_alt: heroImageAlt,
         hero_eyebrow: normalizeText($('dmHeroEyebrow').value) || country,

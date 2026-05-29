@@ -90,8 +90,8 @@ function readDestinationPayload(body, { current = null } = {}) {
   const summary = readBodyField(body, "summary", current?.summary);
   const coverImage = readBodyField(body, "cover_image", current?.cover_image);
   const coverImageAlt = readBodyField(body, "cover_image_alt", current?.cover_image_alt);
-  const cardTitle = readBodyField(body, "card_title", current?.card_title) || name;
-  const cardDescription = readBodyField(body, "card_description", current?.card_description) || summary;
+  const cardTitle = readBodyField(body, "card_title", current?.card_title);
+  const cardDescription = readBodyField(body, "card_description", current?.card_description);
   const cardImage = readBodyField(body, "card_image", current?.card_image) || coverImage;
   const cardImageAlt = readBodyField(body, "card_image_alt", current?.card_image_alt) || coverImageAlt;
   const heroEyebrow = readBodyField(body, "hero_eyebrow", current?.hero_eyebrow) || countryName;

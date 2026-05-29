@@ -29,7 +29,7 @@ export async function onRequestGet({ params, env, request }) {
 
   const requestUrl = new URL(request.url);
   const origin = requestUrl.origin;
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v1`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v2-emotional-city-card-fields`;
 
   return edgeCache({
     request,
@@ -107,8 +107,8 @@ export async function onRequestGet({ params, env, request }) {
     <section class="container travel-section">
       <div class="section-heading">
         <p class="eyebrow">Cities</p>
-        <h2>${escapeHtml(countryName)} 도시별 바로가기</h2>
-        <p>도시 상세 페이지에서는 호텔 추천 글과 관련 여행 글을 더 좁은 기준으로 확인할 수 있습니다.</p>
+        <h2>${escapeHtml(countryName)}에서 어디로 떠나시나요?</h2>
+        <p>도시마다 다른 분위기와 여행 동선을 살펴보며, 마음이 가는 여행지의 호텔 추천 글과 준비 팁을 천천히 확인해보세요.</p>
       </div>
       <div class="travel-card-grid">
         ${destinations.map(renderDestinationCard).join("")}
@@ -151,7 +151,7 @@ function renderDestinationCard(destination) {
 }
 
 function getDestinationCardTitle(destination) {
-  return destination.card_title || destination.title || destination.name;
+  return destination.card_title || destination.city || destination.name || destination.title;
 }
 
 function getDestinationCardDescription(destination) {
