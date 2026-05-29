@@ -1,7 +1,7 @@
 import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
 import { buildBreadcrumbJsonLd } from "../../lib/travel/seo-jsonld.js";
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
-import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
+import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType, normalizeText } from "../../lib/travel/travel-settings.js";
 
 const COUNTRY_SLUG_ALIASES = {
   "베트남": "vietnam",
@@ -29,7 +29,14 @@ export async function onRequestGet({ params, env, request }) {
 
   const requestUrl = new URL(request.url);
   const origin = requestUrl.origin;
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v2-emotional-city-card-fields`;
+
+  await ensureTravelSettingsTables(env.TRAVEL_DB);
+  const [destinationVersionRow, postVersionRow] = await Promise.all([
+    env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM destinations`).first(),
+    env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
+  ]);
+  const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v3-${cacheVersion}`;
 
   return edgeCache({
     request,
@@ -120,7 +127,7 @@ export async function onRequestGet({ params, env, request }) {
   ${renderFooter()}
 </body>
 </html>`;
-      return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
+      return okHtml(html, { headers: { "cache-control": "public, max-age=0, s-maxage=900" } });
     }
   });
 }
@@ -151,19 +158,19 @@ function renderDestinationCard(destination) {
 }
 
 function getDestinationCardTitle(destination) {
-  return destination.card_title || destination.city || destination.name || destination.title;
+  return normalizeText(destination.card_title) || normalizeText(destination.city) || normalizeText(destination.name) || normalizeText(destination.title) || "여행지";
 }
 
 function getDestinationCardDescription(destination) {
-  return destination.card_description || destination.summary || "도시별 호텔과 여행 정보를 확인하세요.";
+  return normalizeText(destination.card_description) || normalizeText(destination.summary) || "도시별 호텔과 여행 정보를 확인하세요.";
 }
 
 function getDestinationCardImage(destination) {
-  return destination.card_image || destination.cover_image || "";
+  return normalizeText(destination.card_image) || normalizeText(destination.cover_image) || "";
 }
 
 function getDestinationCardImageAlt(destination) {
-  return destination.card_image_alt || destination.cover_image_alt || `${destination.name} 대표 이미지`;
+  return normalizeText(destination.card_image_alt) || normalizeText(destination.cover_image_alt) || `${getDestinationCardTitle(destination)} 대표 이미지`;
 }
 
 function groupPostsByDestination(posts = []) {
