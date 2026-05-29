@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v11-home-top5-card-title-v30";
+const DESTINATION_RENDER_VERSION = "destination-detail-v12-content-labels-v31";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -242,7 +242,7 @@ function extractHotelNameFromTitle(title = "") {
 function getHotelCardTitle(post = {}) {
   const type = normalizeContentType(post.content_type);
   if (type === "hotel_intro") {
-    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "개별 호텔 소개";
+    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "호텔 하나씩 살펴보기";
   }
   return post.title || "호텔 추천 글";
 }
@@ -252,11 +252,11 @@ function renderHotelTabs(destination, top5Posts = [], hotelIntroPosts = [], cont
   const activeType = top5Posts.length ? "top5_series" : "hotel_intro";
   return `<div class="hotel-tabs" data-destination-slug="${escapeHtml(destinationSlug)}" data-page-size="${HOTEL_MORE_LIMIT}">
     <div class="hotel-tabs__nav" role="tablist" aria-label="${escapeHtml(destination.name || "도시")} 호텔 글 종류">
-      ${renderHotelTabButton({ type: "top5_series", label: "TOP5 호텔 추천", count: top5Posts.length, active: activeType === "top5_series" })}
-      ${renderHotelTabButton({ type: "hotel_intro", label: "개별 호텔 소개", count: hotelIntroPosts.length, active: activeType === "hotel_intro" })}
+      ${renderHotelTabButton({ type: "top5_series", label: "여행 스타일별 호텔 추천", count: top5Posts.length, active: activeType === "top5_series" })}
+      ${renderHotelTabButton({ type: "hotel_intro", label: "호텔 하나씩 살펴보기", count: hotelIntroPosts.length, active: activeType === "hotel_intro" })}
     </div>
-    ${renderHotelTabPanel({ type: "top5_series", label: "TOP5 호텔 추천", posts: top5Posts, contentTypes, active: activeType === "top5_series" })}
-    ${renderHotelTabPanel({ type: "hotel_intro", label: "개별 호텔 소개", posts: hotelIntroPosts, contentTypes, active: activeType === "hotel_intro" })}
+    ${renderHotelTabPanel({ type: "top5_series", label: "여행 스타일별 호텔 추천", posts: top5Posts, contentTypes, active: activeType === "top5_series" })}
+    ${renderHotelTabPanel({ type: "hotel_intro", label: "호텔 하나씩 살펴보기", posts: hotelIntroPosts, contentTypes, active: activeType === "hotel_intro" })}
   </div>`;
 }
 

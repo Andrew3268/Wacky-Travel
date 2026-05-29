@@ -616,9 +616,9 @@ function formatStarRating(value = "") {
 function formatContentTypeLabel(value = "") {
   const raw = String(value || "").trim();
   const labels = {
-    top5_series: "TOP5",
+    top5_series: "여행 스타일별 호텔 추천",
     hotel_intro: "호텔 소개",
-    travel_tip: "여행 팁",
+    travel_tip: "여행이 쉬워지는 작은 팁",
     guide: "가이드"
   };
   return labels[raw] || raw;

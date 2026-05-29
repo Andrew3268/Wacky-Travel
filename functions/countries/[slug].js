@@ -36,7 +36,7 @@ export async function onRequestGet({ params, env, request }) {
     env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
   ]);
   const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v6-${cacheVersion}`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v7-content-labels-${cacheVersion}`;
 
   return edgeCache({
     request,
@@ -166,26 +166,26 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
   const sections = [
     {
       key: "top5_series",
-      eyebrow: "TOP 5",
-      title: "TOP 5",
+      eyebrow: "여행 스타일별 호텔 추천",
+      title: "여행 스타일별 호텔 추천",
       description: `${countryName}에서 먼저 살펴보기 좋은 추천 리스트와 비교형 콘텐츠를 모았습니다.`,
-      empty: `아직 등록된 ${countryName} TOP 5 글이 없습니다.`,
+      empty: `아직 등록된 ${countryName} 여행 스타일별 호텔 추천 글이 없습니다.`,
       limit: 5
     },
     {
       key: "hotel_intro",
       eyebrow: "Hotels",
-      title: "개별 호텔",
+      title: "호텔 하나씩 살펴보기",
       description: "호텔 위치, 객실 분위기, 숙소 선택 포인트를 자세히 정리한 글입니다.",
-      empty: `아직 등록된 ${countryName} 개별 호텔 글이 없습니다.`,
+      empty: `아직 등록된 ${countryName} 호텔 하나씩 살펴보기 글이 없습니다.`,
       limit: 5
     },
     {
       key: "travel_tip",
       eyebrow: "Travel Tips",
-      title: "여행 팁",
+      title: "여행이 쉬워지는 작은 팁",
       description: "일정, 교통, 준비물처럼 여행 전에 함께 확인하면 좋은 정보를 모았습니다.",
-      empty: `아직 등록된 ${countryName} 여행 팁 글이 없습니다.`,
+      empty: `아직 등록된 ${countryName} 여행이 쉬워지는 작은 팁 글이 없습니다.`,
       limit: 5
     }
   ];
@@ -194,7 +194,7 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
     <div class="section-heading">
       <p class="eyebrow">Latest Posts</p>
       <h2>최근 업데이트된 ${escapeHtml(countryName)} 관련 글</h2>
-      <p>호텔을 고르기 전 확인하면 좋은 숙소 추천 글부터, 도시별 여행 팁까지 ${escapeHtml(countryName)} 여행 준비에 도움이 되는 글을 모았습니다.</p>
+      <p>호텔을 고르기 전 확인하면 좋은 숙소 추천 글부터, 여행이 쉬워지는 작은 팁까지 ${escapeHtml(countryName)} 여행 준비에 도움이 되는 글을 모았습니다.</p>
     </div>
     <div class="travel-content-sections travel-content-sections--country">
       ${sections.map((section) => renderCountryPostSection(countryName, section, groups[section.key] || [], contentTypes)).join("")}

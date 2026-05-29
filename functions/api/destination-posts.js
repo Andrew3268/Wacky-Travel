@@ -133,7 +133,7 @@ function extractHotelNameFromTitle(title = "") {
 function getHotelCardTitle(post = {}) {
   const type = normalizeContentType(post.content_type);
   if (type === "hotel_intro") {
-    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "개별 호텔 소개";
+    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "호텔 하나씩 살펴보기";
   }
   return post.title || "호텔 추천 글";
 }
