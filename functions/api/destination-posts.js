@@ -1,19 +1,26 @@
 import { escapeHtml, okJson } from "../_utils.js";
+import { formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const DEFAULT_LIMIT = 3;
 const MAX_LIMIT = 3;
+const TRAVEL_CONTENT_TYPE = "travel_content";
+const TRAVEL_CONTENT_DEFAULT_LIMIT = 5;
+const TRAVEL_CONTENT_MAX_LIMIT = 5;
 const MAX_SOURCE_ROWS = 240;
 
 export async function onRequestGet({ env, request }) {
   const url = new URL(request.url);
   const destinationSlug = decodeURIComponent(String(url.searchParams.get("destination") || "")).trim();
-  const requestedType = normalizeContentType(url.searchParams.get("type") || "");
+  const rawType = String(url.searchParams.get("type") || "").trim();
+  const requestedType = rawType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_TYPE : normalizeContentType(rawType);
   const offset = Math.max(0, Number.parseInt(url.searchParams.get("offset") || "0", 10) || 0);
-  const limit = Math.min(MAX_LIMIT, Math.max(1, Number.parseInt(url.searchParams.get("limit") || String(DEFAULT_LIMIT), 10) || DEFAULT_LIMIT));
+  const defaultLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_DEFAULT_LIMIT : DEFAULT_LIMIT;
+  const maxLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_MAX_LIMIT : MAX_LIMIT;
+  const limit = Math.min(maxLimit, Math.max(1, Number.parseInt(url.searchParams.get("limit") || String(defaultLimit), 10) || defaultLimit));
 
-  if (!destinationSlug || !HOTEL_CONTENT_TYPES.includes(requestedType)) {
+  if (!destinationSlug || !(HOTEL_CONTENT_TYPES.includes(requestedType) || requestedType === TRAVEL_CONTENT_TYPE)) {
     return okJson({ ok: false, error: "invalid_request", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 400, headers: noStoreHeaders() });
   }
 
@@ -44,10 +51,16 @@ export async function onRequestGet({ env, request }) {
     getActiveContentTypes(env.TRAVEL_DB)
   ]);
 
-  const allPosts = (postRows.results || []).filter((post) => getHotelPostGroup(post) === requestedType);
+  const allPosts = (postRows.results || []).filter((post) => {
+    const hotelGroup = getHotelPostGroup(post);
+    return requestedType === TRAVEL_CONTENT_TYPE ? !hotelGroup : hotelGroup === requestedType;
+  });
   const items = allPosts.slice(offset, offset + limit);
   const nextOffset = offset + items.length;
   const hasMore = nextOffset < allPosts.length;
+  const html = requestedType === TRAVEL_CONTENT_TYPE
+    ? items.map((post) => renderTravelPostItem(post)).join("")
+    : items.map((post) => renderHotelPostCard(post, contentTypes)).join("");
 
   return okJson({
     ok: true,
@@ -56,7 +69,7 @@ export async function onRequestGet({ env, request }) {
     offset,
     nextOffset,
     hasMore,
-    html: items.map((post) => renderHotelPostCard(post, contentTypes)).join(""),
+    html,
     items: items.map((post) => ({ slug: post.slug, title: post.title }))
   }, { headers: noStoreHeaders() });
 }
@@ -153,6 +166,35 @@ function safeTags(value = "") {
     if (Array.isArray(parsed)) return parsed.map((item) => String(item || "").trim()).filter(Boolean);
   } catch (_) {}
   return String(value || "").split(/[,.，、|]/).map((item) => item.trim()).filter(Boolean);
+}
+
+
+function renderTravelPostItem(post = {}) {
+  const slug = String(post.slug || "");
+  const href = `/post/${encodeURIComponent(slug)}`;
+  const meta = formatDate(post.updated_at);
+  return `<article class="travel-list__item">
+    <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">
+      <div class="travel-list__content">
+        <h4>${escapeHtml(post.title || "여행 콘텐츠")}</h4>
+        <div class="travel-card__meta">${escapeHtml(meta)}</div>
+      </div>
+      <div class="travel-list__actions" aria-hidden="true">
+        <span class="travel-list__arrow">→</span>
+      </div>
+    </a>
+    ${renderPostAdminActions(post)}
+  </article>`;
+}
+
+function renderPostAdminActions(post, { hidden = true } = {}) {
+  const slug = String(post.slug || "");
+  if (!slug) return "";
+  const hiddenAttrs = hidden ? " data-admin-only hidden" : "";
+  return `<div class="post-admin-mini-actions" aria-label="글 관리"${hiddenAttrs}>
+    <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
+    <button class="post-admin-mini-btn post-admin-mini-btn--danger js-delete-post" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(post.title || slug)}">삭제</button>
+  </div>`;
 }
 
 function renderHotelPostCard(post, contentTypes = []) {

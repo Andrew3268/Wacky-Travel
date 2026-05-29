@@ -3,10 +3,12 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v19-card-title-admin-count-clickable-v33";
+const DESTINATION_RENDER_VERSION = "destination-detail-v20-travel-content-more-v34";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
+const TRAVEL_CONTENT_INITIAL_LIMIT = 10;
+const TRAVEL_CONTENT_MORE_LIMIT = 5;
 
 export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
@@ -60,8 +62,7 @@ export async function onRequestGet({ params, env, request }) {
       const hotelIntroPosts = posts.filter((post) => getHotelPostGroup(post) === "hotel_intro");
       const hotelPosts = [...top5HotelPosts, ...hotelIntroPosts];
       const nonHotelPosts = posts.filter((post) => !isHotelPost(post));
-      const travelContentTypes = contentTypes.filter((type) => !isHotelContentType(type.slug));
-      const postGroups = groupPostsByContentType(nonHotelPosts, travelContentTypes);
+      const travelContentPosts = nonHotelPosts;
       const canonical = `${origin}/destinations/${encodeURIComponent(slug)}`;
       const heroTitle = getDestinationHeroTitle(destination);
       const heroSummary = getDestinationHeroSummary(destination);
@@ -126,13 +127,12 @@ export async function onRequestGet({ params, env, request }) {
         <h2>${escapeHtml(destination.name)} 여행 콘텐츠</h2>
         <p>관리자가 설정한 글 종류에 따라 여행 콘텐츠를 나누어 확인할 수 있습니다.</p>
       </div>
-      <div class="travel-content-sections">
-        ${renderPostSections(destination, postGroups, travelContentTypes)}
-      </div>
+      ${renderTravelContentList(destination, travelContentPosts)}
     </section>
   </main>
   ${renderFooter()}
   ${renderHotelTabsScript()}
+  ${renderTravelContentMoreScript()}
   ${renderPostUpdateNoticeScript()}
 </body>
 </html>`;
@@ -393,6 +393,47 @@ function renderHotelTabsScript() {
 </script>`;
 }
 
+function renderTravelContentMoreScript() {
+  return `<script>
+(() => {
+  const root = document.querySelector('[data-travel-content-root]');
+  if (!root) return;
+
+  root.addEventListener('click', async (event) => {
+    const moreButton = event.target.closest('[data-travel-content-more]');
+    if (!moreButton || moreButton.dataset.loading === '1') return;
+
+    const list = root.querySelector('[data-travel-content-list]');
+    const destination = root.dataset.destinationSlug || '';
+    const limit = Number(root.dataset.pageSize || 5);
+    const offset = Number(moreButton.dataset.offset || 0);
+    if (!list || !destination) return;
+
+    moreButton.dataset.loading = '1';
+    const originalText = moreButton.textContent;
+    moreButton.textContent = '불러오는 중...';
+
+    try {
+      const params = new URLSearchParams({ destination, type: 'travel_content', offset: String(offset), limit: String(limit) });
+      const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' } });
+      if (!response.ok) throw new Error('load_failed');
+      const data = await response.json();
+      if (data.html) list.insertAdjacentHTML('beforeend', data.html);
+      moreButton.dataset.offset = String(data.nextOffset || offset + limit);
+      if (!data.hasMore) moreButton.remove();
+    } catch (error) {
+      moreButton.textContent = '다시 시도';
+      moreButton.removeAttribute('data-loading');
+      return;
+    }
+
+    moreButton.textContent = originalText;
+    moreButton.removeAttribute('data-loading');
+  });
+})();
+</script>`;
+}
+
 function renderHotelPostCard(post, contentTypes = []) {
   const slug = String(post.slug || "");
   const href = `/post/${encodeURIComponent(slug)}`;
@@ -437,30 +478,19 @@ function groupPostsByContentType(posts = [], contentTypes = []) {
   return groups;
 }
 
-function renderPostSections(destination, groups, contentTypes = []) {
-  const knownKeys = new Set(contentTypes.map((type) => type.slug));
-  const sections = contentTypes.map((type) => ({
-    key: type.slug,
-    empty: `아직 등록된 ${type.label} 글이 없습니다.`
-  }));
+function renderTravelContentList(destination, posts = []) {
+  const destinationSlug = String(destination.slug || "").trim();
+  const initialItems = posts.slice(0, TRAVEL_CONTENT_INITIAL_LIMIT);
+  const hasMore = posts.length > TRAVEL_CONTENT_INITIAL_LIMIT;
 
-  const extraKeys = Object.keys(groups).filter((key) => !knownKeys.has(key));
-  extraKeys.forEach((key) => {
-    if (!groups[key]?.length) return;
-    sections.push({
-      key,
-      empty: "등록된 글이 없습니다."
-    });
-  });
-
-  return sections.map((section) => {
-    const items = groups[section.key] || [];
-    return `<section class="travel-content-section travel-content-section--plain">
-      <div class="travel-list travel-list--destination">
-        ${items.length ? items.map((post) => renderPostItem(post, destination)).join("") : `<div class="empty-card">${escapeHtml(section.empty)}</div>`}
+  return `<div class="travel-content-sections" data-travel-content-root data-destination-slug="${escapeHtml(destinationSlug)}" data-page-size="${TRAVEL_CONTENT_MORE_LIMIT}">
+    <section class="travel-content-section travel-content-section--plain">
+      <div class="travel-list travel-list--destination" data-travel-content-list>
+        ${initialItems.length ? initialItems.map((post) => renderPostItem(post, destination)).join("") : `<div class="empty-card">아직 등록된 여행 콘텐츠 글이 없습니다.</div>`}
       </div>
-    </section>`;
-  }).join("");
+      ${hasMore ? `<div class="hotel-tabs__footer travel-content-more"><button class="hotel-load-more travel-content-load-more" type="button" data-travel-content-more data-offset="${TRAVEL_CONTENT_INITIAL_LIMIT}">더보기</button></div>` : ""}
+    </section>
+  </div>`;
 }
 
 function renderPostItem(post, destination = {}) {
