@@ -173,7 +173,6 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
       eyebrow: "여행 스타일별 호텔 추천",
       title: "여행 스타일별 호텔 추천",
       description: `${countryName}에서 먼저 살펴보기 좋은 추천 리스트와 비교형 콘텐츠를 모았습니다.`,
-      empty: `아직 등록된 ${countryName} 여행 스타일별 호텔 추천 글이 없습니다.`,
       limit: 5
     },
     {
@@ -181,7 +180,6 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
       eyebrow: "Hotels",
       title: "호텔 하나씩 살펴보기",
       description: "호텔 위치, 객실 분위기, 숙소 선택 포인트를 자세히 정리한 글입니다.",
-      empty: `아직 등록된 ${countryName} 호텔 하나씩 살펴보기 글이 없습니다.`,
       limit: 5
     },
     {
@@ -189,10 +187,15 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
       eyebrow: "Travel Tips",
       title: "여행이 쉬워지는 작은 팁",
       description: "일정, 교통, 준비물처럼 여행 전에 함께 확인하면 좋은 정보를 모았습니다.",
-      empty: `아직 등록된 ${countryName} 여행이 쉬워지는 작은 팁 글이 없습니다.`,
       limit: 5
     }
   ];
+
+  const visibleSections = sections
+    .map((section) => ({ ...section, items: groups[section.key] || [] }))
+    .filter((section) => section.items.length > 0);
+
+  if (!visibleSections.length) return "";
 
   return `<section class="container travel-section travel-section--country-posts">
     <div class="section-heading">
@@ -201,7 +204,7 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
       <p>호텔을 고르기 전 확인하면 좋은 숙소 추천 글부터, 여행이 쉬워지는 작은 팁까지 ${escapeHtml(countryName)} 여행 준비에 도움이 되는 글을 모았습니다.</p>
     </div>
     <div class="travel-content-sections travel-content-sections--country">
-      ${sections.map((section) => renderCountryPostSection(countryName, section, groups[section.key] || [], contentTypes)).join("")}
+      ${visibleSections.map((section) => renderCountryPostSection(countryName, section, section.items, contentTypes)).join("")}
     </div>
   </section>`;
 }
@@ -241,7 +244,9 @@ function inferCountryPostSectionKey(post) {
 }
 
 function renderCountryPostSection(countryName, section, items = [], contentTypes = []) {
-  const visibleItems = items.slice(0, 5);
+  const visibleItems = items.slice(0, section.limit || 5);
+  if (!visibleItems.length) return "";
+
   return `<section class="travel-content-section" aria-labelledby="country-${section.key}-heading">
     <div class="travel-content-section__head">
       <div>
@@ -251,7 +256,7 @@ function renderCountryPostSection(countryName, section, items = [], contentTypes
       </div>
     </div>
     <div class="travel-list">
-      ${visibleItems.length ? visibleItems.map((post) => renderPostItem(post, contentTypes)).join("") : `<div class="empty-card">${escapeHtml(section.empty)}</div>`}
+      ${visibleItems.map((post) => renderPostItem(post, contentTypes)).join("")}
     </div>
   </section>`;
 }
