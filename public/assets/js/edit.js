@@ -414,6 +414,18 @@ function labelContentType(value) {
   return fallback?.label || normalized;
 }
 
+function isHotelIntroContentSelected() {
+  return normalizeContentType($("content_type")?.value || "") === "hotel_intro";
+}
+
+function syncHotelHeroCardVisibility() {
+  const shouldShow = isHotelIntroContentSelected();
+  document.querySelectorAll(".editor-hotel-hero-card").forEach((card) => {
+    card.hidden = !shouldShow;
+    card.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+  });
+}
+
 function normalizeCountryName(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
 }
@@ -465,6 +477,7 @@ function renderContentTypeOptions(selectedValue = "") {
     ...items.map((item) => `<option value="${escapeHtml(normalizeContentType(item.slug || item.value || item.label || ""))}">${escapeHtml(item.label || item.name || item.slug || "")}</option>`)
   ].join("");
   selectEl.value = normalized || "";
+  syncHotelHeroCardVisibility();
 }
 
 function renderCountryOptions(selectedValue = "") {
@@ -551,6 +564,7 @@ async function loadTravelSettings(selectedDestinationSlug = "", selectedContentT
     renderDestinationOptions(selectedDestinationSlug);
     renderTravelSettingsManager();
     updateTravelPlacementStatus();
+    syncHotelHeroCardVisibility();
     renderPreview();
   } catch (error) {
     const statusEl = $("travelPlacementStatus");
@@ -565,6 +579,7 @@ async function loadDestinations(selectedDestinationSlug = "") {
 function bindTravelPlacementEvents() {
   renderContentTypeOptions($("content_type")?.value || "");
   $("content_type")?.addEventListener("change", () => {
+    syncHotelHeroCardVisibility();
     updateTravelPlacementStatus();
     handleRealtimeChange();
   });
@@ -2632,7 +2647,9 @@ function renderPreview() {
   const faqMd = $("faq_md")?.value || "";
   const faqItems = parseFaqMarkdown(faqMd);
   const tags = parseTags($("tags").value);
-  const hotelHero = collectHotelHeroFormData();
+  const hotelHero = isHotelIntroContentSelected()
+    ? collectHotelHeroFormData()
+    : { name: "", name_en: "", area: "", star_rating: "", price_level: "", badges: [], price_url: "", availability_url: "" };
   const hotelBadges = hotelHero.badges.filter(Boolean);
   const hotelHeroKicker = [
     getDestinationLabel(destination),
@@ -2823,13 +2840,16 @@ async function save() {
   const slug = $("slug").value.trim();
   const title = $("title").value.trim();
 
+  const normalizedContentType = normalizeContentType($("content_type")?.value || "");
+  const shouldSaveHotelHero = normalizedContentType === "hotel_intro";
+
   const payload = {
     title,
     category: "",
-    content_type: normalizeContentType($("content_type")?.value || ""),
+    content_type: normalizedContentType,
     destination_slug: $("destination_slug")?.value.trim() || "",
-    hotel_slug: window.__loadedHotelSlug || "",
-    hotel_hero: collectHotelHeroFormData(),
+    hotel_slug: shouldSaveHotelHero ? (window.__loadedHotelSlug || "") : "",
+    hotel_hero: shouldSaveHotelHero ? collectHotelHeroFormData() : {},
     meta_description: $("meta_description").value.trim(),
     summary: $("summary").value.trim(),
     cover_image: sanitizeImageUrlValue($("cover_image").value),
@@ -2887,6 +2907,7 @@ async function save() {
 function handleRealtimeChange() {
   const tocStatus = $("tocStatus");
   if (tocStatus) tocStatus.textContent = "";
+  syncHotelHeroCardVisibility();
   syncInlineImageVisibility();
   syncAffiliateSectionVisibility();
   syncTocControlsFromContent();
