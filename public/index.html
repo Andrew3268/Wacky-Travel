@@ -26,7 +26,7 @@
       <nav class="topbar__nav" aria-label="주요 메뉴">
         <a class="topbar__link is-active" href="/">홈</a>
         <a class="topbar__link" href="/destinations/">여행지</a>
-        <a class="topbar__link" href="#homePostsSection">여행 준비</a>
+        <a class="topbar__link" id="homePostsNavLink" href="#homePostsSection" hidden>여행 준비</a>
       </nav>
       <div class="topbar__actions topbar__actions--travel">
         <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
@@ -43,7 +43,7 @@
         <h1>도시별 호텔 추천을<br />한눈에 비교하세요</h1>
         <p class="travel-hero__summary">와키트래블은 여행 동선, 숙소 위치, 선택 기준을 중심으로 여행 스타일별 호텔 추천과 도시별 여행 정보를 정리합니다. 처음 가는 도시도 필요한 글부터 빠르게 찾아볼 수 있습니다.</p>
         <div class="travel-hero__actions">
-          <a class="btn btn--brand" href="#homeHotelPostsSection">여행 스타일별 호텔 추천 보기</a>
+          <a class="btn btn--brand" id="homeHotelPostsHeroLink" href="#homeHotelPostsSection" hidden>여행 스타일별 호텔 추천 보기</a>
           <a class="btn btn--soft" href="/destinations/">도시별 여행지 보기</a>
         </div>
         <div class="travel-hero__chips" aria-label="와키트래블 주요 콘텐츠">
@@ -66,7 +66,7 @@
       <div id="homeDestinations" class="country-destination-list"></div>
     </section>
 
-    <section id="homeHotelPostsSection" class="container travel-section travel-section--tinted">
+    <section id="homeHotelPostsSection" class="container travel-section travel-section--tinted" hidden>
       <div class="section-heading section-heading--split">
         <div>
           <p class="eyebrow">Hotel Picks</p>
@@ -78,7 +78,7 @@
       <div id="homeHotels" class="travel-card-grid travel-card-grid--hotels"></div>
     </section>
 
-    <section id="homePostsSection" class="container travel-section">
+    <section id="homePostsSection" class="container travel-section" hidden>
       <div class="section-heading section-heading--split">
         <div>
           <p class="eyebrow">Latest Guides</p>
@@ -450,9 +450,23 @@
         .slice(0, HOME_HOTEL_LIMIT);
     }
 
+    function toggleVisibilityByItems(elementId, items = []) {
+      const element = $(elementId);
+      if (!element) return;
+      element.hidden = !Array.isArray(items) || items.length === 0;
+    }
+
     function renderHotels() {
       const items = getHomeHotelPosts();
-      $('homeHotels').innerHTML = items.map((item) => {
+      toggleVisibilityByItems('homeHotelPostsSection', items);
+      toggleVisibilityByItems('homeHotelPostsHeroLink', items);
+      const container = $('homeHotels');
+      if (!container) return;
+      if (!items.length) {
+        container.innerHTML = '';
+        return;
+      }
+      container.innerHTML = items.map((item) => {
         const slug = String(item.slug || '');
         const href = `/post/${encodeURIComponent(slug)}`;
         const tags = safeArray(item.tags_json).slice(0, 3);
@@ -462,7 +476,7 @@
           ${item.cover_image ? `<a class="travel-card__media" href="${href}"><img src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || title)}" loading="lazy" decoding="async" /></a>` : ''}
           <div class="travel-card__body"><div class="travel-card__meta">${escapeHtml(meta)}</div><h3><a href="${href}">${escapeHtml(title)}</a></h3><p>${escapeHtml(item.summary || '도시별 호텔을 한 번에 비교할 수 있는 추천 시리즈입니다.')}</p>${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>` : ''}<a class="btn btn--brand affiliate-btn" href="${href}">호텔 추천 보기</a></div>
         </article>`;
-      }).join('') || '<div class="empty-card">여행 스타일별 호텔 추천 글을 추가하세요.</div>';
+      }).join('');
     }
 
     function getHotelCardTitle(item = {}) {
@@ -489,7 +503,16 @@
     }
 
     function renderPosts() {
-      $('homePosts').innerHTML = state.posts.map((post) => {
+      const items = Array.isArray(state.posts) ? state.posts : [];
+      toggleVisibilityByItems('homePostsSection', items);
+      toggleVisibilityByItems('homePostsNavLink', items);
+      const container = $('homePosts');
+      if (!container) return;
+      if (!items.length) {
+        container.innerHTML = '';
+        return;
+      }
+      container.innerHTML = items.map((post) => {
         const slug = String(post.slug || '');
         const adminActions = state.isAdmin ? `
           <div class="post-admin-mini-actions" aria-label="글 관리">
@@ -510,7 +533,7 @@
             </div>
           </article>
         `;
-      }).join('') || '<div class="empty-card">게시글 샘플 데이터를 추가하세요.</div>';
+      }).join('');
     }
 
     function getHomeManagerCountry() {
