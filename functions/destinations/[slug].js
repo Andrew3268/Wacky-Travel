@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v20-travel-content-more-v34";
+const DESTINATION_RENDER_VERSION = "destination-detail-v21-conditional-sections-v35";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -112,28 +112,14 @@ export async function onRequestGet({ params, env, request }) {
       </div>
     </section>
 
-    <section class="container travel-section">
-      <div class="section-heading">
-        <p class="eyebrow">Hotel Picks</p>
-        <h2>${escapeHtml(destination.name)} 호텔 추천</h2>
-        <p>여행 목적과 위치를 기준으로 비교하기 좋은 호텔을 모았습니다.</p>
-      </div>
-      ${renderHotelTabs(destination, top5HotelPosts, hotelIntroPosts, contentTypes)}
-    </section>
+    ${renderHotelSection(destination, top5HotelPosts, hotelIntroPosts, contentTypes)}
 
-    <section class="container travel-section">
-      <div class="section-heading">
-        <p class="eyebrow">Travel Contents</p>
-        <h2>${escapeHtml(destination.name)} 여행 콘텐츠</h2>
-        <p>관리자가 설정한 글 종류에 따라 여행 콘텐츠를 나누어 확인할 수 있습니다.</p>
-      </div>
-      ${renderTravelContentList(destination, travelContentPosts)}
-    </section>
+    ${renderTravelContentSection(destination, travelContentPosts)}
   </main>
   ${renderFooter()}
   ${renderHotelTabsScript()}
   ${renderTravelContentMoreScript()}
-  ${renderPostUpdateNoticeScript()}
+  ${renderPostUpdateNoticeScript(destination)}
 </body>
 </html>`;
       return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
@@ -251,16 +237,35 @@ function getHotelCardTitle(post = {}) {
   return post.title || "호텔 추천 글";
 }
 
+function renderHotelSection(destination, top5Posts = [], hotelIntroPosts = [], contentTypes = []) {
+  const hasHotelContent = top5Posts.length > 0 || hotelIntroPosts.length > 0;
+  if (!hasHotelContent) return "";
+
+  return `<section class="container travel-section">
+      <div class="section-heading">
+        <p class="eyebrow">Hotel Picks</p>
+        <h2>${escapeHtml(destination.name)} 호텔 추천</h2>
+        <p>여행 목적과 위치를 기준으로 비교하기 좋은 호텔을 모았습니다.</p>
+      </div>
+      ${renderHotelTabs(destination, top5Posts, hotelIntroPosts, contentTypes)}
+    </section>`;
+}
+
 function renderHotelTabs(destination, top5Posts = [], hotelIntroPosts = [], contentTypes = []) {
   const destinationSlug = String(destination.slug || "").trim();
-  const activeType = top5Posts.length ? "top5_series" : "hotel_intro";
+  const tabGroups = [
+    { type: "top5_series", label: "여행 스타일별 호텔 추천", posts: top5Posts },
+    { type: "hotel_intro", label: "호텔 하나씩 살펴보기", posts: hotelIntroPosts }
+  ].filter((group) => group.posts.length > 0);
+
+  if (!tabGroups.length) return "";
+
+  const activeType = tabGroups[0].type;
   return `<div class="hotel-tabs" data-destination-slug="${escapeHtml(destinationSlug)}" data-page-size="${HOTEL_MORE_LIMIT}">
     <div class="hotel-tabs__nav" role="tablist" aria-label="${escapeHtml(destination.name || "도시")} 호텔 글 종류">
-      ${renderHotelTabButton({ type: "top5_series", label: "여행 스타일별 호텔 추천", count: top5Posts.length, active: activeType === "top5_series" })}
-      ${renderHotelTabButton({ type: "hotel_intro", label: "호텔 하나씩 살펴보기", count: hotelIntroPosts.length, active: activeType === "hotel_intro" })}
+      ${tabGroups.map((group) => renderHotelTabButton({ type: group.type, label: group.label, count: group.posts.length, active: activeType === group.type })).join("")}
     </div>
-    ${renderHotelTabPanel({ type: "top5_series", label: "여행 스타일별 호텔 추천", posts: top5Posts, contentTypes, active: activeType === "top5_series" })}
-    ${renderHotelTabPanel({ type: "hotel_intro", label: "호텔 하나씩 살펴보기", posts: hotelIntroPosts, contentTypes, active: activeType === "hotel_intro" })}
+    ${tabGroups.map((group) => renderHotelTabPanel({ type: group.type, label: group.label, posts: group.posts, contentTypes, active: activeType === group.type })).join("")}
   </div>`;
 }
 
@@ -276,17 +281,18 @@ function renderHotelTabPanel({ type, label, posts = [], contentTypes = [], activ
   const hasMore = posts.length > HOTEL_INITIAL_LIMIT;
   return `<div id="hotel-panel-${escapeHtml(type)}" class="hotel-tab-panel${active ? " is-active" : ""}" role="tabpanel" data-hotel-panel="${escapeHtml(type)}" ${active ? "" : "hidden"}>
     <div class="travel-card-grid travel-card-grid--hotels" data-hotel-grid="${escapeHtml(type)}">
-      ${initialPosts.length ? initialPosts.map((post) => renderHotelPostCard(post, contentTypes)).join("") : `<div class="empty-card">아직 등록된 ${escapeHtml(label)} 글이 없습니다.</div>`}
+      ${initialPosts.map((post) => renderHotelPostCard(post, contentTypes)).join("")}
     </div>
     ${hasMore ? `<div class="hotel-tabs__footer"><button class="hotel-load-more" type="button" data-hotel-more="${escapeHtml(type)}" data-offset="${HOTEL_INITIAL_LIMIT}">더보기</button></div>` : ""}
   </div>`;
 }
 
-function renderPostUpdateNoticeScript() {
+function renderPostUpdateNoticeScript(destination = {}) {
+  const fallbackDestinationSlug = String(destination.slug || "").trim();
   return `<script>
 (() => {
-  const root = document.querySelector('.hotel-tabs');
-  const destinationSlug = String(root?.dataset.destinationSlug || '').trim();
+  const root = document.querySelector('.hotel-tabs') || document.querySelector('[data-travel-content-root]');
+  const destinationSlug = String(root?.dataset.destinationSlug || '${escapeHtml(fallbackDestinationSlug)}').trim();
   if (!destinationSlug) return;
 
   const STORAGE_KEY = 'wackyTravelPostUpdated';
@@ -478,6 +484,19 @@ function groupPostsByContentType(posts = [], contentTypes = []) {
   return groups;
 }
 
+function renderTravelContentSection(destination, posts = []) {
+  if (!posts.length) return "";
+
+  return `<section class="container travel-section">
+      <div class="section-heading">
+        <p class="eyebrow">Travel Contents</p>
+        <h2>${escapeHtml(destination.name)} 여행 콘텐츠</h2>
+        <p>관리자가 설정한 글 종류에 따라 여행 콘텐츠를 나누어 확인할 수 있습니다.</p>
+      </div>
+      ${renderTravelContentList(destination, posts)}
+    </section>`;
+}
+
 function renderTravelContentList(destination, posts = []) {
   const destinationSlug = String(destination.slug || "").trim();
   const initialItems = posts.slice(0, TRAVEL_CONTENT_INITIAL_LIMIT);
@@ -486,7 +505,7 @@ function renderTravelContentList(destination, posts = []) {
   return `<div class="travel-content-sections" data-travel-content-root data-destination-slug="${escapeHtml(destinationSlug)}" data-page-size="${TRAVEL_CONTENT_MORE_LIMIT}">
     <section class="travel-content-section travel-content-section--plain">
       <div class="travel-list travel-list--destination" data-travel-content-list>
-        ${initialItems.length ? initialItems.map((post) => renderPostItem(post, destination)).join("") : `<div class="empty-card">아직 등록된 여행 콘텐츠 글이 없습니다.</div>`}
+        ${initialItems.map((post) => renderPostItem(post, destination)).join("")}
       </div>
       ${hasMore ? `<div class="hotel-tabs__footer travel-content-more"><button class="hotel-load-more travel-content-load-more" type="button" data-travel-content-more data-offset="${TRAVEL_CONTENT_INITIAL_LIMIT}">더보기</button></div>` : ""}
     </section>
