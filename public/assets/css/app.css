@@ -1901,3 +1901,58 @@ select:focus {
     min-width: 620px !important;
   }
 }
+
+
+/* V12: H2 접두어 자동 스타일 - 숫자 배지 제거 후 "위치 접근성:" 같은 접두어만 강조 */
+.post-body .post-content,
+.preview-body {
+  counter-reset: none !important;
+}
+
+.post-body .post-content h2,
+.preview-body h2 {
+  counter-increment: none !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+
+.post-body .post-content h2::before,
+.preview-body h2::before {
+  content: none !important;
+  display: none !important;
+}
+
+.post-h2-prefix {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #2f715f;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(47, 113, 95, .18);
+}
+
+.post-h2-text {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .post-body .post-content h2,
+  .preview-body h2 {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .post-h2-prefix {
+    font-size: 13px;
+    padding: 5px 9px;
+  }
+}

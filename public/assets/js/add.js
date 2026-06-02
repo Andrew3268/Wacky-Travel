@@ -2087,6 +2087,18 @@ function inlineFormat(text) {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
 }
 
+function renderHeadingText(level, text = "") {
+  if (level !== 2) return inlineFormat(text);
+
+  const raw = String(text || "").trim();
+  const match = raw.match(/^([^:：]{1,30}[:：])\s*(.+)$/);
+  if (!match) {
+    return `<span class="post-h2-text">${inlineFormat(raw)}</span>`;
+  }
+
+  return `<span class="post-h2-prefix">${inlineFormat(match[1])}</span><span class="post-h2-text">${inlineFormat(match[2])}</span>`;
+}
+
 
 function splitMarkdownTableRow(row = "") {
   let value = String(row || "").trim();
@@ -2286,7 +2298,7 @@ function markdownToHtml(md, options = {}) {
       const level = Math.min(6, headingMatch[1].length);
       const headingText = headingMatch[2].trim();
       const headingId = buildHeadingSlug(headingText, slugCounts);
-      pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${inlineFormat(headingText)}</h${level}>`);
+      pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
       if (level === 2) {
         h2Count += 1;
         (affiliates.items || []).forEach((item, index) => {
