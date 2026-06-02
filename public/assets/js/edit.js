@@ -86,7 +86,7 @@ function extractFocusKeywordFromTitle(title = "", hotelNames = []) {
   if (recommendMatch?.[1]) return recommendMatch[1].trim();
   if (firstClause && !isLikelyHotelNameOnly(firstClause, hotelNames)) return firstClause;
   const primaryHotelName = (hotelNames || []).find(Boolean) || firstClause;
-  if (primaryHotelName) return `${primaryHotelName} 추천`;
+  if (primaryHotelName) return primaryHotelName;
   return firstClause;
 }
 
@@ -211,12 +211,7 @@ function hydrateEditorKeywordFields(item = {}, rawContentMd = "") {
   if ((!focusKeyword || isLikelyHotelNameOnly(focusKeyword, hotelNames)) && markdownKeywords.focus) {
     focusKeyword = markdownKeywords.focus;
   }
-  if (focusKeyword && !/(추천|후기|가격|위치|예약|조식|숙소|호텔|리뷰|비교|가성비|여행)/.test(focusKeyword)) {
-    const titleText = String(item.title || "");
-    const focusRecommend = `${focusKeyword} 추천`;
-    if (titleText.includes(focusRecommend)) focusKeyword = focusRecommend;
-  }
-  if (!focusKeyword || isLikelyHotelNameOnly(focusKeyword, hotelNames)) {
+  if (!focusKeyword) {
     focusKeyword = extractFocusKeywordFromTitle(item.title || "", hotelNames) || focusKeyword;
   }
 

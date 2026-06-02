@@ -140,7 +140,7 @@ function deriveFocusKeywordFromTitle(title = "", hotelNames = []) {
   const firstClause = cleanTitle.split(/[,.，、|｜?？!！]/)[0].trim();
   if (firstClause && !isLikelyHotelNameOnly(firstClause, hotelNames)) return firstClause;
   const primaryHotelName = (hotelNames || []).find(Boolean) || firstClause;
-  return primaryHotelName ? `${primaryHotelName} 추천` : firstClause;
+  return primaryHotelName || firstClause;
 }
 
 function buildSeoKeywordsToken({ focus = "", longtail = [], lsi = [] } = {}) {
@@ -375,10 +375,10 @@ export async function onRequestGet({ env, params, request }) {
   const hotelNames = [row.hotel_hero?.name, row.hotel_hero?.name_en].filter(Boolean);
   const dbLongtail = normalizeKeywordArray(parseJsonArray(row.longtail_keywords_json));
 
-  if ((!row.focus_keyword || isLikelyHotelNameOnly(row.focus_keyword, hotelNames)) && markdownKeywords.focus) {
+  if (!row.focus_keyword && markdownKeywords.focus) {
     row.focus_keyword = markdownKeywords.focus;
   }
-  if (!row.focus_keyword || isLikelyHotelNameOnly(row.focus_keyword, hotelNames)) {
+  if (!row.focus_keyword) {
     row.focus_keyword = deriveFocusKeywordFromTitle(row.title || "", hotelNames) || row.focus_keyword || "";
   }
   if (!dbLongtail.length && markdownKeywords.longtail.length) {
@@ -454,15 +454,7 @@ export async function onRequestPut({ env, params, request }) {
   const currentMarkdownKeywords = extractSeoKeywordsFromMarkdown(current.content_md || "");
   const incomingMarkdownKeywords = extractSeoKeywordsFromMarkdown(contentMd || "");
 
-  const normalizeIncomingFocus = (value = "") => {
-    const raw = String(value || "").trim();
-    if (!raw) return "";
-    if (!/(추천|후기|가격|위치|예약|조식|숙소|호텔|리뷰|비교|가성비|여행)/.test(raw)) {
-      const recommend = `${raw} 추천`;
-      if (String(title || "").includes(recommend)) return recommend;
-    }
-    return raw;
-  };
+  const normalizeIncomingFocus = (value = "") => String(value || "").trim();
 
   const finalFocusKeyword = (() => {
     const candidates = [
@@ -472,7 +464,7 @@ export async function onRequestPut({ env, params, request }) {
       normalizeIncomingFocus(currentMarkdownKeywords.focus)
     ];
     for (const candidate of candidates) {
-      if (candidate && !isLikelyHotelNameOnly(candidate, hotelNames)) return candidate;
+      if (candidate) return candidate;
     }
     return deriveFocusKeywordFromTitle(title, hotelNames) || focusKeyword || currentFocusKeyword;
   })();
