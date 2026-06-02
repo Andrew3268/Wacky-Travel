@@ -779,19 +779,55 @@ function parseAffiliateToken(line = "") {
   };
 }
 
-function parseAffiliateCtaToken(line = "") {
-  const match = String(line || "").trim().match(AFFILIATE_CTA_TOKEN_RE);
-  if (!match) return null;
-  const attrs = parseTokenAttributes(match[1]);
-  const buttonText = String(attrs.button || attrs.buttonText || attrs.text || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
-  const linkUrl = String(attrs.link || attrs.linkUrl || attrs.url || "").trim();
-  const position = Math.max(1, parseInt(attrs.position || attrs.h2 || "1", 10) || 1);
+function clampAffiliateCtaPosition(value = 1) {
+  return Math.max(1, Math.min(10, parseInt(value || "1", 10) || 1));
+}
+
+function normalizeAffiliateCtaItem(data = {}) {
+  const buttonText = String(data.buttonText || data.button || data.text || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
+  const linkUrl = String(data.linkUrl || data.link || data.url || "").trim();
+  const position = clampAffiliateCtaPosition(data.position || data.h2 || 1);
   return {
-    enabled: !!(buttonText || linkUrl),
+    enabled: data.enabled !== false && !!(buttonText || linkUrl),
     buttonText,
     linkUrl,
     position
   };
+}
+
+function normalizeAffiliateCtaMeta(meta = {}) {
+  const rawItems = Array.isArray(meta?.items)
+    ? meta.items
+    : (meta && (meta.enabled || meta.buttonText || meta.linkUrl) ? [meta] : []);
+  const items = rawItems
+    .map((item) => normalizeAffiliateCtaItem(item))
+    .filter((item) => item.enabled && (item.buttonText || item.linkUrl));
+  return {
+    enabled: meta?.enabled !== false && items.length > 0,
+    items: items.length ? items : [{ enabled: true, buttonText: "예약 가능 날짜 확인하기", linkUrl: "", position: 1 }]
+  };
+}
+
+function getDefaultAffiliateCtaMeta() {
+  return {
+    enabled: false,
+    items: [{ enabled: true, buttonText: "예약 가능 날짜 확인하기", linkUrl: "", position: 1 }]
+  };
+}
+
+function buildAffiliateCtaPositionOptions(selected = 1) {
+  const current = clampAffiliateCtaPosition(selected);
+  return Array.from({ length: 10 }, (_, index) => {
+    const value = index + 1;
+    return `<option value="${value}"${value === current ? " selected" : ""}>${value}번 H2 섹션 끝</option>`;
+  }).join("");
+}
+
+function parseAffiliateCtaToken(line = "") {
+  const match = String(line || "").trim().match(AFFILIATE_CTA_TOKEN_RE);
+  if (!match) return null;
+  const attrs = parseTokenAttributes(match[1]);
+  return normalizeAffiliateCtaItem(attrs);
 }
 
 function stripAffiliateCtaTokenLines(md = "") {
@@ -804,65 +840,106 @@ function stripAffiliateCtaTokenLines(md = "") {
 }
 
 function parseAffiliateCtaMetaFromMarkdown(md = "") {
-  let result = {
-    enabled: false,
-    buttonText: "예약 가능 날짜 확인하기",
-    linkUrl: "",
-    position: 1
-  };
+  const items = [];
   String(md || "").split("\n").forEach((line) => {
     const token = parseAffiliateCtaToken(line);
     if (!token) return;
-    result = {
-      enabled: !!(token.linkUrl || token.buttonText),
-      buttonText: token.buttonText || "예약 가능 날짜 확인하기",
-      linkUrl: token.linkUrl || "",
-      position: token.position || 1
-    };
+    items.push(token);
   });
-  return result;
+  if (!items.length) return getDefaultAffiliateCtaMeta();
+  return { enabled: true, items };
 }
 
 function buildAffiliateCtaToken(data = {}) {
-  if (!data || !data.enabled) return "";
-  const buttonText = String(data.buttonText || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
-  const linkUrl = String(data.linkUrl || "").trim();
-  if (!buttonText && !linkUrl) return "";
+  const item = normalizeAffiliateCtaItem(data);
+  if (!item.enabled || !(item.buttonText || item.linkUrl)) return "";
   const esc = (value) => String(value || "").trim().replace(/"/g, "&quot;");
-  const safePosition = Math.max(1, parseInt(data.position || 1, 10) || 1);
-  return `[[POST_AFFILIATE_CTA button="${esc(buttonText)}" link="${esc(linkUrl)}" position="${safePosition}"]]`;
+  const safePosition = clampAffiliateCtaPosition(item.position || 1);
+  return `[[POST_AFFILIATE_CTA button="${esc(item.buttonText)}" link="${esc(item.linkUrl)}" position="${safePosition}"]]`;
+}
+
+function buildAffiliateCtaTokens(meta = {}) {
+  const normalized = normalizeAffiliateCtaMeta(meta);
+  if (!normalized.enabled) return [];
+  return normalized.items.map((item) => buildAffiliateCtaToken(item)).filter(Boolean);
+}
+
+function renderAffiliateCtaEditorRows(items = []) {
+  const list = $("affiliateCtaList");
+  if (!list) return;
+  const safeItems = Array.isArray(items) && items.length ? items : getDefaultAffiliateCtaMeta().items;
+  list.innerHTML = safeItems.map((item, index) => {
+    const normalized = normalizeAffiliateCtaItem(item);
+    return `
+      <div class="affiliate-cta-editor-item" data-affiliate-cta-item>
+        <div class="affiliate-cta-editor-item__head">
+          <strong>CTA ${index + 1}</strong>
+          <button class="btn btn--ghost affiliate-cta-editor-item__remove" type="button" data-remove-affiliate-cta>삭제</button>
+        </div>
+        <div class="grid grid--2 affiliate-cta-editor-item__fields" style="gap:12px;">
+          <input class="input" data-affiliate-cta-button-text placeholder="버튼 이름" value="${escapeHtml(normalized.buttonText)}" />
+          <input class="input" data-affiliate-cta-link-url placeholder="제휴 링크 URL" value="${escapeHtml(normalized.linkUrl)}" />
+          <select class="input" data-affiliate-cta-position>${buildAffiliateCtaPositionOptions(normalized.position)}</select>
+        </div>
+      </div>
+    `;
+  }).join("");
 }
 
 function collectAffiliateCtaFormData() {
+  const enabled = !!($("enableAffiliateCta")?.checked);
+  const rows = Array.from(document.querySelectorAll("[data-affiliate-cta-item]"));
+  const items = rows.map((row) => ({
+    enabled: true,
+    buttonText: row.querySelector("[data-affiliate-cta-button-text]")?.value.trim() || "예약 가능 날짜 확인하기",
+    linkUrl: row.querySelector("[data-affiliate-cta-link-url]")?.value.trim() || "",
+    position: clampAffiliateCtaPosition(row.querySelector("[data-affiliate-cta-position]")?.value || 1)
+  })).filter((item) => item.buttonText || item.linkUrl);
   return {
-    enabled: !!($("enableAffiliateCta")?.checked),
-    buttonText: $("affiliateCtaButtonText")?.value.trim() || "예약 가능 날짜 확인하기",
-    linkUrl: $("affiliateCtaLinkUrl")?.value.trim() || "",
-    position: Math.max(1, parseInt($("affiliateCtaPosition")?.value || "1", 10) || 1)
+    enabled,
+    items: items.length ? items : getDefaultAffiliateCtaMeta().items
   };
 }
 
 function applyAffiliateCtaFormData(meta = {}) {
-  const enabled = !!meta.enabled;
+  const normalized = normalizeAffiliateCtaMeta(meta);
+  const enabled = !!meta.enabled && normalized.items.some((item) => item.buttonText || item.linkUrl);
   if ($("enableAffiliateCta")) $("enableAffiliateCta").checked = enabled;
-  if ($("affiliateCtaButtonText")) $("affiliateCtaButtonText").value = meta.buttonText || "예약 가능 날짜 확인하기";
-  if ($("affiliateCtaLinkUrl")) $("affiliateCtaLinkUrl").value = meta.linkUrl || "";
-  if ($("affiliateCtaPosition")) $("affiliateCtaPosition").value = String(Math.max(1, parseInt(meta.position || 1, 10) || 1));
+  renderAffiliateCtaEditorRows(normalized.items);
   syncAffiliateCtaVisibility();
 }
 
 function syncAffiliateCtaVisibility() {
   const field = $("affiliateCtaFields");
   if (field) field.hidden = !($("enableAffiliateCta")?.checked);
+  if (!document.querySelector("[data-affiliate-cta-item]")) {
+    renderAffiliateCtaEditorRows(getDefaultAffiliateCtaMeta().items);
+  }
+}
+
+function addAffiliateCtaEditorRow() {
+  const meta = collectAffiliateCtaFormData();
+  meta.items.push({ enabled: true, buttonText: "예약 가능 날짜 확인하기", linkUrl: "", position: Math.min(10, meta.items.length + 1) });
+  renderAffiliateCtaEditorRows(meta.items);
+  handleRealtimeChange();
+}
+
+function removeAffiliateCtaEditorRow(button) {
+  const row = button?.closest("[data-affiliate-cta-item]");
+  if (row) row.remove();
+  if (!document.querySelector("[data-affiliate-cta-item]")) {
+    renderAffiliateCtaEditorRows(getDefaultAffiliateCtaMeta().items);
+  }
+  handleRealtimeChange();
 }
 
 function renderAffiliateCtaPreviewButton(data = {}) {
-  if (!data || !data.enabled || !(data.buttonText || data.linkUrl)) return "";
-  const buttonText = String(data.buttonText || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
+  const cta = normalizeAffiliateCtaItem(data);
+  if (!cta.enabled || !(cta.buttonText || cta.linkUrl)) return "";
+  const buttonText = String(cta.buttonText || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
   return `
     <div class="preview-affiliate-cta" aria-label="제휴 마케팅 CTA">
-      <span class="preview-affiliate-cta__label">제휴 링크</span>
-      ${data.linkUrl ? `<a class="preview-affiliate-cta__button" href="${escapeHtml(data.linkUrl)}" target="_blank" rel="nofollow sponsored noopener noreferrer">${escapeHtml(buttonText)}</a>` : `<span class="preview-affiliate-cta__button is-disabled">${escapeHtml(buttonText)}</span>`}
+      ${cta.linkUrl ? `<a class="preview-affiliate-cta__button" href="${escapeHtml(cta.linkUrl)}" target="_blank" rel="nofollow sponsored noopener noreferrer">${escapeHtml(buttonText)}</a>` : `<span class="preview-affiliate-cta__button is-disabled">${escapeHtml(buttonText)}</span>`}
     </div>
   `;
 }
@@ -1090,8 +1167,8 @@ function buildContentWithMetaTokens(md = "") {
   const affiliateTokens = affiliateMeta.enabled
     ? affiliateMeta.items.map((item, index) => buildAffiliateToken(index + 1, item)).filter(Boolean)
     : [];
-  const affiliateCtaToken = buildAffiliateCtaToken(affiliateCtaMeta);
-  return [seoToken, lsiToken, ...imageTokens, ...affiliateTokens, affiliateCtaToken, cleanMd].filter(Boolean).join("\n\n").trim();
+  const affiliateCtaTokens = buildAffiliateCtaTokens(affiliateCtaMeta);
+  return [seoToken, lsiToken, ...imageTokens, ...affiliateTokens, ...affiliateCtaTokens, cleanMd].filter(Boolean).join("\n\n").trim();
 }
 
 function renderAffiliatePreviewCard(data = {}, index = 1) {
@@ -2290,7 +2367,7 @@ function renderPreviewAdBox(index) {
 function markdownToHtml(md, options = {}) {
   const inlineImages = options.inlineImages || parseInlineImageMetaFromMarkdown(md);
   const affiliates = options.affiliates || parseAffiliateMetaFromMarkdown(md);
-  const affiliateCta = options.affiliateCta || parseAffiliateCtaMetaFromMarkdown(md);
+  const affiliateCta = normalizeAffiliateCtaMeta(options.affiliateCta || parseAffiliateCtaMetaFromMarkdown(md));
   const sourceMd = stripAffiliateCtaTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(String(md || "").replace(/\r/g, ""))));
   const lines = sourceMd.split("\n");
   const tocModeInContent = lines.map((line) => parseTocModeFromLine(line)).find(Boolean) || null;
@@ -2304,8 +2381,7 @@ function markdownToHtml(md, options = {}) {
   let contentBlockCount = 0;
   let adPointer = 0;
   let h2Count = 0;
-  let activeAffiliateCtaH2Section = false;
-  let affiliateCtaInserted = false;
+  let activeAffiliateCtaItems = [];
 
   function maybeInsertAd() {
     while (options.showAds && adPointer < adPositions.length && adPositions[adPointer] === contentBlockCount) {
@@ -2339,12 +2415,12 @@ function markdownToHtml(md, options = {}) {
   }
 
   function maybeInsertAffiliateCtaAtSectionEnd() {
-    if (!activeAffiliateCtaH2Section || affiliateCtaInserted || !affiliateCta?.enabled || !(affiliateCta.buttonText || affiliateCta.linkUrl)) return;
-    const ctaHtml = renderAffiliateCtaPreviewButton(affiliateCta);
-    if (!ctaHtml) return;
-    pushContentBlock(ctaHtml);
-    affiliateCtaInserted = true;
-    activeAffiliateCtaH2Section = false;
+    if (!activeAffiliateCtaItems.length) return;
+    activeAffiliateCtaItems.forEach((item) => {
+      const ctaHtml = renderAffiliateCtaPreviewButton(item);
+      if (ctaHtml) pushContentBlock(ctaHtml);
+    });
+    activeAffiliateCtaItems = [];
   }
 
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
@@ -2414,10 +2490,9 @@ function markdownToHtml(md, options = {}) {
             pushContentBlock(renderAffiliatePreviewCard(item, index + 1));
           }
         });
-        const ctaTarget = Math.max(1, parseInt(affiliateCta?.position || 1, 10) || 1);
-        if (affiliateCta?.enabled && h2Count === ctaTarget) {
-          activeAffiliateCtaH2Section = true;
-        }
+        activeAffiliateCtaItems = affiliateCta?.enabled
+          ? (affiliateCta.items || []).filter((item) => item?.enabled !== false && clampAffiliateCtaPosition(item?.position || 1) === h2Count)
+          : [];
         const image1Target = Math.max(1, parseInt(inlineImages.image1?.position || 3, 10) || 3);
         const image2Target = Math.max(1, parseInt(inlineImages.image2?.position || 5, 10) || 5);
         if (h2Count === image1Target && inlineImages.image1?.enabled && (inlineImages.image1?.url || inlineImages.image1?.id)) {
@@ -2724,6 +2799,13 @@ $("enableInlineImage1")?.addEventListener("change", handleRealtimeChange);
 $("enableInlineImage2")?.addEventListener("change", handleRealtimeChange);
 $("enableAffiliateLinks")?.addEventListener("change", handleRealtimeChange);
 $("enableAffiliateCta")?.addEventListener("change", () => { syncAffiliateCtaVisibility(); handleRealtimeChange(); });
+$("addAffiliateCtaBtn")?.addEventListener("click", addAffiliateCtaEditorRow);
+$("affiliateCtaList")?.addEventListener("input", handleRealtimeChange);
+$("affiliateCtaList")?.addEventListener("change", handleRealtimeChange);
+$("affiliateCtaList")?.addEventListener("click", (event) => {
+  const removeButton = event.target.closest("[data-remove-affiliate-cta]");
+  if (removeButton) removeAffiliateCtaEditorRow(removeButton);
+});
 $("enable_inarticle_ads")?.addEventListener("change", handleRealtimeChange);
 $("enable_sidebar_ad")?.addEventListener("change", handleRealtimeChange);
 $("addAffiliateItemBtn")?.addEventListener("click", () => { addAffiliateItemCard(); handleRealtimeChange(); });

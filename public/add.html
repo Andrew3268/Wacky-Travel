@@ -417,21 +417,14 @@
               <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
                 <div>
                   <div class="h2">제휴 CTA 버튼</div>
-                  <div class="small" style="margin-top:4px;">본문 흐름에 맞춰 단독 제휴 버튼을 노출합니다. 링크에는 nofollow sponsored가 자동 적용됩니다.</div>
+                  <div class="small" style="margin-top:4px;">본문 흐름에 맞춰 제휴 버튼을 여러 개 노출합니다. 링크에는 nofollow sponsored가 자동 적용됩니다.</div>
                 </div>
                 <label class="row"><input type="checkbox" id="enableAffiliateCta" /> 사용</label>
               </div>
 
-              <div id="affiliateCtaFields" hidden class="grid grid--2" style="gap:12px; margin-top:12px;">
-                <input class="input" id="affiliateCtaButtonText" placeholder="버튼 이름" value="예약 가능 날짜 확인하기" />
-                <input class="input" id="affiliateCtaLinkUrl" placeholder="제휴 링크 URL" />
-                <select class="input" id="affiliateCtaPosition">
-                  <option value="1">첫번째 H2 아래</option>
-                  <option value="2">두번째 H2 아래</option>
-                  <option value="3">세번째 H2 아래</option>
-                  <option value="4">네번째 H2 아래</option>
-                  <option value="5">다섯번째 H2 아래</option>
-                </select>
+              <div id="affiliateCtaFields" hidden style="margin-top:12px;">
+                <div id="affiliateCtaList" class="affiliate-cta-list"></div>
+                <button class="btn btn--ghost" type="button" id="addAffiliateCtaBtn" style="margin-top:10px;">+ CTA 버튼 추가</button>
               </div>
             </div>
 
