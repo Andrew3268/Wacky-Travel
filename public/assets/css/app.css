@@ -1956,3 +1956,78 @@ select:focus {
     text-underline-offset: 5px;
   }
 }
+
+
+/* V15: 단독 제휴 CTA 버튼 */
+.affiliate-cta-editor-card .small {
+  color: #756f66;
+}
+
+.preview-affiliate-cta,
+.post-affiliate-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 28px 0;
+  padding: 0;
+  text-align: center;
+}
+
+.preview-affiliate-cta__label,
+.post-affiliate-cta__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #fff7ef;
+  color: #7a5131;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.preview-affiliate-cta__button,
+.post-affiliate-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 360px);
+  min-height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: #231f1a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  box-shadow: 0 14px 28px rgba(35, 31, 26, 0.16);
+}
+
+.preview-affiliate-cta__button.is-disabled,
+.post-affiliate-cta__button.is-disabled {
+  opacity: .48;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .preview-affiliate-cta,
+  .post-affiliate-cta {
+    align-items: stretch;
+    margin: 24px 0;
+  }
+
+  .preview-affiliate-cta__label,
+  .post-affiliate-cta__label {
+    align-self: center;
+  }
+
+  .preview-affiliate-cta__button,
+  .post-affiliate-cta__button {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+  }
+}

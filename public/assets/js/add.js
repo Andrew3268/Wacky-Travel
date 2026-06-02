@@ -633,6 +633,7 @@ const TOC_TOKEN_RE = /^\[\[TOC(?::(h2|h2,h3))?\]\]$/i;
 
 const INLINE_IMAGE_TOKEN_RE = /^\[\[(POST_IMAGE_[12])\s+(.+?)\]\]$/i;
 const AFFILIATE_TOKEN_RE = /^\[\[(POST_AFFILIATE_(?:[1-5]))\s+(.+?)\]\]$/i;
+const AFFILIATE_CTA_TOKEN_RE = /^\[\[POST_AFFILIATE_CTA\s+(.+?)\]\]$/i;
 
 function parseTokenAttributes(raw = "") {
   const attrs = {};
@@ -776,6 +777,94 @@ function parseAffiliateToken(line = "") {
     buttonText: String(attrs.button || attrs.buttonText || "상품 보기").trim() || "상품 보기",
     position: Math.max(1, parseInt(attrs.position || attrs.h2 || "1", 10) || 1)
   };
+}
+
+function parseAffiliateCtaToken(line = "") {
+  const match = String(line || "").trim().match(AFFILIATE_CTA_TOKEN_RE);
+  if (!match) return null;
+  const attrs = parseTokenAttributes(match[1]);
+  const buttonText = String(attrs.button || attrs.buttonText || attrs.text || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
+  const linkUrl = String(attrs.link || attrs.linkUrl || attrs.url || "").trim();
+  const position = Math.max(1, parseInt(attrs.position || attrs.h2 || "1", 10) || 1);
+  return {
+    enabled: !!(buttonText || linkUrl),
+    buttonText,
+    linkUrl,
+    position
+  };
+}
+
+function stripAffiliateCtaTokenLines(md = "") {
+  return String(md || "")
+    .split("\n")
+    .filter((line) => !parseAffiliateCtaToken(line))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function parseAffiliateCtaMetaFromMarkdown(md = "") {
+  let result = {
+    enabled: false,
+    buttonText: "예약 가능 날짜 확인하기",
+    linkUrl: "",
+    position: 1
+  };
+  String(md || "").split("\n").forEach((line) => {
+    const token = parseAffiliateCtaToken(line);
+    if (!token) return;
+    result = {
+      enabled: !!(token.linkUrl || token.buttonText),
+      buttonText: token.buttonText || "예약 가능 날짜 확인하기",
+      linkUrl: token.linkUrl || "",
+      position: token.position || 1
+    };
+  });
+  return result;
+}
+
+function buildAffiliateCtaToken(data = {}) {
+  if (!data || !data.enabled) return "";
+  const buttonText = String(data.buttonText || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
+  const linkUrl = String(data.linkUrl || "").trim();
+  if (!buttonText && !linkUrl) return "";
+  const esc = (value) => String(value || "").trim().replace(/"/g, "&quot;");
+  const safePosition = Math.max(1, parseInt(data.position || 1, 10) || 1);
+  return `[[POST_AFFILIATE_CTA button="${esc(buttonText)}" link="${esc(linkUrl)}" position="${safePosition}"]]`;
+}
+
+function collectAffiliateCtaFormData() {
+  return {
+    enabled: !!($("enableAffiliateCta")?.checked),
+    buttonText: $("affiliateCtaButtonText")?.value.trim() || "예약 가능 날짜 확인하기",
+    linkUrl: $("affiliateCtaLinkUrl")?.value.trim() || "",
+    position: Math.max(1, parseInt($("affiliateCtaPosition")?.value || "1", 10) || 1)
+  };
+}
+
+function applyAffiliateCtaFormData(meta = {}) {
+  const enabled = !!meta.enabled;
+  if ($("enableAffiliateCta")) $("enableAffiliateCta").checked = enabled;
+  if ($("affiliateCtaButtonText")) $("affiliateCtaButtonText").value = meta.buttonText || "예약 가능 날짜 확인하기";
+  if ($("affiliateCtaLinkUrl")) $("affiliateCtaLinkUrl").value = meta.linkUrl || "";
+  if ($("affiliateCtaPosition")) $("affiliateCtaPosition").value = String(Math.max(1, parseInt(meta.position || 1, 10) || 1));
+  syncAffiliateCtaVisibility();
+}
+
+function syncAffiliateCtaVisibility() {
+  const field = $("affiliateCtaFields");
+  if (field) field.hidden = !($("enableAffiliateCta")?.checked);
+}
+
+function renderAffiliateCtaPreviewButton(data = {}) {
+  if (!data || !data.enabled || !(data.buttonText || data.linkUrl)) return "";
+  const buttonText = String(data.buttonText || "예약 가능 날짜 확인하기").trim() || "예약 가능 날짜 확인하기";
+  return `
+    <div class="preview-affiliate-cta" aria-label="제휴 마케팅 CTA">
+      <span class="preview-affiliate-cta__label">제휴 링크</span>
+      ${data.linkUrl ? `<a class="preview-affiliate-cta__button" href="${escapeHtml(data.linkUrl)}" target="_blank" rel="nofollow sponsored noopener noreferrer">${escapeHtml(buttonText)}</a>` : `<span class="preview-affiliate-cta__button is-disabled">${escapeHtml(buttonText)}</span>`}
+    </div>
+  `;
 }
 
 function stripAffiliateTokenLines(md = "") {
@@ -985,9 +1074,10 @@ function applyLsiKeywordsFromMarkdown(md = "") {
 }
 
 function buildContentWithMetaTokens(md = "") {
-  const cleanMd = stripLsiKeywordsTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(md)));
+  const cleanMd = stripLsiKeywordsTokenLines(stripAffiliateCtaTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(md))));
   const imageMeta = collectInlineImageFormData();
   const affiliateMeta = collectAffiliateFormData();
+  const affiliateCtaMeta = collectAffiliateCtaFormData();
   const focusKeyword = $("focusKeyword")?.value.trim() || "";
   const longtailKeywords = parseKeywords($("longtailKeywords")?.value || "");
   const lsiKeywords = parseKeywords($("lsiKeywords")?.value || "");
@@ -1000,7 +1090,8 @@ function buildContentWithMetaTokens(md = "") {
   const affiliateTokens = affiliateMeta.enabled
     ? affiliateMeta.items.map((item, index) => buildAffiliateToken(index + 1, item)).filter(Boolean)
     : [];
-  return [seoToken, lsiToken, ...imageTokens, ...affiliateTokens, cleanMd].filter(Boolean).join("\n\n").trim();
+  const affiliateCtaToken = buildAffiliateCtaToken(affiliateCtaMeta);
+  return [seoToken, lsiToken, ...imageTokens, ...affiliateTokens, affiliateCtaToken, cleanMd].filter(Boolean).join("\n\n").trim();
 }
 
 function renderAffiliatePreviewCard(data = {}, index = 1) {
@@ -1615,6 +1706,7 @@ function evaluateSeo() {
   const contentMd = stripLsiKeywordsTokenLines($("content_md").value || "");
   const inlineImages = collectInlineImageFormData();
   const affiliateMeta = collectAffiliateFormData();
+  const affiliateCtaMeta = collectAffiliateCtaFormData();
   const contentLengthWithoutSpaces = countTextWithoutSpaces(contentMd);
   const showPreviewAds = shouldShowInarticleAdsInEditor();
   const previewAdPositions = showPreviewAds ? getPreviewAdInsertPositions(contentMd, contentLengthWithoutSpaces) : [];
@@ -2198,7 +2290,8 @@ function renderPreviewAdBox(index) {
 function markdownToHtml(md, options = {}) {
   const inlineImages = options.inlineImages || parseInlineImageMetaFromMarkdown(md);
   const affiliates = options.affiliates || parseAffiliateMetaFromMarkdown(md);
-  const sourceMd = stripAffiliateTokenLines(stripInlineImageTokenLines(String(md || "").replace(/\r/g, "")));
+  const affiliateCta = options.affiliateCta || parseAffiliateCtaMetaFromMarkdown(md);
+  const sourceMd = stripAffiliateCtaTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(String(md || "").replace(/\r/g, ""))));
   const lines = sourceMd.split("\n");
   const tocModeInContent = lines.map((line) => parseTocModeFromLine(line)).find(Boolean) || null;
   const tocItems = tocModeInContent ? extractTocItems(sourceMd, tocModeInContent) : [];
@@ -2307,6 +2400,10 @@ function markdownToHtml(md, options = {}) {
             pushContentBlock(renderAffiliatePreviewCard(item, index + 1));
           }
         });
+        const ctaTarget = Math.max(1, parseInt(affiliateCta?.position || 1, 10) || 1);
+        if (affiliateCta?.enabled && h2Count === ctaTarget) {
+          pushContentBlock(renderAffiliateCtaPreviewButton(affiliateCta));
+        }
         const image1Target = Math.max(1, parseInt(inlineImages.image1?.position || 3, 10) || 3);
         const image2Target = Math.max(1, parseInt(inlineImages.image2?.position || 5, 10) || 5);
         if (h2Count === image1Target && inlineImages.image1?.enabled && (inlineImages.image1?.url || inlineImages.image1?.id)) {
@@ -2391,6 +2488,7 @@ function renderPreview() {
   const contentMd = stripLsiKeywordsTokenLines($("content_md").value || "");
   const inlineImages = collectInlineImageFormData();
   const affiliateMeta = collectAffiliateFormData();
+  const affiliateCtaMeta = collectAffiliateCtaFormData();
   const contentLengthWithoutSpaces = countTextWithoutSpaces(contentMd);
   const showPreviewAds = shouldShowInarticleAdsInEditor();
   const previewAdPositions = showPreviewAds ? getPreviewAdInsertPositions(contentMd, contentLengthWithoutSpaces) : [];
@@ -2448,7 +2546,7 @@ function renderPreview() {
         ${summary ? `<p class="preview-summary">${escapeHtml(summary)}</p>` : ""}
         ${tags.length ? `<div class="row">${tags.map((tag) => `<span class="tag-chip">#${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
       </header>
-      <section class="preview-body">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta })}</section>
+      <section class="preview-body">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta })}</section>
       ${faqItems.length ? `
         <section class="preview-faq" aria-label="자주 묻는 질문">
           <h2>자주 묻는 질문</h2>
@@ -2601,7 +2699,7 @@ function handleRealtimeChange() {
   renderPreview();
 }
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);
@@ -2610,6 +2708,7 @@ function handleRealtimeChange() {
 $("enableInlineImage1")?.addEventListener("change", handleRealtimeChange);
 $("enableInlineImage2")?.addEventListener("change", handleRealtimeChange);
 $("enableAffiliateLinks")?.addEventListener("change", handleRealtimeChange);
+$("enableAffiliateCta")?.addEventListener("change", () => { syncAffiliateCtaVisibility(); handleRealtimeChange(); });
 $("enable_inarticle_ads")?.addEventListener("change", handleRealtimeChange);
 $("enable_sidebar_ad")?.addEventListener("change", handleRealtimeChange);
 $("addAffiliateItemBtn")?.addEventListener("click", () => { addAffiliateItemCard(); handleRealtimeChange(); });
@@ -2634,6 +2733,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") { closePreview(); closeTravelSettingsModal(); }
 });
 
+syncAffiliateCtaVisibility();
 if ($("title") && $("content_md")) {
   syncInlineImageVisibility();
   syncAffiliateSectionVisibility();
