@@ -2304,6 +2304,8 @@ function markdownToHtml(md, options = {}) {
   let contentBlockCount = 0;
   let adPointer = 0;
   let h2Count = 0;
+  let activeAffiliateCtaH2Section = false;
+  let affiliateCtaInserted = false;
 
   function maybeInsertAd() {
     while (options.showAds && adPointer < adPositions.length && adPositions[adPointer] === contentBlockCount) {
@@ -2334,6 +2336,15 @@ function markdownToHtml(md, options = {}) {
     maybeInsertAd();
     htmlParts.push(html);
     contentBlockCount += 1;
+  }
+
+  function maybeInsertAffiliateCtaAtSectionEnd() {
+    if (!activeAffiliateCtaH2Section || affiliateCtaInserted || !affiliateCta?.enabled || !(affiliateCta.buttonText || affiliateCta.linkUrl)) return;
+    const ctaHtml = renderAffiliateCtaPreviewButton(affiliateCta);
+    if (!ctaHtml) return;
+    pushContentBlock(ctaHtml);
+    affiliateCtaInserted = true;
+    activeAffiliateCtaH2Section = false;
   }
 
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
@@ -2389,6 +2400,9 @@ function markdownToHtml(md, options = {}) {
       closeLists();
       closeQuote();
       const level = Math.min(6, headingMatch[1].length);
+      if (level === 2) {
+        maybeInsertAffiliateCtaAtSectionEnd();
+      }
       const headingText = headingMatch[2].trim();
       const headingId = buildHeadingSlug(headingText, slugCounts);
       pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
@@ -2402,7 +2416,7 @@ function markdownToHtml(md, options = {}) {
         });
         const ctaTarget = Math.max(1, parseInt(affiliateCta?.position || 1, 10) || 1);
         if (affiliateCta?.enabled && h2Count === ctaTarget) {
-          pushContentBlock(renderAffiliateCtaPreviewButton(affiliateCta));
+          activeAffiliateCtaH2Section = true;
         }
         const image1Target = Math.max(1, parseInt(inlineImages.image1?.position || 3, 10) || 3);
         const image2Target = Math.max(1, parseInt(inlineImages.image2?.position || 5, 10) || 5);
@@ -2463,6 +2477,7 @@ function markdownToHtml(md, options = {}) {
 
   closeLists();
   closeQuote();
+  maybeInsertAffiliateCtaAtSectionEnd();
 
   while (options.showAds && adPointer < adPositions.length) {
     htmlParts.push(renderPreviewAdBox(adPointer));
