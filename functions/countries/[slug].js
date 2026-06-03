@@ -36,7 +36,7 @@ export async function onRequestGet({ params, env, request }) {
     env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
   ]);
   const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v8-breadcrumb-card-link-${cacheVersion}`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v9-topbar-cleanup-v15-${cacheVersion}`;
 
   return edgeCache({
     request,

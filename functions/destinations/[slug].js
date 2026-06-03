@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v21-conditional-sections-v35";
+const DESTINATION_RENDER_VERSION = "destination-detail-v22-topbar-cleanup-v15";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
