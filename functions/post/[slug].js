@@ -99,8 +99,6 @@ export async function onRequestGet({ params, env, request }) {
         LIMIT 5
       `).bind(slug).all()).results || [];
 
-      const categoryRows = await getMobileCategoryRows(env.TRAVEL_DB);
-      const mobileCategoryHtml = renderMobileCategoryLinks(categoryRows);
       const hotelHeroData = await getHotelHeroData(env.TRAVEL_DB, row, slug);
 
       const adConfig = buildAdsenseConfig(env);
@@ -308,7 +306,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v14" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v16" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 
   ${jsonld(blogPostingJsonLd)}
@@ -318,7 +316,7 @@ export async function onRequestGet({ params, env, request }) {
 </head>
 <body>
 
-  ${topbar(mobileCategoryHtml)}
+  ${topbar()}
 
   <main id="main-content" class="container">
     ${breadcrumbHtml}
@@ -387,7 +385,6 @@ export async function onRequestGet({ params, env, request }) {
 </script>
   ${adsenseRuntimeScript}
   <script src="/assets/js/admin-ui.js" defer></script>
-  <script src="/assets/js/nav.js" defer></script>
 </body>
 </html>`;
 
@@ -1054,7 +1051,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#B8875B" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v14" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v16" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
@@ -1072,81 +1069,20 @@ function renderNotFound(slug) {
 </html>`;
 }
 
-async function getMobileCategoryRows(db) {
-  try {
-    const rows = await db.prepare(`
-      SELECT c.name, COUNT(p.slug) AS count
-      FROM categories c
-      LEFT JOIN posts p
-        ON TRIM(COALESCE(p.category, '')) = TRIM(c.name)
-       AND p.status = 'published'
-      GROUP BY c.name, c.sort_order
-      ORDER BY c.sort_order ASC, c.name COLLATE NOCASE ASC
-    `).all();
-    const items = rows.results || [];
-    if (items.length) return items;
-  } catch (err) {
-    // categories 테이블이 아직 마이그레이션되지 않은 배포 환경을 위한 안전장치
-  }
-
-  const fallback = await db.prepare(`
-    SELECT TRIM(COALESCE(category, '')) AS name, COUNT(*) AS count
-    FROM posts
-    WHERE status = 'published'
-      AND TRIM(COALESCE(category, '')) != ''
-    GROUP BY TRIM(COALESCE(category, ''))
-    ORDER BY name COLLATE NOCASE ASC
-  `).all();
-  return fallback.results || [];
-}
-
-function renderMobileCategoryLinks(items = []) {
-  const links = (items || [])
-    .map((item) => String(item?.name || '').trim())
-    .filter(Boolean)
-    .map((name) => '<a class="topbar-categories__chip" href="/?category=' + encodeURIComponent(name) + '">' + escapeHtml(name) + '</a>')
-    .join('');
-
-  return '<a class="topbar-categories__chip topbar-categories__chip--utility" href="/">ALL</a>' + links + '<a class="topbar-categories__chip topbar-categories__chip--utility" href="/about/">ABOUT</a>';
-}
-
-function topbar(mobileCategoryHtml = "") {
-  return `<header class="topbar topbar--editorial">
-    <div class="topbar__inner topbar__inner--editorial">
-      <button class="topbar-hamburger" type="button" aria-expanded="false" aria-controls="mobileSiteMenu" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
-
-      <div class="topbar-left-slot"><div class="topbar-admin-status" data-admin-status hidden aria-live="polite">관리자 로그인 중</div></div>
-
-      <a class="brand brand--center" href="/" aria-label="Wacky Travel 홈">
+function topbar() {
+  return `<header class="topbar topbar--editorial topbar--travel">
+    <div class="topbar__inner container">
+      <a class="brand" href="/" aria-label="Wacky Travel 홈">
         <span class="brand__mark">WT</span>
         <span class="brand__text">Wacky Travel</span>
       </a>
-
-      <nav class="nav nav--utility nav--right" aria-label="오른쪽 메뉴">
-        <a href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
-      </nav>
-    </div>
-  </header>
-
-  <aside id="mobileSiteMenu" class="mobile-site-menu" hidden aria-hidden="true">
-    <div class="mobile-site-menu__panel">
-      <div class="mobile-site-menu__close-wrap">
-        <button class="mobile-site-menu__close-toggle topbar-hamburger is-open" type="button" aria-label="메뉴 닫기" data-mobile-menu-close>
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-      <nav class="mobile-site-menu__nav" aria-label="모바일 주요 메뉴">
-      </nav>
-      <div class="mobile-site-menu__section mobile-site-menu__section--categories">
-        <div id="mobileSiteCategoryBar" class="topbar-categories__list topbar-categories__list--mobile">${mobileCategoryHtml}</div>
-      </div>
-      <div class="mobile-site-menu__section mobile-site-menu__section--admin" data-mobile-admin-section hidden>
-        <a class="mobile-site-menu__text-link" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+      <div class="topbar__actions topbar__actions--travel">
+        <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
+        <a class="btn btn--ghost topbar__dashboard" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+        <button class="topbar__logout" type="button" data-admin-logout hidden>로그아웃</button>
       </div>
     </div>
-  </aside>`;
+  </header>`;
 }
 
 function footer(siteName, siteDescription) {
