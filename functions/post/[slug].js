@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260522-post-cover-image-refresh-v17";
+const POST_RENDER_VERSION = "20260603-post-heading-number-reset-v18";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -306,8 +306,28 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v16" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v17" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
+  <style>
+    .post-body,
+    .post-body .post-content { counter-reset: none !important; }
+    .post-body h2,
+    .post-body .post-content h2,
+    .post-body h3,
+    .post-body .post-content h3 { counter-increment: none !important; list-style: none !important; }
+    .post-body h2::before,
+    .post-body .post-content h2::before,
+    .post-body h3::before,
+    .post-body .post-content h3::before,
+    .post-body h2::after,
+    .post-body .post-content h2::after,
+    .post-body h3::after,
+    .post-body .post-content h3::after { content: "" !important; display: none !important; }
+    .post-body h2::marker,
+    .post-body .post-content h2::marker,
+    .post-body h3::marker,
+    .post-body .post-content h3::marker { content: "" !important; }
+  </style>
 
   ${jsonld(blogPostingJsonLd)}
   ${jsonld(breadcrumbJsonLd)}
@@ -1051,7 +1071,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#B8875B" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v16" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v17" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>

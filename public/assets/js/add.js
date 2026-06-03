@@ -2256,10 +2256,19 @@ function inlineFormat(text) {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
 }
 
-function renderHeadingText(level, text = "") {
-  if (level !== 2) return inlineFormat(text);
-
+function normalizeArticleHeadingText(level, text = "") {
   const raw = String(text || "").trim();
+  if (level === 2 || level === 3) {
+    return raw.replace(/^\d{1,2}[.)]\s+/, "");
+  }
+  return raw;
+}
+
+function renderHeadingText(level, text = "") {
+  const normalized = normalizeArticleHeadingText(level, text);
+  if (level !== 2) return inlineFormat(normalized);
+
+  const raw = normalized;
   const match = raw.match(/^([^:：]{1,30}[:：])\s*(.+)$/);
   if (!match) {
     return `<span class="post-h2-text">${inlineFormat(raw)}</span>`;
@@ -2479,7 +2488,7 @@ function markdownToHtml(md, options = {}) {
       if (level === 2) {
         maybeInsertAffiliateCtaAtSectionEnd();
       }
-      const headingText = headingMatch[2].trim();
+      const headingText = normalizeArticleHeadingText(level, headingMatch[2].trim());
       const headingId = buildHeadingSlug(headingText, slugCounts);
       pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
       if (level === 2) {

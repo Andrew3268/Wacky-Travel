@@ -3923,3 +3923,53 @@ body.ww-wrapper {
     min-width: 0;
   }
 }
+
+/* ==================================================
+   Critical Post Heading Reset
+   - 실제 스마트폰 브라우저에서 남아 있을 수 있는 H2/H3 자동 넘버링 제거
+================================================== */
+.post-body,
+.post-body .post-content,
+.preview-body {
+  counter-reset: none !important;
+}
+
+.post-body h2,
+.post-body .post-content h2,
+.preview-body h2,
+.post-body h3,
+.post-body .post-content h3,
+.preview-body h3 {
+  counter-increment: none !important;
+  list-style: none !important;
+}
+
+.post-body h2::before,
+.post-body .post-content h2::before,
+.preview-body h2::before,
+.post-body h3::before,
+.post-body .post-content h3::before,
+.preview-body h3::before,
+.post-body h2::after,
+.post-body .post-content h2::after,
+.preview-body h2::after,
+.post-body h3::after,
+.post-body .post-content h3::after,
+.preview-body h3::after {
+  content: "" !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.post-body h2::marker,
+.post-body .post-content h2::marker,
+.preview-body h2::marker,
+.post-body h3::marker,
+.post-body .post-content h3::marker,
+.preview-body h3::marker {
+  content: "" !important;
+}
