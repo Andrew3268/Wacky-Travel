@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260603v17" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260603v15" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260603v16" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
@@ -32,19 +32,104 @@
   </header>
 
   <main class="travel-page travel-home">
-    <section class="travel-hero travel-hero--home travel-hero--service travel-hero--text-only container">
-      <div class="travel-hero__body">
-        <p class="eyebrow">Hotel & Travel Picks</p>
-        <h1>도시별 호텔 추천을<br />한눈에 비교하세요</h1>
-        <p class="travel-hero__summary">와키트래블은 여행 동선, 숙소 위치, 선택 기준을 중심으로 여행 스타일별 호텔 추천과 도시별 여행 정보를 정리합니다. 처음 가는 도시도 필요한 글부터 빠르게 찾아볼 수 있습니다.</p>
-        <div class="travel-hero__actions">
-          <a class="btn btn--brand" id="homeHotelPostsHeroLink" href="#homeHotelPostsSection" hidden>여행 스타일별 호텔 추천 보기</a>
-          <a class="btn btn--soft" href="/destinations/">도시별 여행지 보기</a>
-        </div>
-        <div class="travel-hero__chips" aria-label="와키트래블 주요 콘텐츠">
-          <span>여행 스타일별 호텔 추천</span>
-          <span>도시별 숙소 가이드</span>
-          <span>위치 중심 체크</span>
+    <section class="wthome-hero" aria-labelledby="wthomeHeroTitle">
+      <div class="wthome-hero__inner">
+        <div class="wthome-card">
+          <div class="wthome-card__visual">
+            <div class="wthome-card__visual-content">
+              <span class="wthome-card__label">오늘의 호텔 선택 기준</span>
+
+              <h1 id="wthomeHeroTitle">
+                숙소 위치가 여행의<br />
+                만족도를 바꿉니다
+              </h1>
+
+              <p>
+                공항에서 숙소까지, 숙소에서 여행지까지<br />
+                실제 이동 흐름을 기준으로 비교하세요.
+              </p>
+
+              <div class="wthome-route-line" aria-label="여행 동선 예시">
+                <span>공항</span>
+                <i aria-hidden="true">→</i>
+                <span>숙소</span>
+                <i aria-hidden="true">→</i>
+                <span>여행지</span>
+              </div>
+
+              <form class="wthome-search" id="wthomeSearchForm" role="search" autocomplete="off">
+                <div class="wthome-search__field">
+                  <span class="wthome-search__icon" aria-hidden="true">🔍</span>
+                  <input
+                    id="wthomeSearchInput"
+                    type="search"
+                    name="q"
+                    placeholder="도시, 호텔명, 여행지를 검색해보세요"
+                    aria-label="호텔 또는 여행지 검색"
+                  />
+                </div>
+
+                <button type="submit" class="wthome-search__button">
+                  검색하기
+                </button>
+              </form>
+
+              <div class="wthome-search-results" id="wthomeSearchResults" aria-live="polite" hidden></div>
+
+              <p class="wthome-hero__hint">
+                예: <strong>오사카 난바 호텔</strong>, <strong>후쿠오카 하카타 숙소</strong>, <strong>다낭 미케비치 호텔</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="wthome-card__body">
+            <div class="wthome-card__top">
+              <span>Hotel Value Check</span>
+              <strong>추천 기준</strong>
+            </div>
+
+            <div class="wthome-card__list">
+              <div class="wthome-mini-card wthome-mini-card--price">
+                <span class="wthome-mini-card__icon" aria-hidden="true">💰</span>
+                <div class="wthome-mini-card__body">
+                  <strong>가격</strong>
+                  <p>가격 대비 가치가 있는 선택인지</p>
+                </div>
+              </div>
+
+              <div class="wthome-mini-card wthome-mini-card--map">
+                <span class="wthome-mini-card__icon" aria-hidden="true">🗺️</span>
+                <div class="wthome-mini-card__body">
+                  <strong>여행 동선</strong>
+                  <p>하루 코스가 자연스러운지</p>
+                </div>
+              </div>
+
+              <div class="wthome-mini-card wthome-mini-card--environment">
+                <span class="wthome-mini-card__icon" aria-hidden="true">📍</span>
+                <div class="wthome-mini-card__body">
+                  <strong>주변 환경</strong>
+                  <p>맛집, 역, 편의시설 접근성</p>
+                </div>
+              </div>
+
+              <div class="wthome-mini-card wthome-mini-card--airport">
+                <span class="wthome-mini-card__icon" aria-hidden="true">✈️</span>
+                <div class="wthome-mini-card__body">
+                  <strong>공항 이동</strong>
+                  <p>도착일과 출국일 동선</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="wthome-card__bottom">
+              <div>
+                <strong>싼 호텔보다 중요한 건 위치와 동선</strong>
+                <p>와키트래블은 여행자가 실제로 고민하는 기준부터 비교합니다.</p>
+              </div>
+              <span aria-hidden="true">🏨</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -454,7 +539,6 @@
     function renderHotels() {
       const items = getHomeHotelPosts();
       toggleVisibilityByItems('homeHotelPostsSection', items);
-      toggleVisibilityByItems('homeHotelPostsHeroLink', items);
       const container = $('homeHotels');
       if (!container) return;
       if (!items.length) {
@@ -856,6 +940,70 @@
       }
     }
 
+    function bindHomeHeroSearch() {
+      const form = $('wthomeSearchForm');
+      const input = $('wthomeSearchInput');
+      const results = $('wthomeSearchResults');
+      if (!form || !input || !results) return;
+
+      const setSearchMessage = (message) => {
+        results.hidden = false;
+        results.innerHTML = `<div class="wthome-search-results__message">${escapeHtml(message)}</div>`;
+      };
+
+      const hideSearchResults = () => {
+        results.hidden = true;
+        results.innerHTML = '';
+      };
+
+      const renderSearchResults = (items, query) => {
+        if (!items.length) {
+          setSearchMessage(`“${query}”에 대한 검색 결과가 없습니다.`);
+          return;
+        }
+
+        results.hidden = false;
+        results.innerHTML = items.map((item) => {
+          const title = item.title || '여행 글';
+          const href = `/post/${encodeURIComponent(item.slug || '')}`;
+          const meta = [labelHotelPostType(item.content_type), item.category].filter(Boolean).join(' · ');
+          return `<a class="wthome-search-results__item" href="${href}"><span>${escapeHtml(title)}</span>${meta ? `<small>${escapeHtml(meta)}</small>` : ''}</a>`;
+        }).join('');
+      };
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const query = normalizeText(input.value);
+        if (!query) {
+          hideSearchResults();
+          input.focus();
+          return;
+        }
+
+        setSearchMessage('검색 결과를 불러오는 중입니다.');
+
+        try {
+          const url = new URL('/api/posts', window.location.origin);
+          url.searchParams.set('q', query);
+          url.searchParams.set('page', '1');
+          url.searchParams.set('per_page', '6');
+          url.searchParams.set('search_title', '1');
+          url.searchParams.set('search_content', '1');
+          const res = await fetch(url.toString(), { headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error('search_failed');
+          const data = await res.json().catch(() => ({}));
+          const items = Array.isArray(data?.items) ? data.items : [];
+          renderSearchResults(items, query);
+        } catch (_) {
+          setSearchMessage('검색 결과를 불러오지 못했습니다.');
+        }
+      });
+
+      input.addEventListener('input', () => {
+        if (!normalizeText(input.value)) hideSearchResults();
+      });
+    }
+
     function bindDestinationManager() {
       $('homeDestinations').addEventListener('click', (event) => {
         const addBtn = event.target.closest('[data-add-destination-country]');
@@ -895,6 +1043,7 @@
       });
     }
 
+    bindHomeHeroSearch();
     bindDestinationManager();
     loadHome().catch(() => {
       $('homeDestinations').innerHTML = '<div class="empty-card">여행지를 불러오지 못했습니다.</div>';
