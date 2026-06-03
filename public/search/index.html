@@ -96,8 +96,72 @@
 
     function getHighlightTerms(query = '') {
       const full = normalizeText(query);
-      const parts = full.split(/[\s,，、|/]+/).map(normalizeText).filter((term) => term.length >= 2);
-      return [...new Set([full, ...parts].filter(Boolean))].sort((a, b) => b.length - a.length).slice(0, 8);
+      const compact = full.replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, '');
+      const parts = full.split(/[\s,，、|/·・]+/).map(normalizeText).filter((term) => term.length >= 2);
+      return [...new Set([full, compact, ...parts].filter(Boolean))].sort((a, b) => b.length - a.length).slice(0, 10);
+    }
+
+    function normalizeSearchBlob(value = '') {
+      return normalizeText(value).toLowerCase();
+    }
+
+    function compactSearchBlob(value = '') {
+      return normalizeSearchBlob(value).replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, '');
+    }
+
+    function buildClientSearchText(item = {}) {
+      const tags = [...safeArray(item.tags_json), ...safeArray(item.longtail_keywords_json)].join(' ');
+      return [
+        item.title,
+        item.summary,
+        item.meta_description,
+        item.category,
+        item.focus_keyword,
+        item.search_intent,
+        item.destination_slug,
+        item.hotel_slug,
+        item.hotel_name,
+        item.content_type,
+        tags
+      ].map(normalizeText).filter(Boolean).join(' ');
+    }
+
+    function itemMatchesQuery(item = {}, query = '') {
+      const source = normalizeSearchBlob(buildClientSearchText(item));
+      const compactSource = compactSearchBlob(source);
+      const terms = getHighlightTerms(query).map((term) => normalizeSearchBlob(term)).filter(Boolean);
+      if (!terms.length) return false;
+      return terms.some((term) => source.includes(term) || compactSource.includes(compactSearchBlob(term)));
+    }
+
+    async function loadFallbackSearch(query = '') {
+      const collected = [];
+      const seen = new Set();
+      let page = 1;
+      let hasMore = true;
+
+      while (hasMore && page <= 8) {
+        const url = new URL('/api/posts', window.location.origin);
+        url.searchParams.set('page', String(page));
+        url.searchParams.set('per_page', '24');
+        url.searchParams.set('sort', 'published');
+        url.searchParams.set('ts', String(Date.now()));
+        const res = await fetch(url.toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' });
+        if (!res.ok) break;
+        const data = await res.json().catch(() => ({}));
+        const items = Array.isArray(data.items) ? data.items : [];
+        for (const item of items) {
+          const slug = String(item.slug || '');
+          if (!slug || seen.has(slug)) continue;
+          if (!itemMatchesQuery(item, query)) continue;
+          seen.add(slug);
+          collected.push(item);
+        }
+        hasMore = Boolean(data.pagination && data.pagination.has_more);
+        page += 1;
+      }
+
+      return collected.slice(0, 24);
     }
 
     function highlightText(value = '', query = '') {
@@ -211,6 +275,13 @@
         setSummary(total);
 
         if (!items.length && !append) {
+          const fallbackItems = await loadFallbackSearch(query).catch(() => []);
+          if (fallbackItems.length) {
+            setSummary(fallbackItems.length);
+            $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
+            $('wtsrMoreBtn').hidden = true;
+            return;
+          }
           setEmpty('검색 결과가 없습니다', '검색어를 조금 짧게 입력하거나 도시명, 호텔명 중심으로 다시 검색해 보세요.');
         } else {
           const html = items.map(renderCard).join('');
@@ -222,7 +293,13 @@
         $('wtsrMoreBtn').textContent = '더 보기';
         $('wtsrMoreBtn').disabled = false;
       } catch (_) {
-        $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>잠시 후 다시 검색해 주세요.</div>';
+        const fallbackItems = !append ? await loadFallbackSearch(query).catch(() => []) : [];
+        if (fallbackItems.length) {
+          setSummary(fallbackItems.length);
+          $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
+        } else {
+          $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>검색어를 조금 짧게 입력하거나 도시명, 호텔명 중심으로 다시 검색해 보세요.</div>';
+        }
         $('wtsrMoreBtn').hidden = true;
       } finally {
         state.isLoading = false;

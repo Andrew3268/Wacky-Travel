@@ -24,13 +24,26 @@ function normalizeSearchText(value = "") {
     .replace(/\s+/g, " ");
 }
 
+function compactSearchText(value = "") {
+  return normalizeSearchText(value)
+    .replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, "");
+}
+
+function compactSql(column) {
+  return `REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LOWER(COALESCE(${column}, '')), ' ', ''), '-', ''), '/', ''), '·', ''), '・', '')`;
+}
+
 function getSearchTerms(value = "") {
   const full = normalizeSearchText(value);
+  const compactFull = compactSearchText(full);
   const parts = full
     .split(/[\s,，、|/·・]+/)
     .map((term) => normalizeSearchText(term))
     .filter((term) => term.length >= 2);
-  return [...new Set([full, ...parts].filter(Boolean))].slice(0, 8);
+
+  // 긴 호텔명은 띄어쓰기/기호 차이 때문에 검색이 빗나갈 수 있어
+  // 원문, 단어, 공백 제거 버전을 함께 검색합니다.
+  return [...new Set([full, compactFull, ...parts].filter(Boolean))].slice(0, 10);
 }
 
 function jsonArraySql(column) {
@@ -38,28 +51,53 @@ function jsonArraySql(column) {
 }
 
 function pushPostSearchCondition(queryParts, binds, term) {
-  const like = `%${term}%`;
-  queryParts.push(`LOWER(COALESCE(title, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(summary, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(meta_description, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(category, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(content_md, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(focus_keyword, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(search_intent, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(destination_slug, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(hotel_slug, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(longtail_keywords_json, '')) LIKE ?`);
-  queryParts.push(`LOWER(COALESCE(tags_json, '')) LIKE ?`);
+  const safeTerm = normalizeSearchText(term);
+  const compactTerm = compactSearchText(term);
+  const like = `%${safeTerm}%`;
+  const compactLike = `%${compactTerm}%`;
+
+  const textColumns = [
+    "title",
+    "summary",
+    "meta_description",
+    "category",
+    "content_md",
+    "focus_keyword",
+    "search_intent",
+    "destination_slug",
+    "hotel_slug",
+    "longtail_keywords_json",
+    "tags_json"
+  ];
+
+  for (const column of textColumns) {
+    queryParts.push(`LOWER(COALESCE(${column}, '')) LIKE ?`);
+    binds.push(like);
+  }
+
+  // 띄어쓰기/하이픈 차이 보정: “호텔몬테에르마나후쿠오카”와
+  // “호텔 몬테 에르마나 후쿠오카”를 같은 검색 의도로 처리합니다.
+  if (compactTerm && compactTerm !== safeTerm) {
+    for (const column of ["title", "summary", "meta_description", "content_md", "focus_keyword", "hotel_slug"]) {
+      queryParts.push(`${compactSql(column)} LIKE ?`);
+      binds.push(compactLike);
+    }
+  }
+
   queryParts.push(`EXISTS (
     SELECT 1
     FROM json_each(${jsonArraySql('tags_json')})
     WHERE LOWER(TRIM(json_each.value)) LIKE ?
   )`);
+  binds.push(like);
+
   queryParts.push(`EXISTS (
     SELECT 1
     FROM json_each(${jsonArraySql('longtail_keywords_json')})
     WHERE LOWER(TRIM(json_each.value)) LIKE ?
   )`);
+  binds.push(like);
+
   queryParts.push(`EXISTS (
     SELECT 1
     FROM hotels h
@@ -70,46 +108,45 @@ function pushPostSearchCondition(queryParts, binds, term) {
         OR LOWER(COALESCE(h.area, '')) LIKE ?
         OR LOWER(COALESCE(h.summary, '')) LIKE ?
         OR LOWER(COALESCE(h.badges_json, '')) LIKE ?
+        ${compactTerm && compactTerm !== safeTerm ? `OR ${compactSql('h.name')} LIKE ? OR ${compactSql('h.name_en')} LIKE ?` : ""}
       )
   )`);
-  binds.push(like, like, like, like, like, like, like, like, like, like, like, like, like, like, like, like, like, like);
+  binds.push(like, like, like, like, like);
+  if (compactTerm && compactTerm !== safeTerm) binds.push(compactLike, compactLike);
 }
 
 function buildSearchWhere(query, binds) {
   const terms = getSearchTerms(query);
   if (!terms.length) return "";
 
-  const exactParts = [];
-  pushPostSearchCondition(exactParts, binds, terms[0]);
-
-  if (terms.length === 1) {
-    return `(${exactParts.join(" OR ")})`;
-  }
-
-  const tokenGroups = terms.slice(1).map((term) => {
-    const groupParts = [];
-    pushPostSearchCondition(groupParts, binds, term);
-    return `(${groupParts.join(" OR ")})`;
+  const groups = terms.map((term) => {
+    const parts = [];
+    pushPostSearchCondition(parts, binds, term);
+    return `(${parts.join(" OR ")})`;
   });
 
-  // 1순위는 전체 검색어 매칭, 2순위는 단어별 매칭입니다.
-  // 예: "더 원파이브 오사카 남바 도톤보리"처럼 긴 호텔명은 일부 단어만 맞아도 검색됩니다.
-  return `((${exactParts.join(" OR ")}) OR (${tokenGroups.join(" AND ")}))`;
+  // 기존처럼 모든 단어가 동시에 맞아야 하는 AND 검색으로 두면
+  // 긴 호텔명 검색에서 0건이 나오기 쉽습니다. 검색 페이지에서는
+  // 최소 한 단어라도 강하게 맞으면 노출하고, 정렬 점수로 관련도를 조정합니다.
+  return `(${groups.join(" OR ")})`;
 }
 
 function searchRankSql(rawQuery = "") {
   const terms = getSearchTerms(rawQuery);
   if (!terms.length) return "0";
   const full = terms[0].replace(/'/g, "''");
-  const firstToken = (terms[1] || full).replace(/'/g, "''");
+  const compactFull = compactSearchText(terms[0]).replace(/'/g, "''");
+  const firstToken = (terms.find((term) => term !== terms[0] && term !== compactFull) || terms[1] || full).replace(/'/g, "''");
   return `
     CASE
-      WHEN LOWER(COALESCE(title, '')) LIKE '%${full}%' THEN 100
-      WHEN EXISTS (SELECT 1 FROM hotels h WHERE h.slug = posts.hotel_slug AND LOWER(COALESCE(h.name, '')) LIKE '%${full}%') THEN 95
-      WHEN LOWER(COALESCE(focus_keyword, '')) LIKE '%${full}%' THEN 90
-      WHEN LOWER(COALESCE(title, '')) LIKE '%${firstToken}%' THEN 70
-      WHEN LOWER(COALESCE(summary, '')) LIKE '%${full}%' OR LOWER(COALESCE(meta_description, '')) LIKE '%${full}%' THEN 60
-      WHEN LOWER(COALESCE(content_md, '')) LIKE '%${full}%' THEN 40
+      WHEN LOWER(COALESCE(title, '')) LIKE '%${full}%' THEN 120
+      WHEN ${compactSql('title')} LIKE '%${compactFull}%' THEN 115
+      WHEN EXISTS (SELECT 1 FROM hotels h WHERE h.slug = posts.hotel_slug AND LOWER(COALESCE(h.name, '')) LIKE '%${full}%') THEN 110
+      WHEN EXISTS (SELECT 1 FROM hotels h WHERE h.slug = posts.hotel_slug AND ${compactSql('h.name')} LIKE '%${compactFull}%') THEN 108
+      WHEN LOWER(COALESCE(focus_keyword, '')) LIKE '%${full}%' THEN 100
+      WHEN LOWER(COALESCE(title, '')) LIKE '%${firstToken}%' THEN 80
+      WHEN LOWER(COALESCE(summary, '')) LIKE '%${full}%' OR LOWER(COALESCE(meta_description, '')) LIKE '%${full}%' THEN 70
+      WHEN LOWER(COALESCE(content_md, '')) LIKE '%${full}%' THEN 50
       ELSE 10
     END
   `;
@@ -122,7 +159,12 @@ function normalizeStatusValue(value = "published") {
 }
 
 function normalizedStatusSql() {
-  return "LOWER(TRIM(COALESCE(status, 'published')))";
+  return `CASE
+    WHEN TRIM(COALESCE(status, '')) = '' THEN 'published'
+    WHEN LOWER(TRIM(COALESCE(status, ''))) IN ('published', 'publish', 'public', '공개', '발행') THEN 'published'
+    WHEN LOWER(TRIM(COALESCE(status, ''))) IN ('draft', 'private', '비공개', '초안', '임시저장', '임시 저장') THEN 'draft'
+    ELSE LOWER(TRIM(COALESCE(status, 'published')))
+  END`;
 }
 
 function normalizeBadgeArray(value) {
@@ -132,12 +174,72 @@ function normalizeBadgeArray(value) {
   return [...new Set(source.map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 12);
 }
 
+async function ensurePostSearchColumns(db) {
+  const columns = [
+    ["category", "TEXT DEFAULT ''"],
+    ["meta_description", "TEXT DEFAULT ''"],
+    ["summary", "TEXT DEFAULT ''"],
+    ["cover_image", "TEXT DEFAULT ''"],
+    ["cover_image_alt", "TEXT DEFAULT ''"],
+    ["focus_keyword", "TEXT DEFAULT ''"],
+    ["longtail_keywords_json", "TEXT DEFAULT '[]'"],
+    ["tags_json", "TEXT DEFAULT '[]'"],
+    ["content_md", "TEXT DEFAULT ''"],
+    ["enable_sidebar_ad", "INTEGER DEFAULT 0"],
+    ["enable_inarticle_ads", "INTEGER DEFAULT 1"],
+    ["content_type", "TEXT DEFAULT 'travel_tip'"],
+    ["destination_slug", "TEXT DEFAULT ''"],
+    ["hotel_slug", "TEXT DEFAULT ''"],
+    ["affiliate_enabled", "INTEGER DEFAULT 0"],
+    ["search_intent", "TEXT DEFAULT ''"],
+    ["status", "TEXT DEFAULT 'published'"],
+    ["view_count", "INTEGER DEFAULT 0"],
+    ["published_at", "TEXT DEFAULT ''"],
+    ["updated_at", "TEXT DEFAULT ''"]
+  ];
+
+  for (const [name, type] of columns) {
+    try { await db.prepare(`ALTER TABLE posts ADD COLUMN ${name} ${type}`).run(); } catch (_) {}
+  }
+}
+
 async function ensureHotelColumns(db) {
+  await db.prepare(`
+    CREATE TABLE IF NOT EXISTS hotels (
+      slug TEXT PRIMARY KEY,
+      destination_slug TEXT DEFAULT '',
+      name TEXT DEFAULT '',
+      name_en TEXT DEFAULT '',
+      area TEXT DEFAULT '',
+      address TEXT DEFAULT '',
+      star_rating TEXT DEFAULT '',
+      badges_json TEXT DEFAULT '[]',
+      price_level TEXT DEFAULT '',
+      summary TEXT DEFAULT '',
+      meta_description TEXT DEFAULT '',
+      cover_image TEXT DEFAULT '',
+      cover_image_alt TEXT DEFAULT '',
+      status TEXT DEFAULT 'published',
+      published_at TEXT DEFAULT '',
+      updated_at TEXT DEFAULT ''
+    )
+  `).run();
+
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN badges_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN name_en TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN area TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN star_rating TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN price_level TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN summary TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN meta_description TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN cover_image TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN cover_image_alt TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN status TEXT DEFAULT 'published'`).run(); } catch (_) {}
+}
+
+async function ensureSearchSchema(db) {
+  await ensurePostSearchColumns(db);
+  await ensureHotelColumns(db);
 }
 
 function isHeroValueBadgeEnabled(value = "") {
@@ -276,6 +378,8 @@ export async function onRequestGet({ env, request }) {
   const page = clampInt(url.searchParams.get("page"), 1, 1, 9999);
   const perPage = clampInt(url.searchParams.get("per_page"), 8, 1, 24);
   const offset = (page - 1) * perPage;
+
+  await ensureSearchSchema(env.TRAVEL_DB);
 
   const admin = await getAdminSession(env, request);
   const allowedStatuses = new Set(["published", "draft", "all"]);
