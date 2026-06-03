@@ -17,6 +17,103 @@ function slugifyValue(value = "") {
     .replace(/^-|-$/g, "");
 }
 
+function normalizeSearchText(value = "") {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function getSearchTerms(value = "") {
+  const full = normalizeSearchText(value);
+  const parts = full
+    .split(/[\s,，、|/·・]+/)
+    .map((term) => normalizeSearchText(term))
+    .filter((term) => term.length >= 2);
+  return [...new Set([full, ...parts].filter(Boolean))].slice(0, 8);
+}
+
+function jsonArraySql(column) {
+  return `CASE WHEN json_valid(COALESCE(${column}, '[]')) THEN COALESCE(${column}, '[]') ELSE '[]' END`;
+}
+
+function pushPostSearchCondition(queryParts, binds, term) {
+  const like = `%${term}%`;
+  queryParts.push(`LOWER(COALESCE(title, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(summary, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(meta_description, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(category, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(content_md, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(focus_keyword, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(search_intent, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(destination_slug, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(hotel_slug, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(longtail_keywords_json, '')) LIKE ?`);
+  queryParts.push(`LOWER(COALESCE(tags_json, '')) LIKE ?`);
+  queryParts.push(`EXISTS (
+    SELECT 1
+    FROM json_each(${jsonArraySql('tags_json')})
+    WHERE LOWER(TRIM(json_each.value)) LIKE ?
+  )`);
+  queryParts.push(`EXISTS (
+    SELECT 1
+    FROM json_each(${jsonArraySql('longtail_keywords_json')})
+    WHERE LOWER(TRIM(json_each.value)) LIKE ?
+  )`);
+  queryParts.push(`EXISTS (
+    SELECT 1
+    FROM hotels h
+    WHERE h.slug = posts.hotel_slug
+      AND (
+        LOWER(COALESCE(h.name, '')) LIKE ?
+        OR LOWER(COALESCE(h.name_en, '')) LIKE ?
+        OR LOWER(COALESCE(h.area, '')) LIKE ?
+        OR LOWER(COALESCE(h.summary, '')) LIKE ?
+        OR LOWER(COALESCE(h.badges_json, '')) LIKE ?
+      )
+  )`);
+  binds.push(like, like, like, like, like, like, like, like, like, like, like, like, like, like, like, like, like, like);
+}
+
+function buildSearchWhere(query, binds) {
+  const terms = getSearchTerms(query);
+  if (!terms.length) return "";
+
+  const exactParts = [];
+  pushPostSearchCondition(exactParts, binds, terms[0]);
+
+  if (terms.length === 1) {
+    return `(${exactParts.join(" OR ")})`;
+  }
+
+  const tokenGroups = terms.slice(1).map((term) => {
+    const groupParts = [];
+    pushPostSearchCondition(groupParts, binds, term);
+    return `(${groupParts.join(" OR ")})`;
+  });
+
+  // 1순위는 전체 검색어 매칭, 2순위는 단어별 매칭입니다.
+  // 예: "더 원파이브 오사카 남바 도톤보리"처럼 긴 호텔명은 일부 단어만 맞아도 검색됩니다.
+  return `((${exactParts.join(" OR ")}) OR (${tokenGroups.join(" AND ")}))`;
+}
+
+function searchRankSql(rawQuery = "") {
+  const terms = getSearchTerms(rawQuery);
+  if (!terms.length) return "0";
+  const full = terms[0].replace(/'/g, "''");
+  const firstToken = (terms[1] || full).replace(/'/g, "''");
+  return `
+    CASE
+      WHEN LOWER(COALESCE(title, '')) LIKE '%${full}%' THEN 100
+      WHEN EXISTS (SELECT 1 FROM hotels h WHERE h.slug = posts.hotel_slug AND LOWER(COALESCE(h.name, '')) LIKE '%${full}%') THEN 95
+      WHEN LOWER(COALESCE(focus_keyword, '')) LIKE '%${full}%' THEN 90
+      WHEN LOWER(COALESCE(title, '')) LIKE '%${firstToken}%' THEN 70
+      WHEN LOWER(COALESCE(summary, '')) LIKE '%${full}%' OR LOWER(COALESCE(meta_description, '')) LIKE '%${full}%' THEN 60
+      WHEN LOWER(COALESCE(content_md, '')) LIKE '%${full}%' THEN 40
+      ELSE 10
+    END
+  `;
+}
 
 function normalizeStatusValue(value = "published") {
   const raw = String(value || "published").trim().toLowerCase();
@@ -175,8 +272,6 @@ export async function onRequestGet({ env, request }) {
   const contentTypeParam = String(url.searchParams.get("content_type") || url.searchParams.get("content_types") || "").trim();
   const contentTypes = [...new Set(contentTypeParam.split(/[,.，、|]/).map((item) => normalizeContentType(item)).filter(Boolean))].slice(0, 10);
   const query = String(url.searchParams.get("q") || "").trim().toLowerCase();
-  const searchTitle = String(url.searchParams.get("search_title") || "1").trim() !== "0";
-  const searchContent = String(url.searchParams.get("search_content") || "0").trim() === "1";
   const sort = String(url.searchParams.get("sort") || url.searchParams.get("order") || "").trim().toLowerCase();
   const page = clampInt(url.searchParams.get("page"), 1, 1, 9999);
   const perPage = clampInt(url.searchParams.get("per_page"), 8, 1, 24);
@@ -201,7 +296,7 @@ export async function onRequestGet({ env, request }) {
   }
 
   if (tag) {
-    where.push("EXISTS (SELECT 1 FROM json_each(COALESCE(tags_json, '[]')) WHERE TRIM(json_each.value) = ?)");
+    where.push(`EXISTS (SELECT 1 FROM json_each(${jsonArraySql('tags_json')}) WHERE TRIM(json_each.value) = ?)`);
     binds.push(tag);
   }
 
@@ -211,39 +306,16 @@ export async function onRequestGet({ env, request }) {
   }
 
   if (query) {
-    const qLike = `%${query}%`;
-    const queryParts = [];
-
-    if (searchTitle) {
-      queryParts.push(`LOWER(COALESCE(title, '')) LIKE ?`);
-      binds.push(qLike);
-    }
-
-    if (searchContent) {
-      queryParts.push(`LOWER(COALESCE(summary, '')) LIKE ?`);
-      queryParts.push(`LOWER(COALESCE(meta_description, '')) LIKE ?`);
-      queryParts.push(`LOWER(COALESCE(category, '')) LIKE ?`);
-      queryParts.push(`LOWER(COALESCE(content_md, '')) LIKE ?`);
-      queryParts.push(`EXISTS (
-        SELECT 1
-        FROM json_each(COALESCE(tags_json, '[]'))
-        WHERE LOWER(TRIM(json_each.value)) LIKE ?
-      )`);
-      binds.push(qLike, qLike, qLike, qLike, qLike);
-    }
-
-    if (!queryParts.length) {
-      queryParts.push(`LOWER(COALESCE(title, '')) LIKE ?`);
-      binds.push(qLike);
-    }
-
-    where.push(`(${queryParts.join(" OR ")})`);
+    where.push(buildSearchWhere(query, binds));
   }
 
   const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
-  const orderSql = sort === "published" || sort === "published_at"
-    ? "ORDER BY published_at DESC, updated_at DESC"
-    : "ORDER BY updated_at DESC, published_at DESC";
+  const rankSql = query ? searchRankSql(query) : "0";
+  const orderSql = query
+    ? `ORDER BY search_rank DESC, published_at DESC, updated_at DESC`
+    : sort === "published" || sort === "published_at"
+      ? "ORDER BY published_at DESC, updated_at DESC"
+      : "ORDER BY updated_at DESC, published_at DESC";
 
   const itemsSql = `
     SELECT
@@ -268,7 +340,8 @@ export async function onRequestGet({ env, request }) {
       status,
       view_count,
       published_at,
-      updated_at
+      updated_at,
+      ${rankSql} AS search_rank
     FROM posts
     ${whereSql}
     ${orderSql}
