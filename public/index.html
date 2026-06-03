@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260603v17" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260603v16" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260603v17" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
 </head>
 <body class="travel-home-body">
@@ -57,7 +57,7 @@
                 <span>여행지</span>
               </div>
 
-              <form class="wthome-search" id="wthomeSearchForm" role="search" autocomplete="off">
+              <form class="wthome-search" id="wthomeSearchForm" action="/search/" method="get" role="search" autocomplete="off">
                 <div class="wthome-search__field">
                   <span class="wthome-search__icon" aria-hidden="true">🔍</span>
                   <input
@@ -73,8 +73,6 @@
                   검색하기
                 </button>
               </form>
-
-              <div class="wthome-search-results" id="wthomeSearchResults" aria-live="polite" hidden></div>
 
               <p class="wthome-hero__hint">
                 예: <strong>오사카 난바 호텔</strong>, <strong>후쿠오카 하카타 숙소</strong>, <strong>다낭 미케비치 호텔</strong>
@@ -943,64 +941,16 @@
     function bindHomeHeroSearch() {
       const form = $('wthomeSearchForm');
       const input = $('wthomeSearchInput');
-      const results = $('wthomeSearchResults');
-      if (!form || !input || !results) return;
+      if (!form || !input) return;
 
-      const setSearchMessage = (message) => {
-        results.hidden = false;
-        results.innerHTML = `<div class="wthome-search-results__message">${escapeHtml(message)}</div>`;
-      };
-
-      const hideSearchResults = () => {
-        results.hidden = true;
-        results.innerHTML = '';
-      };
-
-      const renderSearchResults = (items, query) => {
-        if (!items.length) {
-          setSearchMessage(`“${query}”에 대한 검색 결과가 없습니다.`);
-          return;
-        }
-
-        results.hidden = false;
-        results.innerHTML = items.map((item) => {
-          const title = item.title || '여행 글';
-          const href = `/post/${encodeURIComponent(item.slug || '')}`;
-          const meta = [labelHotelPostType(item.content_type), item.category].filter(Boolean).join(' · ');
-          return `<a class="wthome-search-results__item" href="${href}"><span>${escapeHtml(title)}</span>${meta ? `<small>${escapeHtml(meta)}</small>` : ''}</a>`;
-        }).join('');
-      };
-
-      form.addEventListener('submit', async (event) => {
+      form.addEventListener('submit', (event) => {
         event.preventDefault();
         const query = normalizeText(input.value);
         if (!query) {
-          hideSearchResults();
           input.focus();
           return;
         }
-
-        setSearchMessage('검색 결과를 불러오는 중입니다.');
-
-        try {
-          const url = new URL('/api/posts', window.location.origin);
-          url.searchParams.set('q', query);
-          url.searchParams.set('page', '1');
-          url.searchParams.set('per_page', '6');
-          url.searchParams.set('search_title', '1');
-          url.searchParams.set('search_content', '1');
-          const res = await fetch(url.toString(), { headers: { Accept: 'application/json' } });
-          if (!res.ok) throw new Error('search_failed');
-          const data = await res.json().catch(() => ({}));
-          const items = Array.isArray(data?.items) ? data.items : [];
-          renderSearchResults(items, query);
-        } catch (_) {
-          setSearchMessage('검색 결과를 불러오지 못했습니다.');
-        }
-      });
-
-      input.addEventListener('input', () => {
-        if (!normalizeText(input.value)) hideSearchResults();
+        window.location.href = `/search/?q=${encodeURIComponent(query)}`;
       });
     }
 
