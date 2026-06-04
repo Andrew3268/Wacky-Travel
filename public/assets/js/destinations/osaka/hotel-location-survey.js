@@ -599,13 +599,25 @@ const cityConfig = {
       return Math.round((answeredCount / cityConfig.questions.length) * 100);
     }
 
+    function getProgressMessage() {
+      const total = cityConfig.questions.length;
+      const step = currentQuestionIndex + 1;
+
+      if (step === 1) return "가볍게 시작해볼까요?";
+      if (step === total) return "마지막 질문이에요!";
+      if (step >= total - 1) return "거의 다 왔어요";
+      if (step >= Math.ceil(total * 0.65)) return "조금만 더 가면 추천 완료!";
+      if (step >= Math.ceil(total * 0.4)) return "좋아요, 취향이 보이기 시작해요";
+      return "동선을 하나씩 맞춰보는 중이에요";
+    }
+
     function renderQuestion() {
       const question = cityConfig.questions[currentQuestionIndex];
       const selectedIndex = answers[currentQuestionIndex];
       const percent = getAnsweredPercent();
 
       questionCount.textContent = `${currentQuestionIndex + 1} / ${cityConfig.questions.length}`;
-      progressText.textContent = `${percent}% 완료`;
+      progressText.textContent = getProgressMessage();
       progressFill.style.width = `${percent}%`;
       progressBar.setAttribute("aria-valuenow", String(percent));
 
@@ -880,23 +892,12 @@ const cityConfig = {
 
     function renderPersuasiveResult(topArea) {
       const content = getPersuasiveContent(topArea);
-      const matchedAnswers = getMatchedAnswers(topArea.key);
-      const selectedAnswerList = document.getElementById("selectedAnswerList");
       const reasonCardList = document.getElementById("reasonCardList");
 
       setText("resultWhyText", content.intro);
       setText("decisionConclusionTitle", content.conclusionTitle);
       setText("decisionConclusionText", content.conclusionText);
 
-      if (selectedAnswerList) {
-        selectedAnswerList.innerHTML = "";
-        matchedAnswers.forEach((answer) => {
-          const chip = document.createElement("span");
-          chip.className = "wt-answer-chip";
-          chip.textContent = answer.title;
-          selectedAnswerList.appendChild(chip);
-        });
-      }
 
       if (reasonCardList) {
         reasonCardList.innerHTML = "";
@@ -946,7 +947,7 @@ const cityConfig = {
         chipsArea.appendChild(span);
       });
 
-      progressText.textContent = "100% 완료";
+      progressText.textContent = "추천 결과가 나왔어요!";
       progressFill.style.width = "100%";
       progressBar.setAttribute("aria-valuenow", "100");
       window.scrollTo({ top: 0, behavior: "smooth" });

@@ -315,7 +315,7 @@
     }
 
     .wt-result-lead {
-      margin-top: 22px;
+      margin-top: 28px;
       padding: 20px;
       border-radius: var(--wt-radius-md);
       background: #ffffff;
@@ -338,8 +338,8 @@
     .wt-chip-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 24px;
     }
 
     .wt-chip {
@@ -352,7 +352,7 @@
     }
 
     .wt-result-story {
-      margin-top: 22px;
+      margin-top: 36px;
       padding: clamp(20px, 4vw, 30px);
       border-radius: var(--wt-radius-md);
       background: #ffffff;
@@ -371,49 +371,17 @@
     }
 
     .wt-result-story-desc {
-      margin: 10px 0 0;
+      margin: 14px 0 0;
       color: #53667a;
       font-size: 15px;
     }
 
-    .wt-answer-summary {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 18px;
-      background: #f8fafc;
-    }
-
-    .wt-answer-summary strong {
-      display: block;
-      color: #20364c;
-      font-size: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .wt-answer-chip-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .wt-answer-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 6px 11px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: var(--wt-blue-deep);
-      font-size: 13px;
-      font-weight: 850;
-    }
 
     .wt-reason-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
+      gap: 16px;
+      margin-top: 26px;
     }
 
     .wt-reason-card {
@@ -451,7 +419,7 @@
     }
 
     .wt-decision-box {
-      margin-top: 14px;
+      margin-top: 24px;
       padding: 18px;
       border-radius: 20px;
       background: #eef7ff;
@@ -581,14 +549,14 @@
 
 
     .wt-hotel-section {
-      margin-top: 22px;
+      margin-top: 40px;
       padding: 22px;
       border-radius: var(--wt-radius-md);
       background: #f8fafc;
     }
 
     .wt-section-heading {
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
 
     .wt-section-eyebrow {
@@ -735,7 +703,7 @@
     }
 
     .wt-post-list-section {
-      margin-top: 16px;
+      margin-top: 30px;
       padding: 22px;
       border-radius: var(--wt-radius-md);
       background: #ffffff;
@@ -777,7 +745,7 @@
     }
 
     .wt-related {
-      margin-top: 22px;
+      margin-top: 34px;
       padding: 22px;
       border-radius: var(--wt-radius-md);
       background: #f8fafc;
@@ -814,7 +782,7 @@
     .wt-reset-area {
       display: flex;
       justify-content: center;
-      margin-top: 24px;
+      margin-top: 34px;
     }
 
 
@@ -913,7 +881,7 @@
             <div class="wt-progress" aria-label="진행률">
               <div class="wt-progress-top">
                 <span id="questionCount">1 / 8</span>
-                <span id="progressText">0% 완료</span>
+                <span id="progressText">가볍게 시작해볼까요?</span>
               </div>
               <div class="wt-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
                 <div class="wt-progress-fill" id="progressFill"></div>
@@ -951,10 +919,6 @@
                   <p class="wt-result-story-desc" id="resultWhyText"></p>
                 </div>
 
-                <div class="wt-answer-summary" id="answerSummaryBox">
-                  <strong>이번 답변에서 강하게 반영된 기준</strong>
-                  <div class="wt-answer-chip-list" id="selectedAnswerList"></div>
-                </div>
 
                 <div class="wt-reason-list" id="reasonCardList"></div>
 
@@ -992,6 +956,6 @@
       </section>
 </div>
   </main>
-  <script src="/assets/js/destinations/osaka/hotel-location-survey.js?v=20260604v19" defer></script>
+  <script src="/assets/js/destinations/osaka/hotel-location-survey.js?v=20260604v22" defer></script>
 </body>
 </html>
