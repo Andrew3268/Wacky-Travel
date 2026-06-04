@@ -5310,3 +5310,440 @@ body::after {
 .city-guide-area-card dt {
   background: transparent;
 }
+
+/* V21: Osaka travel guide editorial layout */
+.osaka-guide-page {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.07), transparent 34%),
+    radial-gradient(circle at 92% 6%, rgba(52, 211, 153, 0.08), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 42%, #ffffff 100%);
+}
+
+.osaka-guide-page .container {
+  width: min(100% - 36px, 1120px);
+}
+
+.osaka-guide-hero {
+  padding-top: clamp(28px, 5vw, 64px);
+}
+
+.osaka-guide-hero__inner {
+  display: grid;
+  gap: 18px;
+  padding: clamp(34px, 6vw, 70px);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(37, 99, 235, 0.1), transparent 30%),
+    linear-gradient(135deg, #ffffff 0%, #f4f9ff 58%, #eef7ff 100%);
+}
+
+.osaka-guide-hero h1 {
+  max-width: 820px;
+  margin: 0;
+  color: #10243d;
+  font-size: clamp(2.35rem, 5.8vw, 5.1rem);
+  line-height: 1.03;
+  letter-spacing: -0.07em;
+}
+
+.osaka-guide-hero__subtitle {
+  max-width: 840px;
+  margin: 0;
+  color: #173b61;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 850;
+  line-height: 1.42;
+  letter-spacing: -0.035em;
+}
+
+.osaka-guide-hero__lead {
+  max-width: 760px;
+  margin: 0;
+  color: #52677e;
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.osaka-guide-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.osaka-guide-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #16456e;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.osaka-guide-button--primary {
+  background: #174c78;
+  color: #ffffff;
+}
+
+.osaka-guide-snapshot {
+  display: grid;
+  gap: 18px;
+  margin-top: clamp(20px, 3vw, 34px);
+}
+
+.osaka-guide-snapshot__head {
+  max-width: 760px;
+}
+
+.osaka-guide-snapshot__head h2 {
+  margin: 5px 0 0;
+  color: #12263f;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.22;
+  letter-spacing: -0.052em;
+}
+
+.osaka-guide-snapshot__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.osaka-guide-snapshot__grid article {
+  min-height: 190px;
+  padding: 22px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.osaka-guide-snapshot__grid span {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: #2563eb;
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.osaka-guide-snapshot__grid h3 {
+  margin: 0;
+  color: #132235;
+  font-size: 1.08rem;
+  line-height: 1.4;
+  letter-spacing: -0.035em;
+}
+
+.osaka-guide-snapshot__grid p {
+  margin: 9px 0 0;
+  color: #5c7087;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.osaka-guide-layout {
+  display: block;
+  padding-top: clamp(28px, 4vw, 52px);
+  padding-bottom: clamp(34px, 5vw, 72px);
+}
+
+.osaka-guide-article {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.osaka-guide-section {
+  position: relative;
+  margin: 0 0 clamp(24px, 3.6vw, 44px);
+  padding: clamp(26px, 4vw, 44px);
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.osaka-guide-section--intro {
+  background: linear-gradient(135deg, #ffffff 0%, #f4f9ff 100%);
+}
+
+.osaka-guide-section > *:first-child {
+  margin-top: 0;
+}
+
+.osaka-guide-section > *:last-child {
+  margin-bottom: 0;
+}
+
+.osaka-guide-heading {
+  margin: 0 0 18px;
+  color: #11263f;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  line-height: 1.25;
+  letter-spacing: -0.055em;
+}
+
+.osaka-guide-heading::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #34d399);
+}
+
+.osaka-guide-subheading {
+  margin: 30px 0 12px;
+  color: #173b61;
+  font-size: clamp(1.14rem, 2vw, 1.42rem);
+  line-height: 1.36;
+  letter-spacing: -0.04em;
+}
+
+.osaka-guide-section p {
+  margin: 0 0 15px;
+  color: #47596d;
+  font-size: 1rem;
+  line-height: 1.86;
+}
+
+.osaka-guide-section strong {
+  color: #12263f;
+  font-weight: 900;
+}
+
+.osaka-guide-quote {
+  margin: 18px 0 22px;
+  padding: 22px 24px;
+  border-left: 0;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #eef7ff 0%, #f6fbff 100%);
+  color: #16456e;
+}
+
+.osaka-guide-quote p {
+  margin: 0;
+  color: #16456e;
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-weight: 850;
+  line-height: 1.62;
+  letter-spacing: -0.03em;
+}
+
+.osaka-guide-list {
+  margin: 12px 0 20px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.osaka-guide-list li {
+  position: relative;
+  margin: 8px 0;
+  padding-left: 22px;
+  color: #4e6074;
+  line-height: 1.75;
+}
+
+.osaka-guide-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.78em;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+.osaka-guide-list .osaka-guide-list {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+.osaka-guide-list .osaka-guide-list li::before {
+  background: #34d399;
+}
+
+.osaka-guide-section ol.osaka-guide-list {
+  counter-reset: osakaGuideStep;
+}
+
+.osaka-guide-section ol.osaka-guide-list > li {
+  counter-increment: osakaGuideStep;
+  padding-left: 34px;
+}
+
+.osaka-guide-section ol.osaka-guide-list > li::before {
+  content: counter(osakaGuideStep);
+  top: 0.28em;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef7ff;
+  color: #174c78;
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.osaka-guide-table-wrap {
+  width: 100%;
+  margin: 18px 0 24px;
+  overflow-x: auto;
+  border-radius: 24px;
+  background: #ffffff;
+}
+
+.osaka-guide-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  color: #42556b;
+  font-size: 0.95rem;
+}
+
+.osaka-guide-table th,
+.osaka-guide-table td {
+  padding: 15px 16px;
+  vertical-align: top;
+  text-align: left;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.055);
+}
+
+.osaka-guide-table th {
+  background: #f4f9ff;
+  color: #173b61;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.osaka-guide-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.osaka-guide-table td:first-child {
+  color: #12263f;
+  font-weight: 850;
+}
+
+.osaka-guide-related {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: clamp(18px, 4vw, 42px);
+  align-items: center;
+  margin-bottom: clamp(34px, 5vw, 70px);
+  padding: clamp(28px, 5vw, 48px);
+  border-radius: 34px;
+  background: linear-gradient(135deg, #102a45 0%, #174c78 58%, #2563eb 100%);
+  color: #ffffff;
+}
+
+.osaka-guide-related .eyebrow,
+.osaka-guide-related h2,
+.osaka-guide-related p {
+  color: #ffffff;
+}
+
+.osaka-guide-related h2 {
+  margin: 5px 0 10px;
+  font-size: clamp(1.55rem, 3vw, 2.45rem);
+  line-height: 1.24;
+  letter-spacing: -0.052em;
+}
+
+.osaka-guide-related p {
+  margin: 0;
+  opacity: 0.82;
+  line-height: 1.75;
+}
+
+.osaka-guide-related__links {
+  display: grid;
+  gap: 10px;
+}
+
+.osaka-guide-related__links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 54px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.osaka-guide-related__links a::after {
+  content: "→";
+  font-weight: 900;
+}
+
+@media (max-width: 980px) {
+  .osaka-guide-snapshot__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .osaka-guide-related {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .osaka-guide-page .container {
+    width: min(100% - 24px, 1120px);
+  }
+
+  .osaka-guide-hero__inner,
+  .osaka-guide-section,
+  .osaka-guide-related {
+    border-radius: 26px;
+  }
+
+  .osaka-guide-hero__inner {
+    padding: 30px 20px;
+  }
+
+  .osaka-guide-hero__actions {
+    flex-direction: column;
+  }
+
+  .osaka-guide-button {
+    width: 100%;
+  }
+
+  .osaka-guide-snapshot__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .osaka-guide-snapshot__grid article {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .osaka-guide-section {
+    padding: 24px 18px;
+  }
+
+  .osaka-guide-table {
+    min-width: 620px;
+  }
+}
+
+.osaka-guide-section hr {
+  display: none;
+}
+
+.osaka-guide-section li > p {
+  margin: 0 0 4px;
+}
+
+.osaka-guide-section li > p + .osaka-guide-list {
+  margin-top: 4px;
+}
