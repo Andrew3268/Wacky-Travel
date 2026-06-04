@@ -1,5 +1,4 @@
-
-    const $ = (id) => document.getElementById(id);
+const $ = (id) => document.getElementById(id);
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
     const normalizeText = (value) => String(value || '').replace(/\s+/g, ' ').trim();
     const escapeRegExp = (value) => String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -270,4 +269,3 @@
 
     const initialParams = new URLSearchParams(window.location.search);
     startSearch(initialParams.get('q') || '', { replaceUrl: false });
-  
