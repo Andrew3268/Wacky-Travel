@@ -86,7 +86,8 @@ export async function onRequestGet({ env, request }) {
       .filter((item) => String(item.slug || "").trim().toLowerCase() === "osaka")
       .flatMap((item) => [
         { loc: `${origin}/destinations/osaka/travel-guide/`, lastmod: item.updated_at },
-        { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: item.updated_at }
+        { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: item.updated_at },
+        { loc: `${origin}/destinations/osaka/hotel-location-survey/`, lastmod: item.updated_at }
       ]),
     ...posts.map((item) => ({ loc: `${origin}/post/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at }))
   ];

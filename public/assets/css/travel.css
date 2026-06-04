@@ -4929,3 +4929,126 @@ body::after {
     min-width: 720px;
   }
 }
+
+/* V18: Osaka hotel guide survey CTA */
+.city-guide-survey-cta {
+  margin-top: -10px;
+  margin-bottom: 28px;
+}
+
+.city-guide-survey-cta__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  min-height: 156px;
+  padding: clamp(24px, 4vw, 38px);
+  overflow: hidden;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 90% 12%, rgba(52, 211, 153, 0.22), transparent 31%),
+    linear-gradient(135deg, #102a45 0%, #17466f 52%, #2563eb 100%);
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 22px 70px rgba(16, 42, 69, 0.18);
+}
+
+.city-guide-survey-cta__link::after {
+  content: "";
+  position: absolute;
+  inset: auto 38px -68px auto;
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  pointer-events: none;
+}
+
+.city-guide-survey-cta__text {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.city-guide-survey-cta__eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 30px;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.83rem;
+  font-weight: 900;
+}
+
+.city-guide-survey-cta__text strong {
+  font-size: clamp(1.55rem, 3.4vw, 2.7rem);
+  line-height: 1.18;
+  letter-spacing: -0.05em;
+  font-weight: 920;
+}
+
+.city-guide-survey-cta__text span:last-child {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.98rem, 1.45vw, 1.08rem);
+  line-height: 1.7;
+  letter-spacing: -0.015em;
+}
+
+.city-guide-survey-cta__button {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 21px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #17466f;
+  font-size: 0.96rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.city-guide-survey-cta__button::after {
+  content: "→";
+  margin-left: 8px;
+}
+
+.city-guide-toc a[href^="/destinations/osaka/hotel-location-survey"] {
+  margin-bottom: 4px;
+  padding: 11px 12px;
+  border-top: 0;
+  border-radius: 16px;
+  background: #eef7ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+@media (max-width: 720px) {
+  .city-guide-survey-cta {
+    margin-top: -4px;
+    margin-bottom: 20px;
+  }
+
+  .city-guide-survey-cta__link {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 24px 20px;
+    border-radius: 26px;
+  }
+
+  .city-guide-survey-cta__button {
+    width: 100%;
+  }
+}
