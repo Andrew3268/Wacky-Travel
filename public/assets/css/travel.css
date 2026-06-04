@@ -4422,3 +4422,329 @@ body::after {
     font-size: 17px;
   }
 }
+
+
+/* Destination guide link cards v16 */
+.destination-guide-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: min(100%, 880px);
+  margin-top: 24px;
+}
+
+.destination-guide-link {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 132px;
+  padding: 20px;
+  border: 1px solid rgba(23, 23, 23, 0.09);
+  border-radius: 24px;
+  background: #fff;
+  color: #111827;
+  text-decoration: none;
+}
+
+.destination-guide-link__label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+}
+
+.destination-guide-link strong {
+  display: block;
+  font-size: 1.14rem;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.destination-guide-link small {
+  display: block;
+  color: var(--travel-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Static city guide pages v16 */
+.city-guide-page {
+  background: #fff;
+}
+
+.city-guide-hero {
+  padding-top: 28px;
+  padding-bottom: 32px;
+}
+
+.city-guide-hero__inner {
+  max-width: 940px;
+}
+
+.city-guide-hero h1 {
+  margin: 0;
+  max-width: 900px;
+  color: #111827;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  font-weight: 880;
+}
+
+.city-guide-hero__lead {
+  max-width: 780px;
+  margin: 18px 0 0;
+  color: var(--travel-muted);
+  font-size: 1.08rem;
+  line-height: 1.78;
+}
+
+.city-guide-hero__quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.city-guide-hero__quick li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 12px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  border-radius: 999px;
+  color: #3f4858;
+  background: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.city-guide-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 28px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+.city-guide-content {
+  min-width: 0;
+}
+
+.city-guide-section {
+  padding: 28px 0;
+  border-top: 1px solid rgba(23, 23, 23, 0.08);
+}
+
+.city-guide-section:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.city-guide-section h2 {
+  margin: 0 0 14px;
+  color: #111827;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+.city-guide-section h3 {
+  margin: 22px 0 8px;
+  color: #111827;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.city-guide-section p,
+.city-guide-section li {
+  color: #4b5563;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.city-guide-section p {
+  margin: 0 0 12px;
+}
+
+.city-guide-section ul,
+.city-guide-section ol {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.city-guide-answer {
+  margin: 0 0 22px;
+  padding: 18px 20px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 22px;
+  background: rgba(37, 99, 235, 0.045);
+}
+
+.city-guide-answer strong {
+  color: #1d4ed8;
+}
+
+.city-guide-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.city-guide-card {
+  padding: 18px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  border-radius: 22px;
+  background: #fff;
+}
+
+.city-guide-card h3 {
+  margin-top: 0;
+}
+
+.city-guide-card p:last-child {
+  margin-bottom: 0;
+}
+
+.city-guide-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  border-radius: 22px;
+}
+
+.city-guide-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.city-guide-table th,
+.city-guide-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.07);
+  color: #4b5563;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.65;
+}
+
+.city-guide-table th {
+  color: #111827;
+  background: rgba(248, 250, 252, 0.9);
+  font-size: 0.92rem;
+  font-weight: 850;
+}
+
+.city-guide-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.city-guide-note {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: #f8fafc;
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.city-guide-toc {
+  position: sticky;
+  top: 92px;
+  padding: 18px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  border-radius: 22px;
+  background: #fff;
+}
+
+.city-guide-toc strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #111827;
+  font-size: 0.98rem;
+}
+
+.city-guide-toc a {
+  display: block;
+  padding: 8px 0;
+  border-top: 1px solid rgba(23, 23, 23, 0.06);
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.city-guide-related {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.city-guide-related a {
+  display: block;
+  padding: 18px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  border-radius: 20px;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 850;
+}
+
+.city-guide-related span {
+  display: block;
+  margin-top: 6px;
+  color: var(--travel-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .city-guide-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .city-guide-toc {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .destination-guide-links,
+  .city-guide-card-grid,
+  .city-guide-related {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-guide-link {
+    min-height: auto;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .city-guide-hero {
+    padding-top: 18px;
+    padding-bottom: 24px;
+  }
+
+  .city-guide-section {
+    padding: 24px 0;
+  }
+}

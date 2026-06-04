@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v22-topbar-cleanup-v15";
+const DESTINATION_RENDER_VERSION = "destination-detail-v23-osaka-guide-links-v16";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -109,6 +109,7 @@ export async function onRequestGet({ params, env, request }) {
           ${destination.airport_info ? `<span>공항: ${escapeHtml(destination.airport_info)}</span>` : ""}
           ${destination.transport_summary ? `<span>동선: ${escapeHtml(destination.transport_summary)}</span>` : ""}
         </div>
+        ${renderDestinationGuideLinks(destination)}
       </div>
     </section>
 
@@ -218,6 +219,29 @@ function getHotelPostGroup(post = {}) {
 
 function isHotelPost(post = {}) {
   return Boolean(getHotelPostGroup(post));
+}
+
+function isOsakaDestination(destination = {}) {
+  const slug = String(destination.slug || "").trim().toLowerCase();
+  const name = String(destination.name || "").trim();
+  const city = String(destination.city || "").trim();
+  return slug === "osaka" || name === "오사카" || city === "오사카";
+}
+
+function renderDestinationGuideLinks(destination = {}) {
+  if (!isOsakaDestination(destination)) return "";
+  return `<nav class="destination-guide-links" aria-label="오사카 핵심 가이드">
+    <a class="destination-guide-link" href="/destinations/osaka/travel-guide/">
+      <span class="destination-guide-link__label">여행 가이드</span>
+      <strong>오사카 여행 동선 먼저 보기</strong>
+      <small>처음 가는 사람을 위한 지역·일정·이동 기준</small>
+    </a>
+    <a class="destination-guide-link" href="/destinations/osaka/hotel-guide/">
+      <span class="destination-guide-link__label">호텔 가이드</span>
+      <strong>숙소 위치 어디가 좋을까?</strong>
+      <small>난바·우메다·신오사카·베이 에어리어 비교</small>
+    </a>
+  </nav>`;
 }
 
 function extractHotelNameFromTitle(title = "") {
