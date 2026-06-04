@@ -4459,7 +4459,6 @@ body::after {
   width: 42px;
   height: 42px;
   border-radius: 999px;
-  background: rgba(37, 99, 235, 0.08);
 }
 
 .destination-guide-link__label {
@@ -4808,7 +4807,6 @@ body::after {
   min-height: 26px;
   padding: 4px 9px;
   border-radius: 999px;
-  background: rgba(37, 99, 235, 0.075);
   color: #1d4ed8;
   font-size: 0.82rem;
   font-weight: 900;
@@ -5088,7 +5086,6 @@ body::after {
 
 .city-guide-hero .eyebrow {
   border: 0;
-  background: rgba(37, 99, 235, 0.08);
   color: #1d4ed8;
 }
 
@@ -5201,10 +5198,6 @@ body::after {
   gap: 10px 16px;
 }
 
-.city-guide-area-card dt {
-  background: rgba(37, 99, 235, 0.08);
-}
-
 .city-guide-toc {
   border: 0;
   border-radius: 28px;
@@ -5302,4 +5295,18 @@ body::after {
   .city-guide-survey-cta__button {
     width: 100%;
   }
+}
+
+
+/* V20: guide pages without side TOC */
+.city-guide-layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.city-guide-layout--single .city-guide-content {
+  width: 100%;
+}
+
+.city-guide-area-card dt {
+  background: transparent;
 }
