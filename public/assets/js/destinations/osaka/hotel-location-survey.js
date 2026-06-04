@@ -1,5 +1,10 @@
-
-    const cityConfig = {
+/*
+ * Osaka hotel location survey logic.
+ * This file is intentionally city-specific.
+ * Future cities should use their own file, for example:
+ * /assets/js/destinations/fukuoka/hotel-location-survey.js
+ */
+const cityConfig = {
       cityName: "오사카",
       areas: {
         namba: {

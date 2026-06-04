@@ -5052,3 +5052,254 @@ body::after {
     width: 100%;
   }
 }
+
+/* V19: city-specific guide page layout refinements
+   - calmer editorial layout
+   - fewer visible borders
+   - safer responsive grid for static city guide pages */
+.city-guide-page {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 46%, #ffffff 100%);
+}
+
+.city-guide-page .container {
+  width: min(100% - 32px, 1120px);
+}
+
+.city-guide-hero {
+  padding-top: clamp(18px, 3vw, 34px);
+  padding-bottom: clamp(22px, 4vw, 42px);
+}
+
+.city-guide-hero__inner {
+  max-width: 1120px;
+  padding: clamp(30px, 5vw, 64px);
+  border: 0;
+  border-radius: clamp(28px, 4vw, 42px);
+  background:
+    radial-gradient(circle at 88% 4%, rgba(59, 130, 246, 0.14), transparent 31%),
+    radial-gradient(circle at 5% 18%, rgba(52, 211, 153, 0.12), transparent 28%),
+    linear-gradient(135deg, #ffffff 0%, #f6faff 62%, #f7fffb 100%);
+  box-shadow: 0 22px 70px rgba(15, 23, 42, 0.055);
+}
+
+.city-guide-hero__inner::before {
+  display: none;
+}
+
+.city-guide-hero .eyebrow {
+  border: 0;
+  background: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+}
+
+.city-guide-hero h1 {
+  max-width: 900px;
+  font-size: clamp(2.05rem, 4.6vw, 4rem);
+  line-height: 1.08;
+}
+
+.city-guide-hero__lead {
+  max-width: 790px;
+  color: #4b5565;
+}
+
+.city-guide-hero__quick li {
+  border: 0;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: none;
+}
+
+.city-guide-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+  gap: clamp(24px, 3.2vw, 40px);
+  align-items: start;
+  padding-bottom: 76px;
+}
+
+.city-guide-content {
+  display: grid;
+  gap: clamp(24px, 3.2vw, 36px);
+  min-width: 0;
+}
+
+.city-guide-section {
+  margin-top: 0;
+  padding: clamp(28px, 4vw, 44px);
+  border: 0;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 46px rgba(15, 23, 42, 0.035);
+}
+
+.city-guide-section:first-child {
+  margin-top: 0;
+}
+
+.city-guide-section h2 {
+  margin-bottom: 16px;
+}
+
+.city-guide-section h3 {
+  margin-top: 26px;
+}
+
+.city-guide-answer {
+  border: 0;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.075), rgba(52, 211, 153, 0.07));
+}
+
+.city-guide-card {
+  border: 0;
+  background: #f7faff;
+  box-shadow: none;
+}
+
+.city-guide-card::before {
+  height: 3px;
+  opacity: 0.72;
+}
+
+.city-guide-table-wrap {
+  border: 0;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.035);
+}
+
+.city-guide-table th,
+.city-guide-table td {
+  border-bottom-color: rgba(15, 23, 42, 0.05);
+}
+
+.city-guide-table th {
+  background: #f7faff;
+}
+
+.city-guide-table tbody tr:nth-child(even) td {
+  background: #fbfdff;
+}
+
+.city-guide-note {
+  border: 0;
+  background: #f0fbf6;
+}
+
+.city-guide-area-card {
+  border: 0;
+  border-radius: 28px;
+  background: #f8fbff;
+  box-shadow: none;
+}
+
+.city-guide-area-card h3::before {
+  box-shadow: none;
+}
+
+.city-guide-area-card dl {
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 10px 16px;
+}
+
+.city-guide-area-card dt {
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.city-guide-toc {
+  border: 0;
+  border-radius: 28px;
+  background: rgba(248, 251, 255, 0.92);
+  box-shadow: none;
+}
+
+.city-guide-toc a {
+  border-top-color: rgba(15, 23, 42, 0.045);
+}
+
+.city-guide-toc a:first-of-type {
+  border-top: 0;
+}
+
+.city-guide-related a {
+  border: 0;
+  background: #f7faff;
+}
+
+.destination-guide-link {
+  border: 0;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(59, 130, 246, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f7fbff);
+  box-shadow: 0 14px 42px rgba(15, 23, 42, 0.045);
+}
+
+.city-guide-survey-cta {
+  margin-top: -6px;
+  margin-bottom: clamp(22px, 3vw, 36px);
+}
+
+.city-guide-survey-cta__link {
+  border: 0;
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(125, 211, 252, 0.24), transparent 33%),
+    linear-gradient(135deg, #0f2942 0%, #16456e 54%, #2563eb 100%);
+  box-shadow: 0 22px 64px rgba(15, 41, 66, 0.16);
+}
+
+.city-guide-survey-cta__eyebrow {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.city-guide-toc a[href^="/destinations/osaka/hotel-location-survey"] {
+  background: #eef7ff;
+}
+
+@media (max-width: 1020px) {
+  .city-guide-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .city-guide-toc {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .city-guide-page .container {
+    width: min(100% - 24px, 1120px);
+  }
+
+  .city-guide-hero__inner,
+  .city-guide-section,
+  .city-guide-survey-cta__link {
+    border-radius: 24px;
+  }
+
+  .city-guide-section {
+    padding: 24px 18px;
+  }
+
+  .city-guide-card-grid,
+  .city-guide-related {
+    grid-template-columns: 1fr;
+  }
+
+  .city-guide-table {
+    min-width: 680px;
+  }
+
+  .city-guide-area-card dl {
+    grid-template-columns: 1fr;
+  }
+
+  .city-guide-survey-cta__link {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .city-guide-survey-cta__button {
+    width: 100%;
+  }
+}
