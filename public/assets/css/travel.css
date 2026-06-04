@@ -5747,3 +5747,121 @@ body::after {
 .osaka-guide-section li > p + .osaka-guide-list {
   margin-top: 4px;
 }
+
+/* V23: Osaka hotel guide uses the same editorial system as travel-guide */
+.osaka-hotel-guide-page .osaka-guide-hero__inner {
+  background:
+    radial-gradient(circle at 86% 12%, rgba(37, 99, 235, 0.11), transparent 30%),
+    radial-gradient(circle at 8% 12%, rgba(52, 211, 153, 0.1), transparent 28%),
+    linear-gradient(135deg, #ffffff 0%, #f4f9ff 56%, #eef7ff 100%);
+}
+
+.osaka-guide-survey-panel {
+  margin-top: clamp(24px, 4vw, 42px);
+}
+
+.osaka-guide-survey-panel__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(18px, 4vw, 42px);
+  width: 100%;
+  padding: clamp(26px, 5vw, 46px);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(125, 211, 252, 0.26), transparent 32%),
+    linear-gradient(135deg, #102a45 0%, #174c78 58%, #2563eb 100%);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.osaka-guide-survey-panel__content {
+  display: grid;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.osaka-guide-survey-panel__eyebrow {
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.8rem;
+  font-weight: 950;
+  letter-spacing: -0.01em;
+}
+
+.osaka-guide-survey-panel__content strong {
+  color: #ffffff;
+  font-size: clamp(1.42rem, 3vw, 2.35rem);
+  line-height: 1.22;
+  letter-spacing: -0.052em;
+}
+
+.osaka-guide-survey-panel__content span:last-child {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.osaka-guide-survey-panel__button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #16456e;
+  font-size: 0.95rem;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.osaka-guide-reference {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eef7ff;
+  color: #2563eb;
+  font-size: 0.78em;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.osaka-guide-section--chapter {
+  padding: clamp(24px, 4vw, 38px);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(37, 99, 235, 0.09), transparent 31%),
+    linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.osaka-guide-chapter-heading {
+  margin-bottom: 0;
+  font-size: clamp(1.45rem, 2.8vw, 2.05rem);
+}
+
+.osaka-hotel-guide-page .osaka-guide-section {
+  margin-bottom: clamp(30px, 4.2vw, 54px);
+}
+
+.osaka-hotel-guide-page .osaka-guide-subheading + .osaka-guide-quote {
+  margin-top: 12px;
+}
+
+@media (max-width: 760px) {
+  .osaka-guide-survey-panel__link {
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 26px;
+  }
+
+  .osaka-guide-survey-panel__button {
+    width: 100%;
+  }
+}
+
