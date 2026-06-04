@@ -1,75 +1,4 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>검색 결과 | Wacky Travel</title>
-  <meta name="description" content="와키트래블 여행지, 호텔 추천, 이동 정보 콘텐츠를 검색합니다." />
-  <meta name="robots" content="noindex,follow" />
-  <link rel="canonical" href="/search/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Wacky Travel" />
-  <meta property="og:title" content="검색 결과 | Wacky Travel" />
-  <meta property="og:description" content="와키트래블 여행지, 호텔 추천, 이동 정보 콘텐츠를 검색합니다." />
-  <meta property="og:url" content="/search/" />
-  <meta property="og:image" content="/assets/images/logo.png" />
-  <meta property="og:locale" content="ko_KR" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260603v18" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260509travel4" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260603v18" />
-  <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
-</head>
-<body class="travel-home-body wtsr-page">
-  <header class="topbar topbar--editorial topbar--travel">
-    <div class="topbar__inner container">
-      <a class="brand" href="/" aria-label="Wacky Travel 홈"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
-      <div class="topbar__actions topbar__actions--travel">
-        <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
-        <a class="btn btn--ghost topbar__dashboard" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
-        <button class="topbar__logout" type="button" data-admin-logout hidden>로그아웃</button>
-      </div>
-    </div>
-  </header>
 
-  <main class="travel-page">
-    <section class="wtsr-hero" aria-labelledby="wtsrTitle">
-      <div class="wtsr-hero__box">
-        <div>
-          <p class="wtsr-eyebrow">Search Results</p>
-          <h1 id="wtsrTitle"><span id="wtsrTitleKeyword">검색어</span> 검색 결과</h1>
-          <p class="wtsr-hero__desc">여행지, 호텔 추천, 공항 이동, 주변 동선 관련 글을 한 번에 찾아볼 수 있습니다.</p>
-        </div>
-
-        <form class="wtsr-form" id="wtsrForm" action="/search/" method="get" role="search" autocomplete="off">
-          <div class="wtsr-form__field">
-            <span class="wtsr-form__icon" aria-hidden="true">🔍</span>
-            <input id="wtsrInput" type="search" name="q" placeholder="도시, 호텔명, 여행지를 검색해보세요" aria-label="검색어 입력" />
-          </div>
-          <button class="wtsr-form__button" type="submit">검색하기</button>
-        </form>
-      </div>
-    </section>
-
-    <section class="wtsr-section" aria-labelledby="wtsrSummaryTitle">
-      <div class="wtsr-shell">
-        <div class="wtsr-summary" id="wtsrSummary">
-          <div>
-            <h2 id="wtsrSummaryTitle">검색어를 입력해 주세요</h2>
-            <p id="wtsrSummaryText">홈 화면이나 이 페이지 검색창에서 원하는 도시, 호텔명, 여행지를 입력하면 관련 콘텐츠를 보여드립니다.</p>
-          </div>
-          <span class="wtsr-count" id="wtsrCount" hidden>0개 결과</span>
-        </div>
-
-        <div class="wtsr-results" id="wtsrResults" aria-live="polite"></div>
-        <div class="wtsr-more"><button class="wtsr-more__button" id="wtsrMoreBtn" type="button" hidden>더 보기</button></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div><div class="footer__note">예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</div></div></footer>
-
-  <script>
     const $ = (id) => document.getElementById(id);
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
     const normalizeText = (value) => String(value || '').replace(/\s+/g, ' ').trim();
@@ -341,6 +270,4 @@
 
     const initialParams = new URLSearchParams(window.location.search);
     startSearch(initialParams.get('q') || '', { replaceUrl: false });
-  </script>
-</body>
-</html>
+  
