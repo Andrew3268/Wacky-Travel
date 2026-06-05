@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260605-post-guide-style-v2";
+const POST_RENDER_VERSION = "20260605-post-guide-style-v3";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -306,7 +306,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260605postguide2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260605postguide3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
   <style>
     .post-body,
@@ -381,6 +381,28 @@ export async function onRequestGet({ params, env, request }) {
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const postSide = document.querySelector('.post-shell--guide-style .post-side');
+    const topbar = document.querySelector('.topbar');
+    let sidebarTicking = false;
+
+    const syncPostSidebarTop = () => {
+      sidebarTicking = false;
+      if (!postSide || window.matchMedia('(max-width: 900px)').matches) return;
+      const topbarBottom = topbar ? topbar.getBoundingClientRect().bottom : 0;
+      const nextTop = Math.max(24, Math.round(topbarBottom + 24));
+      postSide.style.setProperty('--site-sidebar-dynamic-top', nextTop + 'px');
+    };
+
+    const requestSidebarSync = () => {
+      if (sidebarTicking) return;
+      sidebarTicking = true;
+      window.requestAnimationFrame(syncPostSidebarTop);
+    };
+
+    syncPostSidebarTop();
+    window.addEventListener('scroll', requestSidebarSync, { passive: true });
+    window.addEventListener('resize', requestSidebarSync);
+
     const deleteBtn = document.getElementById('deletePostBtn');
     if (!deleteBtn) return;
     deleteBtn.addEventListener('click', async () => {
@@ -1071,7 +1093,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#B8875B" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260605postguide2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260605postguide3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260429v1" />
 </head>
 <body>
