@@ -5342,8 +5342,8 @@ body::after {
   margin: 0;
   color: #10243d;
   font-size: clamp(2.35rem, 5.8vw, 5.1rem);
-  line-height: 1.03;
-  letter-spacing: -0.07em;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
 .osaka-guide-hero__subtitle {
