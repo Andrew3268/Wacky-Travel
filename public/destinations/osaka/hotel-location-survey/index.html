@@ -319,22 +319,6 @@
       font-size: 14px;
     }
 
-    .wt-chip-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .wt-chip {
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(37, 111, 174, 0.1);
-      color: var(--wt-blue-deep);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
     .wt-result-story {
       margin-top: 36px;
       padding: clamp(20px, 4vw, 30px);
@@ -718,14 +702,19 @@
     }
 
     .wt-post-list a::after {
-      content: "보기";
-      flex: 0 0 auto;
-      padding: 5px 9px;
+      content: "→";
+      flex: 0 0 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
       background: var(--wt-soft-blue);
       color: var(--wt-blue-deep);
-      font-size: 12px;
+      font-size: 18px;
       font-weight: 900;
+      line-height: 1;
     }
 
     .wt-related {
@@ -909,7 +898,6 @@
                 <p id="resultLeadText"></p>
               </div>
 
-              <div class="wt-chip-list" id="resultChips"></div>
 
               <section class="wt-result-story" aria-labelledby="resultWhyTitle">
                 <div class="wt-result-story-head">
@@ -955,6 +943,6 @@
       </section>
 </div>
   </main>
-  <script src="/assets/js/destinations/osaka/hotel-location-survey.js?v=20260604v22" defer></script>
+  <script src="/assets/js/destinations/osaka/hotel-location-survey.js?v=20260604v23" defer></script>
 </body>
 </html>

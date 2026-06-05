@@ -938,14 +938,6 @@ const cityConfig = {
       renderHotelCards(topArea);
       renderRelatedPosts(topArea);
 
-      const chipsArea = document.getElementById("resultChips");
-      chipsArea.innerHTML = "";
-      topArea.chips.forEach((chip) => {
-        const span = document.createElement("span");
-        span.className = "wt-chip";
-        span.textContent = chip;
-        chipsArea.appendChild(span);
-      });
 
       progressText.textContent = "추천 결과가 나왔어요!";
       progressFill.style.width = "100%";
