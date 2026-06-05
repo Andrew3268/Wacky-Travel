@@ -5502,6 +5502,16 @@ body::after {
   letter-spacing: -0.04em;
 }
 
+
+.osaka-guide-minor-heading {
+  margin: 24px 0 10px;
+  color: #204766;
+  font-size: 1.03rem;
+  line-height: 1.45;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
 .osaka-guide-section p {
   margin: 0 0 15px;
   color: #47596d;
