@@ -458,8 +458,8 @@
   --travel-line:rgba(16,36,61,.10);
   --travel-brand:#2563eb;
   --travel-brand-deep:#174c78;
-  --travel-green:#2563eb;
-  --travel-orange:#60a5fa;
+  --travel-blue-support:#2563eb;
+  --travel-sky:#60a5fa;
   --travel-card:#ffffff;
   --travel-shadow:0 18px 46px rgba(37,99,235,.09);
   --travel-shadow-soft:0 10px 28px rgba(37,99,235,.06);
@@ -2292,17 +2292,17 @@ body{
 ========================================================= */
 :root {
   --travel-bg: #ffffff;
-  --travel-paper: #fffaf5;
-  --travel-paper-strong: #f7efe6;
-  --travel-ink: #231f1a;
-  --travel-muted: #756f66;
-  --travel-muted-2: #9a9186;
-  --travel-line: rgba(35, 31, 26, 0.11);
-  --travel-brand: #b8875b;
-  --travel-brand-deep: #7a5131;
+  --travel-paper: #F8FBFF;
+  --travel-paper-strong: #EEF7FF;
+  --travel-ink: #102A45;
+  --travel-muted: #64748B;
+  --travel-muted-2: #94A3B8;
+  --travel-line: rgba(16, 42, 69, 0.11);
+  --travel-brand: #2563EB;
+  --travel-brand-deep: #174C78;
   --travel-card: #ffffff;
-  --travel-shadow: 0 20px 54px rgba(35, 31, 26, 0.10);
-  --travel-shadow-soft: 0 12px 34px rgba(35, 31, 26, 0.065);
+  --travel-shadow: 0 20px 54px rgba(16, 42, 69, 0.10);
+  --travel-shadow-soft: 0 12px 34px rgba(16, 42, 69, 0.065);
   --travel-radius: 28px;
 }
 
@@ -2325,10 +2325,10 @@ body::after {
 }
 
 .topbar--travel {
-  border-bottom: 1px solid rgba(35, 31, 26, 0.08);
+  border-bottom: 1px solid rgba(16, 42, 69, 0.08);
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: saturate(1.12) blur(18px);
-  box-shadow: 0 10px 28px rgba(35, 31, 26, 0.035);
+  box-shadow: 0 10px 28px rgba(16, 42, 69, 0.035);
 }
 
 .topbar--travel .topbar__inner {
@@ -2344,11 +2344,11 @@ body::after {
 .topbar--travel .brand__mark {
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(122, 81, 49, 0.16);
+  border: 1px solid rgba(37, 99, 235, 0.16);
   border-radius: 16px;
-  background: linear-gradient(135deg, #fffaf5 0%, #f0ddca 100%);
+  background: linear-gradient(135deg, #F8FBFF 0%, #DBEAFE 100%);
   color: var(--travel-brand-deep);
-  box-shadow: 0 12px 26px rgba(122, 81, 49, 0.14);
+  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.14);
   font-size: 0.78rem;
   letter-spacing: -0.02em;
 }
@@ -2388,8 +2388,8 @@ body::after {
 .hotel-load-more {
   background: #ffffff !important;
   color: var(--travel-ink) !important;
-  border-color: rgba(35, 31, 26, 0.12) !important;
-  box-shadow: 0 10px 24px rgba(35, 31, 26, 0.055) !important;
+  border-color: rgba(16, 42, 69, 0.12) !important;
+  box-shadow: 0 10px 24px rgba(16, 42, 69, 0.055) !important;
 }
 
 .eyebrow {
@@ -2405,12 +2405,12 @@ body::after {
   margin-bottom: 22px;
   padding-top: clamp(58px, 8vw, 96px);
   padding-bottom: clamp(54px, 7vw, 86px);
-  border: 1px solid rgba(35, 31, 26, 0.08);
+  border: 1px solid rgba(16, 42, 69, 0.08);
   border-radius: 36px;
   background:
-    radial-gradient(circle at 86% 18%, rgba(184, 135, 91, 0.18), transparent 23rem),
-    linear-gradient(135deg, #ffffff 0%, #fffaf5 58%, #f7efe6 100%);
-  box-shadow: 0 24px 64px rgba(35, 31, 26, 0.08);
+    radial-gradient(circle at 86% 18%, rgba(37, 99, 235, 0.18), transparent 23rem),
+    linear-gradient(135deg, #ffffff 0%, #F8FBFF 58%, #EEF7FF 100%);
+  box-shadow: 0 24px 64px rgba(16, 42, 69, 0.08);
   overflow: hidden;
 }
 
@@ -2425,10 +2425,10 @@ body::after {
   bottom: clamp(22px, 5vw, 58px);
   width: clamp(120px, 18vw, 230px);
   height: clamp(120px, 18vw, 230px);
-  border: 1px solid rgba(122, 81, 49, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: 999px;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.58), rgba(240,221,202,.38));
+    linear-gradient(135deg, rgba(255,255,255,.58), rgba(219,234,254,.38));
   pointer-events: none;
 }
 
@@ -2469,10 +2469,10 @@ body::after {
 .hotel-detail__facts span,
 .tag-row span {
   min-height: 34px;
-  border-color: rgba(122, 81, 49, 0.12);
+  border-color: rgba(37, 99, 235, 0.12);
   background: rgba(255, 255, 255, 0.74);
-  color: #6f6256;
-  box-shadow: 0 8px 18px rgba(35, 31, 26, 0.035);
+  color: #64748B;
+  box-shadow: 0 8px 18px rgba(16, 42, 69, 0.035);
   backdrop-filter: blur(8px);
 }
 
@@ -2483,7 +2483,7 @@ body::after {
 
 .travel-section--tinted::before {
   inset: 18px max(16px, calc((100vw - var(--container)) / 2 + 16px));
-  border-color: rgba(122, 81, 49, 0.07);
+  border-color: rgba(37, 99, 235, 0.07);
   background: linear-gradient(180deg, rgba(255, 250, 245, 0.75), rgba(255, 255, 255, 0.76)) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
 }
@@ -2527,7 +2527,7 @@ body::after {
 .empty-card,
 .hotel-filter-note,
 .country-destination-group--compact {
-  border-color: rgba(35, 31, 26, 0.095);
+  border-color: rgba(16, 42, 69, 0.095);
   background: #ffffff;
   box-shadow: var(--travel-shadow-soft);
 }
@@ -2540,14 +2540,14 @@ body::after {
 
 .travel-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(184, 135, 91, 0.22);
+  border-color: rgba(37, 99, 235, 0.22);
   box-shadow: var(--travel-shadow);
 }
 
 .travel-card__media {
   aspect-ratio: 16 / 10;
   background:
-    linear-gradient(135deg, #fffaf5, #f1e0ce);
+    linear-gradient(135deg, #F8FBFF, #DBEAFE);
 }
 
 .travel-card__media::after {
@@ -2597,14 +2597,14 @@ body::after {
 }
 
 .travel-list__item {
-  border-color: rgba(35, 31, 26, 0.09);
+  border-color: rgba(16, 42, 69, 0.09);
   border-radius: 24px;
   background: #ffffff;
   box-shadow: 0 10px 26px rgba(35,31,26,.045);
 }
 
 .travel-list__item:hover {
-  border-color: rgba(184, 135, 91, 0.2);
+  border-color: rgba(37, 99, 235, 0.2);
   box-shadow: 0 16px 36px rgba(35,31,26,.075);
 }
 
@@ -2633,16 +2633,16 @@ body::after {
 
 .country-destination-group__add,
 .country-destination-group__manage {
-  border-color: rgba(184, 135, 91, 0.18);
-  background: #fffaf5;
+  border-color: rgba(37, 99, 235, 0.18);
+  background: #F8FBFF;
   box-shadow: 0 10px 22px rgba(35,31,26,.055);
 }
 
 .country-destination-group__add:hover,
 .country-destination-group__manage:hover,
 .destination-chip:hover {
-  border-color: rgba(184, 135, 91, 0.24);
-  background: #fffaf5;
+  border-color: rgba(37, 99, 235, 0.24);
+  background: #F8FBFF;
 }
 
 .destination-chip {
@@ -2650,18 +2650,18 @@ body::after {
 }
 
 .destination-chip__icon {
-  border-color: rgba(184, 135, 91, 0.16);
-  background: #fff7ef;
+  border-color: rgba(37, 99, 235, 0.16);
+  background: #EFF6FF;
 }
 
 .hotel-tabs__nav {
-  border-color: rgba(35, 31, 26, 0.09);
-  background: #fffaf5;
+  border-color: rgba(16, 42, 69, 0.09);
+  background: #F8FBFF;
   box-shadow: 0 12px 30px rgba(35,31,26,.045);
 }
 
 .hotel-tabs__button {
-  color: #6f6256;
+  color: #64748B;
 }
 
 .hotel-tabs__button.is-active {
@@ -2673,21 +2673,21 @@ body::after {
 .travel-hero--soft,
 .hotel-detail__hero,
 .content-card--notice {
-  border-color: rgba(35, 31, 26, 0.09);
-  background: linear-gradient(135deg, #ffffff 0%, #fffaf5 100%);
+  border-color: rgba(16, 42, 69, 0.09);
+  background: linear-gradient(135deg, #ffffff 0%, #F8FBFF 100%);
   box-shadow: var(--travel-shadow-soft);
 }
 
 .travel-hero__image,
 .hotel-detail__image {
-  border-color: rgba(35, 31, 26, 0.08);
+  border-color: rgba(16, 42, 69, 0.08);
   border-radius: 30px;
   box-shadow: var(--travel-shadow-soft);
 }
 
 .footer__inner {
   background: #ffffff !important;
-  border-color: rgba(35, 31, 26, 0.08) !important;
+  border-color: rgba(16, 42, 69, 0.08) !important;
   color: var(--travel-muted);
 }
 
@@ -2799,10 +2799,10 @@ body::after {
   margin-top: clamp(18px, 2.5vw, 30px) !important;
   margin-bottom: clamp(18px, 3vw, 34px) !important;
   padding: clamp(42px, 6vw, 72px) clamp(22px, 5vw, 64px) !important;
-  border: 1px solid rgba(35, 31, 26, 0.08) !important;
+  border: 1px solid rgba(16, 42, 69, 0.08) !important;
   border-radius: 30px !important;
   background: #ffffff !important;
-  box-shadow: 0 18px 48px rgba(35, 31, 26, 0.055) !important;
+  box-shadow: 0 18px 48px rgba(16, 42, 69, 0.055) !important;
 }
 
 .travel-hero--service::before,
@@ -2843,10 +2843,10 @@ body::after {
 .travel-hero--service .travel-hero__chips span {
   min-height: 32px !important;
   padding: 7px 12px !important;
-  border-color: rgba(35, 31, 26, 0.09) !important;
-  background: #fffaf5 !important;
+  border-color: rgba(16, 42, 69, 0.09) !important;
+  background: #F8FBFF !important;
   box-shadow: none !important;
-  color: #6f6256 !important;
+  color: #64748B !important;
 }
 
 .travel-page--destinations-index {
@@ -2859,7 +2859,7 @@ body::after {
 
 .travel-page--destinations-index .section-heading {
   padding-bottom: 18px;
-  border-bottom: 1px solid rgba(35, 31, 26, 0.08);
+  border-bottom: 1px solid rgba(16, 42, 69, 0.08);
 }
 
 .travel-page--destinations-index .section-heading h2 {
@@ -2922,7 +2922,7 @@ body::after {
 
 .travel-content-sections--country .travel-list__item:hover {
   border: 0;
-  background: rgba(184, 135, 91, 0.07);
+  background: rgba(37, 99, 235, 0.07);
   box-shadow: none;
   transform: none;
 }
@@ -3188,7 +3188,7 @@ body::after {
 
 .travel-list--destination .travel-list__item:hover {
   border: 0;
-  background: rgba(184, 135, 91, 0.07);
+  background: rgba(37, 99, 235, 0.07);
   box-shadow: none;
   transform: none;
 }
@@ -5880,4 +5880,173 @@ body::after {
 
 .osaka-guide-reference:hover {
   text-decoration: none;
+}
+
+/* =========================================================
+   V18 Blue Identity Unification for Travel Pages
+   - 모든 여행/호텔/검색/국가/도시 페이지 포인트 컬러 블루 통일
+   - 인덱스 wthome-card 폭 100% 적용
+========================================================= */
+:root {
+  --travel-bg: #ffffff;
+  --travel-paper: #F8FBFF;
+  --travel-paper-strong: #EEF7FF;
+  --travel-ink: #102A45;
+  --travel-muted: #64748B;
+  --travel-muted-2: #94A3B8;
+  --travel-line: rgba(16, 42, 69, 0.10);
+  --travel-brand: #2563EB;
+  --travel-brand-deep: #174C78;
+  --travel-card: #ffffff;
+  --travel-shadow: 0 20px 54px rgba(37, 99, 235, 0.10);
+  --travel-shadow-soft: 0 12px 34px rgba(37, 99, 235, 0.065);
+}
+
+.wthome-hero .wthome-card {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.travel-page,
+.travel-home,
+.travel-home-body,
+.wtsr-page {
+  background: #ffffff !important;
+  color: #102A45 !important;
+}
+
+.topbar--travel,
+.travel-card,
+.content-card,
+.side-card,
+.empty-card,
+.hotel-filter-note,
+.country-destination-group--compact,
+.travel-list__item,
+.hotel-tabs__nav,
+.wtsr-hero__box,
+.wtsr-result-card,
+.wthome-card,
+.wthome-mini-card {
+  border-color: rgba(37, 99, 235, 0.12) !important;
+}
+
+.topbar--travel .brand__mark,
+.btn--brand,
+.affiliate-btn,
+.hotel-load-more,
+.hotel-tabs__button.is-active,
+.wthome-search__button,
+.wtsr-search__button,
+.wtsr-empty__button,
+.osaka-guide-button--primary {
+  background: linear-gradient(135deg, #174C78 0%, #2563EB 72%, #38BDF8 100%) !important;
+  border-color: rgba(37, 99, 235, 0.20) !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.14) !important;
+}
+
+.btn--soft,
+.hotel-load-more:not(.btn--brand),
+.country-destination-group__add,
+.country-destination-group__manage,
+.destination-chip__icon,
+.hotel-tabs__nav,
+.travel-hero__chips span,
+.hotel-detail__facts span,
+.tag-row span,
+.wtsr-chip,
+.wtsr-result-card__type,
+.wthome-card__top strong,
+.wthome-mini-card__icon,
+.wthome-search__icon {
+  background: #EEF7FF !important;
+  color: #174C78 !important;
+  border-color: rgba(37, 99, 235, 0.14) !important;
+}
+
+.travel-hero--home,
+.travel-hero--soft,
+.hotel-detail__hero,
+.content-card--notice,
+.travel-hero--service,
+.travel-section--tinted::before,
+.wtsr-hero__box {
+  background:
+    radial-gradient(circle at 86% 18%, rgba(37, 99, 235, 0.10), transparent 24rem),
+    linear-gradient(135deg, #ffffff 0%, #F8FBFF 58%, #EEF7FF 100%) !important;
+  border-color: rgba(37, 99, 235, 0.10) !important;
+  box-shadow: 0 18px 48px rgba(37, 99, 235, 0.07) !important;
+}
+
+.travel-card__media,
+.preview-affiliate-card__placeholder,
+.post-affiliate-card__placeholder {
+  background: linear-gradient(135deg, #F8FBFF 0%, #DBEAFE 100%) !important;
+}
+
+.travel-card:hover,
+.travel-list__item:hover,
+.country-destination-group__add:hover,
+.country-destination-group__manage:hover,
+.destination-chip:hover,
+.travel-content-sections--country .travel-list__item:hover,
+.travel-list--destination .travel-list__item:hover {
+  border-color: rgba(37, 99, 235, 0.22) !important;
+  background: #F8FBFF !important;
+}
+
+.eyebrow,
+.text-link,
+.country-destination-group__link,
+.country-destination-group__add,
+.country-destination-group__manage,
+.destination-chip__icon,
+.destination-chip__link,
+.travel-content-section__count,
+.travel-list--destination .travel-list__actions,
+.travel-content-sections--country .travel-list__actions,
+.wtsr-highlight,
+.osaka-guide-reference {
+  color: #2563EB !important;
+}
+
+.travel-card h2,
+.travel-card h3,
+.travel-list h3,
+.travel-list h4,
+.section-heading h1,
+.section-heading h2,
+.travel-card__title,
+.travel-hero--home h1,
+.travel-hero--service h1,
+.wtsr-hero__title,
+.wtsr-result-card__title {
+  color: #102A45 !important;
+}
+
+.travel-card p,
+.travel-list p,
+.side-card p,
+.content-card p,
+.section-heading p:not(.eyebrow),
+.travel-hero__summary,
+.hotel-detail__summary,
+.wtsr-hero__desc,
+.wtsr-result-card__desc {
+  color: #64748B !important;
+}
+
+.wthome-card__visual,
+.wthome-card__bottom,
+.osaka-guide-survey-panel__link {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(125, 211, 252, 0.22), transparent 32%),
+    linear-gradient(135deg, #102A45 0%, #174C78 58%, #2563EB 100%) !important;
+}
+
+.wthome-hero {
+  background:
+    radial-gradient(circle at 8% 4%, rgba(37, 99, 235, 0.045), transparent 22rem),
+    #ffffff !important;
 }
