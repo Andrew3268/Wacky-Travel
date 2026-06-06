@@ -450,24 +450,24 @@
 
 /* Travel UI polish v2: Wacky Travel editorial mood + refined travel affiliate layout */
 :root{
-  --travel-bg:#fbfaf7;
-  --travel-sand:#f5efe5;
-  --travel-sand-2:#fff8ed;
-  --travel-ink:#171717;
-  --travel-muted:#667085;
-  --travel-line:rgba(23,23,23,.10);
-  --travel-brand:#2368ff;
-  --travel-brand-deep:#174ed1;
-  --travel-green:#1f9d74;
-  --travel-orange:#f59e0b;
+  --travel-bg:#f8fbff;
+  --travel-sand:#eef7ff;
+  --travel-sand-2:#f4f9ff;
+  --travel-ink:#10243d;
+  --travel-muted:#64748b;
+  --travel-line:rgba(16,36,61,.10);
+  --travel-brand:#2563eb;
+  --travel-brand-deep:#174c78;
+  --travel-green:#2563eb;
+  --travel-orange:#60a5fa;
   --travel-card:#ffffff;
-  --travel-shadow:0 18px 46px rgba(15,23,42,.09);
-  --travel-shadow-soft:0 10px 28px rgba(15,23,42,.06);
+  --travel-shadow:0 18px 46px rgba(37,99,235,.09);
+  --travel-shadow-soft:0 10px 28px rgba(37,99,235,.06);
 }
 body{
   background:
-    radial-gradient(circle at 5% 0%, rgba(35,104,255,.07), transparent 28rem),
-    radial-gradient(circle at 100% 12%, rgba(245,158,11,.11), transparent 30rem),
+    radial-gradient(circle at 5% 0%, rgba(37,99,235,.055), transparent 28rem),
+    radial-gradient(circle at 100% 12%, rgba(125,211,252,.12), transparent 30rem),
     var(--travel-bg);
 }
 .topbar--travel{
@@ -493,8 +493,8 @@ body{
   width:38px;
   height:38px;
   border-radius:14px;
-  background:linear-gradient(135deg,#2368ff 0%,#11b7a7 100%);
-  box-shadow:0 12px 24px rgba(35,104,255,.22);
+  background:linear-gradient(135deg,#174c78 0%,#2563eb 68%,#7dd3fc 100%);
+  box-shadow:0 12px 24px rgba(37,99,235,.18);
 }
 .brand__text{
   font-size:17px;
@@ -526,9 +526,9 @@ body{
   white-space:nowrap;
 }
 .topbar__logout{
-  background:#171717 !important;
+  background:#174c78 !important;
   color:#fff !important;
-  border-color:#171717 !important;
+  border-color:#174c78 !important;
 }
 .topbar__dashboard:hover,
 .topbar__logout:hover{
@@ -586,9 +586,9 @@ body{
 }
 .btn--brand{
   color:#fff !important;
-  border-color:#171717 !important;
-  background:#171717 !important;
-  box-shadow:0 14px 28px rgba(23,23,23,.16) !important;
+  border-color:#174c78 !important;
+  background:#174c78 !important;
+  box-shadow:0 14px 28px rgba(23,76,120,.18) !important;
 }
 .btn--brand:hover{
   transform:translateY(-1px);
@@ -2364,8 +2364,8 @@ body::after {
 .topbar__logout,
 .topbar__logout,
 .btn--brand {
-  background: var(--travel-ink) !important;
-  border-color: var(--travel-ink) !important;
+  background: var(--travel-brand-deep) !important;
+  border-color: var(--travel-brand-deep) !important;
   color: #ffffff !important;
 }
 
@@ -3317,18 +3317,18 @@ body::after {
    Home Hero Replacement - isolated wthome-* namespace
    ========================================================= */
 .wthome-hero {
-  --wthome-main: #34D399;
-  --wthome-main-deep: #047857;
-  --wthome-heading: #064E3B;
-  --wthome-sub: #E6F4EA;
-  --wthome-sub-soft: #F3FBF6;
-  --wthome-sub-strong: #D1FAE5;
+  --wthome-main: #2563EB;
+  --wthome-main-deep: #174C78;
+  --wthome-heading: #102A45;
+  --wthome-sub: #EEF7FF;
+  --wthome-sub-soft: #F8FBFF;
+  --wthome-sub-strong: #DBEAFE;
   --wthome-bg: #FFFFFF;
   --wthome-text: #1F2937;
   --wthome-muted: #64748B;
   --wthome-placeholder: #94A3B8;
-  --wthome-border: rgba(52, 211, 153, 0.24);
-  --wthome-border-soft: rgba(52, 211, 153, 0.16);
+  --wthome-border: rgba(37, 99, 235, 0.22);
+  --wthome-border-soft: rgba(37, 99, 235, 0.14);
   position: relative;
   overflow: hidden;
   padding: 46px 20px 50px;
@@ -3367,7 +3367,7 @@ body::after {
   padding: 28px;
   border-radius: 26px;
   background:
-    linear-gradient(135deg, rgba(4, 120, 87, 0.96), rgba(52, 211, 153, 0.88)),
+    linear-gradient(135deg, rgba(16, 42, 69, 0.96), rgba(37, 99, 235, 0.78), rgba(125, 211, 252, 0.56)),
     linear-gradient(135deg, var(--wthome-heading), var(--wthome-main));
   color: #ffffff;
   display: flex;
@@ -3524,7 +3524,7 @@ body::after {
   padding: 0 22px;
   border: 0;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--wthome-main) 0%, #10B981 100%);
+  background: linear-gradient(135deg, var(--wthome-main) 0%, #38BDF8 100%);
   color: #ffffff;
   font-size: 15px;
   font-weight: 900;
@@ -3635,11 +3635,11 @@ body::after {
 }
 
 .wthome-mini-card--environment .wthome-mini-card__icon {
-  background: #F0FDF4;
+  background: #F2F8FF;
 }
 
 .wthome-mini-card--airport .wthome-mini-card__icon {
-  background: #ECFDF5;
+  background: #EFF6FF;
 }
 
 .wthome-card__bottom {
@@ -4040,8 +4040,8 @@ body::after {
   margin: 0 auto;
   padding: 28px;
   border-radius: 28px;
-  background: linear-gradient(135deg, #F3FBF6 0%, #ffffff 100%);
-  border: 1px solid rgba(52, 211, 153, 0.16);
+  background: linear-gradient(135deg, #F8FBFF 0%, #ffffff 100%);
+  border: 1px solid rgba(37, 99, 235, 0.14);
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.72fr);
   gap: 22px;
@@ -4050,7 +4050,7 @@ body::after {
 
 .wtsr-eyebrow {
   margin: 0 0 8px;
-  color: #047857;
+  color: #174C78;
   font-size: 12px;
   font-weight: 950;
   letter-spacing: 0.04em;
@@ -4059,7 +4059,7 @@ body::after {
 
 .wtsr-hero h1 {
   margin: 0;
-  color: #064E3B;
+  color: #102A45;
   font-size: clamp(30px, 4vw, 44px);
   line-height: 1.18;
   letter-spacing: -0.055em;
@@ -4067,7 +4067,7 @@ body::after {
 }
 
 .wtsr-hero h1 span {
-  color: #047857;
+  color: #174C78;
 }
 
 .wtsr-hero__desc {
@@ -4087,7 +4087,7 @@ body::after {
   padding: 8px;
   border-radius: 22px;
   background: #ffffff;
-  border: 1px solid rgba(52, 211, 153, 0.22);
+  border: 1px solid rgba(37, 99, 235, 0.18);
 }
 
 .wtsr-form__field {
@@ -4106,7 +4106,7 @@ body::after {
   width: 36px;
   height: 36px;
   border-radius: 13px;
-  background: #E6F4EA;
+  background: #EEF7FF;
   font-size: 16px;
 }
 
@@ -4131,7 +4131,7 @@ body::after {
   padding: 0 22px;
   border: 0;
   border-radius: 16px;
-  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
   color: #ffffff;
   font-size: 15px;
   font-weight: 900;
@@ -4141,7 +4141,7 @@ body::after {
 
 .wtsr-form__button:focus-visible,
 .wtsr-form input:focus-visible {
-  outline: 3px solid rgba(52, 211, 153, 0.28);
+  outline: 3px solid rgba(37, 99, 235, 0.24);
   outline-offset: 2px;
 }
 
@@ -4164,7 +4164,7 @@ body::after {
 
 .wtsr-summary h2 {
   margin: 0;
-  color: #064E3B;
+  color: #102A45;
   font-size: 22px;
   line-height: 1.35;
   letter-spacing: -0.04em;
@@ -4183,8 +4183,8 @@ body::after {
   flex: 0 0 auto;
   padding: 7px 11px;
   border-radius: 999px;
-  background: #E6F4EA;
-  color: #047857;
+  background: #EEF7FF;
+  color: #174C78;
   font-size: 12px;
   font-weight: 950;
   letter-spacing: -0.015em;
@@ -4203,14 +4203,14 @@ body::after {
   padding: 16px;
   border-radius: 24px;
   background: #ffffff;
-  border: 1px solid rgba(52, 211, 153, 0.16);
+  border: 1px solid rgba(37, 99, 235, 0.14);
 }
 
 .wtsr-card__media {
   min-height: 132px;
   border-radius: 18px;
   overflow: hidden;
-  background: #F3FBF6;
+  background: #F8FBFF;
 }
 
 .wtsr-card__media img {
@@ -4227,9 +4227,9 @@ body::after {
   min-height: 132px;
   display: grid;
   place-items: center;
-  color: #047857;
+  color: #174C78;
   font-size: 30px;
-  background: linear-gradient(135deg, #E6F4EA 0%, #F3FBF6 100%);
+  background: linear-gradient(135deg, #EEF7FF 0%, #F8FBFF 100%);
 }
 
 .wtsr-card__body {
@@ -4252,8 +4252,8 @@ body::after {
   min-height: 24px;
   padding: 0 9px;
   border-radius: 999px;
-  background: #F3FBF6;
-  color: #047857;
+  background: #F8FBFF;
+  color: #174C78;
   font-size: 11.5px;
   font-weight: 850;
   letter-spacing: -0.015em;
@@ -4261,7 +4261,7 @@ body::after {
 
 .wtsr-card h3 {
   margin: 0;
-  color: #064E3B;
+  color: #102A45;
   font-size: 19px;
   line-height: 1.38;
   letter-spacing: -0.035em;
@@ -4303,8 +4303,8 @@ body::after {
 .wtsr-summary mark {
   padding: 0 2px;
   border-radius: 4px;
-  background: #D1FAE5;
-  color: #064E3B;
+  background: #DBEAFE;
+  color: #102A45;
   font-weight: 950;
 }
 
@@ -4314,7 +4314,7 @@ body::after {
   padding: 34px 22px;
   border-radius: 24px;
   background: #F8FAFC;
-  border: 1px solid rgba(52, 211, 153, 0.14);
+  border: 1px solid rgba(37, 99, 235, 0.12);
   color: #64748B;
   text-align: center;
   font-size: 14px;
@@ -4327,7 +4327,7 @@ body::after {
 .wtsr-error strong {
   display: block;
   margin-bottom: 6px;
-  color: #064E3B;
+  color: #102A45;
   font-size: 17px;
   letter-spacing: -0.03em;
 }
@@ -4344,7 +4344,7 @@ body::after {
   padding: 0 18px;
   border: 0;
   border-radius: 999px;
-  background: #064E3B;
+  background: #102A45;
   color: #ffffff;
   font-size: 14px;
   font-weight: 900;
@@ -4446,7 +4446,7 @@ body::after {
   border-radius: 26px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.92)),
-    radial-gradient(circle at 88% 10%, rgba(52, 211, 153, 0.16), transparent 34%);
+    radial-gradient(circle at 88% 10%, rgba(37, 99, 235, 0.14), transparent 34%);
   color: #101828;
   text-decoration: none;
   box-shadow: 0 18px 46px rgba(15, 23, 42, 0.045);
@@ -4469,8 +4469,8 @@ body::after {
   min-height: 28px;
   padding: 5px 11px;
   border-radius: 999px;
-  background: rgba(52, 211, 153, 0.13);
-  color: #047857;
+  background: rgba(125, 211, 252, 0.18);
+  color: #174C78;
   font-size: 0.82rem;
   font-weight: 850;
   letter-spacing: -0.01em;
@@ -4511,7 +4511,7 @@ body::after {
   border: 1px solid rgba(15, 23, 42, 0.07);
   border-radius: 36px;
   background:
-    radial-gradient(circle at 88% 8%, rgba(52, 211, 153, 0.20), transparent 30%),
+    radial-gradient(circle at 88% 8%, rgba(125, 211, 252, 0.22), transparent 30%),
     radial-gradient(circle at 14% 18%, rgba(59, 130, 246, 0.13), transparent 28%),
     linear-gradient(135deg, #ffffff 0%, #f6fbff 52%, #f8fffb 100%);
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.055);
@@ -4552,7 +4552,7 @@ body::after {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: #34d399;
+  background: #2563eb;
 }
 
 .city-guide-hero h1 {
@@ -4669,7 +4669,7 @@ body::after {
   border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 24px;
   background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.065), rgba(52, 211, 153, 0.055));
+    linear-gradient(135deg, rgba(37, 99, 235, 0.065), rgba(125, 211, 252, 0.075));
 }
 
 .city-guide-answer strong {
@@ -4699,7 +4699,7 @@ body::after {
   height: 4px;
   margin-bottom: 15px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #2563eb, #34d399);
+  background: linear-gradient(90deg, #2563eb, #2563eb);
 }
 
 .city-guide-card h3 {
@@ -4756,7 +4756,7 @@ body::after {
 .city-guide-note {
   margin-top: 18px;
   padding: 17px 19px;
-  border: 1px solid rgba(52, 211, 153, 0.16);
+  border: 1px solid rgba(37, 99, 235, 0.14);
   border-radius: 22px;
   background: rgba(236, 253, 245, 0.62);
   color: #3f4f61;
@@ -4791,8 +4791,8 @@ body::after {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: #34d399;
-  box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.12);
+  background: #2563eb;
+  box-shadow: 0 0 0 5px rgba(125, 211, 252, 0.14);
   flex: 0 0 auto;
 }
 
@@ -4948,7 +4948,7 @@ body::after {
   border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: 32px;
   background:
-    radial-gradient(circle at 90% 12%, rgba(52, 211, 153, 0.22), transparent 31%),
+    radial-gradient(circle at 90% 12%, rgba(37, 99, 235, 0.18), transparent 31%),
     linear-gradient(135deg, #102a45 0%, #17466f 52%, #2563eb 100%);
   color: #ffffff;
   text-decoration: none;
@@ -5076,7 +5076,7 @@ body::after {
   border-radius: clamp(28px, 4vw, 42px);
   background:
     radial-gradient(circle at 88% 4%, rgba(59, 130, 246, 0.14), transparent 31%),
-    radial-gradient(circle at 5% 18%, rgba(52, 211, 153, 0.12), transparent 28%),
+    radial-gradient(circle at 5% 18%, rgba(125, 211, 252, 0.14), transparent 28%),
     linear-gradient(135deg, #ffffff 0%, #f6faff 62%, #f7fffb 100%);
   box-shadow: 0 22px 70px rgba(15, 23, 42, 0.055);
 }
@@ -5144,7 +5144,7 @@ body::after {
 .city-guide-answer {
   border: 0;
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.075), rgba(52, 211, 153, 0.07));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.075), rgba(125, 211, 252, 0.09));
 }
 
 .city-guide-card {
@@ -5316,7 +5316,7 @@ body::after {
 .osaka-guide-page {
   background:
     radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.07), transparent 34%),
-    radial-gradient(circle at 92% 6%, rgba(52, 211, 153, 0.08), transparent 32%),
+    radial-gradient(circle at 92% 6%, rgba(125, 211, 252, 0.10), transparent 32%),
     linear-gradient(180deg, #ffffff 0%, #f8fbff 42%, #ffffff 100%);
 }
 
@@ -5492,7 +5492,7 @@ body::after {
   height: 4px;
   margin-bottom: 16px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #2563eb, #34d399);
+  background: linear-gradient(90deg, #2563eb, #2563eb);
 }
 
 .osaka-guide-subheading {
@@ -5575,7 +5575,7 @@ body::after {
 }
 
 .osaka-guide-list .osaka-guide-list li::before {
-  background: #34d399;
+  background: #2563eb;
 }
 
 .osaka-guide-section ol.osaka-guide-list {
@@ -5763,7 +5763,7 @@ body::after {
 .osaka-hotel-guide-page .osaka-guide-hero__inner {
   background:
     radial-gradient(circle at 86% 12%, rgba(37, 99, 235, 0.11), transparent 30%),
-    radial-gradient(circle at 8% 12%, rgba(52, 211, 153, 0.1), transparent 28%),
+    radial-gradient(circle at 8% 12%, rgba(125, 211, 252, 0.12), transparent 28%),
     linear-gradient(135deg, #ffffff 0%, #f4f9ff 56%, #eef7ff 100%);
 }
 
