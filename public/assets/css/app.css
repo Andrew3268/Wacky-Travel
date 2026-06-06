@@ -5666,3 +5666,29 @@ select:focus {
   justify-content: flex-end;
   gap: 8px;
 }
+
+/* Admin home hub V22 refinements */
+.admin-hub-nav {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+  backdrop-filter: none !important;
+}
+
+.admin-hub-status {
+  background: #f8fbff !important;
+  border-color: rgba(37, 99, 235, 0.12) !important;
+  color: #344054 !important;
+}
+
+.admin-hub-status.is-success {
+  background: #f0fdf4 !important;
+  border-color: rgba(22, 163, 74, 0.20) !important;
+  color: #15803d !important;
+}
+
+.admin-hub-status.is-error {
+  background: #fff5f5 !important;
+  border-color: rgba(220, 38, 38, 0.22) !important;
+  color: #b42318 !important;
+}

@@ -94,11 +94,30 @@ function getDestinationsByCountry(countrySlug = '', { includeInactive = true } =
     .sort(compareFeaturedThenName);
 }
 
-function setStatus(message = '', isError = false) {
+function setStatus(message = '', type = 'info') {
   const el = $('hubManagerStatus');
   if (!el) return;
   el.textContent = message;
-  el.style.color = isError ? '#b91c1c' : '';
+  el.classList.remove('is-success', 'is-error');
+  if (type === 'success') el.classList.add('is-success');
+  if (type === 'error' || type === true) el.classList.add('is-error');
+}
+
+function focusField(id = '') {
+  const el = $(id);
+  if (!el) return;
+  el.focus({ preventScroll: true });
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function requireHubField(id = '', message = '') {
+  const el = $(id);
+  if (!el) return true;
+  const value = normalizeText(el.value || '');
+  if (value) return true;
+  setStatus(message, 'error');
+  focusField(id);
+  return false;
 }
 
 async function requestTravelSettings(method = 'GET', payload = null) {
@@ -129,10 +148,10 @@ async function loadHubSettings(message = '') {
     state.countries = Array.isArray(json.countries) ? json.countries : [];
     state.destinations = Array.isArray(json.destinations) ? json.destinations : [];
     renderAll();
-    setStatus(message || '여행자 허브 정보를 불러왔습니다.');
+    setStatus(message || '여행자 허브 정보를 불러왔습니다.', message ? 'success' : 'info');
   } catch (error) {
     console.error(error);
-    setStatus(error.message || '여행자 허브 정보를 불러오지 못했습니다.', true);
+    setStatus(error.message || '여행자 허브 정보를 불러오지 못했습니다.', 'error');
   }
 }
 
@@ -259,7 +278,7 @@ function enforceFeaturedLimit(changedInput = null) {
   }
   if (changedInput) changedInput.checked = false;
   updateFeaturedBadges();
-  setStatus(`나라별 여행자 허브 노출 도시는 최대 ${HUB_DESTINATION_LIMIT}개까지 선택할 수 있습니다.`, true);
+  setStatus(`나라별 여행자 허브 노출 도시는 최대 ${HUB_DESTINATION_LIMIT}개까지 선택할 수 있습니다.`, 'error');
   return false;
 }
 
@@ -283,8 +302,16 @@ async function saveFeaturedCities() {
   const countrySlug = $('hubFeaturedCountry')?.value || '';
   const countryName = getCountryNameBySlug(countrySlug);
   const slugs = getSelectedFeaturedSlugs();
-  if (!countrySlug || !countryName) return setStatus('인기 도시를 저장할 나라를 선택해 주세요.', true);
-  if (slugs.length > HUB_DESTINATION_LIMIT) return setStatus(`최대 ${HUB_DESTINATION_LIMIT}개까지 선택할 수 있습니다.`, true);
+  if (!countrySlug || !countryName) {
+    setStatus('인기 도시를 저장할 나라를 선택해 주세요.', 'error');
+    focusField('hubFeaturedCountry');
+    return;
+  }
+  if (!slugs.length) {
+    setStatus('인기 도시로 저장할 도시를 1개 이상 선택해 주세요.', 'error');
+    return;
+  }
+  if (slugs.length > HUB_DESTINATION_LIMIT) return setStatus(`최대 ${HUB_DESTINATION_LIMIT}개까지 선택할 수 있습니다.`, 'error');
   try {
     await requestTravelSettings('PUT', {
       entity: 'home_destinations',
@@ -293,9 +320,9 @@ async function saveFeaturedCities() {
       country: countryName,
       slugs
     });
-    await loadHubSettings('인기 도시 노출 설정이 저장되었습니다.');
+    await loadHubSettings(`${countryName} 인기 도시 ${slugs.length}개가 저장되었습니다.`);
   } catch (error) {
-    setStatus(error.message || '인기 도시 저장에 실패했습니다.', true);
+    setStatus(error.message || '인기 도시 저장에 실패했습니다.', 'error');
   }
 }
 
@@ -340,17 +367,22 @@ function clearAddForm() {
   });
 }
 
+function validateAddDestination() {
+  if (!requireHubField('hubAddCountry', '도시를 추가할 나라를 선택해 주세요.')) return false;
+  if (!requireHubField('hubAddName', '도시 표시 이름을 입력해 주세요.')) return false;
+  if (!requireHubField('hubAddSlug', '도시 slug를 입력해 주세요.')) return false;
+  return true;
+}
+
 async function addDestination() {
+  if (!validateAddDestination()) return;
   const payload = getAddPayload();
-  if (!payload.country_slug || !payload.country || !payload.name || !payload.slug) {
-    return setStatus('나라, 도시 표시 이름, slug를 입력해 주세요.', true);
-  }
   try {
     await requestTravelSettings('POST', payload);
     clearAddForm();
-    await loadHubSettings('새 도시가 추가되었습니다. 인기 도시에 노출하려면 인기 도시 관리에서 선택해 주세요.');
+    await loadHubSettings(`${payload.name} 도시가 추가되었습니다. 인기 도시에 노출하려면 인기 도시 관리에서 선택해 주세요.`);
   } catch (error) {
-    setStatus(error.message || '도시 추가에 실패했습니다.', true);
+    setStatus(error.message || '도시 추가에 실패했습니다.', 'error');
   }
 }
 
@@ -477,19 +509,28 @@ function getEditPayload() {
   };
 }
 
+function validateDestinationEdit() {
+  if (!getCurrentEditingItem()) {
+    setStatus('수정할 도시를 먼저 선택해 주세요.', 'error');
+    return false;
+  }
+  if (!requireHubField('hubEditCountryField', '도시가 속한 나라를 선택해 주세요.')) return false;
+  if (!requireHubField('hubEditName', '도시 표시 이름을 입력해 주세요.')) return false;
+  if (!requireHubField('hubEditSlug', '도시 slug를 입력해 주세요.')) return false;
+  return true;
+}
+
 async function saveDestinationEdit(event) {
   event?.preventDefault();
+  if (!validateDestinationEdit()) return;
   const payload = getEditPayload();
-  if (!payload.current_slug || !payload.country_slug || !payload.country || !payload.name || !payload.slug) {
-    return setStatus('나라, 도시 표시 이름, slug를 입력해 주세요.', true);
-  }
   try {
     await requestTravelSettings('PUT', payload);
     const nextSlug = payload.slug;
-    await loadHubSettings('도시 정보가 수정되었습니다.');
+    await loadHubSettings(`${payload.name} 도시 정보가 수정되었습니다.`);
     fillEditForm(nextSlug);
   } catch (error) {
-    setStatus(error.message || '도시 수정에 실패했습니다.', true);
+    setStatus(error.message || '도시 수정에 실패했습니다.', 'error');
   }
 }
 
@@ -503,7 +544,7 @@ async function deactivateCurrentDestination() {
     clearEditForm();
     await loadHubSettings('도시가 비활성화되었습니다.');
   } catch (error) {
-    setStatus(error.message || '도시 비활성화에 실패했습니다.', true);
+    setStatus(error.message || '도시 비활성화에 실패했습니다.', 'error');
   }
 }
 
