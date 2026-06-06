@@ -4709,3 +4709,249 @@ select:focus {
     grid-template-columns: 1fr;
   }
 }
+
+/* Admin: Traveler Hub */
+.admin-hub-shell {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+.admin-hub-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.admin-hub-overview {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-hub-nav {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+}
+
+.admin-hub-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  background: #fff;
+}
+
+.admin-hub-status {
+  margin: 14px 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+}
+
+.admin-hub-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+}
+
+.admin-hub-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-hub-form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-hub-form-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-hub-form-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-hub-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-hub-actions--split {
+  justify-content: space-between;
+}
+
+.admin-hub-featured-head,
+.admin-hub-toolbar {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.35fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: end;
+}
+
+.admin-hub-featured-head .home-destination-count {
+  justify-self: end;
+  align-self: center;
+}
+
+.admin-hub-featured-list {
+  max-height: 380px;
+  overflow: auto;
+}
+
+.admin-hub-edit-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.36fr) minmax(0, 0.64fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.admin-hub-city-list {
+  display: grid;
+  gap: 8px;
+  max-height: 760px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.admin-hub-city-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.admin-hub-city-card.is-selected {
+  border-color: rgba(37, 99, 235, 0.5);
+  background: #eff6ff;
+}
+
+.admin-hub-city-card.is-inactive {
+  opacity: 0.64;
+}
+
+.admin-hub-city-card__main {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.admin-hub-city-card__main strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.admin-hub-city-card__main em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 12px;
+}
+
+.admin-hub-city-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.admin-hub-city-card__badges i {
+  font-style: normal;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 7px;
+  font-size: 11px;
+  color: var(--muted);
+  background: #f8fafc;
+}
+
+.admin-hub-edit-form {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  background: #fff;
+}
+
+.admin-hub-edit-form__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.admin-hub-edit-form__head h3 {
+  margin: 4px 0 0;
+  font-size: 22px;
+}
+
+.admin-hub-edit-section {
+  display: grid;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.admin-hub-edit-section h4 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+@media (max-width: 920px) {
+  .admin-hub-hero,
+  .admin-hub-edit-layout,
+  .admin-hub-featured-head,
+  .admin-hub-toolbar,
+  .admin-hub-form-grid--3,
+  .admin-hub-form-grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-hub-featured-head .home-destination-count {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-hub-nav {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-hub-actions,
+  .admin-hub-actions--split,
+  .admin-hub-edit-form__head,
+  .admin-hub-city-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-hub-city-card__badges {
+    justify-content: flex-start;
+  }
+}
+.admin-items-future-card[href] {
+  color: inherit;
+  text-decoration: none;
+}

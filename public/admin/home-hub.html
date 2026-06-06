@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>여행자 허브 관리 | Wacky Travel</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260606v19" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260606v19" />
+</head>
+<body>
+  <header class="topbar topbar--editorial">
+    <div class="topbar__inner topbar__inner--editorial">
+      <button class="topbar-hamburger" type="button" aria-expanded="false" aria-controls="mobileSiteMenu" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="topbar-left-slot"><div class="topbar-admin-status" data-admin-status hidden aria-live="polite">관리자 로그인 중</div></div>
+
+      <a class="brand brand--center" href="/" aria-label="Wacky Travel 홈">
+        <span class="brand__text">Wacky Travel</span>
+      </a>
+
+      <nav class="nav nav--utility nav--right" aria-label="오른쪽 메뉴">
+        <a href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside id="mobileSiteMenu" class="mobile-site-menu" hidden aria-hidden="true">
+    <div class="mobile-site-menu__panel">
+      <div class="mobile-site-menu__close-wrap">
+        <button class="mobile-site-menu__close-toggle topbar-hamburger is-open" type="button" aria-label="메뉴 닫기" data-mobile-menu-close>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-site-menu__nav" aria-label="모바일 주요 메뉴"></nav>
+      <div class="mobile-site-menu__section mobile-site-menu__section--categories">
+        <div id="mobileSiteCategoryBar" class="topbar-categories__list topbar-categories__list--mobile"></div>
+      </div>
+      <div class="mobile-site-menu__section mobile-site-menu__section--admin" data-mobile-admin-section hidden>
+        <a class="mobile-site-menu__text-link" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="container admin-hub-shell">
+    <section class="hero card admin-hub-hero">
+      <div class="hero-copy">
+        <span class="badge">Traveler Hub Admin</span>
+        <h1 class="hero-title">여행자 허브 관리</h1>
+        <p class="p hero-desc">인덱스 페이지의 “여행자 허브” 섹션에 노출되는 나라별 도시, 인기 도시 순서, 도시별 카드 문구와 기본 정보를 이 페이지에서 관리합니다.</p>
+        <div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
+          <a class="btn btn--brand" href="/admin/dashboard.html">대시보드로</a>
+          <a class="btn" href="/admin/items.html">항목 관리</a>
+          <a class="btn" href="/">블로그 홈</a>
+        </div>
+      </div>
+      <div class="admin-hub-overview" aria-label="여행자 허브 현황">
+        <div class="dashboard-stat">
+          <div class="dashboard-stat__label">나라</div>
+          <strong class="dashboard-stat__value" id="hubCountryCount">-</strong>
+        </div>
+        <div class="dashboard-stat">
+          <div class="dashboard-stat__label">전체 도시</div>
+          <strong class="dashboard-stat__value" id="hubDestinationCount">-</strong>
+        </div>
+        <div class="dashboard-stat">
+          <div class="dashboard-stat__label">허브 노출 도시</div>
+          <strong class="dashboard-stat__value" id="hubFeaturedCount">-</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="card admin-hub-nav" aria-label="여행자 허브 관리 바로가기">
+      <a href="#hubAddCity">나라별 도시 추가</a>
+      <a href="#hubFeaturedCities">인기 도시 관리</a>
+      <a href="#hubCityEdit">각 도시별 수정관리</a>
+    </nav>
+
+    <div class="admin-hub-status small" id="hubManagerStatus" aria-live="polite">여행자 허브 정보를 불러오는 중…</div>
+
+    <section class="admin-hub-grid">
+      <article class="card admin-hub-panel" id="hubAddCity">
+        <div class="dashboard-panel__head">
+          <div>
+            <h2 class="h2">나라별 도시 추가</h2>
+            <p class="small">선택한 나라에 새 도시를 추가합니다. 추가된 도시는 글 작성 화면과 도시 수정 관리 목록에 함께 반영됩니다.</p>
+          </div>
+        </div>
+        <div class="admin-hub-form-grid admin-hub-form-grid--3">
+          <label class="form-field"><span>나라</span><select class="input" id="hubAddCountry"><option value="">나라 선택</option></select></label>
+          <label class="form-field"><span>도시 표시 이름</span><input class="input" id="hubAddName" placeholder="예: 오사카" /></label>
+          <label class="form-field"><span>slug</span><input class="input" id="hubAddSlug" placeholder="예: osaka" /></label>
+        </div>
+        <div class="admin-hub-form-grid admin-hub-form-grid--2">
+          <label class="form-field"><span>실제 도시명</span><input class="input" id="hubAddCityName" placeholder="예: 오사카" /></label>
+          <label class="form-field"><span>노출 순서</span><input class="input" id="hubAddSortOrder" type="number" min="0" placeholder="숫자가 낮을수록 먼저" /></label>
+        </div>
+        <label class="form-field"><span>도시 소개 문구</span><textarea class="input textarea" id="hubAddSummary" rows="3" placeholder="예: 첫 오사카 여행자도 동선을 짜기 쉬운 대표 여행 도시입니다."></textarea></label>
+        <div class="admin-hub-form-grid admin-hub-form-grid--2">
+          <label class="form-field"><span>허브 카드 제목</span><input class="input" id="hubAddCardTitle" placeholder="예: 처음 가도 동선 잡기 쉬운 오사카" /></label>
+          <label class="form-field"><span>대표 이미지 URL</span><input class="input" id="hubAddHeroImage" placeholder="https://..." /></label>
+        </div>
+        <label class="form-field"><span>허브 카드 설명</span><textarea class="input textarea" id="hubAddCardDescription" rows="3" placeholder="인덱스 여행자 허브 카드와 나라별 도시 카드에 활용할 설명"></textarea></label>
+        <div class="admin-hub-actions">
+          <button class="btn btn--brand" id="hubAddDestinationBtn" type="button">도시 추가하기</button>
+        </div>
+      </article>
+
+      <article class="card admin-hub-panel" id="hubFeaturedCities">
+        <div class="dashboard-panel__head">
+          <div>
+            <h2 class="h2">인기 도시 관리</h2>
+            <p class="small">인덱스 페이지의 여행자 허브에 노출할 도시를 나라별로 최대 5개까지 선택하고 순서를 정합니다.</p>
+          </div>
+        </div>
+        <div class="admin-hub-featured-head">
+          <label class="form-field"><span>관리할 나라</span><select class="input" id="hubFeaturedCountry"><option value="">나라 선택</option></select></label>
+          <span class="home-destination-count small" id="hubFeaturedCountLabel">0/5 선택</span>
+        </div>
+        <div class="home-destination-checklist admin-hub-featured-list" id="hubFeaturedList" aria-label="여행자 허브 인기 도시 선택"></div>
+        <div class="admin-hub-actions admin-hub-actions--split">
+          <span class="small">선택한 순서대로 인덱스 페이지에 노출됩니다.</span>
+          <button class="btn btn--brand" id="hubSaveFeaturedBtn" type="button">인기 도시 저장</button>
+        </div>
+      </article>
+
+      <article class="card admin-hub-panel admin-hub-panel--wide" id="hubCityEdit">
+        <div class="dashboard-panel__head">
+          <div>
+            <h2 class="h2">각 도시별 수정관리</h2>
+            <p class="small">도시 상세 페이지 기본 정보, 허브 카드 문구, SEO 설명, 노출 상태를 도시별로 수정합니다.</p>
+          </div>
+        </div>
+        <div class="admin-hub-toolbar">
+          <label class="form-field"><span>나라 필터</span><select class="input" id="hubEditCountry"><option value="all">전체 나라</option></select></label>
+          <label class="form-field"><span>도시 검색</span><input class="input" id="hubEditSearch" placeholder="도시명 또는 slug 검색" /></label>
+        </div>
+        <div class="admin-hub-edit-layout">
+          <div class="admin-hub-city-list" id="hubCityList"></div>
+          <form class="admin-hub-edit-form" id="hubEditForm" hidden>
+            <input type="hidden" id="hubEditCurrentSlug" />
+            <div class="admin-hub-edit-form__head">
+              <div>
+                <div class="small seo-eyebrow">도시 수정</div>
+                <h3 id="hubEditTitle">도시를 선택하세요</h3>
+              </div>
+              <button class="btn" type="button" id="hubClearEditBtn">선택 해제</button>
+            </div>
+
+            <div class="admin-hub-form-grid admin-hub-form-grid--3">
+              <label class="form-field"><span>나라</span><select class="input" id="hubEditCountryField"></select></label>
+              <label class="form-field"><span>도시 표시 이름</span><input class="input" id="hubEditName" required /></label>
+              <label class="form-field"><span>slug</span><input class="input" id="hubEditSlug" required /></label>
+            </div>
+            <div class="admin-hub-form-grid admin-hub-form-grid--3">
+              <label class="form-field"><span>실제 도시명</span><input class="input" id="hubEditCityName" /></label>
+              <label class="form-field"><span>상태</span><select class="input" id="hubEditStatus"><option value="published">공개</option><option value="draft">비공개</option></select></label>
+              <label class="form-field"><span>노출 순서</span><input class="input" id="hubEditSortOrder" type="number" min="0" /></label>
+            </div>
+
+            <section class="admin-hub-edit-section">
+              <h4>인덱스 허브 카드 정보</h4>
+              <label class="form-field"><span>카드 제목</span><input class="input" id="hubEditCardTitle" placeholder="비워두면 도시명이 사용됩니다." /></label>
+              <label class="form-field"><span>카드 설명</span><textarea class="input textarea" id="hubEditCardDescription" rows="3"></textarea></label>
+            </section>
+
+            <section class="admin-hub-edit-section">
+              <h4>도시 상세 페이지 기본 정보</h4>
+              <div class="admin-hub-form-grid admin-hub-form-grid--2">
+                <label class="form-field"><span>상단 라벨</span><input class="input" id="hubEditHeroEyebrow" /></label>
+                <label class="form-field"><span>페이지 제목</span><input class="input" id="hubEditHeroTitle" /></label>
+              </div>
+              <label class="form-field"><span>도시 소개 문구</span><textarea class="input textarea" id="hubEditHeroSummary" rows="3"></textarea></label>
+              <div class="admin-hub-form-grid admin-hub-form-grid--2">
+                <label class="form-field"><span>대표 이미지 URL</span><input class="input" id="hubEditHeroImage" /></label>
+                <label class="form-field"><span>대표 이미지 alt</span><input class="input" id="hubEditHeroImageAlt" /></label>
+              </div>
+            </section>
+
+            <section class="admin-hub-edit-section">
+              <h4>여행 정보와 SEO</h4>
+              <div class="admin-hub-form-grid admin-hub-form-grid--3">
+                <label class="form-field"><span>추천 시기</span><input class="input" id="hubEditBestSeason" /></label>
+                <label class="form-field"><span>공항 정보</span><input class="input" id="hubEditAirportInfo" /></label>
+                <label class="form-field"><span>동선 요약</span><input class="input" id="hubEditTransportSummary" /></label>
+              </div>
+              <label class="form-field"><span>SEO 메타 설명</span><textarea class="input textarea" id="hubEditMetaDescription" rows="2"></textarea></label>
+            </section>
+
+            <div class="admin-hub-actions admin-hub-actions--split">
+              <button class="btn btn--danger" id="hubDeactivateDestinationBtn" type="button">도시 비활성화</button>
+              <button class="btn btn--brand" type="submit">도시 수정 저장</button>
+            </div>
+          </form>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
+  <script src="/assets/js/admin-guard.js"></script>
+  <script src="/assets/js/admin-ui.js" defer></script>
+  <script src="/assets/js/nav.js" defer></script>
+  <script src="/assets/js/admin-home-hub.js?v=20260606v1" defer></script>
+</body>
+</html>
