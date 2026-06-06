@@ -64,12 +64,22 @@ function sortByOrderThenName(a, b, labelGetter) {
   return labelGetter(a).localeCompare(labelGetter(b), "ko");
 }
 
+let itemStatusTimer = null;
+
 function setStatus(message = "", isError = false) {
   const el = $("itemManagerStatus");
   if (!el) return;
+  window.clearTimeout(itemStatusTimer);
   el.textContent = message;
   el.classList.toggle("is-error", Boolean(message && isError));
   el.classList.toggle("is-success", Boolean(message && !isError));
+  el.classList.toggle("is-visible", Boolean(message));
+  if (message) {
+    const delay = isError ? 5200 : 3200;
+    itemStatusTimer = window.setTimeout(() => {
+      el.classList.remove("is-visible");
+    }, delay);
+  }
 }
 
 function focusField(id) {

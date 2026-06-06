@@ -94,13 +94,26 @@ function getDestinationsByCountry(countrySlug = '', { includeInactive = true } =
     .sort(compareFeaturedThenName);
 }
 
+let hubStatusTimer = null;
+
 function setStatus(message = '', type = 'info') {
   const el = $('hubManagerStatus');
   if (!el) return;
+  const isError = type === 'error' || type === true;
+  const isSuccess = type === 'success';
+  window.clearTimeout(hubStatusTimer);
   el.textContent = message;
-  el.classList.remove('is-success', 'is-error');
-  if (type === 'success') el.classList.add('is-success');
-  if (type === 'error' || type === true) el.classList.add('is-error');
+  el.classList.remove('is-success', 'is-error', 'is-info');
+  if (isSuccess) el.classList.add('is-success');
+  else if (isError) el.classList.add('is-error');
+  else if (message) el.classList.add('is-info');
+  el.classList.toggle('is-visible', Boolean(message));
+  if (message) {
+    const delay = isError ? 5200 : 3200;
+    hubStatusTimer = window.setTimeout(() => {
+      el.classList.remove('is-visible');
+    }, delay);
+  }
 }
 
 function focusField(id = '') {

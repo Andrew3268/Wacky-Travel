@@ -5692,3 +5692,73 @@ select:focus {
   border-color: rgba(220, 38, 38, 0.22) !important;
   color: #b42318 !important;
 }
+
+/* Admin floating toast V23 */
+.admin-items-status,
+.admin-hub-status {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: max(22px, env(safe-area-inset-bottom)) !important;
+  transform: translate(-50%, 18px) !important;
+  width: min(520px, calc(100vw - 32px)) !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 13px 18px !important;
+  margin: 0 !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  color: #1f2937 !important;
+  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.16) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+}
+
+.admin-items-status.is-visible,
+.admin-hub-status.is-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translate(-50%, 0) !important;
+}
+
+.admin-items-status.is-success,
+.admin-hub-status.is-success {
+  background: #ecfdf3 !important;
+  border-color: rgba(22, 163, 74, 0.22) !important;
+  color: #067647 !important;
+}
+
+.admin-hub-status.is-info {
+  background: #eff6ff !important;
+  border-color: rgba(37, 99, 235, 0.20) !important;
+  color: #1d4ed8 !important;
+}
+
+.admin-items-status.is-error,
+.admin-hub-status.is-error {
+  background: #fff1f2 !important;
+  border-color: rgba(220, 38, 38, 0.22) !important;
+  color: #b42318 !important;
+}
+
+@media (max-width: 640px) {
+  .admin-items-status,
+  .admin-hub-status {
+    bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    width: calc(100vw - 24px) !important;
+    border-radius: 18px !important;
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+  }
+}
