@@ -96,7 +96,7 @@
                   <div class="h2">여행 노출 설정</div>
                   <p class="small">글 종류·나라·도시에 따라 노출 섹션이 결정됩니다.</p>
                 </div>
-                <button class="btn" id="openTravelSettingsModalBtn" type="button" aria-expanded="false">항목 관리</button>
+                <a class="btn" href="/admin/items.html">항목 관리</a>
               </div>
               <div class="grid grid--3">
                 <label>
@@ -494,65 +494,6 @@
       <div class="preview-frame preview-frame--pc" id="previewFrame">
         <div class="preview-page" id="previewContent"></div>
       </div>
-    </div>
-  </aside>
-
-  <div class="modal-backdrop" id="travelSettingsModalBackdrop" hidden></div>
-  <aside class="modal-sheet modal-sheet--travel-settings" id="travelSettingsModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="travelSettingsModalTitle">
-    <div class="modal-sheet__header">
-      <div>
-        <div class="small seo-eyebrow">여행 노출 설정 관리</div>
-        <h2 class="h2" id="travelSettingsModalTitle">글 종류 · 나라 · 도시 설정</h2>
-        <p class="small">여기서 추가한 항목은 글 작성/수정 화면의 선택 항목과 여행지 페이지 섹션에 반영됩니다.</p>
-      </div>
-      <button class="btn" id="closeTravelSettingsModalBtn" type="button">닫기</button>
-    </div>
-    <div class="sep"></div>
-    <div class="modal-sheet__body travel-settings-manager">
-      <section class="travel-settings-manager__section">
-        <h3 class="h2">글 종류</h3>
-        <div class="category-manager__create">
-          <div class="category-manager__create-row travel-settings-manager__create-row--3">
-            <input class="input" id="newContentTypeLabel" placeholder="예: 가족여행 코스" />
-            <input class="input" id="newContentTypeSlug" placeholder="slug 예: family-route" />
-            <button class="btn btn--brand" id="addContentTypeBtn" type="button">추가</button>
-          </div>
-          <input class="input" id="newContentTypeDescription" placeholder="설명 예: 가족 단위 여행객을 위한 일정 콘텐츠" />
-        </div>
-        <div class="category-manager__list" id="travelContentTypeList"></div>
-      </section>
-
-      <div class="sep"></div>
-
-      <section class="travel-settings-manager__section">
-        <h3 class="h2">나라</h3>
-        <div class="category-manager__create-row travel-settings-manager__create-row--3">
-          <input class="input" id="newCountryName" placeholder="예: 베트남" />
-          <input class="input" id="newCountrySlug" placeholder="slug 예: vietnam" />
-          <button class="btn btn--brand" id="addCountryBtn" type="button">추가</button>
-        </div>
-        <div class="category-manager__list" id="travelCountryList"></div>
-      </section>
-
-      <div class="sep"></div>
-
-      <section class="travel-settings-manager__section">
-        <h3 class="h2">도시</h3>
-        <div class="grid grid--3">
-          <select class="input" id="newDestinationCountry">
-            <option value="">나라 선택</option>
-          </select>
-          <input class="input" id="newDestinationName" placeholder="표시 이름 예: 다낭" />
-          <input class="input" id="newDestinationCity" placeholder="도시명 예: 다낭" />
-        </div>
-        <div class="category-manager__create-row" style="margin-top:10px;">
-          <input class="input" id="newDestinationSlug" placeholder="slug 예: da-nang" />
-          <button class="btn btn--brand" id="addDestinationBtn" type="button">추가</button>
-        </div>
-        <div class="category-manager__list" id="travelDestinationList"></div>
-      </section>
-
-      <div class="small" id="travelSettingsManagerStatus"></div>
     </div>
   </aside>
 

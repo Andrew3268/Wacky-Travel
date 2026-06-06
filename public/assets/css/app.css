@@ -4604,3 +4604,108 @@ select:focus {
 .affiliate-cta-editor-card .small {
   color: #64748B !important;
 }
+
+/* Admin item management page */
+.admin-items-shell {
+  padding-top: 16px;
+  padding-bottom: 36px;
+}
+.admin-items-hero {
+  display: grid;
+  grid-template-columns: minmax(0,1.1fr) minmax(300px,.9fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.admin-items-overview {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 12px;
+}
+.admin-items-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 16px;
+  padding: 12px;
+}
+.admin-items-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #334155;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+.admin-items-status {
+  margin: 14px 0;
+  min-height: 20px;
+}
+.admin-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 16px;
+  align-items: start;
+}
+.admin-items-panel {
+  padding: 18px;
+}
+.admin-items-panel--wide {
+  grid-column: 1 / -1;
+}
+.admin-items-create-row--2 {
+  grid-template-columns: 1fr 1fr auto;
+}
+.admin-items-create-row--3 {
+  grid-template-columns: 1fr 1fr auto;
+}
+.admin-items-create-row--4 {
+  grid-template-columns: minmax(160px,.8fr) 1fr 1fr auto;
+}
+.admin-items-list-item.is-inactive {
+  opacity: .64;
+  background: #f8fafc;
+}
+.admin-items-future-grid {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 12px;
+}
+.admin-items-future-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px dashed #cbd5e1;
+  background: #f8fafc;
+}
+.admin-items-future-card strong {
+  font-size: 15px;
+  color: #0f172a;
+}
+@media (max-width: 960px) {
+  .admin-items-hero,
+  .admin-items-grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-items-overview,
+  .admin-items-future-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .admin-items-create-row--4,
+  .admin-items-create-row--3,
+  .admin-items-create-row--2 {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .admin-items-overview,
+  .admin-items-future-grid {
+    grid-template-columns: 1fr;
+  }
+}

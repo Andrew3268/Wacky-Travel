@@ -59,6 +59,7 @@
         <p class="p hero-desc">발행 현황, 인기글, 최근 수정 글을 빠르게 확인하고 바로 관리 작업으로 이동할 수 있습니다.</p>
         <div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
           <a class="btn btn--brand" href="/add.html">새 글 작성</a>
+          <a class="btn" href="/admin/items.html">항목 관리</a>
           <a class="btn" href="/">블로그 홈으로 가기</a>
           <a class="btn" href="/?status=draft">초안글 보기</a>
         </div>
@@ -115,14 +116,15 @@
             <h2 class="h2">여행 노출 설정</h2>
             <span class="small">글 종류 · 나라 · 도시</span>
           </div>
-          <p class="small">카테고리 대신 글 종류, 나라, 도시 기준으로 콘텐츠가 노출됩니다. 새 글 작성 또는 글 수정 화면에서 ‘항목 관리’ 버튼으로 선택 항목을 관리하세요.</p>
-          <a class="btn" href="/add.html">새 글에서 설정 관리</a>
+          <p class="small">글 종류, 나라, 도시를 새 글 작성 화면이 아니라 별도 항목 관리 페이지에서 관리합니다. 앞으로 다른 운영 항목도 이 페이지에 추가할 수 있습니다.</p>
+          <a class="btn" href="/admin/items.html">항목 관리 페이지로</a>
         </article>
       </aside>
     </section>
   </main>
 
   <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
+  <script src="/assets/js/admin-guard.js"></script>
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/admin-dashboard.js?v=20260522v29" defer></script>
