@@ -380,11 +380,23 @@ export async function onRequestDelete({ env, request }) {
   }
 
   if (entity === "country") {
+    const hardDelete = Number(body.hard_delete ?? 0) === 1 || String(body.action || body.mode || "").trim() === "delete";
+    if (hardDelete) {
+      await env.TRAVEL_DB.prepare(`DELETE FROM countries WHERE slug = ?`).bind(slug).run();
+      return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
+    }
     await env.TRAVEL_DB.prepare(`UPDATE countries SET is_active = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
 
   if (entity === "destination") {
+    const hardDelete = Number(body.hard_delete ?? 0) === 1 || String(body.action || body.mode || "").trim() === "delete";
+    if (hardDelete) {
+      await env.TRAVEL_DB.prepare(`UPDATE posts SET destination_slug = '', updated_at = ? WHERE destination_slug = ?`).bind(now, slug).run();
+      await env.TRAVEL_DB.prepare(`UPDATE hotels SET destination_slug = '', updated_at = ? WHERE destination_slug = ?`).bind(now, slug).run();
+      await env.TRAVEL_DB.prepare(`DELETE FROM destinations WHERE slug = ?`).bind(slug).run();
+      return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
+    }
     await env.TRAVEL_DB.prepare(`UPDATE destinations SET status = 'draft', is_active = 0, home_featured = 0, home_featured_order = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }

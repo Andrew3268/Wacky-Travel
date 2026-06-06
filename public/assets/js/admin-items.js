@@ -68,7 +68,21 @@ function setStatus(message = "", isError = false) {
   const el = $("itemManagerStatus");
   if (!el) return;
   el.textContent = message;
-  el.style.color = isError ? "#b91c1c" : "";
+  el.classList.toggle("is-error", Boolean(message && isError));
+  el.classList.toggle("is-success", Boolean(message && !isError));
+}
+
+function focusField(id) {
+  const field = $(id);
+  if (!field) return;
+  field.focus({ preventScroll: true });
+  field.classList.add("is-invalid");
+  window.setTimeout(() => field.classList.remove("is-invalid"), 1400);
+}
+
+function showRequiredMessage(message, fieldId) {
+  setStatus(message || "값을 입력해 주세요.", true);
+  if (fieldId) focusField(fieldId);
 }
 
 async function requestTravelSettingsApi(method = "GET", payload = null) {
@@ -152,7 +166,8 @@ function renderCountryManager() {
             </div>
             <div class="category-manager__actions">
               <button class="btn" type="button" data-travel-edit-country="${escapeHtml(item.slug || "")}">수정</button>
-              <button class="btn" type="button" data-travel-delete-country="${escapeHtml(item.slug || "")}">비활성화</button>
+              <button class="btn" type="button" data-travel-deactivate-country="${escapeHtml(item.slug || "")}">비활성화</button>
+              <button class="btn btn--danger" type="button" data-travel-remove-country="${escapeHtml(item.slug || "")}">삭제</button>
             </div>
           </div>`;
       }).join("")
@@ -184,7 +199,8 @@ function renderDestinationManager() {
           </div>
           <div class="category-manager__actions">
             <button class="btn" type="button" data-travel-edit-destination="${escapeHtml(item.slug || "")}">수정</button>
-            <button class="btn" type="button" data-travel-delete-destination="${escapeHtml(item.slug || "")}">비활성화</button>
+            <button class="btn" type="button" data-travel-deactivate-destination="${escapeHtml(item.slug || "")}">비활성화</button>
+            <button class="btn btn--danger" type="button" data-travel-remove-destination="${escapeHtml(item.slug || "")}">삭제</button>
           </div>
         </div>`;
     }).join("")
@@ -206,7 +222,8 @@ async function addTravelContentType() {
   const label = normalizeText($("newContentTypeLabel")?.value || "");
   const slug = slugify($("newContentTypeSlug")?.value || label);
   const description = normalizeText($("newContentTypeDescription")?.value || "");
-  if (!label || !slug) return setStatus("글 종류 이름과 slug를 입력해 주세요.", true);
+  if (!label) return showRequiredMessage("글 종류 이름을 입력해 주세요.", "newContentTypeLabel");
+  if (!slug) return showRequiredMessage("사용 가능한 글 종류 slug를 입력해 주세요.", "newContentTypeSlug");
   try {
     await requestTravelSettingsApi("POST", { entity: "content_type", slug, label, description });
     ["newContentTypeLabel", "newContentTypeSlug", "newContentTypeDescription"].forEach((id) => { if ($(id)) $(id).value = ""; });
@@ -255,7 +272,8 @@ async function deleteTravelContentType(slug) {
 async function addTravelCountry() {
   const name = normalizeText($("newCountryName")?.value || "");
   const slug = slugify($("newCountrySlug")?.value || name);
-  if (!name || !slug) return setStatus("나라 이름과 slug를 입력해 주세요.", true);
+  if (!name) return showRequiredMessage("나라 이름을 입력해 주세요.", "newCountryName");
+  if (!slug) return showRequiredMessage("사용 가능한 나라 slug를 입력해 주세요.", "newCountrySlug");
   try {
     await requestTravelSettingsApi("POST", { entity: "country", slug, name });
     ["newCountryName", "newCountrySlug"].forEach((id) => { if ($(id)) $(id).value = ""; });
@@ -286,7 +304,7 @@ async function editTravelCountry(slug) {
   }
 }
 
-async function deleteTravelCountry(slug) {
+async function deactivateTravelCountry(slug) {
   const item = countryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
   const ok = window.confirm(`'${item?.name || slug}' 나라를 비활성화할까요?\n도시는 삭제되지 않지만 선택 목록에서는 제외됩니다.`);
   if (!ok) return;
@@ -298,13 +316,27 @@ async function deleteTravelCountry(slug) {
   }
 }
 
+async function removeTravelCountry(slug) {
+  const item = countryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  const ok = window.confirm(`'${item?.name || slug}' 나라를 완전히 삭제할까요?\n도시와 글의 기존 연결값은 유지되지만, 나라 관리 목록에서는 제거됩니다.`);
+  if (!ok) return;
+  try {
+    await requestTravelSettingsApi("DELETE", { entity: "country", slug, hard_delete: 1 });
+    await afterChanged("나라가 삭제되었습니다.");
+  } catch (error) {
+    setStatus(error.message || "나라 삭제에 실패했습니다.", true);
+  }
+}
+
 async function addTravelDestination() {
   const countrySlug = $("newDestinationCountry")?.value || "";
   const countryName = getCountryNameBySlug(countrySlug);
   const name = normalizeText($("newDestinationName")?.value || "");
   const city = normalizeText($("newDestinationCity")?.value || name);
   const slug = slugify($("newDestinationSlug")?.value || name);
-  if (!countrySlug || !name || !slug) return setStatus("나라, 도시명, slug를 입력해 주세요.", true);
+  if (!countrySlug) return showRequiredMessage("나라를 선택해 주세요.", "newDestinationCountry");
+  if (!name) return showRequiredMessage("도시 표시 이름을 입력해 주세요.", "newDestinationName");
+  if (!slug) return showRequiredMessage("사용 가능한 도시 slug를 입력해 주세요.", "newDestinationSlug");
   try {
     await requestTravelSettingsApi("POST", { entity: "destination", slug, name, city, country_slug: countrySlug, country: countryName, status: "published" });
     ["newDestinationName", "newDestinationCity", "newDestinationSlug"].forEach((id) => { if ($(id)) $(id).value = ""; });
@@ -348,7 +380,7 @@ async function editTravelDestination(slug) {
   }
 }
 
-async function deleteTravelDestination(slug) {
+async function deactivateTravelDestination(slug) {
   const item = destinationItems.find((entry) => String(entry.slug || "") === String(slug || ""));
   const ok = window.confirm(`'${item?.name || slug}' 도시를 비활성화할까요?\n이 도시와 연결된 글의 도시 연결값은 유지되지만 선택 목록에서는 제외됩니다.`);
   if (!ok) return;
@@ -357,6 +389,18 @@ async function deleteTravelDestination(slug) {
     await afterChanged("도시가 비활성화되었습니다.");
   } catch (error) {
     setStatus(error.message || "도시 비활성화에 실패했습니다.", true);
+  }
+}
+
+async function removeTravelDestination(slug) {
+  const item = destinationItems.find((entry) => String(entry.slug || "") === String(slug || ""));
+  const ok = window.confirm(`'${item?.name || slug}' 도시를 완전히 삭제할까요?\n이 도시와 연결된 글/호텔의 도시 연결값은 비워집니다.`);
+  if (!ok) return;
+  try {
+    await requestTravelSettingsApi("DELETE", { entity: "destination", slug, hard_delete: 1 });
+    await afterChanged("도시가 삭제되었습니다.");
+  } catch (error) {
+    setStatus(error.message || "도시 삭제에 실패했습니다.", true);
   }
 }
 
@@ -381,9 +425,11 @@ function bindEvents() {
     if (target.dataset.travelEditContentType) return editTravelContentType(target.dataset.travelEditContentType);
     if (target.dataset.travelDeleteContentType) return deleteTravelContentType(target.dataset.travelDeleteContentType);
     if (target.dataset.travelEditCountry) return editTravelCountry(target.dataset.travelEditCountry);
-    if (target.dataset.travelDeleteCountry) return deleteTravelCountry(target.dataset.travelDeleteCountry);
+    if (target.dataset.travelDeactivateCountry) return deactivateTravelCountry(target.dataset.travelDeactivateCountry);
+    if (target.dataset.travelRemoveCountry) return removeTravelCountry(target.dataset.travelRemoveCountry);
     if (target.dataset.travelEditDestination) return editTravelDestination(target.dataset.travelEditDestination);
-    if (target.dataset.travelDeleteDestination) return deleteTravelDestination(target.dataset.travelDeleteDestination);
+    if (target.dataset.travelDeactivateDestination) return deactivateTravelDestination(target.dataset.travelDeactivateDestination);
+    if (target.dataset.travelRemoveDestination) return removeTravelDestination(target.dataset.travelRemoveDestination);
   });
 }
 
