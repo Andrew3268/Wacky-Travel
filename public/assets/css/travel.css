@@ -6711,3 +6711,164 @@ body::after {
     width: 100%;
   }
 }
+
+
+/* Osaka static mobile UX improvements v7 */
+@media (max-width: 767px) {
+  .travel-page.osaka-city-page,
+  .travel-page.osaka-purpose-page,
+  .travel-page.osaka-guide-page {
+    overflow-x: hidden;
+  }
+
+  .travel-page.osaka-city-page > .container,
+  .travel-page.osaka-purpose-page .container,
+  .travel-page.osaka-guide-page .container,
+  .breadcrumbs.container {
+    width: auto;
+    max-width: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .osaka-city-hero {
+    padding-top: 22px;
+    padding-bottom: 40px;
+  }
+
+  .osaka-city-hero__lead {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.72;
+  }
+
+  .osaka-city-hero__actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .osaka-city-button,
+  .osaka-city-hero__actions .osaka-city-button {
+    width: auto;
+    min-width: 0;
+    min-height: 40px;
+    padding: 0 8px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1.22;
+    text-align: center;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  .osaka-city-snapshot,
+  .osaka-city-guide-links,
+  .osaka-city-section,
+  .osaka-city-faq,
+  .osaka-city-dynamic-section {
+    padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .osaka-city-snapshot__grid,
+  .osaka-city-faq__grid,
+  .destination-guide-links--static-osaka {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .osaka-city-choice-card,
+  .destination-guide-links--static-osaka .destination-guide-link,
+  .osaka-city-faq__grid article {
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .osaka-purpose-page .wt-page-hero {
+    padding-top: 16px;
+    padding-bottom: 38px;
+  }
+
+  .osaka-purpose-page .wt-page-hero h1 {
+    font-size: clamp(32px, 9.2vw, 42px);
+    line-height: 1.08;
+  }
+
+  .osaka-purpose-page .wt-page-hero p,
+  .osaka-purpose-page .wt-section-desc,
+  .osaka-purpose-page .wt-area-card p,
+  .osaka-purpose-page .wt-hotel-card p,
+  .osaka-purpose-page .wt-link-card p {
+    line-height: 1.72;
+  }
+
+  .osaka-purpose-page .wt-section {
+    padding: 46px 0;
+  }
+
+  .osaka-purpose-page .wt-area-grid,
+  .osaka-purpose-page .wt-hotel-grid,
+  .osaka-purpose-page .wt-check-grid,
+  .osaka-purpose-page .wt-link-grid,
+  .osaka-purpose-page .wt-link-grid--purpose {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .osaka-purpose-page .wt-area-card,
+  .osaka-purpose-page .wt-hotel-card__body,
+  .osaka-purpose-page .wt-link-card,
+  .osaka-purpose-page .wt-check-item,
+  .osaka-purpose-page .wt-cta-band {
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .osaka-guide-page .container {
+    width: auto;
+    max-width: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .osaka-guide-hero__inner,
+  .osaka-guide-section,
+  .osaka-guide-related,
+  .osaka-guide-snapshot__grid article,
+  .osaka-guide-survey-panel__link {
+    border-radius: 22px;
+  }
+
+  .osaka-guide-hero__inner {
+    padding: 30px 20px;
+  }
+
+  .osaka-guide-section {
+    padding: 24px 20px;
+  }
+
+  .osaka-guide-snapshot__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .osaka-guide-related {
+    grid-template-columns: 1fr;
+    padding: 26px 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .osaka-city-button,
+  .osaka-city-hero__actions .osaka-city-button {
+    font-size: 11px;
+    padding: 0 6px;
+  }
+}

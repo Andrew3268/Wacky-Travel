@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260608osakaV6" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260608osakaV7" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"오사카","alternateName":"Osaka","description":"오사카 숙소 위치, 호텔 추천, 여행 동선, 공항 접근성, 근교 여행 기준을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/osaka","touristType":["자유여행자","커플 여행자","가족 여행자","호텔 비교 여행자"],"containedInPlace":{"@type":"Country","name":"일본"}}</script>
@@ -47,9 +47,10 @@
         <p class="osaka-city-kicker">오사카 호텔 선택 가이드</p>
         <h1 id="osakaCityTitle">오사카 숙소 위치,<br />여행 스타일에 맞춰 고르세요</h1>
         <p class="osaka-city-hero__lead">이 페이지는 오사카 도시 메인 페이지입니다. 아래 5개의 선택 카드를 누르면 각각 다른 목적의 상세 큐레이션 페이지로 이동합니다.</p>
-        <div class="osaka-city-hero__actions">
-          <a class="osaka-city-button osaka-city-button--primary" href="#choices">선택</a>
-          <a class="osaka-city-button" href="#guides">가이드</a>
+        <div class="osaka-city-hero__actions" aria-label="오사카 페이지 바로가기">
+          <a class="osaka-city-button osaka-city-button--primary" href="#choices">숙소 유형</a>
+          <a class="osaka-city-button" href="#guides">여행 가이드</a>
+          <a class="osaka-city-button" href="#hotel-posts">호텔 추천글</a>
         </div>
       </div>
     </section>
@@ -168,7 +169,7 @@
       </div>
     </section>
 
-    <section class="container travel-section osaka-city-dynamic-section" aria-labelledby="osakaHotelPicksTitle">
+    <section id="hotel-posts" class="container travel-section osaka-city-dynamic-section" aria-labelledby="osakaHotelPicksTitle">
       <div class="section-heading section-heading--split">
         <div>
           <p class="eyebrow">Hotel Picks</p>

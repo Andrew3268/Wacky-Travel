@@ -64,7 +64,7 @@
 
     .wt-location-page {
       min-height: 100vh;
-      padding: clamp(30px, 5vw, 64px) 16px;
+      padding: clamp(30px, 5vw, 64px) clamp(20px, 4vw, 32px);
       background: #ffffff;
     }
 
@@ -811,7 +811,21 @@
 
     @media (max-width: 560px) {
       .wt-location-page {
-        padding: 26px 12px 12px;
+        padding: 26px 20px 18px;
+      }
+
+      .wt-survey-hero {
+        padding: 30px 20px 24px;
+      }
+
+      .wt-survey-card,
+      .wt-result-card {
+        padding: 24px 20px;
+      }
+
+      .wt-survey-title {
+        font-size: clamp(30px, 9vw, 40px);
+        line-height: 1.12;
       }
 
       .wt-survey-top-link {
