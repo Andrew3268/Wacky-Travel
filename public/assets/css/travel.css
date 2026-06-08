@@ -6399,11 +6399,8 @@ body::after {
   padding: 18px 0 52px;
 }
 
-.wt-page-hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.8fr);
-  gap: 44px;
-  align-items: center;
+.wt-page-hero__content {
+  max-width: 760px;
 }
 
 .wt-eyebrow,
@@ -6730,10 +6727,6 @@ body::after {
 }
 
 @media (max-width: 1024px) {
-  .wt-page-hero__grid {
-    grid-template-columns: 1fr;
-  }
-
   .wt-area-grid,
   .wt-hotel-grid,
   .wt-link-grid,
