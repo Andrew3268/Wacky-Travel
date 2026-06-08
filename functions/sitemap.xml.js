@@ -88,6 +88,11 @@ export async function onRequestGet({ env, request }) {
     { loc: `${origin}/destinations/osaka/travel-guide/`, lastmod: osakaLastmod },
     { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: osakaLastmod },
     { loc: `${origin}/destinations/osaka/hotel-location-survey/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/first-trip/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/value-hotel/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/near-trip/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/family-trip/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/quiet-stay/`, lastmod: osakaLastmod },
     ...destinations
       .filter((item) => String(item.slug || "").trim().toLowerCase() !== "osaka")
       .map((item) => ({ loc: `${origin}/destinations/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
