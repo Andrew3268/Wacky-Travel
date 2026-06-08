@@ -7045,3 +7045,32 @@ body::after {
     padding: 16px 18px;
   }
 }
+
+
+/* Osaka static pages mobile main padding v11 */
+@media (max-width: 767px) {
+  main.travel-page.osaka-city-page,
+  main.travel-page.osaka-purpose-page,
+  main.travel-page.osaka-guide-page {
+    padding: 0 20px;
+  }
+
+  main.travel-page.osaka-city-page > .container,
+  main.travel-page.osaka-purpose-page .container,
+  main.travel-page.osaka-guide-page .container,
+  main.travel-page.osaka-city-page .breadcrumbs.container,
+  main.travel-page.osaka-purpose-page .breadcrumbs.container,
+  main.travel-page.osaka-guide-page .breadcrumbs.container {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  main.travel-page.osaka-purpose-page .wt-hotel-grid {
+    margin-right: -20px;
+    padding-right: 20px;
+  }
+}
