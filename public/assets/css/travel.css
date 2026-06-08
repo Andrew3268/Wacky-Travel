@@ -6068,22 +6068,23 @@ body::after {
 .osaka-city-kicker {
   display: inline-flex;
   align-items: center;
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   padding: 0;
   border-radius: 0;
   background: transparent;
   color: #2563eb;
-  font-size: 12px;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .osaka-city-hero h1 {
-  max-width: 720px;
+  max-width: 825px;
   margin: 0;
   color: #0f172a;
   font-size: clamp(2.35rem, 5.2vw, 4.25rem);
-  letter-spacing: -.065em;
+  letter-spacing: 1px;
   line-height: 1.04;
   word-break: keep-all;
 }
@@ -6112,7 +6113,7 @@ body::after {
   padding: 0 18px;
   border: 1px solid #e5eaf1;
   border-radius: 999px;
-  background: #ffffff;
+  background: transparent;
   color: #102a45;
   font-size: .92rem;
   font-weight: 800;
@@ -6121,9 +6122,9 @@ body::after {
 }
 
 .osaka-city-button--primary {
-  background: #2563eb;
-  color: #ffffff;
-  border-color: #2563eb;
+  background: transparent;
+  color: #102a45;
+  border-color: #e5eaf1;
 }
 
 .osaka-city-snapshot,
@@ -6202,13 +6203,9 @@ body::after {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.osaka-city-area-table-wrap,
-.osaka-city-faq__grid article {
+.osaka-city-area-table-wrap {
   border: 1px solid rgba(15, 23, 42, .08);
   background: #ffffff;
-}
-
-.osaka-city-area-table-wrap {
   overflow-x: auto;
   border-radius: 26px;
 }
@@ -6246,26 +6243,58 @@ body::after {
   padding-bottom: clamp(28px, 5vw, 58px);
 }
 
-.osaka-city-faq__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+.osaka-city-faq__accordion {
+  border-top: 1px solid rgba(15, 23, 42, .10);
 }
 
-.osaka-city-faq__grid article {
-  border-radius: 26px;
-  padding: 24px;
+.osaka-city-faq__item {
+  border-bottom: 1px solid rgba(15, 23, 42, .10);
 }
 
-.osaka-city-faq__grid h3 {
-  margin: 0 0 12px;
+.osaka-city-faq__item summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 0;
   color: #0f172a;
   font-size: 1.05rem;
+  font-weight: 900;
   letter-spacing: -.025em;
+  line-height: 1.45;
+  cursor: pointer;
+  list-style: none;
+  word-break: keep-all;
 }
 
-.osaka-city-faq__grid p {
-  margin: 0;
+.osaka-city-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.osaka-city-faq__item summary::after {
+  content: '+';
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(15, 23, 42, .12);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.osaka-city-faq__item[open] summary::after {
+  content: '−';
+}
+
+.osaka-city-faq__item p {
+  max-width: 840px;
+  margin: -4px 0 22px;
   color: #475569;
   line-height: 1.75;
   word-break: keep-all;
@@ -6283,7 +6312,6 @@ body::after {
 }
 
 @media (max-width: 1024px) {
-  .osaka-city-faq__grid,
   .destination-guide-links--static-osaka {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -6291,7 +6319,6 @@ body::after {
 
 @media (max-width: 720px) {
   .osaka-city-snapshot__grid,
-  .osaka-city-faq__grid,
   .destination-guide-links--static-osaka {
     grid-template-columns: 1fr;
   }
@@ -6312,8 +6339,7 @@ body::after {
     width: 100%;
   }
 
-  .osaka-city-choice-card,
-  .osaka-city-faq__grid article {
+  .osaka-city-choice-card {
     padding: 20px;
     border-radius: 18px;
   }
@@ -6776,17 +6802,26 @@ body::after {
   }
 
   .osaka-city-snapshot__grid,
-  .osaka-city-faq__grid,
   .destination-guide-links--static-osaka {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
   .osaka-city-choice-card,
-  .destination-guide-links--static-osaka .destination-guide-link,
-  .osaka-city-faq__grid article {
+  .destination-guide-links--static-osaka .destination-guide-link {
     border-radius: 20px;
     padding: 20px;
+  }
+
+  .osaka-city-faq__item summary {
+    padding: 18px 0;
+    font-size: .98rem;
+  }
+
+  .osaka-city-faq__item p {
+    margin-bottom: 18px;
+    font-size: .94rem;
+    line-height: 1.72;
   }
 
   .osaka-purpose-page .wt-page-hero {
