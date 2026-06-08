@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*",
+    "/post/*",
+    "/countries/*",
+    "/destinations/*",
+    "/img/*",
+    "/sitemap.xml"
+  ],
+  "exclude": [
+    "/destinations/osaka",
+    "/destinations/osaka/",
+    "/destinations/osaka/*"
+  ]
+}

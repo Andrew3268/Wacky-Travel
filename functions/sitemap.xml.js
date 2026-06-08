@@ -76,19 +76,21 @@ export async function onRequestGet({ env, request }) {
     }
   });
 
+  const osakaDestination = destinations.find((item) => String(item.slug || "").trim().toLowerCase() === "osaka");
+  const osakaLastmod = osakaDestination?.updated_at || "2026-06-08";
+
   const urls = [
     { loc: `${origin}/` },
     { loc: `${origin}/about/` },
     { loc: `${origin}/destinations/` },
     ...Array.from(countryMap.values()).map((item) => ({ loc: `${origin}/countries/${encodeURIComponent(item.slug)}`, lastmod: item.lastmod })),
-    ...destinations.map((item) => ({ loc: `${origin}/destinations/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
+    { loc: `${origin}/destinations/osaka`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/travel-guide/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/hotel-location-survey/`, lastmod: osakaLastmod },
     ...destinations
-      .filter((item) => String(item.slug || "").trim().toLowerCase() === "osaka")
-      .flatMap((item) => [
-        { loc: `${origin}/destinations/osaka/travel-guide/`, lastmod: item.updated_at },
-        { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: item.updated_at },
-        { loc: `${origin}/destinations/osaka/hotel-location-survey/`, lastmod: item.updated_at }
-      ]),
+      .filter((item) => String(item.slug || "").trim().toLowerCase() !== "osaka")
+      .map((item) => ({ loc: `${origin}/destinations/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
     ...posts.map((item) => ({ loc: `${origin}/post/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at }))
   ];
 
