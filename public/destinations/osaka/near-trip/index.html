@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260608osakaV9" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260608osakaV10" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"오사카 근교 여행자 추천","item":"/destinations/osaka/near-trip/"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 근교 여행자 추천","itemListElement":[{"@type":"ListItem","position":1,"name":"우메다"},{"@type":"ListItem","position":2,"name":"신오사카"},{"@type":"ListItem","position":3,"name":"난바"}]}</script>
@@ -88,19 +88,19 @@
         <div class="wt-section-head">
           <div class="wt-section-kicker">Curated Hotels</div>
           <h2 class="wt-section-title">목적에 맞춰 보여주는 추천 호텔</h2>
-          <p class="wt-section-desc">호텔명과 링크는 목적별 정적 페이지의 기본 카드 구조입니다. 실제 서비스에서는 도시별 호텔 데이터와 제휴 링크를 연결하면 됩니다.</p>
+          <p class="wt-section-desc">교토, 나라, 고베까지 함께 다녀오는 일정이라면 호텔은 관광지 거리보다 역 접근성과 환승 피로도를 먼저 봐야 합니다.</p>
         </div>
         <div class="wt-hotel-grid">
           <article class="wt-hotel-card">
             <div class="wt-hotel-card__image" aria-hidden="true"><span>Hotel Pick</span></div>
             <div class="wt-hotel-card__body">
-              <div class="wt-badge-list"><span class="wt-badge">대중교통 편리</span><span class="wt-badge">쇼핑 접근성 우수</span><span class="wt-badge">편리한 이동</span></div>
-              <h3>우메다 역세권 호텔 예시</h3>
-              <p>교토·고베 이동과 오사카 시내 쇼핑을 함께 잡고 싶은 여행자에게 맞는 예시 카드입니다.</p>
+              <div class="wt-badge-list"><span class="wt-badge">대중교통 편리</span><span class="wt-badge">근교 이동</span><span class="wt-badge">쇼핑 접근성 우수</span></div>
+              <h3>우메다 역세권 호텔 후보</h3>
+              <p>교토·고베 이동과 오사카 시내 쇼핑을 함께 잡고 싶은 여행자에게 맞는 후보입니다.</p>
               <div class="wt-hotel-note">추천 대상: 근교 여행, 쇼핑 일정, 부모님 동반</div>
               <div class="wt-hotel-actions">
-                <a href="#" class="wt-btn wt-btn--primary">아고다에서 가격 보기</a>
-                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글 보기</a>
+                <a href="#" class="wt-btn wt-btn--primary" rel="sponsored noopener">가격 보기</a>
+                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글</a>
               </div>
             </div>
           </article>
@@ -108,12 +108,12 @@
             <div class="wt-hotel-card__image" aria-hidden="true"><span>Hotel Pick</span></div>
             <div class="wt-hotel-card__body">
               <div class="wt-badge-list"><span class="wt-badge">근교 이동</span><span class="wt-badge">대중교통 편리</span><span class="wt-badge">조용한 숙박</span></div>
-              <h3>신오사카 이동형 호텔 예시</h3>
-              <p>아침 일찍 교토나 고베로 출발하거나 신칸센을 이용하는 여행자에게 적합한 후보입니다.</p>
+              <h3>신오사카 이동형 호텔 후보</h3>
+              <p>아침 일찍 교토나 고베로 출발하거나 신칸센을 이용하는 여행자에게 적합합니다.</p>
               <div class="wt-hotel-note">추천 대상: 신칸센 이용, 체크아웃 후 이동, 짧은 일정</div>
               <div class="wt-hotel-actions">
-                <a href="#" class="wt-btn wt-btn--primary">아고다에서 가격 보기</a>
-                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글 보기</a>
+                <a href="#" class="wt-btn wt-btn--primary" rel="sponsored noopener">가격 보기</a>
+                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글</a>
               </div>
             </div>
           </article>
@@ -121,16 +121,46 @@
             <div class="wt-hotel-card__image" aria-hidden="true"><span>Hotel Pick</span></div>
             <div class="wt-hotel-card__body">
               <div class="wt-badge-list"><span class="wt-badge">공항 접근 편리</span><span class="wt-badge">도보여행 최적</span><span class="wt-badge">편리한 이동</span></div>
-              <h3>난바 균형형 호텔 예시</h3>
-              <p>오사카 시내 비중이 높고 하루 정도 근교를 넣는 여행자에게 무난한 예시입니다.</p>
+              <h3>난바 균형형 호텔 후보</h3>
+              <p>오사카 시내 비중이 높고 하루 정도 근교를 넣는 여행자에게 무난한 후보입니다.</p>
               <div class="wt-hotel-note">추천 대상: 첫 여행, 시내 관광, 하루 근교</div>
               <div class="wt-hotel-actions">
-                <a href="#" class="wt-btn wt-btn--primary">아고다에서 가격 보기</a>
-                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글 보기</a>
+                <a href="#" class="wt-btn wt-btn--primary" rel="sponsored noopener">가격 보기</a>
+                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글</a>
+              </div>
+            </div>
+          </article>
+          <article class="wt-hotel-card">
+            <div class="wt-hotel-card__image" aria-hidden="true"><span>Hotel Pick</span></div>
+            <div class="wt-hotel-card__body">
+              <div class="wt-badge-list"><span class="wt-badge">대중교통 편리</span><span class="wt-badge">가성비 우수</span><span class="wt-badge">근교 이동</span></div>
+              <h3>교바시 이동형 호텔 후보</h3>
+              <p>오사카성과 교토 방향 이동을 함께 고려할 때 일정에 따라 검토하기 좋은 후보입니다.</p>
+              <div class="wt-hotel-note">추천 대상: 오사카성, 교토 일정, 실속형 여행</div>
+              <div class="wt-hotel-actions">
+                <a href="#" class="wt-btn wt-btn--primary" rel="sponsored noopener">가격 보기</a>
+                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글</a>
+              </div>
+            </div>
+          </article>
+          <article class="wt-hotel-card">
+            <div class="wt-hotel-card__image" aria-hidden="true"><span>Hotel Pick</span></div>
+            <div class="wt-hotel-card__body">
+              <div class="wt-badge-list"><span class="wt-badge">대중교통 편리</span><span class="wt-badge">생활 편의</span><span class="wt-badge">가성비 우수</span></div>
+              <h3>텐노지 남부 이동 호텔 후보</h3>
+              <p>나라 방면 일정과 오사카 남부 관광을 함께 넣을 때 동선이 단순해질 수 있습니다.</p>
+              <div class="wt-hotel-note">추천 대상: 나라 당일치기, 가족 여행, 예산 관리</div>
+              <div class="wt-hotel-actions">
+                <a href="#" class="wt-btn wt-btn--primary" rel="sponsored noopener">가격 보기</a>
+                <a href="/destinations/osaka/#osakaHotelPicksTitle" class="wt-btn wt-btn--ghost">관련 글</a>
               </div>
             </div>
           </article>
         </div>
+        <a class="wt-hotel-more-banner" href="#" rel="sponsored noopener">
+          <strong>오사카 근교 여행 호텔 추천 더보기</strong>
+          <span>호텔 후보를 더 넓게 비교해보세요</span>
+        </a>
       </div>
     </section>
 
