@@ -6376,7 +6376,7 @@ body::after {
   color: #0f172a;
   font-size: clamp(34px, 4.2vw, 58px);
   line-height: 1.04;
-  letter-spacing: -0.07em;
+  letter-spacing: 1px;
 }
 
 .wt-page-hero p {
@@ -6421,6 +6421,14 @@ body::after {
 .wt-btn--ghost {
   background: #fff;
   color: #1e293b;
+}
+
+.wt-hero-actions .wt-btn,
+.wt-hero-actions .wt-btn--primary,
+.wt-hero-actions .wt-btn--ghost {
+  border-color: #e2e8f0;
+  background: #fff;
+  color: #0f172a;
 }
 
 .wt-mini-panel {
@@ -6468,7 +6476,7 @@ body::after {
 }
 
 .wt-section {
-  padding: 64px 0;
+  padding: 40px 0;
 }
 
 .wt-section--soft {
@@ -6707,7 +6715,7 @@ body::after {
   }
 
   .wt-section {
-    padding: 44px 0;
+    padding: 40px 0;
   }
 
   .wt-area-grid,
@@ -6843,7 +6851,7 @@ body::after {
   }
 
   .osaka-purpose-page .wt-section {
-    padding: 46px 0;
+    padding: 40px 0;
   }
 
   .osaka-purpose-page .wt-area-grid,
