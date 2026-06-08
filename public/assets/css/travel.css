@@ -7011,8 +7011,8 @@ body::after {
     display: flex;
     grid-template-columns: none;
     gap: 12px;
-    margin-right: -20px;
-    padding-right: 20px;
+    margin-right: -40px;
+    padding-right: 40px;
   }
 
   .osaka-purpose-page .wt-hotel-card {
@@ -7047,12 +7047,12 @@ body::after {
 }
 
 
-/* Osaka static pages mobile main padding v11 */
+/* Osaka static pages mobile main padding v12 */
 @media (max-width: 767px) {
   main.travel-page.osaka-city-page,
   main.travel-page.osaka-purpose-page,
   main.travel-page.osaka-guide-page {
-    padding: 0 20px;
+    padding: 0 40px;
   }
 
   main.travel-page.osaka-city-page > .container,
@@ -7070,7 +7070,7 @@ body::after {
   }
 
   main.travel-page.osaka-purpose-page .wt-hotel-grid {
-    margin-right: -20px;
-    padding-right: 20px;
+    margin-right: -40px;
+    padding-right: 40px;
   }
 }
