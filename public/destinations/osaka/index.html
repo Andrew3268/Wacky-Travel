@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260608osakaStatic1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260608osakaStatic2" />
   <script src="/assets/js/admin-ui.js?v=20260516logout1" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"오사카","alternateName":"Osaka","description":"오사카 숙소 위치, 호텔 추천, 여행 동선, 공항 접근성, 근교 여행 기준을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/osaka","touristType":["자유여행자","커플 여행자","가족 여행자","호텔 비교 여행자"],"containedInPlace":{"@type":"Country","name":"일본"}}</script>
@@ -44,55 +44,65 @@
   <main class="travel-page osaka-city-page">
     <section class="osaka-city-hero container" aria-labelledby="osakaCityTitle">
       <div class="osaka-city-hero__content">
-        <p class="eyebrow">Osaka Travel Hub</p>
-        <h1 id="osakaCityTitle">오사카 여행, 숙소 위치부터 잡으면 훨씬 쉬워집니다</h1>
-        <p class="osaka-city-hero__lead">오사카는 난바, 우메다, 신사이바시, 유니버설시티처럼 구역별 성격이 뚜렷합니다. 이 페이지에서는 호텔을 어디에 잡아야 할지, 어떤 여행 글부터 보면 좋은지 한 번에 정리합니다.</p>
+        <p class="osaka-city-kicker">오사카 호텔 선택 가이드</p>
+        <h1 id="osakaCityTitle">오사카 숙소 위치,<br />여행 스타일에 맞춰 고르세요</h1>
+        <p class="osaka-city-hero__lead">이 페이지는 오사카 도시 메인 페이지입니다. 아래 5개의 선택 카드를 누르면 각각 다른 목적의 상세 큐레이션 페이지로 이동합니다.</p>
         <div class="osaka-city-hero__actions">
-          <a class="osaka-city-button osaka-city-button--primary" href="/destinations/osaka/hotel-location-survey/">숙소 위치 서베이 시작</a>
-          <a class="osaka-city-button" href="/destinations/osaka/hotel-guide/">숙소 위치 가이드 보기</a>
+          <a class="osaka-city-button osaka-city-button--primary" href="/destinations/osaka/hotel-location-survey/">선택 카드 보기</a>
+          <a class="osaka-city-button" href="/destinations/osaka/hotel-guide/">숙소 위치 페이지</a>
         </div>
       </div>
-      <aside class="osaka-city-hero__panel" aria-label="오사카 여행 핵심 요약">
-        <div class="osaka-city-route-card">
-          <span>공항</span>
-          <strong>간사이공항</strong>
-          <i aria-hidden="true">→</i>
-          <span>숙소</span>
-          <strong>난바·우메다·신사이바시</strong>
-          <i aria-hidden="true">→</i>
-          <span>동선</span>
-          <strong>도톤보리·USJ·교토·나라</strong>
-        </div>
+      <aside class="osaka-city-hero__panel" aria-label="오사카 도시 페이지 역할">
+        <p class="osaka-city-panel__title">이 페이지의 역할</p>
+        <ol class="osaka-city-role-list">
+          <li>
+            <strong>1. 도시 진입</strong>
+            <span>사용자가 오사카에서 숙소를 어디에 잡을지 고민하는 단계</span>
+          </li>
+          <li>
+            <strong>2. 여행 목적 선택</strong>
+            <span>첫 여행, 가성비, 교토, 가족, 조용한 숙박 중 선택</span>
+          </li>
+          <li>
+            <strong>3. 목적별 추천</strong>
+            <span>선택한 목적에 맞는 호텔을 보여주는 상세 페이지로 이동</span>
+          </li>
+        </ol>
       </aside>
     </section>
 
     <section class="osaka-city-snapshot container" aria-labelledby="osakaSnapshotTitle">
-      <div class="section-heading">
-        <p class="eyebrow">Quick Decision</p>
-        <h2 id="osakaSnapshotTitle">오사카 숙소 위치는 여행 스타일에 따라 달라집니다</h2>
-        <p>처음이라면 유명한 호텔보다 내 일정과 덜 싸우는 위치를 먼저 고르는 것이 좋습니다.</p>
+      <div class="section-heading osaka-city-snapshot__heading">
+        <p class="osaka-city-kicker">Quick Choice</p>
+        <h2 id="osakaSnapshotTitle">오사카 여행, 어떤 숙소가 필요하세요?</h2>
+        <p>각 카드는 단순 앵커가 아니라 별도 목적별 상세 페이지로 이동합니다.</p>
       </div>
       <div class="osaka-city-snapshot__grid">
-        <article>
+        <a class="osaka-city-choice-card" href="/destinations/osaka/hotel-location-survey/">
           <span>01</span>
-          <h3>첫 오사카·먹방 중심</h3>
-          <p><strong>난바</strong>가 가장 무난합니다. 도톤보리, 구로몬시장, 신사이바시 접근성이 좋아 밤 동선까지 편합니다.</p>
-        </article>
-        <article>
+          <h3>오사카 처음이에요</h3>
+          <p>난바·신사이바시 중심의 실패 확률 낮은 선택</p>
+        </a>
+        <a class="osaka-city-choice-card" href="/destinations/osaka/hotel-guide/">
           <span>02</span>
-          <h3>교토·고베·나라 근교 이동</h3>
-          <p><strong>우메다</strong>가 유리합니다. JR, 한큐, 한신 노선을 활용하기 좋아 넓게 움직이는 일정에 맞습니다.</p>
-        </article>
-        <article>
+          <h3>가성비가 중요해요</h3>
+          <p>가격 대비 위치와 컨디션을 함께 보는 선택</p>
+        </a>
+        <a class="osaka-city-choice-card" href="/destinations/osaka/travel-guide/">
           <span>03</span>
-          <h3>쇼핑·카페·중심 접근성</h3>
-          <p><strong>신사이바시·혼마치</strong>를 함께 보세요. 중심지는 유지하면서 난바의 복잡함을 줄일 수 있습니다.</p>
-        </article>
-        <article>
+          <h3>교토 여행도 해요</h3>
+          <p>교토·고베·나라 이동을 고려한 숙소 선택</p>
+        </a>
+        <a class="osaka-city-choice-card" href="/destinations/osaka/hotel-location-survey/">
           <span>04</span>
-          <h3>USJ 오픈런·가족 여행</h3>
-          <p><strong>유니버설시티</strong>가 편합니다. 하루를 USJ에 온전히 쓰는 일정이라면 이동 피로를 크게 줄여줍니다.</p>
-        </article>
+          <h3>가족 여행이에요</h3>
+          <p>이동 편의와 주변 환경을 우선하는 선택</p>
+        </a>
+        <a class="osaka-city-choice-card" href="/destinations/osaka/hotel-guide/">
+          <span>05</span>
+          <h3>조용한 숙소가 좋아요</h3>
+          <p>번화가 접근성과 숙박 안정감의 균형</p>
+        </a>
       </div>
     </section>
 
