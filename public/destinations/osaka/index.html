@@ -261,9 +261,9 @@
   <script>
     (() => {
       const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
-      const destination = 'osaka';
       const root = document.querySelector('[data-city-post-root]');
       const travelRoot = document.querySelector('[data-city-travel-root]');
+      const destination = root?.dataset.destinationSlug || document.body?.dataset.destinationSlug || 'osaka';
 
       const fetchJson = async (url, fallback) => {
         try {
@@ -283,12 +283,12 @@
       const setActiveTab = (type) => {
         if (!root) return;
         root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
-          const active = button.dataset.osakaTab === type;
+          const active = button.getAttribute('data-city-post-tab') === type;
           button.classList.toggle('is-active', active);
           button.setAttribute('aria-selected', active ? 'true' : 'false');
         });
         root.querySelectorAll('[data-city-post-panel]').forEach((panel) => {
-          const active = panel.dataset.osakaPanel === type;
+          const active = panel.getAttribute('data-city-post-panel') === type;
           panel.classList.toggle('is-active', active);
           panel.hidden = !active;
         });
@@ -331,7 +331,7 @@
       root?.addEventListener('click', async (event) => {
         const tabButton = event.target.closest('[data-city-post-tab]');
         if (tabButton) {
-          setActiveTab(tabButton.dataset.osakaTab);
+          setActiveTab(tabButton.getAttribute('data-city-post-tab'));
           return;
         }
 
