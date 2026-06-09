@@ -7150,3 +7150,42 @@ body::after {
     padding-right: 40px;
   }
 }
+
+/* City static page shared header spacing refinement v22 */
+.topbar--travel .topbar__inner.container {
+  min-height: 78px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.topbar--travel .brand {
+  min-height: 44px;
+}
+
+.topbar--travel .brand__mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 17px;
+}
+
+.topbar--travel .brand__text {
+  line-height: 1.1;
+}
+
+@media (max-width: 767px) {
+  .topbar--travel .topbar__inner.container {
+    min-height: 70px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .topbar--travel .brand {
+    min-height: 42px;
+  }
+
+  .topbar--travel .brand__mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 16px;
+  }
+}
