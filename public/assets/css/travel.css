@@ -6769,6 +6769,19 @@ body::after {
   word-break: keep-all;
 }
 
+
+.wt-cta-band .wt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.wt-cta-band .wt-btn span {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
 .wt-link-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
