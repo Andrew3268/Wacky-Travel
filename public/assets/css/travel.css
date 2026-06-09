@@ -5313,22 +5313,22 @@ body::after {
 }
 
 /* V21: Osaka travel guide editorial layout */
-.osaka-guide-page {
+.wt-city-guide-page {
   background:
     radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.07), transparent 34%),
     radial-gradient(circle at 92% 6%, rgba(125, 211, 252, 0.10), transparent 32%),
     linear-gradient(180deg, #ffffff 0%, #f8fbff 42%, #ffffff 100%);
 }
 
-.osaka-guide-page .container {
+.wt-city-guide-page .container {
   width: min(100% - 36px, 1120px);
 }
 
-.osaka-guide-hero {
+.wt-city-guide-hero {
   padding-top: clamp(28px, 5vw, 64px);
 }
 
-.osaka-guide-hero__inner {
+.wt-city-guide-hero__inner {
   display: grid;
   gap: 18px;
   padding: clamp(34px, 6vw, 70px);
@@ -5338,7 +5338,7 @@ body::after {
     linear-gradient(135deg, #ffffff 0%, #f4f9ff 58%, #eef7ff 100%);
 }
 
-.osaka-guide-hero h1 {
+.wt-city-guide-hero h1 {
   max-width: 820px;
   margin: 0;
   color: #10243d;
@@ -5347,7 +5347,7 @@ body::after {
   letter-spacing: 0;
 }
 
-.osaka-guide-hero__subtitle {
+.wt-city-guide-hero__subtitle {
   max-width: 840px;
   margin: 0;
   color: #173b61;
@@ -5357,7 +5357,7 @@ body::after {
   letter-spacing: -0.035em;
 }
 
-.osaka-guide-hero__lead {
+.wt-city-guide-hero__lead {
   max-width: 760px;
   margin: 0;
   color: #52677e;
@@ -5365,14 +5365,14 @@ body::after {
   line-height: 1.8;
 }
 
-.osaka-guide-hero__actions {
+.wt-city-guide-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 8px;
 }
 
-.osaka-guide-button {
+.wt-city-guide-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5387,22 +5387,22 @@ body::after {
   letter-spacing: -0.02em;
 }
 
-.osaka-guide-button--primary {
+.wt-city-guide-button--primary {
   background: #174c78;
   color: #ffffff;
 }
 
-.osaka-guide-snapshot {
+.wt-city-guide-snapshot {
   display: grid;
   gap: 18px;
   margin-top: clamp(20px, 3vw, 34px);
 }
 
-.osaka-guide-snapshot__head {
+.wt-city-guide-snapshot__head {
   max-width: 760px;
 }
 
-.osaka-guide-snapshot__head h2 {
+.wt-city-guide-snapshot__head h2 {
   margin: 5px 0 0;
   color: #12263f;
   font-size: clamp(1.55rem, 3vw, 2.35rem);
@@ -5410,20 +5410,20 @@ body::after {
   letter-spacing: -0.052em;
 }
 
-.osaka-guide-snapshot__grid {
+.wt-city-guide-snapshot__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
-.osaka-guide-snapshot__grid article {
+.wt-city-guide-snapshot__grid article {
   min-height: 190px;
   padding: 22px;
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.86);
 }
 
-.osaka-guide-snapshot__grid span {
+.wt-city-guide-snapshot__grid span {
   display: inline-flex;
   margin-bottom: 18px;
   color: #2563eb;
@@ -5431,7 +5431,7 @@ body::after {
   font-weight: 950;
 }
 
-.osaka-guide-snapshot__grid h3 {
+.wt-city-guide-snapshot__grid h3 {
   margin: 0;
   color: #132235;
   font-size: 1.08rem;
@@ -5439,25 +5439,25 @@ body::after {
   letter-spacing: -0.035em;
 }
 
-.osaka-guide-snapshot__grid p {
+.wt-city-guide-snapshot__grid p {
   margin: 9px 0 0;
   color: #5c7087;
   font-size: 0.92rem;
   line-height: 1.7;
 }
 
-.osaka-guide-layout {
+.wt-city-guide-layout {
   display: block;
   padding-top: clamp(28px, 4vw, 52px);
   padding-bottom: clamp(34px, 5vw, 72px);
 }
 
-.osaka-guide-article {
+.wt-city-guide-article {
   max-width: 880px;
   margin: 0 auto;
 }
 
-.osaka-guide-section {
+.wt-city-guide-section {
   position: relative;
   margin: 0 0 clamp(24px, 3.6vw, 44px);
   padding: clamp(26px, 4vw, 44px);
@@ -5465,19 +5465,19 @@ body::after {
   background: rgba(255, 255, 255, 0.94);
 }
 
-.osaka-guide-section--intro {
+.wt-city-guide-section--intro {
   background: linear-gradient(135deg, #ffffff 0%, #f4f9ff 100%);
 }
 
-.osaka-guide-section > *:first-child {
+.wt-city-guide-section > *:first-child {
   margin-top: 0;
 }
 
-.osaka-guide-section > *:last-child {
+.wt-city-guide-section > *:last-child {
   margin-bottom: 0;
 }
 
-.osaka-guide-heading {
+.wt-city-guide-heading {
   margin: 0 0 18px;
   color: #11263f;
   font-size: clamp(1.55rem, 3vw, 2.25rem);
@@ -5485,7 +5485,7 @@ body::after {
   letter-spacing: -0.055em;
 }
 
-.osaka-guide-heading::before {
+.wt-city-guide-heading::before {
   content: "";
   display: block;
   width: 44px;
@@ -5495,7 +5495,7 @@ body::after {
   background: linear-gradient(90deg, #2563eb, #2563eb);
 }
 
-.osaka-guide-subheading {
+.wt-city-guide-subheading {
   margin: 30px 0 12px;
   color: #173b61;
   font-size: clamp(1.14rem, 2vw, 1.42rem);
@@ -5504,7 +5504,7 @@ body::after {
 }
 
 
-.osaka-guide-minor-heading {
+.wt-city-guide-minor-heading {
   margin: 24px 0 10px;
   color: #204766;
   font-size: 1.03rem;
@@ -5513,19 +5513,19 @@ body::after {
   letter-spacing: -0.035em;
 }
 
-.osaka-guide-section p {
+.wt-city-guide-section p {
   margin: 0 0 15px;
   color: #47596d;
   font-size: 1rem;
   line-height: 1.86;
 }
 
-.osaka-guide-section strong {
+.wt-city-guide-section strong {
   color: #12263f;
   font-weight: 900;
 }
 
-.osaka-guide-quote {
+.wt-city-guide-quote {
   margin: 18px 0 22px;
   padding: 22px 24px;
   border-left: 0;
@@ -5534,7 +5534,7 @@ body::after {
   color: #16456e;
 }
 
-.osaka-guide-quote p {
+.wt-city-guide-quote p {
   margin: 0;
   color: #16456e;
   font-size: clamp(1.05rem, 2vw, 1.28rem);
@@ -5543,13 +5543,13 @@ body::after {
   letter-spacing: -0.03em;
 }
 
-.osaka-guide-list {
+.wt-city-guide-list {
   margin: 12px 0 20px;
   padding-left: 0;
   list-style: none;
 }
 
-.osaka-guide-list li {
+.wt-city-guide-list li {
   position: relative;
   margin: 8px 0;
   padding-left: 22px;
@@ -5557,7 +5557,7 @@ body::after {
   line-height: 1.75;
 }
 
-.osaka-guide-list li::before {
+.wt-city-guide-list li::before {
   content: "";
   position: absolute;
   top: 0.78em;
@@ -5568,26 +5568,26 @@ body::after {
   background: #2563eb;
 }
 
-.osaka-guide-list .osaka-guide-list {
+.wt-city-guide-list .wt-city-guide-list {
   margin-top: 6px;
   margin-bottom: 8px;
   padding-left: 2px;
 }
 
-.osaka-guide-list .osaka-guide-list li::before {
+.wt-city-guide-list .wt-city-guide-list li::before {
   background: #2563eb;
 }
 
-.osaka-guide-section ol.osaka-guide-list {
+.wt-city-guide-section ol.wt-city-guide-list {
   counter-reset: osakaGuideStep;
 }
 
-.osaka-guide-section ol.osaka-guide-list > li {
+.wt-city-guide-section ol.wt-city-guide-list > li {
   counter-increment: osakaGuideStep;
   padding-left: 34px;
 }
 
-.osaka-guide-section ol.osaka-guide-list > li::before {
+.wt-city-guide-section ol.wt-city-guide-list > li::before {
   content: counter(osakaGuideStep);
   top: 0.28em;
   left: 0;
@@ -5602,7 +5602,7 @@ body::after {
   font-weight: 950;
 }
 
-.osaka-guide-table-wrap {
+.wt-city-guide-table-wrap {
   width: 100%;
   margin: 18px 0 24px;
   overflow-x: auto;
@@ -5610,7 +5610,7 @@ body::after {
   background: #ffffff;
 }
 
-.osaka-guide-table {
+.wt-city-guide-table {
   width: 100%;
   min-width: 680px;
   border-collapse: collapse;
@@ -5618,31 +5618,31 @@ body::after {
   font-size: 0.95rem;
 }
 
-.osaka-guide-table th,
-.osaka-guide-table td {
+.wt-city-guide-table th,
+.wt-city-guide-table td {
   padding: 15px 16px;
   vertical-align: top;
   text-align: left;
   border-bottom: 1px solid rgba(15, 23, 42, 0.055);
 }
 
-.osaka-guide-table th {
+.wt-city-guide-table th {
   background: #f4f9ff;
   color: #173b61;
   font-weight: 950;
   white-space: nowrap;
 }
 
-.osaka-guide-table tr:last-child td {
+.wt-city-guide-table tr:last-child td {
   border-bottom: 0;
 }
 
-.osaka-guide-table td:first-child {
+.wt-city-guide-table td:first-child {
   color: #12263f;
   font-weight: 850;
 }
 
-.osaka-guide-related {
+.wt-city-guide-related {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: clamp(18px, 4vw, 42px);
@@ -5654,31 +5654,31 @@ body::after {
   color: #ffffff;
 }
 
-.osaka-guide-related .eyebrow,
-.osaka-guide-related h2,
-.osaka-guide-related p {
+.wt-city-guide-related .eyebrow,
+.wt-city-guide-related h2,
+.wt-city-guide-related p {
   color: #ffffff;
 }
 
-.osaka-guide-related h2 {
+.wt-city-guide-related h2 {
   margin: 5px 0 10px;
   font-size: clamp(1.55rem, 3vw, 2.45rem);
   line-height: 1.24;
   letter-spacing: -0.052em;
 }
 
-.osaka-guide-related p {
+.wt-city-guide-related p {
   margin: 0;
   opacity: 0.82;
   line-height: 1.75;
 }
 
-.osaka-guide-related__links {
+.wt-city-guide-related__links {
   display: grid;
   gap: 10px;
 }
 
-.osaka-guide-related__links a {
+.wt-city-guide-related__links a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -5691,87 +5691,87 @@ body::after {
   font-weight: 900;
 }
 
-.osaka-guide-related__links a::after {
+.wt-city-guide-related__links a::after {
   content: "→";
   font-weight: 900;
 }
 
 @media (max-width: 980px) {
-  .osaka-guide-snapshot__grid {
+  .wt-city-guide-snapshot__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .osaka-guide-related {
+  .wt-city-guide-related {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .osaka-guide-page .container {
+  .wt-city-guide-page .container {
     width: min(100% - 24px, 1120px);
   }
 
-  .osaka-guide-hero__inner,
-  .osaka-guide-section,
-  .osaka-guide-related {
+  .wt-city-guide-hero__inner,
+  .wt-city-guide-section,
+  .wt-city-guide-related {
     border-radius: 26px;
   }
 
-  .osaka-guide-hero__inner {
+  .wt-city-guide-hero__inner {
     padding: 30px 20px;
   }
 
-  .osaka-guide-hero__actions {
+  .wt-city-guide-hero__actions {
     flex-direction: column;
   }
 
-  .osaka-guide-button {
+  .wt-city-guide-button {
     width: 100%;
   }
 
-  .osaka-guide-snapshot__grid {
+  .wt-city-guide-snapshot__grid {
     grid-template-columns: 1fr;
   }
 
-  .osaka-guide-snapshot__grid article {
+  .wt-city-guide-snapshot__grid article {
     min-height: auto;
     padding: 20px;
   }
 
-  .osaka-guide-section {
+  .wt-city-guide-section {
     padding: 24px 18px;
   }
 
-  .osaka-guide-table {
+  .wt-city-guide-table {
     min-width: 620px;
   }
 }
 
-.osaka-guide-section hr {
+.wt-city-guide-section hr {
   display: none;
 }
 
-.osaka-guide-section li > p {
+.wt-city-guide-section li > p {
   margin: 0 0 4px;
 }
 
-.osaka-guide-section li > p + .osaka-guide-list {
+.wt-city-guide-section li > p + .wt-city-guide-list {
   margin-top: 4px;
 }
 
 /* V23: Osaka hotel guide uses the same editorial system as travel-guide */
-.osaka-hotel-guide-page .osaka-guide-hero__inner {
+.wt-city-hotel-guide-page .wt-city-guide-hero__inner {
   background:
     radial-gradient(circle at 86% 12%, rgba(37, 99, 235, 0.11), transparent 30%),
     radial-gradient(circle at 8% 12%, rgba(125, 211, 252, 0.12), transparent 28%),
     linear-gradient(135deg, #ffffff 0%, #f4f9ff 56%, #eef7ff 100%);
 }
 
-.osaka-guide-survey-panel {
+.wt-city-guide-survey-panel {
   margin-top: clamp(24px, 4vw, 42px);
 }
 
-.osaka-guide-survey-panel__link {
+.wt-city-guide-survey-panel__link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -5786,13 +5786,13 @@ body::after {
   text-decoration: none;
 }
 
-.osaka-guide-survey-panel__content {
+.wt-city-guide-survey-panel__content {
   display: grid;
   gap: 8px;
   max-width: 760px;
 }
 
-.osaka-guide-survey-panel__eyebrow {
+.wt-city-guide-survey-panel__eyebrow {
   width: fit-content;
   padding: 7px 12px;
   border-radius: 999px;
@@ -5803,20 +5803,20 @@ body::after {
   letter-spacing: -0.01em;
 }
 
-.osaka-guide-survey-panel__content strong {
+.wt-city-guide-survey-panel__content strong {
   color: #ffffff;
   font-size: clamp(1.42rem, 3vw, 2.35rem);
   line-height: 1.22;
   letter-spacing: -0.052em;
 }
 
-.osaka-guide-survey-panel__content span:last-child {
+.wt-city-guide-survey-panel__content span:last-child {
   color: rgba(255, 255, 255, 0.82);
   font-size: 1rem;
   line-height: 1.72;
 }
 
-.osaka-guide-survey-panel__button {
+.wt-city-guide-survey-panel__button {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
@@ -5831,7 +5831,7 @@ body::after {
   letter-spacing: -0.02em;
 }
 
-.osaka-guide-reference {
+.wt-city-guide-reference {
   display: inline-flex;
   align-items: center;
   margin-left: 4px;
@@ -5844,41 +5844,41 @@ body::after {
   white-space: nowrap;
 }
 
-.osaka-guide-section--chapter {
+.wt-city-guide-section--chapter {
   padding: clamp(24px, 4vw, 38px);
   background:
     radial-gradient(circle at 92% 8%, rgba(37, 99, 235, 0.09), transparent 31%),
     linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
 }
 
-.osaka-guide-chapter-heading {
+.wt-city-guide-chapter-heading {
   margin-bottom: 0;
   font-size: clamp(1.45rem, 2.8vw, 2.05rem);
 }
 
-.osaka-hotel-guide-page .osaka-guide-section {
+.wt-city-hotel-guide-page .wt-city-guide-section {
   margin-bottom: clamp(30px, 4.2vw, 54px);
 }
 
-.osaka-hotel-guide-page .osaka-guide-subheading + .osaka-guide-quote {
+.wt-city-hotel-guide-page .wt-city-guide-subheading + .wt-city-guide-quote {
   margin-top: 12px;
 }
 
 @media (max-width: 760px) {
-  .osaka-guide-survey-panel__link {
+  .wt-city-guide-survey-panel__link {
     flex-direction: column;
     align-items: flex-start;
     border-radius: 26px;
   }
 
-  .osaka-guide-survey-panel__button {
+  .wt-city-guide-survey-panel__button {
     width: 100%;
   }
 }
 
 
 
-.osaka-guide-reference:hover {
+.wt-city-guide-reference:hover {
   text-decoration: none;
 }
 
@@ -5939,7 +5939,7 @@ body::after {
 .wthome-search__button,
 .wtsr-search__button,
 .wtsr-empty__button,
-.osaka-guide-button--primary {
+.wt-city-guide-button--primary {
   background: linear-gradient(135deg, #174C78 0%, #2563EB 72%, #38BDF8 100%) !important;
   border-color: rgba(37, 99, 235, 0.20) !important;
   color: #ffffff !important;
@@ -6007,7 +6007,7 @@ body::after {
 .travel-list--destination .travel-list__actions,
 .travel-content-sections--country .travel-list__actions,
 .wtsr-highlight,
-.osaka-guide-reference {
+.wt-city-guide-reference {
   color: #2563EB !important;
 }
 
@@ -6039,7 +6039,7 @@ body::after {
 
 .wthome-card__visual,
 .wthome-card__bottom,
-.osaka-guide-survey-panel__link {
+.wt-city-guide-survey-panel__link {
   background:
     radial-gradient(circle at 88% 10%, rgba(125, 211, 252, 0.22), transparent 32%),
     linear-gradient(135deg, #102A45 0%, #174C78 58%, #2563EB 100%) !important;
@@ -6052,20 +6052,20 @@ body::after {
 }
 
 /* Osaka static destination hub */
-.osaka-city-page {
+.wt-city-page {
   background: #ffffff;
 }
 
-.osaka-city-hero {
+.wt-city-hero {
   padding-top: clamp(20px, 4vw, 44px);
   padding-bottom: clamp(52px, 7vw, 88px);
 }
 
-.osaka-city-hero__content {
+.wt-city-hero__content {
   max-width: 760px;
 }
 
-.osaka-city-kicker {
+.wt-city-kicker {
   display: inline-flex;
   align-items: center;
   margin: 0 0 10px;
@@ -6079,7 +6079,7 @@ body::after {
   text-transform: uppercase;
 }
 
-.osaka-city-hero h1 {
+.wt-city-hero h1 {
   max-width: 825px;
   margin: 0;
   color: #0f172a;
@@ -6089,7 +6089,7 @@ body::after {
   word-break: keep-all;
 }
 
-.osaka-city-hero__lead {
+.wt-city-hero__lead {
   max-width: 700px;
   margin: 22px 0 0;
   color: #475569;
@@ -6098,14 +6098,14 @@ body::after {
   word-break: keep-all;
 }
 
-.osaka-city-hero__actions {
+.wt-city-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 28px;
 }
 
-.osaka-city-button {
+.wt-city-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -6121,26 +6121,26 @@ body::after {
   white-space: nowrap;
 }
 
-.osaka-city-button--primary {
+.wt-city-button--primary {
   background: transparent;
   color: #102a45;
   border-color: #e5eaf1;
 }
 
-.osaka-city-snapshot,
-.osaka-city-guide-links,
-.osaka-city-section,
-.osaka-city-faq {
+.wt-city-snapshot,
+.wt-city-guide-links,
+.wt-city-section,
+.wt-city-faq {
   padding-top: clamp(28px, 4.5vw, 56px);
   padding-bottom: clamp(28px, 4.5vw, 56px);
 }
 
-.osaka-city-snapshot__heading {
+.wt-city-snapshot__heading {
   max-width: 820px;
   margin-bottom: 24px;
 }
 
-.osaka-city-snapshot__heading h2 {
+.wt-city-snapshot__heading h2 {
   margin-top: 0;
   color: #0f172a;
   font-size: clamp(1.85rem, 3.4vw, 2.75rem);
@@ -6149,18 +6149,18 @@ body::after {
   word-break: keep-all;
 }
 
-.osaka-city-snapshot__heading p:not(.osaka-city-kicker) {
+.wt-city-snapshot__heading p:not(.wt-city-kicker) {
   color: #64748b;
   line-height: 1.75;
 }
 
-.osaka-city-snapshot__grid {
+.wt-city-snapshot__grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
 }
 
-.osaka-city-choice-card {
+.wt-city-choice-card {
   display: flex;
   min-height: 132px;
   flex-direction: column;
@@ -6173,7 +6173,7 @@ body::after {
   text-decoration: none;
 }
 
-.osaka-city-choice-card span {
+.wt-city-choice-card span {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6185,7 +6185,7 @@ body::after {
   letter-spacing: .02em;
 }
 
-.osaka-city-choice-card span::after {
+.wt-city-choice-card span::after {
   content: "→";
   color: #94a3b8;
   font-size: .82rem;
@@ -6193,7 +6193,7 @@ body::after {
   line-height: 1;
 }
 
-.osaka-city-choice-card h3 {
+.wt-city-choice-card h3 {
   margin: 4px 0 0;
   color: #0f172a;
   font-size: 1rem;
@@ -6203,7 +6203,7 @@ body::after {
   word-break: keep-all;
 }
 
-.osaka-city-choice-card p {
+.wt-city-choice-card p {
   margin: 0;
   color: #64748b;
   font-size: .88rem;
@@ -6215,21 +6215,21 @@ body::after {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.osaka-city-area-table-wrap {
+.wt-city-area-table-wrap {
   border: 1px solid rgba(15, 23, 42, .08);
   background: #ffffff;
   overflow-x: auto;
   border-radius: 26px;
 }
 
-.osaka-city-area-table {
+.wt-city-area-table {
   width: 100%;
   min-width: 760px;
   border-collapse: collapse;
 }
 
-.osaka-city-area-table th,
-.osaka-city-area-table td {
+.wt-city-area-table th,
+.wt-city-area-table td {
   padding: 18px 20px;
   border-bottom: 1px solid rgba(15, 23, 42, .08);
   text-align: left;
@@ -6239,31 +6239,31 @@ body::after {
   word-break: keep-all;
 }
 
-.osaka-city-area-table th {
+.wt-city-area-table th {
   background: #f8fafc;
   color: #0f172a;
   font-size: .9rem;
   font-weight: 900;
 }
 
-.osaka-city-area-table tr:last-child td {
+.wt-city-area-table tr:last-child td {
   border-bottom: 0;
 }
 
-.osaka-city-dynamic-section {
+.wt-city-dynamic-section {
   padding-top: clamp(28px, 5vw, 58px);
   padding-bottom: clamp(28px, 5vw, 58px);
 }
 
-.osaka-city-faq__accordion {
+.wt-city-faq__accordion {
   border-top: 1px solid rgba(15, 23, 42, .10);
 }
 
-.osaka-city-faq__item {
+.wt-city-faq__item {
   border-bottom: 1px solid rgba(15, 23, 42, .10);
 }
 
-.osaka-city-faq__item summary {
+.wt-city-faq__item summary {
   position: relative;
   display: flex;
   align-items: center;
@@ -6280,11 +6280,11 @@ body::after {
   word-break: keep-all;
 }
 
-.osaka-city-faq__item summary::-webkit-details-marker {
+.wt-city-faq__item summary::-webkit-details-marker {
   display: none;
 }
 
-.osaka-city-faq__item summary::after {
+.wt-city-faq__item summary::after {
   content: '+';
   flex: 0 0 auto;
   width: 28px;
@@ -6300,11 +6300,11 @@ body::after {
   line-height: 1;
 }
 
-.osaka-city-faq__item[open] summary::after {
+.wt-city-faq__item[open] summary::after {
   content: '−';
 }
 
-.osaka-city-faq__item p {
+.wt-city-faq__item p {
   max-width: 840px;
   margin: -4px 0 22px;
   color: #475569;
@@ -6318,7 +6318,7 @@ body::after {
 }
 
 @media (max-width: 1100px) {
-  .osaka-city-snapshot__grid {
+  .wt-city-snapshot__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -6330,36 +6330,36 @@ body::after {
 }
 
 @media (max-width: 720px) {
-  .osaka-city-snapshot__grid,
+  .wt-city-snapshot__grid,
   .destination-guide-links--static-osaka {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .osaka-city-hero {
+  .wt-city-hero {
     padding-top: 18px;
     padding-bottom: 42px;
   }
 
-  .osaka-city-hero h1 {
+  .wt-city-hero h1 {
     font-size: clamp(2.05rem, 9.5vw, 2.8rem);
   }
 
-  .osaka-city-hero__actions,
-  .osaka-city-button {
+  .wt-city-hero__actions,
+  .wt-city-button {
     width: 100%;
   }
 
-  .osaka-city-choice-card {
+  .wt-city-choice-card {
     padding: 20px;
     border-radius: 18px;
   }
 }
 
 
-/* Osaka purpose static pages v4 */
-.osaka-purpose-page {
+/* Reusable city purpose static pages */
+.wt-purpose-page {
   background: #fff;
   color: #0f172a;
 }
@@ -6495,7 +6495,7 @@ body::after {
   background: #f8fafc;
 }
 
-.osaka-purpose-page .wt-section--soft {
+.wt-purpose-page .wt-section--soft {
   background: #fff;
 }
 
@@ -6852,15 +6852,15 @@ body::after {
 
 /* Osaka static mobile UX improvements v7 */
 @media (max-width: 767px) {
-  .travel-page.osaka-city-page,
-  .travel-page.osaka-purpose-page,
-  .travel-page.osaka-guide-page {
+  .travel-page.wt-city-page,
+  .travel-page.wt-purpose-page,
+  .travel-page.wt-city-guide-page {
     overflow-x: hidden;
   }
 
-  .travel-page.osaka-city-page > .container,
-  .travel-page.osaka-purpose-page .container,
-  .travel-page.osaka-guide-page .container,
+  .travel-page.wt-city-page > .container,
+  .travel-page.wt-purpose-page .container,
+  .travel-page.wt-city-guide-page .container,
   .breadcrumbs.container {
     width: auto;
     max-width: none;
@@ -6870,18 +6870,18 @@ body::after {
     padding-right: 0;
   }
 
-  .osaka-city-hero {
+  .wt-city-hero {
     padding-top: 22px;
     padding-bottom: 40px;
   }
 
-  .osaka-city-hero__lead {
+  .wt-city-hero__lead {
     margin-top: 18px;
     font-size: 15px;
     line-height: 1.72;
   }
 
-  .osaka-city-hero__actions {
+  .wt-city-hero__actions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
@@ -6889,8 +6889,8 @@ body::after {
     margin-top: 24px;
   }
 
-  .osaka-city-button,
-  .osaka-city-hero__actions .osaka-city-button {
+  .wt-city-button,
+  .wt-city-hero__actions .wt-city-button {
     width: auto;
     min-width: 0;
     min-height: 40px;
@@ -6903,79 +6903,79 @@ body::after {
     word-break: keep-all;
   }
 
-  .osaka-city-snapshot,
-  .osaka-city-guide-links,
-  .osaka-city-section,
-  .osaka-city-faq,
-  .osaka-city-dynamic-section {
+  .wt-city-snapshot,
+  .wt-city-guide-links,
+  .wt-city-section,
+  .wt-city-faq,
+  .wt-city-dynamic-section {
     padding-top: 38px;
     padding-bottom: 38px;
   }
 
-  .osaka-city-snapshot__grid,
+  .wt-city-snapshot__grid,
   .destination-guide-links--static-osaka {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  .osaka-city-choice-card,
+  .wt-city-choice-card,
   .destination-guide-links--static-osaka .destination-guide-link {
     border-radius: 20px;
     padding: 20px;
   }
 
-  .osaka-city-faq__item summary {
+  .wt-city-faq__item summary {
     padding: 18px 0;
     font-size: .98rem;
   }
 
-  .osaka-city-faq__item p {
+  .wt-city-faq__item p {
     margin-bottom: 18px;
     font-size: .94rem;
     line-height: 1.72;
   }
 
-  .osaka-purpose-page .wt-page-hero {
+  .wt-purpose-page .wt-page-hero {
     padding-top: 16px;
     padding-bottom: 38px;
   }
 
-  .osaka-purpose-page .wt-page-hero h1 {
+  .wt-purpose-page .wt-page-hero h1 {
     font-size: clamp(2.05rem, 9.5vw, 2.8rem);
     line-height: 1.08;
   }
 
-  .osaka-purpose-page .wt-page-hero p,
-  .osaka-purpose-page .wt-section-desc,
-  .osaka-purpose-page .wt-area-card p,
-  .osaka-purpose-page .wt-hotel-card p,
-  .osaka-purpose-page .wt-link-card p {
+  .wt-purpose-page .wt-page-hero p,
+  .wt-purpose-page .wt-section-desc,
+  .wt-purpose-page .wt-area-card p,
+  .wt-purpose-page .wt-hotel-card p,
+  .wt-purpose-page .wt-link-card p {
     line-height: 1.72;
   }
 
-  .osaka-purpose-page .wt-section {
+  .wt-purpose-page .wt-section {
     padding: 40px 0;
   }
 
-  .osaka-purpose-page .wt-area-grid,
-  .osaka-purpose-page .wt-hotel-grid,
-  .osaka-purpose-page .wt-check-grid,
-  .osaka-purpose-page .wt-link-grid,
-  .osaka-purpose-page .wt-link-grid--purpose {
+  .wt-purpose-page .wt-area-grid,
+  .wt-purpose-page .wt-hotel-grid,
+  .wt-purpose-page .wt-check-grid,
+  .wt-purpose-page .wt-link-grid,
+  .wt-purpose-page .wt-link-grid--purpose {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  .osaka-purpose-page .wt-area-card,
-  .osaka-purpose-page .wt-hotel-card__body,
-  .osaka-purpose-page .wt-link-card,
-  .osaka-purpose-page .wt-check-item,
-  .osaka-purpose-page .wt-cta-band {
+  .wt-purpose-page .wt-area-card,
+  .wt-purpose-page .wt-hotel-card__body,
+  .wt-purpose-page .wt-link-card,
+  .wt-purpose-page .wt-check-item,
+  .wt-purpose-page .wt-cta-band {
     border-radius: 20px;
     padding: 20px;
   }
 
-  .osaka-guide-page .container {
+  .wt-city-guide-page .container {
     width: auto;
     max-width: none;
     margin-left: 20px;
@@ -6984,66 +6984,66 @@ body::after {
     padding-right: 0;
   }
 
-  .osaka-guide-hero__inner,
-  .osaka-guide-section,
-  .osaka-guide-related,
-  .osaka-guide-snapshot__grid article,
-  .osaka-guide-survey-panel__link {
+  .wt-city-guide-hero__inner,
+  .wt-city-guide-section,
+  .wt-city-guide-related,
+  .wt-city-guide-snapshot__grid article,
+  .wt-city-guide-survey-panel__link {
     border-radius: 22px;
   }
 
-  .osaka-guide-hero__inner {
+  .wt-city-guide-hero__inner {
     padding: 30px 20px;
   }
 
-  .osaka-guide-section {
+  .wt-city-guide-section {
     padding: 24px 20px;
   }
 
-  .osaka-guide-snapshot__grid {
+  .wt-city-guide-snapshot__grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  .osaka-guide-related {
+  .wt-city-guide-related {
     grid-template-columns: 1fr;
     padding: 26px 20px;
   }
 }
 
 @media (max-width: 380px) {
-  .osaka-city-button,
-  .osaka-city-hero__actions .osaka-city-button {
+  .wt-city-button,
+  .wt-city-hero__actions .wt-city-button {
     font-size: 11px;
     padding: 0 6px;
   }
 }
 
 
-/* Osaka purpose hotel carousel and mobile button refinements v10 */
-.osaka-purpose-page .wt-hotel-grid {
+/* Reusable city purpose hotel carousel and mobile button refinements */
+.wt-purpose-page .wt-hotel-grid {
   display: flex;
   grid-template-columns: none;
   overflow-x: auto;
 }
 
-.osaka-purpose-page .wt-hotel-card {
+.wt-purpose-page .wt-hotel-card {
   flex: 0 0 304px;
 }
 
-.osaka-purpose-page .wt-hero-actions {
+.wt-purpose-page .wt-hero-actions {
   flex-wrap: nowrap;
   width: min(100%, 520px);
 }
 
-.osaka-purpose-page .wt-hero-actions .wt-btn {
+.wt-purpose-page .wt-hero-actions .wt-btn {
   width: auto;
   min-width: 0;
   white-space: nowrap;
 }
 
 @media (max-width: 720px) {
-  .osaka-purpose-page .wt-hotel-grid {
+  .wt-purpose-page .wt-hotel-grid {
     display: flex;
     grid-template-columns: none;
     gap: 12px;
@@ -7051,21 +7051,21 @@ body::after {
     padding-right: 40px;
   }
 
-  .osaka-purpose-page .wt-hotel-card {
+  .wt-purpose-page .wt-hotel-card {
     flex: 0 0 min(82vw, 300px);
   }
 
-  .osaka-purpose-page .wt-hotel-card__body {
+  .wt-purpose-page .wt-hotel-card__body {
     padding: 18px;
   }
 
-  .osaka-purpose-page .wt-hero-actions {
+  .wt-purpose-page .wt-hero-actions {
     flex-wrap: nowrap;
     gap: 8px;
     width: 100%;
   }
 
-  .osaka-purpose-page .wt-hero-actions .wt-btn {
+  .wt-purpose-page .wt-hero-actions .wt-btn {
     width: auto;
     min-width: 0;
     min-height: 38px;
@@ -7090,34 +7090,34 @@ body::after {
 
 
 /* Osaka typography and choice card refinements v13 */
-.osaka-city-page .section-heading h2,
-.osaka-city-snapshot__heading h2 {
+.wt-city-page .section-heading h2,
+.wt-city-snapshot__heading h2 {
   font-size: clamp(1.72rem, 3vw, 2.1rem);
   letter-spacing: -0.045em;
 }
 
-.osaka-purpose-page .wt-section-title {
+.wt-purpose-page .wt-section-title {
   font-size: clamp(1.72rem, 3vw, 2.1rem);
   letter-spacing: -0.045em;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .osaka-city-hero h1,
-  .osaka-purpose-page .wt-page-hero h1 {
+  .wt-city-hero h1,
+  .wt-purpose-page .wt-page-hero h1 {
     font-size: clamp(2.2rem, 4.8vw, 3rem);
   }
 
-  .osaka-city-page .section-heading h2,
-  .osaka-city-snapshot__heading h2,
-  .osaka-purpose-page .wt-section-title {
+  .wt-city-page .section-heading h2,
+  .wt-city-snapshot__heading h2,
+  .wt-purpose-page .wt-section-title {
     font-size: clamp(1.65rem, 3.4vw, 2rem);
   }
 }
 
 @media (max-width: 767px) {
-  .osaka-city-page .section-heading h2,
-  .osaka-city-snapshot__heading h2,
-  .osaka-purpose-page .wt-section-title {
+  .wt-city-page .section-heading h2,
+  .wt-city-snapshot__heading h2,
+  .wt-purpose-page .wt-section-title {
     font-size: clamp(1.55rem, 6.4vw, 1.9rem);
     line-height: 1.18;
   }
@@ -7125,18 +7125,18 @@ body::after {
 
 /* Osaka static pages mobile main padding v12 */
 @media (max-width: 767px) {
-  main.travel-page.osaka-city-page,
-  main.travel-page.osaka-purpose-page,
-  main.travel-page.osaka-guide-page {
+  main.travel-page.wt-city-page,
+  main.travel-page.wt-purpose-page,
+  main.travel-page.wt-city-guide-page {
     padding: 0 40px;
   }
 
-  main.travel-page.osaka-city-page > .container,
-  main.travel-page.osaka-purpose-page .container,
-  main.travel-page.osaka-guide-page .container,
-  main.travel-page.osaka-city-page .breadcrumbs.container,
-  main.travel-page.osaka-purpose-page .breadcrumbs.container,
-  main.travel-page.osaka-guide-page .breadcrumbs.container {
+  main.travel-page.wt-city-page > .container,
+  main.travel-page.wt-purpose-page .container,
+  main.travel-page.wt-city-guide-page .container,
+  main.travel-page.wt-city-page .breadcrumbs.container,
+  main.travel-page.wt-purpose-page .breadcrumbs.container,
+  main.travel-page.wt-city-guide-page .breadcrumbs.container {
     width: 100%;
     max-width: none;
     margin-left: 0;
@@ -7145,7 +7145,7 @@ body::after {
     padding-right: 0;
   }
 
-  main.travel-page.osaka-purpose-page .wt-hotel-grid {
+  main.travel-page.wt-purpose-page .wt-hotel-grid {
     margin-right: -40px;
     padding-right: 40px;
   }
