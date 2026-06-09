@@ -7465,3 +7465,53 @@ body::after {
     font-size: 20px;
   }
 }
+
+
+/* V25 - Purpose hotel card compact spacing and content hierarchy */
+.wt-purpose-page .wt-hotel-card {
+  padding: 10px;
+}
+
+.wt-purpose-page .wt-hotel-card__image {
+  padding: 24px 10px 0;
+}
+
+.wt-purpose-page .wt-hotel-card__body {
+  padding: 0 10px 15px 10px;
+}
+
+.wt-purpose-page .wt-hotel-card .wt-badge-list {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.wt-hotel-card__point {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e8edf4;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: -0.035em;
+}
+
+.wt-purpose-page .wt-hotel-card__point + p {
+  margin-top: 7px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (max-width: 720px) {
+  .wt-purpose-page .wt-hotel-card {
+    padding: 10px;
+  }
+
+  .wt-purpose-page .wt-hotel-card__image {
+    padding: 24px 10px 0;
+  }
+
+  .wt-purpose-page .wt-hotel-card__body {
+    padding: 0 10px 15px 10px;
+  }
+}
