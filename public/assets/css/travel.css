@@ -6169,7 +6169,6 @@ body::after {
   padding: 22px 22px 20px;
   border: 0;
   border-radius: 18px;
-  background: #f8fafc;
   color: inherit;
   text-decoration: none;
 }
@@ -6496,6 +6495,10 @@ body::after {
   background: #f8fafc;
 }
 
+.osaka-purpose-page .wt-section--soft {
+  background: #fff;
+}
+
 .wt-section--compact {
   padding-top: 34px;
 }
@@ -6683,26 +6686,47 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
+  min-height: 68px;
   margin-top: 18px;
-  border: 1px solid #dbeafe;
-  border-radius: 20px;
+  border: 1px solid #d8e2f0;
+  border-radius: 16px;
   background: #fff;
   color: #0f172a;
-  padding: 18px 20px;
+  padding: 16px 18px;
   text-decoration: none;
 }
 
 .wt-hotel-more-banner strong {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
+  line-height: 1.35;
+  word-break: keep-all;
 }
 
 .wt-hotel-more-banner span {
-  color: #64748b;
-  font-size: 13px;
-  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.wt-hotel-more-banner span::after {
+  content: "→";
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .wt-check-grid {
@@ -7013,7 +7037,6 @@ body::after {
 }
 
 .osaka-purpose-page .wt-hero-actions .wt-btn {
-  flex: 1 1 0;
   width: auto;
   min-width: 0;
   white-space: nowrap;
@@ -7043,7 +7066,6 @@ body::after {
   }
 
   .osaka-purpose-page .wt-hero-actions .wt-btn {
-    flex: 1 1 0;
     width: auto;
     min-width: 0;
     min-height: 38px;
@@ -7054,8 +7076,13 @@ body::after {
   .wt-hotel-more-banner {
     align-items: flex-start;
     flex-direction: column;
-    gap: 6px;
-    padding: 16px 18px;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .wt-hotel-more-banner span {
+    min-height: 32px;
+    padding: 0 12px;
   }
 }
 
