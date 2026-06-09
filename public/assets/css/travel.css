@@ -7663,3 +7663,37 @@ body::after {
     font-size: 21px;
   }
 }
+
+
+/* V27 - Purpose hotel card hierarchy refinement */
+.wt-purpose-page .wt-hotel-card h3 {
+  margin: 9px 0 0;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wt-purpose-page .wt-hotel-card__point {
+  margin-top: 18px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.wt-purpose-page .wt-hotel-card p,
+.wt-purpose-page .wt-hotel-card__point + p {
+  margin-top: 9px;
+}
+
+.wt-purpose-page .wt-hotel-card .wt-badge-list,
+.wt-purpose-page .wt-hotel-card .wt-hotel-card__meta-list {
+  margin-top: 20px;
+}
+
+@media (max-width: 720px) {
+  .wt-purpose-page .wt-hotel-card h3 {
+    padding-bottom: 16px;
+  }
+
+  .wt-purpose-page .wt-hotel-card__point {
+    margin-top: 16px;
+  }
+}
