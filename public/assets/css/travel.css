@@ -6085,7 +6085,7 @@ body::after {
   color: #0f172a;
   font-size: clamp(2.35rem, 5.2vw, 3.25rem);
   letter-spacing: 1px;
-  line-height: 1.04;
+  line-height: 1.15;
   word-break: keep-all;
 }
 
