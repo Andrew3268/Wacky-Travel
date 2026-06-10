@@ -5270,6 +5270,57 @@ select:focus {
   gap: 12px !important;
 }
 
+
+.admin-country-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: -4px;
+  padding: 4px 2px 2px;
+}
+
+.admin-country-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid rgba(16, 42, 69, 0.10);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #475467;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  cursor: pointer;
+}
+
+.admin-country-tab span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: #f2f4f7;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.admin-country-tab.is-active {
+  border-color: rgba(37, 99, 235, 0.35);
+  background: #eff6ff;
+  color: #174c78;
+}
+
+.admin-country-tab.is-active span {
+  background: #dbeafe;
+  color: #174c78;
+}
+
 .category-manager__list,
 .admin-hub-city-list,
 .admin-hub-featured-list {

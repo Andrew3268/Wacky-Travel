@@ -10,6 +10,8 @@ let travelContentTypeItems = [...DEFAULT_TRAVEL_CONTENT_TYPES];
 let countryItems = [];
 let destinationItems = [];
 let regionItems = [];
+let destinationCountryFilter = "all";
+let regionCountryFilter = "all";
 
 function escapeHtml(value = "") {
   return String(value ?? "")
@@ -79,6 +81,51 @@ function sortByOrderThenName(a, b, labelGetter) {
   const orderB = Number(b.sort_order ?? 0) || 0;
   if (orderA !== orderB) return orderA - orderB;
   return labelGetter(a).localeCompare(labelGetter(b), "ko");
+}
+
+function isActiveCountry(country) {
+  return Number(country?.is_active ?? 1) !== 0;
+}
+
+function getCountryTabItems() {
+  return [...countryItems]
+    .filter(isActiveCountry)
+    .sort((a, b) => sortByOrderThenName(a, b, (item) => item.name || item.slug || ""));
+}
+
+function ensureCountryFilterValue(currentValue) {
+  if (!currentValue || currentValue === "all") return "all";
+  return getCountryTabItems().some((country) => String(country.slug || "") === String(currentValue)) ? currentValue : "all";
+}
+
+function countDestinationsByCountry(countrySlug = "") {
+  return destinationItems.filter((item) => {
+    const active = Number(item.is_active ?? 1) !== 0 && String(item.status || "published") !== "draft";
+    return active && getCountrySlugFromDestination(item) === String(countrySlug || "");
+  }).length;
+}
+
+function countRegionsByCountry(countrySlug = "") {
+  return regionItems.filter((item) => {
+    const active = Number(item.is_active ?? 1) !== 0;
+    return active && getRegionCountrySlug(item) === String(countrySlug || "");
+  }).length;
+}
+
+function renderCountryTabs(targetId, selectedValue, dataName, counter) {
+  const tabEl = $(targetId);
+  if (!tabEl) return;
+  const countries = getCountryTabItems();
+  const totalCount = countries.reduce((sum, country) => sum + counter(country.slug || ""), 0);
+  const buttons = [
+    `<button class="admin-country-tab${selectedValue === "all" ? " is-active" : ""}" type="button" role="tab" aria-selected="${selectedValue === "all" ? "true" : "false"}" data-${dataName}="all">전체 <span>${totalCount}</span></button>`,
+    ...countries.map((country) => {
+      const slug = String(country.slug || "");
+      const active = selectedValue === slug;
+      return `<button class="admin-country-tab${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" data-${dataName}="${escapeHtml(slug)}">${escapeHtml(country.name || slug)} <span>${counter(slug)}</span></button>`;
+    })
+  ];
+  tabEl.innerHTML = buttons.join("");
 }
 
 let itemStatusTimer = null;
@@ -234,9 +281,13 @@ function renderRegionDestinationSelect() {
 }
 
 function renderDestinationManager() {
+  destinationCountryFilter = ensureCountryFilterValue(destinationCountryFilter);
+  renderCountryTabs("destinationCountryTabs", destinationCountryFilter, "admin-destination-country-tab", countDestinationsByCountry);
   const listEl = $("travelDestinationList");
   if (!listEl) return;
-  const items = [...destinationItems].sort((a, b) => sortByOrderThenName(a, b, getDestinationLabel));
+  const items = [...destinationItems]
+    .filter((item) => destinationCountryFilter === "all" || getCountrySlugFromDestination(item) === destinationCountryFilter)
+    .sort((a, b) => sortByOrderThenName(a, b, getDestinationLabel));
   listEl.innerHTML = items.length
     ? items.map((item) => {
       const inactive = Number(item.is_active ?? 1) === 0 || String(item.status || "published") === "draft";
@@ -253,18 +304,24 @@ function renderDestinationManager() {
           </div>
         </div>`;
     }).join("")
-    : '<div class="category-manager__empty small">등록된 도시가 없습니다.</div>';
+    : '<div class="category-manager__empty small">선택한 나라에 등록된 도시가 없습니다.</div>';
 }
 
 function renderRegionManager() {
+  regionCountryFilter = ensureCountryFilterValue(regionCountryFilter);
   renderRegionDestinationSelect();
+  renderCountryTabs("regionCountryTabs", regionCountryFilter, "admin-region-country-tab", countRegionsByCountry);
   const listEl = $("travelRegionList");
   if (!listEl) return;
-  const items = [...regionItems].sort((a, b) => {
-    const destinationCompare = getRegionDestinationSlug(a).localeCompare(getRegionDestinationSlug(b), "ko");
-    if (destinationCompare !== 0) return destinationCompare;
-    return sortByOrderThenName(a, b, getRegionLabel);
-  });
+  const items = [...regionItems]
+    .filter((item) => regionCountryFilter === "all" || getRegionCountrySlug(item) === regionCountryFilter)
+    .sort((a, b) => {
+      const countryCompare = getRegionCountrySlug(a).localeCompare(getRegionCountrySlug(b), "ko");
+      if (countryCompare !== 0) return countryCompare;
+      const destinationCompare = getRegionDestinationSlug(a).localeCompare(getRegionDestinationSlug(b), "ko");
+      if (destinationCompare !== 0) return destinationCompare;
+      return sortByOrderThenName(a, b, getRegionLabel);
+    });
   listEl.innerHTML = items.length
     ? items.map((item) => {
       const inactive = Number(item.is_active ?? 1) === 0;
@@ -284,7 +341,7 @@ function renderRegionManager() {
           </div>
         </div>`;
     }).join("")
-    : '<div class="category-manager__empty small">등록된 지역이 없습니다.</div>';
+    : '<div class="category-manager__empty small">선택한 나라에 등록된 지역이 없습니다.</div>';
 }
 
 function renderAll() {
@@ -577,6 +634,21 @@ function bindEvents() {
   document.addEventListener("click", (event) => {
     const target = event.target.closest("button");
     if (!target) return;
+    if (target.dataset.adminDestinationCountryTab) {
+      destinationCountryFilter = target.dataset.adminDestinationCountryTab || "all";
+      if (destinationCountryFilter !== "all" && $("newDestinationCountry")) $("newDestinationCountry").value = destinationCountryFilter;
+      renderDestinationManager();
+      return;
+    }
+    if (target.dataset.adminRegionCountryTab) {
+      regionCountryFilter = target.dataset.adminRegionCountryTab || "all";
+      if (regionCountryFilter !== "all" && $("newRegionCountry")) {
+        $("newRegionCountry").value = regionCountryFilter;
+        renderRegionDestinationSelect();
+      }
+      renderRegionManager();
+      return;
+    }
     if (target.dataset.travelEditContentType) return editTravelContentType(target.dataset.travelEditContentType);
     if (target.dataset.travelDeleteContentType) return deleteTravelContentType(target.dataset.travelDeleteContentType);
     if (target.dataset.travelEditCountry) return editTravelCountry(target.dataset.travelEditCountry);
