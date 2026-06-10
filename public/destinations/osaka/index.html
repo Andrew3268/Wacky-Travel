@@ -155,11 +155,11 @@
         </div>
         <div id="city-panel-top5" class="hotel-tab-panel is-active" role="tabpanel" data-city-post-panel="top5_series">
           <div class="travel-card-grid travel-card-grid--hotels" data-city-post-grid="top5_series"><div class="empty-card">호텔 추천 글을 불러오는 중입니다.</div></div>
-          <div class="hotel-tabs__footer" data-city-post-footer="top5_series" hidden></div>
+          <div class="hotel-tabs__footer" data-city-post-footer="top5_series"><a class="hotel-load-more" href="/destinations/osaka/hotel-recommendations/">여행 스타일별 호텔 추천 더 보기 →</a></div>
         </div>
         <div id="city-panel-intro" class="hotel-tab-panel" role="tabpanel" data-city-post-panel="hotel_intro" hidden>
           <div class="travel-card-grid travel-card-grid--hotels" data-city-post-grid="hotel_intro"><div class="empty-card">호텔 소개 글을 불러오는 중입니다.</div></div>
-          <div class="hotel-tabs__footer" data-city-post-footer="hotel_intro" hidden></div>
+          <div class="hotel-tabs__footer" data-city-post-footer="hotel_intro"><a class="hotel-load-more" href="/destinations/osaka/hotels/">호텔 하나씩 살펴보기 더 보기 →</a></div>
         </div>
       </div>
     </section>
@@ -251,8 +251,8 @@
         hotel_intro: '/destinations/osaka/hotels/'
       };
       const hotelArchiveLabels = {
-        top5_series: '오사카 호텔 추천글 전체 보기 →',
-        hotel_intro: '오사카 호텔 전체 보기 →'
+        top5_series: '여행 스타일별 호텔 추천 더 보기 →',
+        hotel_intro: '호텔 하나씩 살펴보기 더 보기 →'
       };
 
       const fetchJson = async (url, fallback) => {
@@ -285,12 +285,12 @@
       };
 
       const renderMoreButton = ({ type, offset, hasMore, target = 'hotel' }) => {
-        if (!hasMore) return '';
         if (target === 'hotel') {
           const href = hotelArchiveLinks[type] || '/destinations/osaka/hotels/';
-          const label = hotelArchiveLabels[type] || '오사카 호텔 글 전체 보기 →';
+          const label = hotelArchiveLabels[type] || '오사카 호텔 글 더 보기 →';
           return `<a class="hotel-load-more" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
         }
+        if (!hasMore) return '';
         return `<button class="hotel-load-more" type="button" data-city-travel-more="${escapeHtml(type)}" data-offset="${Number(offset || 0)}">더보기</button>`;
       };
 
@@ -301,13 +301,13 @@
         const data = await fetchJson(paramsFor({ type, offset: 0, limit: hotelPageSize }), { ok: false, html: '', hasMore: false, nextOffset: 0, total: 0 });
         if (!data.ok || !data.html) {
           grid.innerHTML = `<div class="empty-card">현재 준비 중인 글입니다. 곧 더 다양한 오사카 호텔 추천을 확인하실 수 있습니다.</div>`;
-          footer.hidden = true;
-          footer.innerHTML = '';
+          footer.innerHTML = renderMoreButton({ type });
+          footer.hidden = false;
           return;
         }
         grid.innerHTML = data.html;
         footer.innerHTML = renderMoreButton({ type, offset: data.nextOffset, hasMore: data.hasMore });
-        footer.hidden = !data.hasMore;
+        footer.hidden = false;
       };
 
       const loadTravelPosts = async () => {
