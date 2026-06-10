@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV40" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV41" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"오사카 호텔 추천글","item":"/destinations/osaka/hotel-recommendations/"}]}</script>
 </head>
 <body data-destination-slug="osaka">
@@ -91,9 +91,16 @@
           const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
           if (!response.ok) return [];
           const json = await response.json();
-          return Array.isArray(json.recommendation_categories)
-            ? json.recommendation_categories.filter((category) => String(category.destination_slug || '') === destination && Number(category.is_active ?? 1) !== 0)
-            : [];
+          if (!Array.isArray(json.recommendation_categories)) return [];
+          const seen = new Set();
+          return json.recommendation_categories
+            .filter((category) => Number(category.is_active ?? 1) !== 0)
+            .filter((category) => {
+              const slug = getCategorySlug(category);
+              if (!slug || seen.has(slug)) return false;
+              seen.add(slug);
+              return true;
+            });
         } catch (_) {
           return [];
         }

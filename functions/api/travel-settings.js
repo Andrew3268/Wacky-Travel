@@ -15,8 +15,8 @@ async function getNextRegionSortOrder(db, destinationSlug = "") {
   return Number(row?.max_sort || 0) + 1;
 }
 
-async function getNextRecommendationCategorySortOrder(db, destinationSlug = "") {
-  const row = await db.prepare(`SELECT COALESCE(MAX(sort_order), 0) AS max_sort FROM recommendation_categories WHERE destination_slug = ?`).bind(destinationSlug).first();
+async function getNextRecommendationCategorySortOrder(db) {
+  const row = await db.prepare(`SELECT COALESCE(MAX(sort_order), 0) AS max_sort FROM recommendation_categories WHERE TRIM(COALESCE(destination_slug, '')) = ''`).first();
   return Number(row?.max_sort || 0) + 1;
 }
 
@@ -156,21 +156,14 @@ async function readRegionPayload(db, body, { current = null } = {}) {
   };
 }
 
-async function readRecommendationCategoryPayload(db, body, { current = null } = {}) {
+function readRecommendationCategoryPayload(body, { current = null } = {}) {
   const name = readBodyField(body, "name", current?.name);
   const description = readBodyField(body, "description", current?.description);
-  const destinationSlug = slugifySetting(body.destination_slug || current?.destination_slug);
-  if (!destinationSlug) {
-    return { name, description, destinationSlug: "", countrySlug: slugifySetting(body.country_slug || current?.country_slug), sortOrder: 0, isActive: 1 };
-  }
-
-  const destination = await db.prepare(`SELECT slug, country FROM destinations WHERE slug = ?`).bind(destinationSlug).first();
-  const countrySlug = slugifySetting(body.country_slug || current?.country_slug || countryToSlug(destination?.country || ""));
   return {
     name,
     description,
-    destinationSlug,
-    countrySlug,
+    destinationSlug: "",
+    countrySlug: "",
     sortOrder: Number(body.sort_order ?? current?.sort_order ?? 0) || 0,
     isActive: Number(body.is_active ?? current?.is_active ?? 1) ? 1 : 0
   };
@@ -238,19 +231,16 @@ export async function onRequestPost({ env, request }) {
     }
 
     if (entity === "recommendation_category") {
-      const payload = await readRecommendationCategoryPayload(env.TRAVEL_DB, body);
+      const payload = readRecommendationCategoryPayload(body);
       const slug = requireSlug(body.slug, payload.name);
-      if (!payload.destinationSlug) return okJson({ message: "추천 카테고리를 연결할 도시를 선택해 주세요." }, { status: 400 });
       if (!payload.name) return okJson({ message: "추천 카테고리 이름을 입력해 주세요." }, { status: 400 });
-      const destination = await env.TRAVEL_DB.prepare(`SELECT slug FROM destinations WHERE slug = ?`).bind(payload.destinationSlug).first();
-      if (!destination) return okJson({ message: "추천 카테고리를 연결할 도시를 찾지 못했습니다." }, { status: 404 });
-      const exists = await env.TRAVEL_DB.prepare(`SELECT id FROM recommendation_categories WHERE destination_slug = ? AND slug = ?`).bind(payload.destinationSlug, slug).first();
-      if (exists) return okJson({ message: "같은 도시 안에 같은 slug의 추천 카테고리가 이미 있습니다." }, { status: 409 });
-      const sortOrder = payload.sortOrder || await getNextRecommendationCategorySortOrder(env.TRAVEL_DB, payload.destinationSlug);
+      const exists = await env.TRAVEL_DB.prepare(`SELECT id FROM recommendation_categories WHERE TRIM(COALESCE(destination_slug, '')) = '' AND slug = ?`).bind(slug).first();
+      if (exists) return okJson({ message: "같은 slug의 추천 카테고리가 이미 있습니다." }, { status: 409 });
+      const sortOrder = payload.sortOrder || await getNextRecommendationCategorySortOrder(env.TRAVEL_DB);
       await env.TRAVEL_DB.prepare(`
         INSERT INTO recommendation_categories (slug, name, description, country_slug, destination_slug, sort_order, is_active, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `).bind(slug, payload.name, payload.description, payload.countrySlug, payload.destinationSlug, sortOrder, payload.isActive, now, now).run();
+        VALUES (?, ?, ?, '', '', ?, ?, ?, ?)
+      `).bind(slug, payload.name, payload.description, sortOrder, payload.isActive, now, now).run();
       return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
     }
 
@@ -410,31 +400,27 @@ export async function onRequestPut({ env, request }) {
   }
 
   if (entity === "recommendation_category") {
-    const currentDestinationSlug = slugifySetting(body.current_destination_slug || body.destination_slug);
-    if (!currentDestinationSlug) return okJson({ message: "수정할 추천 카테고리의 도시가 필요합니다." }, { status: 400 });
-    const current = await env.TRAVEL_DB.prepare(`SELECT * FROM recommendation_categories WHERE destination_slug = ? AND slug = ?`).bind(currentDestinationSlug, currentSlug).first();
+    const current = await env.TRAVEL_DB.prepare(`SELECT * FROM recommendation_categories WHERE TRIM(COALESCE(destination_slug, '')) = '' AND slug = ?`).bind(currentSlug).first()
+      || await env.TRAVEL_DB.prepare(`SELECT * FROM recommendation_categories WHERE slug = ? ORDER BY CASE WHEN TRIM(COALESCE(destination_slug, '')) = '' THEN 0 ELSE 1 END, sort_order ASC LIMIT 1`).bind(currentSlug).first();
     if (!current) return okJson({ message: "수정할 추천 카테고리를 찾지 못했습니다." }, { status: 404 });
     const nextSlug = requireSlug(body.slug, currentSlug);
-    const payload = await readRecommendationCategoryPayload(env.TRAVEL_DB, body, { current });
-    if (!payload.destinationSlug) return okJson({ message: "추천 카테고리를 연결할 도시를 선택해 주세요." }, { status: 400 });
+    const payload = readRecommendationCategoryPayload(body, { current });
     if (!payload.name) return okJson({ message: "추천 카테고리 이름을 입력해 주세요." }, { status: 400 });
-    const destination = await env.TRAVEL_DB.prepare(`SELECT slug FROM destinations WHERE slug = ?`).bind(payload.destinationSlug).first();
-    if (!destination) return okJson({ message: "추천 카테고리를 연결할 도시를 찾지 못했습니다." }, { status: 404 });
-    if (nextSlug !== currentSlug || payload.destinationSlug !== currentDestinationSlug) {
-      const duplicate = await env.TRAVEL_DB.prepare(`SELECT id FROM recommendation_categories WHERE destination_slug = ? AND slug = ?`).bind(payload.destinationSlug, nextSlug).first();
-      if (duplicate) return okJson({ message: "같은 도시 안에 같은 slug의 추천 카테고리가 이미 있습니다." }, { status: 409 });
+    if (nextSlug !== currentSlug) {
+      const duplicate = await env.TRAVEL_DB.prepare(`SELECT id FROM recommendation_categories WHERE TRIM(COALESCE(destination_slug, '')) = '' AND slug = ?`).bind(nextSlug).first();
+      if (duplicate) return okJson({ message: "같은 slug의 추천 카테고리가 이미 있습니다." }, { status: 409 });
     }
     await env.TRAVEL_DB.prepare(`
       UPDATE recommendation_categories
-      SET slug = ?, name = ?, description = ?, country_slug = ?, destination_slug = ?, sort_order = ?, is_active = ?, updated_at = ?
-      WHERE destination_slug = ? AND slug = ?
-    `).bind(nextSlug, payload.name, payload.description, payload.countrySlug, payload.destinationSlug, payload.sortOrder, payload.isActive, now, currentDestinationSlug, currentSlug).run();
-    if (nextSlug !== currentSlug || payload.destinationSlug !== currentDestinationSlug || payload.name !== current.name || payload.description !== current.description) {
+      SET slug = ?, name = ?, description = ?, country_slug = '', destination_slug = '', sort_order = ?, is_active = ?, updated_at = ?
+      WHERE id = ?
+    `).bind(nextSlug, payload.name, payload.description, payload.sortOrder, payload.isActive, now, current.id).run();
+    if (nextSlug !== currentSlug || payload.name !== current.name || payload.description !== current.description) {
       await env.TRAVEL_DB.prepare(`
         UPDATE posts
-        SET recommendation_category_slug = ?, recommendation_category_name = ?, recommendation_category_description = ?, destination_slug = CASE WHEN destination_slug = ? THEN ? ELSE destination_slug END, updated_at = ?
-        WHERE destination_slug = ? AND recommendation_category_slug = ?
-      `).bind(nextSlug, payload.name, payload.description, currentDestinationSlug, payload.destinationSlug, now, currentDestinationSlug, currentSlug).run();
+        SET recommendation_category_slug = ?, recommendation_category_name = ?, recommendation_category_description = ?, updated_at = ?
+        WHERE recommendation_category_slug = ?
+      `).bind(nextSlug, payload.name, payload.description, now, currentSlug).run();
     }
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
@@ -494,7 +480,6 @@ export async function onRequestPut({ env, request }) {
       await env.TRAVEL_DB.prepare(`UPDATE posts SET destination_slug = ?, updated_at = ? WHERE destination_slug = ?`).bind(nextSlug, now, currentSlug).run();
       await env.TRAVEL_DB.prepare(`UPDATE hotels SET destination_slug = ?, updated_at = ? WHERE destination_slug = ?`).bind(nextSlug, now, currentSlug).run();
       await env.TRAVEL_DB.prepare(`UPDATE regions SET destination_slug = ?, updated_at = ? WHERE destination_slug = ?`).bind(nextSlug, now, currentSlug).run();
-      await env.TRAVEL_DB.prepare(`UPDATE recommendation_categories SET destination_slug = ?, updated_at = ? WHERE destination_slug = ?`).bind(nextSlug, now, currentSlug).run();
     }
     const countrySlug = slugifySetting(body.country_slug || countryToSlug(payload.countryName));
     const countryExists = await env.TRAVEL_DB.prepare(`SELECT slug FROM countries WHERE slug = ?`).bind(countrySlug).first();
@@ -542,15 +527,13 @@ export async function onRequestDelete({ env, request }) {
   }
 
   if (entity === "recommendation_category") {
-    const destinationSlug = slugifySetting(body.destination_slug || body.current_destination_slug);
-    if (!destinationSlug) return okJson({ message: "삭제할 추천 카테고리의 도시가 필요합니다." }, { status: 400 });
     const hardDelete = Number(body.hard_delete ?? 0) === 1 || String(body.action || body.mode || "").trim() === "delete";
     if (hardDelete) {
-      await env.TRAVEL_DB.prepare(`UPDATE posts SET recommendation_category_slug = '', recommendation_category_name = '', recommendation_category_description = '', updated_at = ? WHERE destination_slug = ? AND recommendation_category_slug = ?`).bind(now, destinationSlug, slug).run();
-      await env.TRAVEL_DB.prepare(`DELETE FROM recommendation_categories WHERE destination_slug = ? AND slug = ?`).bind(destinationSlug, slug).run();
+      await env.TRAVEL_DB.prepare(`UPDATE posts SET recommendation_category_slug = '', recommendation_category_name = '', recommendation_category_description = '', updated_at = ? WHERE recommendation_category_slug = ?`).bind(now, slug).run();
+      await env.TRAVEL_DB.prepare(`DELETE FROM recommendation_categories WHERE slug = ?`).bind(slug).run();
       return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
     }
-    await env.TRAVEL_DB.prepare(`UPDATE recommendation_categories SET is_active = 0, updated_at = ? WHERE destination_slug = ? AND slug = ?`).bind(now, destinationSlug, slug).run();
+    await env.TRAVEL_DB.prepare(`UPDATE recommendation_categories SET is_active = 0, updated_at = ? WHERE slug = ?`).bind(now, slug).run();
     return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
   }
 
@@ -570,7 +553,6 @@ export async function onRequestDelete({ env, request }) {
       await env.TRAVEL_DB.prepare(`UPDATE posts SET destination_slug = '', region_slug = '', region_name = '', recommendation_category_slug = '', recommendation_category_name = '', recommendation_category_description = '', updated_at = ? WHERE destination_slug = ?`).bind(now, slug).run();
       await env.TRAVEL_DB.prepare(`UPDATE hotels SET destination_slug = '', region_slug = '', region_name = '', updated_at = ? WHERE destination_slug = ?`).bind(now, slug).run();
       await env.TRAVEL_DB.prepare(`DELETE FROM regions WHERE destination_slug = ?`).bind(slug).run();
-      await env.TRAVEL_DB.prepare(`DELETE FROM recommendation_categories WHERE destination_slug = ?`).bind(slug).run();
       await env.TRAVEL_DB.prepare(`DELETE FROM destinations WHERE slug = ?`).bind(slug).run();
       return okJson({ ok: true, ...(await getTravelSettings(env.TRAVEL_DB, { includeInactive: true })) });
     }

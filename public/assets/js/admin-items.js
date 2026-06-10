@@ -13,7 +13,6 @@ let regionItems = [];
 let recommendationCategoryItems = [];
 let destinationCountryFilter = "all";
 let regionCountryFilter = "all";
-let recommendationCategoryCountryFilter = "all";
 
 function escapeHtml(value = "") {
   return String(value ?? "")
@@ -86,14 +85,6 @@ function getRecommendationCategoryDescription(category) {
   return String(category?.description || "").trim();
 }
 
-function getRecommendationCategoryDestinationSlug(category) {
-  return String(category?.destination_slug || category?.destinationSlug || "").trim();
-}
-
-function getRecommendationCategoryCountrySlug(category) {
-  return String(category?.country_slug || category?.countrySlug || "").trim() || getCountrySlugFromDestination(getDestinationBySlug(getRecommendationCategoryDestinationSlug(category)));
-}
-
 function sortByOrderThenName(a, b, labelGetter) {
   const orderA = Number(a.sort_order ?? 0) || 0;
   const orderB = Number(b.sort_order ?? 0) || 0;
@@ -127,13 +118,6 @@ function countRegionsByCountry(countrySlug = "") {
   return regionItems.filter((item) => {
     const active = Number(item.is_active ?? 1) !== 0;
     return active && getRegionCountrySlug(item) === String(countrySlug || "");
-  }).length;
-}
-
-function countRecommendationCategoriesByCountry(countrySlug = "") {
-  return recommendationCategoryItems.filter((item) => {
-    const active = Number(item.is_active ?? 1) !== 0;
-    return active && getRecommendationCategoryCountrySlug(item) === String(countrySlug || "");
   }).length;
 }
 
@@ -280,7 +264,7 @@ function renderCountryManager() {
   }
 
   const activeCountries = countryItems.filter((item) => Number(item.is_active ?? 1) !== 0);
-  ["newDestinationCountry", "newRegionCountry", "newRecommendationCategoryCountry"].forEach((id) => {
+  ["newDestinationCountry", "newRegionCountry"].forEach((id) => {
     const selectEl = $(id);
     if (!selectEl) return;
     const current = selectEl.value || "";
@@ -308,21 +292,6 @@ function renderRegionDestinationSelect() {
   if (current && destinations.some((destination) => String(destination.slug || "") === current)) selectEl.value = current;
 }
 
-function renderRecommendationCategoryDestinationSelect() {
-  const selectEl = $("newRecommendationCategoryDestination");
-  if (!selectEl) return;
-  const selectedCountrySlug = $("newRecommendationCategoryCountry")?.value || "";
-  const current = selectEl.value || "";
-  const destinations = destinationItems
-    .filter((item) => Number(item.is_active ?? 1) !== 0 && String(item.status || "published") !== "draft")
-    .filter((item) => !selectedCountrySlug || getCountrySlugFromDestination(item) === selectedCountrySlug)
-    .sort((a, b) => getDestinationLabel(a).localeCompare(getDestinationLabel(b), "ko"));
-  selectEl.innerHTML = [
-    '<option value="">도시 선택</option>',
-    ...destinations.map((item) => `<option value="${escapeHtml(item.slug || "")}">${escapeHtml(getDestinationLabel(item))}</option>`)
-  ].join("");
-  if (current && destinations.some((destination) => String(destination.slug || "") === current)) selectEl.value = current;
-}
 
 function renderDestinationManager() {
   destinationCountryFilter = ensureCountryFilterValue(destinationCountryFilter);
@@ -389,43 +358,29 @@ function renderRegionManager() {
 }
 
 function renderRecommendationCategoryManager() {
-  recommendationCategoryCountryFilter = ensureCountryFilterValue(recommendationCategoryCountryFilter);
-  renderRecommendationCategoryDestinationSelect();
-  renderCountryTabs("recommendationCategoryCountryTabs", recommendationCategoryCountryFilter, "admin-recommendation-category-country-tab", countRecommendationCategoriesByCountry);
   const listEl = $("travelRecommendationCategoryList");
   if (!listEl) return;
   const items = [...recommendationCategoryItems]
-    .filter((item) => recommendationCategoryCountryFilter === "all" || getRecommendationCategoryCountrySlug(item) === recommendationCategoryCountryFilter)
-    .sort((a, b) => {
-      const countryCompare = getRecommendationCategoryCountrySlug(a).localeCompare(getRecommendationCategoryCountrySlug(b), "ko");
-      if (countryCompare !== 0) return countryCompare;
-      const destinationCompare = getRecommendationCategoryDestinationSlug(a).localeCompare(getRecommendationCategoryDestinationSlug(b), "ko");
-      if (destinationCompare !== 0) return destinationCompare;
-      return sortByOrderThenName(a, b, getRecommendationCategoryLabel);
-    });
+    .sort((a, b) => sortByOrderThenName(a, b, getRecommendationCategoryLabel));
   listEl.innerHTML = items.length
     ? items.map((item) => {
       const inactive = Number(item.is_active ?? 1) === 0;
-      const destination = getDestinationBySlug(getRecommendationCategoryDestinationSlug(item));
-      const countryName = getCountryNameBySlug(getRecommendationCategoryCountrySlug(item)) || item.country_name || "나라 미지정";
-      const destinationLabel = getDestinationLabel(destination) || item.destination_name || getRecommendationCategoryDestinationSlug(item) || "도시 미지정";
       return `
         <div class="category-manager__item admin-items-list-item ${inactive ? "is-inactive" : ""}">
           <div>
             <div class="category-manager__name">${escapeHtml(getRecommendationCategoryLabel(item))}</div>
-            <div class="small">${escapeHtml(countryName)} · ${escapeHtml(destinationLabel)} · slug: ${escapeHtml(item.slug || "")} ${inactive ? " · 미사용" : ""}</div>
+            <div class="small">slug: ${escapeHtml(item.slug || "")} ${inactive ? " · 미사용" : ""}</div>
             ${getRecommendationCategoryDescription(item) ? `<div class="small">${escapeHtml(getRecommendationCategoryDescription(item))}</div>` : ""}
           </div>
           <div class="category-manager__actions">
-            <button class="btn" type="button" data-travel-edit-recommendation-category="${escapeHtml(item.slug || "")}" data-travel-recommendation-category-destination="${escapeHtml(getRecommendationCategoryDestinationSlug(item))}">수정</button>
-            <button class="btn" type="button" data-travel-deactivate-recommendation-category="${escapeHtml(item.slug || "")}" data-travel-recommendation-category-destination="${escapeHtml(getRecommendationCategoryDestinationSlug(item))}">비활성화</button>
-            <button class="btn btn--danger" type="button" data-travel-remove-recommendation-category="${escapeHtml(item.slug || "")}" data-travel-recommendation-category-destination="${escapeHtml(getRecommendationCategoryDestinationSlug(item))}">삭제</button>
+            <button class="btn" type="button" data-travel-edit-recommendation-category="${escapeHtml(item.slug || "")}">수정</button>
+            <button class="btn" type="button" data-travel-deactivate-recommendation-category="${escapeHtml(item.slug || "")}">비활성화</button>
+            <button class="btn btn--danger" type="button" data-travel-remove-recommendation-category="${escapeHtml(item.slug || "")}">삭제</button>
           </div>
         </div>`;
     }).join("")
-    : '<div class="category-manager__empty small">선택한 나라에 등록된 추천 카테고리가 없습니다.</div>';
+    : '<div class="category-manager__empty small">등록된 추천 카테고리가 없습니다.</div>';
 }
-
 function renderAll() {
   renderOverview();
   renderContentTypeManager();
@@ -697,17 +652,13 @@ async function removeTravelRegion(slug, destinationSlug) {
 }
 
 async function addTravelRecommendationCategory() {
-  const countrySlug = $("newRecommendationCategoryCountry")?.value || "";
-  const destinationSlug = $("newRecommendationCategoryDestination")?.value || "";
   const name = normalizeText($("newRecommendationCategoryName")?.value || "");
   const slug = slugify($("newRecommendationCategorySlug")?.value || name);
   const description = normalizeText($("newRecommendationCategoryDescription")?.value || "");
-  if (!countrySlug) return showRequiredMessage("나라를 선택해 주세요.", "newRecommendationCategoryCountry");
-  if (!destinationSlug) return showRequiredMessage("도시를 선택해 주세요.", "newRecommendationCategoryDestination");
   if (!name) return showRequiredMessage("추천 카테고리 이름을 입력해 주세요.", "newRecommendationCategoryName");
   if (!slug) return showRequiredMessage("사용 가능한 추천 카테고리 slug를 입력해 주세요.", "newRecommendationCategorySlug");
   try {
-    await requestTravelSettingsApi("POST", { entity: "recommendation_category", slug, name, description, country_slug: countrySlug, destination_slug: destinationSlug });
+    await requestTravelSettingsApi("POST", { entity: "recommendation_category", slug, name, description });
     ["newRecommendationCategoryName", "newRecommendationCategorySlug", "newRecommendationCategoryDescription"].forEach((id) => { if ($(id)) $(id).value = ""; });
     await afterChanged("추천 카테고리가 추가되었습니다.");
   } catch (error) {
@@ -715,8 +666,8 @@ async function addTravelRecommendationCategory() {
   }
 }
 
-async function editTravelRecommendationCategory(slug, destinationSlug) {
-  const item = recommendationCategoryItems.find((entry) => String(entry.slug || "") === String(slug || "") && getRecommendationCategoryDestinationSlug(entry) === String(destinationSlug || ""));
+async function editTravelRecommendationCategory(slug) {
+  const item = recommendationCategoryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
   if (!item) return;
   const nextName = window.prompt("추천 카테고리 이름", item.name || "");
   if (nextName === null) return;
@@ -724,20 +675,13 @@ async function editTravelRecommendationCategory(slug, destinationSlug) {
   if (nextSlug === null) return;
   const nextDescription = window.prompt("설명", item.description || "");
   if (nextDescription === null) return;
-  const nextDestinationSlug = window.prompt("도시 slug", getRecommendationCategoryDestinationSlug(item));
-  if (nextDestinationSlug === null) return;
-  const destination = getDestinationBySlug(nextDestinationSlug);
-  const countrySlug = getCountrySlugFromDestination(destination) || getRecommendationCategoryCountrySlug(item);
   try {
     await requestTravelSettingsApi("PUT", {
       entity: "recommendation_category",
       current_slug: item.slug,
-      current_destination_slug: getRecommendationCategoryDestinationSlug(item),
       slug: slugify(nextSlug),
       name: normalizeText(nextName),
       description: normalizeText(nextDescription),
-      country_slug: countrySlug,
-      destination_slug: nextDestinationSlug,
       is_active: Number(item.is_active ?? 1),
       sort_order: Number(item.sort_order ?? 0) || 0
     });
@@ -747,26 +691,26 @@ async function editTravelRecommendationCategory(slug, destinationSlug) {
   }
 }
 
-async function deactivateTravelRecommendationCategory(slug, destinationSlug) {
-  const item = recommendationCategoryItems.find((entry) => String(entry.slug || "") === String(slug || "") && getRecommendationCategoryDestinationSlug(entry) === String(destinationSlug || ""));
+async function deactivateTravelRecommendationCategory(slug) {
+  const item = recommendationCategoryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
   const ok = window.confirm(`'${item?.name || slug}' 추천 카테고리를 비활성화할까요?
 기존 글의 카테고리 연결값은 유지되지만 선택 목록과 추천글 필터에서는 제외됩니다.`);
   if (!ok) return;
   try {
-    await requestTravelSettingsApi("DELETE", { entity: "recommendation_category", slug, destination_slug: destinationSlug });
+    await requestTravelSettingsApi("DELETE", { entity: "recommendation_category", slug });
     await afterChanged("추천 카테고리가 비활성화되었습니다.");
   } catch (error) {
     setStatus(error.message || "추천 카테고리 비활성화에 실패했습니다.", true);
   }
 }
 
-async function removeTravelRecommendationCategory(slug, destinationSlug) {
-  const item = recommendationCategoryItems.find((entry) => String(entry.slug || "") === String(slug || "") && getRecommendationCategoryDestinationSlug(entry) === String(destinationSlug || ""));
+async function removeTravelRecommendationCategory(slug) {
+  const item = recommendationCategoryItems.find((entry) => String(entry.slug || "") === String(slug || ""));
   const ok = window.confirm(`'${item?.name || slug}' 추천 카테고리를 완전히 삭제할까요?
 이 카테고리와 연결된 글의 추천 카테고리 값은 비워집니다.`);
   if (!ok) return;
   try {
-    await requestTravelSettingsApi("DELETE", { entity: "recommendation_category", slug, destination_slug: destinationSlug, hard_delete: 1 });
+    await requestTravelSettingsApi("DELETE", { entity: "recommendation_category", slug, hard_delete: 1 });
     await afterChanged("추천 카테고리가 삭제되었습니다.");
   } catch (error) {
     setStatus(error.message || "추천 카테고리 삭제에 실패했습니다.", true);
@@ -780,7 +724,6 @@ function bindEvents() {
   $("addRegionBtn")?.addEventListener("click", addTravelRegion);
   $("addRecommendationCategoryBtn")?.addEventListener("click", addTravelRecommendationCategory);
   $("newRegionCountry")?.addEventListener("change", () => { renderRegionDestinationSelect(); });
-  $("newRecommendationCategoryCountry")?.addEventListener("change", () => { renderRecommendationCategoryDestinationSelect(); });
 
   ["newContentTypeLabel", "newContentTypeSlug", "newContentTypeDescription", "newCountryName", "newCountrySlug", "newDestinationName", "newDestinationCity", "newDestinationSlug", "newRegionName", "newRegionSlug", "newRecommendationCategoryName", "newRecommendationCategorySlug", "newRecommendationCategoryDescription"].forEach((id) => {
     $(id)?.addEventListener("keydown", (event) => {
@@ -812,15 +755,6 @@ function bindEvents() {
       renderRegionManager();
       return;
     }
-    if (target.dataset.adminRecommendationCategoryCountryTab) {
-      recommendationCategoryCountryFilter = target.dataset.adminRecommendationCategoryCountryTab || "all";
-      if (recommendationCategoryCountryFilter !== "all" && $("newRecommendationCategoryCountry")) {
-        $("newRecommendationCategoryCountry").value = recommendationCategoryCountryFilter;
-        renderRecommendationCategoryDestinationSelect();
-      }
-      renderRecommendationCategoryManager();
-      return;
-    }
     if (target.dataset.travelEditContentType) return editTravelContentType(target.dataset.travelEditContentType);
     if (target.dataset.travelDeleteContentType) return deleteTravelContentType(target.dataset.travelDeleteContentType);
     if (target.dataset.travelEditCountry) return editTravelCountry(target.dataset.travelEditCountry);
@@ -829,9 +763,9 @@ function bindEvents() {
     if (target.dataset.travelEditRegion) return editTravelRegion(target.dataset.travelEditRegion, target.dataset.travelRegionDestination);
     if (target.dataset.travelDeactivateRegion) return deactivateTravelRegion(target.dataset.travelDeactivateRegion, target.dataset.travelRegionDestination);
     if (target.dataset.travelRemoveRegion) return removeTravelRegion(target.dataset.travelRemoveRegion, target.dataset.travelRegionDestination);
-    if (target.dataset.travelEditRecommendationCategory) return editTravelRecommendationCategory(target.dataset.travelEditRecommendationCategory, target.dataset.travelRecommendationCategoryDestination);
-    if (target.dataset.travelDeactivateRecommendationCategory) return deactivateTravelRecommendationCategory(target.dataset.travelDeactivateRecommendationCategory, target.dataset.travelRecommendationCategoryDestination);
-    if (target.dataset.travelRemoveRecommendationCategory) return removeTravelRecommendationCategory(target.dataset.travelRemoveRecommendationCategory, target.dataset.travelRecommendationCategoryDestination);
+    if (target.dataset.travelEditRecommendationCategory) return editTravelRecommendationCategory(target.dataset.travelEditRecommendationCategory);
+    if (target.dataset.travelDeactivateRecommendationCategory) return deactivateTravelRecommendationCategory(target.dataset.travelDeactivateRecommendationCategory);
+    if (target.dataset.travelRemoveRecommendationCategory) return removeTravelRecommendationCategory(target.dataset.travelRemoveRecommendationCategory);
     if (target.dataset.travelEditDestination) return editTravelDestination(target.dataset.travelEditDestination);
     if (target.dataset.travelDeactivateDestination) return deactivateTravelDestination(target.dataset.travelDeactivateDestination);
     if (target.dataset.travelRemoveDestination) return removeTravelDestination(target.dataset.travelRemoveDestination);

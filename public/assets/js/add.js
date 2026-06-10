@@ -288,8 +288,7 @@ function getSelectedRegion() {
 
 function getSelectedRecommendationCategory() {
   const slug = $("recommendationCategorySlug")?.value || "";
-  const destinationSlug = $("destination_slug")?.value || "";
-  return recommendationCategoryItems.find((item) => String(item.slug || "") === slug && (!destinationSlug || getRecommendationCategoryDestinationSlug(item) === destinationSlug)) || null;
+  return recommendationCategoryItems.find((item) => String(item.slug || "") === slug) || null;
 }
 
 function renderContentTypeOptions(selectedValue = "") {
@@ -376,14 +375,12 @@ function renderRecommendationCategoryOptions(selectedValue = "") {
   const descriptionEl = $("recommendationCategoryDescription");
   if (!selectEl) return;
   const selectedSlug = String(selectedValue || selectEl.value || "").trim();
-  const selectedDestinationSlug = String($("destination_slug")?.value || "").trim();
-  const selectedCategory = recommendationCategoryItems.find((item) => String(item.slug || "") === selectedSlug && (!selectedDestinationSlug || getRecommendationCategoryDestinationSlug(item) === selectedDestinationSlug)) || null;
+  const selectedCategory = recommendationCategoryItems.find((item) => String(item.slug || "") === selectedSlug) || null;
   const filtered = recommendationCategoryItems
     .filter((item) => Number(item.is_active ?? 1) !== 0)
-    .filter((item) => !selectedDestinationSlug || getRecommendationCategoryDestinationSlug(item) === selectedDestinationSlug)
     .sort((a, b) => getRecommendationCategoryLabel(a).localeCompare(getRecommendationCategoryLabel(b), "ko"));
 
-  if (selectedCategory && !filtered.some((item) => String(item.slug || "") === selectedSlug && getRecommendationCategoryDestinationSlug(item) === getRecommendationCategoryDestinationSlug(selectedCategory))) {
+  if (selectedCategory && !filtered.some((item) => String(item.slug || "") === selectedSlug)) {
     filtered.unshift(selectedCategory);
   }
 
@@ -392,7 +389,7 @@ function renderRecommendationCategoryOptions(selectedValue = "") {
     ...filtered.map((item) => `<option value="${escapeHtml(item.slug || "")}">${escapeHtml(getRecommendationCategoryLabel(item))}</option>`)
   ].join("");
   selectEl.value = selectedSlug && filtered.some((item) => String(item.slug || "") === selectedSlug) ? selectedSlug : "";
-  selectEl.disabled = !selectedDestinationSlug || filtered.length === 0;
+  selectEl.disabled = filtered.length === 0;
   if (descriptionEl) {
     const category = getSelectedRecommendationCategory();
     descriptionEl.textContent = getRecommendationCategoryDescription(category) || "카테고리를 선택하면 설명이 표시됩니다.";
@@ -477,13 +474,13 @@ function bindTravelPlacementEvents() {
   $("country")?.addEventListener("change", () => {
     renderDestinationOptions("");
     renderRegionOptions("");
-    renderRecommendationCategoryOptions("");
+    renderRecommendationCategoryOptions($("recommendationCategorySlug")?.value || "");
     updateTravelPlacementStatus();
     handleRealtimeChange();
   });
   $("destination_slug")?.addEventListener("change", () => {
     renderRegionOptions("");
-    renderRecommendationCategoryOptions("");
+    renderRecommendationCategoryOptions($("recommendationCategorySlug")?.value || "");
     updateTravelPlacementStatus();
     handleRealtimeChange();
   });

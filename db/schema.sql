@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS recommendation_categories (
   name TEXT NOT NULL,
   description TEXT DEFAULT '',
   country_slug TEXT DEFAULT '',
-  destination_slug TEXT NOT NULL,
+  destination_slug TEXT DEFAULT '',
   sort_order INTEGER DEFAULT 0,
   is_active INTEGER DEFAULT 1,
   created_at TEXT NOT NULL,
@@ -124,8 +124,8 @@ CREATE TABLE IF NOT EXISTS recommendation_categories (
   UNIQUE(destination_slug, slug)
 );
 
+CREATE INDEX IF NOT EXISTS idx_recommendation_categories_sort_order ON recommendation_categories(is_active, sort_order ASC, name ASC);
 CREATE INDEX IF NOT EXISTS idx_recommendation_categories_destination_sort ON recommendation_categories(destination_slug, is_active, sort_order ASC, name ASC);
-CREATE INDEX IF NOT EXISTS idx_recommendation_categories_country_destination ON recommendation_categories(country_slug, destination_slug, sort_order ASC, name ASC);
 
 CREATE TABLE IF NOT EXISTS hotels (
   slug TEXT PRIMARY KEY,
