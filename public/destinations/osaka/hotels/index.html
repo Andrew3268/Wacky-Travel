@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV35" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV36" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"호텔 하나씩 살펴보기","item":"/destinations/osaka/hotels/"}]}</script>
 </head>
 <body data-destination-slug="osaka">
@@ -135,9 +135,40 @@
         return region?.name || slug;
       };
 
-      const loadAll = async (region = '') => {
+      const isValidRegion = (slug = '') => {
+        if (!slug) return true;
+        return regionItems.some((item) => String(item.slug || '') === slug);
+      };
+
+      const getRegionFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get('region') || '').trim();
+      };
+
+      const updateRegionUrl = (region = '', replace = false) => {
+        const nextUrl = new URL(window.location.href);
+        if (region) {
+          nextUrl.searchParams.set('region', region);
+        } else {
+          nextUrl.searchParams.delete('region');
+        }
+        const nextPath = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextPath === currentPath) return;
+        window.history[replace ? 'replaceState' : 'pushState']({ region }, '', nextPath);
+      };
+
+      const resolveRegion = (region = '') => {
+        const value = String(region || '').trim();
+        return isValidRegion(value) ? value : '';
+      };
+
+      const loadAll = async (region = '', options = {}) => {
         if (!grid) return;
-        activeRegion = region || '';
+        const shouldUpdateUrl = options.updateUrl === true;
+        const shouldReplaceUrl = options.replaceUrl === true;
+        activeRegion = resolveRegion(region);
+        if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
         renderRegionFilter();
         grid.innerHTML = '<div class="empty-card">오사카 호텔 글을 불러오는 중입니다.</div>';
         if (count) count.textContent = activeRegion ? `${getRegionName(activeRegion)} 호텔 글을 정리하고 있어요.` : '오사카 호텔 글을 정리하고 있어요.';
@@ -175,13 +206,22 @@
       filterWrap?.addEventListener('click', (event) => {
         const button = event.target.closest('[data-region-filter-value]');
         if (!button) return;
-        loadAll(button.dataset.regionFilterValue || '');
+        loadAll(button.dataset.regionFilterValue || '', { updateUrl: true });
+      });
+
+      window.addEventListener('popstate', () => {
+        const region = resolveRegion(getRegionFromUrl());
+        loadAll(region, { updateUrl: false });
       });
 
       const init = async () => {
         regionItems = await fetchSettings();
-        renderRegionFilter();
-        await loadAll('');
+        const requestedRegion = getRegionFromUrl();
+        const initialRegion = resolveRegion(requestedRegion);
+        if (requestedRegion && requestedRegion !== initialRegion) {
+          updateRegionUrl('', true);
+        }
+        await loadAll(initialRegion, { updateUrl: false });
       };
 
       init();
