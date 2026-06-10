@@ -1,240 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>항목 관리 | Wacky Travel</title>
-  <meta name="robots" content="noindex,nofollow" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
-  <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v25" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v25" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>항목 관리 | Wacky Travel</title>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/assets/images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<meta content="#2563EB" name="theme-color"/>
+<link href="/assets/css/app.css?v=20260610v26" rel="stylesheet"/>
+<link href="/assets/css/components.css?v=20260610v26" rel="stylesheet"/>
 </head>
 <body>
-  <header class="topbar topbar--editorial">
-    <div class="topbar__inner topbar__inner--editorial">
-      <button class="topbar-hamburger" type="button" aria-expanded="false" aria-controls="mobileSiteMenu" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
+<header class="topbar topbar--editorial">
+<div class="topbar__inner topbar__inner--editorial">
+<button aria-controls="mobileSiteMenu" aria-expanded="false" aria-label="메뉴 열기" class="topbar-hamburger" type="button">
+<span></span><span></span><span></span>
+</button>
+<div class="topbar-left-slot"><div aria-live="polite" class="topbar-admin-status" data-admin-status="" hidden="">관리자 로그인 중</div></div>
+<a aria-label="Wacky Travel 홈" class="brand brand--center" href="/">
+<span class="brand__text">Wacky Travel</span>
+</a>
+<nav aria-label="오른쪽 메뉴" class="nav nav--utility nav--right">
+<a data-admin-link="" hidden="" href="/admin/dashboard.html">대시보드</a>
+</nav>
+</div>
+</header>
+<aside aria-hidden="true" class="mobile-site-menu" hidden="" id="mobileSiteMenu">
+<div class="mobile-site-menu__panel">
+<div class="mobile-site-menu__close-wrap">
+<button aria-label="메뉴 닫기" class="mobile-site-menu__close-toggle topbar-hamburger is-open" data-mobile-menu-close="" type="button">
+<span></span><span></span><span></span>
+</button>
+</div>
+<nav aria-label="모바일 주요 메뉴" class="mobile-site-menu__nav"></nav>
+<div class="mobile-site-menu__section mobile-site-menu__section--categories">
+<div class="topbar-categories__list topbar-categories__list--mobile" id="mobileSiteCategoryBar"></div>
+</div>
+<div class="mobile-site-menu__section mobile-site-menu__section--admin" data-mobile-admin-section="" hidden="">
+<a class="mobile-site-menu__text-link" data-admin-link="" hidden="" href="/admin/dashboard.html">대시보드</a>
+</div>
+</div>
+</aside>
+<main class="container admin-items-shell">
+<section class="hero card admin-items-hero">
+<div class="hero-copy">
+<span class="badge">Admin Items</span>
+<h1 class="hero-title">항목 관리</h1>
+<p class="p hero-desc">글 작성 화면에서 선택하는 글 종류, 나라, 도시, 지역을 한 곳에서 관리합니다. 앞으로 호텔 카드, 도시 기본 정보, 홈 노출 설정도 이 페이지에 확장할 수 있습니다.</p>
+<div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
+<a class="btn btn--brand" href="/admin/dashboard.html">대시보드로</a>
+<a class="btn" href="/add.html">새 글 작성</a>
+<a class="btn" href="/admin/home-hub.html">여행자 허브 관리</a>
+<a class="btn" href="/">블로그 홈</a>
+</div>
+</div>
 
-      <div class="topbar-left-slot"><div class="topbar-admin-status" data-admin-status hidden aria-live="polite">관리자 로그인 중</div></div>
+</section><div aria-label="관리 항목 현황" class="admin-items-overview">
+<div class="dashboard-stat">
+<div class="dashboard-stat__label">글 종류</div>
+<strong class="dashboard-stat__value" id="itemContentTypeCount">-</strong>
+</div>
+<div class="dashboard-stat">
+<div class="dashboard-stat__label">나라</div>
+<strong class="dashboard-stat__value" id="itemCountryCount">-</strong>
+</div>
+<div class="dashboard-stat">
+<div class="dashboard-stat__label">도시</div>
+<strong class="dashboard-stat__value" id="itemDestinationCount">-</strong>
+</div>
+<div class="dashboard-stat">
+<div class="dashboard-stat__label">지역</div>
+<strong class="dashboard-stat__value" id="itemRegionCount">-</strong>
+</div>
+</div>
 
-      <a class="brand brand--center" href="/" aria-label="Wacky Travel 홈">
-        <span class="brand__text">Wacky Travel</span>
-      </a>
 
-      <nav class="nav nav--utility nav--right" aria-label="오른쪽 메뉴">
-        <a href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
-      </nav>
-    </div>
-  </header>
+<div aria-live="polite" class="admin-items-status small" id="itemManagerStatus" role="status">항목 정보를 불러오는 중…</div>
+<section class="admin-items-grid">
+<article class="card admin-items-panel" id="contentTypes">
+<div class="dashboard-panel__head">
+<div>
+<h2 class="h2">글 종류 관리</h2>
+<p class="small">예: 호텔 추천 TOP5, 개별 호텔 소개, 여행 가이드처럼 글이 어느 섹션에 노출될지 결정합니다.</p>
+</div>
+</div>
+<div class="category-manager__create">
+<div class="category-manager__create-row admin-items-create-row--3">
+<input class="input" id="newContentTypeLabel" placeholder="글 종류 이름 예: 여행 스타일별 호텔 추천"/>
+<input class="input" id="newContentTypeSlug" placeholder="slug 예: top5_series"/>
+<button class="btn btn--brand" id="addContentTypeBtn" type="button">추가</button>
+</div>
+<input class="input" id="newContentTypeDescription" placeholder="설명 예: 여행 스타일에 맞춰 호텔을 비교하는 글"/>
+</div>
+<div class="category-manager__list" id="travelContentTypeList"></div>
+</article>
+<article class="card admin-items-panel" id="countries">
+<div class="dashboard-panel__head">
+<div>
+<h2 class="h2">나라 관리</h2>
+<p class="small">도시를 묶는 상위 항목입니다. 예: 일본, 베트남, 태국</p>
+</div>
+</div>
+<div class="category-manager__create">
+<div class="category-manager__create-row admin-items-create-row--2">
+<input class="input" id="newCountryName" placeholder="나라명 예: 일본"/>
+<input class="input" id="newCountrySlug" placeholder="slug 예: japan"/>
+<button class="btn btn--brand" id="addCountryBtn" type="button">추가</button>
+</div>
+</div>
+<div class="category-manager__list" id="travelCountryList"></div>
+</article>
+<article class="card admin-items-panel" id="destinations">
+<div class="dashboard-panel__head">
+<div>
+<h2 class="h2">도시 관리</h2>
+<p class="small">도시를 추가하면 글 작성/수정 화면의 도시 선택 목록에 반영됩니다.</p>
+</div>
+</div>
+<div class="category-manager__create">
+<div class="category-manager__create-row admin-items-create-row--4">
+<select class="input" id="newDestinationCountry">
+<option value="">나라 선택</option>
+</select>
+<input class="input" id="newDestinationName" placeholder="표시 이름 예: 오사카"/>
+<input class="input" id="newDestinationCity" placeholder="도시명 예: 오사카"/>
+<button class="btn btn--brand" id="addDestinationBtn" type="button">추가</button>
+</div>
+<input class="input" id="newDestinationSlug" placeholder="slug 예: osaka"/>
+</div>
+<div aria-label="도시 나라별 보기" class="admin-country-tabs" id="destinationCountryTabs" role="tablist"></div>
+<div class="category-manager__list" id="travelDestinationList"></div>
+</article>
+<article class="card admin-items-panel" id="regions">
+<div class="dashboard-panel__head">
+<div>
+<h2 class="h2">지역 관리</h2>
+<p class="small">도시별 하위 지역을 추가하면 글 작성/수정 화면의 지역 선택과 호텔 목록 필터에 반영됩니다.</p>
+</div>
+</div>
+<div class="category-manager__create">
+<div class="category-manager__create-row admin-items-create-row--5">
+<select class="input" id="newRegionCountry">
+<option value="">나라 선택</option>
+</select>
+<select class="input" id="newRegionDestination">
+<option value="">도시 선택</option>
+</select>
+<input class="input" id="newRegionName" placeholder="지역명 예: 난바"/>
+<input class="input" id="newRegionSlug" placeholder="slug 예: namba"/>
+<button class="btn btn--brand" id="addRegionBtn" type="button">추가</button>
+</div>
+</div>
+<div aria-label="지역 나라별 보기" class="admin-country-tabs" id="regionCountryTabs" role="tablist"></div>
+<div class="category-manager__list" id="travelRegionList"></div>
+</article>
 
-  <aside id="mobileSiteMenu" class="mobile-site-menu" hidden aria-hidden="true">
-    <div class="mobile-site-menu__panel">
-      <div class="mobile-site-menu__close-wrap">
-        <button class="mobile-site-menu__close-toggle topbar-hamburger is-open" type="button" aria-label="메뉴 닫기" data-mobile-menu-close>
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-      <nav class="mobile-site-menu__nav" aria-label="모바일 주요 메뉴"></nav>
-      <div class="mobile-site-menu__section mobile-site-menu__section--categories">
-        <div id="mobileSiteCategoryBar" class="topbar-categories__list topbar-categories__list--mobile"></div>
-      </div>
-      <div class="mobile-site-menu__section mobile-site-menu__section--admin" data-mobile-admin-section hidden>
-        <a class="mobile-site-menu__text-link" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
-      </div>
-    </div>
-  </aside>
-
-  <main class="container admin-items-shell">
-    <section class="hero card admin-items-hero">
-      <div class="hero-copy">
-        <span class="badge">Admin Items</span>
-        <h1 class="hero-title">항목 관리</h1>
-        <p class="p hero-desc">글 작성 화면에서 선택하는 글 종류, 나라, 도시, 지역을 한 곳에서 관리합니다. 앞으로 호텔 카드, 도시 기본 정보, 홈 노출 설정도 이 페이지에 확장할 수 있습니다.</p>
-        <div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
-          <a class="btn btn--brand" href="/admin/dashboard.html">대시보드로</a>
-          <a class="btn" href="/add.html">새 글 작성</a>
-          <a class="btn" href="/admin/home-hub.html">여행자 허브 관리</a>
-          <a class="btn" href="/">블로그 홈</a>
-        </div>
-      </div>
-      <div class="admin-items-overview" aria-label="관리 항목 현황">
-        <div class="dashboard-stat">
-          <div class="dashboard-stat__label">글 종류</div>
-          <strong class="dashboard-stat__value" id="itemContentTypeCount">-</strong>
-        </div>
-        <div class="dashboard-stat">
-          <div class="dashboard-stat__label">나라</div>
-          <strong class="dashboard-stat__value" id="itemCountryCount">-</strong>
-        </div>
-        <div class="dashboard-stat">
-          <div class="dashboard-stat__label">도시</div>
-          <strong class="dashboard-stat__value" id="itemDestinationCount">-</strong>
-        </div>
-        <div class="dashboard-stat">
-          <div class="dashboard-stat__label">지역</div>
-          <strong class="dashboard-stat__value" id="itemRegionCount">-</strong>
-        </div>
-      </div>
-    </section>
-
-    <section class="admin-page-guide admin-page-guide--items" aria-label="항목 관리 사용 순서">
-      <article class="admin-page-guide-card">
-        <span>01</span>
-        <strong>글 종류 정리</strong>
-        <p>글 작성 화면에서 어떤 콘텐츠 유형으로 분류할지 먼저 정리합니다.</p>
-      </article>
-      <article class="admin-page-guide-card">
-        <span>02</span>
-        <strong>나라 추가</strong>
-        <p>도시를 묶는 상위 항목입니다. 일본, 태국처럼 여행 국가를 관리합니다.</p>
-      </article>
-      <article class="admin-page-guide-card">
-        <span>03</span>
-        <strong>도시 추가</strong>
-        <p>나라를 선택한 뒤 오사카, 후쿠오카처럼 실제 도시 항목을 추가합니다.</p>
-      </article>
-      <article class="admin-page-guide-card">
-        <span>04</span>
-        <strong>지역 추가</strong>
-        <p>도시를 선택한 뒤 난바, 우메다처럼 호텔 필터에 사용할 지역을 관리합니다.</p>
-      </article>
-      <article class="admin-page-guide-card">
-        <span>05</span>
-        <strong>허브 노출 관리</strong>
-        <p>인덱스 여행자 허브 노출은 별도 허브 관리 페이지에서 정리합니다.</p>
-      </article>
-    </section>
-
-    <nav class="card admin-items-nav" aria-label="항목 관리 바로가기">
-      <a href="#contentTypes">글 종류</a>
-      <a href="#countries">나라</a>
-      <a href="#destinations">도시</a>
-      <a href="#regions">지역</a>
-      <a href="#futureItems">추가 예정</a>
-    </nav>
-
-    <div class="admin-items-status small" id="itemManagerStatus" role="status" aria-live="polite">항목 정보를 불러오는 중…</div>
-
-    <section class="admin-items-grid">
-      <article class="card admin-items-panel" id="contentTypes">
-        <div class="dashboard-panel__head">
-          <div>
-            <h2 class="h2">글 종류 관리</h2>
-            <p class="small">예: 호텔 추천 TOP5, 개별 호텔 소개, 여행 가이드처럼 글이 어느 섹션에 노출될지 결정합니다.</p>
-          </div>
-        </div>
-        <div class="category-manager__create">
-          <div class="category-manager__create-row admin-items-create-row--3">
-            <input class="input" id="newContentTypeLabel" placeholder="글 종류 이름 예: 여행 스타일별 호텔 추천" />
-            <input class="input" id="newContentTypeSlug" placeholder="slug 예: top5_series" />
-            <button class="btn btn--brand" id="addContentTypeBtn" type="button">추가</button>
-          </div>
-          <input class="input" id="newContentTypeDescription" placeholder="설명 예: 여행 스타일에 맞춰 호텔을 비교하는 글" />
-        </div>
-        <div class="category-manager__list" id="travelContentTypeList"></div>
-      </article>
-
-      <article class="card admin-items-panel" id="countries">
-        <div class="dashboard-panel__head">
-          <div>
-            <h2 class="h2">나라 관리</h2>
-            <p class="small">도시를 묶는 상위 항목입니다. 예: 일본, 베트남, 태국</p>
-          </div>
-        </div>
-        <div class="category-manager__create">
-          <div class="category-manager__create-row admin-items-create-row--2">
-            <input class="input" id="newCountryName" placeholder="나라명 예: 일본" />
-            <input class="input" id="newCountrySlug" placeholder="slug 예: japan" />
-            <button class="btn btn--brand" id="addCountryBtn" type="button">추가</button>
-          </div>
-        </div>
-        <div class="category-manager__list" id="travelCountryList"></div>
-      </article>
-
-      <article class="card admin-items-panel admin-items-panel--wide" id="destinations">
-        <div class="dashboard-panel__head">
-          <div>
-            <h2 class="h2">도시 관리</h2>
-            <p class="small">도시를 추가하면 글 작성/수정 화면의 도시 선택 목록에 반영됩니다.</p>
-          </div>
-        </div>
-        <div class="category-manager__create">
-          <div class="category-manager__create-row admin-items-create-row--4">
-            <select class="input" id="newDestinationCountry">
-              <option value="">나라 선택</option>
-            </select>
-            <input class="input" id="newDestinationName" placeholder="표시 이름 예: 오사카" />
-            <input class="input" id="newDestinationCity" placeholder="도시명 예: 오사카" />
-            <button class="btn btn--brand" id="addDestinationBtn" type="button">추가</button>
-          </div>
-          <input class="input" id="newDestinationSlug" placeholder="slug 예: osaka" />
-        </div>
-        <div class="admin-country-tabs" id="destinationCountryTabs" role="tablist" aria-label="도시 나라별 보기"></div>
-        <div class="category-manager__list" id="travelDestinationList"></div>
-      </article>
-
-      <article class="card admin-items-panel admin-items-panel--wide" id="regions">
-        <div class="dashboard-panel__head">
-          <div>
-            <h2 class="h2">지역 관리</h2>
-            <p class="small">도시별 하위 지역을 추가하면 글 작성/수정 화면의 지역 선택과 호텔 목록 필터에 반영됩니다.</p>
-          </div>
-        </div>
-        <div class="category-manager__create">
-          <div class="category-manager__create-row admin-items-create-row--5">
-            <select class="input" id="newRegionCountry">
-              <option value="">나라 선택</option>
-            </select>
-            <select class="input" id="newRegionDestination">
-              <option value="">도시 선택</option>
-            </select>
-            <input class="input" id="newRegionName" placeholder="지역명 예: 난바" />
-            <input class="input" id="newRegionSlug" placeholder="slug 예: namba" />
-            <button class="btn btn--brand" id="addRegionBtn" type="button">추가</button>
-          </div>
-        </div>
-        <div class="admin-country-tabs" id="regionCountryTabs" role="tablist" aria-label="지역 나라별 보기"></div>
-        <div class="category-manager__list" id="travelRegionList"></div>
-      </article>
-
-      <article class="card admin-items-panel admin-items-panel--wide" id="futureItems">
-        <div class="dashboard-panel__head">
-          <div>
-            <h2 class="h2">추가 예정 관리 영역</h2>
-            <p class="small">지금은 구조만 열어두었습니다. 이후 필요한 운영 항목을 이 페이지에 계속 붙이면 됩니다.</p>
-          </div>
-        </div>
-        <div class="admin-items-future-grid">
-          <div class="admin-items-future-card">
-            <strong>도시 페이지 기본 콘텐츠</strong>
-            <span class="small">글이 없을 때 보여줄 기본 소개, 이동 팁, 추천 구역 관리</span>
-          </div>
-          <div class="admin-items-future-card">
-            <strong>추천 호텔 카드</strong>
-            <span class="small">도시·지역별 호텔 추천 카드, 제휴 링크, 노출 순서 관리</span>
-          </div>
-          <a class="admin-items-future-card" href="/admin/home-hub.html">
-            <strong>홈 노출 설정</strong>
-            <span class="small">메인 페이지 여행자 허브의 나라·도시·인기 도시 관리</span>
-          </a>
-          <div class="admin-items-future-card">
-            <strong>CTA/외부 링크 관리</strong>
-            <span class="small">예약 바로가기, 공식 사이트 참고 링크, 버튼 문구 관리</span>
-          </div>
-        </div>
-      </article>
-    </section>
-  </main>
-
-  <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
-  <script src="/assets/js/admin-guard.js"></script>
-  <script src="/assets/js/admin-ui.js" defer></script>
-  <script src="/assets/js/nav.js" defer></script>
-  <script src="/assets/js/admin-items.js?v=20260610v25" defer></script>
+</section>
+</main>
+<footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
+<script src="/assets/js/admin-guard.js"></script>
+<script defer="" src="/assets/js/admin-ui.js"></script>
+<script defer="" src="/assets/js/nav.js"></script>
+<script defer="" src="/assets/js/admin-items.js?v=20260610v26"></script>
 </body>
 </html>

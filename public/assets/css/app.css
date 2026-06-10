@@ -5821,3 +5821,28 @@ select:focus {
     font-size: 13px !important;
   }
 }
+
+
+/* Admin layout refinement 20260610v26 */
+.admin-items-hero,
+.admin-hub-hero {
+  display: block;
+}
+
+.admin-items-overview,
+.admin-hub-overview {
+  margin-top: 16px;
+}
+
+.admin-items-shell > .admin-items-overview,
+.admin-hub-shell > .admin-hub-overview {
+  margin-bottom: 16px;
+}
+
+.admin-items-grid {
+  margin-top: 14px;
+}
+
+.admin-hub-grid {
+  margin-top: 14px;
+}
