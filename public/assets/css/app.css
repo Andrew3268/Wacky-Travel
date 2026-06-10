@@ -5846,3 +5846,13 @@ select:focus {
 .admin-hub-grid {
   margin-top: 14px;
 }
+
+
+/* Admin items V27 full-width management panels */
+.admin-items-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.admin-items-panel {
+  grid-column: 1 / -1;
+}
