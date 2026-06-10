@@ -10,8 +10,8 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260606v23" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260606v23" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v24" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v24" />
 </head>
 <body>
   <header class="topbar topbar--editorial">
@@ -54,7 +54,7 @@
       <div class="hero-copy">
         <span class="badge">Admin Items</span>
         <h1 class="hero-title">항목 관리</h1>
-        <p class="p hero-desc">글 작성 화면에서 선택하는 글 종류, 나라, 도시를 한 곳에서 관리합니다. 앞으로 호텔 카드, 도시 기본 정보, 홈 노출 설정도 이 페이지에 확장할 수 있습니다.</p>
+        <p class="p hero-desc">글 작성 화면에서 선택하는 글 종류, 나라, 도시, 지역을 한 곳에서 관리합니다. 앞으로 호텔 카드, 도시 기본 정보, 홈 노출 설정도 이 페이지에 확장할 수 있습니다.</p>
         <div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
           <a class="btn btn--brand" href="/admin/dashboard.html">대시보드로</a>
           <a class="btn" href="/add.html">새 글 작성</a>
@@ -74,6 +74,10 @@
         <div class="dashboard-stat">
           <div class="dashboard-stat__label">도시</div>
           <strong class="dashboard-stat__value" id="itemDestinationCount">-</strong>
+        </div>
+        <div class="dashboard-stat">
+          <div class="dashboard-stat__label">지역</div>
+          <strong class="dashboard-stat__value" id="itemRegionCount">-</strong>
         </div>
       </div>
     </section>
@@ -96,6 +100,11 @@
       </article>
       <article class="admin-page-guide-card">
         <span>04</span>
+        <strong>지역 추가</strong>
+        <p>도시를 선택한 뒤 난바, 우메다처럼 호텔 필터에 사용할 지역을 관리합니다.</p>
+      </article>
+      <article class="admin-page-guide-card">
+        <span>05</span>
         <strong>허브 노출 관리</strong>
         <p>인덱스 여행자 허브 노출은 별도 허브 관리 페이지에서 정리합니다.</p>
       </article>
@@ -105,6 +114,7 @@
       <a href="#contentTypes">글 종류</a>
       <a href="#countries">나라</a>
       <a href="#destinations">도시</a>
+      <a href="#regions">지역</a>
       <a href="#futureItems">추가 예정</a>
     </nav>
 
@@ -167,6 +177,29 @@
         <div class="category-manager__list" id="travelDestinationList"></div>
       </article>
 
+      <article class="card admin-items-panel admin-items-panel--wide" id="regions">
+        <div class="dashboard-panel__head">
+          <div>
+            <h2 class="h2">지역 관리</h2>
+            <p class="small">도시별 하위 지역을 추가하면 글 작성/수정 화면의 지역 선택과 호텔 목록 필터에 반영됩니다.</p>
+          </div>
+        </div>
+        <div class="category-manager__create">
+          <div class="category-manager__create-row admin-items-create-row--5">
+            <select class="input" id="newRegionCountry">
+              <option value="">나라 선택</option>
+            </select>
+            <select class="input" id="newRegionDestination">
+              <option value="">도시 선택</option>
+            </select>
+            <input class="input" id="newRegionName" placeholder="지역명 예: 난바" />
+            <input class="input" id="newRegionSlug" placeholder="slug 예: namba" />
+            <button class="btn btn--brand" id="addRegionBtn" type="button">추가</button>
+          </div>
+        </div>
+        <div class="category-manager__list" id="travelRegionList"></div>
+      </article>
+
       <article class="card admin-items-panel admin-items-panel--wide" id="futureItems">
         <div class="dashboard-panel__head">
           <div>
@@ -181,7 +214,7 @@
           </div>
           <div class="admin-items-future-card">
             <strong>추천 호텔 카드</strong>
-            <span class="small">도시별 호텔 추천 카드, 제휴 링크, 노출 순서 관리</span>
+            <span class="small">도시·지역별 호텔 추천 카드, 제휴 링크, 노출 순서 관리</span>
           </div>
           <a class="admin-items-future-card" href="/admin/home-hub.html">
             <strong>홈 노출 설정</strong>
@@ -200,6 +233,6 @@
   <script src="/assets/js/admin-guard.js"></script>
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
-  <script src="/assets/js/admin-items.js?v=20260606v23" defer></script>
+  <script src="/assets/js/admin-items.js?v=20260610v24" defer></script>
 </body>
 </html>

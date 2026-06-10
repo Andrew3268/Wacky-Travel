@@ -1,6 +1,6 @@
 import { escapeHtml, okJson } from "../_utils.js";
 import { formatDate } from "../../lib/travel/travel-utils.js";
-import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
+import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const DEFAULT_LIMIT = 6;
@@ -15,6 +15,7 @@ export async function onRequestGet({ env, request }) {
   const destinationSlug = decodeURIComponent(String(url.searchParams.get("destination") || "")).trim();
   const rawType = String(url.searchParams.get("type") || "").trim();
   const requestedType = rawType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_TYPE : normalizeContentType(rawType);
+  const regionSlug = String(url.searchParams.get("region") || url.searchParams.get("region_slug") || "").trim();
   const offset = Math.max(0, Number.parseInt(url.searchParams.get("offset") || "0", 10) || 0);
   const defaultLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_DEFAULT_LIMIT : DEFAULT_LIMIT;
   const maxLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_MAX_LIMIT : MAX_LIMIT;
@@ -34,8 +35,11 @@ export async function onRequestGet({ env, request }) {
     return okJson({ ok: false, error: "destination_not_found", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 404, headers: noStoreHeaders() });
   }
 
+  await ensureTravelSettingsTables(env.TRAVEL_DB);
+
   const postQuery = buildDestinationPostQuery(destination, {
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
+    regionSlug,
+    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
     orderSql: `
       ORDER BY
         CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -65,12 +69,13 @@ export async function onRequestGet({ env, request }) {
   return okJson({
     ok: true,
     type: requestedType,
+    region: regionSlug,
     total: allPosts.length,
     offset,
     nextOffset,
     hasMore,
     html,
-    items: items.map((post) => ({ slug: post.slug, title: post.title }))
+    items: items.map((post) => ({ slug: post.slug, title: post.title, region_slug: post.region_slug || "", region_name: post.region_name || "" }))
   }, { headers: noStoreHeaders() });
 }
 
@@ -78,7 +83,7 @@ function noStoreHeaders() {
   return { "cache-control": "no-store" };
 }
 
-function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
+function buildDestinationPostQuery(destination = {}, { regionSlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
   const destinationSlug = String(destination.slug || "").trim();
   const terms = getDestinationSearchTerms(destination);
   const fallbackBinds = [];
@@ -105,6 +110,7 @@ function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql
       SELECT ${selectSql}
       FROM posts
       WHERE status = 'published'
+        ${regionSlug ? "AND TRIM(COALESCE(region_slug, '')) = ?" : ""}
         AND (
           TRIM(COALESCE(destination_slug, '')) = ?
           ${fallbackSql}
@@ -112,6 +118,7 @@ function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql
       ${orderSql || ""}
     `,
     binds: [
+      ...(regionSlug ? [regionSlug] : []),
       destinationSlug,
       ...fallbackBinds,
       ...(Array.isArray(orderBinds) ? orderBinds : [])
@@ -203,11 +210,12 @@ function renderHotelPostCard(post, contentTypes = []) {
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);
-  return `<article class="travel-card hotel-card travel-card--clickable">
+  const region = String(post.region_name || post.region_slug || "").trim();
+  return `<article class="travel-card hotel-card travel-card--clickable" data-region="${escapeHtml(post.region_slug || "")}">
     <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
       ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
       <div class="travel-card__body">
-        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
+        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), region, post.category].filter(Boolean).join(" · "))}</div>
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
         <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}

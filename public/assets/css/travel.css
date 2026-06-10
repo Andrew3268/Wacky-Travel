@@ -7810,3 +7810,29 @@ main.wt-purpose-page--quiet-stay .container {
     flex-direction: column;
   }
 }
+
+/* Osaka hotel archive region filters */
+.wt-region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 16px;
+}
+.wt-region-filter__button {
+  appearance: none;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.wt-region-filter__button.is-active {
+  border-color: rgba(37, 99, 235, 0.26);
+  background: #eff6ff;
+  color: #1d4ed8;
+}

@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS posts (
   status TEXT DEFAULT 'published',
   content_type TEXT DEFAULT 'guide',
   destination_slug TEXT DEFAULT '',
+  region_slug TEXT DEFAULT '',
+  region_name TEXT DEFAULT '',
   hotel_slug TEXT DEFAULT '',
   affiliate_enabled INTEGER DEFAULT 0,
   search_intent TEXT DEFAULT '',
@@ -36,6 +38,8 @@ CREATE INDEX IF NOT EXISTS idx_posts_status_updated ON posts(status, updated_at 
 CREATE INDEX IF NOT EXISTS idx_posts_status_category_published ON posts(status, category, published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_posts_status_view_count ON posts(status, view_count DESC, published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_posts_destination_slug ON posts(destination_slug);
+CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug);
+CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug);
 CREATE INDEX IF NOT EXISTS idx_posts_hotel_slug ON posts(hotel_slug);
 CREATE INDEX IF NOT EXISTS idx_posts_content_type ON posts(content_type);
 CREATE INDEX IF NOT EXISTS idx_posts_affiliate_enabled ON posts(affiliate_enabled);
@@ -85,9 +89,27 @@ CREATE INDEX IF NOT EXISTS idx_destinations_country_sort ON destinations(country
 CREATE INDEX IF NOT EXISTS idx_destinations_home_featured ON destinations(home_featured, status, sort_order ASC, name ASC);
 CREATE INDEX IF NOT EXISTS idx_destinations_home_featured_country_order ON destinations(country, home_featured, home_featured_order ASC, sort_order ASC, name ASC);
 
+CREATE TABLE IF NOT EXISTS regions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL,
+  name TEXT NOT NULL,
+  country_slug TEXT DEFAULT '',
+  destination_slug TEXT NOT NULL,
+  sort_order INTEGER DEFAULT 0,
+  is_active INTEGER DEFAULT 1,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  UNIQUE(destination_slug, slug)
+);
+
+CREATE INDEX IF NOT EXISTS idx_regions_destination_sort ON regions(destination_slug, is_active, sort_order ASC, name ASC);
+CREATE INDEX IF NOT EXISTS idx_regions_country_destination ON regions(country_slug, destination_slug, sort_order ASC, name ASC);
+
 CREATE TABLE IF NOT EXISTS hotels (
   slug TEXT PRIMARY KEY,
   destination_slug TEXT NOT NULL,
+  region_slug TEXT DEFAULT '',
+  region_name TEXT DEFAULT '',
   name TEXT NOT NULL,
   name_en TEXT DEFAULT '',
   area TEXT DEFAULT '',
@@ -114,6 +136,7 @@ CREATE TABLE IF NOT EXISTS hotels (
 );
 
 CREATE INDEX IF NOT EXISTS idx_hotels_destination_slug ON hotels(destination_slug);
+CREATE INDEX IF NOT EXISTS idx_hotels_destination_region ON hotels(destination_slug, region_slug);
 CREATE INDEX IF NOT EXISTS idx_hotels_status_updated ON hotels(status, updated_at DESC);
 CREATE INDEX IF NOT EXISTS idx_hotels_area ON hotels(area);
 CREATE INDEX IF NOT EXISTS idx_hotels_price_level ON hotels(price_level);

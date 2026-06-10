@@ -10,8 +10,8 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v24" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v24" />
 </head>
 <body>
   <header class="topbar topbar--editorial">
@@ -94,11 +94,11 @@
               <div class="section-heading section-heading--split" style="margin-bottom:12px;">
                 <div>
                   <div class="h2">여행 노출 설정</div>
-                  <p class="small">글 종류·나라·도시에 따라 노출 섹션이 결정됩니다.</p>
+                  <p class="small">글 종류·나라·도시·지역에 따라 노출 섹션과 호텔 필터가 결정됩니다.</p>
                 </div>
                 <a class="btn" href="/admin/items.html">항목 관리</a>
               </div>
-              <div class="grid grid--3">
+              <div class="grid grid--4">
                 <label>
                   <div class="small">글 종류</div>
                   <select class="input" id="content_type">
@@ -115,6 +115,12 @@
                   <div class="small">도시 선택</div>
                   <select class="input" id="destination_slug">
                     <option value="">도시 선택</option>
+                  </select>
+                </label>
+                <label>
+                  <div class="small">지역 선택</div>
+                  <select class="input" id="region_slug">
+                    <option value="">지역 선택</option>
                   </select>
                 </label>
               </div>
@@ -522,6 +528,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/edit.js?v=20260602keywordfix4" defer></script>
+  <script src="/assets/js/edit.js?v=20260610v24" defer></script>
 </body>
 </html>

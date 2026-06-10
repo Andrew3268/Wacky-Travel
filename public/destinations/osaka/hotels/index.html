@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV33" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV34" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"호텔 하나씩 살펴보기","item":"/destinations/osaka/hotels/"}]}</script>
 </head>
 <body data-destination-slug="osaka">
@@ -56,6 +56,7 @@
           <p>개별 호텔의 위치, 객실, 주변 환경, 여행자에게 맞는 포인트를 정리한 콘텐츠입니다.</p>
         </div>
       </div>
+      <div class="wt-region-filter" data-region-filter hidden aria-label="오사카 호텔 지역 필터"></div>
       <div class="wt-city-archive-summary">
         <div class="wt-city-archive-count" data-archive-count>글을 불러오는 중입니다.</div>
         <div class="wt-city-archive-actions">
@@ -80,15 +81,52 @@
 
   <script>
     (() => {
-      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
       const grid = document.querySelector('[data-archive-grid]');
       const count = document.querySelector('[data-archive-count]');
+      const filterWrap = document.querySelector('[data-region-filter]');
       const destination = 'osaka';
       const type = 'hotel_intro';
       const limit = 60;
+      let activeRegion = '';
+      let regionItems = [];
 
-      const fetchJson = async (offset = 0) => {
+      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+
+      const fetchSettings = async () => {
+        try {
+          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return [];
+          const json = await response.json();
+          return Array.isArray(json.regions)
+            ? json.regions.filter((region) => String(region.destination_slug || '') === destination && Number(region.is_active ?? 1) !== 0)
+            : [];
+        } catch (_) {
+          return [];
+        }
+      };
+
+      const renderRegionFilter = () => {
+        if (!filterWrap) return;
+        if (!regionItems.length) {
+          filterWrap.hidden = true;
+          filterWrap.innerHTML = '';
+          return;
+        }
+        filterWrap.hidden = false;
+        const buttons = [
+          { slug: '', name: '전체' },
+          ...regionItems.map((region) => ({ slug: String(region.slug || ''), name: String(region.name || region.slug || '') }))
+        ];
+        filterWrap.innerHTML = buttons.map((item) => `
+          <button class="wt-region-filter__button ${item.slug === activeRegion ? 'is-active' : ''}" type="button" data-region-filter-value="${escapeHtml(item.slug)}" aria-pressed="${item.slug === activeRegion ? 'true' : 'false'}">
+            ${escapeHtml(item.name)}
+          </button>
+        `).join('');
+      };
+
+      const fetchJson = async (offset = 0, region = '') => {
         const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
+        if (region) params.set('region', region);
         try {
           const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
           if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
@@ -98,15 +136,26 @@
         }
       };
 
-      const loadAll = async () => {
+      const getRegionName = (slug = '') => {
+        if (!slug) return '';
+        const region = regionItems.find((item) => String(item.slug || '') === slug);
+        return region?.name || slug;
+      };
+
+      const loadAll = async (region = '') => {
         if (!grid) return;
+        activeRegion = region || '';
+        renderRegionFilter();
+        grid.innerHTML = '<div class="empty-card">오사카 호텔 글을 불러오는 중입니다.</div>';
+        if (count) count.textContent = activeRegion ? `${getRegionName(activeRegion)} 지역 글을 불러오는 중입니다.` : '글을 불러오는 중입니다.';
+
         let offset = 0;
         let html = '';
         let total = 0;
         let guard = 0;
 
         while (guard < 20) {
-          const data = await fetchJson(offset);
+          const data = await fetchJson(offset, activeRegion);
           if (!data.ok) break;
           if (typeof data.total === 'number') total = data.total;
           if (data.html) html += data.html;
@@ -118,16 +167,31 @@
         }
 
         if (!html) {
-          grid.innerHTML = `<div class="empty-card">현재 준비 중인 글입니다. 곧 더 다양한 오사카 호텔 콘텐츠를 확인하실 수 있습니다.</div>`;
-          if (count) count.textContent = '등록된 글 0개';
+          const regionName = getRegionName(activeRegion);
+          grid.innerHTML = `<div class="empty-card">${regionName ? `${escapeHtml(regionName)} 지역에 연결된` : '현재 준비 중인'} 오사카 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.</div>`;
+          if (count) count.textContent = regionName ? `${regionName} 등록 글 0개` : '등록된 글 0개';
           return;
         }
 
         grid.innerHTML = html;
-        if (count) count.textContent = `등록된 글 ${total || grid.querySelectorAll('.travel-card').length}개`;
+        const renderedCount = grid.querySelectorAll('.travel-card').length;
+        const regionName = getRegionName(activeRegion);
+        if (count) count.textContent = `${regionName ? `${regionName} ` : ''}등록 글 ${total || renderedCount}개`;
       };
 
-      loadAll();
+      filterWrap?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-region-filter-value]');
+        if (!button) return;
+        loadAll(button.dataset.regionFilterValue || '');
+      });
+
+      const init = async () => {
+        regionItems = await fetchSettings();
+        renderRegionFilter();
+        await loadAll('');
+      };
+
+      init();
     })();
   </script>
 </body>

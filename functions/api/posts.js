@@ -41,6 +41,15 @@ async function ensureHotelColumns(db) {
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN area TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN star_rating TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE hotels ADD COLUMN price_level TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN region_slug TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE hotels ADD COLUMN region_name TEXT DEFAULT ''`).run(); } catch (_) {}
+}
+
+async function ensurePostRegionColumns(db) {
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN region_slug TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN region_name TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
+  try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
 }
 
 function isHeroValueBadgeEnabled(value = "") {
@@ -82,7 +91,7 @@ function hasHotelHeroInput(hero = {}) {
   );
 }
 
-async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallbackSlug = "", title = "", now = "" } = {}) {
+async function syncHotelHeroData(db, body = {}, { destinationSlug = "", regionSlug = "", regionName = "", fallbackSlug = "", title = "", now = "" } = {}) {
   const hero = body.hotel_hero && typeof body.hotel_hero === "object" ? body.hotel_hero : {};
   const nameInput = String(hero.name || hero.name_ko || "").trim();
   const nameEn = String(hero.name_en || "").trim();
@@ -106,11 +115,13 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallback
 
   await db.prepare(`
     INSERT INTO hotels (
-      slug, destination_slug, name, name_en, area, star_rating, badges_json, price_level, summary,
+      slug, destination_slug, region_slug, region_name, name, name_en, area, star_rating, badges_json, price_level, summary,
       cover_image, cover_image_alt, status, published_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       destination_slug = excluded.destination_slug,
+      region_slug = excluded.region_slug,
+      region_name = excluded.region_name,
       name = excluded.name,
       name_en = excluded.name_en,
       area = excluded.area,
@@ -125,6 +136,8 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallback
   `).bind(
     hotelSlug,
     destinationSlug,
+    regionSlug,
+    regionName,
     name,
     nameEn,
     area,
@@ -168,6 +181,7 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", fallback
 }
 
 export async function onRequestGet({ env, request }) {
+  await ensurePostRegionColumns(env.TRAVEL_DB);
   const url = new URL(request.url);
   const status = String(url.searchParams.get("status") || "published").trim().toLowerCase();
   const category = String(url.searchParams.get("category") || "").trim();
@@ -261,6 +275,8 @@ export async function onRequestGet({ env, request }) {
       tags_json,
       content_type,
       destination_slug,
+      region_slug,
+      region_name,
       hotel_slug,
       (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
       affiliate_enabled,
@@ -391,6 +407,8 @@ export async function onRequestPost({ env, request }) {
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = normalizeContentType(body.content_type || "travel_tip");
   const destinationSlug = String(body.destination_slug || "").trim();
+  const regionSlug = String(body.region_slug || "").trim();
+  const regionName = String(body.region_name || "").trim();
   let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const searchIntent = String(body.search_intent || "").trim();
@@ -403,7 +421,8 @@ export async function onRequestPost({ env, request }) {
   }
 
   const now = new Date().toISOString();
-  hotelSlug = await syncHotelHeroData(env.TRAVEL_DB, body, { destinationSlug, fallbackSlug: slug, title, now });
+  await ensurePostRegionColumns(env.TRAVEL_DB);
+  hotelSlug = await syncHotelHeroData(env.TRAVEL_DB, body, { destinationSlug, regionSlug, regionName, fallbackSlug: slug, title, now });
 
   await env.TRAVEL_DB.prepare(`
     INSERT INTO posts (
@@ -423,13 +442,15 @@ export async function onRequestPost({ env, request }) {
       enable_inarticle_ads,
       content_type,
       destination_slug,
+      region_slug,
+      region_name,
       hotel_slug,
       affiliate_enabled,
       search_intent,
       status,
       published_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -446,6 +467,8 @@ export async function onRequestPost({ env, request }) {
       enable_inarticle_ads = excluded.enable_inarticle_ads,
       content_type = excluded.content_type,
       destination_slug = excluded.destination_slug,
+      region_slug = excluded.region_slug,
+      region_name = excluded.region_name,
       hotel_slug = excluded.hotel_slug,
       affiliate_enabled = excluded.affiliate_enabled,
       search_intent = excluded.search_intent,
@@ -469,6 +492,8 @@ export async function onRequestPost({ env, request }) {
     enableInarticleAds,
     contentType,
     destinationSlug,
+    regionSlug,
+    regionName,
     hotelSlug,
     affiliateEnabled,
     searchIntent,

@@ -160,6 +160,7 @@ const TRAVEL_CONTENT_TYPE_ALIASES = {
 let travelContentTypeItems = [...DEFAULT_TRAVEL_CONTENT_TYPES];
 let countryItems = [];
 let destinationItems = [];
+let regionItems = [];
 
 function normalizeContentType(value) {
   const raw = String(value || "").replace(/\s+/g, " ").trim();
@@ -230,6 +231,24 @@ function getSelectedDestination() {
   return destinationItems.find((item) => String(item.slug || "") === slug) || null;
 }
 
+function getRegionDestinationSlug(region) {
+  return String(region?.destination_slug || region?.destinationSlug || "").trim();
+}
+
+function getRegionCountrySlug(region) {
+  return String(region?.country_slug || region?.countrySlug || "").trim();
+}
+
+function getRegionLabel(region) {
+  return String(region?.name || region?.slug || "").trim();
+}
+
+function getSelectedRegion() {
+  const slug = $("region_slug")?.value || "";
+  const destinationSlug = $("destination_slug")?.value || "";
+  return regionItems.find((item) => String(item.slug || "") === slug && (!destinationSlug || getRegionDestinationSlug(item) === destinationSlug)) || null;
+}
+
 function renderContentTypeOptions(selectedValue = "") {
   const selectEl = $("content_type");
   if (!selectEl) return;
@@ -283,6 +302,31 @@ function renderDestinationOptions(selectedValue = "") {
   selectEl.value = selectedSlug && filtered.some((item) => String(item.slug || "") === selectedSlug) ? selectedSlug : "";
 }
 
+function renderRegionOptions(selectedValue = "") {
+  const selectEl = $("region_slug");
+  if (!selectEl) return;
+  const selectedSlug = String(selectedValue || selectEl.value || "").trim();
+  const selectedCountrySlug = String($("country")?.value || "").trim();
+  const selectedDestinationSlug = String($("destination_slug")?.value || "").trim();
+  const selectedRegion = regionItems.find((item) => String(item.slug || "") === selectedSlug && (!selectedDestinationSlug || getRegionDestinationSlug(item) === selectedDestinationSlug)) || null;
+  const filtered = regionItems
+    .filter((item) => Number(item.is_active ?? 1) !== 0)
+    .filter((item) => !selectedCountrySlug || !getRegionCountrySlug(item) || getRegionCountrySlug(item) === selectedCountrySlug)
+    .filter((item) => !selectedDestinationSlug || getRegionDestinationSlug(item) === selectedDestinationSlug)
+    .sort((a, b) => getRegionLabel(a).localeCompare(getRegionLabel(b), "ko"));
+
+  if (selectedRegion && !filtered.some((item) => String(item.slug || "") === selectedSlug && getRegionDestinationSlug(item) === getRegionDestinationSlug(selectedRegion))) {
+    filtered.unshift(selectedRegion);
+  }
+
+  selectEl.innerHTML = [
+    '<option value="">지역 선택</option>',
+    ...filtered.map((item) => `<option value="${escapeHtml(item.slug || "")}">${escapeHtml(getRegionLabel(item))}</option>`)
+  ].join("");
+  selectEl.value = selectedSlug && filtered.some((item) => String(item.slug || "") === selectedSlug) ? selectedSlug : "";
+  selectEl.disabled = !selectedDestinationSlug || filtered.length === 0;
+}
+
 function updateTravelPlacementStatus() {
   const statusEl = $("travelPlacementStatus");
   if (!statusEl) return;
@@ -290,13 +334,16 @@ function updateTravelPlacementStatus() {
   const destination = getSelectedDestination();
   const countryName = getCountryNameBySlug($("country")?.value || getCountrySlugFromDestination(destination));
   const destinationLabel = getDestinationLabel(destination);
+  const region = getSelectedRegion();
+  const regionLabel = getRegionLabel(region);
 
   if (!contentTypeLabel || !countryName || !destinationLabel) {
     statusEl.textContent = "글 종류, 나라, 도시를 모두 선택하면 어느 섹션에 노출되는지 확인할 수 있습니다.";
     return;
   }
 
-  statusEl.textContent = `${countryName} · ${destinationLabel} 페이지의 '${contentTypeLabel}' 섹션에 노출됩니다.`;
+  const regionText = regionLabel ? ` · ${regionLabel}` : "";
+  statusEl.textContent = `${countryName} · ${destinationLabel}${regionText} 페이지의 '${contentTypeLabel}' 섹션에 노출됩니다.`;
 }
 
 async function requestTravelSettingsApi(method = "GET", payload = null) {
@@ -316,18 +363,20 @@ async function requestTravelSettingsApi(method = "GET", payload = null) {
   return json;
 }
 
-async function loadTravelSettings(selectedDestinationSlug = "", selectedContentType = "") {
+async function loadTravelSettings(selectedDestinationSlug = "", selectedContentType = "", selectedRegionSlug = "") {
   try {
     const json = await requestTravelSettingsApi("GET");
     travelContentTypeItems = Array.isArray(json.content_types) && json.content_types.length ? json.content_types : [...DEFAULT_TRAVEL_CONTENT_TYPES];
     countryItems = Array.isArray(json.countries) ? json.countries : [];
     destinationItems = Array.isArray(json.destinations) ? json.destinations : [];
+    regionItems = Array.isArray(json.regions) ? json.regions : [];
 
     const selectedDestination = destinationItems.find((item) => String(item.slug || "") === String(selectedDestinationSlug || ""));
     const selectedCountrySlug = selectedDestination ? getCountrySlugFromDestination(selectedDestination) : String($("country")?.value || "").trim();
     renderContentTypeOptions(selectedContentType || $("content_type")?.value || "");
     renderCountryOptions(selectedCountrySlug);
     renderDestinationOptions(selectedDestinationSlug);
+    renderRegionOptions(selectedRegionSlug || $("region_slug")?.value || "");
     renderTravelSettingsManager();
     updateTravelPlacementStatus();
     syncHotelHeroCardVisibility();
@@ -339,7 +388,7 @@ async function loadTravelSettings(selectedDestinationSlug = "", selectedContentT
 }
 
 async function loadDestinations(selectedDestinationSlug = "") {
-  await loadTravelSettings(selectedDestinationSlug, $("content_type")?.value || "");
+  await loadTravelSettings(selectedDestinationSlug, $("content_type")?.value || "", $("region_slug")?.value || "");
 }
 
 function bindTravelPlacementEvents() {
@@ -351,10 +400,16 @@ function bindTravelPlacementEvents() {
   });
   $("country")?.addEventListener("change", () => {
     renderDestinationOptions("");
+    renderRegionOptions("");
     updateTravelPlacementStatus();
     handleRealtimeChange();
   });
   $("destination_slug")?.addEventListener("change", () => {
+    renderRegionOptions("");
+    updateTravelPlacementStatus();
+    handleRealtimeChange();
+  });
+  $("region_slug")?.addEventListener("change", () => {
     updateTravelPlacementStatus();
     handleRealtimeChange();
   });
@@ -2707,6 +2762,7 @@ function broadcastPostSaved(payload = {}, slug = "") {
     localStorage.setItem("wackyTravelPostUpdated", JSON.stringify({
       slug,
       destination_slug: payload.destination_slug || "",
+      region_slug: payload.region_slug || "",
       content_type: payload.content_type || "",
       status: payload.status || "published",
       ts: Date.now()
@@ -2730,6 +2786,8 @@ async function save() {
     category: "",
     content_type: normalizedContentType,
     destination_slug: $("destination_slug")?.value.trim() || "",
+    region_slug: $("region_slug")?.value.trim() || "",
+    region_name: getRegionLabel(getSelectedRegion()),
     hotel_hero: shouldSaveHotelHero ? collectHotelHeroFormData() : {},
     meta_description: $("meta_description").value.trim(),
     summary: $("summary").value.trim(),
@@ -2798,7 +2856,7 @@ function handleRealtimeChange() {
   renderPreview();
 }
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);
