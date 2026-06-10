@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV37" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV38" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"호텔 하나씩 살펴보기","item":"/destinations/osaka/hotels/"}]}</script>
 </head>
 <body data-destination-slug="osaka">
@@ -153,6 +153,19 @@
         `).join('');
       };
 
+      const centerActiveRegionFilter = () => {
+        if (!filterWrap || filterWrap.hidden) return;
+        const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
+        if (!activeButton) return;
+        window.requestAnimationFrame(() => {
+          const filterRect = filterWrap.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
+          const offset = buttonRect.left - filterRect.left - (filterRect.width / 2) + (buttonRect.width / 2);
+          if (Math.abs(offset) < 1) return;
+          filterWrap.scrollBy({ left: offset, behavior: 'smooth' });
+        });
+      };
+
       const fetchJson = async (offset = 0) => {
         const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
         try {
@@ -183,6 +196,7 @@
         activeRegion = resolveRegion(region);
         if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
         renderRegionFilter();
+        centerActiveRegionFilter();
 
         grid.querySelector('[data-filter-empty]')?.remove();
         const cards = getCards();

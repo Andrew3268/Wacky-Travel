@@ -7833,7 +7833,7 @@ main.wt-purpose-page--quiet-stay .container {
 }
 
 
-/* Osaka hotel archive mobile filter refinement 20260610cityV35 */
+/* Osaka hotel archive mobile filter refinement 20260610cityV38 */
 @media (max-width: 1024px) {
   .wt-region-filter {
     flex-wrap: nowrap;
@@ -7843,6 +7843,7 @@ main.wt-purpose-page--quiet-stay .container {
     scrollbar-width: none;
     padding-bottom: 6px;
     scroll-snap-type: x proximity;
+    scroll-padding-inline: 16px;
   }
   .wt-region-filter::-webkit-scrollbar {
     display: none;
@@ -7850,6 +7851,6 @@ main.wt-purpose-page--quiet-stay .container {
   .wt-region-filter__button {
     flex: 0 0 auto;
     white-space: nowrap;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
   }
 }
