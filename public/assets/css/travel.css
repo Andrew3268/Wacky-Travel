@@ -7762,3 +7762,11 @@ main.wt-purpose-page--family-trip .container,
 main.wt-purpose-page--quiet-stay .container {
   padding-bottom: 10px;
 }
+
+
+/* V33 - Purpose page mobile hotel card width and meta badge simplification */
+@media (max-width: 720px) {
+  .wt-purpose-page .wt-hotel-card {
+    flex: 0 0 320px;
+  }
+}
