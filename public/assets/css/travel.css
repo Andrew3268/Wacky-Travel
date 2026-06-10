@@ -7742,11 +7742,7 @@ body::after {
   order: 7;
 }
 
-/* V30 - Osaka city page container alignment */
-main.wt-city-page--osaka > .container {
-  padding-bottom: 10px;
-}
-
+/* V31 - Osaka city page container alignment and purpose page spacing */
 main.wt-city-page--osaka > .wt-city-dynamic-section {
   padding-left: 16px;
   padding-right: 16px;
@@ -7757,4 +7753,12 @@ main.wt-city-page--osaka > .wt-city-dynamic-section {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+main.wt-purpose-page--first-trip .container,
+main.wt-purpose-page--value-hotel .container,
+main.wt-purpose-page--near-trip .container,
+main.wt-purpose-page--family-trip .container,
+main.wt-purpose-page--quiet-stay .container {
+  padding-bottom: 10px;
 }
