@@ -7741,3 +7741,20 @@ body::after {
 .wt-purpose-page .wt-hotel-card .wt-hotel-actions {
   order: 7;
 }
+
+/* V30 - Osaka city page container alignment */
+main.wt-city-page--osaka > .container {
+  padding-bottom: 10px;
+}
+
+main.wt-city-page--osaka > .wt-city-dynamic-section {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 767px) {
+  main.wt-city-page--osaka > .wt-city-dynamic-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
