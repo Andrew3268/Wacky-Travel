@@ -10,8 +10,8 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v25" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v25" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v30" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v30" />
 </head>
 <body>
   <header class="topbar topbar--editorial">
@@ -203,6 +203,28 @@
                   <div class="small">예약 가능 여부 링크</div>
                   <input class="input" id="heroHotelAvailabilityUrl" placeholder="https://..." />
                 </label>
+              </div>
+            </div>
+
+
+            <div class="card editor-option-card editor-recommendation-category-card" hidden aria-hidden="true">
+              <div class="section-heading" style="margin-bottom:12px;">
+                <div>
+                  <div class="h2">여행 스타일별 호텔 추천 정보</div>
+                  <p class="small">추천글 전체 보기 페이지에서 사용할 카테고리와 설명을 수정합니다. 카테고리는 항목 관리에서 도시별로 추가·수정·삭제할 수 있습니다.</p>
+                </div>
+              </div>
+              <div class="grid grid--2">
+                <label>
+                  <div class="small">추천 카테고리</div>
+                  <select class="input" id="recommendationCategorySlug">
+                    <option value="">추천 카테고리 선택</option>
+                  </select>
+                </label>
+                <div>
+                  <div class="small">카테고리 설명</div>
+                  <div class="editor-option-help" id="recommendationCategoryDescription">카테고리를 선택하면 설명이 표시됩니다.</div>
+                </div>
               </div>
             </div>
 
@@ -538,6 +560,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/edit.js?v=20260610v25" defer></script>
+  <script src="/assets/js/edit.js?v=20260610v30" defer></script>
 </body>
 </html>

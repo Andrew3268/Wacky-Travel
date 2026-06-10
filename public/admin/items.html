@@ -11,8 +11,8 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <meta content="#2563EB" name="theme-color"/>
-<link href="/assets/css/app.css?v=20260610v28" rel="stylesheet"/>
-<link href="/assets/css/components.css?v=20260610v28" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260610v29" rel="stylesheet"/>
+<link href="/assets/css/components.css?v=20260610v29" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar topbar--editorial">
@@ -50,7 +50,7 @@
 <div class="hero-copy">
 <span class="badge">Admin Items</span>
 <h1 class="hero-title">항목 관리</h1>
-<p class="p hero-desc">글 작성 화면에서 선택하는 글 종류, 나라, 도시, 지역을 한 곳에서 관리합니다. 앞으로 호텔 카드, 도시 기본 정보, 홈 노출 설정도 이 페이지에 확장할 수 있습니다.</p>
+<p class="p hero-desc">글 작성 화면에서 선택하는 글 종류, 나라, 도시, 지역, 추천 카테고리를 한 곳에서 관리합니다. 앞으로 호텔 카드, 도시 기본 정보, 홈 노출 설정도 이 페이지에 확장할 수 있습니다.</p>
 <div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
 <a class="btn btn--brand" href="/admin/dashboard.html">대시보드로</a>
 <a class="btn" href="/add.html">새 글 작성</a>
@@ -75,6 +75,10 @@
 <div class="dashboard-stat">
 <div class="dashboard-stat__label">지역</div>
 <strong class="dashboard-stat__value" id="itemRegionCount">-</strong>
+</div>
+<div class="dashboard-stat">
+<div class="dashboard-stat__label">추천 카테고리</div>
+<strong class="dashboard-stat__value" id="itemRecommendationCategoryCount">-</strong>
 </div>
 </div>
 
@@ -159,12 +163,37 @@
 <div class="category-manager__list" id="travelRegionList"></div>
 </article>
 
+<article class="card admin-items-panel" id="recommendationCategories">
+<div class="dashboard-panel__head">
+<div>
+<h2 class="h2">추천 카테고리 관리</h2>
+<p class="small">여행 스타일별 호텔 추천 글을 묶는 카테고리입니다. 도시별로 등록하면 호텔 추천글 전체 보기 페이지 필터에 반영됩니다.</p>
+</div>
+</div>
+<div class="category-manager__create">
+<div class="category-manager__create-row admin-items-create-row--5">
+<select class="input" id="newRecommendationCategoryCountry">
+<option value="">나라 선택</option>
+</select>
+<select class="input" id="newRecommendationCategoryDestination">
+<option value="">도시 선택</option>
+</select>
+<input class="input" id="newRecommendationCategoryName" placeholder="카테고리명 예: 누구와 함께"/>
+<input class="input" id="newRecommendationCategorySlug" placeholder="slug 예: with-who"/>
+<button class="btn btn--brand" id="addRecommendationCategoryBtn" type="button">추가</button>
+</div>
+<input class="input" id="newRecommendationCategoryDescription" placeholder="설명 예: 여행을 같이 가는 사람의 특성에 맞춰 완벽한 하루를 보낼 수 있는 숙소 추천"/>
+</div>
+<div aria-label="추천 카테고리 나라별 보기" class="admin-country-tabs" id="recommendationCategoryCountryTabs" role="tablist"></div>
+<div class="category-manager__list" id="travelRecommendationCategoryList"></div>
+</article>
+
 </section>
 </main>
 <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
 <script src="/assets/js/admin-guard.js"></script>
 <script defer="" src="/assets/js/admin-ui.js"></script>
 <script defer="" src="/assets/js/nav.js"></script>
-<script defer="" src="/assets/js/admin-items.js?v=20260610v27"></script>
+<script defer="" src="/assets/js/admin-items.js?v=20260610v29"></script>
 </body>
 </html>

@@ -7863,3 +7863,29 @@ main.wt-purpose-page--quiet-stay .container {
 .wt-city-archive-page .wt-city-dynamic-section {
   padding-top: clamp(10px, 2vw, 24px);
 }
+
+/* V40 - hotel recommendation category filter description */
+.wt-category-filter-description {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  background: #f8fafc;
+  color: #334155;
+  margin: -2px 0 16px;
+  padding: 16px 18px;
+}
+
+.wt-category-filter-description strong {
+  color: #0f172a;
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.wt-category-filter-description p {
+  color: #64748b;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.65;
+  margin: 0;
+}

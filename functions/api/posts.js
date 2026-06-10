@@ -49,8 +49,13 @@ async function ensureHotelColumns(db) {
 async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN region_slug TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN region_name TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_slug TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_name TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_description TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
+  try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
+  try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_recommendation_category ON posts(destination_slug, recommendation_category_slug)`).run(); } catch (_) {}
 }
 
 function isHeroValueBadgeEnabled(value = "") {
@@ -288,6 +293,9 @@ export async function onRequestGet({ env, request }) {
       destination_slug,
       region_slug,
       region_name,
+      recommendation_category_slug,
+      recommendation_category_name,
+      recommendation_category_description,
       hotel_slug,
       (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
       affiliate_enabled,
@@ -420,6 +428,9 @@ export async function onRequestPost({ env, request }) {
   const destinationSlug = String(body.destination_slug || "").trim();
   const regionSlug = String(body.region_slug || "").trim();
   const regionName = String(body.region_name || "").trim();
+  const recommendationCategorySlug = String(body.recommendation_category_slug || "").trim();
+  const recommendationCategoryName = String(body.recommendation_category_name || "").trim();
+  const recommendationCategoryDescription = String(body.recommendation_category_description || "").trim();
   let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const searchIntent = String(body.search_intent || "").trim();
@@ -455,13 +466,16 @@ export async function onRequestPost({ env, request }) {
       destination_slug,
       region_slug,
       region_name,
+      recommendation_category_slug,
+      recommendation_category_name,
+      recommendation_category_description,
       hotel_slug,
       affiliate_enabled,
       search_intent,
       status,
       published_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -480,6 +494,9 @@ export async function onRequestPost({ env, request }) {
       destination_slug = excluded.destination_slug,
       region_slug = excluded.region_slug,
       region_name = excluded.region_name,
+      recommendation_category_slug = excluded.recommendation_category_slug,
+      recommendation_category_name = excluded.recommendation_category_name,
+      recommendation_category_description = excluded.recommendation_category_description,
       hotel_slug = excluded.hotel_slug,
       affiliate_enabled = excluded.affiliate_enabled,
       search_intent = excluded.search_intent,
@@ -505,6 +522,9 @@ export async function onRequestPost({ env, request }) {
     destinationSlug,
     regionSlug,
     regionName,
+    recommendationCategorySlug,
+    recommendationCategoryName,
+    recommendationCategoryDescription,
     hotelSlug,
     affiliateEnabled,
     searchIntent,

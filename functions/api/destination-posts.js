@@ -16,6 +16,7 @@ export async function onRequestGet({ env, request }) {
   const rawType = String(url.searchParams.get("type") || "").trim();
   const requestedType = rawType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_TYPE : normalizeContentType(rawType);
   const regionSlug = String(url.searchParams.get("region") || url.searchParams.get("region_slug") || "").trim();
+  const recommendationCategorySlug = String(url.searchParams.get("category") || url.searchParams.get("recommendation_category") || url.searchParams.get("recommendation_category_slug") || "").trim();
   const offset = Math.max(0, Number.parseInt(url.searchParams.get("offset") || "0", 10) || 0);
   const defaultLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_DEFAULT_LIMIT : DEFAULT_LIMIT;
   const maxLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_MAX_LIMIT : MAX_LIMIT;
@@ -39,7 +40,8 @@ export async function onRequestGet({ env, request }) {
 
   const postQuery = buildDestinationPostQuery(destination, {
     regionSlug,
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
+    recommendationCategorySlug,
+    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
     orderSql: `
       ORDER BY
         CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -70,12 +72,13 @@ export async function onRequestGet({ env, request }) {
     ok: true,
     type: requestedType,
     region: regionSlug,
+    recommendation_category: recommendationCategorySlug,
     total: allPosts.length,
     offset,
     nextOffset,
     hasMore,
     html,
-    items: items.map((post) => ({ slug: post.slug, title: post.title, region_slug: post.region_slug || "", region_name: post.region_name || "" }))
+    items: items.map((post) => ({ slug: post.slug, title: post.title, region_slug: post.region_slug || "", region_name: post.region_name || "", recommendation_category_slug: post.recommendation_category_slug || "", recommendation_category_name: post.recommendation_category_name || "", recommendation_category_description: post.recommendation_category_description || "" }))
   }, { headers: noStoreHeaders() });
 }
 
@@ -83,7 +86,7 @@ function noStoreHeaders() {
   return { "cache-control": "no-store" };
 }
 
-function buildDestinationPostQuery(destination = {}, { regionSlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
+function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommendationCategorySlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
   const destinationSlug = String(destination.slug || "").trim();
   const terms = getDestinationSearchTerms(destination);
   const fallbackBinds = [];
@@ -111,6 +114,7 @@ function buildDestinationPostQuery(destination = {}, { regionSlug = "", selectSq
       FROM posts
       WHERE status = 'published'
         ${regionSlug ? "AND TRIM(COALESCE(region_slug, '')) = ?" : ""}
+        ${recommendationCategorySlug ? "AND TRIM(COALESCE(recommendation_category_slug, '')) = ?" : ""}
         AND (
           TRIM(COALESCE(destination_slug, '')) = ?
           ${fallbackSql}
@@ -119,6 +123,7 @@ function buildDestinationPostQuery(destination = {}, { regionSlug = "", selectSq
     `,
     binds: [
       ...(regionSlug ? [regionSlug] : []),
+      ...(recommendationCategorySlug ? [recommendationCategorySlug] : []),
       destinationSlug,
       ...fallbackBinds,
       ...(Array.isArray(orderBinds) ? orderBinds : [])
@@ -211,11 +216,12 @@ function renderHotelPostCard(post, contentTypes = []) {
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);
   const region = String(post.region_name || post.region_slug || "").trim();
-  return `<article class="travel-card hotel-card travel-card--clickable" data-region="${escapeHtml(post.region_slug || "")}">
+  const recommendationCategory = String(post.recommendation_category_name || post.recommendation_category_slug || "").trim();
+  return `<article class="travel-card hotel-card travel-card--clickable" data-region="${escapeHtml(post.region_slug || "")}" data-recommendation-category="${escapeHtml(post.recommendation_category_slug || "")}">
     <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
       ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
       <div class="travel-card__body">
-        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), region, post.category].filter(Boolean).join(" · "))}</div>
+        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), recommendationCategory, region, post.category].filter(Boolean).join(" · "))}</div>
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
         <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
