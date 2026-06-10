@@ -7798,11 +7798,6 @@ main.wt-purpose-page--quiet-stay .container {
   font-weight: 700;
 }
 
-.wt-city-archive-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
 
 @media (max-width: 640px) {
   .wt-city-archive-summary {
@@ -7835,4 +7830,26 @@ main.wt-purpose-page--quiet-stay .container {
   border-color: rgba(37, 99, 235, 0.26);
   background: #eff6ff;
   color: #1d4ed8;
+}
+
+
+/* Osaka hotel archive mobile filter refinement 20260610cityV35 */
+@media (max-width: 1024px) {
+  .wt-region-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    scroll-snap-type: x proximity;
+  }
+  .wt-region-filter::-webkit-scrollbar {
+    display: none;
+  }
+  .wt-region-filter__button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
 }

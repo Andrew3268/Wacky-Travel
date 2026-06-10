@@ -5856,3 +5856,28 @@ select:focus {
 .admin-items-panel {
   grid-column: 1 / -1;
 }
+
+
+/* Admin overview one-line refinement 20260610v28 */
+.admin-items-overview {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+.admin-hub-overview {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+@media (max-width: 900px) {
+  .admin-items-overview,
+  .admin-hub-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 560px) {
+  .admin-items-overview,
+  .admin-hub-overview {
+    grid-template-columns: 1fr !important;
+  }
+}

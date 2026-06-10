@@ -4,18 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>오사카 호텔 하나씩 살펴보기 | Wacky Travel</title>
-  <meta name="description" content="오사카 개별 호텔 소개글을 한곳에서 모아보는 페이지입니다. 위치, 이동 편의성, 객실 컨디션, 주변 환경을 기준으로 호텔별 특징을 확인하세요." />
+  <meta name="description" content="오사카 호텔을 지역별로 살펴보고 위치, 이동 편의성, 객실 컨디션, 주변 환경을 기준으로 내 여행에 맞는 숙소를 비교해보세요." />
   <link rel="canonical" href="/destinations/osaka/hotels/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wacky Travel" />
   <meta property="og:title" content="오사카 호텔 하나씩 살펴보기 | Wacky Travel" />
-  <meta property="og:description" content="오사카 개별 호텔 소개글을 한곳에서 모아보는 페이지입니다. 위치, 이동 편의성, 객실 컨디션, 주변 환경을 기준으로 호텔별 특징을 확인하세요." />
+  <meta property="og:description" content="오사카 호텔을 지역별로 살펴보고 위치, 이동 편의성, 객실 컨디션, 주변 환경을 기준으로 내 여행에 맞는 숙소를 비교해보세요." />
   <meta property="og:url" content="/destinations/osaka/hotels/" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV34" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV35" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"호텔 하나씩 살펴보기","item":"/destinations/osaka/hotels/"}]}</script>
 </head>
 <body data-destination-slug="osaka">
@@ -37,14 +37,10 @@
   <main class="travel-page wt-city-page wt-city-page--osaka wt-city-archive-page">
     <section class="wt-city-hero container" aria-labelledby="osakaArchiveTitle">
       <div class="wt-city-hero__content">
-        <p class="wt-city-kicker">Osaka Hotel Reviews</p>
+        <p class="wt-city-kicker">Osaka Hotel Archive</p>
         <h1 id="osakaArchiveTitle">오사카 호텔을
-하나씩 자세히 살펴보세요</h1>
-        <p class="wt-city-hero__lead">호텔 이름은 익숙해도 실제 위치, 이동 동선, 주변 분위기, 객실 컨디션은 다를 수 있습니다. 오사카 개별 호텔 소개글을 한곳에서 비교해보세요.</p>
-        <div class="wt-city-hero__actions" aria-label="오사카 호텔 글 바로가기">
-          <a class="wt-city-button" href="/destinations/osaka/">오사카 메인으로</a>
-          <a class="wt-city-button" href="/destinations/osaka/hotel-recommendations/">호텔 추천글 전체 보기</a>
-        </div>
+지역별로 비교해보세요</h1>
+        <p class="wt-city-hero__lead">난바, 신사이바시, 우메다처럼 여행자가 많이 고민하는 지역을 기준으로 오사카 호텔 글을 모았습니다. 위치와 이동 편의성, 객실 컨디션, 주변 환경을 함께 살펴보며 내 여행 스타일에 맞는 숙소를 찾아보세요.</p>
       </div>
     </section>
 
@@ -58,10 +54,7 @@
       </div>
       <div class="wt-region-filter" data-region-filter hidden aria-label="오사카 호텔 지역 필터"></div>
       <div class="wt-city-archive-summary">
-        <div class="wt-city-archive-count" data-archive-count>글을 불러오는 중입니다.</div>
-        <div class="wt-city-archive-actions">
-          <a class="wt-city-button" href="/destinations/osaka/#hotel-posts">추천글 섹션으로 돌아가기</a>
-        </div>
+        <div class="wt-city-archive-count" data-archive-count>오사카 호텔 글을 정리하고 있어요.</div>
       </div>
       <div class="travel-card-grid travel-card-grid--hotels" data-archive-grid>
         <div class="empty-card">오사카 호텔 글을 불러오는 중입니다.</div>
@@ -147,7 +140,7 @@
         activeRegion = region || '';
         renderRegionFilter();
         grid.innerHTML = '<div class="empty-card">오사카 호텔 글을 불러오는 중입니다.</div>';
-        if (count) count.textContent = activeRegion ? `${getRegionName(activeRegion)} 지역 글을 불러오는 중입니다.` : '글을 불러오는 중입니다.';
+        if (count) count.textContent = activeRegion ? `${getRegionName(activeRegion)} 호텔 글을 정리하고 있어요.` : '오사카 호텔 글을 정리하고 있어요.';
 
         let offset = 0;
         let html = '';
@@ -169,14 +162,14 @@
         if (!html) {
           const regionName = getRegionName(activeRegion);
           grid.innerHTML = `<div class="empty-card">${regionName ? `${escapeHtml(regionName)} 지역에 연결된` : '현재 준비 중인'} 오사카 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.</div>`;
-          if (count) count.textContent = regionName ? `${regionName} 등록 글 0개` : '등록된 글 0개';
+          if (count) count.textContent = regionName ? `${regionName} 호텔 글 0개를 모아봤어요.` : '오사카 호텔 글 0개를 모아봤어요.';
           return;
         }
 
         grid.innerHTML = html;
         const renderedCount = grid.querySelectorAll('.travel-card').length;
         const regionName = getRegionName(activeRegion);
-        if (count) count.textContent = `${regionName ? `${regionName} ` : ''}등록 글 ${total || renderedCount}개`;
+        if (count) count.textContent = regionName ? `${regionName} 호텔 글 ${total || renderedCount}개를 모아봤어요.` : `오사카 호텔 글 ${total || renderedCount}개를 모아봤어요.`;
       };
 
       filterWrap?.addEventListener('click', (event) => {
