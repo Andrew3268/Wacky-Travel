@@ -15,7 +15,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260609cityV31" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV33" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"오사카","alternateName":"Osaka","description":"오사카 숙소 위치, 호텔 추천, 여행 동선, 공항 접근성, 근교 여행 기준을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/osaka","touristType":["자유여행자","커플 여행자","가족 여행자","호텔 비교 여행자"],"containedInPlace":{"@type":"Country","name":"일본"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 핵심 여행 가이드","itemListElement":[{"@type":"ListItem","position":1,"name":"오사카 호텔 위치 고르는 법","url":"/destinations/osaka/hotel-guide/"},{"@type":"ListItem","position":2,"name":"오사카 여행 가이드","url":"/destinations/osaka/travel-guide/"},{"@type":"ListItem","position":3,"name":"오사카 숙소 위치 추천 서베이","url":"/destinations/osaka/hotel-location-survey/"},{"@type":"ListItem","position":4,"name":"첫 오사카 여행자 추천","url":"/destinations/osaka/first-trip/"},{"@type":"ListItem","position":5,"name":"오사카 가성비 숙소 추천","url":"/destinations/osaka/value-hotel/"},{"@type":"ListItem","position":6,"name":"오사카 근교 여행 숙소 추천","url":"/destinations/osaka/near-trip/"},{"@type":"ListItem","position":7,"name":"오사카 가족 여행 숙소 추천","url":"/destinations/osaka/family-trip/"},{"@type":"ListItem","position":8,"name":"오사카 조용한 숙소 추천","url":"/destinations/osaka/quiet-stay/"}]}</script>
@@ -144,7 +144,7 @@
           <p>여행 스타일별 추천 글과 개별 호텔 소개 글을 한곳에서 모아볼 수 있습니다.</p>
         </div>
       </div>
-      <div class="hotel-tabs wt-city-static-posts" data-city-post-root data-destination-slug="osaka" data-page-size="3">
+      <div class="hotel-tabs wt-city-static-posts" data-city-post-root data-destination-slug="osaka" data-page-size="6">
         <div class="hotel-tabs__nav" role="tablist" aria-label="오사카 호텔 글 종류">
           <button class="hotel-tabs__button is-active" type="button" role="tab" aria-selected="true" aria-controls="city-panel-top5" data-city-post-tab="top5_series">
             <span>여행 스타일별 호텔 추천</span>
@@ -245,6 +245,15 @@
       const root = document.querySelector('[data-city-post-root]');
       const travelRoot = document.querySelector('[data-city-travel-root]');
       const destination = root?.dataset.destinationSlug || document.body?.dataset.destinationSlug || 'osaka';
+      const hotelPageSize = Math.max(1, Number(root?.dataset.pageSize || 6) || 6);
+      const hotelArchiveLinks = {
+        top5_series: '/destinations/osaka/hotel-recommendations/',
+        hotel_intro: '/destinations/osaka/hotels/'
+      };
+      const hotelArchiveLabels = {
+        top5_series: '오사카 호텔 추천글 전체 보기 →',
+        hotel_intro: '오사카 호텔 전체 보기 →'
+      };
 
       const fetchJson = async (url, fallback) => {
         try {
@@ -256,7 +265,7 @@
         }
       };
 
-      const paramsFor = ({ type, offset = 0, limit = 3 }) => {
+      const paramsFor = ({ type, offset = 0, limit = hotelPageSize }) => {
         const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
         return '/api/destination-posts?' + params.toString();
       };
@@ -277,15 +286,19 @@
 
       const renderMoreButton = ({ type, offset, hasMore, target = 'hotel' }) => {
         if (!hasMore) return '';
-        const attr = target === 'travel' ? 'data-city-travel-more' : 'data-city-post-more';
-        return `<button class="hotel-load-more" type="button" ${attr}="${escapeHtml(type)}" data-offset="${Number(offset || 0)}">더보기</button>`;
+        if (target === 'hotel') {
+          const href = hotelArchiveLinks[type] || '/destinations/osaka/hotels/';
+          const label = hotelArchiveLabels[type] || '오사카 호텔 글 전체 보기 →';
+          return `<a class="hotel-load-more" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+        }
+        return `<button class="hotel-load-more" type="button" data-city-travel-more="${escapeHtml(type)}" data-offset="${Number(offset || 0)}">더보기</button>`;
       };
 
       const loadHotelGroup = async (type) => {
         const grid = root?.querySelector(`[data-city-post-grid="${type}"]`);
         const footer = root?.querySelector(`[data-city-post-footer="${type}"]`);
         if (!grid || !footer) return;
-        const data = await fetchJson(paramsFor({ type, offset: 0, limit: 3 }), { ok: false, html: '', hasMore: false, nextOffset: 0, total: 0 });
+        const data = await fetchJson(paramsFor({ type, offset: 0, limit: hotelPageSize }), { ok: false, html: '', hasMore: false, nextOffset: 0, total: 0 });
         if (!data.ok || !data.html) {
           grid.innerHTML = `<div class="empty-card">현재 준비 중인 글입니다. 곧 더 다양한 오사카 호텔 추천을 확인하실 수 있습니다.</div>`;
           footer.hidden = true;
@@ -319,20 +332,6 @@
           setActiveTab(tabButton.getAttribute('data-city-post-tab'));
           return;
         }
-
-        const moreButton = event.target.closest('[data-city-post-more]');
-        if (!moreButton || moreButton.dataset.loading === '1') return;
-        const type = moreButton.getAttribute('data-city-post-more');
-        const grid = root.querySelector(`[data-city-post-grid="${type}"]`);
-        const footer = root.querySelector(`[data-city-post-footer="${type}"]`);
-        const offset = Number(moreButton.dataset.offset || 0);
-        if (!grid || !footer || !type) return;
-        moreButton.dataset.loading = '1';
-        moreButton.textContent = '불러오는 중...';
-        const data = await fetchJson(paramsFor({ type, offset, limit: 3 }), { ok: false, html: '', hasMore: false, nextOffset: offset });
-        if (data.ok && data.html) grid.insertAdjacentHTML('beforeend', data.html);
-        footer.innerHTML = renderMoreButton({ type, offset: data.nextOffset || offset + 3, hasMore: Boolean(data.hasMore) });
-        footer.hidden = !data.hasMore;
       });
 
       travelRoot?.addEventListener('click', async (event) => {

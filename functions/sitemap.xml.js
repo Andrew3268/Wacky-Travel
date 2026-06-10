@@ -85,6 +85,8 @@ export async function onRequestGet({ env, request }) {
     { loc: `${origin}/destinations/` },
     ...Array.from(countryMap.values()).map((item) => ({ loc: `${origin}/countries/${encodeURIComponent(item.slug)}`, lastmod: item.lastmod })),
     { loc: `${origin}/destinations/osaka`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/hotel-recommendations/`, lastmod: osakaLastmod },
+    { loc: `${origin}/destinations/osaka/hotels/`, lastmod: osakaLastmod },
     { loc: `${origin}/destinations/osaka/travel-guide/`, lastmod: osakaLastmod },
     { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: osakaLastmod },
     { loc: `${origin}/destinations/osaka/hotel-location-survey/`, lastmod: osakaLastmod },
