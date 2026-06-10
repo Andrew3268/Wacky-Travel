@@ -7854,3 +7854,12 @@ main.wt-purpose-page--quiet-stay .container {
     scroll-snap-align: center;
   }
 }
+
+/* V39 - archive hero/list spacing without section heading */
+.wt-city-archive-page .wt-city-hero {
+  padding-bottom: clamp(24px, 3.6vw, 46px);
+}
+
+.wt-city-archive-page .wt-city-dynamic-section {
+  padding-top: clamp(10px, 2vw, 24px);
+}

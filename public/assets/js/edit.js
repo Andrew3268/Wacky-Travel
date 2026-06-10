@@ -299,12 +299,24 @@ function formatHeroStarRating(value = "") {
   return `${raw}성급`;
 }
 
+function normalizeHeroGuestRating(value = "") {
+  const raw = String(value || "").trim().replace(/^평점\s*/i, "");
+  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  return normalized ? `${normalized}+` : "";
+}
+
+function formatHeroGuestRating(value = "") {
+  const normalized = normalizeHeroGuestRating(value);
+  return normalized ? `투숙객 평점 ${normalized}` : "";
+}
+
 function collectHotelHeroFormData() {
   return {
     name: $("heroHotelName")?.value.trim() || "",
     name_en: $("heroHotelNameEn")?.value.trim() || "",
     area: normalizeHeroLocationType($("heroHotelLocationType")?.value || ""),
     star_rating: $("heroHotelStarRating")?.value.trim() || "",
+    guest_rating: normalizeHeroGuestRating($("heroHotelGuestRating")?.value || ""),
     price_level: $("heroHotelValueBadge")?.checked ? "가성비" : "",
     badges: parseBadgeInput($("heroHotelBadges")?.value || ""),
     price_url: $("heroHotelPriceUrl")?.value.trim() || "",
@@ -318,6 +330,7 @@ function applyHotelHeroFormData(hero = {}) {
   if ($("heroHotelNameEn")) $("heroHotelNameEn").value = hero.name_en || "";
   setSelectValuePreservingOption($("heroHotelLocationType"), hero.area || hero.location_type || "");
   if ($("heroHotelStarRating")) $("heroHotelStarRating").value = String(hero.star_rating || "").replace(/성급$/, "");
+  if ($("heroHotelGuestRating")) $("heroHotelGuestRating").value = normalizeHeroGuestRating(hero.guest_rating || hero.guest_score || hero.review_rating || "");
   if ($("heroHotelValueBadge")) $("heroHotelValueBadge").checked = isHeroValueBadgeChecked(hero.price_level || hero.value_badge || "");
   if ($("heroHotelBadges")) $("heroHotelBadges").value = badges.join(", ");
   if ($("heroHotelPriceUrl")) $("heroHotelPriceUrl").value = hero.price_url || hero.primary_url || "";
@@ -2908,12 +2921,13 @@ function renderPreview() {
   const tags = parseTags($("tags").value);
   const hotelHero = isHotelIntroContentSelected()
     ? collectHotelHeroFormData()
-    : { name: "", name_en: "", area: "", star_rating: "", price_level: "", badges: [], price_url: "", availability_url: "" };
+    : { name: "", name_en: "", area: "", star_rating: "", guest_rating: "", price_level: "", badges: [], price_url: "", availability_url: "" };
   const hotelBadges = hotelHero.badges.filter(Boolean);
   const hotelHeroKicker = [
     getDestinationLabel(destination),
     hotelHero.area,
     formatHeroStarRating(hotelHero.star_rating),
+    formatHeroGuestRating(hotelHero.guest_rating),
     hotelHero.price_level
   ].filter(Boolean).join(" · ");
   const slug = $("slugPreview").value.trim();

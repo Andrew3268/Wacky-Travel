@@ -10,8 +10,8 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v24" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v24" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260610v25" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260610v25" />
 </head>
 <body>
   <header class="topbar topbar--editorial">
@@ -131,7 +131,7 @@
               <div class="section-heading" style="margin-bottom:12px;">
                 <div>
                   <div class="h2">호텔 히어로 정보</div>
-                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 위치 유형, 성급, 가성비 여부, CTA 버튼 정보를 입력합니다.</p>
+                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 위치 유형, 성급, 투숙객 평점, 가성비 여부, CTA 버튼 정보를 입력합니다.</p>
                 </div>
               </div>
               <div class="grid grid--2">
@@ -144,7 +144,7 @@
                   <input class="input" id="heroHotelNameEn" placeholder="예: Wink Hotel Danang Centre" />
                 </label>
               </div>
-              <div class="grid grid--2" style="margin-top:12px;">
+              <div class="grid grid--3" style="margin-top:12px;">
                 <label>
                   <div class="small">호텔 위치 유형</div>
                   <select class="input" id="heroHotelLocationType">
@@ -168,6 +168,16 @@
                     <option value="3">3성급</option>
                     <option value="4">4성급</option>
                     <option value="5">5성급</option>
+                  </select>
+                </label>
+                <label>
+                  <div class="small">투숙객 평점</div>
+                  <select class="input" id="heroHotelGuestRating">
+                    <option value="">평점 선택</option>
+                    <option value="6+">6+</option>
+                    <option value="7+">7+</option>
+                    <option value="8+">8+</option>
+                    <option value="9+">9+</option>
                   </select>
                 </label>
               </div>
@@ -513,6 +523,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/add.js?v=20260610v24" defer></script>
+  <script src="/assets/js/add.js?v=20260610v25" defer></script>
 </body>
 </html>

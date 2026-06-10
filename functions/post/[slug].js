@@ -505,6 +505,7 @@ async function getHotelHeroRow(db, hotelSlug) {
         h.area,
         h.address,
         h.star_rating,
+        __GUEST_RATING_COLUMN__
         __BADGES_COLUMN__
         h.price_level,
         h.summary,
@@ -524,10 +525,26 @@ async function getHotelHeroRow(db, hotelSlug) {
     `;
 
   try {
-    return await db.prepare(baseSelect.replace('__BADGES_COLUMN__', 'h.badges_json,')).bind(hotelSlug).first();
+    return await db.prepare(baseSelect
+      .replace('__GUEST_RATING_COLUMN__', 'h.guest_rating,')
+      .replace('__BADGES_COLUMN__', 'h.badges_json,'))
+      .bind(hotelSlug)
+      .first();
   } catch (_) {
-    const row = await db.prepare(baseSelect.replace('__BADGES_COLUMN__', "'' AS badges_json,")).bind(hotelSlug).first();
-    return row;
+    try {
+      return await db.prepare(baseSelect
+        .replace('__GUEST_RATING_COLUMN__', "'' AS guest_rating,")
+        .replace('__BADGES_COLUMN__', 'h.badges_json,'))
+        .bind(hotelSlug)
+        .first();
+    } catch (_) {
+      const row = await db.prepare(baseSelect
+        .replace('__GUEST_RATING_COLUMN__', "'' AS guest_rating,")
+        .replace('__BADGES_COLUMN__', "'' AS badges_json,"))
+        .bind(hotelSlug)
+        .first();
+      return row;
+    }
   }
 }
 
@@ -584,11 +601,13 @@ function buildHeroEyebrowItems(row = {}, hotel = null) {
     const destinationSlug = String(hotel.destination_slug || row.destination_slug || "").trim();
     const area = String(hotel.area || "").trim();
     const star = formatStarRating(hotel.star_rating);
+    const guestRating = formatGuestRating(hotel.guest_rating);
     const priceLevel = String(hotel.price_level || "").trim();
     return [
       destination ? { label: destination, href: destinationSlug ? `/destinations/${encodeURIComponent(destinationSlug)}` : "" } : null,
       area ? { label: area } : null,
       star ? { label: star } : null,
+      guestRating ? { label: guestRating } : null,
       priceLevel ? { label: priceLevel } : null
     ].filter(Boolean);
   }
@@ -599,6 +618,12 @@ function buildHeroEyebrowItems(row = {}, hotel = null) {
     category ? { label: category, href: `/?category=${encodeURIComponent(category)}` } : null,
     contentType ? { label: contentType } : null
   ].filter(Boolean);
+}
+
+function formatGuestRating(value = "") {
+  const raw = String(value || "").trim().replace(/^평점\s*/i, "");
+  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  return normalized ? `투숙객 평점 ${normalized}+` : "";
 }
 
 function buildHeroBadges(row = {}, hotel = null, updatedDateText = "") {

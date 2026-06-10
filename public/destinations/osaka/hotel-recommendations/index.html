@@ -4,18 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>오사카 호텔 추천글 전체 보기 | Wacky Travel</title>
-  <meta name="description" content="오사카 여행 스타일별 호텔 추천글을 한곳에서 모아보는 페이지입니다. 난바, 우메다, 가성비, 가족 여행, 근교 여행 등 목적별 호텔 추천 콘텐츠를 확인하세요." />
+  <meta name="description" content="오사카 여행 스타일별 호텔 추천글을 지역별로 모아보고, 일정과 동선에 맞는 숙소 선택 흐름을 비교해보세요." />
   <link rel="canonical" href="/destinations/osaka/hotel-recommendations/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wacky Travel" />
   <meta property="og:title" content="오사카 호텔 추천글 전체 보기 | Wacky Travel" />
-  <meta property="og:description" content="오사카 여행 스타일별 호텔 추천글을 한곳에서 모아보는 페이지입니다. 난바, 우메다, 가성비, 가족 여행, 근교 여행 등 목적별 호텔 추천 콘텐츠를 확인하세요." />
+  <meta property="og:description" content="오사카 여행 스타일별 호텔 추천글을 지역별로 모아보고, 일정과 동선에 맞는 숙소 선택 흐름을 비교해보세요." />
   <meta property="og:url" content="/destinations/osaka/hotel-recommendations/" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV33" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260610cityV39" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"오사카 호텔 추천글","item":"/destinations/osaka/hotel-recommendations/"}]}</script>
 </head>
 <body data-destination-slug="osaka">
@@ -40,30 +40,17 @@
         <p class="wt-city-kicker">Osaka Hotel Picks</p>
         <h1 id="osakaArchiveTitle">오사카 호텔 추천글을
 여행 스타일별로 모아봤어요</h1>
-        <p class="wt-city-hero__lead">처음 오사카를 가는 여행자부터 가성비, 가족 여행, 근교 이동 중심 일정까지 목적별로 비교하기 좋은 호텔 추천글을 한곳에 모았습니다.</p>
-        <div class="wt-city-hero__actions" aria-label="오사카 호텔 글 바로가기">
-          <a class="wt-city-button" href="/destinations/osaka/">오사카 메인으로</a>
-          <a class="wt-city-button" href="/destinations/osaka/hotels/">호텔 하나씩 살펴보기</a>
-        </div>
+        <p class="wt-city-hero__lead">처음 오사카를 가는 여행자부터 가성비, 가족 여행, 근교 이동 중심 일정까지 목적별로 비교하기 좋은 호텔 추천글을 한곳에 모았습니다. 지역과 여행 스타일을 함께 보며 내 일정에 맞는 추천 글을 찾아보세요.</p>
       </div>
     </section>
 
-    <section class="container travel-section wt-city-dynamic-section" aria-labelledby="osakaArchiveListTitle">
-      <div class="section-heading section-heading--split">
-        <div>
-          <p class="eyebrow">All Posts</p>
-          <h2 id="osakaArchiveListTitle">오사카 호텔 추천글 전체 보기</h2>
-          <p>여행 목적과 동선에 맞춰 정리한 오사카 호텔 추천 콘텐츠입니다.</p>
-        </div>
-      </div>
+    <section class="container travel-section wt-city-dynamic-section" aria-label="오사카 호텔 추천글 목록">
+      <div class="wt-region-filter" data-region-filter hidden aria-label="오사카 호텔 추천글 지역 필터"></div>
       <div class="wt-city-archive-summary">
-        <div class="wt-city-archive-count" data-archive-count>글을 불러오는 중입니다.</div>
-        <div class="wt-city-archive-actions">
-          <a class="wt-city-button" href="/destinations/osaka/#hotel-posts">추천글 섹션으로 돌아가기</a>
-        </div>
+        <div class="wt-city-archive-count" data-archive-count>오사카 호텔 추천글을 정리하고 있어요.</div>
       </div>
       <div class="travel-card-grid travel-card-grid--hotels" data-archive-grid>
-        <div class="empty-card">오사카 호텔 글을 불러오는 중입니다.</div>
+        <div class="empty-card">오사카 호텔 추천글을 불러오는 중입니다.</div>
       </div>
     </section>
   </main>
@@ -80,12 +67,97 @@
 
   <script>
     (() => {
-      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
       const grid = document.querySelector('[data-archive-grid]');
       const count = document.querySelector('[data-archive-count]');
+      const filterWrap = document.querySelector('[data-region-filter]');
       const destination = 'osaka';
       const type = 'top5_series';
       const limit = 60;
+      let activeRegion = '';
+      let regionItems = [];
+      let hasLoadedPosts = false;
+      let allPostsTotal = 0;
+
+      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+
+      const fetchSettings = async () => {
+        try {
+          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return [];
+          const json = await response.json();
+          return Array.isArray(json.regions)
+            ? json.regions.filter((region) => String(region.destination_slug || '') === destination && Number(region.is_active ?? 1) !== 0)
+            : [];
+        } catch (_) {
+          return [];
+        }
+      };
+
+      const getRegionName = (slug = '') => {
+        if (!slug) return '';
+        const region = regionItems.find((item) => String(item.slug || '') === slug);
+        return region?.name || slug;
+      };
+
+      const isValidRegion = (slug = '') => {
+        if (!slug) return true;
+        return regionItems.some((item) => String(item.slug || '') === slug);
+      };
+
+      const resolveRegion = (region = '') => {
+        const value = String(region || '').trim();
+        return isValidRegion(value) ? value : '';
+      };
+
+      const getRegionFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get('region') || '').trim();
+      };
+
+      const updateRegionUrl = (region = '', replace = false) => {
+        const nextUrl = new URL(window.location.href);
+        if (region) {
+          nextUrl.searchParams.set('region', region);
+        } else {
+          nextUrl.searchParams.delete('region');
+        }
+        const nextPath = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextPath === currentPath) return;
+        window.history[replace ? 'replaceState' : 'pushState']({ region }, '', nextPath);
+      };
+
+      const renderRegionFilter = () => {
+        if (!filterWrap) return;
+        if (!regionItems.length) {
+          filterWrap.hidden = true;
+          filterWrap.innerHTML = '';
+          return;
+        }
+        filterWrap.hidden = false;
+        const buttons = [
+          { slug: '', name: '전체' },
+          ...regionItems.map((region) => ({ slug: String(region.slug || ''), name: String(region.name || region.slug || '') }))
+        ];
+        filterWrap.innerHTML = buttons.map((item) => `
+          <button class="wt-region-filter__button ${item.slug === activeRegion ? 'is-active' : ''}" type="button" data-region-filter-value="${escapeHtml(item.slug)}" aria-pressed="${item.slug === activeRegion ? 'true' : 'false'}">
+            ${escapeHtml(item.name)}
+          </button>
+        `).join('');
+      };
+
+      const centerActiveRegionFilter = () => {
+        if (!filterWrap || filterWrap.hidden) return;
+        const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
+        if (!activeButton) return;
+        window.requestAnimationFrame(() => {
+          const filterRect = filterWrap.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
+          const offset = buttonRect.left - filterRect.left - (filterRect.width / 2) + (buttonRect.width / 2);
+          if (Math.abs(offset) < 1) return;
+          filterWrap.scrollBy({ left: offset, behavior: 'smooth' });
+        });
+      };
 
       const fetchJson = async (offset = 0) => {
         const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
@@ -98,8 +170,56 @@
         }
       };
 
-      const loadAll = async () => {
+      const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
+
+      const renderEmptyMessage = (regionSlug = '') => {
         if (!grid) return;
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const regionName = getRegionName(regionSlug);
+        const message = regionName
+          ? `${escapeHtml(regionName)} 지역에 연결된 오사카 호텔 추천글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.`
+          : '현재 준비 중인 오사카 호텔 추천글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.';
+        grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
+      };
+
+      const applyRegionFilter = (region = '', options = {}) => {
+        if (!grid || !hasLoadedPosts) return;
+        const shouldUpdateUrl = options.updateUrl === true;
+        const shouldReplaceUrl = options.replaceUrl === true;
+        activeRegion = resolveRegion(region);
+        if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const cards = getCards();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardRegion = String(card.dataset.region || '').trim();
+          const isVisible = !activeRegion || cardRegion === activeRegion;
+          card.hidden = !isVisible;
+          card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+          if (isVisible) visibleCount += 1;
+        });
+
+        const regionName = getRegionName(activeRegion);
+        if (count) {
+          count.textContent = regionName
+            ? `${regionName} 호텔 추천글 ${visibleCount}개를 모아봤어요.`
+            : `오사카 호텔 추천글 ${allPostsTotal || visibleCount}개를 모아봤어요.`;
+        }
+
+        if (!visibleCount) {
+          renderEmptyMessage(activeRegion);
+        }
+      };
+
+      const loadAllPostsOnce = async (initialRegion = '') => {
+        if (!grid) return;
+        grid.innerHTML = '<div class="empty-card">오사카 호텔 추천글을 불러오는 중입니다.</div>';
+        if (count) count.textContent = '오사카 호텔 추천글을 정리하고 있어요.';
+
         let offset = 0;
         let html = '';
         let total = 0;
@@ -117,17 +237,43 @@
           guard += 1;
         }
 
+        allPostsTotal = total || 0;
+        hasLoadedPosts = true;
+
         if (!html) {
-          grid.innerHTML = `<div class="empty-card">현재 준비 중인 글입니다. 곧 더 다양한 오사카 호텔 콘텐츠를 확인하실 수 있습니다.</div>`;
-          if (count) count.textContent = '등록된 글 0개';
+          grid.innerHTML = '';
+          applyRegionFilter(initialRegion);
           return;
         }
 
         grid.innerHTML = html;
-        if (count) count.textContent = `등록된 글 ${total || grid.querySelectorAll('.travel-card').length}개`;
+        if (!allPostsTotal) allPostsTotal = getCards().length;
+        applyRegionFilter(initialRegion);
       };
 
-      loadAll();
+      filterWrap?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-region-filter-value]');
+        if (!button) return;
+        applyRegionFilter(button.dataset.regionFilterValue || '', { updateUrl: true });
+      });
+
+      window.addEventListener('popstate', () => {
+        applyRegionFilter(getRegionFromUrl(), { updateUrl: false });
+      });
+
+      const init = async () => {
+        regionItems = await fetchSettings();
+        const requestedRegion = getRegionFromUrl();
+        const initialRegion = resolveRegion(requestedRegion);
+        activeRegion = initialRegion;
+        if (requestedRegion && requestedRegion !== initialRegion) {
+          updateRegionUrl('', true);
+        }
+        renderRegionFilter();
+        await loadAllPostsOnce(initialRegion);
+      };
+
+      init();
     })();
   </script>
 </body>
