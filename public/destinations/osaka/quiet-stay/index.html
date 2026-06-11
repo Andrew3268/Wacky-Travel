@@ -16,7 +16,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260606v18" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260606v18" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260611purposeV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260611areaGuideV2" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"오사카 조용한 숙소 위치 추천","item":"/destinations/osaka/quiet-stay/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 조용한 숙소 추천 구역","itemListElement":[{"@type":"ListItem","position":1,"name":"혼마치"},{"@type":"ListItem","position":2,"name":"나카노시마"},{"@type":"ListItem","position":3,"name":"기타하마"},{"@type":"ListItem","position":4,"name":"우메다 외곽"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"오사카에서 조용한 숙소는 어느 지역이 좋나요?","acceptedAnswer":{"@type":"Answer","text":"혼마치, 나카노시마, 기타하마, 우메다 외곽처럼 중심 접근성은 유지하면서 번화가 한복판에서 벗어난 지역이 좋습니다."}},{"@type":"Question","name":"난바에 묵으면 너무 시끄러운가요?","acceptedAnswer":{"@type":"Answer","text":"난바 전체가 시끄러운 것은 아니지만 도톤보리 바로 앞이나 번화가 저층 객실은 소음이 있을 수 있습니다. 밤 소음 후기를 꼭 확인하세요."}},{"@type":"Question","name":"조용한 숙소를 원하면 외곽으로 가야 하나요?","acceptedAnswer":{"@type":"Answer","text":"꼭 외곽으로 갈 필요는 없습니다. 혼마치나 기타하마처럼 중심과 가깝지만 차분한 도심 지역을 먼저 보는 것이 좋습니다."}},{"@type":"Question","name":"나카노시마는 어떤 여행자에게 맞나요?","acceptedAnswer":{"@type":"Answer","text":"강변 산책과 여유로운 분위기를 좋아하고, 밤에는 조용하게 쉬고 싶은 커플이나 혼행 여행자에게 잘 맞습니다."}},{"@type":"Question","name":"조용한 호텔 예약 전 가장 중요한 체크포인트는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"방음 후기, 도로 방향, 객실 층수, 밤 귀가 동선, 역 접근성을 함께 확인하는 것이 좋습니다."}}]}</script>
@@ -87,40 +87,55 @@
 <h2 class="wt-section-title" id="areaTitle">혼마치·나카노시마·기타하마·우메다 외곽, 이렇게 고르세요</h2>
 <p class="wt-section-desc">조용한 숙박은 번화가에서 얼마나 떨어졌는지와 역 접근성을 함께 봐야 합니다.</p>
 </div>
-<div aria-label="지역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true"><input checked="checked" class="wt-area-tab-input" id="quiet-stay-area-tab-1" name="quiet-stay-area-tabs" type="radio"/>
+<div aria-label="지역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true">
+<input checked="checked" class="wt-area-tab-input" id="quiet-stay-area-tab-1" name="quiet-stay-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="quiet-stay-area-tab-2" name="quiet-stay-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="quiet-stay-area-tab-3" name="quiet-stay-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="quiet-stay-area-tab-4" name="quiet-stay-area-tabs" type="radio"/>
 <div aria-label="지역 선택" class="wt-area-tab-list"><label class="wt-area-tab-button" for="quiet-stay-area-tab-1">혼마치</label><label class="wt-area-tab-button" for="quiet-stay-area-tab-2">나카노시마</label><label class="wt-area-tab-button" for="quiet-stay-area-tab-3">기타하마</label><label class="wt-area-tab-button" for="quiet-stay-area-tab-4">우메다 외곽</label></div>
-<div class="wt-area-tab-panels"><article aria-labelledby="quiet-stay-area-tab-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<span class="wt-area-card__label">도심 균형형</span>
-<h3>혼마치</h3>
-<p class="wt-area-card__lead">난바와 우메다 사이에서 중심 접근성은 유지하면서 비교적 차분한 숙박이 가능합니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>조용한 숙박, 가성비, 시내 이동 균형, 커플·혼행</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>도톤보리 감성이나 밤 먹방 중심 여행에는 조금 심심할 수 있습니다.</span></div>
+<div class="wt-area-tab-panels">
+<article aria-labelledby="quiet-stay-area-title-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">조용한 중심 균형형</span>
+<h3 id="quiet-stay-area-title-1">혼마치</h3>
+<p class="wt-area-card__lead">난바와 우메다 접근성은 유지하면서 번화가 소음에서 한 걸음 떨어지고 싶은 여행자에게 가장 무난합니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>숙소는 조용해야 하지만 매일 이동이 길어지는 건 싫은 여행자의 가장 현실적인 고민을 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>추천 여행자</strong><span>도시 접근성, 가성비, 조용한 밤, 일정 균형을 모두 보고 싶은 커플·혼행·재방문 여행자에게 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>대로변인지 골목 안쪽인지, 지하철 출구에서 호텔까지 밤에 걷기 편한지 함께 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>도톤보리 야경과 먹방을 숙소 주변에서 바로 즐기고 싶다면 다소 차분하게 느껴질 수 있습니다.</span></div>
+</div>
 </article>
-<article aria-labelledby="quiet-stay-area-tab-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<article aria-labelledby="quiet-stay-area-title-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
 <span class="wt-area-card__label">강변 휴식형</span>
-<h3>나카노시마</h3>
-<p class="wt-area-card__lead">강변 분위기와 비즈니스 지구의 안정감이 있어 여유로운 숙박에 잘 맞습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>산책, 커플 여행, 조용한 휴식, 감성 숙소</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>난바 중심 먹방 동선은 이동이 추가될 수 있습니다.</span></div>
+<h3 id="quiet-stay-area-title-2">나카노시마</h3>
+<p class="wt-area-card__lead">강변 산책과 호텔 중심의 휴식을 원한다면 도심 속에서도 차분한 분위기를 만들기 좋은 지역입니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>오사카 중심부에 머물면서도 번화가 특유의 소음과 인파를 피하고 싶은 걱정을 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>추천 여행자</strong><span>호텔에서 쉬는 시간, 산책, 조용한 카페, 여유 있는 일정이 중요한 여행자에게 적합합니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>역 접근성이 숙소마다 다를 수 있으므로 비 오는 날 이동과 캐리어 동선을 함께 보세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>도톤보리·신사이바시 중심 일정이 많다면 매번 이동이 필요해 짧은 일정에는 답답할 수 있습니다.</span></div>
+</div>
 </article>
-<article aria-labelledby="quiet-stay-area-tab-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<span class="wt-area-card__label">도심 안정형</span>
-<h3>기타하마</h3>
-<p class="wt-area-card__lead">우메다와 난바 접근성을 유지하면서도 업무지구 특유의 차분한 분위기가 있습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>조용한 도심, 카페, 산책, 안정적인 밤 분위기</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>관광지 한복판의 활기찬 느낌은 상대적으로 약합니다.</span></div>
+<article aria-labelledby="quiet-stay-area-title-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">카페·차분한 도심형</span>
+<h3 id="quiet-stay-area-title-3">기타하마</h3>
+<p class="wt-area-card__lead">조용한 도심 분위기와 카페, 강변 산책을 함께 보고 싶은 여행자에게 좋은 대안입니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>번화가 한복판은 피하고 싶지만, 너무 주거지나 외곽으로 빠져 여행 분위기가 약해지는 문제를 줄입니다.</span></div><div class="wt-area-card__note"><strong>추천 여행자</strong><span>혼행, 커플 여행, 카페 투어, 조용한 숙박과 깔끔한 주변 분위기를 선호하는 여행자에게 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>주요 관광지까지 한 번에 가는 노선보다 환승이 필요한 경우가 있어 일정별 이동 시간을 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>밤 늦게까지 활기 있는 주변 환경을 원한다면 난바·신사이바시보다 조용하게 느껴질 수 있습니다.</span></div>
+</div>
 </article>
-<article aria-labelledby="quiet-stay-area-tab-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<span class="wt-area-card__label">교통 절충형</span>
-<h3>우메다 외곽</h3>
-<p class="wt-area-card__lead">교통과 쇼핑 편의는 유지하면서 우메다 중심부보다 차분한 숙박을 기대할 수 있습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>교토·고베 이동, 쇼핑, 조용한 역세권, 3박 이상</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>호텔 위치에 따라 역까지 도보 시간이 길어질 수 있습니다.</span></div>
+<article aria-labelledby="quiet-stay-area-title-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">교통·휴식 절충형</span>
+<h3 id="quiet-stay-area-title-4">우메다 외곽</h3>
+<p class="wt-area-card__lead">우메다의 교통과 쇼핑 편의는 유지하되, 역 바로 앞 혼잡함을 피하고 싶은 경우 비교하기 좋습니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>근교 이동과 쇼핑은 편하게 하고 싶지만, 큰 역 주변의 사람 많은 분위기와 소음은 피하고 싶은 문제를 줄입니다.</span></div><div class="wt-area-card__note"><strong>추천 여행자</strong><span>교토·고베 이동, 쇼핑몰, 부모님 동반, 조용한 밤을 함께 보는 여행자에게 적합합니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>역에서 너무 멀어지면 우메다 장점이 줄어듭니다. 도보 시간과 지하도 이동 가능 여부를 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>구역에 따라 대로변 차량 소음이 있을 수 있어 객실 방향과 방음 후기를 함께 보는 편이 좋습니다.</span></div>
+</div>
 </article>
-</div></div>
+</div>
+</div>
 </div>
 </section>
 <section aria-labelledby="bookingCheckTitle" class="wt-section wt-section--soft">

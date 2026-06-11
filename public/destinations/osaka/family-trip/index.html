@@ -16,7 +16,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260606v18" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260606v18" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260611purposeV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260611areaGuideV2" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"오사카 가족 여행 숙소 위치 추천","item":"/destinations/osaka/family-trip/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 가족 여행 숙소 추천 구역","itemListElement":[{"@type":"ListItem","position":1,"name":"우메다"},{"@type":"ListItem","position":2,"name":"유니버설시티"},{"@type":"ListItem","position":3,"name":"난바 외곽"},{"@type":"ListItem","position":4,"name":"혼마치"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"오사카 가족 여행은 어느 지역에 숙소를 잡는 게 좋나요?","acceptedAnswer":{"@type":"Answer","text":"부모님 동반과 근교 이동이 있다면 우메다, USJ 중심 일정이면 유니버설시티, 첫 여행과 먹방 중심이면 난바 외곽이 편합니다."}},{"@type":"Question","name":"아이와 USJ를 간다면 유니버설시티에 묵는 게 좋나요?","acceptedAnswer":{"@type":"Answer","text":"USJ를 하루 이상 오래 즐기거나 폐장 가까운 시간까지 머물 계획이라면 유니버설시티 숙소가 이동 피로를 크게 줄여줍니다."}},{"@type":"Question","name":"부모님과 함께라면 난바보다 우메다가 나은가요?","acceptedAnswer":{"@type":"Answer","text":"근교 이동과 쇼핑, 식사 선택지를 넓게 보고 싶다면 우메다가 좋습니다. 도톤보리 먹방과 짧은 일정 중심이라면 난바 외곽도 괜찮습니다."}},{"@type":"Question","name":"가족 여행에서 숙소 예약 전 가장 중요한 것은 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"객실 크기, 침대 구성, 역 엘리베이터 동선, 주변 식사 선택지, 밤 소음 후기를 함께 확인하는 것이 중요합니다."}},{"@type":"Question","name":"난바 중심부는 가족 여행에 불편한가요?","acceptedAnswer":{"@type":"Answer","text":"편리하지만 도톤보리 바로 앞은 혼잡도와 소음이 있을 수 있습니다. 가족 여행이라면 난바 외곽이나 신사이바시 쪽도 함께 비교하는 편이 좋습니다."}}]}</script>
@@ -87,40 +87,55 @@
 <h2 class="wt-section-title" id="areaTitle">우메다·유니버설시티·난바 외곽·혼마치, 이렇게 고르세요</h2>
 <p class="wt-section-desc">가족 구성과 일정에 따라 편한 숙소 위치가 달라집니다.</p>
 </div>
-<div aria-label="지역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true"><input checked="checked" class="wt-area-tab-input" id="family-trip-area-tab-1" name="family-trip-area-tabs" type="radio"/>
+<div aria-label="지역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true">
+<input checked="checked" class="wt-area-tab-input" id="family-trip-area-tab-1" name="family-trip-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="family-trip-area-tab-2" name="family-trip-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="family-trip-area-tab-3" name="family-trip-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="family-trip-area-tab-4" name="family-trip-area-tabs" type="radio"/>
 <div aria-label="지역 선택" class="wt-area-tab-list"><label class="wt-area-tab-button" for="family-trip-area-tab-1">우메다</label><label class="wt-area-tab-button" for="family-trip-area-tab-2">유니버설시티</label><label class="wt-area-tab-button" for="family-trip-area-tab-3">난바 외곽</label><label class="wt-area-tab-button" for="family-trip-area-tab-4">혼마치</label></div>
-<div class="wt-area-tab-panels"><article aria-labelledby="family-trip-area-tab-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<span class="wt-area-card__label">교통·쇼핑 안정형</span>
-<h3>우메다</h3>
-<p class="wt-area-card__lead">대형 역과 쇼핑몰, 식사 선택지가 많아 가족 일정 조율이 쉽습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>부모님 동반, 쇼핑, 교토·고베 근교 이동, 3박 이상</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>역 구조가 복잡해 숙소와 가까운 출구, 엘리베이터 동선을 확인해야 합니다.</span></div>
+<div class="wt-area-tab-panels">
+<article aria-labelledby="family-trip-area-title-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">부모님 동반 안정형</span>
+<h3 id="family-trip-area-title-1">우메다</h3>
+<p class="wt-area-card__lead">식사, 쇼핑, 교통 선택지가 많아 부모님과 함께 이동할 때 일정 변수를 줄이기 좋은 중심지입니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>비가 오거나 체력이 떨어졌을 때 식사와 쇼핑, 이동 대안을 빠르게 바꿔야 하는 가족 여행의 부담을 줄입니다.</span></div><div class="wt-area-card__note"><strong>추천 가족</strong><span>부모님 동반, 쇼핑몰 식사 선호, 교토·고베 근교 이동이 있는 가족에게 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>역과 지하상가가 복잡하므로 호텔에서 엘리베이터가 있는 출구까지의 경로를 꼭 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>초행 가족에게는 역 구조가 어렵게 느껴질 수 있어 너무 역 안쪽 동선이 복잡한 숙소는 피하는 편이 좋습니다.</span></div>
+</div>
 </article>
-<article aria-labelledby="family-trip-area-tab-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<article aria-labelledby="family-trip-area-title-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
 <span class="wt-area-card__label">USJ 집중형</span>
-<h3>유니버설시티</h3>
-<p class="wt-area-card__lead">USJ를 하루 이상 오래 즐기거나 아이와 이동 피로를 줄이고 싶을 때 좋습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>USJ 중심, 아이 동반, 테마파크 일정, 늦은 귀가</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>오사카 시내 관광을 많이 한다면 이동 시간이 늘어날 수 있습니다.</span></div>
+<h3 id="family-trip-area-title-2">유니버설시티</h3>
+<p class="wt-area-card__lead">USJ 오픈런과 폐장 후 복귀 피로를 줄이고 싶다면 아이 동반 가족에게 가장 직관적인 선택입니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>아이와 하루 종일 걷고 난 뒤 다시 시내까지 이동해야 하는 피로, 늦은 시간 귀가 부담을 크게 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>추천 가족</strong><span>USJ 1~2일 집중 일정, 어린아이 동반, 폐장 가까운 시간까지 머물 가족에게 특히 좋습니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>USJ 외 시내 관광일이 몇 일인지 확인하세요. 시내 일정이 많다면 전체 숙박을 나누는 방법도 고려할 만합니다.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>난바·우메다 중심 관광에는 이동이 불리해 오사카 시내 여행 비중이 크면 답답할 수 있습니다.</span></div>
+</div>
 </article>
-<article aria-labelledby="family-trip-area-tab-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<span class="wt-area-card__label">첫 여행 절충형</span>
-<h3>난바 외곽</h3>
-<p class="wt-area-card__lead">도톤보리와 먹방 동선은 살리면서 번화가 한가운데보다 안정감을 기대할 수 있습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>첫 오사카 가족 여행, 먹방, 짧은 일정, 도보 동선</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>도톤보리 바로 앞은 소음과 혼잡도가 있을 수 있습니다.</span></div>
+<article aria-labelledby="family-trip-area-title-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">먹방·접근성 절충형</span>
+<h3 id="family-trip-area-title-3">난바 외곽</h3>
+<p class="wt-area-card__lead">도톤보리 접근성은 살리면서 번화가 한복판의 소음과 혼잡을 조금 피하고 싶은 가족에게 좋습니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>맛집과 시장은 가까이 두고 싶지만, 밤 소음이나 인파 때문에 아이·부모님이 불편해질 걱정을 줄입니다.</span></div><div class="wt-area-card__note"><strong>추천 가족</strong><span>첫 오사카 여행, 먹방 중심, 짧은 일정, 캐리어 이동을 단순하게 만들고 싶은 가족에게 맞습니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>“난바 도보권”이라도 실제로는 골목과 횡단보도 동선이 다릅니다. 밤 귀가 길과 소음 후기를 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>도톤보리 바로 앞보다 한 걸음 떨어진 후보가 가족 여행 만족도는 더 안정적일 수 있습니다.</span></div>
+</div>
 </article>
-<article aria-labelledby="family-trip-area-tab-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<span class="wt-area-card__label">차분한 균형형</span>
-<h3>혼마치</h3>
-<p class="wt-area-card__lead">난바와 우메다 사이에서 가족 이동 균형과 비교적 조용한 숙박을 함께 보기 좋습니다.</p>
-<div class="wt-area-card__note"><strong>추천</strong><span>조용한 숙박, 가성비, 시내 이동 균형, 초등 이상 자녀 동반</span></div>
-<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>어린아이와 첫 여행 감성을 강하게 원하면 난바보다 심심할 수 있습니다.</span></div>
+<article aria-labelledby="family-trip-area-title-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">조용한 중심 균형형</span>
+<h3 id="family-trip-area-title-4">혼마치</h3>
+<p class="wt-area-card__lead">난바와 우메다 사이에서 이동 균형을 잡고, 숙소 주변은 비교적 차분하게 가져가고 싶은 가족에게 적합합니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>중심에서 너무 멀어지는 건 싫지만 가족이 쉴 수 있는 조용한 환경도 필요한 고민을 해결해줍니다.</span></div><div class="wt-area-card__note"><strong>추천 가족</strong><span>부모님 동반, 초등 이상 아이 동반, 일정이 여러 지역으로 나뉘는 가족에게 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>예약 전 체크</strong><span>객실 면적, 트윈·트리플 침대 구성, 욕실 구조, 조식 여부를 위치만큼 중요하게 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>숙소 주변의 밤 분위기는 차분한 편이라 아이가 좋아할 만한 즉흥적인 볼거리는 적을 수 있습니다.</span></div>
+</div>
 </article>
-</div></div>
+</div>
+</div>
 </div>
 </section>
 <section aria-labelledby="bookingCheckTitle" class="wt-section wt-section--soft">
