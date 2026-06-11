@@ -629,6 +629,19 @@ const cityConfig = {
       window.history.back();
     }
 
+    function closeSurveyToStart() {
+      currentQuestionIndex = 0;
+      answers = new Array(cityConfig.questions.length).fill(null);
+      resultView?.classList.remove("is-active");
+      surveyWrap?.classList.remove("is-result-mode");
+      surveyWrap?.classList.remove("is-survey-started");
+      locationPage?.classList.remove("is-result-mode");
+      locationPage?.classList.remove("is-survey-started");
+      surveyView.style.display = "block";
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     function renderQuestion() {
       const question = cityConfig.questions[currentQuestionIndex];
       const selectedIndex = answers[currentQuestionIndex];
@@ -673,7 +686,8 @@ const cityConfig = {
         optionsArea.appendChild(button);
       });
 
-      prevBtn.disabled = currentQuestionIndex === 0;
+      prevBtn.disabled = false;
+      prevBtn.textContent = currentQuestionIndex === 0 ? "닫기" : "이전";
       nextBtn.disabled = selectedIndex === null;
       nextBtn.textContent = currentQuestionIndex === cityConfig.questions.length - 1 ? "결과 보기" : "다음";
     }
@@ -691,7 +705,10 @@ const cityConfig = {
     }
 
     function goPrev() {
-      if (currentQuestionIndex === 0) return;
+      if (currentQuestionIndex === 0) {
+        closeSurveyToStart();
+        return;
+      }
       currentQuestionIndex -= 1;
       renderQuestion();
     }

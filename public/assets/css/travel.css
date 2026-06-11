@@ -7244,12 +7244,12 @@ body::after {
   }
 }
 
-/* Osaka static pages mobile main padding v12 */
+/* Osaka static pages mobile main padding v23 */
 @media (max-width: 767px) {
   main.travel-page.wt-city-page,
   main.travel-page.wt-purpose-page,
   main.travel-page.wt-city-guide-page {
-    padding: 0 40px;
+    padding: 25px;
   }
 
   main.travel-page.wt-city-page > .container,
@@ -7267,8 +7267,8 @@ body::after {
   }
 
   main.travel-page.wt-purpose-page .wt-hotel-grid {
-    margin-right: -40px;
-    padding-right: 40px;
+    margin-right: -25px;
+    padding-right: 25px;
   }
 }
 
