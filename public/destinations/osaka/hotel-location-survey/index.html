@@ -80,7 +80,13 @@
       background: var(--wt-white);
     }
 
-    .wt-survey-wrap.is-result-mode .wt-survey-hero {
+    .wt-survey-wrap.is-result-mode .wt-survey-hero,
+    .wt-survey-wrap.is-survey-started .wt-survey-hero,
+    .wt-survey-wrap.is-survey-started .wt-survey-start {
+      display: none;
+    }
+
+    .wt-location-page:not(.is-survey-started) .wt-survey-top-link {
       display: none;
     }
 
@@ -120,9 +126,28 @@
       font-size: 16px;
     }
 
+    .wt-survey-start {
+      display: flex;
+      justify-content: center;
+      padding: clamp(24px, 4vw, 34px) clamp(22px, 5vw, 50px) 0;
+      background: #ffffff;
+    }
+
+    .wt-survey-start .wt-btn {
+      min-width: 180px;
+      min-height: 52px;
+      padding: 0 28px;
+      font-size: 16px;
+    }
+
     .wt-survey-body {
+      display: none;
       padding: clamp(24px, 5vw, 44px) 0 0;
       background: #ffffff;
+    }
+
+    .wt-survey-wrap.is-survey-started .wt-survey-body {
+      display: block;
     }
 
     .wt-survey-card,
@@ -199,6 +224,7 @@
 
     .wt-option:focus-visible,
     .wt-btn:focus-visible,
+    .wt-survey-top-link:focus-visible,
     .wt-related-link:focus-visible,
     .wt-post-list a:focus-visible,
     .wt-hotel-link:focus-visible {
@@ -488,6 +514,7 @@
       color: #273b51;
       font-size: 14px;
       font-weight: 850;
+      cursor: pointer;
     }
 
     .wt-fit-badge {
@@ -765,12 +792,14 @@
       gap: 8px;
       margin: 0 0 24px;
       padding: 10px 14px;
+      border: 0;
       border-radius: 999px;
       background: #f7faff;
       color: #24364b;
       text-decoration: none;
       font-size: 14px;
       font-weight: 850;
+      cursor: pointer;
     }
 
     .wt-survey-top-link::before {
@@ -873,9 +902,9 @@
 </head>
 
 <body>
-  <main class="wt-location-page">
+  <main class="wt-location-page" id="locationPage">
     <div class="wt-location-shell">
-      <a class="wt-survey-top-link" href="/destinations/osaka/hotel-guide/">오사카 호텔 위치 가이드로 돌아가기</a>
+      <button type="button" class="wt-survey-top-link" id="backBtn">뒤로가기</button>
       <section class="wt-survey-wrap" aria-labelledby="surveyTitle">
         <div class="wt-survey-hero">
           <div class="wt-survey-kicker">오사카 숙소 위치 추천</div>
@@ -884,6 +913,10 @@
             몇 가지 질문에 답하면 난바, 우메다, 신사이바시, 텐노지, 유니버설시티, 베이 에어리어 중
             이번 여행에 가장 잘 맞는 숙소 위치를 추천해드립니다.
           </p>
+        </div>
+
+        <div class="wt-survey-start">
+          <button type="button" class="wt-btn" id="startSurveyBtn">시작하기</button>
         </div>
 
         <div class="wt-survey-body">
@@ -965,6 +998,6 @@
       </section>
 </div>
   </main>
-  <script src="/assets/js/destinations/osaka/hotel-location-survey.js?v=20260604v23" defer></script>
+  <script src="/assets/js/destinations/osaka/hotel-location-survey.js?v=20260611v1" defer></script>
 </body>
 </html>

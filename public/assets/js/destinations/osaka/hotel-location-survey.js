@@ -565,9 +565,12 @@ const cityConfig = {
     let currentQuestionIndex = 0;
     let answers = new Array(cityConfig.questions.length).fill(null);
 
+    const locationPage = document.getElementById("locationPage");
     const surveyWrap = document.querySelector(".wt-survey-wrap");
     const surveyView = document.getElementById("surveyView");
     const resultView = document.getElementById("resultView");
+    const startSurveyBtn = document.getElementById("startSurveyBtn");
+    const backBtn = document.getElementById("backBtn");
     const questionCount = document.getElementById("questionCount");
     const progressText = document.getElementById("progressText");
     const progressBar = document.getElementById("progressBar");
@@ -609,6 +612,20 @@ const cityConfig = {
       if (step >= Math.ceil(total * 0.65)) return "조금만 더 가면 추천 완료!";
       if (step >= Math.ceil(total * 0.4)) return "좋아요, 취향이 보이기 시작해요";
       return "동선을 하나씩 맞춰보는 중이에요";
+    }
+
+    function startSurvey() {
+      locationPage?.classList.add("is-survey-started");
+      surveyWrap?.classList.add("is-survey-started");
+      surveyWrap?.classList.remove("is-result-mode");
+      resultView?.classList.remove("is-active");
+      surveyView.style.display = "block";
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goBack() {
+      window.history.back();
     }
 
     function renderQuestion() {
@@ -925,8 +942,10 @@ const cityConfig = {
       const rankedAreas = calculateScores();
       const topArea = rankedAreas[0];
 
+      locationPage?.classList.add("is-survey-started");
       surveyView.style.display = "none";
       resultView.classList.add("is-active");
+      surveyWrap.classList.add("is-survey-started");
       surveyWrap.classList.add("is-result-mode");
 
       setText("resultTitle", topArea.name);
@@ -950,11 +969,15 @@ const cityConfig = {
       answers = new Array(cityConfig.questions.length).fill(null);
       resultView.classList.remove("is-active");
       surveyWrap.classList.remove("is-result-mode");
+      surveyWrap.classList.remove("is-survey-started");
+      locationPage?.classList.remove("is-survey-started");
       surveyView.style.display = "block";
       renderQuestion();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-nextBtn.addEventListener("click", goNext);
+    startSurveyBtn?.addEventListener("click", startSurvey);
+    backBtn?.addEventListener("click", goBack);
+    nextBtn.addEventListener("click", goNext);
     prevBtn.addEventListener("click", goPrev);
     resetBtn.addEventListener("click", resetSurvey);
 
