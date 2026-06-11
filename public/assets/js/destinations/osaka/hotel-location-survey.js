@@ -616,6 +616,7 @@ const cityConfig = {
 
     function startSurvey() {
       locationPage?.classList.add("is-survey-started");
+      locationPage?.classList.remove("is-result-mode");
       surveyWrap?.classList.add("is-survey-started");
       surveyWrap?.classList.remove("is-result-mode");
       resultView?.classList.remove("is-active");
@@ -943,6 +944,7 @@ const cityConfig = {
       const topArea = rankedAreas[0];
 
       locationPage?.classList.add("is-survey-started");
+      locationPage?.classList.add("is-result-mode");
       surveyView.style.display = "none";
       resultView.classList.add("is-active");
       surveyWrap.classList.add("is-survey-started");
@@ -970,6 +972,7 @@ const cityConfig = {
       resultView.classList.remove("is-active");
       surveyWrap.classList.remove("is-result-mode");
       surveyWrap.classList.remove("is-survey-started");
+      locationPage?.classList.remove("is-result-mode");
       locationPage?.classList.remove("is-survey-started");
       surveyView.style.display = "block";
       renderQuestion();
