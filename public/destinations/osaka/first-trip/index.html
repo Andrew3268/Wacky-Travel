@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
@@ -41,15 +42,14 @@
 <div class="wt-eyebrow">첫 오사카 여행자 추천</div>
 <h1>오사카가 처음이라면, 난바부터 보세요</h1>
 <p>첫 여행은 호텔 자체보다 숙소 위치가 먼저입니다. 도톤보리, 구로몬시장, 신사이바시, 공항 이동까지 한 번에 묶고 싶다면 난바가 가장 무난하고, 쇼핑 중심이면 신사이바시, 조금 더 차분한 균형형은 혼마치가 좋습니다.</p>
-<div class="wt-hero-actions">
-<a class="wt-btn" href="#area-compare">지역 차이 보기</a>
+<div class="wt-hero-actions"><a class="wt-btn" href="#area-compare">지역 차이 보기</a>
 <a class="wt-btn" href="#hotels">추천 호텔 보기</a>
 <a class="wt-btn" href="/destinations/osaka/">오사카 메인</a>
 </div>
 </div>
 </div>
 </section>
-<section class="wt-section wt-section--first-answer" aria-labelledby="firstAnswerTitle">
+<section aria-labelledby="firstAnswerTitle" class="wt-section wt-section--first-answer">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Quick Answer</div>
@@ -64,7 +64,7 @@
 </div>
 </div>
 </section>
-<section class="wt-section wt-section--soft" aria-labelledby="whyNambaTitle">
+<section aria-labelledby="whyNambaTitle" class="wt-section wt-section--soft">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Why Namba</div>
@@ -79,7 +79,7 @@
 </div>
 </div>
 </section>
-<section class="wt-section" aria-labelledby="nambaExceptionTitle">
+<section aria-labelledby="nambaExceptionTitle" class="wt-section">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Not Always Namba</div>
@@ -94,46 +94,50 @@
 </div>
 </div>
 </section>
-<section class="wt-section" id="area-compare" aria-labelledby="firstAreaTitle">
+<section aria-labelledby="firstAreaTitle" class="wt-section" id="area-compare">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Area Guide</div>
 <h2 class="wt-section-title" id="firstAreaTitle">난바·신사이바시·혼마치·우메다, 이렇게 고르세요</h2>
 <p class="wt-section-desc">첫 여행자에게는 난바가 가장 쉽지만, 쇼핑 중심인지 조용한 숙박인지, 근교 이동이 많은지에 따라 더 편한 선택지는 달라집니다.</p>
 </div>
-<div class="wt-area-grid wt-area-grid--decision">
-<article class="wt-area-card wt-area-card--decision">
+<div aria-label="지역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true"><input checked="checked" class="wt-area-tab-input" id="first-trip-area-tab-1" name="first-trip-area-tabs" type="radio"/>
+<input class="wt-area-tab-input" id="first-trip-area-tab-2" name="first-trip-area-tabs" type="radio"/>
+<input class="wt-area-tab-input" id="first-trip-area-tab-3" name="first-trip-area-tabs" type="radio"/>
+<input class="wt-area-tab-input" id="first-trip-area-tab-4" name="first-trip-area-tabs" type="radio"/>
+<div aria-label="지역 선택" class="wt-area-tab-list"><label class="wt-area-tab-button" for="first-trip-area-tab-1">난바</label><label class="wt-area-tab-button" for="first-trip-area-tab-2">신사이바시</label><label class="wt-area-tab-button" for="first-trip-area-tab-3">혼마치</label><label class="wt-area-tab-button" for="first-trip-area-tab-4">우메다</label></div>
+<div class="wt-area-tab-panels"><article aria-labelledby="first-trip-area-tab-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <span class="wt-area-card__label">가장 무난한 첫 선택</span>
 <h3>난바</h3>
 <p class="wt-area-card__lead">도톤보리, 구로몬시장, 난카이 난바역 동선을 한 번에 잡기 좋습니다.</p>
 <div class="wt-area-card__note"><strong>추천</strong><span>2박 3일, 먹방, 밤 일정, 첫 방문, 친구 여행</span></div>
 <div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>도톤보리 바로 앞은 소음과 혼잡도를 확인하세요.</span></div>
 </article>
-<article class="wt-area-card wt-area-card--decision">
+<article aria-labelledby="first-trip-area-tab-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <span class="wt-area-card__label">쇼핑과 중심가 균형</span>
 <h3>신사이바시</h3>
 <p class="wt-area-card__lead">쇼핑, 카페, 도톤보리 야간 산책을 함께 잡고 싶은 첫 여행자에게 좋습니다.</p>
 <div class="wt-area-card__note"><strong>추천</strong><span>커플 여행, 쇼핑 일정, 카페 투어, 깔끔한 중심가 선호</span></div>
 <div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>공항 접근만 보면 난바가 더 직관적일 수 있습니다.</span></div>
 </article>
-<article class="wt-area-card wt-area-card--decision">
+<article aria-labelledby="first-trip-area-tab-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <span class="wt-area-card__label">차분한 균형형</span>
 <h3>혼마치</h3>
 <p class="wt-area-card__lead">난바의 번잡함은 줄이고 우메다 이동까지 함께 고려하고 싶을 때 좋습니다.</p>
 <div class="wt-area-card__note"><strong>추천</strong><span>조용한 숙박, 가성비, 시내 이동 균형, 재방문 가능성 있는 여행</span></div>
 <div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>첫날부터 도톤보리 감성을 강하게 원하면 심심할 수 있습니다.</span></div>
 </article>
-<article class="wt-area-card wt-area-card--decision">
+<article aria-labelledby="first-trip-area-tab-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <span class="wt-area-card__label">근교 이동 중심형</span>
 <h3>우메다</h3>
 <p class="wt-area-card__lead">교토·고베·나라를 함께 보는 일정이라면 철도 선택지가 많아 이동 계획을 세우기 좋습니다.</p>
 <div class="wt-area-card__note"><strong>추천</strong><span>근교 여행, 쇼핑몰, 교통 중심, 3박 이상 일정</span></div>
 <div class="wt-area-card__note wt-area-card__note--caution"><strong>주의</strong><span>도톤보리·난바 중심 밤 일정이 많다면 왕복 이동이 번거로울 수 있습니다.</span></div>
 </article>
-</div>
+</div></div>
 </div>
 </section>
-<section class="wt-section wt-section--soft" aria-labelledby="bookingCheckTitle">
+<section aria-labelledby="bookingCheckTitle" class="wt-section wt-section--soft">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Before Booking</div>
@@ -148,7 +152,7 @@
 </div>
 </div>
 </section>
-<section class="wt-section" aria-labelledby="hotelCriteriaTitle">
+<section aria-labelledby="hotelCriteriaTitle" class="wt-section">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Hotel Criteria</div>
@@ -163,12 +167,12 @@
 </div>
 </div>
 </section>
-<section class="wt-section" id="hotels" aria-labelledby="firstHotelTitle">
+<section aria-labelledby="firstHotelTitle" class="wt-section" id="hotels">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Curated Hotels</div>
 <h2 class="wt-section-title" id="firstHotelTitle">첫 오사카 여행 추천 호텔</h2>
-<p class="wt-section-desc">아래 호텔은 첫 여행자의 동선 기준으로 비교하기 좋은 후보입니다. 가격보다 먼저 공항 이동, 밤 복귀, 실제 역 출구 접근성을 함께 확인해보세요.</p>
+<p class="wt-section-desc">아래 호텔은 첫 여행자가 난바·도톤보리 중심 동선과 공항 이동을 함께 비교하기 좋은 후보입니다.</p>
 </div>
 <div class="wt-hotel-grid">
 <article class="wt-hotel-card">
@@ -204,7 +208,7 @@
 </div>
 </div>
 </section>
-<section class="wt-section" aria-labelledby="otherChoicesTitle">
+<section aria-labelledby="otherChoicesTitle" class="wt-section">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Other Choices</div>
@@ -218,7 +222,7 @@
 </div>
 </div>
 </section>
-<section class="wt-section wt-section--compact" aria-labelledby="relatedGuideTitle">
+<section aria-labelledby="relatedGuideTitle" class="wt-section wt-section--compact">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Related Guide</div>
@@ -231,14 +235,14 @@
 </div>
 </div>
 </section>
-<section class="wt-section wt-section--compact wt-purpose-faq" aria-labelledby="firstTripFaqTitle">
+<section aria-labelledby="firstTripFaqTitle" class="wt-section wt-section--compact wt-purpose-faq">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">FAQ</div>
 <h2 class="wt-section-title" id="firstTripFaqTitle">첫 오사카 여행 숙소 선택 FAQ</h2>
 </div>
 <div class="wt-city-faq__accordion">
-<details class="wt-city-faq__item" open><summary>첫 오사카 여행은 난바와 우메다 중 어디가 더 좋나요?</summary><p>도톤보리, 구로몬시장, 신사이바시, 밤 일정과 공항 이동을 한 번에 잡고 싶다면 난바가 더 무난합니다. 교토·고베·나라 같은 근교 이동이 많다면 우메다도 좋은 선택입니다.</p></details>
+<details class="wt-city-faq__item" open=""><summary>첫 오사카 여행은 난바와 우메다 중 어디가 더 좋나요?</summary><p>도톤보리, 구로몬시장, 신사이바시, 밤 일정과 공항 이동을 한 번에 잡고 싶다면 난바가 더 무난합니다. 교토·고베·나라 같은 근교 이동이 많다면 우메다도 좋은 선택입니다.</p></details>
 <details class="wt-city-faq__item"><summary>2박 3일 첫 오사카 여행이면 어느 지역이 편한가요?</summary><p>짧은 일정일수록 이동 시간을 줄이는 것이 중요하므로 난바나 신사이바시처럼 대표 명소와 식사 동선을 짧게 묶을 수 있는 지역이 편합니다.</p></details>
 <details class="wt-city-faq__item"><summary>도톤보리 근처 숙소는 시끄럽지 않나요?</summary><p>도톤보리 바로 앞이나 번화가 저층 객실은 소음이 느껴질 수 있습니다. 숙소 후기에 밤 소음, 객실 층수, 역 출구까지의 실제 동선을 함께 확인하는 것이 좋습니다.</p></details>
 <details class="wt-city-faq__item"><summary>간사이공항에서 이동하기 쉬운 지역은 어디인가요?</summary><p>간사이공항에서 난카이선을 이용한다면 난카이 난바역 접근성이 좋은 숙소가 직관적입니다. 호텔 설명의 난바역보다 실제 난카이 난바역까지의 거리를 확인하는 편이 좋습니다.</p></details>

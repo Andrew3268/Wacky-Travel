@@ -8271,3 +8271,104 @@ main.wt-purpose-page--quiet-stay .container {
     font-size: 24px;
   }
 }
+
+
+/* Area guide tab menu */
+.wt-area-tabs {
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+
+.wt-area-tab-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wt-area-tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding: 0.55rem;
+  border-radius: 999px;
+  background: rgba(245, 241, 234, 0.86);
+}
+
+.wt-area-tab-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.68rem 1rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #5f5548;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.wt-area-tab-button:hover {
+  transform: translateY(-1px);
+  color: #2d251c;
+}
+
+.wt-area-tab-panels {
+  margin-top: 1rem;
+}
+
+.wt-area-tab-panels > .wt-area-card {
+  display: none;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(1),
+.wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(2),
+.wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(3),
+.wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(4),
+.wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(5),
+.wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(6) {
+  background: #fff;
+  color: #2d251c;
+  box-shadow: 0 10px 24px rgba(35, 28, 20, 0.08);
+}
+
+.wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
+.wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
+.wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
+.wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4),
+.wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(5),
+.wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(6) {
+  display: block;
+}
+
+.wt-area-tab-input:focus-visible + .wt-area-tab-input + .wt-area-tab-input + .wt-area-tab-input ~ .wt-area-tab-list,
+.wt-area-tab-input:focus-visible ~ .wt-area-tab-list {
+  outline: 3px solid rgba(58, 47, 35, 0.18);
+  outline-offset: 4px;
+}
+
+@media (max-width: 680px) {
+  .wt-area-tab-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    border-radius: 22px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .wt-area-tab-button {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .wt-area-tab-panels > .wt-area-card {
+    max-width: none;
+  }
+}
