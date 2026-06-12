@@ -8471,3 +8471,91 @@ main.wt-purpose-page--quiet-stay .container {
   }
 }
 
+
+/* wackytravel-v1 - first-trip quick answer + area guide refinement */
+.wt-purpose-page--first-trip .wt-purpose-quick-grid--compact {
+  gap: 12px;
+}
+
+.wt-purpose-page--first-trip .wt-purpose-quick-grid--compact .wt-purpose-quick-card {
+  padding: 18px 18px 17px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.wt-purpose-page--first-trip .wt-purpose-quick-grid--compact .wt-purpose-quick-card strong {
+  margin-top: 7px;
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -0.055em;
+}
+
+.wt-purpose-page--first-trip .wt-purpose-quick-grid--compact .wt-purpose-quick-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-list {
+  justify-content: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.45rem;
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  box-shadow: none;
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-button {
+  color: #475569;
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-button:hover {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(1),
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(2),
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(3),
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(4) {
+  background: #fff;
+  color: #2563eb;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-panel::before {
+  background: none;
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
+.wt-purpose-page--first-trip .wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4) {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: none;
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note {
+  border: 1px solid #e5e7eb;
+  background: #f8fafc;
+  box-shadow: none;
+  min-height: 0;
+}
+
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note--caution {
+  border-color: #fed7aa;
+  background: #fff7ed;
+}
+
+@media (max-width: 680px) {
+  .wt-purpose-page--first-trip .wt-area-tab-list {
+    width: 100%;
+  }
+
+  .wt-purpose-page--first-trip .wt-purpose-quick-grid--compact .wt-purpose-quick-card {
+    padding: 17px;
+  }
+}
