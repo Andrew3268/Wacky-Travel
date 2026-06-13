@@ -16,7 +16,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260606v18" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260606v18" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260611areaGuideV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260613mainAreaTableV1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"오사카","alternateName":"Osaka","description":"오사카 숙소 위치, 호텔 추천, 여행 동선, 공항 접근성, 근교 여행 기준을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/osaka","touristType":["자유여행자","커플 여행자","가족 여행자","호텔 비교 여행자"],"containedInPlace":{"@type":"Country","name":"일본"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 숙소 선택 핵심 동선","itemListElement":[{"@type":"ListItem","position":1,"name":"오사카 숙소 위치 추천 서베이","url":"/destinations/osaka/hotel-location-survey/"},{"@type":"ListItem","position":2,"name":"오사카 여행 스타일별 호텔 추천","url":"/destinations/osaka/hotel-recommendations/"},{"@type":"ListItem","position":3,"name":"오사카 호텔 하나씩 살펴보기","url":"/destinations/osaka/hotels/"},{"@type":"ListItem","position":4,"name":"첫 오사카 여행자 추천","url":"/destinations/osaka/first-trip/"},{"@type":"ListItem","position":5,"name":"오사카 가성비 숙소 추천","url":"/destinations/osaka/value-hotel/"},{"@type":"ListItem","position":6,"name":"오사카 근교 여행 숙소 추천","url":"/destinations/osaka/near-trip/"},{"@type":"ListItem","position":7,"name":"오사카 호텔 위치 고르는 법","url":"/destinations/osaka/hotel-guide/"},{"@type":"ListItem","position":8,"name":"오사카 여행 가이드","url":"/destinations/osaka/travel-guide/"}]}</script>
@@ -183,71 +183,102 @@
 <section aria-labelledby="osakaAreaTitle" class="wt-city-section container" id="area-guide">
 <div class="section-heading">
 <p class="eyebrow">Area Guide</p>
-<h2 id="osakaAreaTitle">아직 고민된다면, 구역별 장단점을 비교해보세요</h2>
-<p>호텔 이름보다 먼저 봐야 할 것은 숙소 위치입니다. 처음이면 난바, 근교 이동이 많으면 우메다, 조용한 가성비는 혼마치, USJ 중심이면 유니버설시티가 무난합니다.</p>
+<h2 id="osakaAreaTitle">오사카 숙소 구역을 한눈에 비교해보세요</h2>
+<p>오사카 메인 페이지에서는 각 구역의 큰 차이만 빠르게 비교할 수 있도록 정리했습니다. 자세한 선택 기준은 여행 목적별 페이지에서 확인하면 됩니다.</p>
 </div>
-
-
-<div aria-label="오사카 숙소 구역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true">
-<input checked="checked" class="wt-area-tab-input" id="osaka-main-area-tab-1" name="osaka-main-area-tabs" type="radio"/>
-<input class="wt-area-tab-input" id="osaka-main-area-tab-2" name="osaka-main-area-tabs" type="radio"/>
-<input class="wt-area-tab-input" id="osaka-main-area-tab-3" name="osaka-main-area-tabs" type="radio"/>
-<input class="wt-area-tab-input" id="osaka-main-area-tab-4" name="osaka-main-area-tabs" type="radio"/>
-<input class="wt-area-tab-input" id="osaka-main-area-tab-5" name="osaka-main-area-tabs" type="radio"/>
-<div aria-label="지역 선택" class="wt-area-tab-list"><label class="wt-area-tab-button" for="osaka-main-area-tab-1">난바</label><label class="wt-area-tab-button" for="osaka-main-area-tab-2">우메다</label><label class="wt-area-tab-button" for="osaka-main-area-tab-3">신사이바시</label><label class="wt-area-tab-button" for="osaka-main-area-tab-4">혼마치</label><label class="wt-area-tab-button" for="osaka-main-area-tab-5">유니버설시티</label></div>
-<div class="wt-area-tab-panels">
-<article aria-labelledby="osaka-main-area-title-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">첫 여행·먹방 중심</span>
-<h3 id="osaka-main-area-title-1">난바</h3>
-<p class="wt-area-card__lead">도톤보리, 구로몬시장, 신사이바시, 공항 이동을 한 번에 묶기 쉬워 첫 오사카 여행의 기본 후보입니다.</p>
+<div class="wt-city-area-table-wrap" aria-label="오사카 숙소 구역 비교표">
+<table class="wt-city-area-table">
+<thead>
+<tr>
+<th scope="col">구역</th>
+<th scope="col">잘 맞는 여행</th>
+<th scope="col">장점</th>
+<th scope="col">주의할 점</th>
+<th scope="col">한줄 선택 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">난바</th>
+<td>첫 여행, 먹방, 도톤보리 야경, 짧은 일정</td>
+<td>공항 이동과 주요 관광 동선이 단순하고 밤에도 식당·상점이 많습니다.</td>
+<td>번화가 안쪽은 혼잡하고 소음이 있을 수 있습니다.</td>
+<td>처음이면 가장 무난한 기본 선택지입니다.</td>
+</tr>
+<tr>
+<th scope="row">우메다</th>
+<td>교토·고베·나라 근교 이동, 쇼핑, 3박 이상</td>
+<td>JR·한큐·한신 등 노선 선택지가 많고 대형 쇼핑몰 접근성이 좋습니다.</td>
+<td>역 구조가 복잡해 첫날에는 동선이 다소 어렵게 느껴질 수 있습니다.</td>
+<td>근교 여행이 많다면 난바보다 편할 수 있습니다.</td>
+</tr>
+<tr>
+<th scope="row">신사이바시</th>
+<td>쇼핑, 카페, 커플 여행, 난바 근처 숙박</td>
+<td>난바와 가깝고 쇼핑 거리 접근성이 좋아 도보 이동을 활용하기 좋습니다.</td>
+<td>호텔 위치에 따라 공항 접근성은 난바보다 덜 직관적일 수 있습니다.</td>
+<td>중심지는 원하지만 난바 한복판은 부담스러울 때 좋습니다.</td>
+</tr>
+<tr>
+<th scope="row">혼마치</th>
+<td>가성비, 조용한 숙박, 재방문, 여러 구역 분산 일정</td>
+<td>난바와 우메다 사이에 있어 이동 균형이 좋고 비교적 차분합니다.</td>
+<td>도톤보리 같은 즉각적인 여행 분위기는 약할 수 있습니다.</td>
+<td>숙박비와 이동 균형을 함께 보고 싶을 때 적합합니다.</td>
+</tr>
+<tr>
+<th scope="row">유니버설시티</th>
+<td>USJ 오픈런, 가족 여행, 테마파크 집중 일정</td>
+<td>USJ 이동 피로를 크게 줄이고 늦은 시간 복귀가 편합니다.</td>
+<td>시내 관광이 많은 일정에는 난바·우메다 이동이 번거로울 수 있습니다.</td>
+<td>USJ가 여행의 핵심일 때만 우선순위가 높습니다.</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="wt-area-tab-panel__details">
-<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>첫날 길 찾기, 밤 일정 후 복귀, 짧은 일정의 이동 낭비를 줄이는 데 강합니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 여행</strong><span>첫 방문, 2박 3일, 먹방, 친구 여행, 도톤보리 야경 중심 일정에 좋습니다.</span></div><div class="wt-area-card__note"><strong>호텔 고를 때</strong><span>난카이 난바역, 지하철 난바역, 오사카난바역 중 실제 이용 역과 호텔 출구 동선을 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>번화가 안쪽은 소음과 혼잡도가 있을 수 있어 저층 객실과 밤 소음 후기를 함께 봐야 합니다.</span></div>
+<div class="wt-city-area-accordion" aria-label="오사카 숙소 구역 모바일 비교">
+<details class="wt-city-area-accordion__item" open>
+<summary><span class="wt-city-area-accordion__title">난바</span><span class="wt-city-area-accordion__fit">첫 여행 · 먹방 · 도톤보리 야경</span></summary>
+<div class="wt-city-area-accordion__body">
+<div><span>장점</span><p>공항 이동과 주요 관광 동선이 단순하고 밤에도 식당과 상점이 많습니다.</p></div>
+<div><span>주의할 점</span><p>번화가 안쪽은 혼잡하고 소음이 있을 수 있어 객실 위치 후기를 함께 보는 편이 좋습니다.</p></div>
+<div><span>선택 기준</span><p>오사카가 처음이고 일정이 짧다면 가장 무난한 기본 선택지입니다.</p></div>
 </div>
-</article>
-<article aria-labelledby="osaka-main-area-title-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">근교·쇼핑 중심</span>
-<h3 id="osaka-main-area-title-2">우메다</h3>
-<p class="wt-area-card__lead">교토, 고베, 나라 이동과 대형 쇼핑몰 접근성이 좋아 근교를 함께 보는 여행자에게 유리합니다.</p>
+</details>
+<details class="wt-city-area-accordion__item">
+<summary><span class="wt-city-area-accordion__title">우메다</span><span class="wt-city-area-accordion__fit">근교 이동 · 쇼핑 · 3박 이상</span></summary>
+<div class="wt-city-area-accordion__body">
+<div><span>장점</span><p>JR·한큐·한신 등 노선 선택지가 많고 교토, 고베, 나라 이동을 함께 잡기 좋습니다.</p></div>
+<div><span>주의할 점</span><p>역 구조가 복잡해 첫 방문자는 호텔과 가장 가까운 출구를 미리 확인하는 것이 좋습니다.</p></div>
+<div><span>선택 기준</span><p>근교 여행 비중이 높다면 난바보다 편한 숙소 후보가 될 수 있습니다.</p></div>
 </div>
-<div class="wt-area-tab-panel__details">
-<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>근교 이동 때마다 출발역까지 이동하느라 시간을 쓰거나, 쇼핑·식사 선택지가 부족한 문제를 줄입니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 여행</strong><span>3박 이상, 부모님 동반, 교토·고베 당일치기, 백화점·쇼핑몰 중심 일정에 좋습니다.</span></div><div class="wt-area-card__note"><strong>호텔 고를 때</strong><span>오사카역과 우메다역 주변은 복잡하므로 주로 이용할 노선까지의 실제 도보 경로를 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>난바·도톤보리 밤 일정이 많다면 왕복 이동이 반복되어 피로가 쌓일 수 있습니다.</span></div>
+</details>
+<details class="wt-city-area-accordion__item">
+<summary><span class="wt-city-area-accordion__title">신사이바시</span><span class="wt-city-area-accordion__fit">쇼핑 · 카페 · 난바 근처 숙박</span></summary>
+<div class="wt-city-area-accordion__body">
+<div><span>장점</span><p>난바와 가깝고 쇼핑 거리 접근성이 좋아 도보 중심 일정에 잘 맞습니다.</p></div>
+<div><span>주의할 점</span><p>공항에서 바로 들어오는 동선은 호텔 위치에 따라 난바보다 덜 직관적일 수 있습니다.</p></div>
+<div><span>선택 기준</span><p>중심지는 원하지만 난바 한복판의 혼잡함은 줄이고 싶을 때 좋습니다.</p></div>
 </div>
-</article>
-<article aria-labelledby="osaka-main-area-title-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">쇼핑·카페 균형</span>
-<h3 id="osaka-main-area-title-3">신사이바시</h3>
-<p class="wt-area-card__lead">난바와 가깝지만 조금 더 정돈된 중심가 분위기를 원할 때 비교하기 좋은 지역입니다.</p>
+</details>
+<details class="wt-city-area-accordion__item">
+<summary><span class="wt-city-area-accordion__title">혼마치</span><span class="wt-city-area-accordion__fit">가성비 · 조용한 숙박 · 이동 균형</span></summary>
+<div class="wt-city-area-accordion__body">
+<div><span>장점</span><p>난바와 우메다 사이에 있어 이동 균형이 좋고 숙소 주변 분위기가 비교적 차분합니다.</p></div>
+<div><span>주의할 점</span><p>도톤보리 같은 여행 감성은 약해 첫 방문자에게는 다소 심심하게 느껴질 수 있습니다.</p></div>
+<div><span>선택 기준</span><p>숙박비와 이동 효율을 함께 보고 싶다면 비교해볼 만한 구역입니다.</p></div>
 </div>
-<div class="wt-area-tab-panel__details">
-<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>도톤보리와 너무 멀어지고 싶지는 않지만, 숙소 주변이 지나치게 혼잡할까 봐 걱정되는 부분을 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 여행</strong><span>커플, 쇼핑, 카페 투어, 아메리카무라, 도톤보리 야간 산책을 함께 보는 일정에 좋습니다.</span></div><div class="wt-area-card__note"><strong>호텔 고를 때</strong><span>신사이바시역 기준인지 나가호리바시역 기준인지에 따라 실제 동선이 달라집니다.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>공항에서 바로 이동하는 동선은 난바보다 덜 직관적일 수 있습니다.</span></div>
+</details>
+<details class="wt-city-area-accordion__item">
+<summary><span class="wt-city-area-accordion__title">유니버설시티</span><span class="wt-city-area-accordion__fit">USJ · 가족 여행 · 테마파크 집중</span></summary>
+<div class="wt-city-area-accordion__body">
+<div><span>장점</span><p>USJ 오픈런과 폐장 후 복귀 피로를 줄이기 가장 좋은 위치입니다.</p></div>
+<div><span>주의할 점</span><p>시내 관광이 많은 일정이라면 난바나 우메다 이동이 번거로울 수 있습니다.</p></div>
+<div><span>선택 기준</span><p>USJ가 여행의 핵심일 때만 우선순위가 높은 선택지입니다.</p></div>
 </div>
-</article>
-<article aria-labelledby="osaka-main-area-title-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">조용한 가성비 균형</span>
-<h3 id="osaka-main-area-title-4">혼마치</h3>
-<p class="wt-area-card__lead">난바와 우메다 사이에서 이동 균형을 잡고, 숙박비와 조용함을 함께 보고 싶을 때 좋습니다.</p>
+</details>
 </div>
-<div class="wt-area-tab-panel__details">
-<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>외곽으로 빠지지 않으면서도 번화가 소음, 숙박비 부담, 이동 피로를 동시에 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 여행</strong><span>가성비, 조용한 숙박, 재방문, 혼행, 여러 지역을 고르게 도는 일정에 좋습니다.</span></div><div class="wt-area-card__note"><strong>호텔 고를 때</strong><span>혼마치역은 출구와 노선이 많아 호텔과 가까운 출구, 엘리베이터 위치를 확인해야 합니다.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>도톤보리 같은 즉각적인 여행 감성은 약할 수 있습니다.</span></div>
-</div>
-</article>
-<article aria-labelledby="osaka-main-area-title-5" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
-<div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">USJ 집중형</span>
-<h3 id="osaka-main-area-title-5">유니버설시티</h3>
-<p class="wt-area-card__lead">USJ 오픈런과 폐장 후 복귀 피로를 줄이는 데 가장 확실한 선택지입니다.</p>
-</div>
-<div class="wt-area-tab-panel__details">
-<div class="wt-area-card__note"><strong>이런 걱정을 줄여줍니다</strong><span>아이와 오래 걷고 난 뒤 다시 시내로 이동해야 하는 피로, 늦은 시간 귀가 부담을 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 여행</strong><span>USJ 1~2일 집중, 아이 동반 가족, 테마파크 중심 일정에 좋습니다.</span></div><div class="wt-area-card__note"><strong>호텔 고를 때</strong><span>USJ 일정이 하루인지 이틀 이상인지 먼저 정하고, 시내 관광일이 많으면 숙박 분리도 고려하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>난바·우메다 등 시내 관광 중심 일정에는 이동 시간이 길어질 수 있습니다.</span></div>
-</div>
-</article>
-</div>
-</div></section>
+</section>
 <section aria-labelledby="osakaGuideLinksTitle" class="wt-city-guide-links container" id="guides">
 <div class="section-heading section-heading--split">
 <div>
