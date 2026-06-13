@@ -9339,3 +9339,100 @@ main.wt-purpose-page--quiet-stay .container {
     border-radius: 16px;
   }
 }
+
+
+/* V32 - Unified Osaka primary buttons and softer purpose area notes */
+.wt-city-button--primary,
+.wt-city-hero__actions .wt-city-button--primary,
+.wt-city-cta .wt-city-button--primary,
+.wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button--primary {
+  border-color: rgba(37, 99, 235, .16);
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 12px 26px rgba(37, 99, 235, .18);
+}
+
+.wt-city-button--primary:hover,
+.wt-city-hero__actions .wt-city-button--primary:hover,
+.wt-city-cta .wt-city-button--primary:hover,
+.wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button--primary:hover {
+  border-color: rgba(29, 78, 216, .2);
+  background: #1d4ed8;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.wt-city-cta .wt-city-button,
+.wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button {
+  min-height: 50px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.wt-purpose-page .wt-area-tab-panel__details {
+  gap: 14px;
+}
+
+.wt-purpose-page .wt-area-tab-panel .wt-area-card__note,
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note {
+  position: relative;
+  display: block;
+  min-height: 0;
+  padding: 16px 17px;
+  border: 1px solid #e5eaf1;
+  border-radius: 18px;
+  background: #f8fafc;
+  box-shadow: none;
+}
+
+.wt-purpose-page .wt-area-tab-panel .wt-area-card__note strong,
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note strong {
+  color: #1e293b;
+  font-size: 13.5px;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.wt-purpose-page .wt-area-tab-panel .wt-area-card__note span,
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note span {
+  margin-top: 7px;
+  color: #475569;
+  font-size: 14.3px;
+  line-height: 1.75;
+}
+
+.wt-purpose-page .wt-area-tab-panel .wt-area-card__note--caution,
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note--caution {
+  border-color: #dbe3ef;
+  background: #f8fafc;
+}
+
+.wt-purpose-page .wt-area-tab-panel .wt-area-card__note--caution strong,
+.wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note--caution strong {
+  color: #334155;
+}
+
+@media (max-width: 767px) {
+  .wt-city-hero__actions .wt-city-button,
+  .wt-city-cta .wt-city-button,
+  .wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button {
+    min-height: 54px;
+    padding: 0 22px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .wt-city-hero__actions .wt-city-button,
+  .wt-city-cta .wt-city-button {
+    width: 100%;
+  }
+
+  .wt-purpose-page .wt-area-tab-panel .wt-area-card__note,
+  .wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note {
+    padding: 15px 16px;
+    border-radius: 16px;
+  }
+}
