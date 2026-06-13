@@ -10,6 +10,8 @@
   ],
   "exclude": [
     "/destinations/osaka",
-    "/destinations/osaka/*"
+    "/destinations/osaka/*",
+    "/destinations/fukuoka",
+    "/destinations/fukuoka/*"
   ]
 }
