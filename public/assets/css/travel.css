@@ -7998,6 +7998,17 @@ main.wt-purpose-page--quiet-stay .container {
   margin: 0;
 }
 
+
+
+/* V44 - Osaka main Area Guide to CTA spacing */
+#area-guide.wt-city-section {
+  padding-bottom: clamp(18px, 3vw, 34px);
+}
+
+#area-guide + .wt-city-cta {
+  padding-top: 0;
+}
+
 /* V43 - Osaka conversion-first destination hub refinements */
 .wt-city-cta {
   padding-top: 10px;
@@ -8080,6 +8091,15 @@ main.wt-purpose-page--quiet-stay .container {
 }
 
 @media (max-width: 767px) {
+
+  #area-guide.wt-city-section {
+    padding-bottom: 24px;
+  }
+
+  #area-guide + .wt-city-cta {
+    padding-top: 0;
+  }
+
   .wt-city-cta {
     padding-top: 10px;
     padding-bottom: 38px;
