@@ -270,7 +270,13 @@ function buildPostsHeroNav(categories = []) {
 
   const postsHomeHeroEl = $('#postsHomeHero');
 
-
+  // 정적 도시/가이드 페이지에는 글 목록 DOM이 없을 수 있습니다.
+  // 이 경우 /api/posts 호출과 목록 렌더링을 건너뛰어 null.innerHTML 오류를 방지합니다.
+  const hasPostsRuntimeTarget = Boolean(
+    listEl || postsHomeHeroEl || heroCategoryBarEl || postsCategoriesEl ||
+    postsCategoriesBarEl || postsPopularEl || mobileSiteCategoryBarEl
+  );
+  if (!hasPostsRuntimeTarget) return;
 
   function setHomeHeroMode() {
     if (!postsHomeHeroEl) return;
@@ -473,6 +479,7 @@ function buildPostsHeroNav(categories = []) {
   }
 
   function renderItems(items, { append = false, pageNumber = currentPage } = {}) {
+    if (!listEl) return;
     const markup = items.map((it, index) => {
       const rawTitle = String(it.title || '(제목 없음)');
       const title = escapeHtml(rawTitle);
@@ -533,6 +540,7 @@ function buildPostsHeroNav(categories = []) {
   }
 
   async function fetchPage(page, { append = false } = {}) {
+    if (!listEl) return;
     if (isLoading) return;
     isLoading = true;
     updateLoadMore({ has_more: hasMore, next_page: page });
@@ -557,7 +565,7 @@ function buildPostsHeroNav(categories = []) {
       clearAppendSkeleton();
 
       if (!items.length && !append) {
-        listEl.innerHTML = '';
+        if (listEl) listEl.innerHTML = '';
         renderSidebar(sidebar);
         show(emptyEl, true);
         if (emptyEl) {
@@ -582,12 +590,12 @@ function buildPostsHeroNav(categories = []) {
     } catch (err) {
       clearAppendSkeleton();
       if (!append) {
-        listEl.innerHTML = '';
+        if (listEl) listEl.innerHTML = '';
         renderSidebar({ counts: { total: 0, published: 0, draft: 0 }, categories: [], popular: [] });
       }
       show(emptyEl, false);
       show(errorEl, true);
-      errorEl.textContent = '목록을 불러오지 못했습니다. ' + (err?.message || '');
+      if (errorEl) errorEl.textContent = '목록을 불러오지 못했습니다. ' + (err?.message || '');
     } finally {
       isLoading = false;
       updateLoadMore({ has_more: hasMore, next_page: currentPage + 1 });
