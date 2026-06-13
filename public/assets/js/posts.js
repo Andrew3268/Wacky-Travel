@@ -249,6 +249,205 @@ function buildPostsHeroNav(categories = []) {
   return items.join('');
 }
 
+
+/* CITY_HOTEL_PICKS_RUNTIME_V1 */
+(function () {
+  const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
+  const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
+  if (!cityPostRoots.length && !cityTravelRoots.length) return;
+
+  const CITY_ARCHIVES = {
+    osaka: {
+      top5_series: '/destinations/osaka/hotel-recommendations/',
+      hotel_intro: '/destinations/osaka/hotels/',
+      fallback: '/destinations/osaka/hotels/',
+      fallbackLabel: '오사카 호텔 글 더 보기 →'
+    },
+    fukuoka: {
+      top5_series: '/destinations/fukuoka/hotel-recommendations/',
+      hotel_intro: '/destinations/fukuoka/hotels/',
+      fallback: '/destinations/fukuoka/hotels/',
+      fallbackLabel: '후쿠오카 호텔 글 더 보기 →'
+    },
+    tokyo: {
+      top5_series: '/destinations/tokyo/hotel-recommendations/',
+      hotel_intro: '/destinations/tokyo/hotels/',
+      fallback: '/destinations/tokyo/hotels/',
+      fallbackLabel: '도쿄 호텔 글 더 보기 →'
+    },
+    sapporo: {
+      top5_series: '/destinations/sapporo/hotel-recommendations/',
+      hotel_intro: '/destinations/sapporo/hotels/',
+      fallback: '/destinations/sapporo/hotels/',
+      fallbackLabel: '삿포로 호텔 글 더 보기 →'
+    }
+  };
+
+  const HOTEL_ARCHIVE_LABELS = {
+    top5_series: '여행 스타일별 호텔 추천 더 보기 →',
+    hotel_intro: '호텔 하나씩 살펴보기 더 보기 →'
+  };
+
+  const fetchJson = async (url, fallback) => {
+    try {
+      const response = await fetch(url, { headers: { accept: 'application/json' }, cache: 'no-store' });
+      if (!response.ok) return fallback;
+      return await response.json();
+    } catch (_) {
+      return fallback;
+    }
+  };
+
+  const buildDestinationPostUrl = ({ destination, type, offset = 0, limit = 6 }) => {
+    const params = new URLSearchParams({
+      destination: String(destination || ''),
+      type: String(type || ''),
+      offset: String(Math.max(0, Number(offset || 0))),
+      limit: String(Math.max(1, Number(limit || 6)))
+    });
+    return '/api/destination-posts?' + params.toString();
+  };
+
+  const renderEmpty = (grid) => {
+    if (!grid) return;
+    grid.innerHTML = '<div class="empty-card" data-city-post-empty="">아직 관련글이 없습니다.</div>';
+  };
+
+  const setFooterLink = ({ footer, destination, type, hasItems }) => {
+    if (!footer) return;
+    footer.innerHTML = '';
+    footer.hidden = true;
+    if (!hasItems) return;
+    const archive = CITY_ARCHIVES[destination] || {};
+    const href = archive[type] || archive.fallback || `/destinations/${encodeURIComponent(destination || '')}/hotels/`;
+    const label = HOTEL_ARCHIVE_LABELS[type] || archive.fallbackLabel || '호텔 글 더 보기 →';
+    footer.innerHTML = `<a class="hotel-load-more" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+    footer.hidden = false;
+  };
+
+  const setActiveTab = (root, type) => {
+    if (!root) return;
+    root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
+      const active = button.getAttribute('data-city-post-tab') === type;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    root.querySelectorAll('[data-city-post-panel]').forEach((panel) => {
+      const active = panel.getAttribute('data-city-post-panel') === type;
+      panel.classList.toggle('is-active', active);
+      panel.hidden = !active;
+    });
+  };
+
+  const loadHotelGroup = async (root, type) => {
+    const destination = String(root?.dataset?.destinationSlug || '').trim();
+    const limit = Math.max(1, Number(root?.dataset?.pageSize || 6) || 6);
+    const grid = root?.querySelector(`[data-city-post-grid="${type}"]`);
+    const footer = root?.querySelector(`[data-city-post-footer="${type}"]`);
+    if (!destination || !grid) return;
+
+    grid.setAttribute('aria-busy', 'true');
+    const data = await fetchJson(buildDestinationPostUrl({ destination, type, offset: 0, limit }), {
+      ok: false,
+      html: '',
+      hasMore: false,
+      nextOffset: 0,
+      total: 0
+    });
+
+    const hasHtml = Boolean(data && data.ok && String(data.html || '').trim());
+    if (!hasHtml) {
+      renderEmpty(grid);
+      setFooterLink({ footer, destination, type, hasItems: false });
+      grid.removeAttribute('aria-busy');
+      return;
+    }
+
+    grid.innerHTML = data.html;
+    setFooterLink({ footer, destination, type, hasItems: true });
+    grid.removeAttribute('aria-busy');
+  };
+
+  const loadTravelPosts = async (root) => {
+    const destination = String(root?.dataset?.destinationSlug || '').trim();
+    const limit = Math.max(1, Number(root?.dataset?.pageSize || 5) || 5);
+    const list = root?.querySelector('[data-city-travel-list]');
+    const footer = root?.querySelector('[data-city-travel-footer]');
+    const section = root?.closest('.wt-city-dynamic-section');
+    if (!destination || !list) return;
+
+    const data = await fetchJson(buildDestinationPostUrl({ destination, type: 'travel_content', offset: 0, limit }), {
+      ok: false,
+      html: '',
+      hasMore: false,
+      nextOffset: 0
+    });
+
+    if (data && data.ok && String(data.html || '').trim()) {
+      list.innerHTML = data.html;
+      if (footer) {
+        if (data.hasMore) {
+          footer.innerHTML = `<button class="hotel-load-more" type="button" data-city-travel-more="travel_content" data-offset="${Number(data.nextOffset || limit)}">더보기</button>`;
+          footer.hidden = false;
+        } else {
+          footer.innerHTML = '';
+          footer.hidden = true;
+        }
+      }
+      if (section) section.hidden = false;
+      return;
+    }
+
+    list.innerHTML = '';
+    if (footer) {
+      footer.innerHTML = '';
+      footer.hidden = true;
+    }
+    if (section) section.hidden = true;
+  };
+
+  cityPostRoots.forEach((root) => {
+    root.addEventListener('click', (event) => {
+      const tabButton = event.target.closest('[data-city-post-tab]');
+      if (!tabButton) return;
+      setActiveTab(root, tabButton.getAttribute('data-city-post-tab'));
+    });
+    loadHotelGroup(root, 'top5_series');
+    loadHotelGroup(root, 'hotel_intro');
+  });
+
+  cityTravelRoots.forEach((root) => {
+    root.addEventListener('click', async (event) => {
+      const moreButton = event.target.closest('[data-city-travel-more]');
+      if (!moreButton || moreButton.dataset.loading === '1') return;
+      const destination = String(root.dataset.destinationSlug || '').trim();
+      const list = root.querySelector('[data-city-travel-list]');
+      const footer = root.querySelector('[data-city-travel-footer]');
+      const offset = Number(moreButton.dataset.offset || 0);
+      const limit = Math.max(1, Number(root.dataset.pageSize || 5) || 5);
+      if (!destination || !list || !footer) return;
+
+      moreButton.dataset.loading = '1';
+      moreButton.textContent = '불러오는 중...';
+      const data = await fetchJson(buildDestinationPostUrl({ destination, type: 'travel_content', offset, limit }), {
+        ok: false,
+        html: '',
+        hasMore: false,
+        nextOffset: offset
+      });
+      if (data && data.ok && String(data.html || '').trim()) list.insertAdjacentHTML('beforeend', data.html);
+      if (data && data.hasMore) {
+        footer.innerHTML = `<button class="hotel-load-more" type="button" data-city-travel-more="travel_content" data-offset="${Number(data.nextOffset || offset + limit)}">더보기</button>`;
+        footer.hidden = false;
+      } else {
+        footer.innerHTML = '';
+        footer.hidden = true;
+      }
+    });
+    loadTravelPosts(root);
+  });
+})();
+
 (function () {
   const $ = (sel) => document.querySelector(sel);
   const listEl = $('#postsList');
