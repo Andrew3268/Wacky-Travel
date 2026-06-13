@@ -12,6 +12,8 @@
     "/destinations/osaka",
     "/destinations/osaka/*",
     "/destinations/fukuoka",
-    "/destinations/fukuoka/*"
+    "/destinations/fukuoka/*",
+    "/destinations/tokyo",
+    "/destinations/tokyo/*"
   ]
 }

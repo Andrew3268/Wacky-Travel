@@ -1,274 +1,566 @@
 /*
  * Fukuoka hotel location survey logic.
  * This file is intentionally city-specific.
+ * Future cities should use their own file, for example:
+ * /assets/js/destinations/fukuoka/hotel-location-survey.js
  */
 const cityConfig = {
-  cityName: "후쿠오카",
-  areas: {
-    namba: {
-      name: "하카타",
-      label: "첫 후쿠오카 여행자에게 가장 무난한 교통 중심 위치",
-      summary: "공항 이동, JR 이동, 짧은 일정, 귀국일 동선을 함께 고려하면 하카타역 주변이 가장 안정적입니다.",
-      leadTitle: "공항에서 들어오고 다시 떠나는 동선이 단순합니다.",
-      leadText: "후쿠오카공항에서 도심으로 들어오는 시간이 짧고, JR·지하철·버스가 모여 있어 첫 여행자가 숙소 위치로 실패할 확률이 낮습니다. 다자이후, 기타큐슈 등 근교 이동을 함께 넣는 일정에도 기준점이 되기 좋습니다.",
-      stayRange: ["하카타역 도보 10분 이내", "공항 이동이 중요하면 지하철 공항선 접근이 쉬운 위치", "캐리어가 있다면 역 출구와 엘리베이터 동선을 확인"],
-      avoidRange: ["밤 감성을 기대하고 역 주변 비즈니스 호텔만 보는 선택", "하카타역 도보 12분 이상인데 버스·지하철 접근이 애매한 위치", "가족 동반인데 객실 크기 후기가 부족한 숙소"],
-      bestFor: ["첫 후쿠오카 여행", "짧은 2박 3일", "공항 이동", "JR 근교 이동"],
-      notFor: ["밤마다 야타이를 즐기는 일정", "쇼핑과 카페가 여행의 핵심인 일정", "공원·해변 중심의 느린 여행"],
-      bookingTips: ["하카타역 도보 시간만 보지 말고 실제 이용할 출구와 엘리베이터를 확인하세요.", "귀국일 아침 비행기라면 하카타역보다 지하철 공항선 접근성이 더 중요할 수 있습니다.", "역 앞 호텔은 편하지만 가격이 높을 수 있으니 기온 방향도 함께 비교하세요."],
-      chips: ["첫 여행", "공항 이동", "JR", "짧은 일정", "귀국일"],
-      compareGood: "공항·철도·버스 이동이 단순해 여행 초반과 귀국일 피로를 줄이기 쉽습니다.",
-      compareCaution: "여행 감성이나 밤 산책 분위기는 텐진·나카스보다 약하게 느껴질 수 있습니다.",
-      mismatchNote: "이번 답변에서 쇼핑, 밤거리, 조용한 휴식을 더 중요하게 골랐다면 하카타는 1순위가 아닐 수 있습니다.",
-      links: [
-        { title: "하카타역 근처 호텔 추천 TOP5", url: "/post/fukuoka-hakata-station-hotels" },
-        { title: "후쿠오카 첫 여행 호텔 추천 TOP5", url: "/post/fukuoka-first-trip-hotels" },
-        { title: "후쿠오카 공항 이동 편한 호텔 추천 TOP5", url: "/post/fukuoka-airport-access-hotels" },
-        { title: "후쿠오카 하카타 가성비 호텔 추천 TOP5", url: "/post/fukuoka-hakata-value-hotels" },
-        { title: "후쿠오카 부모님과 가기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-parents-hotels" }
-      ],
-      hotels: [
-        { name: "미야코 호텔 하카타", tag: "하카타역 바로 앞", location: "하카타역 권역", reason: "공항 이동과 JR 이동을 모두 단순하게 만들고 싶은 첫 여행자에게 비교 가치가 높습니다.", meta: ["첫 여행", "공항 이동", "역세권"], url: "/post/miyako-hotel-hakata" },
-        { name: "JR 큐슈 호텔 블러섬 하카타 센트럴", tag: "하카타 중심", location: "하카타역 권역", reason: "하카타역 접근성과 도심 이동의 균형을 함께 보고 싶은 일정에 좋습니다.", meta: ["JR 이동", "깔끔한 도심", "짧은 일정"], url: "/post/jr-kyushu-hotel-blossom-hakata-central" },
-        { name: "호텔 닛코 후쿠오카", tag: "안정형", location: "하카타역 권역", reason: "부모님 동반이나 안정적인 숙박 분위기를 중요하게 보는 여행자에게 어울립니다.", meta: ["부모님 동반", "하카타", "안정형"], url: "/post/hotel-nikko-fukuoka" },
-        { name: "더 블라썸 하카타 프리미어", tag: "하카타·기온 균형", location: "하카타·기온 사이", reason: "하카타역과 캐널시티 접근성을 함께 보고 싶은 여행자에게 좋은 후보입니다.", meta: ["위치 균형", "캐널시티", "도심형"], url: "/post/the-blossom-hakata-premier" },
-        { name: "호텔 포르자 하카타에키 치쿠시구치", tag: "실속형", location: "하카타역 동쪽", reason: "하카타역 접근성과 가격 균형을 함께 보고 싶은 여행자에게 비교하기 좋습니다.", meta: ["가성비", "하카타역", "교통"], url: "/post/hotel-forza-hakataeki-chikushiguchi" }
+      cityName: "후쿠오카",
+      areas: {
+        namba: {
+          name: "하카타·나카스",
+          label: "첫 후쿠오카 여행자에게 가장 무난한 중심 위치",
+          summary: "먹거리, 쇼핑, 밤거리, 공항 접근성을 함께 고려하면 하카타·나카스 주변이 가장 무난합니다.",
+          leadTitle: "대표 명소 중심으로 짧고 단순한 동선을 만들기 좋습니다.",
+          leadText: "나카스, 텐진, 캐널시티, 하카타역 주변을 자주 오갈 계획이라면 이동 피로를 줄이기 좋습니다. 짧은 일정일수록 위치 장점이 크게 느껴집니다.",
+          stayRange: [
+            "하카타역, 고후쿠마치역, 텐진역 도보 10분 이내",
+            "나카스 접근성을 원한다면 번화가와 너무 붙지 않은 골목",
+            "공항 이동을 중시한다면 하카타역 접근성이 좋은 위치"
+          ],
+          avoidRange: [
+            "늦은 밤 소음이 걱정된다면 나카스 바로 앞 저층 객실",
+            "객실 크기를 중요하게 본다면 극중심가의 초소형 비즈니스 호텔",
+            "부모님 동반이라면 계단 이동이 많은 역 출구 주변"
+          ],
+          bestFor: ["첫 후쿠오카 여행", "친구 여행", "맛집·쇼핑 중심 일정", "짧은 2박 3일 일정"],
+          notFor: ["조용한 숙소가 최우선인 여행", "다자이후·이토시마 등 근교 이동이 더 많은 일정", "넓은 객실을 우선하는 가족 여행"],
+          bookingTips: [
+            "하카타역 도보 시간만 보지 말고 실제 이용할 노선 출구와의 거리를 확인하세요.",
+            "나카스 접근성과 소음은 반비례할 수 있으니 후기에서 밤 소음 언급을 확인하세요.",
+            "공항 이동이 중요하면 하카타역까지의 이동 동선을 우선 비교하세요."
+          ],
+          chips: ["첫 여행", "맛집", "쇼핑", "밤거리", "공항 이동"],
+          compareGood: "대표 명소와 맛집 동선이 짧고 여행 초보자도 이동 계획을 세우기 쉽습니다.",
+          compareCaution: "번화가에 가까울수록 소음, 객실 크기, 가격을 꼼꼼히 봐야 합니다.",
+          mismatchNote: "이번 답변에서 조용함, 가족형 여유, 근교 이동을 더 중요하게 봤다면 하카타는 1순위가 아닐 수 있습니다.",
+          links: [
+            { title: "하카타 근처 호텔 추천 TOP5", url: "/post/fukuoka-namba-hotels" },
+            { title: "나카스 근처 호텔 추천 TOP5", url: "/post/dotonbori-hotels" }
+          ,
+            { title: "후쿠오카 하카타 가성비 호텔 추천 TOP5", url: "/post/fukuoka-namba-value-hotels" },
+            { title: "후쿠오카 첫 여행 호텔 추천 TOP5", url: "/post/fukuoka-first-trip-hotels" },
+            { title: "후쿠오카 나카스 도보권 호텔 추천 TOP5", url: "/post/fukuoka-dotonbori-walk-hotels" }],
+          hotels: [
+            {
+              name: "호텔 몬토레 그라스미아 후쿠오카",
+              tag: "하카타역 접근",
+              location: "하카타·나카스 권역",
+              reason: "하카타 중심 동선과 공항 이동을 함께 고려할 때 비교 후보로 넣기 좋은 숙소입니다.",
+              meta: ["첫 여행", "공항 이동", "쇼핑 동선"],
+              url: "/post/hotel-monterey-grasmere-fukuoka"
+            },
+            {
+              name: "크로스 호텔 후쿠오카",
+              tag: "나카스 중심",
+              location: "나카스·텐진 사이",
+              reason: "맛집, 쇼핑, 밤거리 중심으로 짧게 움직이고 싶은 여행자에게 어울리는 위치입니다.",
+              meta: ["맛집", "밤거리", "커플·친구"],
+              url: "/post/cross-hotel-fukuoka"
+            },
+            {
+              name: "소테츠 그랜드 프레사 후쿠오카 하카타",
+              tag: "실속형 후보",
+              location: "고후쿠마치·하카타 권역",
+              reason: "하카타 접근성과 가격 균형을 함께 보고 싶은 여행자에게 비교하기 좋은 후보입니다.",
+              meta: ["가성비", "역세권", "대표 동선"],
+              url: "/post/sotetsu-grand-fresa-fukuoka-namba"
+            }
+          ,
+            {
+              name: "온야도 노노 하카타 내추럴 핫 스프링",
+              tag: "온천형 후보",
+              location: "고후쿠마치·하카타 권역",
+              reason: "하카타 접근성과 휴식 요소를 함께 보고 싶은 여행자에게 비교 가치가 있는 후보입니다.",
+              meta: ["온천", "하카타 접근", "휴식"],
+              url: "/post/onyado-nono-namba"
+            },
+            {
+              name: "호텔 그레이스리 후쿠오카 하카타",
+              tag: "깔끔한 도심형",
+              location: "JR 하카타·하카타 권역",
+              reason: "하카타 생활권 안에서 깔끔한 객실과 이동 편의성을 함께 고려할 때 보기 좋습니다.",
+              meta: ["깔끔한 숙소", "역세권", "짧은 일정"],
+              url: "/post/hotel-gracery-fukuoka-namba"
+            }]
+        },
+        shinsaibashi: {
+          name: "텐진·기온",
+          label: "쇼핑과 위치 균형을 잡기 좋은 실속형 위치",
+          summary: "하카타 접근성은 유지하면서 조금 더 차분한 분위기와 가격 균형을 원한다면 텐진·기온가 잘 맞습니다.",
+          leadTitle: "번화가 접근성과 차분한 숙박 분위기 사이의 균형이 좋습니다.",
+          leadText: "텐진는 쇼핑 동선에 강하고, 기온는 하카타와 하카타 사이에서 이동 균형을 잡기 좋습니다. 너무 번잡한 숙소가 부담스러운 여행자에게 특히 잘 맞습니다.",
+          stayRange: [
+            "텐진역, 와타나베도리역, 기온역 도보 10분 이내",
+            "쇼핑 중심이면 텐진스지 접근성이 좋은 위치",
+            "이동 균형을 원하면 기온역 주변"
+          ],
+          avoidRange: [
+            "나카스 야간 동선이 핵심인데 너무 북쪽으로 올라간 위치",
+            "역 도보 12분 이상인데 주변 편의시설이 적은 위치",
+            "쇼핑보다 근교 이동이 많은데 텐진에만 고정하는 선택"
+          ],
+          bestFor: ["쇼핑 중심 여행", "커플 여행", "깔끔한 도심 선호", "하카타와 하카타를 모두 오가는 일정"],
+          notFor: ["밤마다 나카스 중심으로 놀고 싶은 여행", "공항 이동을 가장 단순하게 만들고 싶은 여행", "오호리·모모치가 여행의 핵심인 일정"],
+          bookingTips: [
+            "텐진와 기온는 체감 분위기가 다르므로 목적에 맞춰 고르세요.",
+            "나카스까지 걸을 계획이라면 실제 도보 거리와 밤길 분위기를 함께 확인하세요.",
+            "가격이 비슷하다면 역 출구와 편의점 접근성이 좋은 호텔을 우선 비교하세요."
+          ],
+          chips: ["쇼핑", "균형형", "실속", "차분한 도심"],
+          compareGood: "하카타 접근성을 유지하면서 번잡함을 조금 줄일 수 있습니다.",
+          compareCaution: "나카스 바로 앞 분위기를 기대하면 다소 거리가 느껴질 수 있습니다.",
+          mismatchNote: "이번 답변에서 밤거리, 공항 이동, 오호리·모모치 접근성을 강하게 선택했다면 텐진는 보조 후보에 가깝습니다.",
+          links: [
+            { title: "텐진 근처 호텔 추천 TOP5", url: "/post/fukuoka-shinsaibashi-hotels" },
+            { title: "기온 근처 호텔 추천 TOP5", url: "/post/fukuoka-honmachi-hotels" }
+          ,
+            { title: "후쿠오카 쇼핑하기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-shopping-hotels" },
+            { title: "후쿠오카 기온 가성비 호텔 추천 TOP5", url: "/post/fukuoka-honmachi-value-hotels" },
+            { title: "후쿠오카 커플 여행 호텔 추천 TOP5", url: "/post/fukuoka-couple-hotels" }],
+          hotels: [
+            {
+              name: "호텔 더 플래그 텐진",
+              tag: "쇼핑 중심",
+              location: "텐진 권역",
+              reason: "텐진 쇼핑 동선과 하카타 접근성을 함께 잡고 싶은 여행자에게 잘 맞는 후보입니다.",
+              meta: ["쇼핑", "커플", "도보 동선"],
+              url: "/post/hotel-the-flag-shinsaibashi"
+            },
+            {
+              name: "베셀 인 텐진",
+              tag: "균형형",
+              location: "텐진·와타나베도리 권역",
+              reason: "번화가 접근성은 유지하면서 비교적 차분한 숙박을 원하는 경우 함께 볼 만합니다.",
+              meta: ["차분한 도심", "실속", "쇼핑"],
+              url: "/post/vessel-inn-shinsaibashi"
+            },
+            {
+              name: "후쿠오카 엑셀 호텔 도큐",
+              tag: "기온 후보",
+              location: "기온 권역",
+              reason: "하카타와 하카타 사이에서 이동 균형을 잡고 싶은 일정에 어울리는 후보입니다.",
+              meta: ["이동 균형", "깔끔한 도심", "비즈니스형"],
+              url: "/post/fukuoka-excel-hotel-tokyu"
+            }
+          ,
+            {
+              name: "카락사 호텔 후쿠오카 하카타",
+              tag: "하카타 접근형",
+              location: "텐진·하카타 사이",
+              reason: "쇼핑과 나카스 접근을 함께 보고 싶은 일정에서 비교하기 좋은 후보입니다.",
+              meta: ["쇼핑", "도보 동선", "친구·커플"],
+              url: "/post/karaksa-hotel-fukuoka-namba"
+            },
+            {
+              name: "호텔 닛코 후쿠오카",
+              tag: "역세권 안정형",
+              location: "텐진 중심",
+              reason: "텐진역 접근성을 중요하게 보는 여행자에게 안정적인 비교 후보가 됩니다.",
+              meta: ["텐진역", "쇼핑", "안정형"],
+              url: "/post/hotel-nikko-fukuoka"
+            }]
+        },
+        umeda: {
+          name: "하카타·하카타역",
+          label: "교통과 당일치기 여행에 강한 위치",
+          summary: "다자이후, 이토시마, 기타큐슈 등 근교 이동까지 생각한다면 하카타·하카타역 주변이 편합니다.",
+          leadTitle: "후쿠오카 시내와 근교를 함께 움직이는 일정에 강합니다.",
+          leadText: "JR, 니시테츠, 니시테츠, 지하철 등 선택지가 많아 이동 계획을 짜기 좋습니다. 백화점과 쇼핑몰이 많아 깔끔한 도심 분위기를 선호하는 여행자에게도 잘 맞습니다.",
+          stayRange: [
+            "하카타역, 하카타역, 히가시하카타역 도보 10분 이내",
+            "근교 이동이 많다면 JR 하카타역 접근성이 좋은 위치",
+            "쇼핑과 식사를 함께 보려면 JR 하카타시티·니시테츠 주변 접근성 확인"
+          ],
+          avoidRange: [
+            "나카스 중심 밤거리 여행인데 하카타에만 숙소를 고정하는 선택",
+            "역 구조가 복잡한 것이 부담스러운데 출구 정보가 부족한 호텔",
+            "초행인데 호텔까지 지하상가 이동 동선이 복잡한 위치"
+          ],
+          bestFor: ["근교 당일치기 여행", "부모님 동반", "쇼핑몰 중심 일정", "깔끔한 도심 선호"],
+          notFor: ["나카스·하카타 중심 맛집 여행", "밤 늦게 나카스·텐진 지역에서 오래 머무는 일정", "공항 이동을 가장 단순하게 하고 싶은 여행"],
+          bookingTips: [
+            "하카타역과 하카타역은 출구가 복잡하므로 호텔까지의 실제 출구 동선을 확인하세요.",
+            "근교 여행이 많다면 JR·지하철·니시테츠 중 어떤 노선을 주로 탈지 먼저 정하세요.",
+            "부모님 동반이면 지하 이동보다 지상 접근이 쉬운 호텔을 우선 비교하세요."
+          ],
+          chips: ["교통", "근교 여행", "쇼핑몰", "깔끔한 도심"],
+          compareGood: "근교 이동과 쇼핑몰 접근성이 좋아 일정 확장성이 큽니다.",
+          compareCaution: "하카타·나카스 중심 일정이면 매번 이동이 필요할 수 있습니다.",
+          mismatchNote: "이번 답변에서 맛집, 밤거리, 첫 여행 대표 동선을 더 많이 골랐다면 하카타는 2순위 대안으로 보는 편이 좋습니다.",
+          links: [
+            { title: "하카타 근처 호텔 추천 TOP5", url: "/post/fukuoka-umeda-hotels" },
+            { title: "하카타역 근처 호텔 추천 TOP5", url: "/post/fukuoka-station-hotels" }
+          ,
+            { title: "후쿠오카 교통 편한 호텔 추천 TOP5", url: "/post/fukuoka-transport-hotels" },
+            { title: "후쿠오카 근교 여행하기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-day-trip-hotels" },
+            { title: "후쿠오카 부모님과 가기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-parents-hotels" }],
+          hotels: [
+            {
+              name: "호텔 니시테츠 레스파이어 후쿠오카",
+              tag: "하카타역 접근",
+              location: "하카타·하카타역 권역",
+              reason: "근교 이동과 쇼핑몰 접근성을 함께 보는 여행자에게 비교 가치가 높은 위치입니다.",
+              meta: ["근교 이동", "쇼핑몰", "부모님 동반"],
+              url: "/post/hotel-hankyu-respire-fukuoka"
+            },
+            {
+              name: "호텔 그란비아 후쿠오카",
+              tag: "JR 중심",
+              location: "하카타역 권역",
+              reason: "JR 이동을 자주 이용하거나 다자이후·이토시마 등 근교 일정을 넣을 때 보기 좋은 후보입니다.",
+              meta: ["JR 이동", "근교 여행", "역세권"],
+              url: "/post/hotel-granvia-fukuoka"
+            },
+            {
+              name: "호텔 인터게이트 후쿠오카 하카타",
+              tag: "도심형 숙소",
+              location: "하카타 권역",
+              reason: "깔끔한 도심 분위기와 하카타 생활권을 선호하는 여행자에게 어울립니다.",
+              meta: ["깔끔한 도심", "쇼핑", "교통"],
+              url: "/post/hotel-intergate-fukuoka-umeda"
+            }
+          ,
+            {
+              name: "호텔 비스키오 후쿠오카 바이 그란비아",
+              tag: "하카타 실속형",
+              location: "하카타·하카타역 권역",
+              reason: "하카타역 생활권과 깔끔한 도심 숙박을 함께 보고 싶을 때 비교하기 좋습니다.",
+              meta: ["하카타역", "깔끔한 도심", "실속"],
+              url: "/post/hotel-vischio-fukuoka"
+            },
+            {
+              name: "호텔 뉴 니시테츠 후쿠오카",
+              tag: "교통 중심",
+              location: "하카타역 권역",
+              reason: "공항버스와 하카타 교통 동선을 함께 고려하는 여행자에게 후보로 넣기 좋습니다.",
+              meta: ["교통", "하카타역", "공항 이동"],
+              url: "/post/hotel-new-hankyu-fukuoka"
+            }]
+        },
+        tennoji: {
+          name: "야쿠인·캐널",
+          label: "가격과 이동 편의성을 함께 보는 가성비 위치",
+          summary: "중심가보다 숙소비를 조금 아끼면서도 주요 관광지 접근성을 포기하고 싶지 않다면 야쿠인·캐널가 좋습니다.",
+          leadTitle: "숙소비와 이동 편의성을 함께 고려하는 실속형 선택입니다.",
+          leadText: "캐널시티, 베이사이드 플레이스, 동물원 등 남쪽 동선과 잘 맞고 하카타 접근도 비교적 편합니다. 중심가 대비 합리적인 가격대의 호텔을 찾을 때 후보로 넣기 좋습니다.",
+          stayRange: [
+            "야쿠인역, 캐널역, 야쿠인에키마에역 도보 10분 이내",
+            "베이사이드 플레이스·캐널시티 일정이 있다면 야쿠인역 중심",
+            "공항 이동도 고려한다면 환승 동선이 단순한 역세권"
+          ],
+          avoidRange: [
+            "하카타·나카스를 매일 밤 오갈 계획인데 숙소비만 보고 너무 남쪽으로 내려가는 선택",
+            "역과 멀고 주변 편의시설이 약한 저가 호텔",
+            "첫 여행인데 대표 명소 동선보다 가격만 우선한 선택"
+          ],
+          bestFor: ["가성비 중시", "남쪽 관광지 일정", "재방문 여행", "가격과 교통 균형을 보는 여행"],
+          notFor: ["첫 후쿠오카에서 하카타·나카스가 핵심인 일정", "오호리·모모치 중심 가족 여행", "숙소 주변 밤 분위기를 중요하게 보는 여행"],
+          bookingTips: [
+            "저렴한 가격만 보지 말고 역까지의 도보 거리와 주변 분위기를 함께 확인하세요.",
+            "하카타를 자주 갈 예정이라면 이동 시간이 부담되지 않는지 먼저 계산하세요.",
+            "객실 컨디션과 위생 후기를 함께 보면 가격 대비 만족도를 판단하기 쉽습니다."
+          ],
+          chips: ["가성비", "남쪽 동선", "캐널시티", "합리적 가격"],
+          compareGood: "중심가 대비 숙소비 부담을 낮추면서 남쪽 관광지 접근성을 확보하기 좋습니다.",
+          compareCaution: "대표 번화가 중심 일정이면 하카타보다 동선이 길어질 수 있습니다.",
+          mismatchNote: "이번 답변에서 짧은 일정, 밤거리, 첫 여행 대표 코스를 많이 골랐다면 야쿠인는 우선순위가 낮을 수 있습니다.",
+          links: [
+            { title: "야쿠인 근처 호텔 추천 TOP5", url: "/post/fukuoka-tennoji-hotels" },
+            { title: "캐널 근처 호텔 추천 TOP5", url: "/post/fukuoka-abeno-hotels" }
+          ,
+            { title: "후쿠오카 가성비 호텔 추천 TOP5", url: "/post/fukuoka-value-hotels" },
+            { title: "후쿠오카 야쿠인 가성비 호텔 추천 TOP5", url: "/post/fukuoka-tennoji-value-hotels" },
+            { title: "후쿠오카 캐널 호텔 추천 TOP5", url: "/post/fukuoka-abeno-hotels-top5" }],
+          hotels: [
+            {
+              name: "미야코 시티 후쿠오카 야쿠인",
+              tag: "야쿠인역 중심",
+              location: "야쿠인 권역",
+              reason: "남쪽 관광지와 야쿠인역 교통을 함께 보는 일정에 비교하기 좋은 숙소입니다.",
+              meta: ["야쿠인역", "남쪽 동선", "실속"],
+              url: "/post/miyako-city-fukuoka-tennoji"
+            },
+            {
+              name: "비아 인 캐널 야쿠인",
+              tag: "가성비 후보",
+              location: "캐널·야쿠인 권역",
+              reason: "숙소비 부담을 줄이면서 역세권과 주변 편의성을 함께 보고 싶을 때 적합합니다.",
+              meta: ["가성비", "캐널시티", "역세권"],
+              url: "/post/via-inn-abeno-tennoji"
+            },
+            {
+              name: "호텔 트러스티 후쿠오카 캐널",
+              tag: "캐널 후보",
+              location: "캐널 권역",
+              reason: "캐널·야쿠인 생활권에서 조용함과 접근성의 균형을 보고 싶은 여행자에게 어울립니다.",
+              meta: ["캐널", "가격 균형", "차분함"],
+              url: "/post/hotel-trusty-fukuoka-abeno"
+            }
+          ,
+            {
+              name: "호텔 발리 타워 후쿠오카 야쿠인",
+              tag: "개성형 후보",
+              location: "야쿠인 권역",
+              reason: "야쿠인 중심에서 편의성과 독특한 숙박 분위기를 함께 보고 싶은 경우 비교할 만합니다.",
+              meta: ["야쿠인", "가성비", "개성형"],
+              url: "/post/hotel-bali-tower-fukuoka-tennoji"
+            },
+            {
+              name: "야쿠인 라군 호텔",
+              tag: "저예산 후보",
+              location: "야쿠인 권역",
+              reason: "숙소비를 낮추면서 남쪽 동선 접근성을 우선 확인하고 싶을 때 보조 후보가 됩니다.",
+              meta: ["저예산", "남쪽 동선", "실속"],
+              url: "/post/tennoji-lagoon-hotel"
+            }]
+        },
+        universal: {
+          name: "오호리·모모치",
+          label: "오호리·모모치 중심 일정에 가장 편한 위치",
+          summary: "오호리공원·모모치 해변을 하루 종일 즐기거나 아이와 함께 이동한다면 오호리·모모치 주변이 가장 편합니다.",
+          leadTitle: "오호리·모모치 입장과 퇴장 동선을 줄이는 데 가장 강합니다.",
+          leadText: "테마파크에서 오래 머무는 일정이라면 숙소까지 돌아가는 피로가 크게 줄어듭니다. 아이 동반 가족이나 오호리·모모치가 여행의 핵심인 경우 만족도가 높습니다.",
+          stayRange: [
+            "오호리·모모치역 도보권",
+            "오호리·모모치 입장 대기와 퇴장 후 이동을 줄일 수 있는 공식·인근 호텔",
+            "아이 동반이면 역과 호텔 사이 이동이 단순한 위치"
+          ],
+          avoidRange: [
+            "오호리·모모치는 하루만 가는데 후쿠오카 시내 관광이 더 많은 일정",
+            "매일 나카스·텐진를 오갈 계획인데 오호리·모모치에만 숙박하는 선택",
+            "늦은 밤 시내 식사와 쇼핑을 자주 넣는 일정"
+          ],
+          bestFor: ["오호리·모모치 중심 여행", "아이 동반 가족", "테마파크 집중 일정", "체력 부담을 줄이고 싶은 여행"],
+          notFor: ["후쿠오카 시내 관광 중심 일정", "맛집·쇼핑 위주 여행", "근교 당일치기가 많은 여행"],
+          bookingTips: [
+            "오호리·모모치 방문일 전날 또는 당일만 1박하는 분할 숙박도 고려해보세요.",
+            "시내 관광이 많다면 하카타·하카타와 비교해 전체 이동 시간을 계산하세요.",
+            "아이와 함께라면 객실 크기, 조식, 편의점 접근성도 함께 확인하세요."
+          ],
+          chips: ["오호리·모모치", "가족여행", "아이 동반", "테마파크"],
+          compareGood: "오호리·모모치 동선이 짧아 체력 부담을 줄이기 좋습니다.",
+          compareCaution: "시내 관광과 쇼핑 일정이 많으면 매번 이동해야 합니다.",
+          mismatchNote: "이번 답변에서 오호리·모모치 비중이 낮고 시내 관광을 더 많이 선택했다면 오호리·모모치는 특수 목적형 후보입니다.",
+          links: [
+            { title: "오호리·모모치 호텔 추천 TOP5", url: "/post/fukuoka-universal-city-hotels" },
+            { title: "오호리·모모치 근처 호텔 추천", url: "/post/usj-nearby-hotels" }
+          ,
+            { title: "오호리·모모치 가족 호텔 추천 TOP5", url: "/post/usj-family-hotels" },
+            { title: "오호리·모모치 가성비 호텔 추천 TOP5", url: "/post/universal-city-value-hotels" },
+            { title: "후쿠오카 아이와 가기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-kids-hotels" }],
+          hotels: [
+            {
+              name: "더 파크 프론트 호텔 앳 오호리공원·모모치 해변",
+              tag: "오호리·모모치 최단 동선",
+              location: "오호리·모모치 권역",
+              reason: "오호리·모모치 입장과 퇴장 동선을 최대한 줄이고 싶은 가족 여행자에게 강한 후보입니다.",
+              meta: ["오호리·모모치", "가족", "테마파크"],
+              url: "/post/the-park-front-hotel-usj"
+            },
+            {
+              name: "호텔 유니버설 포트",
+              tag: "가족형 후보",
+              location: "오호리·모모치 권역",
+              reason: "아이와 함께 테마파크 일정을 중심으로 잡을 때 비교하기 좋은 호텔입니다.",
+              meta: ["아이 동반", "오호리·모모치", "편한 동선"],
+              url: "/post/hotel-universal-port"
+            },
+            {
+              name: "리버 호텔 후쿠오카",
+              tag: "여유형 후보",
+              location: "오호리·모모치·모모치·오호리",
+              reason: "오호리·모모치 접근성과 조금 더 여유로운 숙박 분위기를 함께 보고 싶을 때 후보로 넣기 좋습니다.",
+              meta: ["오호리·모모치", "여유", "가족여행"],
+              url: "/post/liber-hotel-fukuoka"
+            }
+          ,
+            {
+              name: "오리엔탈 호텔 유니버설 시티",
+              tag: "오호리·모모치 역세권",
+              location: "오호리·모모치 권역",
+              reason: "오호리·모모치 접근성과 오호리·모모치역 동선을 함께 보는 가족 여행에 적합한 후보입니다.",
+              meta: ["오호리·모모치", "역세권", "가족"],
+              url: "/post/oriental-hotel-universal-city"
+            },
+            {
+              name: "더 싱귤라리 호텔 & 스카이스파 앳 오호리공원·모모치 해변",
+              tag: "스파형 후보",
+              location: "오호리·모모치 권역",
+              reason: "테마파크 일정 후 휴식 요소까지 고려하는 여행자에게 비교 가치가 있습니다.",
+              meta: ["오호리·모모치", "스파", "휴식"],
+              url: "/post/the-singulari-hotel-usj"
+            }]
+        },
+        bay: {
+          name: "모모치·오호리",
+          label: "가족과 여유로운 일정을 보내기 좋은 위치",
+          summary: "후쿠오카타워, 항만 풍경, 여유로운 가족 일정을 원한다면 모모치·오호리도 좋은 선택입니다.",
+          leadTitle: "도심보다 여유로운 가족형 일정을 만들기 좋습니다.",
+          leadText: "아이와 함께 무리 없는 하루를 보내거나 후쿠오카타워, 항만 분위기 중심으로 일정을 짤 때 잘 맞습니다. 번화가보다 차분한 숙박을 원하는 경우 후보가 됩니다.",
+          stayRange: [
+            "후쿠오카타워, 후쿠오카코역, 벤텐초 주변 동선 확인",
+            "아이 동반이면 호텔 주변 식사·편의점 접근성이 좋은 위치",
+            "시내 관광도 넣는다면 지하철 환승 동선이 단순한 위치"
+          ],
+          avoidRange: [
+            "하카타·하카타·텐진를 매일 오가는 시내 중심 일정",
+            "첫 후쿠오카 여행인데 대표 명소를 짧게 많이 보려는 일정",
+            "밤거리와 쇼핑을 늦게까지 즐기고 싶은 여행"
+          ],
+          bestFor: ["가족여행", "아이 동반", "여유로운 일정", "후쿠오카타워 중심 여행"],
+          notFor: ["대표 명소를 촘촘히 도는 첫 여행", "맛집·쇼핑 중심 여행", "근교 이동이 많은 일정"],
+          bookingTips: [
+            "가족 여행이라면 호텔 주변 식당, 편의점, 세탁 시설을 함께 확인하세요.",
+            "시내 이동이 필요한 날이 많다면 전체 이동 시간을 먼저 계산하세요.",
+            "후쿠오카타워 중심 일정인지, 단순히 저렴한 숙소인지 목적을 분명히 하세요."
+          ],
+          chips: ["가족여행", "여유", "후쿠오카타워", "항만 분위기"],
+          compareGood: "도심 번화가보다 여유롭고 가족 중심 일정을 만들기 좋습니다.",
+          compareCaution: "시내 관광 비중이 높다면 이동 시간이 길어질 수 있습니다.",
+          mismatchNote: "이번 답변에서 대표 명소, 밤거리, 쇼핑, 공항 이동을 중요하게 골랐다면 모모치·오호리는 1순위와 거리가 있습니다.",
+          links: [
+            { title: "후쿠오카 모모치·오호리 호텔 추천", url: "/post/fukuoka-bay-area-hotels" },
+            { title: "가족여행 후쿠오카 호텔 추천", url: "/post/fukuoka-family-hotels" }
+          ,
+            { title: "후쿠오카 후쿠오카타워 근처 호텔 추천 TOP5", url: "/post/fukuoka-kaiyukan-hotels" },
+            { title: "후쿠오카 가족여행 호텔 추천 TOP5", url: "/post/fukuoka-family-hotels-top5" },
+            { title: "후쿠오카 여유로운 숙소 추천 TOP5", url: "/post/fukuoka-relax-hotels" }],
+          hotels: [
+            {
+              name: "아트 호텔 후쿠오카 베이 타워",
+              tag: "베이 전망 후보",
+              location: "벤텐초·모모치·오호리",
+              reason: "도심 번화가보다 여유로운 분위기와 모모치·오호리 접근성을 함께 보고 싶을 때 어울립니다.",
+              meta: ["모모치·오호리", "가족", "여유"],
+              url: "/post/art-hotel-fukuoka-bay-tower"
+            },
+            {
+              name: "퀸테사 호텔 후쿠오카 베이",
+              tag: "가족형 후보",
+              location: "모모치·오호리",
+              reason: "후쿠오카타워, 항만 분위기, 여유로운 가족 일정을 고려할 때 비교해볼 만한 후보입니다.",
+              meta: ["가족여행", "후쿠오카타워", "넓은 동선"],
+              url: "/post/quintessa-hotel-fukuoka-bay"
+            },
+            {
+              name: "호텔 시걸 텐포잔 후쿠오카",
+              tag: "후쿠오카타워 접근",
+              location: "텐포잔·후쿠오카코 권역",
+              reason: "후쿠오카타워 중심의 하루 일정이나 아이와 함께하는 느린 여행에 어울리는 후보입니다.",
+              meta: ["후쿠오카타워", "아이 동반", "여유"],
+              url: "/post/hotel-seagull-tenpozan-fukuoka"
+            }
+          ,
+            {
+              name: "호텔 시걸 텐포잔 후쿠오카",
+              tag: "후쿠오카타워 접근",
+              location: "텐포잔·후쿠오카코 권역",
+              reason: "후쿠오카타워과 모모치·오호리 일정을 여유롭게 잡는 가족 여행에 어울립니다.",
+              meta: ["후쿠오카타워", "가족", "여유"],
+              url: "/post/hotel-seagull-tempozan-fukuoka"
+            },
+            {
+              name: "아트 호텔 후쿠오카 베이 타워",
+              tag: "전망형 후보",
+              location: "벤텐초·모모치·오호리",
+              reason: "도심과 모모치·오호리 사이에서 전망과 이동 균형을 함께 보고 싶은 경우 비교하기 좋습니다.",
+              meta: ["전망", "베이", "이동 균형"],
+              url: "/post/art-hotel-fukuoka-bay-tower"
+            }]
+        }
+      },
+      questions: [
+        {
+          title: "이번 후쿠오카 여행은 몇 번째인가요?",
+          help: "첫 여행일수록 이동이 단순하고 대표 명소 접근성이 좋은 위치가 유리합니다.",
+          options: [
+            { title: "첫 후쿠오카 여행이에요", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { namba: 5, umeda: 2, shinsaibashi: 2 } },
+            { title: "두 번째 이상이에요", desc: "너무 뻔한 중심지만 고집하지 않아도 괜찮아요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
+            { title: "후쿠오카가 꽤 익숙해요", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { tennoji: 4, bay: 3, shinsaibashi: 3 } }
+          ]
+        },
+        {
+          title: "이번 여행에서 가장 중요한 것은 무엇인가요?",
+          help: "여행의 핵심 목적에 따라 숙소 위치가 달라집니다.",
+          options: [
+            { title: "맛집과 밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { namba: 6, shinsaibashi: 2 } },
+            { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { shinsaibashi: 4, namba: 3, umeda: 3 } },
+            { title: "교통 편의성", desc: "시내 이동과 근교 이동을 편하게 하고 싶어요.", scores: { umeda: 6, namba: 3, shinsaibashi: 1 } },
+            { title: "아이와 함께하는 일정", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { universal: 4, bay: 4, umeda: 2 } }
+          ]
+        },
+        {
+          title: "공항 이동은 얼마나 중요한가요?",
+          help: "후쿠오카공항 이동을 중요하게 보면 하카타 쪽이 강한 후보가 됩니다.",
+          options: [
+            { title: "매우 중요해요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { namba: 6, tennoji: 2, umeda: 1 } },
+            { title: "보통이에요", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { namba: 3, umeda: 3, tennoji: 2 } },
+            { title: "크게 중요하지 않아요", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { shinsaibashi: 2, universal: 2, bay: 2 } }
+          ]
+        },
+        {
+          title: "오호리공원·모모치 해변 일정이 있나요?",
+          help: "오호리공원, 모모치 해변, 후쿠오카타워가 핵심이면 숙소 위치 선택이 달라집니다.",
+          options: [
+            { title: "오호리·모모치가 이번 여행의 핵심이에요", desc: "공원·해변 이동과 휴식 시간을 여유롭게 잡고 싶어요.", scores: { universal: 9, bay: 2 } },
+            { title: "하루 정도만 방문해요", desc: "오호리·모모치도 가지만 시내 관광도 중요해요.", scores: { universal: 3, umeda: 3, namba: 3 } },
+            { title: "방문하지 않아요", desc: "시내 관광, 맛집, 쇼핑 중심으로 움직일 예정이에요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2, tennoji: 1 } }
+          ]
+        },
+        {
+          title: "후쿠오카 근교 여행 계획이 있나요?",
+          help: "다자이후, 이토시마, 기타큐슈처럼 다른 도시를 함께 다녀올 예정이라면 숙소 위치 기준이 달라집니다.",
+          options: [
+            { title: "근교 여행을 2일 이상 계획하고 있어요", desc: "다자이후, 이토시마, 기타큐슈 등을 후쿠오카 시내와 함께 다녀오고 싶어요.", scores: { umeda: 8, shinsaibashi: 2, namba: 1 } },
+            { title: "근교 여행은 하루 정도만 있어요", desc: "시내 관광도 중요하지만 하루쯤은 다른 도시도 보고 싶어요.", scores: { umeda: 4, namba: 3, shinsaibashi: 2 } },
+            { title: "후쿠오카 시내 위주로만 볼 예정이에요", desc: "나카스, 하카타, 텐진처럼 시내 동선을 더 중요하게 봐요.", scores: { namba: 4, shinsaibashi: 3, tennoji: 2 } },
+            { title: "아직 정하지 않았지만 가능성은 있어요", desc: "일정이 바뀔 수 있어서 이동 선택지가 많은 곳이면 좋아요.", scores: { umeda: 4, shinsaibashi: 2, namba: 2 } }
+          ]
+        },
+        {
+          title: "숙소 주변 분위기는 어떤 쪽이 좋나요?",
+          help: "같은 후쿠오카여도 지역마다 밤 분위기와 체감 소음이 다릅니다.",
+          options: [
+            { title: "활기찬 번화가가 좋아요", desc: "밤에도 주변에 볼거리와 먹거리가 많았으면 해요.", scores: { namba: 6, shinsaibashi: 2 } },
+            { title: "깔끔한 도심이 좋아요", desc: "백화점, 쇼핑몰, 역세권 분위기를 선호해요.", scores: { umeda: 6, shinsaibashi: 2 } },
+            { title: "조금 차분한 곳이 좋아요", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
+            { title: "가족여행에 편한 분위기가 좋아요", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { universal: 4, bay: 4, umeda: 2 } }
+          ]
+        },
+        {
+          title: "숙소 예산은 어떤 편인가요?",
+          help: "위치가 중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.",
+          options: [
+            { title: "숙소비를 아끼고 싶어요", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { tennoji: 5, shinsaibashi: 3, bay: 2 } },
+            { title: "가격과 위치 균형이 중요해요", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { shinsaibashi: 4, tennoji: 3, namba: 2, umeda: 2 } },
+            { title: "위치가 좋다면 조금 더 써도 괜찮아요", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { namba: 4, umeda: 4, universal: 3 } }
+          ]
+        },
+        {
+          title: "이번 여행 동행자는 누구인가요?",
+          help: "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
+          options: [
+            { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { namba: 3, umeda: 3, shinsaibashi: 2 } },
+            { title: "커플 여행", desc: "맛집, 쇼핑, 분위기를 함께 보고 싶어요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2 } },
+            { title: "친구와 여행", desc: "밤에도 활기차고 먹거리 많은 곳이 좋아요.", scores: { namba: 5, shinsaibashi: 3 } },
+            { title: "가족·아이 동반", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { universal: 4, bay: 4, umeda: 3 } },
+            { title: "부모님과 여행", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { umeda: 4, tennoji: 3, namba: 2 } }
+          ]
+        },
+        {
+          title: "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
+          help: "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
+          options: [
+            { title: "밤 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { shinsaibashi: 4, umeda: 3, bay: 2, namba: -2 } },
+            { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, umeda: 4, universal: 2, bay: -2 } },
+            { title: "복잡한 환승", desc: "길 찾기와 환승이 복잡한 곳은 부담스러워요.", scores: { namba: 3, tennoji: 2, universal: 2, umeda: -1 } },
+            { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { umeda: 3, bay: 3, universal: 2, namba: -1 } },
+            { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, bay: 3, umeda: 2 } }
+          ]
+        }
       ]
-    },
-    shinsaibashi: {
-      name: "텐진",
-      label: "쇼핑과 맛집 중심의 후쿠오카 도심 위치",
-      summary: "백화점, 지하상가, 다이묘·이마이즈미 카페, 니시테츠 이동까지 생각하면 텐진이 잘 맞습니다.",
-      leadTitle: "후쿠오카 도심을 가장 많이 체감하기 좋은 위치입니다.",
-      leadText: "텐진은 쇼핑과 식사 선택지가 많고, 다이묘·이마이즈미·야쿠인까지 이어지는 산책 동선이 좋습니다. 하카타보다 여행 감성은 강하지만 공항·JR 이동은 한 번 더 계산해야 합니다.",
-      stayRange: ["텐진역·텐진미나미역 도보권", "쇼핑 중심이면 솔라리아·파르코·지하상가 접근 확인", "카페와 식당 중심이면 다이묘·이마이즈미 방향도 비교"],
-      avoidRange: ["공항 이동만 보고 텐진 한복판을 고르는 선택", "밤 소음이 걱정되는데 번화가 바로 앞 저층 객실", "하카타역 출발 일정이 많은데 텐진에만 고정하는 선택"],
-      bestFor: ["쇼핑", "커플 여행", "맛집·카페", "도심 분위기"],
-      notFor: ["귀국일 아침 이동이 가장 중요한 일정", "JR 근교 이동이 많은 일정", "조용한 휴식이 최우선인 여행"],
-      bookingTips: ["텐진역과 텐진미나미역 중 실제 이용할 역을 확인하세요.", "공항 이동은 하카타보다 시간이 늘 수 있으니 귀국일 동선을 따로 계산하세요.", "다이묘·이마이즈미 쪽은 분위기가 좋지만 짐이 많으면 역까지의 보행 동선을 확인하세요."],
-      chips: ["쇼핑", "카페", "도심", "커플", "니시테츠"],
-      compareGood: "쇼핑과 식사 선택지가 많아 후쿠오카 도심 여행 만족도가 높습니다.",
-      compareCaution: "하카타역·공항 이동을 자주 해야 한다면 이동 시간이 조금 늘 수 있습니다.",
-      mismatchNote: "이번 답변에서 공항 이동과 JR 근교 이동을 강하게 골랐다면 하카타가 더 자연스러울 수 있습니다.",
-      links: [
-        { title: "텐진 근처 호텔 추천 TOP5", url: "/post/fukuoka-tenjin-hotels" },
-        { title: "후쿠오카 쇼핑하기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-shopping-hotels" },
-        { title: "후쿠오카 커플 여행 호텔 추천 TOP5", url: "/post/fukuoka-couple-hotels" },
-        { title: "후쿠오카 텐진 가성비 호텔 추천 TOP5", url: "/post/fukuoka-tenjin-value-hotels" },
-        { title: "후쿠오카 카페 여행 호텔 추천 TOP5", url: "/post/fukuoka-cafe-trip-hotels" }
-      ],
-      hotels: [
-        { name: "솔라리아 니시테츠 호텔 후쿠오카", tag: "텐진 중심", location: "텐진역 권역", reason: "쇼핑과 식사 동선을 짧게 묶고 싶은 여행자에게 좋은 위치입니다.", meta: ["쇼핑", "텐진", "커플"], url: "/post/solaria-nishitetsu-hotel-fukuoka" },
-        { name: "니시테츠 그랜드 호텔", tag: "도심 안정형", location: "텐진 권역", reason: "텐진 생활권 안에서 안정적인 숙박 분위기를 원하는 여행자에게 어울립니다.", meta: ["도심", "안정형", "쇼핑"], url: "/post/nishitetsu-grand-hotel" },
-        { name: "리치몬드 호텔 후쿠오카 텐진", tag: "실속형", location: "텐진·와타나베도리 권역", reason: "텐진 접근성과 가격 균형을 함께 보고 싶을 때 비교하기 좋습니다.", meta: ["가성비", "텐진", "도보 동선"], url: "/post/richmond-hotel-fukuoka-tenjin" },
-        { name: "도큐 스테이 후쿠오카 텐진", tag: "장기 숙박 후보", location: "텐진미나미 권역", reason: "세탁 등 실용성을 중요하게 보는 여행자에게 잘 맞는 후보입니다.", meta: ["실용성", "장기 숙박", "텐진"], url: "/post/tokyu-stay-fukuoka-tenjin" },
-        { name: "호텔 몬테레이 후쿠오카", tag: "차분한 도심", location: "와타나베도리·야쿠인 권역", reason: "텐진 접근성과 조금 더 차분한 숙박 분위기를 함께 보고 싶을 때 좋습니다.", meta: ["차분함", "텐진 접근", "커플"], url: "/post/hotel-monterey-fukuoka" }
-      ]
-    },
-    umeda: {
-      name: "나카스·카와바타",
-      label: "야타이와 밤 산책에 강한 미식 중심 위치",
-      summary: "야타이, 강변 산책, 캐널시티, 하카타와 텐진 사이 이동을 함께 고려하면 나카스·카와바타가 매력적입니다.",
-      leadTitle: "밤 일정과 도보 복귀 동선이 편합니다.",
-      leadText: "나카스는 하카타와 텐진 사이에 있어 양쪽 접근성이 좋고, 저녁 식사 후 숙소로 돌아오는 동선이 짧습니다. 다만 번화가와 가까울수록 소음과 주변 분위기를 더 꼼꼼히 봐야 합니다.",
-      stayRange: ["나카스카와바타역·고후쿠마치역 도보권", "캐널시티와 하카타를 함께 보려면 강 남쪽·기온 방향", "밤 소음이 걱정되면 번화가 중심에서 한두 블록 떨어진 위치"],
-      avoidRange: ["소음 후기가 많은 강변 저층 객실", "가족 여행인데 유흥가 골목 안쪽 숙소", "아침마다 하카타역으로 이동해야 하는데 역 접근이 애매한 위치"],
-      bestFor: ["야타이", "밤 산책", "미식 여행", "하카타·텐진 균형"],
-      notFor: ["조용한 숙소가 최우선인 여행", "아이와 함께하는 이른 취침 일정", "공항 이동만 가장 중요하게 보는 일정"],
-      bookingTips: ["나카스는 위치가 좋을수록 소음도 함께 봐야 합니다.", "야타이 분위기가 목적이라면 나카스와 텐진 야타이를 모두 비교해보세요.", "가족 동반이라면 카와바타·기온 쪽의 차분한 위치를 함께 보세요."],
-      chips: ["야타이", "밤 산책", "나카스", "캐널시티", "미식"],
-      compareGood: "하카타와 텐진 사이에서 식사와 밤 동선을 짧게 만들기 좋습니다.",
-      compareCaution: "번화가 가까운 숙소는 소음과 주변 분위기가 호불호를 만들 수 있습니다.",
-      mismatchNote: "이번 답변에서 조용함, 가족형 휴식, 공항 이동을 더 중요하게 골랐다면 다른 구역이 더 맞을 수 있습니다.",
-      links: [
-        { title: "나카스 근처 호텔 추천 TOP5", url: "/post/fukuoka-nakasu-hotels" },
-        { title: "캐널시티 근처 호텔 추천 TOP5", url: "/post/fukuoka-canal-city-hotels" },
-        { title: "후쿠오카 야타이 여행 호텔 추천 TOP5", url: "/post/fukuoka-yatai-hotels" },
-        { title: "후쿠오카 밤 산책 좋은 호텔 추천 TOP5", url: "/post/fukuoka-night-walk-hotels" },
-        { title: "후쿠오카 미식 여행 호텔 추천 TOP5", url: "/post/fukuoka-food-trip-hotels" }
-      ],
-      hotels: [
-        { name: "더 라이블리 후쿠오카 하카타", tag: "나카스 중심", location: "나카스카와바타 권역", reason: "야타이와 밤 산책 동선을 짧게 잡고 싶은 여행자에게 잘 맞습니다.", meta: ["나카스", "밤 일정", "미식"], url: "/post/the-lively-fukuoka-hakata" },
-        { name: "호텔 리솔 트리니티 하카타", tag: "나카스 도심형", location: "나카스 권역", reason: "나카스 생활권을 활용하면서 대중교통 접근성도 함께 보고 싶을 때 좋습니다.", meta: ["나카스", "역세권", "도심"], url: "/post/hotel-resol-trinity-hakata" },
-        { name: "호텔 오쿠라 후쿠오카", tag: "안정형", location: "나카스카와바타 권역", reason: "나카스 접근성과 안정적인 숙박 분위기를 함께 원하는 여행자에게 비교 가치가 있습니다.", meta: ["안정형", "나카스카와바타", "부모님 동반"], url: "/post/hotel-okura-fukuoka" },
-        { name: "미쓰이 가든 호텔 후쿠오카 나카스", tag: "깔끔한 도심형", location: "나카스 권역", reason: "나카스 접근성과 깔끔한 객실 컨디션을 함께 보고 싶은 일정에 어울립니다.", meta: ["나카스", "깔끔한 숙소", "밤 산책"], url: "/post/mitsui-garden-hotel-fukuoka-nakasu" },
-        { name: "그랜드 하얏트 후쿠오카", tag: "캐널시티 접근", location: "캐널시티·나카스 권역", reason: "캐널시티와 나카스 동선을 한 번에 잡고 싶은 여행자에게 좋은 후보입니다.", meta: ["캐널시티", "나카스", "도심형"], url: "/post/grand-hyatt-fukuoka" }
-      ]
-    },
-    tennoji: {
-      name: "기온·하카타역 동쪽",
-      label: "가격과 동선 균형을 함께 보는 실속형 위치",
-      summary: "하카타와 나카스 접근성은 유지하면서 숙박비와 차분한 분위기를 함께 보고 싶다면 기온·하카타역 동쪽이 좋습니다.",
-      leadTitle: "중심 접근성과 숙박비 균형이 좋습니다.",
-      leadText: "기온은 하카타와 나카스 사이, 하카타역 동쪽은 교통 접근성을 유지하면서 가격대를 비교하기 좋은 구역입니다. 첫 여행자도 동선을 크게 망치지 않으면서 비용을 조절하기 좋습니다.",
-      stayRange: ["기온역·고후쿠마치역 도보권", "하카타역 동쪽 도보 10분 이내", "캐널시티와 하카타역 사이 동선"],
-      avoidRange: ["역과 멀고 주변 편의시설이 부족한 실속형 호텔", "밤마다 텐진·나카스에 오래 머물 계획인데 복귀 동선이 애매한 위치", "가격만 보고 객실 크기·후기를 확인하지 않는 선택"],
-      bestFor: ["가성비", "위치 균형", "차분한 중심", "재방문"],
-      notFor: ["쇼핑이 여행의 핵심인 일정", "야타이와 밤거리 중심 일정", "공항 이동을 최단으로 만들고 싶은 일정"],
-      bookingTips: ["하카타역과 가깝다는 표현보다 실제 도보 경로를 확인하세요.", "기온은 위치 균형이 좋지만 숙소 주변 분위기가 심심할 수 있습니다.", "가성비 호텔은 객실 크기와 조식·세탁 등 실용성을 함께 보세요."],
-      chips: ["가성비", "기온", "하카타", "차분함", "위치 균형"],
-      compareGood: "중심지 접근성을 유지하면서 숙박비와 차분함의 균형을 보기 좋습니다.",
-      compareCaution: "후쿠오카다운 도심 활기나 쇼핑 감성은 텐진·나카스보다 약할 수 있습니다.",
-      mismatchNote: "이번 답변에서 쇼핑, 밤거리, 해변·공원 일정을 더 많이 골랐다면 보조 후보로 보는 편이 좋습니다.",
-      links: [
-        { title: "기온 근처 호텔 추천 TOP5", url: "/post/fukuoka-gion-hotels" },
-        { title: "후쿠오카 하카타 가성비 호텔 추천 TOP5", url: "/post/fukuoka-hakata-value-hotels" },
-        { title: "후쿠오카 가성비 호텔 추천 TOP5", url: "/post/fukuoka-value-hotels" },
-        { title: "후쿠오카 캐널시티 근처 호텔 추천 TOP5", url: "/post/fukuoka-canal-city-hotels" },
-        { title: "후쿠오카 실속 숙소 추천 TOP5", url: "/post/fukuoka-budget-hotels" }
-      ],
-      hotels: [
-        { name: "네스트 호텔 하카타 스테이션", tag: "실속형", location: "하카타역 권역", reason: "하카타역 접근성과 가격 균형을 함께 보고 싶은 여행자에게 비교하기 좋습니다.", meta: ["가성비", "하카타", "역세권"], url: "/post/nest-hotel-hakata-station" },
-        { name: "프린스 스마트 인 하카타", tag: "간결한 도심형", location: "하카타·기온 권역", reason: "위치와 기본 컨디션을 우선하는 실속 여행자에게 어울립니다.", meta: ["실속", "하카타", "간결함"], url: "/post/prince-smart-inn-hakata" },
-        { name: "호텔 비스타 후쿠오카 나카스카와바타", tag: "카와바타 접근", location: "고후쿠마치·카와바타 권역", reason: "나카스 접근과 비교적 차분한 숙박 분위기를 함께 보고 싶을 때 좋습니다.", meta: ["나카스 접근", "차분함", "실속"], url: "/post/hotel-vista-fukuoka-nakasu-kawabata" },
-        { name: "미쓰이 가든 호텔 후쿠오카 기온", tag: "기온 균형형", location: "기온 권역", reason: "하카타역과 캐널시티 사이 동선을 활용하고 싶은 여행자에게 좋은 후보입니다.", meta: ["기온", "캐널시티", "위치 균형"], url: "/post/mitsui-garden-hotel-fukuoka-gion" },
-        { name: "호텔 포르자 하카타에키 하카타구치", tag: "하카타 실속형", location: "하카타역 권역", reason: "하카타역 이동 편의와 합리적인 숙박을 함께 비교할 때 보기 좋습니다.", meta: ["하카타역", "가성비", "교통"], url: "/post/hotel-forza-hakataeki-hakataguchi" }
-      ]
-    },
-    universal: {
-      name: "오호리·모모치",
-      label: "가족과 여유로운 일정을 보내기 좋은 위치",
-      summary: "오호리공원, 후쿠오카타워, 모모치 해변을 중심으로 쉬어가는 여행을 원한다면 오호리·모모치가 잘 맞습니다.",
-      leadTitle: "공원과 해변을 넣은 느린 일정에 좋습니다.",
-      leadText: "오호리·모모치는 후쿠오카 도심의 번잡함에서 조금 벗어나 공원 산책, 해변, 전망 일정을 여유롭게 묶기 좋습니다. 가족 여행이나 재방문 여행자에게 특히 만족도가 높습니다.",
-      stayRange: ["오호리공원역·롯폰마츠역 도보권", "모모치 해변·후쿠오카타워 접근성 확인", "가족 여행이라면 객실 크기와 조식 후기 확인"],
-      avoidRange: ["매일 밤 나카스·텐진에서 늦게까지 머무는 일정", "공항 이동과 하카타역 접근이 최우선인 일정", "쇼핑을 여행의 핵심으로 잡은 일정"],
-      bestFor: ["가족 여행", "공원 산책", "모모치 해변", "여유 일정"],
-      notFor: ["짧은 첫 여행", "쇼핑 중심 일정", "밤거리 중심 여행"],
-      bookingTips: ["오호리와 모모치는 체감 동선이 다르므로 주요 일정 위치를 먼저 정하세요.", "모모치 권역은 시내 이동 시간이 늘 수 있으니 하루 일정을 무리하게 넣지 않는 편이 좋습니다.", "가족 여행은 객실 크기와 침대 구성을 꼭 확인하세요."],
-      chips: ["가족", "공원", "해변", "후쿠오카타워", "여유"],
-      compareGood: "도심과 다른 여유로운 분위기로 여행 피로를 줄이기 좋습니다.",
-      compareCaution: "하카타·텐진 중심 일정이 많으면 매번 이동이 번거로울 수 있습니다.",
-      mismatchNote: "이번 답변에서 공항 이동, 쇼핑, 야타이를 더 많이 골랐다면 중심지 숙소가 더 맞을 수 있습니다.",
-      links: [
-        { title: "오호리공원 근처 호텔 추천 TOP5", url: "/post/fukuoka-ohori-hotels" },
-        { title: "모모치 해변 근처 호텔 추천 TOP5", url: "/post/fukuoka-momochi-hotels" },
-        { title: "후쿠오카 가족 호텔 추천 TOP5", url: "/post/fukuoka-family-hotels" },
-        { title: "후쿠오카 여유로운 숙소 추천 TOP5", url: "/post/fukuoka-relax-hotels" },
-        { title: "후쿠오카 아이와 가기 좋은 호텔 추천 TOP5", url: "/post/fukuoka-kids-hotels" }
-      ],
-      hotels: [
-        { name: "힐튼 후쿠오카 씨 호크", tag: "모모치 해변권", location: "모모치·시사이드모모치 권역", reason: "모모치 해변과 후쿠오카타워 일정을 여유롭게 잡고 싶은 가족 여행에 어울립니다.", meta: ["가족", "모모치", "전망"], url: "/post/hilton-fukuoka-sea-hawk" },
-        { name: "호텔 JAL 시티 후쿠오카 텐진", tag: "아카사카 접근", location: "아카사카·오호리 접근권", reason: "텐진 접근성과 오호리공원 동선을 함께 보고 싶은 일정에 좋습니다.", meta: ["아카사카", "오호리 접근", "깔끔한 숙소"], url: "/post/hotel-jal-city-fukuoka-tenjin" },
-        { name: "니시테츠 그랜드 호텔", tag: "텐진 안정형", location: "텐진·아카사카 권역", reason: "오호리와 텐진을 함께 다니는 가족·부모님 동반 일정에 비교하기 좋습니다.", meta: ["텐진", "안정형", "부모님 동반"], url: "/post/nishitetsu-grand-hotel" },
-        { name: "더 리츠칼튼 후쿠오카", tag: "고급 도심형", location: "다이묘·텐진 권역", reason: "도심 접근성과 휴식의 질을 함께 높이고 싶은 특별한 여행에 어울립니다.", meta: ["럭셔리", "텐진", "휴식"], url: "/post/the-ritz-carlton-fukuoka" },
-        { name: "호텔 몬토레 라 수르 후쿠오카", tag: "텐진·아카사카 사이", location: "텐진·아카사카 권역", reason: "도심 접근성과 차분한 분위기를 함께 원하는 여행자에게 좋습니다.", meta: ["차분함", "텐진 접근", "산책"], url: "/post/hotel-monterey-la-soeur-fukuoka" }
-      ]
-    },
-    bay: {
-      name: "야쿠인·와타나베도리",
-      label: "번잡함은 줄이고 로컬 분위기를 즐기기 좋은 위치",
-      summary: "텐진 접근성은 유지하면서 숙소 주변은 조금 더 차분하게 가져가고 싶다면 야쿠인·와타나베도리가 좋습니다.",
-      leadTitle: "도심 접근성과 휴식 분위기의 균형이 좋습니다.",
-      leadText: "야쿠인·와타나베도리는 텐진과 가까우면서도 번화가 한복판보다 차분한 분위기를 느끼기 좋습니다. 카페, 로컬 식당, 커플 여행, 재방문 여행자에게 특히 잘 맞습니다.",
-      stayRange: ["야쿠인역·와타나베도리역 도보권", "텐진까지 도보 또는 짧은 지하철 이동권", "카페·식당 후보가 주변에 있는 위치"],
-      avoidRange: ["하카타역을 매일 이용하는데 야쿠인 안쪽 깊은 위치", "밤마다 나카스에서 늦게 복귀하는 일정", "공항 이동 최단 동선을 원하는 첫 여행"],
-      bestFor: ["커플 여행", "카페", "조용한 숙소", "재방문"],
-      notFor: ["공항 이동 최우선", "JR 근교 이동 중심", "야타이·밤거리 중심"],
-      bookingTips: ["텐진까지 실제 도보 시간이 어느 정도인지 확인하세요.", "야쿠인 안에서도 큰길 주변과 주거지 안쪽 분위기가 다릅니다.", "가격이 비슷하다면 객실 크기와 주변 식당 접근성을 함께 비교하세요."],
-      chips: ["차분함", "카페", "커플", "로컬", "텐진 접근"],
-      compareGood: "텐진 접근성을 유지하면서 번잡함과 소음을 줄이기 좋습니다.",
-      compareCaution: "하카타역·공항 이동이 잦다면 이동 시간이 조금 늘 수 있습니다.",
-      mismatchNote: "이번 답변에서 첫 여행, 공항 이동, JR 근교 이동을 더 많이 골랐다면 하카타가 더 알맞을 수 있습니다.",
-      links: [
-        { title: "야쿠인 근처 호텔 추천 TOP5", url: "/post/fukuoka-yakuin-hotels" },
-        { title: "후쿠오카 조용한 호텔 추천 TOP5", url: "/post/fukuoka-quiet-hotels" },
-        { title: "후쿠오카 커플 호텔 추천 TOP5", url: "/post/fukuoka-couple-hotels" },
-        { title: "후쿠오카 카페 여행 호텔 추천 TOP5", url: "/post/fukuoka-cafe-trip-hotels" },
-        { title: "후쿠오카 재방문 여행 호텔 추천 TOP5", url: "/post/fukuoka-repeat-trip-hotels" }
-      ],
-      hotels: [
-        { name: "호텔 몬테레이 후쿠오카", tag: "야쿠인 접근", location: "와타나베도리·야쿠인 권역", reason: "텐진 접근성과 차분한 숙박 분위기를 함께 보고 싶은 여행자에게 어울립니다.", meta: ["차분함", "야쿠인", "커플"], url: "/post/hotel-monterey-fukuoka" },
-        { name: "크로스 라이프 하카타 텐진", tag: "도심 균형형", location: "하카타·텐진 사이", reason: "하카타와 텐진을 모두 오가는 일정에서 균형 잡힌 위치 후보가 됩니다.", meta: ["위치 균형", "도심", "실속"], url: "/post/cross-life-hakata-tenjin" },
-        { name: "도큐 스테이 후쿠오카 텐진", tag: "실용형", location: "텐진미나미·와타나베도리 권역", reason: "세탁과 실용성을 중요하게 보는 여행자에게 비교하기 좋습니다.", meta: ["실용성", "텐진 접근", "장기 숙박"], url: "/post/tokyu-stay-fukuoka-tenjin" },
-        { name: "칸데오 호텔즈 후쿠오카 텐진", tag: "도심 휴식형", location: "텐진·와타나베도리 권역", reason: "텐진 접근성과 숙소에서의 휴식 요소를 함께 보고 싶을 때 어울립니다.", meta: ["휴식", "텐진", "도심"], url: "/post/candeo-hotels-fukuoka-tenjin" },
-        { name: "호텔 몬토레 라 수르 후쿠오카", tag: "차분한 접근형", location: "텐진·아카사카 권역", reason: "텐진 접근과 비교적 차분한 숙박 분위기를 함께 보기에 좋습니다.", meta: ["텐진 접근", "차분함", "커플"], url: "/post/hotel-monterey-la-soeur-fukuoka" }
-      ]
-    }
-  },
-  questions: [
-    {
-      title: "이번 후쿠오카 여행은 몇 번째인가요?",
-      help: "첫 여행일수록 공항 이동과 대표 동선이 단순한 위치가 유리합니다.",
-      options: [
-        { title: "첫 후쿠오카 여행이에요", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { namba: 5, shinsaibashi: 3, umeda: 2 } },
-        { title: "두 번째 이상이에요", desc: "하카타·텐진만 고집하지 않아도 괜찮아요.", scores: { bay: 4, tennoji: 3, universal: 2 } },
-        { title: "후쿠오카가 꽤 익숙해요", desc: "조금 더 조용하거나 여유로운 지역도 좋아요.", scores: { bay: 4, universal: 4, tennoji: 2 } }
-      ]
-    },
-    {
-      title: "이번 여행에서 가장 중요한 것은 무엇인가요?",
-      help: "여행의 핵심 목적에 따라 숙소 위치가 달라집니다.",
-      options: [
-        { title: "공항 이동과 짧은 동선", desc: "도착과 귀국을 최대한 편하게 하고 싶어요.", scores: { namba: 6, tennoji: 2 } },
-        { title: "쇼핑과 카페", desc: "텐진, 다이묘, 이마이즈미를 편하게 다니고 싶어요.", scores: { shinsaibashi: 6, bay: 2 } },
-        { title: "야타이와 밤 산책", desc: "저녁에도 걸어서 먹고 돌아오고 싶어요.", scores: { umeda: 6, shinsaibashi: 2 } },
-        { title: "공원과 해변, 여유 일정", desc: "오호리공원이나 모모치 쪽도 여유롭게 보고 싶어요.", scores: { universal: 6, bay: 2 } }
-      ]
-    },
-    {
-      title: "공항 이동은 얼마나 중요한가요?",
-      help: "후쿠오카공항 이동을 중요하게 보면 하카타 쪽이 강한 후보가 됩니다.",
-      options: [
-        { title: "매우 중요해요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { namba: 6, tennoji: 2 } },
-        { title: "보통이에요", desc: "조금 이동해도 괜찮지만 너무 복잡한 건 싫어요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2 } },
-        { title: "크게 중요하지 않아요", desc: "공항보다 현지 여행 분위기가 더 중요해요.", scores: { shinsaibashi: 3, umeda: 3, bay: 2, universal: 2 } }
-      ]
-    },
-    {
-      title: "후쿠오카 근교 여행 계획이 있나요?",
-      help: "다자이후, 이토시마, 기타큐슈처럼 다른 지역을 함께 다녀올 예정이라면 출발역 기준이 중요합니다.",
-      options: [
-        { title: "근교 여행을 2일 이상 계획하고 있어요", desc: "JR이나 니시테츠 이동을 자주 사용할 예정이에요.", scores: { namba: 5, shinsaibashi: 4, tennoji: 2 } },
-        { title: "다자이후는 꼭 가고 싶어요", desc: "니시테츠 이동을 고려하고 싶어요.", scores: { shinsaibashi: 5, namba: 2 } },
-        { title: "후쿠오카 시내 위주로 볼 예정이에요", desc: "하카타, 텐진, 나카스 중심으로 움직일 예정이에요.", scores: { namba: 3, shinsaibashi: 3, umeda: 3 } },
-        { title: "아직 정하지 않았지만 가능성은 있어요", desc: "일정이 바뀔 수 있어서 이동 선택지가 많은 곳이면 좋아요.", scores: { namba: 4, shinsaibashi: 3, tennoji: 2 } }
-      ]
-    },
-    {
-      title: "숙소 주변 분위기는 어떤 쪽이 좋나요?",
-      help: "후쿠오카는 구역마다 밤 분위기와 체감 소음이 다릅니다.",
-      options: [
-        { title: "역 주변이 편한 곳", desc: "교통과 편의시설이 가장 중요해요.", scores: { namba: 5, tennoji: 2 } },
-        { title: "활기찬 도심", desc: "쇼핑과 식당이 많은 곳이 좋아요.", scores: { shinsaibashi: 5, umeda: 2 } },
-        { title: "밤에도 분위기 있는 곳", desc: "야타이와 강변 산책을 즐기고 싶어요.", scores: { umeda: 6, shinsaibashi: 2 } },
-        { title: "조금 차분한 곳", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { bay: 5, tennoji: 3, universal: 2 } },
-        { title: "가족여행에 편한 분위기", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { universal: 5, namba: 3 } }
-      ]
-    },
-    {
-      title: "숙소 예산은 어떤 편인가요?",
-      help: "중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.",
-      options: [
-        { title: "숙소비를 아끼고 싶어요", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { tennoji: 5, bay: 3 } },
-        { title: "가격과 위치 균형이 중요해요", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { tennoji: 4, namba: 3, bay: 3 } },
-        { title: "위치가 좋다면 조금 더 써도 괜찮아요", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { namba: 4, shinsaibashi: 4, umeda: 3 } }
-      ]
-    },
-    {
-      title: "이번 여행 동행자는 누구인가요?",
-      help: "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
-      options: [
-        { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { namba: 4, shinsaibashi: 3, tennoji: 2 } },
-        { title: "커플 여행", desc: "맛집, 카페, 분위기를 함께 보고 싶어요.", scores: { shinsaibashi: 4, bay: 3, umeda: 2 } },
-        { title: "친구와 여행", desc: "밤에도 활기차고 먹거리 많은 곳이 좋아요.", scores: { umeda: 5, shinsaibashi: 3 } },
-        { title: "가족·아이 동반", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { universal: 5, namba: 3 } },
-        { title: "부모님과 여행", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { namba: 4, universal: 3, tennoji: 2 } }
-      ]
-    },
-    {
-      title: "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
-      help: "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
-      options: [
-        { title: "밤 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { bay: 5, tennoji: 4, universal: 3, umeda: -2 } },
-        { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, shinsaibashi: 4, umeda: 3 } },
-        { title: "복잡한 환승", desc: "길 찾기와 환승이 복잡한 곳은 부담스러워요.", scores: { namba: 4, tennoji: 2, shinsaibashi: 2 } },
-        { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { universal: 4, bay: 3, namba: -1 } },
-        { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, namba: 3 } }
-      ]
-    }
-  ]
-};
+    };
 
     let currentQuestionIndex = 0;
     let answers = new Array(cityConfig.questions.length).fill(null);
@@ -543,18 +835,94 @@ const cityConfig = {
     }
 
     function getPersuasiveContent(area) {
-      const areaName = area?.name || "추천 구역";
-      const firstTip = Array.isArray(area?.bookingTips) && area.bookingTips.length ? area.bookingTips[0] : "숙소 주변 동선과 최근 후기를 함께 확인하세요.";
-      return {
-        intro: `선택한 답변을 기준으로 보면 ${areaName}은(는) 이번 후쿠오카 여행에서 이동 피로와 숙소 만족도의 균형을 맞추기 좋은 후보입니다.`,
-        reasons: [
-          { title: "여행 목적과 위치가 맞습니다", text: area?.compareGood || "주요 일정과 숙소 위치의 방향이 비교적 잘 맞습니다." },
-          { title: "불편 요소를 미리 줄일 수 있습니다", text: firstTip },
-          { title: "다른 후보와 비교할 기준이 선명합니다", text: area?.compareCaution || "같은 구역 안에서도 역 접근성, 밤 분위기, 객실 크기를 함께 비교하면 선택이 쉬워집니다." }
-        ],
-        conclusionTitle: `결론: 이번 일정에서는 ${areaName}을(를) 1순위로 비교해보세요.`,
-        conclusionText: area?.mismatchNote || "단, 일정이 바뀌면 최적 위치도 달라질 수 있으니 공항 이동, 밤 동선, 근교 이동 여부를 함께 확인하는 것이 좋습니다."
+      const contents = {
+        namba: {
+          intro: "선택한 답변에서 대표 명소, 맛집, 쇼핑, 공항 이동처럼 ‘짧고 단순한 동선’이 중요한 기준으로 반영되었습니다. 그래서 하카타·나카스는 이동 시간을 줄이고 여행 만족도를 빠르게 높이기 좋은 선택입니다.",
+          reasons: [
+            { title: "처음 가도 동선이 단순합니다", text: "나카스, 캐널시티, 텐진, 하카타역 주변을 한 권역으로 묶어 움직일 수 있어 일정이 복잡해지지 않습니다." },
+            { title: "저녁 시간이 편해집니다", text: "맛집과 쇼핑, 밤거리 이동이 짧아 늦은 시간에도 숙소로 돌아오는 부담이 적습니다." },
+            { title: "짧은 일정일수록 효율이 큽니다", text: "2박 3일처럼 시간이 부족한 여행에서는 교통보다 체류 시간이 중요합니다. 하카타는 그 시간을 아끼기 좋은 위치입니다." }
+          ],
+          conclusionTitle: "결론: 후쿠오카를 한 번에 편하게 경험하고 싶다면 하카타가 가장 안전한 선택입니다.",
+          conclusionText: "다만 나카스 바로 앞은 소음이 있을 수 있으니, 하카타역·고후쿠마치역 도보권이면서 번화가와 한 블록 정도 떨어진 호텔을 우선 비교하는 방식이 좋습니다."
+        },
+        shinsaibashi: {
+          intro: "선택한 답변에서 쇼핑, 도보 이동, 번화가 접근성, 조금 더 차분한 분위기가 함께 반영되었습니다. 텐진·기온는 하카타의 장점은 가져가면서 숙박 분위기를 조금 정돈하기 좋은 위치입니다.",
+          reasons: [
+            { title: "쇼핑 동선이 자연스럽습니다", text: "텐진스지, 나카스, 하카타 방면을 도보 또는 짧은 지하철 이동으로 연결하기 쉽습니다." },
+            { title: "너무 번잡한 숙박을 피하기 좋습니다", text: "하카타 한복판보다 차분한 호텔 후보가 많아 밤 소음과 번잡함을 줄이고 싶은 여행자에게 잘 맞습니다." },
+            { title: "하카타와 하카타 사이 균형이 좋습니다", text: "기온 쪽은 남쪽과 북쪽 이동을 함께 고려하기 좋아 일정이 한쪽으로 치우치지 않습니다." }
+          ],
+          conclusionTitle: "결론: 쇼핑과 위치 균형을 함께 보고 싶다면 텐진·기온가 합리적입니다.",
+          conclusionText: "나카스 야간 동선이 핵심이면 너무 북쪽으로 올라가지 말고, 텐진역·와타나베도리역·기온역 도보권을 중심으로 비교하세요."
+        },
+        umeda: {
+          intro: "선택한 답변에서 교통 편의성, 근교 이동, 깔끔한 도심 분위기가 강하게 반영되었습니다. 하카타·하카타역은 후쿠오카 시내뿐 아니라 다자이후, 이토시마, 기타큐슈까지 함께 보는 일정에 특히 강합니다.",
+          reasons: [
+            { title: "근교 당일치기에 유리합니다", text: "JR, 니시테츠, 니시테츠 등 선택지가 많아 다자이후·이토시마·기타큐슈 일정을 넣을 때 이동 계획을 세우기 쉽습니다." },
+            { title: "쇼핑몰 중심으로 움직이기 좋습니다", text: "백화점과 대형 쇼핑몰이 많아 비 오는 날이나 부모님 동반 일정에서도 동선 부담이 적습니다." },
+            { title: "여행 일정 확장성이 큽니다", text: "하루는 시내, 하루는 근교처럼 일정이 바뀌어도 대응하기 쉬운 교통 중심 위치입니다." }
+          ],
+          conclusionTitle: "결론: 후쿠오카만 보는 여행보다 주변 도시까지 함께 볼 계획이라면 하카타가 더 타당합니다.",
+          conclusionText: "단, 하카타·나카스 밤거리 중심 여행이라면 매번 이동이 필요합니다. 하카타를 고를 때는 호텔이 실제로 어떤 역 출구와 가까운지까지 확인하는 것이 중요합니다."
+        },
+        tennoji: {
+          intro: "선택한 답변에서 예산, 실속, 남쪽 관광지 동선, 재방문 여행 성향이 반영되었습니다. 야쿠인·캐널는 중심가 숙소비가 부담될 때 이동 편의성을 완전히 포기하지 않는 현실적인 선택입니다.",
+          reasons: [
+            { title: "가격 대비 위치 효율이 좋습니다", text: "하카타 중심부보다 숙소비 부담을 낮추면서도 지하철과 JR 이동을 활용해 주요 지역으로 접근할 수 있습니다." },
+            { title: "남쪽 일정과 잘 맞습니다", text: "캐널시티, 베이사이드 플레이스, 야쿠인공원 등 남쪽 관광지를 넣는 일정이라면 이동이 자연스럽습니다." },
+            { title: "재방문 여행에 특히 좋습니다", text: "이미 하카타 중심을 경험한 여행자라면 더 합리적인 가격과 다른 분위기를 함께 누릴 수 있습니다." }
+          ],
+          conclusionTitle: "결론: 숙소비를 줄이되 이동 편의성은 남기고 싶다면 야쿠인가 좋은 타협점입니다.",
+          conclusionText: "다만 첫 후쿠오카 여행에서 나카스와 하카타를 매일 오갈 계획이라면 이동 시간이 쌓일 수 있으니, 가격만 보지 말고 실제 이동 횟수까지 계산해보는 것이 좋습니다."
+        },
+        universal: {
+          intro: "선택한 답변에서 오호리·모모치, 가족 여행, 아이 동반, 체력 부담 감소가 강하게 반영되었습니다. 오호리·모모치는 후쿠오카 전체 관광보다 테마파크 경험을 최우선으로 둘 때 가장 설득력 있는 위치입니다.",
+          reasons: [
+            { title: "오호리·모모치 입장 전 피로가 줄어듭니다", text: "아침 일찍 입장해야 하는 일정에서 이동 시간이 짧으면 대기와 체력 부담을 줄일 수 있습니다." },
+            { title: "퇴장 후 숙소 복귀가 편합니다", text: "아이 동반이나 폐장 시간까지 머무는 일정에서는 숙소가 가까운 것만으로도 만족도가 크게 올라갑니다." },
+            { title: "테마파크 중심 일정에 집중할 수 있습니다", text: "시내 이동보다 오호리·모모치 체류 시간이 중요한 여행이라면 오호리·모모치 숙박이 가장 목적에 맞습니다." }
+          ],
+          conclusionTitle: "결론: 이번 여행의 주인공이 오호리·모모치라면 오호리·모모치에 호텔을 잡는 것이 가장 타당합니다.",
+          conclusionText: "후쿠오카 시내 관광도 많다면 전 일정 숙박보다 오호리·모모치 전날 또는 당일 1박만 오호리·모모치로 나누는 방식도 효율적입니다."
+        },
+        bay: {
+          intro: "선택한 답변에서 가족 여행, 여유로운 일정, 아이와 걷는 거리, 차분한 숙박 분위기가 반영되었습니다. 모모치·오호리는 후쿠오카의 번화가보다 편안한 하루 흐름을 만들고 싶을 때 잘 맞습니다.",
+          reasons: [
+            { title: "아이와 함께 움직이기 좋습니다", text: "후쿠오카타워, 텐포잔 등 가족형 일정과 연결하기 좋아 무리하게 시내를 오가는 부담을 줄일 수 있습니다." },
+            { title: "숙박 분위기가 더 여유롭습니다", text: "하카타나 하카타처럼 복잡한 도심보다 차분한 분위기에서 쉬고 싶은 여행자에게 잘 맞습니다." },
+            { title: "목적이 분명할수록 만족도가 높습니다", text: "후쿠오카타워, 항만 풍경, 가족 휴식이 핵심이라면 모모치·오호리의 장점이 분명해집니다." }
+          ],
+          conclusionTitle: "결론: 대표 명소를 촘촘히 도는 여행보다 가족과 여유롭게 머무는 여행이라면 모모치·오호리가 타당합니다.",
+          conclusionText: "시내 관광 비중이 높다면 이동 시간이 길어질 수 있으니, 모모치·오호리를 고를 때는 후쿠오카타워 중심 일정인지 먼저 확인하는 것이 좋습니다."
+        }
       };
+
+      return contents[area.key] || {
+        intro: area.summary,
+        reasons: [
+          { title: "여행 목적과 맞는 위치입니다", text: area.compareGood || area.summary },
+          { title: "이동 기준을 단순하게 만들 수 있습니다", text: area.leadText || "선택한 답변과 잘 맞는 이동 흐름을 만들기 좋습니다." },
+          { title: "호텔 비교 기준이 명확해집니다", text: "지역을 먼저 정하면 가격, 객실, 후기 비교가 훨씬 쉬워집니다." }
+        ],
+        conclusionTitle: `${area.name}을 중심으로 호텔을 비교해보세요.`,
+        conclusionText: "추천 지역 안에서 역 접근성, 주변 분위기, 최근 후기를 함께 확인하면 실패 확률을 줄일 수 있습니다."
+      };
+    }
+
+    function getMatchedAnswers(areaKey) {
+      return answers
+        .map((answerIndex, questionIndex) => {
+          if (answerIndex === null) return null;
+          const question = cityConfig.questions[questionIndex];
+          const option = question.options[answerIndex];
+          const score = option.scores?.[areaKey] || 0;
+          if (score <= 0) return null;
+          return { title: option.title, score };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
     }
 
     function renderPersuasiveResult(topArea) {
