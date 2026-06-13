@@ -1348,6 +1348,36 @@ const cityConfig = {
       };
     }
 
+    function renderPersuasiveResult(topArea) {
+      const content = getPersuasiveContent(topArea);
+      const reasonCardList = document.getElementById("reasonCardList");
+
+      setText("resultWhyText", content.intro);
+      setText("decisionConclusionTitle", content.conclusionTitle);
+      setText("decisionConclusionText", content.conclusionText);
+
+      if (!reasonCardList) return;
+
+      reasonCardList.innerHTML = "";
+      content.reasons.forEach((reason, index) => {
+        const article = document.createElement("article");
+        const number = document.createElement("span");
+        const title = document.createElement("h4");
+        const text = document.createElement("p");
+
+        article.className = "wt-reason-card";
+        number.className = "wt-reason-number";
+        number.textContent = `${index + 1}`;
+        title.textContent = reason.title;
+        text.textContent = reason.text;
+
+        article.appendChild(number);
+        article.appendChild(title);
+        article.appendChild(text);
+        reasonCardList.appendChild(article);
+      });
+    }
+
     function showResult() {
       const rankedAreas = calculateScores();
       const topArea = rankedAreas[0];
