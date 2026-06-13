@@ -40,7 +40,7 @@ function slugify(str) {
 function countryToSlug(value) {
   const raw = normalizeText(value);
   if (!raw) return "";
-  const alias = { 베트남: "vietnam", 일본: "japan", 태국: "thailand", 한국: "korea", 대한민국: "korea" }[raw];
+  const alias = { 베트남: "vietnam", 일본: "japan", 태국: "thailand", 필리핀: "philippines", 대만: "taiwan", 한국: "korea", 대한민국: "korea" }[raw];
   if (alias) return alias;
   return slugify(raw.replace(/&/g, " and "));
 }

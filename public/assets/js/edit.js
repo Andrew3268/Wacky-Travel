@@ -455,7 +455,7 @@ function normalizeCountryName(value) {
 function countryToSlug(value) {
   const raw = normalizeCountryName(value);
   if (!raw) return "";
-  const alias = { 베트남: "vietnam", 일본: "japan", 태국: "thailand", 한국: "korea", 대한민국: "korea" }[raw];
+  const alias = { 베트남: "vietnam", 일본: "japan", 태국: "thailand", 필리핀: "philippines", 대만: "taiwan", 한국: "korea", 대한민국: "korea" }[raw];
   if (alias) return alias;
   return raw
     .toLowerCase()
