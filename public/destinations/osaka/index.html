@@ -240,8 +240,7 @@
 <small>처음 가도 덜 헤매는 자유여행 동선 정리</small>
 </a>
 </div>
-</section>
-<section aria-labelledby="osakaTravelContentsTitle" class="container travel-section wt-city-dynamic-section" hidden="">
+</section><section aria-labelledby="osakaTravelContentsTitle" class="container travel-section wt-city-dynamic-section" id="travel-contents">
 <div class="section-heading section-heading--split">
 <div>
 <p class="eyebrow">Travel Contents</p>
@@ -251,11 +250,14 @@
 </div>
 <div class="travel-content-sections" data-city-travel-root="" data-destination-slug="osaka" data-page-size="5">
 <section class="travel-content-section travel-content-section--plain">
-<div class="travel-list travel-list--destination" data-city-travel-list=""></div>
+<div aria-live="polite" class="travel-list travel-list--destination" data-city-travel-list="">
+<div class="empty-card" data-city-travel-status="">관련 글을 불러오는 중입니다.</div>
+</div>
 <div class="hotel-tabs__footer travel-content-more" data-city-travel-footer="" hidden=""></div>
 </section>
 </div>
 </section>
+
 <section aria-labelledby="osakaFaqTitle" class="wt-city-faq container">
 <div class="section-heading">
 <p class="eyebrow">FAQ</p>
@@ -294,8 +296,6 @@
 </nav>
 </div>
 </footer>
-
-
-<script defer src="/assets/js/posts.js?v=20260613cityPicksV1"></script>
+<script defer="" src="/assets/js/posts.js?v=20260613cityPicksV4"></script>
 </body>
 </html>

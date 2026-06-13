@@ -319,6 +319,11 @@ function buildPostsHeroNav(categories = []) {
     grid.innerHTML = '<div class="empty-card" data-city-post-empty="">아직 관련글이 없습니다.</div>';
   };
 
+  const renderTravelEmpty = (list) => {
+    if (!list) return;
+    list.innerHTML = '<div class="empty-card" data-city-travel-empty="">아직 관련 글이 없습니다.</div>';
+  };
+
   const setFooterLink = ({ footer, destination, type, hasItems }) => {
     if (!footer) return;
     footer.innerHTML = '';
@@ -404,12 +409,12 @@ function buildPostsHeroNav(categories = []) {
       return;
     }
 
-    list.innerHTML = '';
+    renderTravelEmpty(list);
     if (footer) {
       footer.innerHTML = '';
       footer.hidden = true;
     }
-    if (section) section.hidden = true;
+    if (section) section.hidden = false;
   };
 
   cityPostRoots.forEach((root) => {
