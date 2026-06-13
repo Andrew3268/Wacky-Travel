@@ -16,6 +16,8 @@
     "/destinations/tokyo",
     "/destinations/tokyo/*",
     "/destinations/sapporo",
-    "/destinations/sapporo/*"
+    "/destinations/sapporo/*",
+    "/destinations/okinawa",
+    "/destinations/okinawa/*"
   ]
 }

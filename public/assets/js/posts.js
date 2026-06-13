@@ -280,6 +280,12 @@ function buildPostsHeroNav(categories = []) {
       hotel_intro: '/destinations/sapporo/hotels/',
       fallback: '/destinations/sapporo/hotels/',
       fallbackLabel: '삿포로 호텔 글 더 보기 →'
+    },
+    okinawa: {
+      top5_series: '/destinations/okinawa/hotel-recommendations/',
+      hotel_intro: '/destinations/okinawa/hotels/',
+      fallback: '/destinations/okinawa/hotels/',
+      fallbackLabel: '오키나와 호텔 글 더 보기 →'
     }
   };
 
