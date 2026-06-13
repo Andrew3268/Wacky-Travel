@@ -5901,3 +5901,23 @@ select:focus {
     grid-template-columns: 1fr !important;
   }
 }
+
+.admin-city-tabs {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(16, 42, 69, 0.07);
+}
+
+.admin-city-tab {
+  min-height: 36px;
+  padding: 7px 12px;
+  background: #fbfcff;
+}
+
+.admin-city-tabs__empty {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #f8fbff;
+  color: #667085;
+}
