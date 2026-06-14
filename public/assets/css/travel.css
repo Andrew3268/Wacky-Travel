@@ -9539,7 +9539,17 @@ main.wt-purpose-page--quiet-stay .container {
 }
 
 
-/* Fukuoka hotel guide SEO table of contents */
+/* City guide SEO table of contents and anchor spacing */
+.wt-city-guide-page :where(h2, h3, h4, section)[id] {
+  scroll-margin-top: 118px;
+}
+
+@media (max-width: 760px) {
+  .wt-city-guide-page :where(h2, h3, h4, section)[id] {
+    scroll-margin-top: 108px;
+  }
+}
+
 .wt-seo-toc-section {
   background:
     radial-gradient(circle at 92% 8%, rgba(37, 99, 235, 0.08), transparent 30%),
