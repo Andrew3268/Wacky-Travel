@@ -1,4 +1,67 @@
 const DEFAULT_SITE_ORIGIN = "https://wacky-travel.pages.dev";
+const STATIC_PAGE_LASTMOD = "2026-06-14";
+
+const STATIC_ROUTES = [
+  "/",
+  "/about/",
+  "/destinations/",
+  "/search/",
+  "/destinations/osaka/",
+  "/destinations/osaka/hotel-recommendations/",
+  "/destinations/osaka/hotels/",
+  "/destinations/osaka/travel-guide/",
+  "/destinations/osaka/hotel-guide/",
+  "/destinations/osaka/hotel-location-survey/",
+  "/destinations/osaka/first-trip/",
+  "/destinations/osaka/value-hotel/",
+  "/destinations/osaka/near-trip/",
+  "/destinations/osaka/family-trip/",
+  "/destinations/osaka/quiet-stay/",
+  "/destinations/tokyo/",
+  "/destinations/tokyo/hotel-recommendations/",
+  "/destinations/tokyo/hotels/",
+  "/destinations/tokyo/travel-guide/",
+  "/destinations/tokyo/hotel-guide/",
+  "/destinations/tokyo/hotel-location-survey/",
+  "/destinations/tokyo/first-trip/",
+  "/destinations/tokyo/value-hotel/",
+  "/destinations/tokyo/near-trip/",
+  "/destinations/tokyo/family-trip/",
+  "/destinations/tokyo/quiet-stay/",
+  "/destinations/fukuoka/",
+  "/destinations/fukuoka/hotel-recommendations/",
+  "/destinations/fukuoka/hotels/",
+  "/destinations/fukuoka/travel-guide/",
+  "/destinations/fukuoka/hotel-guide/",
+  "/destinations/fukuoka/hotel-location-survey/",
+  "/destinations/fukuoka/first-trip/",
+  "/destinations/fukuoka/value-hotel/",
+  "/destinations/fukuoka/near-trip/",
+  "/destinations/fukuoka/family-trip/",
+  "/destinations/fukuoka/quiet-stay/",
+  "/destinations/sapporo/",
+  "/destinations/sapporo/hotel-recommendations/",
+  "/destinations/sapporo/hotels/",
+  "/destinations/sapporo/travel-guide/",
+  "/destinations/sapporo/hotel-guide/",
+  "/destinations/sapporo/hotel-location-survey/",
+  "/destinations/sapporo/first-trip/",
+  "/destinations/sapporo/value-hotel/",
+  "/destinations/sapporo/near-trip/",
+  "/destinations/sapporo/family-trip/",
+  "/destinations/sapporo/quiet-stay/",
+  "/destinations/okinawa/",
+  "/destinations/okinawa/hotel-recommendations/",
+  "/destinations/okinawa/hotels/",
+  "/destinations/okinawa/travel-guide/",
+  "/destinations/okinawa/hotel-guide/",
+  "/destinations/okinawa/hotel-location-survey/",
+  "/destinations/okinawa/first-trip/",
+  "/destinations/okinawa/value-hotel/",
+  "/destinations/okinawa/near-trip/",
+  "/destinations/okinawa/family-trip/",
+  "/destinations/okinawa/quiet-stay/"
+];
 
 function xmlEscape(value) {
   return String(value || "")
@@ -8,7 +71,6 @@ function xmlEscape(value) {
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&apos;");
 }
-
 
 function countryToSlug(value) {
   const aliases = {
@@ -34,6 +96,30 @@ function countryToSlug(value) {
   if (!raw) return "";
   if (aliases[raw]) return aliases[raw];
   return raw.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9가-힣]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+}
+
+function normalizePath(path) {
+  const raw = String(path || "/").trim();
+  if (!raw || raw === "/") return "/";
+  const withLeadingSlash = raw.startsWith("/") ? raw : `/${raw}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+function normalizeLoc(loc) {
+  const raw = String(loc || "").trim();
+  if (!raw) return "";
+  if (raw.endsWith("/")) return raw;
+  return `${raw}/`;
+}
+
+function addUrl(urlMap, item) {
+  const loc = normalizeLoc(item.loc);
+  if (!loc) return;
+  const previous = urlMap.get(loc);
+  const lastmod = item.lastmod ? String(item.lastmod).slice(0, 10) : "";
+  if (!previous || (lastmod && lastmod > String(previous.lastmod || ""))) {
+    urlMap.set(loc, { loc, lastmod });
+  }
 }
 
 async function safeAll(db, sql) {
@@ -76,34 +162,45 @@ export async function onRequestGet({ env, request }) {
     }
   });
 
-  const osakaDestination = destinations.find((item) => String(item.slug || "").trim().toLowerCase() === "osaka");
-  const osakaLastmod = osakaDestination?.updated_at || "2026-06-08";
+  const urlMap = new Map();
 
-  const urls = [
-    { loc: `${origin}/` },
-    { loc: `${origin}/about/` },
-    { loc: `${origin}/destinations/` },
-    ...Array.from(countryMap.values()).map((item) => ({ loc: `${origin}/countries/${encodeURIComponent(item.slug)}`, lastmod: item.lastmod })),
-    { loc: `${origin}/destinations/osaka`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/hotel-recommendations/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/hotels/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/travel-guide/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/hotel-guide/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/hotel-location-survey/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/first-trip/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/value-hotel/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/near-trip/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/family-trip/`, lastmod: osakaLastmod },
-    { loc: `${origin}/destinations/osaka/quiet-stay/`, lastmod: osakaLastmod },
-    ...destinations
-      .filter((item) => String(item.slug || "").trim().toLowerCase() !== "osaka")
-      .map((item) => ({ loc: `${origin}/destinations/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at })),
-    ...posts.map((item) => ({ loc: `${origin}/post/${encodeURIComponent(item.slug)}`, lastmod: item.updated_at }))
-  ];
+  STATIC_ROUTES.forEach((route) => {
+    addUrl(urlMap, {
+      loc: `${origin}${normalizePath(route)}`,
+      lastmod: STATIC_PAGE_LASTMOD
+    });
+  });
+
+  Array.from(countryMap.values()).forEach((item) => {
+    addUrl(urlMap, {
+      loc: `${origin}/countries/${encodeURIComponent(item.slug)}/`,
+      lastmod: item.lastmod
+    });
+  });
+
+  destinations.forEach((item) => {
+    const slug = String(item.slug || "").trim();
+    if (!slug) return;
+    addUrl(urlMap, {
+      loc: `${origin}/destinations/${encodeURIComponent(slug)}/`,
+      lastmod: item.updated_at
+    });
+  });
+
+  posts.forEach((item) => {
+    const slug = String(item.slug || "").trim();
+    if (!slug) return;
+    addUrl(urlMap, {
+      loc: `${origin}/post/${encodeURIComponent(slug)}/`,
+      lastmod: item.updated_at
+    });
+  });
+
+  const urls = Array.from(urlMap.values());
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `<lastmod>${xmlEscape(String(item.lastmod).slice(0, 10))}</lastmod>` : ""}</url>`).join("\n")}
+${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `<lastmod>${xmlEscape(item.lastmod)}</lastmod>` : ""}</url>`).join("\n")}
 </urlset>`;
 
   return new Response(xml, {
