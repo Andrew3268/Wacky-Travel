@@ -9842,3 +9842,29 @@ main.wt-purpose-page--quiet-stay .container {
     padding-right: 18px;
   }
 }
+
+/* V46 - Guide related mobile padding hard override */
+@media (max-width: 767px) {
+  main.travel-page.wt-city-guide-page .wt-city-guide-related.container,
+  main.travel-page.wt-city-hotel-guide-page .wt-city-guide-related.container,
+  main.travel-page.wt-city-travel-guide-page .wt-city-guide-related.container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 26px !important;
+    padding-right: 20px !important;
+    padding-bottom: 26px !important;
+    padding-left: 20px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  main.travel-page.wt-city-guide-page .wt-city-guide-related.container,
+  main.travel-page.wt-city-hotel-guide-page .wt-city-guide-related.container,
+  main.travel-page.wt-city-travel-guide-page .wt-city-guide-related.container {
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+  }
+}
