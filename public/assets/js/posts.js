@@ -415,7 +415,11 @@ function buildPostsHeroNav(categories = []) {
     const list = root?.querySelector('[data-city-travel-list]');
     const footer = root?.querySelector('[data-city-travel-footer]');
     const section = root?.closest('.wt-city-dynamic-section');
-    if (!destination || !list) return;
+    if (!destination || !list) {
+      if (section) section.hidden = true;
+      if (root) root.hidden = true;
+      return;
+    }
 
     const data = await fetchJson(buildDestinationPostUrl({ destination, type: 'travel_content', offset: 0, limit }), {
       ok: false,
@@ -436,15 +440,17 @@ function buildPostsHeroNav(categories = []) {
         }
       }
       if (section) section.hidden = false;
+      root.hidden = false;
       return;
     }
 
-    renderTravelEmpty(list);
+    list.innerHTML = '';
     if (footer) {
       footer.innerHTML = '';
       footer.hidden = true;
     }
-    if (section) section.hidden = false;
+    if (section) section.hidden = true;
+    root.hidden = true;
   };
 
   cityPostRoots.forEach((root) => {
@@ -464,6 +470,10 @@ function buildPostsHeroNav(categories = []) {
   });
 
   cityTravelRoots.forEach((root) => {
+    const section = root.closest('.wt-city-dynamic-section');
+    if (section) section.hidden = true;
+    root.hidden = true;
+
     root.addEventListener('click', async (event) => {
       const moreButton = event.target.closest('[data-city-travel-more]');
       if (!moreButton || moreButton.dataset.loading === '1') return;

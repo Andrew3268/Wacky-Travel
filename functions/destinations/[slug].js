@@ -268,7 +268,7 @@ function renderHotelSection(destination, top5Posts = [], hotelIntroPosts = [], c
   return `<section class="container travel-section">
       <div class="section-heading">
         <p class="eyebrow">Hotel Picks</p>
-        <h2>${escapeHtml(destination.name)} 호텔 추천</h2>
+        <h2>와키트래블 추천 호텔</h2>
         <p>여행 목적과 위치를 기준으로 비교하기 좋은 호텔을 모았습니다.</p>
       </div>
       ${renderHotelTabs(destination, top5Posts, hotelIntroPosts, contentTypes)}
