@@ -1,5 +1,0 @@
-osaka: tabs=2, panels=2, posts_js=True
-tokyo: tabs=2, panels=2, posts_js=True
-fukuoka: tabs=2, panels=2, posts_js=True
-sapporo: tabs=2, panels=2, posts_js=True
-okinawa: tabs=2, panels=2, posts_js=True

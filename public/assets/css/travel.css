@@ -10009,3 +10009,11 @@ body.wt-guide-body .hotel-guide-toc-floating {
   display: block !important;
 }
 
+
+/* WACKYTRAVEL_HOTEL_TABS_CONTENT_AWARE_VISIBILITY_V1 */
+.hotel-tabs__button[hidden],
+.hotel-tabs__button[data-city-post-disabled="true"],
+.hotel-tab-panel[hidden],
+.hotel-tab-panel[data-city-post-disabled="true"] {
+  display: none !important;
+}

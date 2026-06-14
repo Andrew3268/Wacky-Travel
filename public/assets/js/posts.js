@@ -250,7 +250,7 @@ function buildPostsHeroNav(categories = []) {
 }
 
 
-/* CITY_HOTEL_PICKS_RUNTIME_V2 */
+/* CITY_HOTEL_PICKS_RUNTIME_V3 */
 (function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
@@ -397,13 +397,30 @@ function buildPostsHeroNav(categories = []) {
 
     root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
       const type = button.getAttribute('data-city-post-tab');
-      button.hidden = !availableTypes.includes(type);
+      const isAvailable = availableTypes.includes(type);
+      button.hidden = !isAvailable;
+      button.dataset.cityPostDisabled = isAvailable ? 'false' : 'true';
+      button.setAttribute('aria-hidden', isAvailable ? 'false' : 'true');
+      if (isAvailable) {
+        button.style.removeProperty('display');
+      } else {
+        button.style.display = 'none';
+        button.classList.remove('is-active');
+        button.setAttribute('aria-selected', 'false');
+        button.setAttribute('tabindex', '-1');
+      }
     });
 
     root.querySelectorAll('[data-city-post-panel]').forEach((panel) => {
       const type = panel.getAttribute('data-city-post-panel');
-      if (!availableTypes.includes(type)) {
+      const isAvailable = availableTypes.includes(type);
+      panel.dataset.cityPostDisabled = isAvailable ? 'false' : 'true';
+      panel.setAttribute('aria-hidden', isAvailable ? 'false' : 'true');
+      if (isAvailable) {
+        panel.style.removeProperty('display');
+      } else {
         panel.hidden = true;
+        panel.style.display = 'none';
         panel.classList.remove('is-active');
       }
     });
