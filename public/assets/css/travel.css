@@ -10017,3 +10017,78 @@ body.wt-guide-body .hotel-guide-toc-floating {
 .hotel-tab-panel[data-city-post-disabled="true"] {
   display: none !important;
 }
+
+/* Fukuoka first-trip hotel card UI refinement */
+.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__topline {
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 13px;
+}
+
+.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__fit {
+  display: block;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+  word-break: keep-all;
+}
+
+.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__stars {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list {
+  order: 6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 11px;
+  margin-top: 17px;
+  padding-top: 14px;
+  border-top: 1px solid #eef2f7;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list b {
+  color: #334155;
+  font-weight: 900;
+}
+
+@media (max-width: 520px) {
+  .wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__topline {
+    align-items: flex-start;
+  }
+
+  .wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
+    white-space: normal;
+  }
+}
