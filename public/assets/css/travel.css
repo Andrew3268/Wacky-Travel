@@ -9537,3 +9537,109 @@ main.wt-purpose-page--quiet-stay .container {
     border-radius: 12px;
   }
 }
+
+
+/* Fukuoka hotel guide SEO table of contents */
+.wt-seo-toc-section {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(37, 99, 235, 0.08), transparent 30%),
+    linear-gradient(135deg, #ffffff 0%, #f7fbff 100%);
+}
+
+.wt-seo-toc__head p:last-child {
+  max-width: 720px;
+}
+
+.wt-seo-toc {
+  margin-top: 20px;
+}
+
+.wt-seo-toc__columns,
+.wt-seo-toc__group--featured {
+  display: grid;
+  gap: 12px;
+}
+
+.wt-seo-toc__columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.wt-seo-toc__group {
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.wt-seo-toc__group--featured {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  background: transparent;
+}
+
+.wt-seo-toc__label {
+  display: block;
+  margin: 0 0 10px;
+  color: #12263f;
+  font-size: 0.94rem;
+  font-weight: 950;
+  letter-spacing: -0.025em;
+}
+
+.wt-seo-toc a {
+  display: block;
+  padding: 11px 0;
+  border-top: 1px solid rgba(15, 23, 42, 0.055);
+  color: #536175;
+  font-size: 0.94rem;
+  font-weight: 780;
+  line-height: 1.48;
+  text-decoration: none;
+}
+
+.wt-seo-toc__group a:first-of-type {
+  border-top: 0;
+}
+
+.wt-seo-toc__group--featured a {
+  min-height: 112px;
+  padding: 18px;
+  border: 0;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.055);
+}
+
+.wt-seo-toc__group--featured span {
+  display: inline-flex;
+  margin-bottom: 9px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #edf5ff;
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 950;
+}
+
+.wt-seo-toc__group--featured strong {
+  display: block;
+  color: #11263f;
+  font-size: 1.02rem;
+  line-height: 1.42;
+  letter-spacing: -0.035em;
+}
+
+.wt-seo-toc a:hover {
+  color: #2563eb;
+}
+
+@media (max-width: 760px) {
+  .wt-seo-toc__columns,
+  .wt-seo-toc__group--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .wt-seo-toc__group--featured a {
+    min-height: auto;
+  }
+}
