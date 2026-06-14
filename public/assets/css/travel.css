@@ -9949,3 +9949,35 @@ body.wt-guide-body *::after {
 body.wt-guide-body .hotel-guide-toc-floating {
   box-shadow: none !important;
 }
+
+
+/* WackyTravel v1 hero and hotel tabs interaction fix 20260614 */
+.hotel-tabs,
+.hotel-tabs__nav,
+.hotel-tabs__button {
+  pointer-events: auto !important;
+}
+.hotel-tabs__nav {
+  position: relative !important;
+  z-index: 2 !important;
+}
+.hotel-tabs__button {
+  position: relative !important;
+  z-index: 3 !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.hotel-tabs__button span,
+.hotel-tabs__button strong,
+.hotel-tabs__button .hotel-tabs__count {
+  pointer-events: none !important;
+}
+.hotel-tabs__button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.42) !important;
+  outline-offset: 3px !important;
+}
+.hotel-tab-panel.is-active:not([hidden]) {
+  display: block !important;
+}
+

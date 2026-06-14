@@ -250,7 +250,7 @@ function buildPostsHeroNav(categories = []) {
 }
 
 
-/* CITY_HOTEL_PICKS_RUNTIME_V1 */
+/* CITY_HOTEL_PICKS_RUNTIME_V2 */
 (function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
@@ -342,6 +342,9 @@ function buildPostsHeroNav(categories = []) {
       const active = button.getAttribute('data-city-post-tab') === type;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active && typeof button.scrollIntoView === 'function') {
+        try { button.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' }); } catch (_) {}
+      }
     });
     root.querySelectorAll('[data-city-post-panel]').forEach((panel) => {
       const active = panel.getAttribute('data-city-post-panel') === type;
@@ -459,7 +462,16 @@ function buildPostsHeroNav(categories = []) {
 
     root.addEventListener('click', (event) => {
       const tabButton = event.target.closest('[data-city-post-tab]');
-      if (!tabButton || tabButton.hidden) return;
+      if (!tabButton || !root.contains(tabButton) || tabButton.hidden) return;
+      event.preventDefault();
+      setActiveTab(root, tabButton.getAttribute('data-city-post-tab'));
+    });
+
+    root.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const tabButton = event.target.closest('[data-city-post-tab]');
+      if (!tabButton || !root.contains(tabButton) || tabButton.hidden) return;
+      event.preventDefault();
       setActiveTab(root, tabButton.getAttribute('data-city-post-tab'));
     });
 
