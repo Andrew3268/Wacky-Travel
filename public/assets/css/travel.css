@@ -9981,3 +9981,31 @@ body.wt-guide-body .hotel-guide-toc-floating {
   display: block !important;
 }
 
+/* WACKYTRAVEL_HOTEL_TABS_CLICK_LAYER_FIX_V1 */
+.hotel-tabs {
+  position: relative !important;
+  z-index: 10 !important;
+  isolation: isolate !important;
+}
+.hotel-tabs__nav {
+  position: relative !important;
+  z-index: 30 !important;
+  pointer-events: auto !important;
+}
+.hotel-tabs__button {
+  position: relative !important;
+  z-index: 31 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+.hotel-tab-panel {
+  position: relative !important;
+  z-index: 1 !important;
+}
+.hotel-tab-panel[hidden] {
+  display: none !important;
+}
+.hotel-tab-panel.is-active:not([hidden]) {
+  display: block !important;
+}
+

@@ -965,3 +965,137 @@ function buildPostsHeroNav(categories = []) {
     fetchPage(initialPage, { append: false });
   });
 })();
+
+/* WACKYTRAVEL_HOTEL_TABS_ROBUST_CONTROLLER_V1 */
+(function () {
+  const TAB_SELECTOR = '[data-city-post-tab]';
+  const PANEL_SELECTOR = '[data-city-post-panel]';
+  const ROOT_SELECTOR = '[data-city-post-root]';
+
+  function getTabType(tab) {
+    return String(tab?.getAttribute('data-city-post-tab') || '').trim();
+  }
+
+  function getRootFromElement(element) {
+    return element?.closest?.(ROOT_SELECTOR) || element?.closest?.('.hotel-tabs') || null;
+  }
+
+  function isActuallyHidden(element) {
+    if (!element) return true;
+    if (element.hidden) return true;
+    if (element.getAttribute('aria-hidden') === 'true') return true;
+    if (element.dataset.cityPostDisabled === 'true') return true;
+    return false;
+  }
+
+  function getVisibleTabs(root) {
+    return Array.from(root?.querySelectorAll(TAB_SELECTOR) || []).filter((tab) => !isActuallyHidden(tab));
+  }
+
+  function forcePanelState(panel, active) {
+    if (!panel) return;
+    panel.classList.toggle('is-active', active);
+    panel.hidden = !active;
+    panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+    if (active) {
+      panel.removeAttribute('hidden');
+      panel.style.removeProperty('display');
+    } else {
+      panel.setAttribute('hidden', '');
+      panel.style.display = 'none';
+    }
+  }
+
+  function forceTabState(tab, active) {
+    if (!tab) return;
+    tab.classList.toggle('is-active', active);
+    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    tab.setAttribute('tabindex', active ? '0' : '-1');
+  }
+
+  function activateHotelTab(root, requestedType, options = {}) {
+    if (!root) return false;
+    const visibleTabs = getVisibleTabs(root);
+    const fallbackType = getTabType(visibleTabs[0]);
+    const type = String(requestedType || fallbackType || '').trim();
+    if (!type) return false;
+
+    const targetTab = visibleTabs.find((tab) => getTabType(tab) === type) || visibleTabs[0];
+    const activeType = getTabType(targetTab) || type;
+
+    Array.from(root.querySelectorAll(TAB_SELECTOR)).forEach((tab) => {
+      forceTabState(tab, getTabType(tab) === activeType && !isActuallyHidden(tab));
+    });
+
+    Array.from(root.querySelectorAll(PANEL_SELECTOR)).forEach((panel) => {
+      forcePanelState(panel, String(panel.getAttribute('data-city-post-panel') || '').trim() === activeType);
+    });
+
+    if (targetTab && options.scroll !== false && typeof targetTab.scrollIntoView === 'function') {
+      try {
+        targetTab.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+      } catch (_) {}
+    }
+    return true;
+  }
+
+  function normalizeHotelTabs(root) {
+    if (!root) return;
+    const visibleTabs = getVisibleTabs(root);
+    if (!visibleTabs.length) return;
+    const current = visibleTabs.find((tab) => tab.classList.contains('is-active')) || visibleTabs[0];
+    activateHotelTab(root, getTabType(current), { scroll: false });
+  }
+
+  function normalizeAllHotelTabs() {
+    document.querySelectorAll(ROOT_SELECTOR).forEach(normalizeHotelTabs);
+  }
+
+  document.addEventListener('click', function (event) {
+    const tab = event.target?.closest?.(TAB_SELECTOR);
+    if (!tab) return;
+    const root = getRootFromElement(tab);
+    if (!root || !root.contains(tab) || isActuallyHidden(tab)) return;
+    event.preventDefault();
+    activateHotelTab(root, getTabType(tab));
+  }, true);
+
+  document.addEventListener('keydown', function (event) {
+    const currentTab = event.target?.closest?.(TAB_SELECTOR);
+    if (!currentTab) return;
+    const root = getRootFromElement(currentTab);
+    if (!root || !root.contains(currentTab) || isActuallyHidden(currentTab)) return;
+
+    const tabs = getVisibleTabs(root);
+    if (!tabs.length) return;
+    const currentIndex = Math.max(0, tabs.indexOf(currentTab));
+    let nextIndex = currentIndex;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      activateHotelTab(root, getTabType(currentTab));
+      return;
+    }
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = tabs.length - 1;
+    else return;
+
+    event.preventDefault();
+    tabs[nextIndex]?.focus?.();
+    activateHotelTab(root, getTabType(tabs[nextIndex]));
+  }, true);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', normalizeAllHotelTabs, { once: true });
+  } else {
+    normalizeAllHotelTabs();
+  }
+
+  window.WackyTravelHotelTabs = {
+    activate: activateHotelTab,
+    normalize: normalizeAllHotelTabs
+  };
+})();
+
