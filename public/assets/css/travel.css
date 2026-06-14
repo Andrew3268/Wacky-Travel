@@ -10129,3 +10129,23 @@ body.wt-guide-body .hotel-guide-toc-floating {
     white-space: nowrap;
   }
 }
+
+/* Mobile hotel carousel edge spacing fix */
+@media (max-width: 720px) {
+  .wt-purpose-page .wt-hotel-grid,
+  .wt-purpose-page #hotels .wt-hotel-grid,
+  .wt-purpose-page--first-trip #hotels .wt-hotel-grid,
+  .wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-grid {
+    margin-right: -24px;
+    padding-right: 24px;
+    scroll-padding-right: 24px;
+  }
+
+  .wt-purpose-page .wt-hotel-grid::after,
+  .wt-purpose-page #hotels .wt-hotel-grid::after,
+  .wt-purpose-page--first-trip #hotels .wt-hotel-grid::after,
+  .wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-grid::after {
+    content: "";
+    flex: 0 0 16px;
+  }
+}
