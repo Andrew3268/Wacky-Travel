@@ -361,7 +361,7 @@ function shouldShowInarticleAdsInEditor() {
 
 const DEFAULT_TRAVEL_CONTENT_TYPES = [
   { slug: "top5_series", label: "여행 스타일별 호텔 추천", description: "여행 스타일에 맞춰 호텔을 비교해볼 수 있는 추천 콘텐츠" },
-  { slug: "hotel_intro", label: "호텔 하나씩 살펴보기", description: "호텔 하나를 차분히 살펴보는 소개 콘텐츠" },
+  { slug: "hotel_intro", label: "추천 호텔 리뷰", description: "호텔 하나를 차분히 살펴보는 소개 콘텐츠" },
   { slug: "travel_tip", label: "여행이 쉬워지는 작은 팁", description: "여행 준비와 이동에 도움이 되는 작은 팁" }
 ];
 
@@ -396,7 +396,7 @@ const TRAVEL_CONTENT_TYPE_ALIASES = {
   "개별호텔소개": "hotel_intro",
   "개별 호텔 소개": "hotel_intro",
   "개별 호텔": "hotel_intro",
-  "호텔 하나씩 살펴보기": "hotel_intro"
+  "추천 호텔 리뷰": "hotel_intro"
 };
 
 let travelContentTypeItems = [...DEFAULT_TRAVEL_CONTENT_TYPES];

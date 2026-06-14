@@ -291,7 +291,7 @@ function buildPostsHeroNav(categories = []) {
 
   const HOTEL_ARCHIVE_LABELS = {
     top5_series: '여행 스타일별 호텔 추천 더 보기 →',
-    hotel_intro: '호텔 하나씩 살펴보기 더 보기 →'
+    hotel_intro: '추천 호텔 리뷰 더 보기 →'
   };
 
   const fetchJson = async (url, fallback) => {
@@ -355,7 +355,7 @@ function buildPostsHeroNav(categories = []) {
     const limit = Math.max(1, Number(root?.dataset?.pageSize || 6) || 6);
     const grid = root?.querySelector(`[data-city-post-grid="${type}"]`);
     const footer = root?.querySelector(`[data-city-post-footer="${type}"]`);
-    if (!destination || !grid) return;
+    if (!destination || !grid) return { type, hasItems: false, total: 0 };
 
     grid.setAttribute('aria-busy', 'true');
     const data = await fetchJson(buildDestinationPostUrl({ destination, type, offset: 0, limit }), {
@@ -368,15 +368,45 @@ function buildPostsHeroNav(categories = []) {
 
     const hasHtml = Boolean(data && data.ok && String(data.html || '').trim());
     if (!hasHtml) {
-      renderEmpty(grid);
+      grid.innerHTML = '';
       setFooterLink({ footer, destination, type, hasItems: false });
       grid.removeAttribute('aria-busy');
-      return;
+      return { type, hasItems: false, total: Number(data?.total || 0) };
     }
 
     grid.innerHTML = data.html;
     setFooterLink({ footer, destination, type, hasItems: true });
     grid.removeAttribute('aria-busy');
+    return { type, hasItems: true, total: Number(data?.total || 0) };
+  };
+
+  const updateHotelSectionVisibility = (root, results = []) => {
+    if (!root) return;
+    const section = root.closest('.wt-city-dynamic-section');
+    const availableTypes = (Array.isArray(results) ? results : [])
+      .filter((item) => item && item.hasItems)
+      .map((item) => item.type);
+    const hasAnyContent = availableTypes.length > 0;
+
+    if (section) section.hidden = !hasAnyContent;
+    root.hidden = !hasAnyContent;
+    if (!hasAnyContent) return;
+
+    root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
+      const type = button.getAttribute('data-city-post-tab');
+      button.hidden = !availableTypes.includes(type);
+    });
+
+    root.querySelectorAll('[data-city-post-panel]').forEach((panel) => {
+      const type = panel.getAttribute('data-city-post-panel');
+      if (!availableTypes.includes(type)) {
+        panel.hidden = true;
+        panel.classList.remove('is-active');
+      }
+    });
+
+    const currentActive = root.querySelector('[data-city-post-tab].is-active:not([hidden])')?.getAttribute('data-city-post-tab');
+    setActiveTab(root, currentActive || availableTypes[0]);
   };
 
   const loadTravelPosts = async (root) => {
@@ -418,13 +448,19 @@ function buildPostsHeroNav(categories = []) {
   };
 
   cityPostRoots.forEach((root) => {
+    const section = root.closest('.wt-city-dynamic-section');
+    if (section) section.hidden = true;
+
     root.addEventListener('click', (event) => {
       const tabButton = event.target.closest('[data-city-post-tab]');
-      if (!tabButton) return;
+      if (!tabButton || tabButton.hidden) return;
       setActiveTab(root, tabButton.getAttribute('data-city-post-tab'));
     });
-    loadHotelGroup(root, 'top5_series');
-    loadHotelGroup(root, 'hotel_intro');
+
+    Promise.all([
+      loadHotelGroup(root, 'top5_series'),
+      loadHotelGroup(root, 'hotel_intro')
+    ]).then((results) => updateHotelSectionVisibility(root, results));
   });
 
   cityTravelRoots.forEach((root) => {

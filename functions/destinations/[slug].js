@@ -256,7 +256,7 @@ function extractHotelNameFromTitle(title = "") {
 function getHotelCardTitle(post = {}) {
   const type = normalizeContentType(post.content_type);
   if (type === "hotel_intro") {
-    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "호텔 하나씩 살펴보기";
+    return String(post.hotel_name || "").trim() || extractHotelNameFromTitle(post.title) || post.title || "추천 호텔 리뷰";
   }
   return post.title || "호텔 추천 글";
 }
@@ -279,7 +279,7 @@ function renderHotelTabs(destination, top5Posts = [], hotelIntroPosts = [], cont
   const destinationSlug = String(destination.slug || "").trim();
   const tabGroups = [
     { type: "top5_series", label: "여행 스타일별 호텔 추천", posts: top5Posts },
-    { type: "hotel_intro", label: "호텔 하나씩 살펴보기", posts: hotelIntroPosts }
+    { type: "hotel_intro", label: "추천 호텔 리뷰", posts: hotelIntroPosts }
   ].filter((group) => group.posts.length > 0);
 
   if (!tabGroups.length) return "";

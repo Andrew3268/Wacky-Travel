@@ -17,7 +17,7 @@ const $ = (id) => document.getElementById(id);
     function labelPostType(value) {
       const type = String(value || '').trim();
       if (type === 'top5_series') return '여행 스타일별 호텔 추천';
-      if (type === 'hotel_intro') return '호텔 하나씩 살펴보기';
+      if (type === 'hotel_intro') return '추천 호텔 리뷰';
       if (type === 'travel_tip') return '여행 준비 팁';
       return type || '여행 글';
     }

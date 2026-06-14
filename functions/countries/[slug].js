@@ -178,7 +178,7 @@ function renderCountryContentHub(countryName, posts = [], contentTypes = []) {
     {
       key: "hotel_intro",
       eyebrow: "Hotels",
-      title: "호텔 하나씩 살펴보기",
+      title: "추천 호텔 리뷰",
       description: "호텔 위치, 객실 분위기, 숙소 선택 포인트를 자세히 정리한 글입니다.",
       limit: 5
     },

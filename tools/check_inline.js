@@ -11,7 +11,7 @@
       };
       const hotelArchiveLabels = {
         top5_series: '여행 스타일별 호텔 추천 더 보기 →',
-        hotel_intro: '호텔 하나씩 살펴보기 더 보기 →'
+        hotel_intro: '추천 호텔 리뷰 더 보기 →'
       };
 
       const fetchJson = async (url, fallback) => {

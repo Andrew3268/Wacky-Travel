@@ -550,7 +550,7 @@
 
     function getHotelCardTitle(item = {}) {
       if (String(item.content_type || '').trim() === 'hotel_intro') {
-        return item.hotel_name || extractHotelNameFromTitle(item.title) || item.title || '호텔 하나씩 살펴보기';
+        return item.hotel_name || extractHotelNameFromTitle(item.title) || item.title || '추천 호텔 리뷰';
       }
       return item.title || '호텔 추천 글';
     }
@@ -567,7 +567,7 @@
     function labelHotelPostType(value) {
       const type = String(value || '').trim();
       if (type === 'top5_series') return '여행 스타일별 호텔 추천';
-      if (type === 'hotel_intro') return '호텔 하나씩 살펴보기';
+      if (type === 'hotel_intro') return '추천 호텔 리뷰';
       return type || '호텔 글';
     }
 
