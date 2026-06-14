@@ -9737,3 +9737,108 @@ main.wt-purpose-page--quiet-stay .container {
     height: 40px;
   }
 }
+
+/* V25: guide table readability, Japanese readings, and mobile related spacing */
+.wt-city-guide-table-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.055);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 76, 120, 0.28) transparent;
+}
+
+.wt-city-guide-table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+
+.wt-city-guide-table-wrap::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(23, 76, 120, 0.24);
+}
+
+.wt-city-guide-table-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wt-city-guide-table {
+  min-width: 760px;
+  table-layout: auto;
+}
+
+.wt-city-guide-table th,
+.wt-city-guide-table td {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.wt-city-guide-table th:first-child,
+.wt-city-guide-table td:first-child,
+.wt-city-guide-table th:nth-child(2),
+.wt-city-guide-table td:nth-child(2) {
+  white-space: nowrap;
+}
+
+.wt-city-guide-table th[style*="right"],
+.wt-city-guide-table td[style*="right"] {
+  text-align: center !important;
+}
+
+.wt-city-guide-table td:nth-child(n+3) {
+  min-width: 220px;
+}
+
+.wt-ja-expression {
+  display: block;
+  color: #12263f;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.wt-ja-reading {
+  display: block;
+  margin-top: 4px;
+  color: #6b7f94;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .wt-city-guide-table-wrap {
+    margin: 16px -2px 24px;
+    border-radius: 20px;
+  }
+
+  .wt-city-guide-table {
+    min-width: 720px;
+    font-size: 0.92rem;
+  }
+
+  .wt-city-guide-table th,
+  .wt-city-guide-table td {
+    padding: 13px 14px;
+  }
+
+  .wt-city-guide-page .wt-city-guide-related.container,
+  .wt-city-hotel-guide-page .wt-city-guide-related.container {
+    width: auto;
+    max-width: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 26px 20px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 380px) {
+  .wt-city-guide-page .wt-city-guide-related.container,
+  .wt-city-hotel-guide-page .wt-city-guide-related.container {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
