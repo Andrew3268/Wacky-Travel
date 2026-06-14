@@ -10115,7 +10115,12 @@ body.wt-guide-body .hotel-guide-toc-floating {
 }
 
 .wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   min-width: 0;
+  gap: 8px;
   white-space: nowrap;
 }
 
