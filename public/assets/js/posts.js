@@ -342,9 +342,6 @@ function buildPostsHeroNav(categories = []) {
       const active = button.getAttribute('data-city-post-tab') === type;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-selected', active ? 'true' : 'false');
-      if (active && typeof button.scrollIntoView === 'function') {
-        try { button.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' }); } catch (_) {}
-      }
     });
     root.querySelectorAll('[data-city-post-panel]').forEach((panel) => {
       const active = panel.getAttribute('data-city-post-panel') === type;
@@ -1048,7 +1045,7 @@ function buildPostsHeroNav(categories = []) {
       forcePanelState(panel, String(panel.getAttribute('data-city-post-panel') || '').trim() === activeType);
     });
 
-    if (targetTab && options.scroll !== false && typeof targetTab.scrollIntoView === 'function') {
+    if (targetTab && options.scroll === true && typeof targetTab.scrollIntoView === 'function') {
       try {
         targetTab.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
       } catch (_) {}

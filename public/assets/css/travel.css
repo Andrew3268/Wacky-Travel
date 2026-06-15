@@ -10731,3 +10731,36 @@ body {
 .wt-purpose-page .wt-hotel-card .wt-hotel-actions .wt-btn:nth-child(n+2) {
   display: none !important;
 }
+
+/* WACKYTRAVEL_CITY_SCROLL_AND_BREADCRUMB_FIX_V1 */
+.breadcrumbs.container {
+  box-sizing: border-box;
+  width: min(calc(100% - 32px), var(--container));
+  max-width: var(--container);
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  .breadcrumbs.container {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: clamp(48px, 7vw, 76px) !important;
+    margin-right: clamp(48px, 7vw, 76px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .breadcrumbs.container {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: clamp(28px, 7vw, 34px) !important;
+    margin-right: clamp(28px, 7vw, 34px) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
