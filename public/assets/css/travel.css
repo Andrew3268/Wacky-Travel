@@ -10149,3 +10149,130 @@ body.wt-guide-body .hotel-guide-toc-floating {
     flex: 0 0 16px;
   }
 }
+
+/* WACKYTRAVEL_TABLET_CONTAINER_PADDING_V1 */
+@media (min-width: 768px) and (max-width: 1180px) {
+  .container,
+  .topbar__inner.container,
+  .breadcrumbs.container,
+  main.travel-page .container,
+  main.travel-page .breadcrumbs.container {
+    box-sizing: border-box;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+
+  main.travel-page.wt-city-page,
+  main.travel-page.wt-purpose-page,
+  main.travel-page.wt-city-guide-page,
+  main.travel-page.wt-city-hotel-guide-page,
+  main.travel-page.wt-city-travel-guide-page {
+    overflow-x: hidden;
+  }
+
+  .wt-purpose-page #hotels .wt-hotel-grid {
+    margin-right: 0 !important;
+    padding-right: 2px !important;
+    scroll-padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+}
+
+/* WACKYTRAVEL_SHARED_PURPOSE_HOTEL_CARD_UI_V1 */
+.wt-purpose-page #hotels .wt-hotel-card__topline {
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  margin: 0 0 13px;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card__topline .wt-hotel-card__fit,
+.wt-purpose-page #hotels .wt-hotel-card__fit {
+  display: block;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #1e40af;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+  word-break: keep-all;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card__stars {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card__topline + .wt-hotel-card__subname,
+.wt-purpose-page #hotels .wt-hotel-card__fit + .wt-hotel-card__subname {
+  margin-top: 0;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card .wt-badge-list,
+.wt-purpose-page #hotels .wt-hotel-card .wt-hotel-card__meta-list {
+  display: none !important;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card__score-list {
+  order: 6;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 8px 12px;
+  margin-top: 17px;
+  padding-top: 14px;
+  border-top: 1px solid #eef2f7;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card__score-list span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card__score-list b {
+  color: #334155;
+  font-weight: 900;
+}
+
+.wt-purpose-page #hotels .wt-hotel-card h3 {
+  display: block;
+  max-width: 100%;
+  margin: 3px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .wt-purpose-page #hotels .wt-hotel-card__topline {
+    align-items: flex-start;
+  }
+
+  .wt-purpose-page #hotels .wt-hotel-card__score-list span {
+    white-space: nowrap;
+  }
+}
