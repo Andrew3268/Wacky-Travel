@@ -10537,3 +10537,176 @@ body.wt-guide-body .hotel-guide-toc-floating {
     padding-right: 24px !important;
   }
 }
+
+/* WACKYTRAVEL_HOTEL_MORE_BANNER_CTA_FIX_V1 */
+html,
+body {
+  overflow-x: clip;
+}
+
+main.travel-page,
+.topbar--travel,
+.breadcrumbs.container,
+.footer.container {
+  max-width: 100%;
+}
+
+.wt-purpose-page #hotels .wt-hotel-more-banner,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(18px, 4vw, 40px);
+  width: 100%;
+  min-height: 0;
+  margin-top: clamp(18px, 3vw, 24px);
+  padding: clamp(24px, 4vw, 38px) !important;
+  border: 1px solid rgba(37, 99, 235, .12) !important;
+  border-radius: 30px !important;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(37, 99, 235, .08), transparent 22rem),
+    #f8fbff !important;
+  box-shadow: none !important;
+  color: #0f172a;
+  text-decoration: none;
+  overflow: hidden;
+  transform: none;
+  box-sizing: border-box;
+}
+
+.wt-purpose-page #hotels .wt-hotel-more-banner::before,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner::before {
+  content: none !important;
+}
+
+.wt-purpose-page #hotels .wt-hotel-more-banner strong,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 720px !important;
+  margin: 0;
+  color: #0f172a !important;
+  font-size: clamp(1.48rem, 2.4vw, 1.9rem) !important;
+  font-weight: 900;
+  letter-spacing: -.045em;
+  line-height: 1.22;
+  text-align: left;
+  word-break: keep-all;
+}
+
+.wt-purpose-page #hotels .wt-hotel-more-banner span,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner span {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 24px;
+  border: 1px solid rgba(37, 99, 235, .16) !important;
+  border-radius: 999px;
+  background: #2563eb !important;
+  color: #fff !important;
+  box-shadow: 0 12px 26px rgba(37, 99, 235, .18) !important;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.wt-purpose-page #hotels .wt-hotel-more-banner span::after,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner span::after {
+  content: "→";
+  margin-left: 7px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.wt-purpose-page #hotels .wt-hotel-more-banner:hover,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner:hover {
+  border-color: rgba(37, 99, 235, .22) !important;
+  background:
+    radial-gradient(circle at 96% 0%, rgba(37, 99, 235, .11), transparent 22rem),
+    #f8fbff !important;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, .08) !important;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  main.travel-page.wt-city-page,
+  main.travel-page.wt-purpose-page,
+  main.travel-page.wt-city-guide-page,
+  main.travel-page.wt-city-hotel-guide-page,
+  main.travel-page.wt-city-travel-guide-page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .topbar--travel .topbar__inner.container,
+  .travel-page.wt-city-page > .container,
+  .travel-page.wt-purpose-page .container,
+  .travel-page.wt-city-guide-page .container,
+  .breadcrumbs.container,
+  .footer.container {
+    box-sizing: border-box;
+    width: min(calc(100% - 40px), var(--container));
+    max-width: var(--container);
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .wt-purpose-page #hotels .wt-hotel-more-banner,
+  .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 16px;
+    padding: 22px !important;
+    border-radius: 24px !important;
+  }
+
+  .wt-purpose-page #hotels .wt-hotel-more-banner strong,
+  .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner strong {
+    max-width: none !important;
+    font-size: clamp(1.36rem, 6vw, 1.62rem) !important;
+    text-align: left;
+  }
+
+  .wt-purpose-page #hotels .wt-hotel-more-banner span,
+  .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner span {
+    width: 100%;
+    min-height: 54px;
+    border-radius: 16px;
+    white-space: normal;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar--travel .topbar__inner.container,
+  .travel-page.wt-city-page > .container,
+  .travel-page.wt-purpose-page .container,
+  .travel-page.wt-city-guide-page .container,
+  .breadcrumbs.container,
+  .footer.container {
+    width: calc(100% - 32px);
+  }
+}
+
+/* WACKYTRAVEL_HORIZONTAL_SHIFT_GUARD_V1 */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
