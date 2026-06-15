@@ -4176,7 +4176,7 @@ body::after {
   font-size: 13.5px;
   line-height: 1.55;
   letter-spacing: -0.02em;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .wtsr-count {
@@ -10274,5 +10274,59 @@ body.wt-guide-body .hotel-guide-toc-floating {
 
   .wt-purpose-page #hotels .wt-hotel-card__score-list span {
     white-space: nowrap;
+  }
+}
+
+/* Readability improvements for checklist cards */
+.wt-check-grid--readable {
+  gap: 14px;
+}
+
+.wt-check-grid--readable .wt-check-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  background: #fff;
+  padding: 20px 22px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.045);
+}
+
+.wt-check-grid--readable .wt-check-item strong {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.wt-check-grid--readable .wt-check-item span {
+  margin-top: 0;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.68;
+  letter-spacing: -0.025em;
+}
+
+.wt-check-grid--readable .wt-check-item .wt-check-item__lead {
+  margin-bottom: 5px;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.45;
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 720px) {
+  .wt-check-grid--readable {
+    gap: 12px;
+  }
+
+  .wt-check-grid--readable .wt-check-item {
+    padding: 18px 19px;
   }
 }
