@@ -18,7 +18,7 @@
   border-radius: 12px;
   background: var(--travel-brand);
   color: #fff;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .travel-page {
@@ -43,7 +43,7 @@
 .eyebrow {
   margin: 0 0 10px;
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--travel-brand);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -90,7 +90,7 @@
   background: #fff;
   color: #3f4858;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .travel-hero__image,
@@ -174,7 +174,7 @@
   margin-bottom: 8px;
   color: var(--travel-muted);
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .travel-card h2,
@@ -224,7 +224,7 @@
   gap: 6px;
   margin-top: 4px;
   color: var(--travel-brand) !important;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .text-link::after {
@@ -398,7 +398,7 @@
 .side-card dt {
   color: var(--travel-muted);
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .side-card dd {
@@ -486,7 +486,7 @@ body{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  font-weight:900;
+  font-weight:500;
   letter-spacing:-.03em;
 }
 .brand__mark{
@@ -517,7 +517,7 @@ body{
   box-shadow:0 8px 20px rgba(15,23,42,.06) !important;
   font:inherit;
   font-size:13px !important;
-  font-weight:900 !important;
+  font-weight:500 !important;
   line-height:1;
   display:inline-flex;
   align-items:center;
@@ -542,7 +542,7 @@ body{
   border-color:rgba(23,23,23,.10) !important;
   background:#fff !important;
   box-shadow:0 8px 20px rgba(15,23,42,.06) !important;
-  font-weight:900 !important;
+  font-weight:500 !important;
 }
 .travel-page{
   overflow:hidden;
@@ -572,7 +572,7 @@ body{
   font-size:clamp(2.8rem, 6.5vw, 5.9rem);
   line-height:.94;
   letter-spacing:-.075em;
-  font-weight:850;
+  font-weight:500;
 }
 .travel-hero__summary{
   font-size:1.08rem;
@@ -631,7 +631,7 @@ body{
   background:#eef4ff;
   color:var(--travel-brand);
   font-size:.75rem;
-  font-weight:900;
+  font-weight:500;
   letter-spacing:.08em;
 }
 .travel-flow{
@@ -658,7 +658,7 @@ body{
   border-radius:15px;
   background:#171717;
   color:#fff;
-  font-weight:900;
+  font-weight:500;
 }
 .travel-flow b{
   font-size:1.05rem;
@@ -715,7 +715,7 @@ body{
   gap:22px;
 }
 .section-heading h2{
-  font-weight:850;
+  font-weight:500;
   color:#171717;
 }
 .travel-card-grid{
@@ -766,7 +766,7 @@ body{
 .travel-card h2,
 .travel-card h3,
 .travel-list h3{
-  font-weight:850;
+  font-weight:500;
   color:#171717;
 }
 .travel-card p,
@@ -815,7 +815,7 @@ body{
   box-shadow:var(--travel-shadow-soft);
 }
 .hotel-detail__hero h1{
-  font-weight:850;
+  font-weight:500;
 }
 .hotel-detail__image,
 .travel-hero__image{
@@ -823,7 +823,7 @@ body{
 }
 .content-card h2,
 .side-card h2{
-  font-weight:850;
+  font-weight:500;
   letter-spacing:-.035em;
 }
 .content-card--notice{
@@ -961,7 +961,7 @@ body{
   background: var(--travel-soft);
   color: var(--travel-brand-deep);
   font-size: 0.88rem;
-  font-weight: 800;
+  font-weight: 500;
   white-space: nowrap;
   text-decoration: none;
 }
@@ -1054,7 +1054,7 @@ body{
   white-space: nowrap;
   margin: 0;
   font-size: clamp(1.18rem, 1.7vw, 1.44rem);
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.045em;
   color: #111827;
   min-width: 0;
@@ -1076,7 +1076,7 @@ body{
   gap: 6px;
   color: var(--travel-brand);
   font-size: 0.88rem;
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
@@ -1097,7 +1097,7 @@ body{
   background: #ffffff;
   color: var(--travel-brand);
   font-size: 1.12rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.07);
   cursor: pointer;
@@ -1201,7 +1201,7 @@ body{
 .destination-chip__name {
   color: #151515;
   font-size: 0.98rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.2;
 }
@@ -1223,7 +1223,7 @@ body{
   background: #ffffff;
   color: var(--travel-brand-deep);
   font-size: 0.82rem;
-  font-weight: 850;
+  font-weight: 500;
   padding: 0 13px;
   cursor: pointer;
   transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
@@ -1391,7 +1391,7 @@ body{
   background: rgba(255, 255, 255, 0.92);
   color: #171717;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   padding: 7px 11px;
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
   cursor: pointer;
@@ -1453,7 +1453,7 @@ body{
   border-radius: 999px;
   background: #ffffff;
   color: var(--travel-brand-deep);
-  font-weight: 900;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -1471,7 +1471,7 @@ body{
 .home-destination-current {
   color: #111827;
   font-size: 0.92rem;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .home-destination-current input,
@@ -1537,7 +1537,7 @@ body{
   color: #334155;
   cursor: pointer;
   font-size: 0.78rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -1570,14 +1570,14 @@ body{
   color: #111827;
   font-size: 0.92rem;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .home-destination-option__body em {
   color: #64748b;
   font-size: 0.78rem;
   font-style: normal;
-  font-weight: 750;
+  font-weight: 500;
 }
 
 .home-destination-option__badge {
@@ -1586,7 +1586,7 @@ body{
   background: #eff6ff;
   color: var(--travel-brand-deep);
   font-size: 0.72rem;
-  font-weight: 900;
+  font-weight: 500;
   padding: 5px 8px;
 }
 
@@ -1603,7 +1603,7 @@ body{
   display: grid;
   gap: 7px;
   font-size: 13px;
-  font-weight: 750;
+  font-weight: 500;
   color: #475569;
 }
 
@@ -1670,7 +1670,7 @@ body{
   min-width: 0;
   color: var(--travel-muted);
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.45;
 }
 
@@ -1709,7 +1709,7 @@ body{
   justify-content: center;
   color: rgba(75,85,101,.55);
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -1808,7 +1808,7 @@ body{
   margin: 0 !important;
   color: var(--travel-muted);
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.45;
 }
 
@@ -1849,7 +1849,7 @@ body{
   justify-content: center;
   color: rgba(75,85,101,.58);
   font-size: 1.2rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -1890,7 +1890,7 @@ body{
   font-size: clamp(2.1rem, 5vw, 4rem);
   line-height: 1.05;
   letter-spacing: -0.045em;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .destination-detail-hero__summary {
@@ -1919,7 +1919,7 @@ body{
   color: #3f4858;
   box-shadow: 0 8px 18px rgba(15,23,42,.04);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 @media (max-width: 720px) {
@@ -2084,7 +2084,7 @@ body{
   background: #ffffff;
   color: var(--travel-brand-deep);
   font-size: 0.82rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   white-space: nowrap;
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
@@ -2180,7 +2180,7 @@ body{
   border-radius:999px;
   background:transparent;
   color:#555;
-  font-weight:800;
+  font-weight:500;
   letter-spacing:-.02em;
   cursor:pointer;
   transition:background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
@@ -2225,7 +2225,7 @@ body{
   border-radius:999px;
   background:#fff;
   color:#171717;
-  font-weight:850;
+  font-weight:500;
   cursor:pointer;
   box-shadow:0 12px 26px rgba(25,35,60,.08);
   transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -2355,7 +2355,7 @@ body::after {
 
 .topbar--travel .brand__text {
   font-size: 1rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.035em;
 }
 
@@ -2444,7 +2444,7 @@ body::after {
   font-size: clamp(2.55rem, 6.5vw, 5.45rem);
   line-height: 0.99;
   letter-spacing: -0.073em;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .travel-hero__summary,
@@ -2495,7 +2495,7 @@ body::after {
 .section-heading h2 {
   color: var(--travel-ink);
   font-size: clamp(1.72rem, 3vw, 2.45rem);
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.055em;
 }
 
@@ -2509,7 +2509,7 @@ body::after {
 
 .text-link {
   color: var(--travel-brand-deep) !important;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .travel-card-grid,
@@ -2561,7 +2561,7 @@ body::after {
 .travel-card__meta {
   color: var(--travel-muted-2);
   font-size: 0.8rem;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .travel-card h2,
@@ -2569,7 +2569,7 @@ body::after {
 .travel-list h3,
 .travel-list h4 {
   color: var(--travel-ink);
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.36;
   letter-spacing: -0.042em;
   word-break: keep-all;
@@ -2619,7 +2619,7 @@ body::after {
 
 .country-destination-group__head h3 {
   color: var(--travel-ink);
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .country-destination-group__link,
@@ -2821,7 +2821,7 @@ body::after {
   font-size: clamp(2.25rem, 5vw, 4.35rem) !important;
   line-height: 1.05 !important;
   letter-spacing: -0.065em !important;
-  font-weight: 850 !important;
+  font-weight: 500 !important;
 }
 
 .travel-hero--service .travel-hero__summary {
@@ -2951,7 +2951,7 @@ body::after {
   justify-content: center;
   min-width: 24px;
   color: var(--travel-brand-deep);
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .travel-content-sections--country .travel-list__arrow {
@@ -2970,7 +2970,7 @@ body::after {
   margin: 0;
   color: var(--travel-ink);
   font-size: clamp(1.72rem, 3vw, 2.45rem);
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 1.18;
 }
@@ -3079,7 +3079,7 @@ body::after {
 }
 
 .breadcrumbs__separator {
-  font-weight: 800;
+  font-weight: 500;
   transform: none;
 }
 
@@ -3112,7 +3112,7 @@ body::after {
   margin: 0;
   color: var(--travel-ink);
   font-size: 1.22rem;
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.36;
   letter-spacing: -0.042em;
   word-break: keep-all;
@@ -3214,7 +3214,7 @@ body::after {
 .travel-list--destination h4 {
   margin: 0;
   color: var(--travel-ink);
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.42;
   letter-spacing: -0.042em;
   word-break: keep-all;
@@ -3231,7 +3231,7 @@ body::after {
   justify-content: center;
   min-width: 24px;
   color: var(--travel-brand-deep);
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .travel-list--destination .travel-list__arrow {
@@ -3412,7 +3412,7 @@ body::after {
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
   font-size: 12px;
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -3422,7 +3422,7 @@ body::after {
   font-size: clamp(32px, 3.6vw, 48px);
   line-height: 1.16;
   letter-spacing: -0.06em;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wthome-card__visual p {
@@ -3431,12 +3431,12 @@ body::after {
   font-size: 15px;
   line-height: 1.65;
   letter-spacing: -0.025em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .wthome-card__visual p strong {
   color: #ffffff;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wthome-route-line {
@@ -3457,7 +3457,7 @@ body::after {
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
   font-size: 12px;
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
@@ -3467,7 +3467,7 @@ body::after {
   color: rgba(255, 255, 255, 0.84);
   font-style: normal;
   font-size: 13px;
-  font-weight: 950;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -3527,7 +3527,7 @@ body::after {
   background: linear-gradient(135deg, var(--wthome-main) 0%, #38BDF8 100%);
   color: #ffffff;
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   cursor: pointer;
 }
@@ -3548,7 +3548,7 @@ body::after {
 
 .wthome-hero__hint strong {
   color: #ffffff;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .wthome-card__body {
@@ -3570,7 +3570,7 @@ body::after {
 .wthome-card__top span {
   color: var(--wthome-main-deep);
   font-size: 12px;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -3581,7 +3581,7 @@ body::after {
   background: var(--wthome-sub);
   color: var(--wthome-main-deep);
   font-size: 12px;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wthome-card__list {
@@ -3891,7 +3891,7 @@ body::after {
     color: rgba(255, 255, 255, 0.84);
     font-size: 12px;
     font-style: normal;
-    font-weight: 950;
+    font-weight: 500;
     line-height: 1;
   }
 
@@ -4052,7 +4052,7 @@ body::after {
   margin: 0 0 8px;
   color: #174C78;
   font-size: 12px;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -4063,7 +4063,7 @@ body::after {
   font-size: clamp(30px, 4vw, 44px);
   line-height: 1.18;
   letter-spacing: -0.055em;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wtsr-hero h1 span {
@@ -4076,7 +4076,7 @@ body::after {
   font-size: 15px;
   line-height: 1.7;
   letter-spacing: -0.025em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .wtsr-form {
@@ -4134,7 +4134,7 @@ body::after {
   background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
   color: #ffffff;
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   cursor: pointer;
 }
@@ -4176,7 +4176,7 @@ body::after {
   font-size: 13.5px;
   line-height: 1.55;
   letter-spacing: -0.02em;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .wtsr-count {
@@ -4186,7 +4186,7 @@ body::after {
   background: #EEF7FF;
   color: #174C78;
   font-size: 12px;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 
@@ -4255,7 +4255,7 @@ body::after {
   background: #F8FBFF;
   color: #174C78;
   font-size: 11.5px;
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 
@@ -4265,7 +4265,7 @@ body::after {
   font-size: 19px;
   line-height: 1.38;
   letter-spacing: -0.035em;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wtsr-card h3 a {
@@ -4279,7 +4279,7 @@ body::after {
   font-size: 14px;
   line-height: 1.68;
   letter-spacing: -0.02em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .wtsr-card__tags {
@@ -4295,7 +4295,7 @@ body::after {
   background: #F8FAFC;
   color: #64748B;
   font-size: 11.5px;
-  font-weight: 750;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 
@@ -4305,7 +4305,7 @@ body::after {
   border-radius: 4px;
   background: #DBEAFE;
   color: #102A45;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wtsr-empty,
@@ -4320,7 +4320,7 @@ body::after {
   font-size: 14px;
   line-height: 1.7;
   letter-spacing: -0.02em;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .wtsr-empty strong,
@@ -4347,7 +4347,7 @@ body::after {
   background: #102A45;
   color: #ffffff;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   cursor: pointer;
 }
@@ -4472,7 +4472,7 @@ body::after {
   background: rgba(125, 211, 252, 0.18);
   color: #174C78;
   font-size: 0.82rem;
-  font-weight: 850;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -4543,7 +4543,7 @@ body::after {
   background: rgba(255, 255, 255, 0.75);
   color: #2563eb;
   font-size: 0.82rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -4563,7 +4563,7 @@ body::after {
   font-size: clamp(2.05rem, 4.8vw, 4.15rem);
   line-height: 1.06;
   letter-spacing: -0.055em;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .city-guide-hero__lead {
@@ -4596,7 +4596,7 @@ body::after {
   color: #344054;
   background: rgba(255, 255, 255, 0.82);
   font-size: 0.9rem;
-  font-weight: 850;
+  font-weight: 500;
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.035);
 }
 
@@ -4632,7 +4632,7 @@ body::after {
   font-size: clamp(1.45rem, 2.7vw, 2.08rem);
   line-height: 1.28;
   letter-spacing: -0.04em;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .city-guide-section h3 {
@@ -4641,7 +4641,7 @@ body::after {
   font-size: 1.16rem;
   line-height: 1.42;
   letter-spacing: -0.025em;
-  font-weight: 880;
+  font-weight: 500;
 }
 
 .city-guide-section p,
@@ -4742,7 +4742,7 @@ body::after {
   color: #101828;
   background: #f8fbff;
   font-size: 0.91rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .city-guide-table tbody tr:nth-child(even) td {
@@ -4810,7 +4810,7 @@ body::after {
   border-radius: 999px;
   color: #1d4ed8;
   font-size: 0.82rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.45;
 }
 
@@ -4834,7 +4834,7 @@ body::after {
   margin-bottom: 12px;
   color: #101828;
   font-size: 0.98rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .city-guide-toc a {
@@ -4845,7 +4845,7 @@ body::after {
   text-decoration: none;
   font-size: 0.92rem;
   line-height: 1.45;
-  font-weight: 720;
+  font-weight: 500;
 }
 
 .city-guide-related {
@@ -4863,7 +4863,7 @@ body::after {
   background: linear-gradient(180deg, #ffffff, #fbfdff);
   color: #101828;
   text-decoration: none;
-  font-weight: 880;
+  font-weight: 500;
   letter-spacing: -0.018em;
 }
 
@@ -4872,7 +4872,7 @@ body::after {
   margin-top: 7px;
   color: #667085;
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.58;
 }
 
@@ -4984,14 +4984,14 @@ body::after {
   background: rgba(255, 255, 255, 0.14);
   color: rgba(255, 255, 255, 0.88);
   font-size: 0.83rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .city-guide-survey-cta__text strong {
   font-size: clamp(1.55rem, 3.4vw, 2.7rem);
   line-height: 1.18;
   letter-spacing: -0.05em;
-  font-weight: 920;
+  font-weight: 500;
 }
 
 .city-guide-survey-cta__text span:last-child {
@@ -5014,7 +5014,7 @@ body::after {
   background: #ffffff;
   color: #17466f;
   font-size: 0.96rem;
-  font-weight: 900;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -5030,7 +5030,7 @@ body::after {
   border-radius: 16px;
   background: #eef7ff;
   color: #1d4ed8;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 @media (max-width: 720px) {
@@ -5352,7 +5352,7 @@ body::after {
   margin: 0;
   color: #173b61;
   font-size: clamp(1.15rem, 2vw, 1.55rem);
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.42;
   letter-spacing: -0.035em;
 }
@@ -5383,7 +5383,7 @@ body::after {
   color: #16456e;
   text-decoration: none;
   font-size: 0.95rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
@@ -5428,7 +5428,7 @@ body::after {
   margin-bottom: 18px;
   color: #2563eb;
   font-size: 0.82rem;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wt-city-guide-snapshot__grid h3 {
@@ -5509,7 +5509,7 @@ body::after {
   color: #204766;
   font-size: 1.03rem;
   line-height: 1.45;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.035em;
 }
 
@@ -5522,7 +5522,7 @@ body::after {
 
 .wt-city-guide-section strong {
   color: #12263f;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-city-guide-quote {
@@ -5538,7 +5538,7 @@ body::after {
   margin: 0;
   color: #16456e;
   font-size: clamp(1.05rem, 2vw, 1.28rem);
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.62;
   letter-spacing: -0.03em;
 }
@@ -5599,7 +5599,7 @@ body::after {
   background: #eef7ff;
   color: #174c78;
   font-size: 0.78rem;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wt-city-guide-table-wrap {
@@ -5629,7 +5629,7 @@ body::after {
 .wt-city-guide-table th {
   background: #f4f9ff;
   color: #173b61;
-  font-weight: 950;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -5639,7 +5639,7 @@ body::after {
 
 .wt-city-guide-table td:first-child {
   color: #12263f;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .wt-city-guide-related {
@@ -5688,12 +5688,12 @@ body::after {
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   text-decoration: none;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-city-guide-related__links a::after {
   content: "→";
-  font-weight: 900;
+  font-weight: 500;
 }
 
 @media (max-width: 980px) {
@@ -5799,7 +5799,7 @@ body::after {
   background: rgba(255, 255, 255, 0.13);
   color: rgba(255, 255, 255, 0.88);
   font-size: 0.8rem;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -5827,7 +5827,7 @@ body::after {
   background: #ffffff;
   color: #16456e;
   font-size: 0.95rem;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
@@ -5840,7 +5840,7 @@ body::after {
   background: #eef7ff;
   color: #2563eb;
   font-size: 0.78em;
-  font-weight: 850;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -6074,7 +6074,7 @@ body::after {
   background: transparent;
   color: #2563eb;
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -6116,7 +6116,7 @@ body::after {
   background: transparent;
   color: #102a45;
   font-size: .92rem;
-  font-weight: 800;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -6183,7 +6183,7 @@ body::after {
   right: 22px;
   color: #94a3b8;
   font-size: .9rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -6191,7 +6191,7 @@ body::after {
   display: block;
   color: #2563eb;
   font-size: .82rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.35;
   word-break: keep-all;
 }
@@ -6200,7 +6200,7 @@ body::after {
   display: block;
   color: #0f172a;
   font-size: clamp(1.08rem, 1.5vw, 1.2rem);
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -.035em;
   line-height: 1.35;
   word-break: keep-all;
@@ -6246,7 +6246,7 @@ body::after {
   background: #f8fafc;
   color: #0f172a;
   font-size: .9rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-city-area-table tr:last-child td {
@@ -6290,7 +6290,7 @@ body::after {
   background: #f1f5f9;
   color: #2563eb;
   font-size: .9rem;
-  font-weight: 900;
+  font-weight: 500;
   transition: transform .2s ease, background .2s ease;
 }
 
@@ -6302,7 +6302,7 @@ body::after {
 .wt-city-area-accordion__title {
   color: #0f172a;
   font-size: 1.08rem;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -.035em;
   line-height: 1.25;
 }
@@ -6310,7 +6310,7 @@ body::after {
 .wt-city-area-accordion__fit {
   color: #64748b;
   font-size: .9rem;
-  font-weight: 750;
+  font-weight: 500;
   line-height: 1.45;
   word-break: keep-all;
 }
@@ -6332,7 +6332,7 @@ body::after {
   margin-bottom: 5px;
   color: #2563eb;
   font-size: .78rem;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -.01em;
 }
 
@@ -6366,7 +6366,7 @@ body::after {
   padding: 22px 0;
   color: #0f172a;
   font-size: 1.05rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -.025em;
   line-height: 1.45;
   cursor: pointer;
@@ -6390,7 +6390,7 @@ body::after {
   justify-content: center;
   color: #2563eb;
   font-size: 1.05rem;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -6408,7 +6408,7 @@ body::after {
 
 .travel-list__item--static .travel-card__meta {
   color: #2563eb;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 @media (max-width: 1100px) {
@@ -6478,7 +6478,7 @@ body::after {
   margin: 0 0 14px;
   color: #1d4ed8;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
@@ -6518,7 +6518,7 @@ body::after {
   background: #fff;
   color: #0f172a;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1;
   text-decoration: none;
 }
@@ -6553,7 +6553,7 @@ body::after {
   margin: 0 0 14px;
   color: #0f172a;
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.03em;
 }
 
@@ -6575,7 +6575,7 @@ body::after {
   display: block;
   color: #0f172a;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-flow-list span {
@@ -6652,7 +6652,7 @@ body::after {
 .wt-link-card h3 {
   margin: 0;
   color: #0f172a;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.04em;
 }
 
@@ -6689,7 +6689,7 @@ body::after {
   background: #f1f5f9;
   color: #334155;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   padding: 0 10px;
 }
 
@@ -6732,7 +6732,7 @@ body::after {
   background: #f8fafc;
   color: #64748b;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -6761,7 +6761,7 @@ body::after {
   background: #f8fafc;
   color: #475569;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.6;
   padding: 11px 12px;
 }
@@ -6798,7 +6798,7 @@ body::after {
 
 .wt-hotel-more-banner strong {
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1.35;
   word-break: keep-all;
@@ -6816,7 +6816,7 @@ body::after {
   background: #eff6ff;
   color: #1d4ed8;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
   white-space: nowrap;
 }
@@ -6825,7 +6825,7 @@ body::after {
   content: "→";
   margin-left: 6px;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-check-grid {
@@ -6838,7 +6838,7 @@ body::after {
   border-radius: 18px;
   color: #334155;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.55;
   padding: 18px 20px;
 }
@@ -7346,7 +7346,7 @@ body::after {
   background: transparent;
   color: #9ca3af;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -7356,7 +7356,7 @@ body::after {
   content: "★ 9+";
   color: #0f172a;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   text-transform: none;
 }
@@ -7391,7 +7391,7 @@ body::after {
   color: #111827;
   padding: 0 10px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .wt-hotel-card p {
@@ -7422,7 +7422,7 @@ body::after {
   border-radius: 6px;
   padding: 0 14px;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-hotel-actions .wt-btn--primary {
@@ -7480,7 +7480,7 @@ body::after {
   background: transparent;
   color: #9ca3af;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -7489,7 +7489,7 @@ body::after {
   content: "★ 9+";
   color: #020617;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
@@ -7509,7 +7509,7 @@ body::after {
   margin-top: 8px;
   color: #8b9097;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.4;
   letter-spacing: -0.03em;
 }
@@ -7528,7 +7528,7 @@ body::after {
   background: #fbfbfc;
   color: #111827;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   padding: 0 10px;
 }
 
@@ -7612,7 +7612,7 @@ body::after {
   border-top: 1px solid #e8edf4;
   color: #111827;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.035em;
 }
@@ -7670,7 +7670,7 @@ body::after {
   margin: 0 0 20px;
   color: #8f949c;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -7681,7 +7681,7 @@ body::after {
   margin: 0;
   color: #8b9098;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -7691,7 +7691,7 @@ body::after {
   margin: 9px 0 0;
   color: #030712;
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.28;
   letter-spacing: -0.06em;
 }
@@ -7702,7 +7702,7 @@ body::after {
   border-top: 1px solid #e5e7eb;
   color: #111827;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.035em;
 }
@@ -7714,7 +7714,7 @@ body::after {
   border-top: 0;
   color: #4b5563;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.75;
   letter-spacing: -0.025em;
 }
@@ -7737,7 +7737,7 @@ body::after {
   color: #111827;
   padding: 0 12px;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 30px;
 }
 
@@ -7754,7 +7754,7 @@ body::after {
   border-radius: 6px;
   padding: 0 14px;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.03em;
 }
 
@@ -7903,7 +7903,7 @@ main.wt-purpose-page--quiet-stay .container {
 .wt-city-archive-count {
   color: #64748b;
   font-size: .94rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 
@@ -7929,7 +7929,7 @@ main.wt-purpose-page--quiet-stay .container {
   color: #334155;
   font: inherit;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   padding: 10px 14px;
   cursor: pointer;
@@ -7986,14 +7986,14 @@ main.wt-purpose-page--quiet-stay .container {
   color: #0f172a;
   display: block;
   font-size: 0.98rem;
-  font-weight: 800;
+  font-weight: 500;
   margin-bottom: 6px;
 }
 
 .wt-category-filter-description p {
   color: #64748b;
   font-size: 0.94rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.65;
   margin: 0;
 }
@@ -8059,7 +8059,7 @@ main.wt-purpose-page--quiet-stay .container {
 .wt-city-area-note strong {
   color: #2563eb;
   font-size: .9rem;
-  font-weight: 950;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -8158,7 +8158,7 @@ main.wt-purpose-page--quiet-stay .container {
   display: block;
   color: #2563eb;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.35;
   word-break: keep-all;
@@ -8169,7 +8169,7 @@ main.wt-purpose-page--quiet-stay .container {
   margin-top: 8px;
   color: #0f172a;
   font-size: 24px;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 1.15;
 }
@@ -8195,7 +8195,7 @@ main.wt-purpose-page--quiet-stay .container {
   margin: 12px 0 0;
   color: #0f172a;
   font-size: 18px;
-  font-weight: 950;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.045em;
   word-break: keep-all;
@@ -8235,7 +8235,7 @@ main.wt-purpose-page--quiet-stay .container {
   display: block;
   color: #0f172a;
   font-size: 13px;
-  font-weight: 950;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.03em;
 }
@@ -8325,7 +8325,7 @@ main.wt-purpose-page--quiet-stay .container {
   padding: 0.7rem 1.08rem;
   border-radius: 999px;
   font-size: 0.94rem;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1;
   color: #5f5548;
   cursor: pointer;
@@ -8611,7 +8611,7 @@ main.wt-purpose-page--quiet-stay .container {
   color: #334155;
   font: inherit;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -8675,7 +8675,7 @@ main.wt-purpose-page--quiet-stay .container {
   background: #f8fafc;
   color: #64748b;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.06em;
 }
 
@@ -8841,7 +8841,7 @@ main.wt-purpose-page--quiet-stay .container {
   background: #eff6ff;
   color: #1e40af;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
   word-break: keep-all;
@@ -8930,7 +8930,7 @@ main.wt-purpose-page--quiet-stay .container {
   color: #334155;
   font: inherit;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -9034,7 +9034,7 @@ main.wt-purpose-page--quiet-stay .container {
   background: #eff6ff;
   color: #1e40af;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
   word-break: keep-all;
@@ -9246,7 +9246,7 @@ main.wt-purpose-page--quiet-stay .container {
     padding: 0 22px;
     border-radius: 16px;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 500;
     line-height: 1.2;
     justify-content: center;
   }
@@ -9281,7 +9281,7 @@ main.wt-purpose-page--quiet-stay .container {
   max-width: 760px;
   color: #0f172a;
   font-size: clamp(17px, 2vw, 21px);
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -.045em;
   line-height: 1.32;
   word-break: keep-all;
@@ -9299,7 +9299,7 @@ main.wt-purpose-page--quiet-stay .container {
   color: #ffffff;
   box-shadow: 0 12px 26px rgba(37, 99, 235, .18);
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -9308,7 +9308,7 @@ main.wt-purpose-page--quiet-stay .container {
   content: "→";
   margin-left: 7px;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-purpose-page #hotels .wt-hotel-more-banner:hover {
@@ -9367,7 +9367,7 @@ main.wt-purpose-page--quiet-stay .container {
   min-height: 50px;
   padding: 0 24px;
   border-radius: 999px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-purpose-page .wt-area-tab-panel__details {
@@ -9390,7 +9390,7 @@ main.wt-purpose-page--quiet-stay .container {
 .wt-purpose-page--first-trip .wt-area-tab-panel .wt-area-card__note strong {
   color: #1e293b;
   font-size: 13.5px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.025em;
 }
 
@@ -9421,7 +9421,7 @@ main.wt-purpose-page--quiet-stay .container {
     padding: 0 22px;
     border-radius: 16px;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 500;
     line-height: 1.2;
   }
 
@@ -9592,7 +9592,7 @@ main.wt-purpose-page--quiet-stay .container {
   margin: 0 0 10px;
   color: #12263f;
   font-size: 0.94rem;
-  font-weight: 950;
+  font-weight: 500;
   letter-spacing: -0.025em;
 }
 
@@ -9602,7 +9602,7 @@ main.wt-purpose-page--quiet-stay .container {
   border-top: 1px solid rgba(15, 23, 42, 0.055);
   color: #536175;
   font-size: 0.94rem;
-  font-weight: 780;
+  font-weight: 500;
   line-height: 1.48;
   text-decoration: none;
 }
@@ -9628,7 +9628,7 @@ main.wt-purpose-page--quiet-stay .container {
   background: #edf5ff;
   color: #2563eb;
   font-size: 0.78rem;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .wt-seo-toc__group--featured strong {
@@ -9792,7 +9792,7 @@ main.wt-purpose-page--quiet-stay .container {
 .wt-ja-expression {
   display: block;
   color: #12263f;
-  font-weight: 850;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -9801,7 +9801,7 @@ main.wt-purpose-page--quiet-stay .container {
   margin-top: 4px;
   color: #6b7f94;
   font-size: 0.86rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
@@ -9898,7 +9898,7 @@ main.wt-purpose-page--quiet-stay .container {
   background: #ffffff !important;
   color: #334155 !important;
   font-size: 0.92rem !important;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
   line-height: 1 !important;
   letter-spacing: -0.02em !important;
   box-shadow: none !important;
@@ -10039,7 +10039,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   background: transparent;
   color: #475569;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.025em;
   word-break: keep-all;
@@ -10050,7 +10050,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   margin-left: auto;
   color: #334155;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.025em;
   white-space: nowrap;
@@ -10066,7 +10066,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   border-top: 1px solid #eef2f7;
   color: #64748b;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.025em;
 }
@@ -10080,7 +10080,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
 
 .wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list b {
   color: #334155;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 @media (max-width: 520px) {
@@ -10200,7 +10200,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   background: transparent;
   color: #1e40af;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.025em;
   word-break: keep-all;
@@ -10211,7 +10211,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   margin-left: auto;
   color: #334155;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.025em;
   white-space: nowrap;
@@ -10238,7 +10238,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   border-top: 1px solid #eef2f7;
   color: #64748b;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.025em;
 }
@@ -10255,7 +10255,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
 
 .wt-purpose-page #hotels .wt-hotel-card__score-list b {
   color: #334155;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-purpose-page #hotels .wt-hotel-card h3 {
@@ -10307,7 +10307,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   margin-top: 0;
   color: #475569;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.68;
   letter-spacing: -0.025em;
 }
@@ -10316,7 +10316,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   margin-bottom: 5px;
   color: #0f172a;
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.04em;
 }
@@ -10589,7 +10589,7 @@ main.travel-page,
   margin: 0;
   color: #0f172a !important;
   font-size: clamp(1.48rem, 2.4vw, 1.9rem) !important;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -.045em;
   line-height: 1.22;
   text-align: left;
@@ -10611,7 +10611,7 @@ main.travel-page,
   color: #fff !important;
   box-shadow: 0 12px 26px rgba(37, 99, 235, .18) !important;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -10621,7 +10621,7 @@ main.travel-page,
   content: "→";
   margin-left: 7px;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .wt-purpose-page #hotels .wt-hotel-more-banner:hover,

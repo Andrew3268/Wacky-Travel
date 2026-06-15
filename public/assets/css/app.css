@@ -128,7 +128,7 @@ main,
   border-radius: 999px;
   background: #333;
   color: #fff;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 12px;
 }
 .checkbox-line input {
@@ -151,7 +151,7 @@ main,
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 14px 16px;
-  font-weight: 800;
+  font-weight: 500;
   box-shadow: 0 8px 20px rgba(15,23,42,.05);
 }
 .feature-card {
@@ -199,7 +199,7 @@ body.has-preview-open {
   top: 50%;
   transform: translateY(-50%);
   color: #94a3b8;
-  font-weight: 700;
+  font-weight: 500;
 }
 [hidden] {
   display: none !important;
@@ -235,7 +235,7 @@ body.has-preview-open {
   padding: 10px 14px;
   border: 1px solid var(--border);
   background: #fff;
-  font-weight: 900;
+  font-weight: 500;
   cursor: pointer;
   border-color: var(--border);
   border-radius: 999px;
@@ -268,7 +268,7 @@ select {
   border: 1px solid var(--border);
   background: #fff;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text);
   cursor: pointer;
   border-color: var(--border);
@@ -292,7 +292,7 @@ select:focus {
   padding: 8px 12px;
   font: inherit;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
 }
 .topbar--editorial {
@@ -331,7 +331,7 @@ select:focus {
 }
 .topbar--travel .brand__text {
   font-size: 1rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.035em;
 }
 .topbar--travel .topbar__actions--travel {
@@ -353,7 +353,7 @@ select:focus {
   box-shadow: 0 8px 20px rgba(16, 42, 69, 0.06) !important;
   font: inherit;
   font-size: 13px !important;
-  font-weight: 900 !important;
+  font-weight: 500 !important;
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -449,14 +449,14 @@ select:focus {
 }
 .mobile-site-menu__head strong {
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 500;
   color: #111827;
 }
 .mobile-site-menu__close {
   border: 0;
   background: transparent;
   color: #6b7280;
-  font-weight: 700;
+  font-weight: 500;
   padding: 0;
   cursor: pointer;
 }
@@ -471,7 +471,7 @@ select:focus {
   border-bottom: 1px solid #f1f5f9;
   color: #111827;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
 }
 .mobile-site-menu__section {
   display: grid;
@@ -479,7 +479,7 @@ select:focus {
 }
 .mobile-site-menu__title {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: #6b7280;
@@ -496,7 +496,7 @@ select:focus {
   color: #111827;
   text-transform: none;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .topbar-categories__list--mobile .topbar-categories__chip span {
   display: inline;
@@ -511,7 +511,7 @@ select:focus {
 }
 .topbar--editorial:not(.topbar--travel) .brand__text {
   color: #102A45;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.035em;
 }
 .nav__icon-btn,
@@ -549,12 +549,12 @@ select:focus {
 .posts-summary-card strong {
   font-size: 22px;
   line-height: 1;
-  font-weight: 1000;
+  font-weight: 500;
   color: #0f172a;
 }
 .posts-summary-card span {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   color: #64748b;
 }
 .posts-sidebar__chips {
@@ -577,7 +577,7 @@ select:focus {
   background: rgba(91,124,255,.12);
   color: #1d4ed8;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
 }
 .posts-sidebar__actions {
   display: flex;
@@ -714,7 +714,7 @@ select:focus {
 .posts-home-hero__eyebrow {
   margin: 0;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: #4f46e5;
@@ -723,7 +723,7 @@ select:focus {
   margin: 0;
   font-size: clamp(30px,4vw,44px);
   line-height: 1.15;
-  font-weight: 900;
+  font-weight: 500;
   color: #0f172a;
 }
 .posts-home-hero__desc {
@@ -949,7 +949,7 @@ select:focus {
   display: grid;
   place-items: center;
   margin-top: 14px;
-  font-weight: 900;
+  font-weight: 500;
   color: #64748b;
 }
 .post-side__ad-slot--placeholder {
@@ -966,7 +966,7 @@ select:focus {
   margin: 0;
   font-size: 20px;
   line-height: 1.25;
-  font-weight: 900;
+  font-weight: 500;
   color: #111827;
 }
 .post-side__popular-list {
@@ -992,7 +992,7 @@ select:focus {
   background: #333;
   color: #fff;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
 }
 .post-side__popular-text {
   display: -webkit-box;
@@ -1035,7 +1035,7 @@ select:focus {
 }
 .post-ad__skeleton-label {
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -.02em;
 }
 .post-ad--placeholder {
@@ -1049,7 +1049,7 @@ select:focus {
   padding: 16px;
 }
 .post-ad__placeholder-title {
-  font-weight: 900;
+  font-weight: 500;
   color: var(--ink);
 }
 .post-side__ad .post-ad {
@@ -1085,7 +1085,7 @@ select:focus {
 }
 .post-toc__title {
   font-size: 19px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -.03em;
   color: #0f172a;
 }
@@ -1094,7 +1094,7 @@ select:focus {
   align-items: center;
   gap: 8px;
   font-size: 0;
-  font-weight: 800;
+  font-weight: 500;
   color: #475569;
   white-space: nowrap;
 }
@@ -1141,7 +1141,7 @@ select:focus {
   transition: .18s ease;
 }
 .post-toc__index {
-  font-weight: 900;
+  font-weight: 500;
   color: #333;
   min-width: 20px;
 }
@@ -1167,11 +1167,11 @@ select:focus {
   background: #f8fbff;
   color: #1e3a8a;
   margin: 8px 0 24px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .preview-toc-placeholder__meta {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   color: #64748b;
 }
 .preview-inline-image {
@@ -1243,7 +1243,7 @@ select:focus {
   background: #fff;
   color: #334155;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1;
   text-decoration: none;
   box-shadow: none;
@@ -1500,7 +1500,7 @@ select:focus {
   background: #F8FBFF;
   color: #111827;
   font-size: 17px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.025em;
 }
@@ -1512,7 +1512,7 @@ select:focus {
   background: #F8FBFF;
   color: #111827;
   font-size: 17px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.025em;
 }
@@ -1557,7 +1557,7 @@ select:focus {
 .post-body .post-content li::marker,
 .preview-body li::marker {
   color: #2563EB;
-  font-weight: 900;
+  font-weight: 500;
 }
 .preview-body blockquote,
 .post-body .post-content blockquote {
@@ -1623,7 +1623,7 @@ select:focus {
 .post-body .post-content table thead th {
   background: #EFF6FF;
   color: #111827;
-  font-weight: 900;
+  font-weight: 500;
   text-align: left;
   white-space: nowrap;
   word-break: keep-all;
@@ -1687,7 +1687,7 @@ select:focus {
   box-shadow: none;
   color: #111827;
   font-size: 0.56em;
-  font-weight: 850;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.012em;
   text-decoration: none;
@@ -1741,7 +1741,7 @@ select:focus {
   margin: 0 0 var(--post-hero-kicker-title-gap);
   color: #5368d6;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.4;
 }
 .post-hero-kicker a,
@@ -1825,7 +1825,7 @@ select:focus {
   line-height: 1.2;
   letter-spacing: -1.35px;
   color: #111827;
-  font-weight: 950;
+  font-weight: 500;
 }
 .post-hero {
   display: flex;
@@ -1876,7 +1876,7 @@ select:focus {
   place-items: center;
   padding: 16px;
   text-align: center;
-  font-weight: 800;
+  font-weight: 500;
   color: #475569;
   border-radius: 22px;
   background: linear-gradient(135deg, #F8FBFF, #DBEAFE);
@@ -1884,7 +1884,7 @@ select:focus {
 .post-card__title {
   font-size: 28px;
   line-height: 1.25;
-  font-weight: 100;
+  font-weight: 300;
   color: #102A45;
   letter-spacing: -0.045em;
 }
@@ -1898,7 +1898,7 @@ select:focus {
   margin: 0;
   font-size: clamp(25px,5vw,30px);
   line-height: 1.05;
-  font-weight: 950;
+  font-weight: 500;
   color: #102A45;
   letter-spacing: -0.045em;
 }
@@ -1974,7 +1974,7 @@ select:focus {
   padding: 7px 10px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   background: #EFF6FF;
   color: #174C78;
 }
@@ -1988,7 +1988,7 @@ select:focus {
   border: 1px solid rgba(15,23,42,.10);
   box-shadow: 0 6px 14px rgba(15,23,42,.045);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   white-space: nowrap;
   background: #EFF6FF;
   color: #174C78;
@@ -2003,7 +2003,7 @@ select:focus {
   padding: 14px 24px;
   color: #fff;
   font-size: 15px;
-  font-weight: 950;
+  font-weight: 500;
   line-height: 1;
   box-shadow: 0 12px 24px rgba(0,0,0,.12);
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
@@ -2069,7 +2069,7 @@ select:focus {
   background: #eef2ff;
   color: #1d4ed8;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 .preview-affiliate-card__media,
@@ -2112,7 +2112,7 @@ select:focus {
   margin: 0;
   font-size: 21px;
   line-height: 1.4;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.02em;
   color: #0f172a;
 }
@@ -2129,7 +2129,7 @@ select:focus {
 }
 .post-affiliate-card__current {
   color: #64748b;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: line-through;
   text-decoration-thickness: 1px;
 }
@@ -2137,7 +2137,7 @@ select:focus {
 .post-affiliate-card__sale {
   color: #dc2626;
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.03em;
 }
 .preview-affiliate-card__discount,
@@ -2149,7 +2149,7 @@ select:focus {
   background: #fff1f2;
   color: #be123c;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   border: 1px solid rgba(244,63,94,.15);
 }
 .preview-affiliate-card__button.is-disabled,
@@ -2181,7 +2181,7 @@ select:focus {
   padding: 0 18px;
   color: #fff;
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 500;
   box-shadow: 0 12px 22px rgba(15,23,42,.18);
   background: #102A45;
   border-radius: 999px;
@@ -2237,7 +2237,7 @@ select:focus {
   background: #102A45;
   color: #fff;
   text-decoration: none;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.025em;
   box-shadow: 0 14px 28px rgba(16, 42, 69, 0.16);
 }
@@ -2280,7 +2280,7 @@ select:focus {
 }
 .ww-big-text {
   font-size: clamp(1.8rem, 4vw, 3.2rem);
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.04em;
 }
@@ -2292,7 +2292,7 @@ select:focus {
 .ww-topic-num {
   font-family: "Darker Grotesque", sans-serif;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 .ww-value-grid {
   display: grid;
@@ -2303,11 +2303,11 @@ select:focus {
 .ww-value-card h3 {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  font-weight: 900;
+  font-weight: 500;
 }
 .ww-quote-text {
   font-size: clamp(2.5rem, 6vw, 6rem);
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.05em;
 }
@@ -2349,7 +2349,7 @@ body.ww-wrapper {
   font-family: "Darker Grotesque", sans-serif;
   font-size: clamp(4rem, 16vw, 14rem);
   line-height: 0.85;
-  font-weight: 900;
+  font-weight: 500;
   text-transform: uppercase;
   margin: 0;
   color: var(--ww-text);
@@ -2358,7 +2358,7 @@ body.ww-wrapper {
 .ww-topic-title {
   font-family: "Darker Grotesque", sans-serif;
   font-size: 2.5rem;
-  font-weight: 900;
+  font-weight: 500;
   text-transform: uppercase;
   color: var(--ww-text);
   letter-spacing: -0.065em;
@@ -2401,7 +2401,7 @@ body.ww-wrapper {
 .ww-label-tag {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 900;
+  font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 40px;
   letter-spacing: 0.1em;
@@ -2436,7 +2436,7 @@ body.ww-wrapper {
 .ww-big-btn {
   font-family: "Darker Grotesque", sans-serif;
   font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 900;
+  font-weight: 500;
   text-decoration: none;
   display: inline-block;
   line-height: 0.9;
@@ -2480,7 +2480,7 @@ body.ww-wrapper {
   gap: 12px;
 }
 .seo-eyebrow {
-  font-weight: 900;
+  font-weight: 500;
   color: #1d4ed8;
   text-transform: uppercase;
   letter-spacing: .04em;
@@ -2496,7 +2496,7 @@ body.ww-wrapper {
   display: grid;
   place-items: center;
   font-size: 24px;
-  font-weight: 1000;
+  font-weight: 500;
   border: 6px solid rgba(91,124,255,.15);
   background: linear-gradient(135deg, rgba(91,124,255,.12), rgba(37,99,235,.10));
 }
@@ -2569,7 +2569,7 @@ body.ww-wrapper {
 }
 .seo-check__row-status {
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
 }
 .seo-check__row-status--good {
   color: #2563EB;
@@ -2596,7 +2596,7 @@ body.ww-wrapper {
   padding: 5px 8px;
   border-radius: 999px;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 500;
 }
 .seo-pill--good {
   background: rgba(37,99,235,.12);
@@ -2626,7 +2626,7 @@ body.ww-wrapper {
   justify-content: flex-start;
 }
 .count-indicator {
-  font-weight: 800;
+  font-weight: 500;
   white-space: nowrap;
 }
 .count-indicator.is-good {
@@ -2774,7 +2774,7 @@ body.ww-wrapper {
   border-radius: 20px;
 }
 .preview-snippet__label {
-  font-weight: 900;
+  font-weight: 500;
   color: #2563eb;
   margin-bottom: 10px;
 }
@@ -2811,7 +2811,7 @@ body.ww-wrapper {
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   cursor: pointer;
   transition: .2s ease;
 }
@@ -2835,7 +2835,7 @@ body.ww-wrapper {
   border-radius: 14px;
   background: #fff;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .ad-toggle-item input {
   inline-size: 16px;
@@ -2868,7 +2868,7 @@ body.ww-wrapper {
   border-radius: 999px;
   background: #fff;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 500;
   color: #111827;
 }
 .checkbox-chip input {
@@ -2968,7 +2968,7 @@ body.ww-wrapper {
   display: flex;
   align-items: center;
   min-height: 42px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .category-manager__actions {
   display: flex;
@@ -3030,7 +3030,7 @@ body.ww-wrapper {
   background: rgba(17,24,39,.08);
   color: #374151;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   white-space: nowrap;
 }
@@ -3077,7 +3077,7 @@ body.ww-wrapper {
 .dashboard-stat__value {
   font-size: 32px;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 500;
   color: #111827;
 }
 .dashboard-grid {
@@ -3124,7 +3124,7 @@ body.ww-wrapper {
 .dashboard-recent__item a {
   color: #0f172a;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.5;
   font-size: 15px;
 }
@@ -3163,7 +3163,7 @@ body.ww-wrapper {
   background: #fff;
   color: #111827;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 .dashboard-quick-link::after {
   content: "→";
@@ -3214,7 +3214,7 @@ body.ww-wrapper {
 }
 .seo-check__subheading {
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
   color: #334155;
   margin: 0 0 8px;
 }
@@ -3247,14 +3247,14 @@ body.ww-wrapper {
 .preview-hotel-hero-kicker {
   color: #5368d6;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
 }
 .preview-hotel-hero-title {
   font-size: clamp(30px,5vw,44px);
   line-height: 1.08;
   letter-spacing: -1.25px;
   color: #111827;
-  font-weight: 950;
+  font-weight: 500;
 }
 .preview-hotel-hero-subtitle {
   margin: 0;
@@ -3281,7 +3281,7 @@ body.ww-wrapper {
   background: #fff;
   color: #4b5563;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 500;
 }
 .preview-hotel-hero-buttons span {
   display: inline-flex;
@@ -3294,7 +3294,7 @@ body.ww-wrapper {
   background: #050505;
   color: #fff;
   font-size: 13px;
-  font-weight: 950;
+  font-weight: 500;
 }
 .form-card {
   display: flex;
@@ -3542,7 +3542,7 @@ body.ww-wrapper {
     border: 1px solid rgba(15,23,42,.08);
     background: #fff;
     color: #0f172a;
-    font-weight: 800;
+    font-weight: 500;
     box-shadow: 0 10px 24px rgba(15,23,42,.06);
   }
   .post-related__more-btn::after {
@@ -4040,7 +4040,7 @@ body.ww-wrapper {
   margin-bottom: 18px;
   color: #2563eb;
   font-size: 0.82rem;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -4065,7 +4065,7 @@ body.ww-wrapper {
   font-size: clamp(2rem, 4.2vw, 3.65rem);
   line-height: 1.08;
   letter-spacing: -0.055em;
-  font-weight: 950;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-hero-subtitle {
@@ -4101,7 +4101,7 @@ body.ww-wrapper {
   background: rgba(255, 255, 255, 0.84);
   color: #344054;
   font-size: 0.9rem;
-  font-weight: 850;
+  font-weight: 500;
   box-shadow: none;
 }
 
@@ -4140,7 +4140,7 @@ body.ww-wrapper {
   font-size: clamp(1.58rem, 3vw, 2.28rem);
   line-height: 1.26;
   letter-spacing: -0.044em;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .post-content {
@@ -4174,7 +4174,7 @@ body.ww-wrapper {
   font-size: clamp(1.56rem, 2.75vw, 2.2rem);
   line-height: 1.3;
   letter-spacing: -0.046em;
-  font-weight: 880;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .post-content h2:first-child {
@@ -4186,7 +4186,7 @@ body.ww-wrapper {
   padding: 6px 11px;
   background: #f7faff;
   color: #111827;
-  font-weight: 850;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -4204,7 +4204,7 @@ body.ww-wrapper {
   font-size: clamp(1.14rem, 1.6vw, 1.32rem);
   line-height: 1.48;
   letter-spacing: -0.028em;
-  font-weight: 850;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .post-content h4 {
@@ -4220,7 +4220,7 @@ body.ww-wrapper {
   font-size: 0.94rem;
   line-height: 1.45;
   letter-spacing: -0.012em;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .post-content ul,
@@ -4240,7 +4240,7 @@ body.ww-wrapper {
 
 .post-shell--guide-style .post-body .post-content li::marker {
   color: #2563eb;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .post-content blockquote {
@@ -4256,12 +4256,12 @@ body.ww-wrapper {
 .post-shell--guide-style .post-body .post-content blockquote p {
   margin-bottom: 0;
   color: #344054;
-  font-weight: 720;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .post-content strong {
   color: #101828;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body .table-wrap,
@@ -4305,7 +4305,7 @@ body.ww-wrapper {
   color: #101828;
   background: #f7faff;
   font-size: 0.91rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-body table tr:last-child td,
@@ -4336,7 +4336,7 @@ body.ww-wrapper {
 .post-shell--guide-style .post-side__title {
   color: #101828;
   font-size: 0.98rem;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .post-shell--guide-style .post-side__popular-link {
@@ -4344,7 +4344,7 @@ body.ww-wrapper {
   border-top-color: rgba(15, 23, 42, 0.045);
   color: #536175;
   font-size: 0.92rem;
-  font-weight: 720;
+  font-weight: 500;
   line-height: 1.58;
 }
 
@@ -4643,7 +4643,7 @@ select:focus {
   color: #334155;
   text-decoration: none;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
 }
 .admin-items-status {
   margin: 14px 0;
@@ -4751,7 +4751,7 @@ select:focus {
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--text);
   background: #fff;
 }
@@ -5084,7 +5084,7 @@ select:focus {
 .admin-hub-overview .dashboard-stat__label {
   color: var(--admin-muted);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .admin-items-overview .dashboard-stat__value,
@@ -5126,7 +5126,7 @@ select:focus {
   background: #eef7ff;
   color: var(--admin-blue-dark);
   font-size: 12px;
-  font-weight: 1000;
+  font-weight: 500;
 }
 
 .admin-page-guide-card strong {
@@ -5165,7 +5165,7 @@ select:focus {
   color: #344054 !important;
   text-decoration: none !important;
   font-size: 13px !important;
-  font-weight: 900 !important;
+  font-weight: 500 !important;
 }
 
 .admin-items-nav a:first-child,
@@ -5229,7 +5229,7 @@ select:focus {
 .admin-hub-shell .form-field > span {
   color: #344054;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -5291,7 +5291,7 @@ select:focus {
   background: #ffffff;
   color: #475467;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.015em;
   cursor: pointer;
 }
@@ -5307,7 +5307,7 @@ select:focus {
   background: #f2f4f7;
   color: #667085;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .admin-country-tab.is-active {
@@ -5346,7 +5346,7 @@ select:focus {
   min-height: auto !important;
   color: var(--admin-title);
   font-size: 16px;
-  font-weight: 900 !important;
+  font-weight: 500 !important;
 }
 
 .category-manager__item .small,
@@ -5414,7 +5414,7 @@ select:focus {
   border-radius: 999px;
   background: #eef7ff;
   color: var(--admin-blue-dark) !important;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .admin-hub-featured-list {
@@ -5460,7 +5460,7 @@ select:focus {
 .home-destination-option__body strong {
   color: var(--admin-title);
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .home-destination-option__body em {
@@ -5486,7 +5486,7 @@ select:focus {
   background: #eef7ff !important;
   color: var(--admin-blue-dark) !important;
   font-size: 11px !important;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .home-destination-option__badge {
@@ -5500,7 +5500,7 @@ select:focus {
   border-radius: 999px;
   background: #fff;
   color: var(--admin-title);
-  font-weight: 1000;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -5542,7 +5542,7 @@ select:focus {
 
 .admin-hub-city-card__main strong {
   font-size: 15px !important;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .admin-hub-city-card__badges i {
@@ -5579,7 +5579,7 @@ select:focus {
   border-bottom: 1px solid rgba(16, 42, 69, 0.07);
   color: var(--admin-title) !important;
   font-size: 16px !important;
-  font-weight: 1000;
+  font-weight: 500;
 }
 
 .admin-hub-actions {
@@ -5780,7 +5780,7 @@ select:focus {
   transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease !important;
   text-align: center !important;
   font-size: 14px !important;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
   line-height: 1.45 !important;
 }
 
@@ -5920,4 +5920,27 @@ select:focus {
   border-radius: 16px;
   background: #f8fbff;
   color: #667085;
+}
+
+/* =========================================================
+   Font weight guardrail: keep typography light and editorial
+========================================================= */
+body {
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b,
+th,
+dt,
+summary,
+label,
+button {
+  font-weight: 500;
 }

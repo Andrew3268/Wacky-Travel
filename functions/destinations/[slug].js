@@ -337,8 +337,8 @@ function renderPostUpdateNoticeScript(destination = {}) {
     if (document.querySelector('[data-post-update-notice]')) return;
     const notice = document.createElement('div');
     notice.setAttribute('data-post-update-notice', '');
-    notice.style.cssText = 'position:fixed;left:50%;bottom:18px;z-index:9999;transform:translateX(-50%);display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);padding:12px 14px;border:1px solid rgba(15,23,42,.12);border-radius:999px;background:#111827;color:#fff;box-shadow:0 16px 36px rgba(15,23,42,.24);font-size:14px;font-weight:700;';
-    notice.innerHTML = '<span>새 글이 저장되었습니다. 최신 도시 페이지로 갱신할까요?</span><button type="button" style="border:0;border-radius:999px;background:#fff;color:#111827;font-weight:800;padding:8px 10px;cursor:pointer;">새로고침</button>';
+    notice.style.cssText = 'position:fixed;left:50%;bottom:18px;z-index:9999;transform:translateX(-50%);display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);padding:12px 14px;border:1px solid rgba(15,23,42,.12);border-radius:999px;background:#111827;color:#fff;box-shadow:0 16px 36px rgba(15,23,42,.24);font-size:14px;font-weight:500;';
+    notice.innerHTML = '<span>새 글이 저장되었습니다. 최신 도시 페이지로 갱신할까요?</span><button type="button" style="border:0;border-radius:999px;background:#fff;color:#111827;font-weight:500;padding:8px 10px;cursor:pointer;">새로고침</button>';
     notice.querySelector('button')?.addEventListener('click', () => {
       const url = new URL(location.href);
       url.searchParams.set('v', String(Date.now()));
