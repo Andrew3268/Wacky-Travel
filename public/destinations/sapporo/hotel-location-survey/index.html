@@ -1068,6 +1068,158 @@
       }
     }
 
+
+    /* wackytravel survey minimal polish v20260615 */
+    .wt-location-page {
+      background: #ffffff;
+    }
+
+    .wt-location-page .wt-survey-wrap {
+      background: #ffffff;
+    }
+
+    .wt-location-page .wt-survey-hero,
+    .wt-location-page:not(.is-survey-started) .wt-survey-hero,
+    .wt-location-page .wt-result-card {
+      border: 1px solid #e8edf3;
+      background: #ffffff;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
+    }
+
+    .wt-location-page .wt-survey-kicker,
+    .wt-location-page .wt-result-label,
+    .wt-location-page .wt-fit-badge,
+    .wt-location-page .wt-hotel-rank,
+    .wt-location-page .wt-post-list a::after,
+    .wt-location-page .wt-reason-number {
+      background: #f1f5f9;
+      color: #263241;
+    }
+
+    .wt-location-page .wt-section-eyebrow,
+    .wt-location-page .wt-hotel-location,
+    .wt-location-page .wt-related-link {
+      color: #334155;
+    }
+
+    .wt-location-page .wt-btn,
+    .wt-location-page .wt-hotel-link,
+    .wt-location-page .wt-progress-fill,
+    .wt-location-page .wt-fit-fill,
+    .wt-location-page .wt-bullet-list li::before {
+      background: #263241;
+    }
+
+    .wt-location-page .wt-btn:disabled {
+      background: #d7dee7;
+    }
+
+    .wt-location-page .wt-btn--ghost {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .wt-location-page .wt-option,
+    .wt-location-page .wt-result-lead,
+    .wt-location-page .wt-result-story,
+    .wt-location-page .wt-post-list-section,
+    .wt-location-page .wt-fit-item,
+    .wt-location-page .wt-related,
+    .wt-location-page .wt-hotel-section,
+    .wt-location-page .wt-hotel-card {
+      border: 1px solid #e8edf3;
+      background: #ffffff;
+      box-shadow: none;
+    }
+
+    .wt-location-page .wt-option:hover {
+      border-color: #cbd5e1;
+      background: #fbfcfe;
+    }
+
+    .wt-location-page .wt-option.is-selected {
+      background: #f8fafc;
+      box-shadow: inset 0 0 0 2px #263241;
+    }
+
+    .wt-location-page .wt-progress-bar,
+    .wt-location-page .wt-fit-line {
+      background: #e8edf3;
+    }
+
+    .wt-location-page .wt-hotel-section {
+      background: #fbfcfe;
+    }
+
+    .wt-location-page .wt-hotel-grid {
+      display: flex;
+      grid-template-columns: none;
+      gap: 12px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      padding: 2px 2px 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .wt-location-page .wt-hotel-grid::-webkit-scrollbar-thumb {
+      background: rgba(38, 50, 65, 0.24);
+    }
+
+    .wt-location-page .wt-hotel-card {
+      flex: 0 0 clamp(268px, 31vw, 292px);
+      min-width: 0;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
+    }
+
+    .wt-location-page .wt-survey-top-link {
+      border: 1px solid #e8edf3;
+      background: #f8fafc;
+      color: #263241;
+    }
+
+    .wt-location-page .wt-survey-top-link::before {
+      background: #eef2f7;
+      color: #334155;
+    }
+
+    .wt-location-page .wt-related-link {
+      border: 1px solid #e8edf3;
+      background: #ffffff;
+    }
+
+    @media (max-width: 820px) {
+      .wt-location-page .wt-hotel-grid {
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 2px 18px 14px 2px;
+        margin-right: -18px;
+      }
+
+      .wt-location-page .wt-hotel-card {
+        flex: 0 0 min(82vw, 320px);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wt-location-page .wt-hotel-section {
+        padding: 18px;
+      }
+
+      .wt-location-page .wt-hotel-grid {
+        gap: 10px;
+        padding-right: 18px;
+        margin-right: -18px;
+      }
+
+      .wt-location-page .wt-hotel-card {
+        flex-basis: min(84vw, 310px);
+      }
+    }
+
   </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"삿포로 숙소 위치 추천 서베이","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":"ko-KR","url":"/destinations/sapporo/hotel-location-survey/","description":"여행 일정과 동행자에 맞춰 삿포로 숙소 위치를 추천하는 간단한 서베이입니다."}</script>
 </head>
