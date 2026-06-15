@@ -10710,3 +10710,24 @@ body {
   overflow-x: hidden;
   overflow-x: clip;
 }
+
+/* V32 - hotel card action button single-column alignment */
+.wt-hotel-card .wt-hotel-actions,
+.wt-purpose-page .wt-hotel-card .wt-hotel-actions {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.wt-hotel-card .wt-hotel-actions .wt-btn,
+.wt-purpose-page .wt-hotel-card .wt-hotel-actions .wt-btn {
+  grid-column: 1 / 2;
+  width: 100%;
+  min-width: 0;
+}
+
+.wt-hotel-card .wt-hotel-actions .wt-btn:nth-child(n+2),
+.wt-purpose-page .wt-hotel-card .wt-hotel-actions .wt-btn:nth-child(n+2) {
+  display: none !important;
+}
