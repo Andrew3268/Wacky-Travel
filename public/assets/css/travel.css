@@ -10330,3 +10330,210 @@ body.wt-guide-body .hotel-guide-toc-floating {
     padding: 18px 19px;
   }
 }
+
+/* WACKYTRAVEL_RESPONSIVE_BREATHING_ROOM_V1 */
+@media (min-width: 768px) and (max-width: 1180px) {
+  .container,
+  .topbar__inner.container,
+  .breadcrumbs.container,
+  main.travel-page .container,
+  main.travel-page .breadcrumbs.container,
+  main.travel-page.wt-city-page > .container,
+  main.travel-page.wt-purpose-page .container,
+  main.travel-page.wt-city-guide-page .container,
+  main.travel-page.wt-city-hotel-guide-page .container,
+  main.travel-page.wt-city-travel-guide-page .container {
+    box-sizing: border-box;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+
+  main.travel-page.wt-city-page,
+  main.travel-page.wt-purpose-page,
+  main.travel-page.wt-city-guide-page,
+  main.travel-page.wt-city-hotel-guide-page,
+  main.travel-page.wt-city-travel-guide-page {
+    overflow-x: hidden;
+  }
+
+  .topbar--travel .topbar__inner.container {
+    padding-left: clamp(40px, 6vw, 64px) !important;
+    padding-right: clamp(40px, 6vw, 64px) !important;
+  }
+
+  .wt-city-hero,
+  .wt-purpose-page .wt-page-hero,
+  .wt-city-guide-hero,
+  .city-guide-hero {
+    padding-top: clamp(44px, 6vw, 72px) !important;
+    padding-bottom: clamp(62px, 8vw, 94px) !important;
+  }
+
+  .wt-purpose-page .wt-section,
+  .wt-city-section,
+  .wt-city-snapshot,
+  .wt-city-guide-links,
+  .wt-city-faq,
+  .wt-city-dynamic-section,
+  .wt-city-guide-section,
+  .city-guide-section,
+  .wt-city-guide-related,
+  .wt-city-hotel-guide-page .wt-city-guide-section,
+  .wt-city-travel-guide-page .wt-city-guide-section {
+    padding-top: clamp(64px, 8vw, 86px) !important;
+    padding-bottom: clamp(64px, 8vw, 86px) !important;
+  }
+
+  .wt-purpose-page .wt-section + .wt-section,
+  .wt-city-section + .wt-city-section,
+  .wt-city-guide-section + .wt-city-guide-section,
+  .city-guide-section + .city-guide-section {
+    margin-top: clamp(8px, 2vw, 22px) !important;
+  }
+
+  .wt-purpose-page .wt-area-grid,
+  .wt-purpose-page .wt-check-grid,
+  .wt-purpose-page .wt-link-grid,
+  .wt-city-snapshot__grid,
+  .wt-city-guide-snapshot__grid,
+  .destination-guide-links--static-osaka {
+    gap: clamp(18px, 2.5vw, 26px) !important;
+  }
+
+  .wt-purpose-page .wt-hotel-grid,
+  .wt-purpose-page #hotels .wt-hotel-grid {
+    gap: clamp(16px, 2vw, 22px) !important;
+    margin-right: calc(clamp(48px, 7vw, 76px) * -1) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+    scroll-padding-left: clamp(48px, 7vw, 76px) !important;
+    scroll-padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+
+  .wt-purpose-page .wt-check-item,
+  .wt-purpose-page .wt-area-card,
+  .wt-purpose-page .wt-link-card,
+  .wt-purpose-page .wt-cta-band,
+  .wt-city-choice-card,
+  .destination-guide-link,
+  .wt-city-guide-section,
+  .city-guide-section {
+    padding: clamp(24px, 3vw, 34px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main.travel-page.wt-city-page,
+  main.travel-page.wt-purpose-page,
+  main.travel-page.wt-city-guide-page,
+  main.travel-page.wt-city-hotel-guide-page,
+  main.travel-page.wt-city-travel-guide-page {
+    padding-left: clamp(28px, 7vw, 34px) !important;
+    padding-right: clamp(28px, 7vw, 34px) !important;
+    padding-top: 28px !important;
+    overflow-x: hidden;
+  }
+
+  main.travel-page.wt-city-page > .container,
+  main.travel-page.wt-purpose-page .container,
+  main.travel-page.wt-city-guide-page .container,
+  main.travel-page.wt-city-hotel-guide-page .container,
+  main.travel-page.wt-city-travel-guide-page .container,
+  main.travel-page.wt-city-page .breadcrumbs.container,
+  main.travel-page.wt-purpose-page .breadcrumbs.container,
+  main.travel-page.wt-city-guide-page .breadcrumbs.container,
+  main.travel-page.wt-city-hotel-guide-page .breadcrumbs.container,
+  main.travel-page.wt-city-travel-guide-page .breadcrumbs.container,
+  .breadcrumbs.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .topbar--travel .topbar__inner.container {
+    padding-left: clamp(24px, 6.5vw, 30px) !important;
+    padding-right: clamp(24px, 6.5vw, 30px) !important;
+  }
+
+  .wt-city-hero,
+  .wt-purpose-page .wt-page-hero,
+  .wt-city-guide-hero,
+  .city-guide-hero {
+    padding-top: 28px !important;
+    padding-bottom: 54px !important;
+  }
+
+  .wt-purpose-page .wt-section,
+  .wt-city-section,
+  .wt-city-snapshot,
+  .wt-city-guide-links,
+  .wt-city-faq,
+  .wt-city-dynamic-section,
+  .wt-city-guide-section,
+  .city-guide-section,
+  .wt-city-guide-related,
+  .wt-city-hotel-guide-page .wt-city-guide-section,
+  .wt-city-travel-guide-page .wt-city-guide-section {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+
+  .wt-purpose-page .wt-section + .wt-section,
+  .wt-city-section + .wt-city-section,
+  .wt-city-guide-section + .wt-city-guide-section,
+  .city-guide-section + .city-guide-section {
+    margin-top: 8px !important;
+  }
+
+  .wt-purpose-page .wt-area-grid,
+  .wt-purpose-page .wt-check-grid,
+  .wt-purpose-page .wt-link-grid,
+  .wt-city-snapshot__grid,
+  .wt-city-guide-snapshot__grid,
+  .destination-guide-links--static-osaka {
+    gap: 16px !important;
+  }
+
+  .wt-purpose-page .wt-hotel-grid,
+  .wt-purpose-page #hotels .wt-hotel-grid {
+    gap: 14px !important;
+    margin-right: calc(clamp(28px, 7vw, 34px) * -1) !important;
+    padding-right: clamp(28px, 7vw, 34px) !important;
+    scroll-padding-left: clamp(28px, 7vw, 34px) !important;
+    scroll-padding-right: clamp(28px, 7vw, 34px) !important;
+  }
+
+  .wt-purpose-page .wt-check-item,
+  .wt-purpose-page .wt-area-card,
+  .wt-purpose-page .wt-link-card,
+  .wt-purpose-page .wt-cta-band,
+  .wt-city-choice-card,
+  .destination-guide-link,
+  .wt-city-guide-section,
+  .city-guide-section {
+    padding: clamp(22px, 6vw, 28px) !important;
+  }
+
+  .wt-check-grid--readable .wt-check-item {
+    padding: clamp(22px, 6vw, 28px) !important;
+  }
+}
+
+@media (max-width: 380px) {
+  main.travel-page.wt-city-page,
+  main.travel-page.wt-purpose-page,
+  main.travel-page.wt-city-guide-page,
+  main.travel-page.wt-city-hotel-guide-page,
+  main.travel-page.wt-city-travel-guide-page {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .wt-purpose-page .wt-hotel-grid,
+  .wt-purpose-page #hotels .wt-hotel-grid {
+    margin-right: -24px !important;
+    padding-right: 24px !important;
+  }
+}
