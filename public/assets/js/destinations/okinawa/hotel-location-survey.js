@@ -731,323 +731,323 @@ const cityConfig = {
   },
   "questions": [
     {
-      "title": "이번 오키나와 여행에서 가장 중요한 것은 무엇인가요?",
-      "help": "가장 가까운 여행 목적을 골라주세요.",
-      "options": [
-        {
-          "title": "처음 가는 오키나와를 무난하게 즐기기",
-          "desc": "공항, 식당, 대표 동선을 쉽게 잡고 싶어요.",
-          "scores": {
-            "nahaKokusai": 7,
-            "chatanAmericanVillage": 4
-          }
+          "title": "이번 오키나와 여행에서 가장 중요한 것은 무엇인가요?",
+          "help": "가장 가까운 여행 목적을 골라주세요.",
+          "options": [
+            {
+              "title": "처음 가는 오키나와를 무난하게 즐기기",
+              "desc": "공항, 식당, 대표 동선을 쉽게 잡고 싶어요.",
+              "scores": {
+                "nahaKokusai": 7,
+                "chatanAmericanVillage": 4
+              }
+            },
+            {
+              "title": "바다 분위기와 저녁 산책",
+              "desc": "카페, 식당, 선셋이 가까우면 좋아요.",
+              "scores": {
+                "chatanAmericanVillage": 8,
+                "yomitanZanpa": 3
+              }
+            },
+            {
+              "title": "해변 리조트에서 쉬기",
+              "desc": "수영장과 바다, 호텔 체류가 중요해요.",
+              "scores": {
+                "onnaResort": 8,
+                "southCoast": 2
+              }
+            },
+            {
+              "title": "수족관과 북부 드라이브",
+              "desc": "츄라우미, 코우리섬, 세소코섬을 보고 싶어요.",
+              "scores": {
+                "nagoMotobu": 9,
+                "onnaResort": 3
+              }
+            }
+          ]
         },
-        {
-          "title": "바다 분위기와 저녁 산책",
-          "desc": "카페, 식당, 선셋이 가까우면 좋아요.",
-          "scores": {
-            "chatanAmericanVillage": 8,
-            "yomitanZanpa": 3
-          }
-        },
-        {
-          "title": "해변 리조트에서 쉬기",
-          "desc": "수영장과 바다, 호텔 체류가 중요해요.",
-          "scores": {
-            "onnaResort": 8,
-            "southCoast": 2
-          }
-        },
-        {
-          "title": "수족관과 북부 드라이브",
-          "desc": "츄라우미, 코우리섬, 세소코섬을 보고 싶어요.",
-          "scores": {
-            "nagoMotobu": 9,
-            "onnaResort": 3
-          }
-        }
-      ]
-    },
     {
-      "title": "렌터카를 이용할 예정인가요?",
-      "help": "오키나와 숙소 위치에서 가장 중요한 기준입니다.",
-      "options": [
-        {
-          "title": "렌터카 없이 여행해요",
-          "desc": "대중교통, 택시, 투어를 활용할 예정이에요.",
-          "scores": {
-            "nahaKokusai": 9,
-            "chatanAmericanVillage": 2
-          }
+          "title": "동행자는 누구인가요?",
+          "help": "가족 여행은 숙소 주변 편의가 중요합니다.",
+          "options": [
+            {
+              "title": "혼자 또는 친구와 가요",
+              "desc": "이동과 식당 선택지가 중요해요.",
+              "scores": {
+                "nahaKokusai": 4,
+                "chatanAmericanVillage": 5
+              }
+            },
+            {
+              "title": "커플 여행이에요",
+              "desc": "바다 분위기와 조용한 시간이 중요해요.",
+              "scores": {
+                "chatanAmericanVillage": 4,
+                "onnaResort": 5,
+                "yomitanZanpa": 4
+              }
+            },
+            {
+              "title": "아이와 함께 가요",
+              "desc": "식사, 주차, 수영장, 이동 피로가 중요해요.",
+              "scores": {
+                "chatanAmericanVillage": 5,
+                "onnaResort": 5,
+                "nagoMotobu": 4
+              }
+            },
+            {
+              "title": "부모님과 함께 가요",
+              "desc": "장거리 이동과 계단, 식사 동선을 줄이고 싶어요.",
+              "scores": {
+                "chatanAmericanVillage": 4,
+                "nahaKokusai": 4,
+                "onnaResort": 4
+              }
+            }
+          ]
         },
-        {
-          "title": "전 일정 렌터카를 이용해요",
-          "desc": "차로 자유롭게 이동할 예정이에요.",
-          "scores": {
-            "onnaResort": 4,
-            "nagoMotobu": 4,
-            "yomitanZanpa": 4,
-            "southCoast": 3
-          }
-        },
-        {
-          "title": "일부 일정만 렌터카를 써요",
-          "desc": "나하 1박 후 렌터카를 빌릴 수도 있어요.",
-          "scores": {
-            "nahaKokusai": 4,
-            "chatanAmericanVillage": 5,
-            "onnaResort": 3
-          }
-        },
-        {
-          "title": "아직 못 정했어요",
-          "desc": "렌터카 여부에 따라 추천을 받고 싶어요.",
-          "scores": {
-            "nahaKokusai": 5,
-            "chatanAmericanVillage": 4
-          }
-        }
-      ]
-    },
     {
-      "title": "여행 기간은 어느 정도인가요?",
-      "help": "짧은 일정일수록 이동 욕심을 줄이는 편이 좋습니다.",
-      "options": [
-        {
-          "title": "2박 3일 이하",
-          "desc": "짧고 알차게 보고 싶어요.",
-          "scores": {
-            "nahaKokusai": 6,
-            "chatanAmericanVillage": 4
-          }
+          "title": "렌터카를 이용할 예정인가요?",
+          "help": "오키나와 숙소 위치에서 가장 중요한 기준입니다.",
+          "options": [
+            {
+              "title": "렌터카 없이 여행해요",
+              "desc": "대중교통, 택시, 투어를 활용할 예정이에요.",
+              "scores": {
+                "nahaKokusai": 9,
+                "chatanAmericanVillage": 2
+              }
+            },
+            {
+              "title": "전 일정 렌터카를 이용해요",
+              "desc": "차로 자유롭게 이동할 예정이에요.",
+              "scores": {
+                "onnaResort": 4,
+                "nagoMotobu": 4,
+                "yomitanZanpa": 4,
+                "southCoast": 3
+              }
+            },
+            {
+              "title": "일부 일정만 렌터카를 써요",
+              "desc": "나하 1박 후 렌터카를 빌릴 수도 있어요.",
+              "scores": {
+                "nahaKokusai": 4,
+                "chatanAmericanVillage": 5,
+                "onnaResort": 3
+              }
+            },
+            {
+              "title": "아직 못 정했어요",
+              "desc": "렌터카 여부에 따라 추천을 받고 싶어요.",
+              "scores": {
+                "nahaKokusai": 5,
+                "chatanAmericanVillage": 4
+              }
+            }
+          ]
         },
-        {
-          "title": "3박 4일",
-          "desc": "중부와 북부를 조금씩 보고 싶어요.",
-          "scores": {
-            "chatanAmericanVillage": 5,
-            "onnaResort": 4,
-            "nagoMotobu": 3
-          }
-        },
-        {
-          "title": "4박 5일 이상",
-          "desc": "숙소를 나눠도 괜찮아요.",
-          "scores": {
-            "nagoMotobu": 5,
-            "onnaResort": 4,
-            "southCoast": 3,
-            "yomitanZanpa": 3
-          }
-        },
-        {
-          "title": "여유롭게 쉬는 긴 일정",
-          "desc": "한적한 지역도 괜찮아요.",
-          "scores": {
-            "yomitanZanpa": 6,
-            "southCoast": 5,
-            "onnaResort": 4
-          }
-        }
-      ]
-    },
     {
-      "title": "북부 관광은 어느 정도 계획하고 있나요?",
-      "help": "츄라우미 수족관과 코우리섬은 이동 시간이 꽤 걸립니다.",
-      "options": [
-        {
-          "title": "수족관과 코우리섬까지 꼭 볼 거예요",
-          "desc": "북부 일정이 핵심이에요.",
-          "scores": {
-            "nagoMotobu": 10,
-            "onnaResort": 2
-          }
+          "title": "여행 기간은 어느 정도인가요?",
+          "help": "짧은 일정일수록 이동 욕심을 줄이는 편이 좋습니다.",
+          "options": [
+            {
+              "title": "2박 3일 이하",
+              "desc": "짧고 알차게 보고 싶어요.",
+              "scores": {
+                "nahaKokusai": 6,
+                "chatanAmericanVillage": 4
+              }
+            },
+            {
+              "title": "3박 4일",
+              "desc": "중부와 북부를 조금씩 보고 싶어요.",
+              "scores": {
+                "chatanAmericanVillage": 5,
+                "onnaResort": 4,
+                "nagoMotobu": 3
+              }
+            },
+            {
+              "title": "4박 5일 이상",
+              "desc": "숙소를 나눠도 괜찮아요.",
+              "scores": {
+                "nagoMotobu": 5,
+                "onnaResort": 4,
+                "southCoast": 3,
+                "yomitanZanpa": 3
+              }
+            },
+            {
+              "title": "여유롭게 쉬는 긴 일정",
+              "desc": "한적한 지역도 괜찮아요.",
+              "scores": {
+                "yomitanZanpa": 6,
+                "southCoast": 5,
+                "onnaResort": 4
+              }
+            }
+          ]
         },
-        {
-          "title": "수족관만 하루 다녀올래요",
-          "desc": "당일치기도 괜찮아요.",
-          "scores": {
-            "chatanAmericanVillage": 4,
-            "onnaResort": 4,
-            "nagoMotobu": 4
-          }
-        },
-        {
-          "title": "북부보다 해변 리조트가 중요해요",
-          "desc": "멀리 이동하기보다 쉬고 싶어요.",
-          "scores": {
-            "onnaResort": 7,
-            "yomitanZanpa": 3
-          }
-        },
-        {
-          "title": "북부는 아직 고민 중이에요",
-          "desc": "일정에 따라 바뀔 수 있어요.",
-          "scores": {
-            "chatanAmericanVillage": 4,
-            "nahaKokusai": 2,
-            "onnaResort": 2
-          }
-        }
-      ]
-    },
     {
-      "title": "숙소 주변 분위기는 어떤 쪽이 좋나요?",
-      "help": "저녁 시간의 만족도를 좌우합니다.",
-      "options": [
-        {
-          "title": "식당과 쇼핑이 가까운 곳",
-          "desc": "저녁에 멀리 움직이고 싶지 않아요.",
-          "scores": {
-            "nahaKokusai": 6,
-            "chatanAmericanVillage": 7
-          }
+          "title": "북부 관광은 어느 정도 계획하고 있나요?",
+          "help": "츄라우미 수족관과 코우리섬은 이동 시간이 꽤 걸립니다.",
+          "options": [
+            {
+              "title": "수족관과 코우리섬까지 꼭 볼 거예요",
+              "desc": "북부 일정이 핵심이에요.",
+              "scores": {
+                "nagoMotobu": 10,
+                "onnaResort": 2
+              }
+            },
+            {
+              "title": "수족관만 하루 다녀올래요",
+              "desc": "당일치기도 괜찮아요.",
+              "scores": {
+                "chatanAmericanVillage": 4,
+                "onnaResort": 4,
+                "nagoMotobu": 4
+              }
+            },
+            {
+              "title": "북부보다 해변 리조트가 중요해요",
+              "desc": "멀리 이동하기보다 쉬고 싶어요.",
+              "scores": {
+                "onnaResort": 7,
+                "yomitanZanpa": 3
+              }
+            },
+            {
+              "title": "북부는 아직 고민 중이에요",
+              "desc": "일정에 따라 바뀔 수 있어요.",
+              "scores": {
+                "chatanAmericanVillage": 4,
+                "nahaKokusai": 2,
+                "onnaResort": 2
+              }
+            }
+          ]
         },
-        {
-          "title": "해변 리조트 분위기",
-          "desc": "숙소에서 쉬는 시간이 중요해요.",
-          "scores": {
-            "onnaResort": 8,
-            "southCoast": 2
-          }
-        },
-        {
-          "title": "조용한 바다와 선셋",
-          "desc": "번잡한 곳보다 차분한 곳이 좋아요.",
-          "scores": {
-            "yomitanZanpa": 8,
-            "southCoast": 5
-          }
-        },
-        {
-          "title": "북부 자연 분위기",
-          "desc": "관광객 많은 중심부보다 자연이 좋아요.",
-          "scores": {
-            "nagoMotobu": 7,
-            "yomitanZanpa": 3
-          }
-        }
-      ]
-    },
     {
-      "title": "동행자는 누구인가요?",
-      "help": "가족 여행은 숙소 주변 편의가 중요합니다.",
-      "options": [
-        {
-          "title": "혼자 또는 친구와 가요",
-          "desc": "이동과 식당 선택지가 중요해요.",
-          "scores": {
-            "nahaKokusai": 4,
-            "chatanAmericanVillage": 5
-          }
+          "title": "숙소 주변 분위기는 어떤 쪽이 좋나요?",
+          "help": "저녁 시간의 만족도를 좌우합니다.",
+          "options": [
+            {
+              "title": "식당과 쇼핑이 가까운 곳",
+              "desc": "저녁에 멀리 움직이고 싶지 않아요.",
+              "scores": {
+                "nahaKokusai": 6,
+                "chatanAmericanVillage": 7
+              }
+            },
+            {
+              "title": "해변 리조트 분위기",
+              "desc": "숙소에서 쉬는 시간이 중요해요.",
+              "scores": {
+                "onnaResort": 8,
+                "southCoast": 2
+              }
+            },
+            {
+              "title": "조용한 바다와 선셋",
+              "desc": "번잡한 곳보다 차분한 곳이 좋아요.",
+              "scores": {
+                "yomitanZanpa": 8,
+                "southCoast": 5
+              }
+            },
+            {
+              "title": "북부 자연 분위기",
+              "desc": "관광객 많은 중심부보다 자연이 좋아요.",
+              "scores": {
+                "nagoMotobu": 7,
+                "yomitanZanpa": 3
+              }
+            }
+          ]
         },
-        {
-          "title": "커플 여행이에요",
-          "desc": "바다 분위기와 조용한 시간이 중요해요.",
-          "scores": {
-            "chatanAmericanVillage": 4,
-            "onnaResort": 5,
-            "yomitanZanpa": 4
-          }
-        },
-        {
-          "title": "아이와 함께 가요",
-          "desc": "식사, 주차, 수영장, 이동 피로가 중요해요.",
-          "scores": {
-            "chatanAmericanVillage": 5,
-            "onnaResort": 5,
-            "nagoMotobu": 4
-          }
-        },
-        {
-          "title": "부모님과 함께 가요",
-          "desc": "장거리 이동과 계단, 식사 동선을 줄이고 싶어요.",
-          "scores": {
-            "chatanAmericanVillage": 4,
-            "nahaKokusai": 4,
-            "onnaResort": 4
-          }
-        }
-      ]
-    },
     {
-      "title": "바다 액티비티나 섬 투어 계획이 있나요?",
-      "help": "집결지에 따라 숙소가 달라집니다.",
-      "options": [
-        {
-          "title": "케라마 제도 투어가 있어요",
-          "desc": "아침 항구 이동이 중요해요.",
-          "scores": {
-            "nahaKokusai": 8
-          }
+          "title": "바다 액티비티나 섬 투어 계획이 있나요?",
+          "help": "집결지에 따라 숙소가 달라집니다.",
+          "options": [
+            {
+              "title": "케라마 제도 투어가 있어요",
+              "desc": "아침 항구 이동이 중요해요.",
+              "scores": {
+                "nahaKokusai": 8
+              }
+            },
+            {
+              "title": "푸른동굴 스노클링을 하고 싶어요",
+              "desc": "중부 서해안 접근성이 중요해요.",
+              "scores": {
+                "onnaResort": 6,
+                "yomitanZanpa": 4,
+                "chatanAmericanVillage": 3
+              }
+            },
+            {
+              "title": "호텔 수영장과 해변만 즐길래요",
+              "desc": "멀리 이동하지 않아도 돼요.",
+              "scores": {
+                "onnaResort": 7,
+                "southCoast": 3
+              }
+            },
+            {
+              "title": "액티비티보다 드라이브가 좋아요",
+              "desc": "해안도로와 카페를 천천히 보고 싶어요.",
+              "scores": {
+                "yomitanZanpa": 5,
+                "southCoast": 5,
+                "nagoMotobu": 3
+              }
+            }
+          ]
         },
-        {
-          "title": "푸른동굴 스노클링을 하고 싶어요",
-          "desc": "중부 서해안 접근성이 중요해요.",
-          "scores": {
-            "onnaResort": 6,
-            "yomitanZanpa": 4,
-            "chatanAmericanVillage": 3
-          }
-        },
-        {
-          "title": "호텔 수영장과 해변만 즐길래요",
-          "desc": "멀리 이동하지 않아도 돼요.",
-          "scores": {
-            "onnaResort": 7,
-            "southCoast": 3
-          }
-        },
-        {
-          "title": "액티비티보다 드라이브가 좋아요",
-          "desc": "해안도로와 카페를 천천히 보고 싶어요.",
-          "scores": {
-            "yomitanZanpa": 5,
-            "southCoast": 5,
-            "nagoMotobu": 3
-          }
-        }
-      ]
-    },
     {
-      "title": "마지막 날 공항 이동은 얼마나 중요하나요?",
-      "help": "아침 비행기라면 숙소 위치가 꽤 중요합니다.",
-      "options": [
-        {
-          "title": "아침 비행기라 공항 접근이 중요해요",
-          "desc": "마지막 날은 이동을 줄이고 싶어요.",
-          "scores": {
-            "nahaKokusai": 7,
-            "southCoast": 5
-          }
-        },
-        {
-          "title": "공항보다는 해변 휴식이 중요해요",
-          "desc": "마지막까지 바다 근처에 있고 싶어요.",
-          "scores": {
-            "onnaResort": 4,
-            "yomitanZanpa": 4,
-            "southCoast": 4
-          }
-        },
-        {
-          "title": "북부에서 바로 내려와도 괜찮아요",
-          "desc": "운전 시간을 감수할 수 있어요.",
-          "scores": {
-            "nagoMotobu": 3,
-            "onnaResort": 2
-          }
-        },
-        {
-          "title": "아직 항공편을 못 정했어요",
-          "desc": "무난한 위치가 좋아요.",
-          "scores": {
-            "nahaKokusai": 4,
-            "chatanAmericanVillage": 4
-          }
+          "title": "마지막 날 공항 이동은 얼마나 중요하나요?",
+          "help": "아침 비행기라면 숙소 위치가 꽤 중요합니다.",
+          "options": [
+            {
+              "title": "아침 비행기라 공항 접근이 중요해요",
+              "desc": "마지막 날은 이동을 줄이고 싶어요.",
+              "scores": {
+                "nahaKokusai": 7,
+                "southCoast": 5
+              }
+            },
+            {
+              "title": "공항보다는 해변 휴식이 중요해요",
+              "desc": "마지막까지 바다 근처에 있고 싶어요.",
+              "scores": {
+                "onnaResort": 4,
+                "yomitanZanpa": 4,
+                "southCoast": 4
+              }
+            },
+            {
+              "title": "북부에서 바로 내려와도 괜찮아요",
+              "desc": "운전 시간을 감수할 수 있어요.",
+              "scores": {
+                "nagoMotobu": 3,
+                "onnaResort": 2
+              }
+            },
+            {
+              "title": "아직 항공편을 못 정했어요",
+              "desc": "무난한 위치가 좋아요.",
+              "scores": {
+                "nahaKokusai": 4,
+                "chatanAmericanVillage": 4
+              }
+            }
+          ]
         }
-      ]
-    }
   ]
 };
 

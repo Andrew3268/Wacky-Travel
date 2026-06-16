@@ -448,93 +448,93 @@ const cityConfig = {
       },
       questions: [
         {
-          title: "이번 오사카 여행은 몇 번째인가요?",
-          help: "첫 여행일수록 이동이 단순하고 대표 명소 접근성이 좋은 위치가 유리합니다.",
-          options: [
-            { title: "첫 오사카 여행이에요", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { namba: 5, umeda: 2, shinsaibashi: 2 } },
-            { title: "두 번째 이상이에요", desc: "너무 뻔한 중심지만 고집하지 않아도 괜찮아요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
-            { title: "오사카가 꽤 익숙해요", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { tennoji: 4, hommachi: 3, shinsaibashi: 3 } }
-          ]
-        },
+                  title: "이번 오사카 여행은 몇 번째인가요?",
+                  help: "첫 여행일수록 이동이 단순하고 대표 명소 접근성이 좋은 위치가 유리합니다.",
+                  options: [
+                    { title: "첫 오사카 여행이에요", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { namba: 5, umeda: 2, shinsaibashi: 2 } },
+                    { title: "두 번째 이상이에요", desc: "너무 뻔한 중심지만 고집하지 않아도 괜찮아요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
+                    { title: "오사카가 꽤 익숙해요", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { tennoji: 4, hommachi: 3, shinsaibashi: 3 } }
+                  ]
+                },
         {
-          title: "이번 여행에서 가장 중요한 것은 무엇인가요?",
-          help: "여행의 핵심 목적에 따라 숙소 위치가 달라집니다.",
-          options: [
-            { title: "맛집과 밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { namba: 6, shinsaibashi: 2 } },
-            { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { shinsaibashi: 4, namba: 3, umeda: 3 } },
-            { title: "교통 편의성", desc: "시내 이동과 근교 이동을 편하게 하고 싶어요.", scores: { umeda: 6, namba: 3, shinsaibashi: 1 } },
-            { title: "아이와 함께하는 일정", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { universal: 5, umeda: 3, tennoji: 2, hommachi: 1 } }
-          ]
-        },
+                  title: "이번 여행 동행자는 누구인가요?",
+                  help: "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
+                  options: [
+                    { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { namba: 3, umeda: 3, shinsaibashi: 2 } },
+                    { title: "커플 여행", desc: "맛집, 쇼핑, 분위기를 같이 중요하게 보어요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2 } },
+                    { title: "친구와 여행", desc: "밤에도 활기차고 먹거리 많은 곳이 좋아요.", scores: { namba: 5, shinsaibashi: 3 } },
+                    { title: "가족·아이 동반", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { universal: 4, hommachi: 4, umeda: 3 } },
+                    { title: "부모님과 여행", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { umeda: 4, tennoji: 3, namba: 2 } }
+                  ]
+                },
         {
-          title: "공항 이동은 얼마나 중요한가요?",
-          help: "간사이공항 이동을 중요하게 보면 난바 쪽이 강한 후보가 됩니다.",
-          options: [
-            { title: "매우 중요해요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { namba: 6, tennoji: 2, umeda: 1 } },
-            { title: "보통이에요", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { namba: 3, umeda: 3, tennoji: 2 } },
-            { title: "크게 중요하지 않아요", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { shinsaibashi: 2, universal: 2, hommachi: 2 } }
-          ]
-        },
+                  title: "이번 여행에서 가장 중요한 것은 무엇인가요?",
+                  help: "여행의 핵심 목적에 따라 숙소 위치가 달라집니다.",
+                  options: [
+                    { title: "맛집과 밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { namba: 6, shinsaibashi: 2 } },
+                    { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { shinsaibashi: 4, namba: 3, umeda: 3 } },
+                    { title: "교통 편의성", desc: "시내 이동과 근교 이동을 편하게 하고 싶어요.", scores: { umeda: 6, namba: 3, shinsaibashi: 1 } },
+                    { title: "아이와 함께하는 일정", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { universal: 5, umeda: 3, tennoji: 2, hommachi: 1 } }
+                  ]
+                },
         {
-          title: "유니버설 스튜디오 재팬 일정이 있나요?",
-          help: "USJ가 여행의 핵심이면 숙소 위치 선택이 크게 달라집니다.",
-          options: [
-            { title: "USJ가 이번 여행의 핵심이에요", desc: "입장과 퇴장 동선을 최대한 줄이고 싶어요.", scores: { universal: 9, hommachi: 2 } },
-            { title: "하루 정도만 방문해요", desc: "USJ도 가지만 시내 관광도 중요해요.", scores: { universal: 3, umeda: 3, namba: 3 } },
-            { title: "방문하지 않아요", desc: "시내 관광, 맛집, 쇼핑 중심으로 움직일 예정이에요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2, tennoji: 1 } }
-          ]
-        },
+                  title: "공항 이동은 얼마나 중요한가요?",
+                  help: "간사이공항 이동을 중요하게 보면 난바 쪽이 강한 후보가 됩니다.",
+                  options: [
+                    { title: "매우 중요해요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { namba: 6, tennoji: 2, umeda: 1 } },
+                    { title: "보통이에요", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { namba: 3, umeda: 3, tennoji: 2 } },
+                    { title: "크게 중요하지 않아요", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { shinsaibashi: 2, universal: 2, hommachi: 2 } }
+                  ]
+                },
         {
-          title: "오사카 근교 여행 계획이 있나요?",
-          help: "교토, 고베, 나라처럼 다른 도시를 함께 다녀올 예정이라면 숙소 위치 선택 기준이 달라집니다.",
-          options: [
-            { title: "근교 여행을 2일 이상 계획하고 있어요", desc: "교토, 고베, 나라 등을 오사카와 함께 다녀오고 싶어요.", scores: { umeda: 8, shinsaibashi: 2, namba: 1 } },
-            { title: "근교 여행은 하루 정도만 있어요", desc: "시내 관광도 중요하지만 하루쯤은 다른 도시도 보고 싶어요.", scores: { umeda: 4, namba: 3, shinsaibashi: 2 } },
-            { title: "오사카 시내 위주로만 볼 예정이에요", desc: "도톤보리, 난바, 신사이바시처럼 시내 동선을 더 중요하게 봐요.", scores: { namba: 4, shinsaibashi: 3, tennoji: 2 } },
-            { title: "아직 정하지 않았지만 가능성은 있어요", desc: "일정이 바뀔 수 있어서 이동 선택지가 많은 곳이면 좋아요.", scores: { umeda: 4, shinsaibashi: 2, namba: 2 } }
-          ]
-        },
+                  title: "유니버설 스튜디오 재팬 일정이 있나요?",
+                  help: "USJ가 여행의 핵심이면 숙소 위치 선택이 크게 달라집니다.",
+                  options: [
+                    { title: "USJ가 이번 여행의 핵심이에요", desc: "입장과 퇴장 동선을 최대한 줄이고 싶어요.", scores: { universal: 9, hommachi: 2 } },
+                    { title: "하루 정도만 방문해요", desc: "USJ도 가지만 시내 관광도 중요해요.", scores: { universal: 3, umeda: 3, namba: 3 } },
+                    { title: "방문하지 않아요", desc: "시내 관광, 맛집, 쇼핑 중심으로 움직일 예정이에요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2, tennoji: 1 } }
+                  ]
+                },
         {
-          title: "숙소 주변 분위기는 어떤 쪽이 좋나요?",
-          help: "같은 오사카여도 지역마다 주변 소음과 분위기와 체감 소음이 다릅니다.",
-          options: [
-            { title: "활기찬 번화가가 좋아요", desc: "밤에도 주변에 볼거리와 먹거리가 많았으면 해요.", scores: { namba: 6, shinsaibashi: 2 } },
-            { title: "깔끔한 도심이 좋아요", desc: "백화점, 쇼핑몰, 역세권 분위기를 선호해요.", scores: { umeda: 6, shinsaibashi: 2 } },
-            { title: "조금 차분한 곳이 좋아요", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
-            { title: "가족여행에 편한 분위기가 좋아요", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { universal: 5, umeda: 3, tennoji: 2, hommachi: 1 } }
-          ]
-        },
+                  title: "오사카 근교 여행 계획이 있나요?",
+                  help: "교토, 고베, 나라처럼 다른 도시를 함께 다녀올 예정이라면 숙소 위치 선택 기준이 달라집니다.",
+                  options: [
+                    { title: "근교 여행을 2일 이상 계획하고 있어요", desc: "교토, 고베, 나라 등을 오사카와 함께 다녀오고 싶어요.", scores: { umeda: 8, shinsaibashi: 2, namba: 1 } },
+                    { title: "근교 여행은 하루 정도만 있어요", desc: "시내 관광도 중요하지만 하루쯤은 다른 도시도 보고 싶어요.", scores: { umeda: 4, namba: 3, shinsaibashi: 2 } },
+                    { title: "오사카 시내 위주로만 볼 예정이에요", desc: "도톤보리, 난바, 신사이바시처럼 시내 동선을 더 중요하게 봐요.", scores: { namba: 4, shinsaibashi: 3, tennoji: 2 } },
+                    { title: "아직 정하지 않았지만 가능성은 있어요", desc: "일정이 바뀔 수 있어서 이동 선택지가 많은 곳이면 좋아요.", scores: { umeda: 4, shinsaibashi: 2, namba: 2 } }
+                  ]
+                },
         {
-          title: "숙소 예산은 어떤 편인가요?",
-          help: "위치가 중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.",
-          options: [
-            { title: "숙소비를 아끼고 싶어요", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { tennoji: 5, shinsaibashi: 3, hommachi: 2 } },
-            { title: "가격과 위치 균형이 중요해요", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { shinsaibashi: 4, tennoji: 3, namba: 2, umeda: 2 } },
-            { title: "위치가 좋다면 조금 더 써도 괜찮아요", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { namba: 4, umeda: 4, universal: 3 } }
-          ]
-        },
+                  title: "숙소 주변 분위기는 어떤 쪽이 좋나요?",
+                  help: "같은 오사카여도 지역마다 주변 소음과 분위기와 체감 소음이 다릅니다.",
+                  options: [
+                    { title: "활기찬 번화가가 좋아요", desc: "밤에도 주변에 볼거리와 먹거리가 많았으면 해요.", scores: { namba: 6, shinsaibashi: 2 } },
+                    { title: "깔끔한 도심이 좋아요", desc: "백화점, 쇼핑몰, 역세권 분위기를 선호해요.", scores: { umeda: 6, shinsaibashi: 2 } },
+                    { title: "조금 차분한 곳이 좋아요", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
+                    { title: "가족여행에 편한 분위기가 좋아요", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { universal: 5, umeda: 3, tennoji: 2, hommachi: 1 } }
+                  ]
+                },
         {
-          title: "이번 여행 동행자는 누구인가요?",
-          help: "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
-          options: [
-            { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { namba: 3, umeda: 3, shinsaibashi: 2 } },
-            { title: "커플 여행", desc: "맛집, 쇼핑, 분위기를 같이 중요하게 보어요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2 } },
-            { title: "친구와 여행", desc: "밤에도 활기차고 먹거리 많은 곳이 좋아요.", scores: { namba: 5, shinsaibashi: 3 } },
-            { title: "가족·아이 동반", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { universal: 4, hommachi: 4, umeda: 3 } },
-            { title: "부모님과 여행", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { umeda: 4, tennoji: 3, namba: 2 } }
-          ]
-        },
+                  title: "숙소 예산은 어떤 편인가요?",
+                  help: "위치가 중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.",
+                  options: [
+                    { title: "숙소비를 아끼고 싶어요", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { tennoji: 5, shinsaibashi: 3, hommachi: 2 } },
+                    { title: "가격과 위치 균형이 중요해요", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { shinsaibashi: 4, tennoji: 3, namba: 2, umeda: 2 } },
+                    { title: "위치가 좋다면 조금 더 써도 괜찮아요", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { namba: 4, umeda: 4, universal: 3 } }
+                  ]
+                },
         {
-          title: "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
-          help: "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
-          options: [
-            { title: "늦은 시간 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { shinsaibashi: 4, umeda: 3, hommachi: 2, namba: -2 } },
-            { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, umeda: 4, universal: 2, hommachi: -2 } },
-            { title: "복잡한 환승", desc: "길 찾기와 환승이 복잡한 곳은 부담스러워요.", scores: { namba: 3, tennoji: 2, universal: 2, umeda: -1 } },
-            { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { umeda: 3, hommachi: 3, universal: 2, namba: -1 } },
-            { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, hommachi: 3, umeda: 2 } }
-          ]
-        }
+                  title: "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
+                  help: "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
+                  options: [
+                    { title: "늦은 시간 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { shinsaibashi: 4, umeda: 3, hommachi: 2, namba: -2 } },
+                    { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, umeda: 4, universal: 2, hommachi: -2 } },
+                    { title: "복잡한 환승", desc: "길 찾기와 환승이 복잡한 곳은 부담스러워요.", scores: { namba: 3, tennoji: 2, universal: 2, umeda: -1 } },
+                    { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { umeda: 3, hommachi: 3, universal: 2, namba: -1 } },
+                    { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, hommachi: 3, umeda: 2 } }
+                  ]
+                }
       ]
     };
 

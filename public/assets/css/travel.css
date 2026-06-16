@@ -12689,3 +12689,29 @@ margin-right: -24px;
 .wt-location-page .wt-hotel-card-footer .wt-hotel-link {
   margin-top: 0;
 }
+
+
+/* WACKYTRAVEL_LOCATION_SURVEY_START_TOP_V5 */
+@media (min-width: 768px) {
+  .wt-location-page:not(.is-survey-started) {
+    align-items: flex-start;
+    min-height: auto;
+    padding-top: clamp(28px, 3.5vw, 48px);
+    padding-bottom: clamp(44px, 5vw, 72px);
+  }
+
+  .wt-location-page:not(.is-survey-started) .wt-location-shell {
+    margin-top: 0;
+  }
+
+  .wt-location-page:not(.is-survey-started) .wt-survey-top-link {
+    margin-bottom: clamp(14px, 2vw, 22px);
+  }
+}
+
+@media (min-width: 1181px) {
+  .wt-location-page:not(.is-survey-started) {
+    padding-top: 32px;
+  }
+}
+/* End WACKYTRAVEL_LOCATION_SURVEY_START_TOP_V5 */

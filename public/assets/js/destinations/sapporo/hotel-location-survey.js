@@ -731,347 +731,347 @@ const cityConfig = {
   },
   "questions": [
     {
-      "title": "이번 삿포로 여행에서 가장 중요한 일정은 무엇인가요?",
-      "help": "여행의 중심이 도심 관광인지, 근교 이동인지, 저녁 식사인지에 따라 숙소 위치가 달라집니다.",
-      "options": [
-        {
-          "title": "처음 가는 삿포로라 대표 명소를 편하게 보고 싶어요",
-          "desc": "오도리공원, TV타워, 스스키노, 시장을 무리 없이 보고 싶어요.",
-          "scores": {
-            "odoriTanukikoji": 6,
-            "sapporoStation": 5,
-            "susukino": 2
-          }
+          "title": "이번 삿포로 여행에서 가장 중요한 일정은 무엇인가요?",
+          "help": "여행의 중심이 도심 관광인지, 근교 이동인지, 저녁 식사인지에 따라 숙소 위치가 달라집니다.",
+          "options": [
+            {
+              "title": "처음 가는 삿포로라 대표 명소를 편하게 보고 싶어요",
+              "desc": "오도리공원, TV타워, 스스키노, 시장을 무리 없이 보고 싶어요.",
+              "scores": {
+                "odoriTanukikoji": 6,
+                "sapporoStation": 5,
+                "susukino": 2
+              }
+            },
+            {
+              "title": "오타루·비에이·후라노 같은 근교 일정이 중요해요",
+              "desc": "아침 출발과 저녁 복귀가 편했으면 해요.",
+              "scores": {
+                "sapporoStation": 8,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "저녁 식사와 맛집이 가장 기대돼요",
+              "desc": "라멘, 징기스칸, 이자카야를 편하게 다니고 싶어요.",
+              "scores": {
+                "susukino": 8,
+                "odoriTanukikoji": 4,
+                "nakajimaPark": 2
+              }
+            },
+            {
+              "title": "조용히 쉬는 시간이 더 중요해요",
+              "desc": "번화가보다는 차분한 숙소 주변 분위기를 원해요.",
+              "scores": {
+                "nakajimaPark": 6,
+                "maruyama": 5,
+                "jozankei": 4
+              }
+            }
+          ]
         },
-        {
-          "title": "오타루·비에이·후라노 같은 근교 일정이 중요해요",
-          "desc": "아침 출발과 저녁 복귀가 편했으면 해요.",
-          "scores": {
-            "sapporoStation": 8,
-            "odoriTanukikoji": 3
-          }
-        },
-        {
-          "title": "저녁 식사와 맛집이 가장 기대돼요",
-          "desc": "라멘, 징기스칸, 이자카야를 편하게 다니고 싶어요.",
-          "scores": {
-            "susukino": 8,
-            "odoriTanukikoji": 4,
-            "nakajimaPark": 2
-          }
-        },
-        {
-          "title": "조용히 쉬는 시간이 더 중요해요",
-          "desc": "번화가보다는 차분한 숙소 주변 분위기를 원해요.",
-          "scores": {
-            "nakajimaPark": 6,
-            "maruyama": 5,
-            "jozankei": 4
-          }
-        }
-      ]
-    },
     {
-      "title": "삿포로를 방문하는 계절은 언제인가요?",
-      "help": "겨울에는 눈길 이동과 지하 보행공간 접근성이 숙소 만족도에 큰 영향을 줍니다.",
-      "options": [
-        {
-          "title": "겨울 또는 눈축제 시즌이에요",
-          "desc": "눈길 이동을 줄이고 싶어요.",
-          "scores": {
-            "sapporoStation": 6,
-            "odoriTanukikoji": 5,
-            "susukino": 2
-          }
+          "title": "이번 여행 동행자는 누구인가요?",
+          "help": "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
+          "options": [
+            {
+              "title": "혼자 여행",
+              "desc": "교통과 주변 편의성이 중요해요.",
+              "scores": {
+                "sapporoStation": 4,
+                "odoriTanukikoji": 3,
+                "susukino": 2
+              }
+            },
+            {
+              "title": "커플 여행",
+              "desc": "맛집, 산책, 분위기를 같이 중요하게 봐요.",
+              "scores": {
+                "odoriTanukikoji": 4,
+                "nakajimaPark": 3,
+                "susukino": 3,
+                "maruyama": 2
+              }
+            },
+            {
+              "title": "친구와 여행",
+              "desc": "저녁에도 활기차고 먹거리 많은 곳이 좋아요.",
+              "scores": {
+                "susukino": 6,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "가족·아이 동반",
+              "desc": "무리 없는 이동과 안정적인 동선이 중요해요.",
+              "scores": {
+                "sapporoStation": 5,
+                "odoriTanukikoji": 4,
+                "nakajimaPark": 3
+              }
+            },
+            {
+              "title": "부모님과 여행",
+              "desc": "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.",
+              "scores": {
+                "sapporoStation": 5,
+                "nakajimaPark": 4,
+                "jozankei": 3
+              }
+            }
+          ]
         },
-        {
-          "title": "봄·여름·가을이에요",
-          "desc": "도심 산책과 공원 일정도 여유롭게 넣고 싶어요.",
-          "scores": {
-            "odoriTanukikoji": 4,
-            "maruyama": 4,
-            "nakajimaPark": 3
-          }
-        },
-        {
-          "title": "계절보다 온천 휴식이 더 중요해요",
-          "desc": "도심보다 하루 쉬어가는 느낌을 원해요.",
-          "scores": {
-            "jozankei": 8,
-            "nakajimaPark": 2
-          }
-        }
-      ]
-    },
     {
-      "title": "근교 여행 계획이 있나요?",
-      "help": "오타루, 비에이, 후라노, 조잔케이 여부에 따라 추천 위치가 달라집니다.",
-      "options": [
-        {
-          "title": "근교 여행을 2일 이상 계획하고 있어요",
-          "desc": "오타루나 비에이·후라노까지 볼 예정이에요.",
-          "scores": {
-            "sapporoStation": 8,
-            "odoriTanukikoji": 3
-          }
+          "title": "삿포로를 방문하는 계절은 언제인가요?",
+          "help": "겨울에는 눈길 이동과 지하 보행공간 접근성이 숙소 만족도에 큰 영향을 줍니다.",
+          "options": [
+            {
+              "title": "겨울 또는 눈축제 시즌이에요",
+              "desc": "눈길 이동을 줄이고 싶어요.",
+              "scores": {
+                "sapporoStation": 6,
+                "odoriTanukikoji": 5,
+                "susukino": 2
+              }
+            },
+            {
+              "title": "봄·여름·가을이에요",
+              "desc": "도심 산책과 공원 일정도 여유롭게 넣고 싶어요.",
+              "scores": {
+                "odoriTanukikoji": 4,
+                "maruyama": 4,
+                "nakajimaPark": 3
+              }
+            },
+            {
+              "title": "계절보다 온천 휴식이 더 중요해요",
+              "desc": "도심보다 하루 쉬어가는 느낌을 원해요.",
+              "scores": {
+                "jozankei": 8,
+                "nakajimaPark": 2
+              }
+            }
+          ]
         },
-        {
-          "title": "오타루 하루 정도만 다녀올 예정이에요",
-          "desc": "시내 관광도 중요하지만 하루는 근교를 보고 싶어요.",
-          "scores": {
-            "sapporoStation": 5,
-            "odoriTanukikoji": 3
-          }
-        },
-        {
-          "title": "조잔케이 온천 1박을 넣고 싶어요",
-          "desc": "도심과 온천을 나눠 쉬고 싶어요.",
-          "scores": {
-            "jozankei": 8,
-            "nakajimaPark": 2
-          }
-        },
-        {
-          "title": "삿포로 시내 위주로만 볼 예정이에요",
-          "desc": "오도리, 스스키노, 시장, 쇼핑 동선이 더 중요해요.",
-          "scores": {
-            "odoriTanukikoji": 5,
-            "susukino": 4,
-            "nakajimaPark": 2
-          }
-        }
-      ]
-    },
     {
-      "title": "숙소 주변 분위기는 어떤 쪽이 좋나요?",
-      "help": "삿포로는 스스키노와 공원 주변의 체감 분위기가 꽤 다릅니다.",
-      "options": [
-        {
-          "title": "활기찬 번화가가 좋아요",
-          "desc": "저녁에도 주변에 식당과 볼거리가 많았으면 해요.",
-          "scores": {
-            "susukino": 7,
-            "odoriTanukikoji": 3
-          }
+          "title": "근교 여행 계획이 있나요?",
+          "help": "오타루, 비에이, 후라노, 조잔케이 여부에 따라 추천 위치가 달라집니다.",
+          "options": [
+            {
+              "title": "근교 여행을 2일 이상 계획하고 있어요",
+              "desc": "오타루나 비에이·후라노까지 볼 예정이에요.",
+              "scores": {
+                "sapporoStation": 8,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "오타루 하루 정도만 다녀올 예정이에요",
+              "desc": "시내 관광도 중요하지만 하루는 근교를 보고 싶어요.",
+              "scores": {
+                "sapporoStation": 5,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "조잔케이 온천 1박을 넣고 싶어요",
+              "desc": "도심과 온천을 나눠 쉬고 싶어요.",
+              "scores": {
+                "jozankei": 8,
+                "nakajimaPark": 2
+              }
+            },
+            {
+              "title": "삿포로 시내 위주로만 볼 예정이에요",
+              "desc": "오도리, 스스키노, 시장, 쇼핑 동선이 더 중요해요.",
+              "scores": {
+                "odoriTanukikoji": 5,
+                "susukino": 4,
+                "nakajimaPark": 2
+              }
+            }
+          ]
         },
-        {
-          "title": "깔끔한 도심이 좋아요",
-          "desc": "역, 백화점, 지하상가가 가까우면 좋아요.",
-          "scores": {
-            "sapporoStation": 6,
-            "odoriTanukikoji": 3
-          }
-        },
-        {
-          "title": "조금 차분한 곳이 좋아요",
-          "desc": "중심 접근성은 필요하지만 너무 복잡한 건 싫어요.",
-          "scores": {
-            "nakajimaPark": 5,
-            "maruyama": 4,
-            "odoriTanukikoji": 2
-          }
-        },
-        {
-          "title": "온천과 휴식 분위기가 좋아요",
-          "desc": "시내 관광보다 쉬는 시간이 중요해요.",
-          "scores": {
-            "jozankei": 8,
-            "nakajimaPark": 2
-          }
-        }
-      ]
-    },
     {
-      "title": "숙소 예산은 어떤 편인가요?",
-      "help": "중심부와 축제 기간에는 가격이 올라갈 수 있어 외곽 대안도 함께 봐야 합니다.",
-      "options": [
-        {
-          "title": "숙소비를 아끼고 싶어요",
-          "desc": "중심가 바로 앞이 아니어도 괜찮아요.",
-          "scores": {
-            "nakajimaPark": 4,
-            "maruyama": 3,
-            "susukino": 2,
-            "odoriTanukikoji": 2
-          }
+          "title": "숙소 주변 분위기는 어떤 쪽이 좋나요?",
+          "help": "삿포로는 스스키노와 공원 주변의 체감 분위기가 꽤 다릅니다.",
+          "options": [
+            {
+              "title": "활기찬 번화가가 좋아요",
+              "desc": "저녁에도 주변에 식당과 볼거리가 많았으면 해요.",
+              "scores": {
+                "susukino": 7,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "깔끔한 도심이 좋아요",
+              "desc": "역, 백화점, 지하상가가 가까우면 좋아요.",
+              "scores": {
+                "sapporoStation": 6,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "조금 차분한 곳이 좋아요",
+              "desc": "중심 접근성은 필요하지만 너무 복잡한 건 싫어요.",
+              "scores": {
+                "nakajimaPark": 5,
+                "maruyama": 4,
+                "odoriTanukikoji": 2
+              }
+            },
+            {
+              "title": "온천과 휴식 분위기가 좋아요",
+              "desc": "시내 관광보다 쉬는 시간이 중요해요.",
+              "scores": {
+                "jozankei": 8,
+                "nakajimaPark": 2
+              }
+            }
+          ]
         },
-        {
-          "title": "가격과 위치 균형이 중요해요",
-          "desc": "너무 비싸지 않으면서 이동도 편했으면 해요.",
-          "scores": {
-            "odoriTanukikoji": 4,
-            "sapporoStation": 3,
-            "nakajimaPark": 3
-          }
-        },
-        {
-          "title": "위치가 좋다면 조금 더 써도 괜찮아요",
-          "desc": "짧은 일정이라 이동 시간을 줄이고 싶어요.",
-          "scores": {
-            "sapporoStation": 5,
-            "odoriTanukikoji": 5,
-            "susukino": 3
-          }
-        },
-        {
-          "title": "온천 숙소는 예산을 조금 더 써도 괜찮아요",
-          "desc": "하루는 제대로 쉬고 싶어요.",
-          "scores": {
-            "jozankei": 8
-          }
-        }
-      ]
-    },
     {
-      "title": "이번 여행 동행자는 누구인가요?",
-      "help": "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
-      "options": [
-        {
-          "title": "혼자 여행",
-          "desc": "교통과 주변 편의성이 중요해요.",
-          "scores": {
-            "sapporoStation": 4,
-            "odoriTanukikoji": 3,
-            "susukino": 2
-          }
+          "title": "숙소 예산은 어떤 편인가요?",
+          "help": "중심부와 축제 기간에는 가격이 올라갈 수 있어 외곽 대안도 함께 봐야 합니다.",
+          "options": [
+            {
+              "title": "숙소비를 아끼고 싶어요",
+              "desc": "중심가 바로 앞이 아니어도 괜찮아요.",
+              "scores": {
+                "nakajimaPark": 4,
+                "maruyama": 3,
+                "susukino": 2,
+                "odoriTanukikoji": 2
+              }
+            },
+            {
+              "title": "가격과 위치 균형이 중요해요",
+              "desc": "너무 비싸지 않으면서 이동도 편했으면 해요.",
+              "scores": {
+                "odoriTanukikoji": 4,
+                "sapporoStation": 3,
+                "nakajimaPark": 3
+              }
+            },
+            {
+              "title": "위치가 좋다면 조금 더 써도 괜찮아요",
+              "desc": "짧은 일정이라 이동 시간을 줄이고 싶어요.",
+              "scores": {
+                "sapporoStation": 5,
+                "odoriTanukikoji": 5,
+                "susukino": 3
+              }
+            },
+            {
+              "title": "온천 숙소는 예산을 조금 더 써도 괜찮아요",
+              "desc": "하루는 제대로 쉬고 싶어요.",
+              "scores": {
+                "jozankei": 8
+              }
+            }
+          ]
         },
-        {
-          "title": "커플 여행",
-          "desc": "맛집, 산책, 분위기를 같이 중요하게 봐요.",
-          "scores": {
-            "odoriTanukikoji": 4,
-            "nakajimaPark": 3,
-            "susukino": 3,
-            "maruyama": 2
-          }
-        },
-        {
-          "title": "친구와 여행",
-          "desc": "저녁에도 활기차고 먹거리 많은 곳이 좋아요.",
-          "scores": {
-            "susukino": 6,
-            "odoriTanukikoji": 3
-          }
-        },
-        {
-          "title": "가족·아이 동반",
-          "desc": "무리 없는 이동과 안정적인 동선이 중요해요.",
-          "scores": {
-            "sapporoStation": 5,
-            "odoriTanukikoji": 4,
-            "nakajimaPark": 3
-          }
-        },
-        {
-          "title": "부모님과 여행",
-          "desc": "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.",
-          "scores": {
-            "sapporoStation": 5,
-            "nakajimaPark": 4,
-            "jozankei": 3
-          }
-        }
-      ]
-    },
     {
-      "title": "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
-      "help": "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
-      "options": [
-        {
-          "title": "눈길을 오래 걷는 것",
-          "desc": "겨울 이동이 힘들까 봐 걱정돼요.",
-          "scores": {
-            "sapporoStation": 5,
-            "odoriTanukikoji": 4,
-            "susukino": 2,
-            "maruyama": -2
-          }
+          "title": "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
+          "help": "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
+          "options": [
+            {
+              "title": "눈길을 오래 걷는 것",
+              "desc": "겨울 이동이 힘들까 봐 걱정돼요.",
+              "scores": {
+                "sapporoStation": 5,
+                "odoriTanukikoji": 4,
+                "susukino": 2,
+                "maruyama": -2
+              }
+            },
+            {
+              "title": "늦은 시간 소음",
+              "desc": "숙소 주변이 너무 시끄러운 건 피하고 싶어요.",
+              "scores": {
+                "nakajimaPark": 5,
+                "maruyama": 4,
+                "jozankei": 3,
+                "susukino": -3
+              }
+            },
+            {
+              "title": "긴 이동 시간",
+              "desc": "매일 이동 시간이 길어지는 건 싫어요.",
+              "scores": {
+                "odoriTanukikoji": 4,
+                "sapporoStation": 4,
+                "susukino": 2,
+                "jozankei": -3
+              }
+            },
+            {
+              "title": "복잡한 환승",
+              "desc": "길 찾기와 환승이 복잡한 곳은 부담스러워요.",
+              "scores": {
+                "sapporoStation": 4,
+                "odoriTanukikoji": 3,
+                "nakajimaPark": 2
+              }
+            },
+            {
+              "title": "아이와 걷는 거리",
+              "desc": "아이와 함께 오래 걷는 동선은 줄이고 싶어요.",
+              "scores": {
+                "sapporoStation": 5,
+                "odoriTanukikoji": 4,
+                "nakajimaPark": 3
+              }
+            }
+          ]
         },
-        {
-          "title": "늦은 시간 소음",
-          "desc": "숙소 주변이 너무 시끄러운 건 피하고 싶어요.",
-          "scores": {
-            "nakajimaPark": 5,
-            "maruyama": 4,
-            "jozankei": 3,
-            "susukino": -3
-          }
-        },
-        {
-          "title": "긴 이동 시간",
-          "desc": "매일 이동 시간이 길어지는 건 싫어요.",
-          "scores": {
-            "odoriTanukikoji": 4,
-            "sapporoStation": 4,
-            "susukino": 2,
-            "jozankei": -3
-          }
-        },
-        {
-          "title": "복잡한 환승",
-          "desc": "길 찾기와 환승이 복잡한 곳은 부담스러워요.",
-          "scores": {
-            "sapporoStation": 4,
-            "odoriTanukikoji": 3,
-            "nakajimaPark": 2
-          }
-        },
-        {
-          "title": "아이와 걷는 거리",
-          "desc": "아이와 함께 오래 걷는 동선은 줄이고 싶어요.",
-          "scores": {
-            "sapporoStation": 5,
-            "odoriTanukikoji": 4,
-            "nakajimaPark": 3
-          }
-        }
-      ]
-    },
     {
-      "title": "삿포로에서 꼭 챙기고 싶은 것은 무엇인가요?",
-      "help": "마지막 취향을 반영해 추천 구역을 더 선명하게 정리합니다.",
-      "options": [
-        {
-          "title": "공항과 근교 이동의 안정감",
-          "desc": "여행 내내 이동이 편했으면 해요.",
-          "scores": {
-            "sapporoStation": 7,
-            "odoriTanukikoji": 2
-          }
-        },
-        {
-          "title": "오도리공원과 도심 산책",
-          "desc": "삿포로다운 중심부 분위기를 느끼고 싶어요.",
-          "scores": {
-            "odoriTanukikoji": 6,
-            "maruyama": 2
-          }
-        },
-        {
-          "title": "스스키노 맛집과 저녁 일정",
-          "desc": "저녁 식사와 밤 산책이 기대돼요.",
-          "scores": {
-            "susukino": 7,
-            "odoriTanukikoji": 3
-          }
-        },
-        {
-          "title": "공원과 조용한 숙소 분위기",
-          "desc": "관광보다 편하게 쉬는 느낌이 좋아요.",
-          "scores": {
-            "nakajimaPark": 5,
-            "maruyama": 4
-          }
-        },
-        {
-          "title": "온천에서 하루 쉬기",
-          "desc": "조잔케이 같은 온천 숙소도 생각하고 있어요.",
-          "scores": {
-            "jozankei": 9
-          }
+          "title": "삿포로에서 꼭 챙기고 싶은 것은 무엇인가요?",
+          "help": "마지막 취향을 반영해 추천 구역을 더 선명하게 정리합니다.",
+          "options": [
+            {
+              "title": "공항과 근교 이동의 안정감",
+              "desc": "여행 내내 이동이 편했으면 해요.",
+              "scores": {
+                "sapporoStation": 7,
+                "odoriTanukikoji": 2
+              }
+            },
+            {
+              "title": "오도리공원과 도심 산책",
+              "desc": "삿포로다운 중심부 분위기를 느끼고 싶어요.",
+              "scores": {
+                "odoriTanukikoji": 6,
+                "maruyama": 2
+              }
+            },
+            {
+              "title": "스스키노 맛집과 저녁 일정",
+              "desc": "저녁 식사와 밤 산책이 기대돼요.",
+              "scores": {
+                "susukino": 7,
+                "odoriTanukikoji": 3
+              }
+            },
+            {
+              "title": "공원과 조용한 숙소 분위기",
+              "desc": "관광보다 편하게 쉬는 느낌이 좋아요.",
+              "scores": {
+                "nakajimaPark": 5,
+                "maruyama": 4
+              }
+            },
+            {
+              "title": "온천에서 하루 쉬기",
+              "desc": "조잔케이 같은 온천 숙소도 생각하고 있어요.",
+              "scores": {
+                "jozankei": 9
+              }
+            }
+          ]
         }
-      ]
-    }
   ]
 };
 
