@@ -781,8 +781,8 @@ const cityConfig = {
         location.textContent = hotel.location;
         reason.textContent = hotel.reason;
         link.href = hotel.url || "#";
-        link.textContent = "잔여 객실 확인";
-        link.setAttribute("aria-label", `${hotel.name} 잔여 객실 확인`);
+        link.textContent = "호텔 자세히 보기";
+        link.setAttribute("aria-label", `${hotel.name} 자세히 보기`);
 
         (hotel.meta || []).forEach((item) => {
           const chip = document.createElement("span");
