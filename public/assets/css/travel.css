@@ -12875,3 +12875,294 @@ margin-right: -24px;
     font-size: 0.9rem;
   }
 }
+
+/* =========================================================
+   V19 Home Hero Refinement
+   - 심플하고 감성적인 메인 히어로
+   - 검색 입력 영역 균형 보완
+========================================================= */
+.travel-home .wthome-hero {
+  --wthome-main: #2563EB;
+  --wthome-main-deep: #174C78;
+  --wthome-heading: #0F263D;
+  --wthome-text: #1F2937;
+  --wthome-muted: #667085;
+  --wthome-border: rgba(15, 38, 61, 0.10);
+  padding: clamp(44px, 7vw, 78px) 22px clamp(42px, 6vw, 64px) !important;
+  background:
+    linear-gradient(180deg, #FFFFFF 0%, #FBFDFF 58%, #FFFFFF 100%) !important;
+}
+
+.travel-home .wthome-hero__inner {
+  width: min(1120px, 100%) !important;
+}
+
+.travel-home .wthome-card {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border-radius: 34px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(15, 38, 61, 0.08) !important;
+  box-shadow: 0 24px 70px rgba(15, 38, 61, 0.055) !important;
+}
+
+.travel-home .wthome-card__visual {
+  min-height: 430px !important;
+  padding: clamp(42px, 7vw, 74px) clamp(26px, 7vw, 82px) !important;
+  border-radius: 34px !important;
+  align-items: center !important;
+  background:
+    linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 48%, #F8FBFF 100%) !important;
+  border: 0 !important;
+  color: var(--wthome-text) !important;
+}
+
+.travel-home .wthome-card__visual::before {
+  width: 1px !important;
+  height: 64% !important;
+  top: 18% !important;
+  right: clamp(26px, 5vw, 74px) !important;
+  border-radius: 999px !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(37, 99, 235, 0.20) 50%, transparent 100%) !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.travel-home .wthome-card__visual::after {
+  width: 12px !important;
+  height: 12px !important;
+  right: clamp(21px, 5vw, 69px) !important;
+  bottom: 26% !important;
+  border-radius: 999px !important;
+  background: #2563EB !important;
+  opacity: 0.26 !important;
+}
+
+.travel-home .wthome-card__visual-content {
+  width: min(690px, 100%) !important;
+}
+
+.travel-home .wthome-card__label {
+  min-height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #2563EB !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.travel-home .wthome-card__visual h1 {
+  margin: 18px 0 14px !important;
+  color: #0F263D !important;
+  font-size: clamp(38px, 5vw, 62px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.065em !important;
+  font-weight: 500 !important;
+}
+
+.travel-home .wthome-card__visual p {
+  max-width: 560px !important;
+  color: #667085 !important;
+  font-size: clamp(15px, 1.45vw, 17px) !important;
+  line-height: 1.72 !important;
+  letter-spacing: -0.028em !important;
+  font-weight: 400 !important;
+}
+
+.travel-home .wthome-route-line {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: auto !important;
+  margin-top: 22px !important;
+  gap: 9px !important;
+  padding: 0 !important;
+}
+
+.travel-home .wthome-route-line span {
+  min-height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #475467 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.travel-home .wthome-route-line i {
+  color: #CBD5E1 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+.travel-home .wthome-search {
+  width: min(660px, 100%) !important;
+  min-height: 66px !important;
+  margin-top: 28px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 98px !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px !important;
+  border-radius: 20px !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 38, 61, 0.12) !important;
+  box-shadow: 0 18px 46px rgba(15, 38, 61, 0.075) !important;
+}
+
+.travel-home .wthome-search__field {
+  height: 54px !important;
+  padding: 0 18px !important;
+  gap: 0 !important;
+}
+
+.travel-home .wthome-search__icon {
+  display: none !important;
+}
+
+.travel-home .wthome-search input {
+  height: 54px !important;
+  color: #101828 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.travel-home .wthome-search input::placeholder {
+  color: #98A2B3 !important;
+}
+
+.travel-home .wthome-search__button {
+  width: 98px !important;
+  height: 54px !important;
+  padding: 0 !important;
+  border-radius: 16px !important;
+  background: #174C78 !important;
+  border: 1px solid rgba(23, 76, 120, 0.16) !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.travel-home .wthome-search__button:hover {
+  background: #123F66 !important;
+}
+
+.travel-home .wthome-hero__hint {
+  max-width: 660px !important;
+  margin: 13px 0 0 !important;
+  color: #8A94A6 !important;
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.travel-home .wthome-hero__hint strong {
+  color: #475467 !important;
+  font-weight: 400 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .travel-home .wthome-hero {
+    padding: 46px 30px 52px !important;
+  }
+
+  .travel-home .wthome-card__visual {
+    min-height: 400px !important;
+    padding: 42px !important;
+  }
+
+  .travel-home .wthome-card__visual h1 {
+    font-size: clamp(36px, 5vw, 48px) !important;
+  }
+
+  .travel-home .wthome-search {
+    width: min(620px, 100%) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .travel-home .wthome-hero {
+    padding: 30px 18px 38px !important;
+  }
+
+  .travel-home .wthome-card {
+    border-radius: 26px !important;
+    box-shadow: 0 18px 48px rgba(15, 38, 61, 0.06) !important;
+  }
+
+  .travel-home .wthome-card__visual {
+    min-height: auto !important;
+    padding: 28px 22px 24px !important;
+    border-radius: 26px !important;
+  }
+
+  .travel-home .wthome-card__visual::before,
+  .travel-home .wthome-card__visual::after {
+    display: none !important;
+  }
+
+  .travel-home .wthome-card__label {
+    font-size: 12px !important;
+  }
+
+  .travel-home .wthome-card__visual h1 {
+    margin: 14px 0 12px !important;
+    font-size: 34px !important;
+    line-height: 1.16 !important;
+  }
+
+  .travel-home .wthome-card__visual p {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+  }
+
+  .travel-home .wthome-route-line {
+    margin-top: 18px !important;
+    gap: 7px !important;
+  }
+
+  .travel-home .wthome-route-line span {
+    font-size: 12px !important;
+  }
+
+  .travel-home .wthome-search {
+    min-height: 58px !important;
+    margin-top: 22px !important;
+    grid-template-columns: minmax(0, 1fr) 74px !important;
+    gap: 5px !important;
+    padding: 5px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 14px 34px rgba(15, 38, 61, 0.07) !important;
+  }
+
+  .travel-home .wthome-search__field {
+    height: 48px !important;
+    padding: 0 12px !important;
+  }
+
+  .travel-home .wthome-search input {
+    height: 48px !important;
+    font-size: 13.5px !important;
+  }
+
+  .travel-home .wthome-search__button {
+    width: 74px !important;
+    height: 48px !important;
+    border-radius: 14px !important;
+    font-size: 13px !important;
+  }
+
+  .travel-home .wthome-hero__hint {
+    margin-top: 11px !important;
+    font-size: 11.8px !important;
+  }
+}
