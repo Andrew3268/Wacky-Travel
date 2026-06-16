@@ -14,9 +14,9 @@
   <meta property="og:image" content="/assets/images/logo.png" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260615fontWeightRelatedFix" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260615fontWeightRelatedFix" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260615fontWeightRelatedFix" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260616v17" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260616v17" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260616v17" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -126,16 +126,106 @@
       </div>
     </section>
 
-    <section class="container travel-section">
+    <section class="container travel-section travel-section--destination-hub">
       <div class="section-heading section-heading--split">
         <div>
           <p class="eyebrow">Destinations</p>
           <h2>여행지 허브</h2>
-          <p>어디로 떠나고 싶으세요?<br>떠나고 싶은 주요 도시를 한곳에 모아, 여행지별 호텔 추천과 준비 팁을 쉽게 찾아볼 수 있도록 정리했습니다.</p>
+          <p>가고 싶은 나라와 도시를 빠르게 찾을 수 있도록 핵심 여행지만 간결하게 정리했습니다.</p>
         </div>
         <a class="text-link" href="/destinations/">전체 여행지 보기</a>
       </div>
-      <div id="homeDestinations" class="country-destination-list"></div>
+      <div id="homeDestinations" class="country-destination-list country-destination-list--home-static">
+        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-japan">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title">
+              <h3 id="country-japan">일본</h3>
+            </div>
+            <div class="country-destination-group__actions">
+              <a class="country-destination-group__link" href="/countries/japan">전체 보기</a>
+            </div>
+          </div>
+          <div class="destination-chip-list" aria-label="일본 도시 목록">
+            <a class="destination-chip" href="/destinations/osaka/">오사카</a>
+            <a class="destination-chip" href="/destinations/tokyo/">도쿄</a>
+            <a class="destination-chip" href="/destinations/fukuoka/">후쿠오카</a>
+            <a class="destination-chip" href="/destinations/sapporo/">삿포로</a>
+            <a class="destination-chip" href="/destinations/okinawa/">오키나와</a>
+          </div>
+        </section>
+
+        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-vietnam">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title">
+              <h3 id="country-vietnam">베트남</h3>
+            </div>
+            <div class="country-destination-group__actions">
+              <a class="country-destination-group__link" href="/countries/vietnam">전체 보기</a>
+            </div>
+          </div>
+          <div class="destination-chip-list" aria-label="베트남 도시 목록">
+            <a class="destination-chip" href="/destinations/da-nang/">다낭</a>
+            <a class="destination-chip" href="/destinations/nha-trang/">나트랑</a>
+            <a class="destination-chip" href="/destinations/ho-chi-minh-city/">호찌민시</a>
+            <a class="destination-chip" href="/destinations/hanoi/">하노이</a>
+            <a class="destination-chip" href="/destinations/phu-quoc/">푸꾸옥</a>
+          </div>
+        </section>
+
+        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-thailand">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title">
+              <h3 id="country-thailand">태국</h3>
+            </div>
+            <div class="country-destination-group__actions">
+              <a class="country-destination-group__link" href="/countries/thailand">전체 보기</a>
+            </div>
+          </div>
+          <div class="destination-chip-list" aria-label="태국 도시 목록">
+            <a class="destination-chip" href="/destinations/bangkok/">방콕</a>
+            <a class="destination-chip" href="/destinations/pattaya/">파타야</a>
+            <a class="destination-chip" href="/destinations/phuket/">푸켓</a>
+            <a class="destination-chip" href="/destinations/chiang-mai/">치앙마이</a>
+            <a class="destination-chip" href="/destinations/koh-samui/">코사무이</a>
+          </div>
+        </section>
+
+        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-philippines">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title">
+              <h3 id="country-philippines">필리핀</h3>
+            </div>
+            <div class="country-destination-group__actions">
+              <a class="country-destination-group__link" href="/countries/philippines">전체 보기</a>
+            </div>
+          </div>
+          <div class="destination-chip-list" aria-label="필리핀 도시 목록">
+            <a class="destination-chip" href="/destinations/cebu/">세부</a>
+            <a class="destination-chip" href="/destinations/boracay/">보라카이</a>
+            <a class="destination-chip" href="/destinations/bohol/">보홀</a>
+            <a class="destination-chip" href="/destinations/manila/">마닐라</a>
+            <a class="destination-chip" href="/destinations/clark/">클락</a>
+          </div>
+        </section>
+
+        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-taiwan">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title">
+              <h3 id="country-taiwan">대만</h3>
+            </div>
+            <div class="country-destination-group__actions">
+              <a class="country-destination-group__link" href="/countries/taiwan">전체 보기</a>
+            </div>
+          </div>
+          <div class="destination-chip-list" aria-label="대만 도시 목록">
+            <a class="destination-chip" href="/destinations/taipei/">타이베이</a>
+            <a class="destination-chip" href="/destinations/taichung/">타이중</a>
+            <a class="destination-chip" href="/destinations/tainan/">타이난</a>
+            <a class="destination-chip" href="/destinations/kaohsiung/">가오슝</a>
+            <a class="destination-chip" href="/destinations/hualien/">화렌</a>
+          </div>
+        </section>
+      </div>
     </section>
 
     <section id="homeHotelPostsSection" class="container travel-section travel-section--tinted" hidden>
@@ -360,7 +450,6 @@
       state.hotelPosts = Array.isArray(hotelPostData.items) ? hotelPostData.items : [];
       state.posts = Array.isArray(postData.items) ? postData.items : [];
 
-      renderDestinations();
       renderHotels();
       renderPosts();
     }
@@ -375,7 +464,8 @@
         Array.isArray(settingsData.destinations) ? settingsData.destinations : []
       );
       state.countries = Array.isArray(settingsData.countries) ? settingsData.countries : [];
-      renderDestinations();
+      // 메인 index 여행지 허브는 정적 HTML로 출력합니다.
+      // 도시 데이터 관리 로직은 유지하되, 홈 허브 DOM은 덮어쓰지 않습니다.
     }
 
     function getActiveCountriesForHub() {
@@ -484,23 +574,7 @@
     function renderDestinationCard(item) {
       const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
       const href = `/destinations/${encodeURIComponent(item.slug || '')}`;
-      return `<div class="destination-chip destination-chip--editable">
-        <span class="destination-chip__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
-            <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"></path>
-            <circle cx="12" cy="10" r="2.2"></circle>
-          </svg>
-        </span>
-        <a class="destination-chip__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-          <span class="destination-chip__name">${escapeHtml(label)}</span>
-        </a>
-        <a class="destination-chip__arrow" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-          <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
-            <path d="M5 12h12"></path>
-            <path d="m13 6 6 6-6 6"></path>
-          </svg>
-        </a>
-      </div>`;
+      return `<a class="destination-chip destination-chip--editable" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">${escapeHtml(label)}</a>`;
     }
 
     function isTop5HotelSeriesPost(item = {}) {
@@ -988,7 +1062,8 @@
     bindHomeHeroSearch();
     bindDestinationManager();
     loadHome().catch(() => {
-      $('homeDestinations').innerHTML = '<div class="empty-card">여행지를 불러오지 못했습니다.</div>';
+      renderHotels();
+      renderPosts();
     });
   </script>
 </body>
