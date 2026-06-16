@@ -10788,3 +10788,202 @@ body {
   color: #2563eb !important;
 }
 
+
+/* WACKYTRAVEL_SECTION_SPACING_REFINEMENT_V1 */
+.travel-section {
+  padding-top: 29px !important;
+  padding-bottom: 29px !important;
+}
+
+.travel-section--compact {
+  padding-top: 0 !important;
+}
+
+.section-heading {
+  margin-bottom: 12px !important;
+}
+
+.wt-city-snapshot,
+.wt-city-guide-links,
+.wt-city-section,
+.wt-city-faq {
+  padding-top: clamp(19px, 3vw, 37px) !important;
+  padding-bottom: clamp(19px, 3vw, 37px) !important;
+}
+
+.wt-city-dynamic-section {
+  padding-top: clamp(19px, 3.3vw, 39px) !important;
+  padding-bottom: clamp(19px, 3.3vw, 39px) !important;
+}
+
+.wt-city-cta {
+  padding-top: 7px !important;
+  padding-bottom: clamp(19px, 3vw, 37px) !important;
+}
+
+#area-guide.wt-city-section {
+  padding-bottom: clamp(12px, 2vw, 22px) !important;
+}
+
+#area-guide + .wt-city-cta {
+  padding-top: 0 !important;
+}
+
+.breadcrumbs,
+.breadcrumbs.container {
+  padding-top: 14px !important;
+  padding-bottom: 4px !important;
+}
+
+.wt-page-hero,
+.wt-purpose-page .wt-page-hero {
+  padding-top: 6px !important;
+  padding-bottom: 35px !important;
+}
+
+.wt-section,
+.wt-purpose-page .wt-section {
+  padding-top: 27px !important;
+  padding-bottom: 27px !important;
+}
+
+.wt-section--compact,
+.wt-purpose-page .wt-section--compact {
+  padding-top: 23px !important;
+}
+
+.wt-section--first-answer,
+.wt-purpose-page .wt-section--first-answer {
+  padding-top: 12px !important;
+}
+
+.wt-section-head {
+  margin-bottom: 16px !important;
+}
+
+.wt-area-tabs {
+  margin-top: clamp(.9rem, 2vw, 1.4rem) !important;
+}
+
+.wt-area-tab-panels {
+  margin-top: clamp(.7rem, 1.5vw, .95rem) !important;
+}
+
+.wt-section--survey-cta,
+.wt-purpose-page .wt-section--survey-cta {
+  padding-top: 8px !important;
+  padding-bottom: 24px !important;
+}
+
+#area-compare.wt-section,
+.wt-purpose-page #area-compare.wt-section {
+  padding-bottom: 12px !important;
+}
+
+#area-compare.wt-section + .wt-section--survey-cta,
+.wt-purpose-page #area-compare.wt-section + .wt-section--survey-cta {
+  padding-top: 0 !important;
+}
+
+.wt-cta-band {
+  padding: 24px !important;
+}
+
+.wt-cta-band p {
+  margin-top: 8px !important;
+}
+
+.wt-purpose-faq {
+  padding-bottom: 42px !important;
+}
+
+.wt-city-guide-section,
+.city-guide-section {
+  margin-bottom: clamp(16px, 2.4vw, 29px) !important;
+  padding-top: clamp(17px, 2.7vw, 29px) !important;
+  padding-bottom: clamp(17px, 2.7vw, 29px) !important;
+}
+
+.wt-city-guide-hero,
+.city-guide-hero {
+  padding-top: clamp(19px, 2.7vw, 35px) !important;
+  padding-bottom: clamp(23px, 3.4vw, 48px) !important;
+}
+
+@media (max-width: 767px) {
+  .travel-section {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .section-heading {
+    margin-bottom: 12px !important;
+  }
+
+  .wt-city-snapshot,
+  .wt-city-guide-links,
+  .wt-city-section,
+  .wt-city-faq,
+  .wt-city-dynamic-section {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+  }
+
+  .wt-city-cta {
+    padding-top: 6px !important;
+    padding-bottom: 25px !important;
+  }
+
+  #area-guide.wt-city-section {
+    padding-bottom: 16px !important;
+  }
+
+  .breadcrumbs,
+  .breadcrumbs.container {
+    padding-top: 9px !important;
+    padding-bottom: 3px !important;
+  }
+
+  .wt-page-hero,
+  .wt-purpose-page .wt-page-hero {
+    padding-top: 5px !important;
+    padding-bottom: 25px !important;
+  }
+
+  .wt-section,
+  .wt-purpose-page .wt-section {
+    padding-top: 27px !important;
+    padding-bottom: 27px !important;
+  }
+
+  .wt-section--first-answer,
+  .wt-purpose-page .wt-section--first-answer {
+    padding-top: 10px !important;
+  }
+
+  .wt-section-head {
+    margin-bottom: 15px !important;
+  }
+
+  .wt-section--survey-cta,
+  .wt-purpose-page .wt-section--survey-cta {
+    padding-top: 6px !important;
+    padding-bottom: 20px !important;
+  }
+
+  #area-compare.wt-section,
+  .wt-purpose-page #area-compare.wt-section {
+    padding-bottom: 10px !important;
+  }
+
+  .wt-cta-band {
+    padding: 20px !important;
+  }
+
+  .wt-city-guide-section,
+  .city-guide-section {
+    margin-bottom: 16px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+}
