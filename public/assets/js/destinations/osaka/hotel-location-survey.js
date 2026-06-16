@@ -775,6 +775,68 @@ function applyAccuracyAdjustments(scores) {
   if (cityOnly && repeatTrip && !foodNight) {
     addAreaScore(scores, "tennoji", 2);
   }
+
+
+  // v13 accuracy reinforcement: keep classic hubs strong, but let balance/quiet/value answers surface Hommachi and Tennoji.
+  const airportLow = answerIs(3, "중요 낮음");
+  const airportNormal = answerIs(3, "보통");
+  if ((quietStay || balanceBudget || budgetSave) && airportLow && !usjCore && !foodNight) {
+    addAreaScore(scores, "hommachi", 8);
+  }
+  if ((cleanCity || shopping) && balanceBudget && !airportImportant && !usjCore) {
+    addAreaScore(scores, "hommachi", 5);
+  }
+  if (repeatTrip && (quietStay || balanceBudget || budgetSave) && !foodNight && !usjCore) {
+    addAreaScore(scores, "hommachi", 7);
+  }
+  if ((family || childFocused) && (quietStay || balanceBudget) && !usjCore) {
+    addAreaScore(scores, "hommachi", 5);
+  }
+  if (cityOnly && budgetSave && repeatTrip && !foodNight && !usjCore) {
+    addAreaScore(scores, "tennoji", 6);
+  }
+  if ((airportImportant || airportNormal) && budgetSave && !nearHeavy && !usjCore) {
+    addAreaScore(scores, "tennoji", 5);
+  }
+  if (repeatTrip && cityOnly && !shopping && !foodNight && !usjCore) {
+    addAreaScore(scores, "tennoji", 5);
+  }
+  if (shopping && !foodNight && !nearHeavy && !airportImportant) {
+    addAreaScore(scores, "shinsaibashi", 3);
+  }
+  if (nearHeavy && !airportImportant) {
+    addAreaScore(scores, "namba", -2);
+  }
+  if (airportImportant && nearHeavy) {
+    addAreaScore(scores, "umeda", 2);
+    addAreaScore(scores, "namba", -1);
+  }
+  if ((balanceBudget || budgetSave) && !nearHeavy && !airportImportant && !usjCore) {
+    addAreaScore(scores, "umeda", -2);
+  }
+
+
+  // v13 balance pass: strengthen Shinsaibashi as a distinct shopping/couple zone and keep Umeda from swallowing neutral answers.
+  if (shopping && (couple || friends || repeatTrip) && !airportImportant && !nearHeavy) {
+    addAreaScore(scores, "shinsaibashi", 5);
+  }
+  if (cleanCity && balanceBudget && !nearHeavy && !airportImportant) {
+    addAreaScore(scores, "shinsaibashi", 3);
+  }
+  if (!nearHeavy && !transport && !cleanCity && !locationFirst) {
+    addAreaScore(scores, "umeda", -2);
+  }
+  if (quietStay && balanceBudget && repeatTrip && !foodNight) {
+    addAreaScore(scores, "hommachi", 3);
+  }
+}
+
+    
+
+function getTieBreakPriority(areaKey) {
+  const order = Object.keys(cityConfig.areas);
+  const reverseIndex = order.length - order.indexOf(areaKey);
+  return reverseIndex;
 }
 
     function calculateScores() {
@@ -795,7 +857,7 @@ function applyAccuracyAdjustments(scores) {
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => (b.score - a.score) || (getTieBreakPriority(b.key) - getTieBreakPriority(a.key)));
     }
 
 

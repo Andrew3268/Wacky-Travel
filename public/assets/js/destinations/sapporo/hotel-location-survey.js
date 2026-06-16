@@ -1244,6 +1244,61 @@ function applyAccuracyAdjustments(scores) {
   if (onsenSeason && onsenBudget) {
     addAreaScore(scores, "jozankei", 5);
   }
+
+
+  // v13 accuracy reinforcement: Maruyama needs to surface for green-season, quiet, park/cafe style trips instead of being swallowed by Nakajima Park.
+  const relaxedStart = answerIs(0, "조용한 휴식");
+  const noOnsenCore = !(jozankeiNight || onsenSeason || onsenMood || onsenBudget);
+  if (relaxedStart && greenSeason && quietRest && noOnsenCore && !nearSchedule) {
+    addAreaScore(scores, "maruyama", 12);
+  }
+  if (couple && greenSeason && (quietRest || snowOk) && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 7);
+  }
+  if (budgetSave && greenSeason && quietRest && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 6);
+  }
+  if (snowOk && answerIs(6, "조용함 우선") && noOnsenCore && !nearSchedule) {
+    addAreaScore(scores, "maruyama", 6);
+  }
+  if (quietRest && family && noOnsenCore) {
+    addAreaScore(scores, "nakajimaPark", 4);
+  }
+  if (foodDinner && friends) {
+    addAreaScore(scores, "susukino", 4);
+  }
+  if (nearSchedule && !snowVery && !locationFirst) {
+    addAreaScore(scores, "sapporoStation", -2);
+  }
+  if (greenSeason && !nearSchedule && !winter && noOnsenCore) {
+    addAreaScore(scores, "sapporoStation", -2);
+  }
+
+
+  // v13 balance pass: Maruyama should appear for park/cafe, green-season and quiet-stay patterns.
+  if (greenSeason && quietRest && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 10);
+  }
+  if (relaxedStart && !winter && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 8);
+  }
+  if (greenSeason && answerIs(6, "조용함 우선") && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 8);
+  }
+  if (answerIs(4, "차분한 숙소") && budgetSave && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 6);
+  }
+  if (greenSeason && !cityOnly && !foodDinner && noOnsenCore) {
+    addAreaScore(scores, "maruyama", 4);
+  }
+}
+
+    
+
+function getTieBreakPriority(areaKey) {
+  const order = Object.keys(cityConfig.areas);
+  const reverseIndex = order.length - order.indexOf(areaKey);
+  return reverseIndex;
 }
 
     function calculateScores() {
@@ -1264,7 +1319,7 @@ function applyAccuracyAdjustments(scores) {
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => (b.score - a.score) || (getTieBreakPriority(b.key) - getTieBreakPriority(a.key)));
     }
 
 

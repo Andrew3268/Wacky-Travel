@@ -886,7 +886,7 @@ const cityConfig = {
               "scores": {
                 "nagoMotobu": 5,
                 "onnaResort": 4,
-                "southCoast": 3,
+                "southCoast": 5,
                 "yomitanZanpa": 3
               }
             },
@@ -895,7 +895,7 @@ const cityConfig = {
               "desc": "한적한 지역도 괜찮아요.",
               "scores": {
                 "yomitanZanpa": 6,
-                "southCoast": 5,
+                "southCoast": 8,
                 "onnaResort": 4
               }
             }
@@ -966,7 +966,7 @@ const cityConfig = {
               "desc": "번잡한 곳보다 차분한 곳이 좋아요.",
               "scores": {
                 "yomitanZanpa": 8,
-                "southCoast": 5
+                "southCoast": 8
               }
             },
             {
@@ -1011,8 +1011,8 @@ const cityConfig = {
               "title": "드라이브",
               "desc": "해안도로와 카페를 천천히 보고 싶어요.",
               "scores": {
-                "yomitanZanpa": 5,
-                "southCoast": 5,
+                "yomitanZanpa": 6,
+                "southCoast": 8,
                 "nagoMotobu": 3
               }
             }
@@ -1279,6 +1279,83 @@ function applyAccuracyAdjustments(scores) {
   if (sunsetQuiet && drive && !blueCave) {
     addAreaScore(scores, "southCoast", 2);
   }
+
+
+  // v13 accuracy reinforcement: give Yomitan and the southern coast a real path when users choose rental car, sunset, driving and quieter coasts.
+  const driveIntent = answerIs(0, "드라이브") || drive;
+  const southFriendly = driveIntent && (fullCar || partialCar) && !aquariumCore && !northDrive;
+  if (southFriendly && (arrivalDeparture || airportLow || longTrip)) {
+    addAreaScore(scores, "southCoast", 12);
+  }
+  if (sunsetQuiet && driveIntent && (fullCar || partialCar) && !blueCave && !aquariumCore) {
+    addAreaScore(scores, "southCoast", 8);
+  }
+  if (longTrip && fullCar && answerIs(7, "수영장·해변") && !aquariumCore && !northDrive) {
+    addAreaScore(scores, "southCoast", 7);
+  }
+  if (firstOkinawa && partialCar && arrivalDeparture && mediumTrip) {
+    addAreaScore(scores, "chatanAmericanVillage", 4);
+  }
+  if (sunsetQuiet && (couple || longTrip) && !noCar) {
+    addAreaScore(scores, "yomitanZanpa", 6);
+  }
+  if (driveIntent && sunsetQuiet && !aquariumCore) {
+    addAreaScore(scores, "yomitanZanpa", 5);
+  }
+  if (fullCar && longTrip && !aquariumCore && !northDrive && !resortBeach) {
+    addAreaScore(scores, "yomitanZanpa", 3);
+  }
+  if (southFriendly && !blueCave && !beachPriority) {
+    addAreaScore(scores, "onnaResort", -4);
+  }
+  if (fullCar && longTrip && airportLow && !beachPriority && !blueCave) {
+    addAreaScore(scores, "onnaResort", -3);
+  }
+
+
+  // v13 balance pass: southern coast and Yomitan need stronger distinction from Onna resort when the trip is drive/sunset focused.
+  if (southFriendly && fullCar && (arrivalDeparture || airportLow || longTrip)) {
+    addAreaScore(scores, "southCoast", 10);
+  }
+  if (driveIntent && sunsetQuiet && fullCar && !blueCave && !aquariumCore) {
+    addAreaScore(scores, "southCoast", 10);
+    addAreaScore(scores, "onnaResort", -5);
+  }
+  if (driveIntent && airportLow && fullCar && longTrip && !aquariumCore) {
+    addAreaScore(scores, "southCoast", 8);
+  }
+  if (sunsetQuiet && !noCar && !beachPriority) {
+    addAreaScore(scores, "yomitanZanpa", 5);
+  }
+  if (driveIntent && !noCar && !aquariumCore && !northDrive) {
+    addAreaScore(scores, "yomitanZanpa", 4);
+  }
+
+
+  // v13 final balance: reduce default Naha/Onna dominance when car-based coast trips are selected.
+  if ((fullCar || partialCar) && !shortTrip && !airportImportant && !keramaTour) {
+    addAreaScore(scores, "nahaKokusai", -4);
+  }
+  if (!noCar && !airportImportant && !arrivalDeparture && !keramaTour) {
+    addAreaScore(scores, "nahaKokusai", -3);
+  }
+  if ((driveIntent || sunsetQuiet || southFriendly) && !blueCave && !beachPriority && !resortBeach) {
+    addAreaScore(scores, "onnaResort", -4);
+  }
+  if (driveIntent && (arrivalDeparture || airportLow) && (fullCar || partialCar) && !aquariumCore) {
+    addAreaScore(scores, "southCoast", 6);
+  }
+  if (driveIntent && longTrip && (fullCar || partialCar) && !aquariumCore && !northDrive) {
+    addAreaScore(scores, "southCoast", 5);
+  }
+}
+
+    
+
+function getTieBreakPriority(areaKey) {
+  const order = Object.keys(cityConfig.areas);
+  const reverseIndex = order.length - order.indexOf(areaKey);
+  return reverseIndex;
 }
 
     function calculateScores() {
@@ -1299,7 +1376,7 @@ function applyAccuracyAdjustments(scores) {
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => (b.score - a.score) || (getTieBreakPriority(b.key) - getTieBreakPriority(a.key)));
     }
 
 

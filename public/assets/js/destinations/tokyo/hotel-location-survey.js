@@ -440,6 +440,78 @@ function applyAccuracyAdjustments(scores) {
   if (repeatTrip && locationFirst && noBay) {
     addAreaScore(scores, "akasakaRoppongi", 2);
   }
+
+
+  // v13 accuracy reinforcement: reduce Tokyo Station over-selection and give Akasaka/Roppongi a clearer quiet central use case.
+  const airportLow = answerIs(5, "중요 낮음");
+  if (quietStay && (couple || repeatTrip || parents) && noBay && !budgetSave) {
+    addAreaScore(scores, "akasakaRoppongi", 8);
+  }
+  if (cleanCity && (couple || parents || repeatTrip) && !airportImportant && noBay) {
+    addAreaScore(scores, "akasakaRoppongi", 6);
+  }
+  if (repeatTrip && locationFirst && noBay && !airportImportant && !traditionalBudget) {
+    addAreaScore(scores, "akasakaRoppongi", 5);
+  }
+  if (airportNormal && quietStay && !disneyCore && !odaibaCore) {
+    addAreaScore(scores, "akasakaRoppongi", 4);
+  }
+  if (!airportImportant && !nearHeavy && !airportNear && !parents && !disneyCore) {
+    addAreaScore(scores, "ginzaTokyoStation", -3);
+  }
+  if (airportLow && (shoppingCafe || quietStay || busyNight)) {
+    addAreaScore(scores, "ginzaTokyoStation", -3);
+  }
+  if (traditionalBudget && (budgetSave || balanceBudget) && noBay) {
+    addAreaScore(scores, "uenoAsakusa", 5);
+  }
+  if (firstTrip && basicTour && cityOnly && noBay) {
+    addAreaScore(scores, "shinjuku", 3);
+  }
+  if (shoppingCafe && noBay && !airportImportant) {
+    addAreaScore(scores, "shibuya", 3);
+  }
+
+
+  // v13 balance pass: Akasaka/Roppongi should win for quiet central stays, not just receive secondary points.
+  if (quietStay && noBay && !budgetSave && !disneyCore && !odaibaCore) {
+    addAreaScore(scores, "akasakaRoppongi", 10);
+  }
+  if (cleanCity && repeatTrip && noBay && !airportImportant) {
+    addAreaScore(scores, "akasakaRoppongi", 8);
+  }
+  if (airportLow && (quietStay || cleanCity) && noBay) {
+    addAreaScore(scores, "akasakaRoppongi", 6);
+  }
+  if (!airportImportant && !nearHeavy && !airportNear && !parents && !disneyCore && !odaibaCore) {
+    addAreaScore(scores, "ginzaTokyoStation", -4);
+  }
+  if (airportLow && noBay) {
+    addAreaScore(scores, "ginzaTokyoStation", -2);
+  }
+
+
+  // v13 final balance: reserve Ginza/Tokyo Station for clear airport/rail/family reasons.
+  if (quietStay && noBay && !airportImportant && !nearHeavy) {
+    addAreaScore(scores, "akasakaRoppongi", 4);
+  }
+  if (cleanCity && !airportImportant && !nearHeavy && noBay) {
+    addAreaScore(scores, "akasakaRoppongi", 3);
+  }
+  if (!(airportNear || nearHeavy || airportImportant || parents || disneyCore || odaibaCore) && noBay) {
+    addAreaScore(scores, "ginzaTokyoStation", -5);
+  }
+  if (traditionalBudget && noBay && !airportImportant) {
+    addAreaScore(scores, "uenoAsakusa", 3);
+  }
+}
+
+    
+
+function getTieBreakPriority(areaKey) {
+  const order = Object.keys(cityConfig.areas);
+  const reverseIndex = order.length - order.indexOf(areaKey);
+  return reverseIndex;
 }
 
     function calculateScores() {
@@ -460,7 +532,7 @@ function applyAccuracyAdjustments(scores) {
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => (b.score - a.score) || (getTieBreakPriority(b.key) - getTieBreakPriority(a.key)));
     }
 
 
