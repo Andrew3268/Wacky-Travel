@@ -1467,7 +1467,32 @@ function getTieBreakPriority(areaKey) {
       });
     }
 
-    function getSelectedAnswerSignals() {
+    
+function getLastHangulChar(text) {
+  const chars = Array.from(String(text || "")).reverse();
+  return chars.find((char) => /[가-힣]/.test(char)) || "";
+}
+
+function hasKoreanBatchim(text) {
+  const char = getLastHangulChar(text);
+  if (!char) return false;
+  const code = char.charCodeAt(0) - 0xac00;
+  return code >= 0 && code <= 11171 && code % 28 !== 0;
+}
+
+function withJosa(text, pair) {
+  const [withBatchim, withoutBatchim] = String(pair).split("/");
+  return `${text}${hasKoreanBatchim(text) ? withBatchim : withoutBatchim}`;
+}
+
+function getResultFocusSentence(area) {
+  if (!area) return "";
+  const chips = Array.isArray(area.chips) ? area.chips.slice(0, 3) : [];
+  if (!chips.length) return "";
+  return `${withJosa(area.name, "은/는")} ${chips.join(" · ")} 흐름을 우선하는 여행자에게 잘 맞습니다.`;
+}
+
+function getSelectedAnswerSignals() {
       return answers
         .map((_, questionIndex) => getSelectedOptionTitle(questionIndex))
         .filter(Boolean)
@@ -1475,34 +1500,34 @@ function getTieBreakPriority(areaKey) {
         .slice(0, 5);
     }
 
-    function getSignalSentence() {
-      const signals = getSelectedAnswerSignals();
-      if (!signals.length) return "";
-      return `이번 조건의 핵심은 ${signals.join(" · ")}입니다.`;
+        function getSignalSentence() {
+      return "";
     }
 
-    function getScoreFitSentence(rankedAreas) {
+        function getScoreFitSentence(rankedAreas) {
       const top = rankedAreas?.[0];
       const second = rankedAreas?.[1];
       if (!top || !second) return "";
 
       const gap = top.score - second.score;
       if (gap <= 2) {
-        return `${top.name}이 1순위이지만 ${second.name}도 거의 같은 수준입니다. 최종 예약 전에는 두 지역의 호텔 가격, 객실 크기, 실제 이동 시간을 함께 비교하는 편이 좋습니다.`;
+        return `${withJosa(top.name, "은/는")} 가장 잘 맞는 후보지만 ${second.name}도 거의 비슷합니다. 두 지역의 호텔 가격, 객실 크기, 실제 이동 시간을 같이 비교하면 선택이 더 쉬워집니다.`;
       }
       if (gap <= 5) {
-        return `${top.name}이 더 잘 맞지만 ${second.name}도 현실적인 대안입니다. 일정의 중심이 바뀌면 두 지역의 체감 만족도가 뒤집힐 수 있습니다.`;
+        return `${withJosa(top.name, "이/가")} 조금 더 유리합니다. 다만 일정의 중심이 ${second.name} 쪽에 더 가깝다면 ${second.name}도 충분히 좋은 대안입니다.`;
       }
-      return `${top.name}이 다른 지역보다 조건 일치도가 뚜렷합니다. 숙소 위치를 먼저 좁힌 뒤 호텔 가격과 객실 후기를 비교하면 결정이 쉬워집니다.`;
+      return `${withJosa(top.name, "은/는")} 이번 일정에서 우선순위가 분명한 지역입니다. 먼저 이 권역 안에서 호텔을 추린 뒤 가격, 객실 크기, 최근 후기를 비교해보세요.`;
     }
 
-    function getAlternativeSentence(area, rankedAreas) {
+        function getAlternativeSentence(area, rankedAreas) {
       const second = rankedAreas?.[1];
       if (!second) return "";
 
       const gap = rankedAreas[0].score - second.score;
-      const prefix = gap <= 2 ? "거의 같은 후보로" : "대안으로";
-      return `${prefix} ${second.name}도 볼 만합니다. ${second.compareGood || second.summary}`;
+      if (gap <= 2) {
+        return `${second.name}도 거의 같은 후보입니다. ${second.compareGood || second.summary}`;
+      }
+      return `대안으로는 ${withJosa(second.name, "이/가")} 있습니다. ${second.compareGood || second.summary}`;
     }
 
     function normalizeResultReasons(area, reasons) {
@@ -1591,14 +1616,13 @@ function getTieBreakPriority(areaKey) {
         conclusionText: area.compareCaution ? `${area.compareGood} 다만 ${area.compareCaution}` : area.summary
       };
 
-      const signalText = getSignalSentence();
-      const fitText = getScoreFitSentence(rankedAreas);
+          const fitText = getScoreFitSentence(rankedAreas);
       const alternativeText = getAlternativeSentence(area, rankedAreas);
 
       return {
         ...content,
         reasons: normalizeResultReasons(area, content.reasons),
-        intro: [signalText, content.intro, fitText].filter(Boolean).join(" "),
+        intro: [content.intro, fitText].filter(Boolean).join(" "),
         conclusionText: [content.conclusionText, alternativeText].filter(Boolean).join(" ")
       };
     }
