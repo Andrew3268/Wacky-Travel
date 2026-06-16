@@ -5,9 +5,13 @@
  */
 const cityConfig = {
   "cityName": "삿포로",
+  "destinationSlug": "sapporo",
+  "postContentType": "top5_series",
   "areas": {
     "sapporoStation": {
-      "name": "삿포로역 주변",
+      "name": "삿포로역",
+      "regionSlug": "sapporo-station",
+      "regionSlugAliases": ["삿포로역", "삿포로역 주변"],
       "label": "공항 이동과 근교 출발에 가장 안정적인 위치",
       "summary": "신치토세공항, 오타루, 비에이·후라노 투어까지 고려하면 삿포로역 주변이 가장 단순합니다.",
       "leadTitle": "첫날 체크인과 근교 출발을 줄이기 좋습니다.",
@@ -125,7 +129,9 @@ const cityConfig = {
       ]
     },
     "odoriTanukikoji": {
-      "name": "오도리·타누키코지",
+      "name": "오도리 & 타누키코지",
+      "regionSlug": "odori-tanukikoji",
+      "regionSlugAliases": ["오도리 & 타누키코지", "오도리·타누키코지", "오도리 타누키코지"],
       "label": "도심 관광과 쇼핑을 균형 있게 보기 좋은 위치",
       "summary": "오도리공원, TV타워, 타누키코지, 스스키노를 한 흐름으로 묶고 싶다면 오도리·타누키코지가 편합니다.",
       "leadTitle": "대표 명소와 저녁 동선을 짧게 연결하기 좋습니다.",
@@ -244,6 +250,8 @@ const cityConfig = {
     },
     "susukino": {
       "name": "스스키노",
+      "regionSlug": "susukino",
+      "regionSlugAliases": ["스스키노"],
       "label": "맛집과 저녁 일정에 강한 위치",
       "summary": "삿포로 저녁 식사, 라멘, 징기스칸, 이자카야가 중요하다면 스스키노가 편합니다.",
       "leadTitle": "저녁 식사 후 숙소로 돌아오는 길이 짧아집니다.",
@@ -362,6 +370,8 @@ const cityConfig = {
     },
     "nakajimaPark": {
       "name": "나카지마공원",
+      "regionSlug": "nakajima-park",
+      "regionSlugAliases": ["나카지마공원", "나카지마 공원"],
       "label": "중심 접근성과 조용한 휴식을 함께 보는 위치",
       "summary": "스스키노와 가까우면서도 한결 차분한 숙소 분위기를 원한다면 나카지마공원이 좋습니다.",
       "leadTitle": "저녁 일정과 휴식감 사이의 균형이 좋습니다.",
@@ -479,7 +489,9 @@ const cityConfig = {
       ]
     },
     "maruyama": {
-      "name": "마루야마·오도리 서쪽",
+      "name": "마루야마 & 오도리 서쪽",
+      "regionSlug": "maruyama-odori-west",
+      "regionSlugAliases": ["마루야마 & 오도리 서쪽", "마루야마·오도리 서쪽", "마루야마 오도리 서쪽"],
       "label": "느린 여행과 조용한 동네 분위기에 좋은 위치",
       "summary": "삿포로를 여유롭게 보고 싶거나 재방문 여행이라면 마루야마·오도리 서쪽이 잘 맞습니다.",
       "leadTitle": "카페, 산책, 조용한 동네 분위기에 강합니다.",
@@ -598,6 +610,8 @@ const cityConfig = {
     },
     "jozankei": {
       "name": "조잔케이 온천권",
+      "regionSlug": "jozankei-onsen",
+      "regionSlugAliases": ["조잔케이 온천권", "조잔케이", "조잔케이 온천"],
       "label": "온천 휴식과 겨울 분위기에 강한 위치",
       "summary": "삿포로 도심 관광보다 온천 휴식이 중요하다면 조잔케이를 도심 숙박과 분리해 1박 넣는 방식이 좋습니다.",
       "leadTitle": "도심 관광용이 아니라 쉬어가는 숙소로 봐야 합니다.",
@@ -1305,31 +1319,71 @@ const cityConfig = {
       });
     }
 
-    function renderRelatedPosts(area) {
+    function getRelatedPostRegionSlugs(area) {
+      return [...new Set([
+        area.regionSlug,
+        ...(Array.isArray(area.regionSlugAliases) ? area.regionSlugAliases : [])
+      ].map((item) => String(item || "").trim()).filter(Boolean))];
+    }
+
+    async function fetchRelatedPostsByRegion(area) {
+      const regionSlugs = getRelatedPostRegionSlugs(area);
+
+      for (const regionSlug of regionSlugs) {
+        const params = new URLSearchParams({
+          destination: cityConfig.destinationSlug,
+          type: cityConfig.postContentType,
+          region: regionSlug,
+          limit: "5"
+        });
+
+        try {
+          const response = await fetch(`/api/destination-posts?${params.toString()}`, {
+            headers: { accept: "application/json" }
+          });
+          if (!response.ok) continue;
+          const data = await response.json();
+          const items = Array.isArray(data.items) ? data.items : [];
+          if (items.length) return items.slice(0, 5);
+        } catch (_) {
+          return [];
+        }
+      }
+
+      return [];
+    }
+
+    async function renderRelatedPosts(area) {
       const section = document.getElementById("relatedPostSection");
       const list = document.getElementById("relatedPostList");
-      const posts = Array.isArray(area.links) ? area.links.slice(0, 5) : [];
 
       if (!section || !list) return;
 
-      if (posts.length === 0) {
+      section.style.display = "none";
+      list.innerHTML = "";
+      setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
+      setText("relatedPostDesc", "현재 추천된 지역에 연결된 여행 스타일별 호텔 추천 글만 보여줍니다.");
+
+      const posts = await fetchRelatedPostsByRegion(area);
+
+      if (!posts.length) {
         section.style.display = "none";
         list.innerHTML = "";
         return;
       }
 
       section.style.display = "block";
-      setText("relatedPostTitle", `${area.name} 선택 전 함께 보면 좋은 글`);
-      setText("relatedPostDesc", "추천 위치와 가까운 호텔 추천 TOP5 글을 최대 5개까지 리스트로 보여줍니다.");
       list.innerHTML = "";
 
       posts.forEach((post) => {
+        const title = String(post.title || "여행 스타일별 호텔 추천 글").trim();
+        const slug = String(post.slug || "").trim();
         const item = document.createElement("li");
         const link = document.createElement("a");
 
-        link.href = post.url || "#";
-        link.textContent = post.title;
-        link.setAttribute("aria-label", `${post.title} 보기`);
+        link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+        link.textContent = title;
+        link.setAttribute("aria-label", `${title} 보기`);
 
         item.appendChild(link);
         list.appendChild(item);

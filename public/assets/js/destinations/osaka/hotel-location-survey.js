@@ -6,11 +6,15 @@
  */
 const cityConfig = {
       cityName: "오사카",
+  destinationSlug: "osaka",
+  postContentType: "top5_series",
       areas: {
         namba: {
-          name: "난바·도톤보리",
+          name: "난바",
+          regionSlug: "namba",
+          regionSlugAliases: ["난바", "난바", "도톤보리"],
           label: "첫 오사카 여행자에게 가장 무난한 중심 위치",
-          summary: "먹거리, 쇼핑, 밤거리, 공항 접근성을 함께 고려하면 난바·도톤보리 주변이 가장 무난합니다.",
+          summary: "먹거리, 쇼핑, 밤거리, 공항 접근성을 함께 고려하면 난바 주변이 가장 무난합니다.",
           leadTitle: "대표 명소 중심으로 짧고 단순한 동선을 만들기 좋습니다.",
           leadText: "도톤보리, 신사이바시, 구로몬시장, 난바역 주변을 자주 오갈 계획이라면 이동 피로를 줄이기 좋습니다. 짧은 일정일수록 위치 장점이 크게 느껴집니다.",
           stayRange: [
@@ -45,7 +49,7 @@ const cityConfig = {
             {
               name: "호텔 몬토레 그라스미아 오사카",
               tag: "난바역 접근",
-              location: "난바·도톤보리 권역",
+              location: "난바 권역",
               reason: "난바 중심 동선과 공항 이동을 함께 고려할 때 비교 후보로 넣기 좋은 숙소입니다.",
               meta: ["첫 여행", "공항 이동", "쇼핑 동선"],
               url: "/post/hotel-monterey-grasmere-osaka"
@@ -85,9 +89,11 @@ const cityConfig = {
             }]
         },
         shinsaibashi: {
-          name: "신사이바시·혼마치",
+          name: "신사이바시",
+          regionSlug: "shinsaibashi",
+          regionSlugAliases: ["신사이바시", "신사이바시"],
           label: "쇼핑과 위치 균형을 잡기 좋은 실속형 위치",
-          summary: "난바 접근성은 유지하면서 조금 더 차분한 분위기와 가격 균형을 원한다면 신사이바시·혼마치가 잘 맞습니다.",
+          summary: "난바 접근성은 유지하면서 조금 더 차분한 분위기와 가격 균형을 원한다면 신사이바시가 잘 맞습니다.",
           leadTitle: "번화가 접근성과 차분한 숙소 주변 분위기 사이의 균형이 좋습니다.",
           leadText: "신사이바시는 쇼핑 동선에 강하고, 혼마치는 난바와 우메다 사이에서 이동 균형을 잡기 좋습니다. 너무 번잡한 숙소가 부담스러운 여행자에게 특히 잘 맞습니다.",
           stayRange: [
@@ -162,9 +168,11 @@ const cityConfig = {
             }]
         },
         umeda: {
-          name: "우메다·오사카역",
+          name: "우메다",
+          regionSlug: "umeda",
+          regionSlugAliases: ["우메다", "우메다", "오사카역"],
           label: "교통과 당일치기 여행에 강한 위치",
-          summary: "교토, 고베, 나라 등 근교 이동까지 생각한다면 우메다·오사카역 주변이 편합니다.",
+          summary: "교토, 고베, 나라 등 근교 이동까지 생각한다면 우메다 주변이 편합니다.",
           leadTitle: "오사카 시내와 근교를 함께 움직이는 일정에 강합니다.",
           leadText: "JR, 한큐, 한신, 지하철 등 선택지가 많아 이동 계획을 짜기 좋습니다. 백화점과 쇼핑몰이 많아 깔끔한 도심 분위기를 선호하는 여행자에게도 잘 맞습니다.",
           stayRange: [
@@ -186,7 +194,7 @@ const cityConfig = {
           ],
           chips: ["교통", "근교 여행", "쇼핑몰", "깔끔한 도심"],
           compareGood: "근교 이동과 쇼핑몰 접근성이 좋아 일정 확장성이 큽니다.",
-          compareCaution: "난바·도톤보리 중심 일정이면 매번 이동이 필요할 수 있습니다.",
+          compareCaution: "난바 중심 일정이면 매번 이동이 필요할 수 있습니다.",
           mismatchNote: "이번 답변에서 맛집, 밤거리, 첫 여행 대표 동선을 더 많이 골랐다면 우메다는 2순위 대안으로 보는 편이 좋습니다.",
           links: [
             { title: "우메다 근처 호텔 추천 TOP5", url: "/post/osaka-umeda-hotels" },
@@ -199,7 +207,7 @@ const cityConfig = {
             {
               name: "호텔 한큐 레스파이어 오사카",
               tag: "오사카역 접근",
-              location: "우메다·오사카역 권역",
+              location: "우메다 권역",
               reason: "근교 이동과 쇼핑몰 접근성을 함께 보는 여행자에게 비교해볼 만한 점이 높은 위치입니다.",
               meta: ["근교 이동", "쇼핑몰", "부모님 동반"],
               url: "/post/hotel-hankyu-respire-osaka"
@@ -224,7 +232,7 @@ const cityConfig = {
             {
               name: "호텔 비스키오 오사카 바이 그란비아",
               tag: "우메다 실속형",
-              location: "우메다·오사카역 권역",
+              location: "우메다 권역",
               reason: "오사카역 생활권과 깔끔한 도심 숙박을 같이 중요하게 볼 때 비교하기 좋습니다.",
               meta: ["오사카역", "깔끔한 도심", "실속"],
               url: "/post/hotel-vischio-osaka"
@@ -239,23 +247,25 @@ const cityConfig = {
             }]
         },
         tennoji: {
-          name: "텐노지·아베노",
+          name: "덴노지",
+          regionSlug: "tennoji",
+          regionSlugAliases: ["덴노지", "덴노지", "덴노지"],
           label: "가격과 이동 편의성을 함께 보는 가성비 위치",
-          summary: "중심가보다 숙소비를 조금 아끼면서도 주요 관광지 접근성을 포기하고 싶지 않다면 텐노지·아베노가 좋습니다.",
+          summary: "중심가보다 숙소비를 조금 아끼면서도 주요 관광지 접근성을 포기하고 싶지 않다면 덴노지가 좋습니다.",
           leadTitle: "숙소비와 이동 편의성을 함께 고려하는 실속형 선택입니다.",
           leadText: "아베노하루카스, 신세카이, 동물원 등 남쪽 동선과 잘 맞고 난바 접근도 비교적 편합니다. 중심가 대비 합리적인 가격대의 호텔을 찾을 때 후보에 넣어볼 만합니다.",
           stayRange: [
-            "텐노지역, 아베노역, 텐노지에키마에역 도보 10분 이내",
-            "신세카이·아베노하루카스 일정이 있다면 텐노지역 중심",
+            "덴노지역, 아베노역, 덴노지에키마에역 도보 10분 이내",
+            "신세카이·아베노하루카스 일정이 있다면 덴노지역 중심",
             "공항 이동도 고려한다면 환승 동선이 단순한 역세권"
           ],
           avoidRange: [
-            "난바·도톤보리를 매일 밤 오갈 계획인데 숙소비만 보고 너무 남쪽으로 내려가는 선택",
+            "난바를 매일 밤 오갈 계획인데 숙소비만 보고 너무 남쪽으로 내려가는 선택",
             "역과 멀고 주변 편의시설이 약한 저가 호텔",
             "첫 여행인데 대표 명소 동선보다 가격만 우선한 선택"
           ],
           bestFor: ["가성비 중시", "남쪽 관광지 일정", "재방문 여행", "가격과 교통 균형을 보는 여행"],
-          notFor: ["첫 오사카에서 난바·도톤보리가 핵심인 일정", "USJ 중심 가족 여행", "숙소 주변 주변 소음과 분위기를 중요하게 보는 여행"],
+          notFor: ["첫 오사카에서 난바가 핵심인 일정", "USJ 중심 가족 여행", "숙소 주변 주변 소음과 분위기를 중요하게 보는 여행"],
           bookingTips: [
             "저렴한 가격만 보지 말고 역까지의 도보 거리와 주변 분위기를 같이 확인하세요.",
             "난바를 자주 갈 예정이라면 이동 시간이 부담되지 않는지 먼저 계산하세요.",
@@ -264,27 +274,27 @@ const cityConfig = {
           chips: ["가성비", "남쪽 동선", "아베노하루카스", "합리적 가격"],
           compareGood: "중심가 대비 숙소비 부담을 낮추면서 남쪽 관광지 접근성을 확보하기 좋습니다.",
           compareCaution: "대표 번화가 중심 일정이면 난바보다 동선이 길어질 수 있습니다.",
-          mismatchNote: "이번 답변에서 짧은 일정, 밤거리, 첫 여행 대표 코스를 많이 골랐다면 텐노지는 우선순위가 낮을 수 있습니다.",
+          mismatchNote: "이번 답변에서 짧은 일정, 밤거리, 첫 여행 대표 코스를 많이 골랐다면 덴노지는 우선순위가 낮을 수 있습니다.",
           links: [
-            { title: "텐노지 근처 호텔 추천 TOP5", url: "/post/osaka-tennoji-hotels" },
+            { title: "덴노지 근처 호텔 추천 TOP5", url: "/post/osaka-tennoji-hotels" },
             { title: "아베노 근처 호텔 추천 TOP5", url: "/post/osaka-abeno-hotels" }
           ,
             { title: "오사카 가성비 호텔 추천 TOP5", url: "/post/osaka-value-hotels" },
-            { title: "오사카 텐노지 가성비 호텔 추천 TOP5", url: "/post/osaka-tennoji-value-hotels" },
+            { title: "오사카 덴노지 가성비 호텔 추천 TOP5", url: "/post/osaka-tennoji-value-hotels" },
             { title: "오사카 아베노 호텔 추천 TOP5", url: "/post/osaka-abeno-hotels-top5" }],
           hotels: [
             {
-              name: "미야코 시티 오사카 텐노지",
-              tag: "텐노지역 중심",
-              location: "텐노지 권역",
-              reason: "남쪽 관광지와 텐노지역 교통을 함께 보는 일정에 비교하기 좋은 숙소입니다.",
-              meta: ["텐노지역", "남쪽 동선", "실속"],
+              name: "미야코 시티 오사카 덴노지",
+              tag: "덴노지역 중심",
+              location: "덴노지 권역",
+              reason: "남쪽 관광지와 덴노지역 교통을 함께 보는 일정에 비교하기 좋은 숙소입니다.",
+              meta: ["덴노지역", "남쪽 동선", "실속"],
               url: "/post/miyako-city-osaka-tennoji"
             },
             {
-              name: "비아 인 아베노 텐노지",
+              name: "비아 인 아베노 덴노지",
               tag: "가성비 후보",
-              location: "아베노·텐노지 권역",
+              location: "아베노·덴노지 권역",
               reason: "숙소비 부담을 줄이면서 역세권과 주변 편의성을 같이 중요하게 볼 때 적합합니다.",
               meta: ["가성비", "아베노하루카스", "역세권"],
               url: "/post/via-inn-abeno-tennoji"
@@ -293,42 +303,44 @@ const cityConfig = {
               name: "호텔 트러스티 오사카 아베노",
               tag: "아베노 후보",
               location: "아베노 권역",
-              reason: "아베노·텐노지 생활권에서 조용함과 접근성의 균형을 보고 싶은 여행자에게 어울립니다.",
+              reason: "아베노·덴노지 생활권에서 조용함과 접근성의 균형을 보고 싶은 여행자에게 어울립니다.",
               meta: ["아베노", "가격 균형", "차분함"],
               url: "/post/hotel-trusty-osaka-abeno"
             }
           ,
             {
-              name: "호텔 발리 타워 오사카 텐노지",
+              name: "호텔 발리 타워 오사카 덴노지",
               tag: "개성형 후보",
-              location: "텐노지 권역",
-              reason: "텐노지 중심에서 편의성과 독특한 숙소 주변 분위기를 같이 중요하게 보은 경우 비교할 만합니다.",
-              meta: ["텐노지", "가성비", "개성형"],
+              location: "덴노지 권역",
+              reason: "덴노지 중심에서 편의성과 독특한 숙소 주변 분위기를 같이 중요하게 보은 경우 비교할 만합니다.",
+              meta: ["덴노지", "가성비", "개성형"],
               url: "/post/hotel-bali-tower-osaka-tennoji"
             },
             {
-              name: "텐노지 라군 호텔",
+              name: "덴노지 라군 호텔",
               tag: "저예산 후보",
-              location: "텐노지 권역",
+              location: "덴노지 권역",
               reason: "숙소비를 낮추면서 남쪽 동선 접근성을 우선 확인하고 싶을 때 보조 후보가 됩니다.",
               meta: ["저예산", "남쪽 동선", "실속"],
               url: "/post/tennoji-lagoon-hotel"
             }]
         },
         universal: {
-          name: "유니버설시티",
+          name: "유니버셜 시티",
+          regionSlug: "universal-city",
+          regionSlugAliases: ["유니버셜 시티", "유니버셜 시티", "유니버셜 시티", "universal"],
           label: "USJ 중심 일정에 가장 편한 위치",
-          summary: "유니버설 스튜디오 재팬을 하루 종일 즐기거나 아이와 함께 이동한다면 유니버설시티 주변이 가장 편합니다.",
+          summary: "유니버설 스튜디오 재팬을 하루 종일 즐기거나 아이와 함께 이동한다면 유니버셜 시티 주변이 가장 편합니다.",
           leadTitle: "USJ 입장과 퇴장 동선을 줄이는 데 가장 강합니다.",
           leadText: "테마파크에서 오래 머무는 일정이라면 숙소까지 돌아가는 피로가 크게 줄어듭니다. 아이 동반 가족이나 USJ가 여행의 핵심인 경우 만족도가 높습니다.",
           stayRange: [
-            "유니버설시티역 도보권",
+            "유니버셜 시티역 도보권",
             "USJ 입장 대기와 퇴장 후 이동을 줄일 수 있는 공식·인근 호텔",
             "아이 동반이면 역과 호텔 사이 이동이 단순한 위치"
           ],
           avoidRange: [
             "USJ는 하루만 가는데 오사카 시내 관광이 더 많은 일정",
-            "매일 도톤보리·신사이바시를 오갈 계획인데 유니버설시티에만 숙박하는 선택",
+            "매일 도톤보리·신사이바시를 오갈 계획인데 유니버셜 시티에만 숙박하는 선택",
             "늦은 밤 시내 식사와 쇼핑을 자주 넣는 일정"
           ],
           bestFor: ["USJ 중심 여행", "아이 동반 가족", "테마파크 집중 일정", "체력 부담을 줄이고 싶은 여행"],
@@ -341,19 +353,19 @@ const cityConfig = {
           chips: ["USJ", "가족여행", "아이 동반", "테마파크"],
           compareGood: "USJ 동선이 짧아 체력 부담을 줄이기 좋습니다.",
           compareCaution: "시내 관광과 쇼핑 일정이 많으면 매번 이동해야 합니다.",
-          mismatchNote: "이번 답변에서 USJ 비중이 낮고 시내 관광을 더 많이 선택했다면 유니버설시티는 특수 목적형 후보입니다.",
+          mismatchNote: "이번 답변에서 USJ 비중이 낮고 시내 관광을 더 많이 선택했다면 유니버셜 시티는 특수 목적형 후보입니다.",
           links: [
-            { title: "유니버설시티 호텔 추천 TOP5", url: "/post/osaka-universal-city-hotels" },
+            { title: "유니버셜 시티 호텔 추천 TOP5", url: "/post/osaka-universal-city-hotels" },
             { title: "USJ 근처 호텔 추천", url: "/post/usj-nearby-hotels" }
           ,
             { title: "USJ 가족 호텔 추천 TOP5", url: "/post/usj-family-hotels" },
-            { title: "유니버설시티 가성비 호텔 추천 TOP5", url: "/post/universal-city-value-hotels" },
+            { title: "유니버셜 시티 가성비 호텔 추천 TOP5", url: "/post/universal-city-value-hotels" },
             { title: "오사카 아이와 가기 좋은 호텔 추천 TOP5", url: "/post/osaka-kids-hotels" }],
           hotels: [
             {
               name: "더 파크 프론트 호텔 앳 유니버설 스튜디오 재팬",
               tag: "USJ 최단 동선",
-              location: "유니버설시티 권역",
+              location: "유니버셜 시티 권역",
               reason: "USJ 입장과 퇴장 동선을 최대한 줄이고 싶은 가족 여행자에게 강한 후보입니다.",
               meta: ["USJ", "가족", "테마파크"],
               url: "/post/the-park-front-hotel-usj"
@@ -361,7 +373,7 @@ const cityConfig = {
             {
               name: "호텔 유니버설 포트",
               tag: "가족형 후보",
-              location: "유니버설시티 권역",
+              location: "유니버셜 시티 권역",
               reason: "아이와 함께 테마파크 일정을 중심으로 잡을 때 비교하기 좋은 호텔입니다.",
               meta: ["아이 동반", "USJ", "편한 동선"],
               url: "/post/hotel-universal-port"
@@ -369,105 +381,69 @@ const cityConfig = {
             {
               name: "리버 호텔 오사카",
               tag: "여유형 후보",
-              location: "유니버설시티·베이 에어리어",
+              location: "유니버셜 시티·혼마치",
               reason: "USJ 접근성과 조금 더 여유로운 숙소 주변 분위기를 같이 중요하게 볼 때 후보에 넣어볼 만합니다.",
               meta: ["USJ", "여유", "가족여행"],
               url: "/post/liber-hotel-osaka"
             }
           ,
             {
-              name: "오리엔탈 호텔 유니버설 시티",
+              name: "오리엔탈 호텔 유니버셜 시티",
               tag: "USJ 역세권",
-              location: "유니버설시티 권역",
-              reason: "USJ 접근성과 유니버설시티역 동선을 함께 보는 가족 여행에 적합한 후보입니다.",
+              location: "유니버셜 시티 권역",
+              reason: "USJ 접근성과 유니버셜 시티역 동선을 함께 보는 가족 여행에 적합한 후보입니다.",
               meta: ["USJ", "역세권", "가족"],
               url: "/post/oriental-hotel-universal-city"
             },
             {
               name: "더 싱귤라리 호텔 & 스카이스파 앳 유니버설 스튜디오 재팬",
               tag: "스파형 후보",
-              location: "유니버설시티 권역",
+              location: "유니버셜 시티 권역",
               reason: "테마파크 일정 후 휴식 요소까지 고려하는 여행자에게 비교해볼 만한 점이 있습니다.",
               meta: ["USJ", "스파", "휴식"],
               url: "/post/the-singulari-hotel-usj"
             }]
         },
-        bay: {
-          name: "베이 에어리어",
-          label: "가족과 여유로운 일정을 보내기 좋은 위치",
-          summary: "가이유칸, 항만 풍경, 여유로운 가족 일정을 원한다면 베이 에어리어도 좋은 선택입니다.",
-          leadTitle: "도심보다 여유로운 가족형 일정을 만들기 좋습니다.",
-          leadText: "아이와 함께 무리 없는 하루를 보내거나 가이유칸, 항만 분위기 중심으로 일정을 짤 때 잘 맞습니다. 번화가보다 차분한 숙박을 원하는 경우 후보가 됩니다.",
+        hommachi: {
+          name: "혼마치",
+          regionSlug: "hommachi",
+          regionSlugAliases: ["혼마치"],
+          label: "난바와 우메다 사이에서 이동 균형을 잡기 좋은 위치",
+          summary: "난바와 우메다를 모두 오가고 싶고, 번화가 한복판보다 차분한 숙소 분위기를 원한다면 혼마치가 좋은 선택입니다.",
+          leadTitle: "오사카 남쪽과 북쪽을 함께 다니는 일정에 잘 맞습니다.",
+          leadText: "혼마치는 미도스지선 중심 동선에 있어 난바, 신사이바시, 우메다로 이동하기 쉽습니다. 쇼핑과 맛집은 챙기되 숙소 주변은 조금 더 차분했으면 하는 여행자에게 특히 잘 맞습니다.",
           stayRange: [
-            "가이유칸, 오사카코역, 벤텐초 주변 동선 확인",
-            "아이 동반이면 호텔 주변 식사·편의점 접근성이 좋은 위치",
-            "시내 관광도 넣는다면 지하철 환승 동선이 단순한 위치"
+            "혼마치역 또는 사카이스지혼마치역 도보 10분 이내",
+            "난바와 우메다를 모두 오간다면 미도스지선 접근성 확인",
+            "조용한 숙박을 원하면 대로변 소음과 객실 방음 후기 확인"
           ],
           avoidRange: [
-            "난바·우메다·신사이바시를 매일 오가는 시내 중심 일정",
-            "첫 오사카 여행인데 대표 명소를 짧게 많이 보려는 일정",
-            "밤거리와 쇼핑을 늦게까지 즐기고 싶은 여행"
+            "도톤보리 밤거리를 매일 늦게까지 즐기려는 일정",
+            "USJ가 여행의 핵심인데 환승 동선을 확인하지 않는 선택",
+            "첫 오사카 여행에서 대표 명소를 모두 도보로만 해결하려는 선택"
           ],
-          bestFor: ["가족여행", "아이 동반", "여유로운 일정", "가이유칸 중심 여행"],
-          notFor: ["대표 명소를 촘촘히 도는 첫 여행", "맛집·쇼핑 중심 여행", "근교 이동이 많은 일정"],
+          bestFor: ["이동 균형", "가성비", "차분한 도심", "커플 여행", "재방문 여행"],
+          notFor: ["도톤보리 밤거리 중심 여행", "USJ 집중 일정", "아이와 리조트형 휴식을 원하는 여행"],
           bookingTips: [
-            "가족 여행이라면 호텔 주변 식당, 편의점, 세탁 시설을 같이 확인하세요.",
-            "시내 이동이 필요한 날이 많다면 전체 이동 시간을 먼저 계산하세요.",
-            "가이유칸 중심 일정인지, 단순히 저렴한 숙소인지 목적을 분명히 하세요."
+            "혼마치는 역 출구와 호텔 위치에 따라 체감 동선이 달라지므로 실제 이용할 지하철 출구를 확인하세요.",
+            "난바와 우메다를 모두 다닐 계획이라면 미도스지선 접근성을 가장 먼저 보세요.",
+            "가격이 저렴해도 역에서 12분 이상 멀어지면 캐리어 이동이 불편할 수 있습니다."
           ],
-          chips: ["가족여행", "여유", "가이유칸", "항만 분위기"],
-          compareGood: "도심 번화가보다 여유롭고 가족 중심 일정을 만들기 좋습니다.",
-          compareCaution: "시내 관광 비중이 높다면 이동 시간이 길어질 수 있습니다.",
-          mismatchNote: "이번 답변에서 대표 명소, 밤거리, 쇼핑, 공항 이동을 중요하게 골랐다면 베이 에어리어는 1순위와 거리가 있습니다.",
+          chips: ["이동 균형", "가성비", "차분함", "미도스지선"],
+          compareGood: "난바와 우메다 사이에서 이동 균형을 잡기 좋아 일정이 한쪽으로 치우치지 않습니다.",
+          compareCaution: "도톤보리 바로 앞의 활기찬 분위기를 기대하면 다소 차분하게 느껴질 수 있습니다.",
+          mismatchNote: "이번 답변에서 밤거리, 공항 이동, USJ 접근성을 강하게 골랐다면 혼마치는 보조 후보에 가깝습니다.",
           links: [
-            { title: "오사카 베이 에어리어 호텔 추천", url: "/post/osaka-bay-area-hotels" },
-            { title: "가족여행 오사카 호텔 추천", url: "/post/osaka-family-hotels" }
-          ,
-            { title: "오사카 가이유칸 근처 호텔 추천 TOP5", url: "/post/osaka-kaiyukan-hotels" },
-            { title: "오사카 가족여행 호텔 추천 TOP5", url: "/post/osaka-family-hotels-top5" },
-            { title: "오사카 여유로운 숙소 추천 TOP5", url: "/post/osaka-relax-hotels" }],
+            { title: "혼마치 근처 호텔 추천 TOP5", url: "/post/osaka-hommachi-hotels" },
+            { title: "오사카 가성비 호텔 추천 TOP5", url: "/post/osaka-value-hotels" }
+          ],
           hotels: [
-            {
-              name: "아트 호텔 오사카 베이 타워",
-              tag: "베이 전망 후보",
-              location: "벤텐초·베이 에어리어",
-              reason: "도심 번화가보다 여유로운 분위기와 베이 에어리어 접근성을 같이 중요하게 볼 때 어울립니다.",
-              meta: ["베이 에어리어", "가족", "여유"],
-              url: "/post/art-hotel-osaka-bay-tower"
-            },
-            {
-              name: "퀸테사 호텔 오사카 베이",
-              tag: "가족형 후보",
-              location: "베이 에어리어",
-              reason: "가이유칸, 항만 분위기, 여유로운 가족 일정을 고려할 때 비교해볼 만한 후보입니다.",
-              meta: ["가족여행", "가이유칸", "넓은 동선"],
-              url: "/post/quintessa-hotel-osaka-bay"
-            },
-            {
-              name: "호텔 시걸 텐포잔 오사카",
-              tag: "가이유칸 접근",
-              location: "텐포잔·오사카코 권역",
-              reason: "가이유칸 중심의 하루 일정이나 아이와 함께하는 느린 여행에 어울리는 후보입니다.",
-              meta: ["가이유칸", "아이 동반", "여유"],
-              url: "/post/hotel-seagull-tenpozan-osaka"
-            }
-          ,
-            {
-              name: "호텔 시걸 텐포잔 오사카",
-              tag: "가이유칸 접근",
-              location: "텐포잔·오사카코 권역",
-              reason: "가이유칸과 베이 에어리어 일정을 여유롭게 잡는 가족 여행에 어울립니다.",
-              meta: ["가이유칸", "가족", "여유"],
-              url: "/post/hotel-seagull-tempozan-osaka"
-            },
-            {
-              name: "아트 호텔 오사카 베이 타워",
-              tag: "전망형 후보",
-              location: "벤텐초·베이 에어리어",
-              reason: "도심과 베이 에어리어 사이에서 전망과 이동 균형을 같이 중요하게 보은 경우 비교하기 좋습니다.",
-              meta: ["전망", "베이", "이동 균형"],
-              url: "/post/art-hotel-osaka-bay-tower"
-            }]
+            { name: "오사카 엑셀 호텔 도큐", tag: "혼마치 중심", location: "혼마치 권역", reason: "난바와 우메다 사이에서 이동 균형을 잡고 싶은 일정에 어울리는 후보입니다.", meta: ["혼마치", "이동 균형", "깔끔한 도심"], url: "/post/osaka-excel-hotel-tokyu" },
+            { name: "더 로열 파크 호텔 아이코닉 오사카 미도스지", tag: "미도스지선 후보", location: "혼마치·요도야바시 권역", reason: "차분한 도심 분위기와 남북 이동 편의성을 함께 보고 싶은 여행자에게 적합합니다.", meta: ["미도스지", "도심", "커플"], url: "/post/the-royal-park-hotel-iconic-osaka-midosuji" },
+            { name: "코트야드 바이 메리어트 오사카 혼마치", tag: "역세권 안정형", location: "혼마치·사카이스지혼마치 주변", reason: "혼마치 권역에서 교통과 숙박 안정성을 함께 비교하기 좋은 후보입니다.", meta: ["혼마치", "역세권", "안정형"], url: "/post/courtyard-by-marriott-osaka-honmachi" },
+            { name: "다이와 로이넷 호텔 오사카 기타하마", tag: "차분한 실속형", location: "기타하마·혼마치 북쪽", reason: "우메다 접근성과 차분한 숙소 주변 분위기를 함께 원하는 경우 비교할 만합니다.", meta: ["차분함", "실속", "도심"], url: "/post/daiwa-roynet-hotel-osaka-kitahama" },
+            { name: "베스트 웨스턴 플러스 호텔 피노 오사카 기타하마", tag: "가성비 후보", location: "기타하마·혼마치 생활권", reason: "중심부 가격 부담을 줄이면서 도심 이동을 유지하고 싶은 여행자에게 어울립니다.", meta: ["가성비", "도심 이동", "실속"], url: "/post/best-western-plus-hotel-fino-osaka-kitahama" }
+          ]
         }
       },
       questions: [
@@ -477,7 +453,7 @@ const cityConfig = {
           options: [
             { title: "첫 오사카 여행이에요", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { namba: 5, umeda: 2, shinsaibashi: 2 } },
             { title: "두 번째 이상이에요", desc: "너무 뻔한 중심지만 고집하지 않아도 괜찮아요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
-            { title: "오사카가 꽤 익숙해요", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { tennoji: 4, bay: 3, shinsaibashi: 3 } }
+            { title: "오사카가 꽤 익숙해요", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { tennoji: 4, hommachi: 3, shinsaibashi: 3 } }
           ]
         },
         {
@@ -487,7 +463,7 @@ const cityConfig = {
             { title: "맛집과 밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { namba: 6, shinsaibashi: 2 } },
             { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { shinsaibashi: 4, namba: 3, umeda: 3 } },
             { title: "교통 편의성", desc: "시내 이동과 근교 이동을 편하게 하고 싶어요.", scores: { umeda: 6, namba: 3, shinsaibashi: 1 } },
-            { title: "아이와 함께하는 일정", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { universal: 4, bay: 4, umeda: 2 } }
+            { title: "아이와 함께하는 일정", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { universal: 5, umeda: 3, tennoji: 2, hommachi: 1 } }
           ]
         },
         {
@@ -496,14 +472,14 @@ const cityConfig = {
           options: [
             { title: "매우 중요해요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { namba: 6, tennoji: 2, umeda: 1 } },
             { title: "보통이에요", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { namba: 3, umeda: 3, tennoji: 2 } },
-            { title: "크게 중요하지 않아요", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { shinsaibashi: 2, universal: 2, bay: 2 } }
+            { title: "크게 중요하지 않아요", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { shinsaibashi: 2, universal: 2, hommachi: 2 } }
           ]
         },
         {
           title: "유니버설 스튜디오 재팬 일정이 있나요?",
           help: "USJ가 여행의 핵심이면 숙소 위치 선택이 크게 달라집니다.",
           options: [
-            { title: "USJ가 이번 여행의 핵심이에요", desc: "입장과 퇴장 동선을 최대한 줄이고 싶어요.", scores: { universal: 9, bay: 2 } },
+            { title: "USJ가 이번 여행의 핵심이에요", desc: "입장과 퇴장 동선을 최대한 줄이고 싶어요.", scores: { universal: 9, hommachi: 2 } },
             { title: "하루 정도만 방문해요", desc: "USJ도 가지만 시내 관광도 중요해요.", scores: { universal: 3, umeda: 3, namba: 3 } },
             { title: "방문하지 않아요", desc: "시내 관광, 맛집, 쇼핑 중심으로 움직일 예정이에요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2, tennoji: 1 } }
           ]
@@ -525,14 +501,14 @@ const cityConfig = {
             { title: "활기찬 번화가가 좋아요", desc: "밤에도 주변에 볼거리와 먹거리가 많았으면 해요.", scores: { namba: 6, shinsaibashi: 2 } },
             { title: "깔끔한 도심이 좋아요", desc: "백화점, 쇼핑몰, 역세권 분위기를 선호해요.", scores: { umeda: 6, shinsaibashi: 2 } },
             { title: "조금 차분한 곳이 좋아요", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { shinsaibashi: 4, tennoji: 3, umeda: 2 } },
-            { title: "가족여행에 편한 분위기가 좋아요", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { universal: 4, bay: 4, umeda: 2 } }
+            { title: "가족여행에 편한 분위기가 좋아요", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { universal: 5, umeda: 3, tennoji: 2, hommachi: 1 } }
           ]
         },
         {
           title: "숙소 예산은 어떤 편인가요?",
           help: "위치가 중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.",
           options: [
-            { title: "숙소비를 아끼고 싶어요", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { tennoji: 5, shinsaibashi: 3, bay: 2 } },
+            { title: "숙소비를 아끼고 싶어요", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { tennoji: 5, shinsaibashi: 3, hommachi: 2 } },
             { title: "가격과 위치 균형이 중요해요", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { shinsaibashi: 4, tennoji: 3, namba: 2, umeda: 2 } },
             { title: "위치가 좋다면 조금 더 써도 괜찮아요", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { namba: 4, umeda: 4, universal: 3 } }
           ]
@@ -544,7 +520,7 @@ const cityConfig = {
             { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { namba: 3, umeda: 3, shinsaibashi: 2 } },
             { title: "커플 여행", desc: "맛집, 쇼핑, 분위기를 같이 중요하게 보어요.", scores: { namba: 3, shinsaibashi: 3, umeda: 2 } },
             { title: "친구와 여행", desc: "밤에도 활기차고 먹거리 많은 곳이 좋아요.", scores: { namba: 5, shinsaibashi: 3 } },
-            { title: "가족·아이 동반", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { universal: 4, bay: 4, umeda: 3 } },
+            { title: "가족·아이 동반", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { universal: 4, hommachi: 4, umeda: 3 } },
             { title: "부모님과 여행", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { umeda: 4, tennoji: 3, namba: 2 } }
           ]
         },
@@ -552,11 +528,11 @@ const cityConfig = {
           title: "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
           help: "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
           options: [
-            { title: "늦은 시간 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { shinsaibashi: 4, umeda: 3, bay: 2, namba: -2 } },
-            { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, umeda: 4, universal: 2, bay: -2 } },
+            { title: "늦은 시간 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { shinsaibashi: 4, umeda: 3, hommachi: 2, namba: -2 } },
+            { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, umeda: 4, universal: 2, hommachi: -2 } },
             { title: "복잡한 환승", desc: "길 찾기와 환승이 복잡한 곳은 부담스러워요.", scores: { namba: 3, tennoji: 2, universal: 2, umeda: -1 } },
-            { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { umeda: 3, bay: 3, universal: 2, namba: -1 } },
-            { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, bay: 3, umeda: 2 } }
+            { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { umeda: 3, hommachi: 3, universal: 2, namba: -1 } },
+            { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, hommachi: 3, umeda: 2 } }
           ]
         }
       ]
@@ -806,31 +782,71 @@ const cityConfig = {
       });
     }
 
-    function renderRelatedPosts(area) {
+    function getRelatedPostRegionSlugs(area) {
+      return [...new Set([
+        area.regionSlug,
+        ...(Array.isArray(area.regionSlugAliases) ? area.regionSlugAliases : [])
+      ].map((item) => String(item || "").trim()).filter(Boolean))];
+    }
+
+    async function fetchRelatedPostsByRegion(area) {
+      const regionSlugs = getRelatedPostRegionSlugs(area);
+
+      for (const regionSlug of regionSlugs) {
+        const params = new URLSearchParams({
+          destination: cityConfig.destinationSlug,
+          type: cityConfig.postContentType,
+          region: regionSlug,
+          limit: "5"
+        });
+
+        try {
+          const response = await fetch(`/api/destination-posts?${params.toString()}`, {
+            headers: { accept: "application/json" }
+          });
+          if (!response.ok) continue;
+          const data = await response.json();
+          const items = Array.isArray(data.items) ? data.items : [];
+          if (items.length) return items.slice(0, 5);
+        } catch (_) {
+          return [];
+        }
+      }
+
+      return [];
+    }
+
+    async function renderRelatedPosts(area) {
       const section = document.getElementById("relatedPostSection");
       const list = document.getElementById("relatedPostList");
-      const posts = Array.isArray(area.links) ? area.links.slice(0, 5) : [];
 
       if (!section || !list) return;
 
-      if (posts.length === 0) {
+      section.style.display = "none";
+      list.innerHTML = "";
+      setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
+      setText("relatedPostDesc", "현재 추천된 지역에 연결된 여행 스타일별 호텔 추천 글만 보여줍니다.");
+
+      const posts = await fetchRelatedPostsByRegion(area);
+
+      if (!posts.length) {
         section.style.display = "none";
         list.innerHTML = "";
         return;
       }
 
       section.style.display = "block";
-      setText("relatedPostTitle", `${area.name} 선택 전 함께 보면 좋은 글`);
-      setText("relatedPostDesc", "추천 위치와 가까운 호텔 추천 TOP5 글을 최대 5개까지 리스트로 보여줍니다.");
       list.innerHTML = "";
 
       posts.forEach((post) => {
+        const title = String(post.title || "여행 스타일별 호텔 추천 글").trim();
+        const slug = String(post.slug || "").trim();
         const item = document.createElement("li");
         const link = document.createElement("a");
 
-        link.href = post.url || "#";
-        link.textContent = post.title;
-        link.setAttribute("aria-label", `${post.title} 보기`);
+        link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+        link.textContent = title;
+        link.setAttribute("aria-label", `${title} 보기`);
 
         item.appendChild(link);
         list.appendChild(item);
@@ -840,7 +856,7 @@ const cityConfig = {
     function getPersuasiveContent(area) {
       const contents = {
         namba: {
-          intro: "선택한 답변에서 대표 명소, 맛집, 쇼핑, 공항 이동처럼 ‘짧고 단순한 동선’이 중요한 기준으로 반영되었습니다. 그래서 난바·도톤보리는 이동 시간을 줄이고 여행 만족도를 빠르게 높이기 좋은 선택입니다.",
+          intro: "선택한 답변에서 대표 명소, 맛집, 쇼핑, 공항 이동처럼 ‘짧고 단순한 동선’이 중요한 기준으로 반영되었습니다. 그래서 난바는 이동 시간을 줄이고 여행 만족도를 빠르게 높이기 좋은 선택입니다.",
           reasons: [
             { title: "처음 가도 동선이 단순합니다", text: "도톤보리, 구로몬시장, 신사이바시, 난바역 주변을 한 권역으로 묶어 움직일 수 있어 일정이 복잡해지지 않습니다." },
             { title: "저녁 시간이 편해집니다", text: "맛집과 쇼핑, 밤거리 이동이 짧아 늦은 시간에도 숙소로 돌아오는 부담이 적습니다." },
@@ -850,54 +866,54 @@ const cityConfig = {
           conclusionText: "다만 도톤보리 바로 앞은 소음이 있을 수 있으니, 난바역·닛폰바시역 도보권이면서 번화가와 한 블록 정도 떨어진 호텔을 우선 비교하는 방식이 좋습니다."
         },
         shinsaibashi: {
-          intro: "선택한 답변에서 쇼핑, 도보 이동, 번화가 접근성, 조금 더 차분한 분위기가 함께 반영되었습니다. 신사이바시·혼마치는 난바의 장점은 가져가면서 숙소 주변 분위기를 조금 정돈하기 좋은 위치입니다.",
+          intro: "선택한 답변에서 쇼핑, 도보 이동, 번화가 접근성, 조금 더 차분한 분위기가 함께 반영되었습니다. 신사이바시는 난바의 장점은 가져가면서 숙소 주변 분위기를 조금 정돈하기 좋은 위치입니다.",
           reasons: [
             { title: "쇼핑 동선이 자연스럽습니다", text: "신사이바시스지, 도톤보리, 난바 방면을 도보 또는 짧은 지하철 이동으로 연결하기 쉽습니다." },
             { title: "너무 번잡한 숙박을 피하기 좋습니다", text: "난바 한복판보다 차분한 호텔 후보가 많아 늦은 시간 소음과 번잡함을 줄이고 싶은 여행자에게 잘 맞습니다." },
             { title: "난바와 우메다 사이 균형이 좋습니다", text: "혼마치 쪽은 남쪽과 북쪽 이동을 함께 고려하기 좋아 일정이 한쪽으로 치우치지 않습니다." }
           ],
-          conclusionTitle: "결론: 쇼핑과 위치 균형을 같이 중요하게 본다면 신사이바시·혼마치가 합리적입니다.",
+          conclusionTitle: "결론: 쇼핑과 위치 균형을 같이 중요하게 본다면 신사이바시가 합리적입니다.",
           conclusionText: "도톤보리 늦은 시간 동선이 핵심이면 너무 북쪽으로 올라가지 말고, 신사이바시역·나가호리바시역·혼마치역 도보권을 중심으로 비교하세요."
         },
         umeda: {
-          intro: "선택한 답변에서 교통 편의성, 근교 이동, 깔끔한 도심 분위기가 강하게 반영되었습니다. 우메다·오사카역은 오사카 시내뿐 아니라 교토, 고베, 나라까지 함께 보는 일정에 특히 강합니다.",
+          intro: "선택한 답변에서 교통 편의성, 근교 이동, 깔끔한 도심 분위기가 강하게 반영되었습니다. 우메다은 오사카 시내뿐 아니라 교토, 고베, 나라까지 함께 보는 일정에 특히 강합니다.",
           reasons: [
             { title: "근교 당일치기에 유리합니다", text: "JR, 한큐, 한신 등 선택지가 많아 교토·고베·나라 일정을 넣을 때 이동 계획을 세우기 쉽습니다." },
             { title: "쇼핑몰 중심으로 움직이기 좋습니다", text: "백화점과 대형 쇼핑몰이 많아 비 오는 날이나 부모님 동반 일정에서도 동선 부담이 적습니다." },
             { title: "여행 일정 확장성이 큽니다", text: "하루는 시내, 하루는 근교처럼 일정이 바뀌어도 대응하기 쉬운 교통 중심 위치입니다." }
           ],
           conclusionTitle: "결론: 오사카만 보는 여행보다 주변 도시까지 함께 볼 계획이라면 우메다가 더 타당합니다.",
-          conclusionText: "단, 난바·도톤보리 밤거리 중심 여행이라면 매번 이동이 필요합니다. 우메다를 고를 때는 호텔이 실제로 어떤 역 출구와 가까운지까지 확인하는 것이 중요합니다."
+          conclusionText: "단, 난바 밤거리 중심 여행이라면 매번 이동이 필요합니다. 우메다를 고를 때는 호텔이 실제로 어떤 역 출구와 가까운지까지 확인하는 것이 중요합니다."
         },
         tennoji: {
-          intro: "선택한 답변에서 예산, 실속, 남쪽 관광지 동선, 재방문 여행 성향이 반영되었습니다. 텐노지·아베노는 중심가 숙소비가 부담될 때 이동 편의성을 완전히 포기하지 않는 현실적인 선택입니다.",
+          intro: "선택한 답변에서 예산, 실속, 남쪽 관광지 동선, 재방문 여행 성향이 반영되었습니다. 덴노지는 중심가 숙소비가 부담될 때 이동 편의성을 완전히 포기하지 않는 현실적인 선택입니다.",
           reasons: [
             { title: "가격 대비 위치 효율이 좋습니다", text: "난바 중심부보다 숙소비 부담을 낮추면서도 지하철과 JR 이동을 활용해 주요 지역으로 접근할 수 있습니다." },
-            { title: "남쪽 일정과 잘 맞습니다", text: "아베노하루카스, 신세카이, 텐노지공원 등 남쪽 관광지를 넣는 일정이라면 이동이 자연스럽습니다." },
+            { title: "남쪽 일정과 잘 맞습니다", text: "아베노하루카스, 신세카이, 덴노지공원 등 남쪽 관광지를 넣는 일정이라면 이동이 자연스럽습니다." },
             { title: "재방문 여행에 특히 좋습니다", text: "이미 난바 중심을 경험한 여행자라면 더 합리적인 가격과 다른 분위기를 함께 누릴 수 있습니다." }
           ],
-          conclusionTitle: "결론: 숙소비를 줄이되 이동 편의성은 남기고 싶다면 텐노지가 좋은 타협점입니다.",
+          conclusionTitle: "결론: 숙소비를 줄이되 이동 편의성은 남기고 싶다면 덴노지가 좋은 타협점입니다.",
           conclusionText: "다만 첫 오사카 여행에서 도톤보리와 난바를 매일 오갈 계획이라면 이동 시간이 쌓일 수 있으니, 가격만 보지 말고 실제 이동 횟수까지 계산해보는 것이 좋습니다."
         },
         universal: {
-          intro: "선택한 답변에서 USJ, 가족 여행, 아이 동반, 체력 부담 감소가 강하게 반영되었습니다. 유니버설시티는 오사카 전체 관광보다 테마파크 경험을 최우선으로 둘 때 가장 설득력 있는 위치입니다.",
+          intro: "선택한 답변에서 USJ, 가족 여행, 아이 동반, 체력 부담 감소가 강하게 반영되었습니다. 유니버셜 시티는 오사카 전체 관광보다 테마파크 경험을 최우선으로 둘 때 가장 설득력 있는 위치입니다.",
           reasons: [
             { title: "USJ 입장 전 피로가 줄어듭니다", text: "아침 일찍 입장해야 하는 일정에서 이동 시간이 짧으면 대기와 체력 부담을 줄일 수 있습니다." },
             { title: "퇴장 후 숙소 복귀가 편합니다", text: "아이 동반이나 폐장 시간까지 머무는 일정에서는 숙소가 가까운 것만으로도 만족도가 크게 올라갑니다." },
-            { title: "테마파크 중심 일정에 집중할 수 있습니다", text: "시내 이동보다 USJ 체류 시간이 중요한 여행이라면 유니버설시티 숙박이 가장 목적에 맞습니다." }
+            { title: "테마파크 중심 일정에 집중할 수 있습니다", text: "시내 이동보다 USJ 체류 시간이 중요한 여행이라면 유니버셜 시티 숙박이 가장 목적에 맞습니다." }
           ],
-          conclusionTitle: "결론: 이번 여행의 주인공이 USJ라면 유니버설시티에 호텔을 잡는 것이 가장 타당합니다.",
-          conclusionText: "오사카 시내 관광도 많다면 전 일정 숙박보다 USJ 전날 또는 당일 1박만 유니버설시티로 나누는 방식도 효율적입니다."
+          conclusionTitle: "결론: 이번 여행의 주인공이 USJ라면 유니버셜 시티에 호텔을 잡는 것이 가장 타당합니다.",
+          conclusionText: "오사카 시내 관광도 많다면 전 일정 숙박보다 USJ 전날 또는 당일 1박만 유니버셜 시티로 나누는 방식도 효율적입니다."
         },
-        bay: {
-          intro: "선택한 답변에서 가족 여행, 여유로운 일정, 아이와 걷는 거리, 차분한 숙소 주변 분위기가 반영되었습니다. 베이 에어리어는 오사카의 번화가보다 편안한 하루 흐름을 만들고 싶을 때 잘 맞습니다.",
+        hommachi: {
+          intro: "선택한 답변에서 이동 균형, 차분한 도심, 가격 대비 만족도가 함께 반영되었습니다. 혼마치는 난바와 우메다 사이에서 동선을 나누기 좋은 위치입니다.",
           reasons: [
-            { title: "아이와 함께 움직이기 좋습니다", text: "가이유칸, 텐포잔 등 가족형 일정과 연결하기 좋아 무리하게 시내를 오가는 부담을 줄일 수 있습니다." },
-            { title: "숙소 주변 분위기가 더 여유롭습니다", text: "난바나 우메다처럼 복잡한 도심보다 차분한 분위기에서 쉬고 싶은 여행자에게 잘 맞습니다." },
-            { title: "목적이 분명할수록 만족도가 높습니다", text: "가이유칸, 항만 풍경, 가족 휴식이 핵심이라면 베이 에어리어의 장점이 분명해집니다." }
+            { title: "남쪽과 북쪽 이동 균형이 좋습니다", text: "난바, 신사이바시, 우메다를 모두 오갈 때 한쪽으로 치우치지 않는 기준점이 됩니다." },
+            { title: "숙소 주변 분위기가 비교적 차분합니다", text: "도톤보리 한복판보다 번잡함이 덜해 쉬는 시간의 만족도를 챙기기 좋습니다." },
+            { title: "가격과 위치를 함께 맞추기 좋습니다", text: "핵심 번화가보다 숙소 선택 폭이 넓어 예산과 동선을 동시에 비교하기 쉽습니다." }
           ],
-          conclusionTitle: "결론: 대표 명소를 촘촘히 도는 여행보다 가족과 여유롭게 머무는 여행이라면 베이 에어리어가 타당합니다.",
-          conclusionText: "시내 관광 비중이 높다면 이동 시간이 길어질 수 있으니, 베이 에어리어를 고를 때는 가이유칸 중심 일정인지 먼저 확인하는 것이 좋습니다."
+          conclusionTitle: "결론: 난바와 우메다를 모두 다닐 계획이라면 혼마치가 균형형 선택입니다.",
+          conclusionText: "단, 도톤보리 밤거리나 USJ가 핵심이면 난바 또는 유니버셜 시티와 함께 비교하세요."
         }
       };
 

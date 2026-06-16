@@ -5,9 +5,13 @@
  */
 const cityConfig = {
   "cityName": "오키나와",
+  "destinationSlug": "okinawa",
+  "postContentType": "top5_series",
   "areas": {
     "nahaKokusai": {
-      "name": "나하·국제거리",
+      "name": "나하 & 국제거리",
+      "regionSlug": "naha-kokusai-dori",
+      "regionSlugAliases": ["나하 & 국제거리", "나하·국제거리", "나하 국제거리"],
       "label": "공항 접근과 렌터카 없는 일정에 가장 안정적인 위치",
       "summary": "렌터카 없이 움직이거나 짧은 일정이라면 나하·국제거리 주변이 가장 단순합니다.",
       "leadTitle": "첫날과 마지막 날 동선을 줄이기 좋습니다.",
@@ -125,7 +129,9 @@ const cityConfig = {
       ]
     },
     "chatanAmericanVillage": {
-      "name": "차탄·아메리칸빌리지",
+      "name": "차탄 & 아메리칸빌리지",
+      "regionSlug": "chatan-american-village",
+      "regionSlugAliases": ["차탄 & 아메리칸빌리지", "차탄·아메리칸빌리지", "차탄 아메리칸빌리지"],
       "label": "바다 분위기와 편의시설을 같이 잡기 좋은 중부 거점",
       "summary": "오키나와 여행 분위기와 편의시설을 한 번에 원한다면 차탄이 편합니다.",
       "leadTitle": "선셋 산책과 저녁 식사 동선이 짧습니다.",
@@ -244,6 +250,8 @@ const cityConfig = {
     },
     "onnaResort": {
       "name": "온나손 리조트권",
+      "regionSlug": "onnason-resort",
+      "regionSlugAliases": ["온나손 리조트권", "온나손", "온나 리조트"],
       "label": "해변 리조트와 바다 액티비티에 가장 잘 맞는 위치",
       "summary": "리조트에서 쉬는 시간이 여행의 중심이라면 온나손이 가장 자연스럽습니다.",
       "leadTitle": "호텔 체류 만족도를 높이기 좋습니다.",
@@ -361,7 +369,9 @@ const cityConfig = {
       ]
     },
     "nagoMotobu": {
-      "name": "나고·모토부",
+      "name": "나고 & 모토부",
+      "regionSlug": "nago-motobu",
+      "regionSlugAliases": ["나고 & 모토부", "나고·모토부", "나고 모토부"],
       "label": "수족관과 북부 드라이브를 여유롭게 보기 좋은 위치",
       "summary": "북부 일정이 여행의 핵심이라면 나고·모토부 숙박이 왕복 피로를 줄여줍니다.",
       "leadTitle": "츄라우미 수족관과 코우리섬을 여유롭게 묶기 좋습니다.",
@@ -479,7 +489,9 @@ const cityConfig = {
       ]
     },
     "yomitanZanpa": {
-      "name": "요미탄·잔파곶",
+      "name": "요미탄 & 잔파곶",
+      "regionSlug": "yomitan-zanpamisaki",
+      "regionSlugAliases": ["요미탄 & 잔파곶", "요미탄·잔파곶", "요미탄 잔파곶"],
       "label": "조용한 해변과 선셋을 즐기기 좋은 위치",
       "summary": "번잡한 중심지를 피하고 차분한 바다 분위기를 원한다면 요미탄이 잘 맞습니다.",
       "leadTitle": "느린 여행과 조용한 휴식을 만들기 좋습니다.",
@@ -597,7 +609,9 @@ const cityConfig = {
       ]
     },
     "southCoast": {
-      "name": "남부 해안·이토만·난조",
+      "name": "남부 해안 & 이토만 & 난조",
+      "regionSlug": "southern-coast-itoman-nanjo",
+      "regionSlugAliases": ["남부 해안 & 이토만 & 난조", "남부 해안·이토만·난조", "남부 해안 이토만 난조"],
       "label": "공항 접근과 남부 해안 드라이브를 함께 보기 좋은 위치",
       "summary": "귀국 전 여유로운 1박이나 남부 관광이 중심이라면 남부 해안권이 좋습니다.",
       "leadTitle": "마지막 날 이동 부담을 줄이기 좋습니다.",
@@ -1281,31 +1295,71 @@ const cityConfig = {
       });
     }
 
-    function renderRelatedPosts(area) {
+    function getRelatedPostRegionSlugs(area) {
+      return [...new Set([
+        area.regionSlug,
+        ...(Array.isArray(area.regionSlugAliases) ? area.regionSlugAliases : [])
+      ].map((item) => String(item || "").trim()).filter(Boolean))];
+    }
+
+    async function fetchRelatedPostsByRegion(area) {
+      const regionSlugs = getRelatedPostRegionSlugs(area);
+
+      for (const regionSlug of regionSlugs) {
+        const params = new URLSearchParams({
+          destination: cityConfig.destinationSlug,
+          type: cityConfig.postContentType,
+          region: regionSlug,
+          limit: "5"
+        });
+
+        try {
+          const response = await fetch(`/api/destination-posts?${params.toString()}`, {
+            headers: { accept: "application/json" }
+          });
+          if (!response.ok) continue;
+          const data = await response.json();
+          const items = Array.isArray(data.items) ? data.items : [];
+          if (items.length) return items.slice(0, 5);
+        } catch (_) {
+          return [];
+        }
+      }
+
+      return [];
+    }
+
+    async function renderRelatedPosts(area) {
       const section = document.getElementById("relatedPostSection");
       const list = document.getElementById("relatedPostList");
-      const posts = Array.isArray(area.links) ? area.links.slice(0, 5) : [];
 
       if (!section || !list) return;
 
-      if (posts.length === 0) {
+      section.style.display = "none";
+      list.innerHTML = "";
+      setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
+      setText("relatedPostDesc", "현재 추천된 지역에 연결된 여행 스타일별 호텔 추천 글만 보여줍니다.");
+
+      const posts = await fetchRelatedPostsByRegion(area);
+
+      if (!posts.length) {
         section.style.display = "none";
         list.innerHTML = "";
         return;
       }
 
       section.style.display = "block";
-      setText("relatedPostTitle", `${area.name} 선택 전 함께 보면 좋은 글`);
-      setText("relatedPostDesc", "추천 위치와 가까운 호텔 추천 TOP5 글을 최대 5개까지 리스트로 보여줍니다.");
       list.innerHTML = "";
 
       posts.forEach((post) => {
+        const title = String(post.title || "여행 스타일별 호텔 추천 글").trim();
+        const slug = String(post.slug || "").trim();
         const item = document.createElement("li");
         const link = document.createElement("a");
 
-        link.href = post.url || "#";
-        link.textContent = post.title;
-        link.setAttribute("aria-label", `${post.title} 보기`);
+        link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+        link.textContent = title;
+        link.setAttribute("aria-label", `${title} 보기`);
 
         item.appendChild(link);
         list.appendChild(item);
