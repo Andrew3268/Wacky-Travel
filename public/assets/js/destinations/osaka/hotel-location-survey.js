@@ -525,14 +525,14 @@ const cityConfig = {
                   ]
                 },
         {
-                  title: "호텔을 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
-                  help: "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
+                  title: "호텔 위치를 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
+                  help: "호텔 자체보다 숙소 주변 위치에서 피하고 싶은 불편을 기준으로 맞춰볼게요.",
                   options: [
-                    { title: "밤 소음", desc: "숙소 주변이 너무 시끄러운 건 피하고 싶어요.", scores: { shinsaibashi: 4, umeda: 3, hommachi: 2, namba: -2 } },
-                    { title: "긴 이동 시간", desc: "매일 이동 시간이 길어지는 건 싫어요.", scores: { namba: 4, umeda: 4, universal: 2, hommachi: -2 } },
-                    { title: "복잡한 환승", desc: "길 찾기와 환승이 복잡한 곳은 부담스러워요.", scores: { namba: 3, tennoji: 2, universal: 2, umeda: -1 } },
-                    { title: "작은 객실", desc: "가격이 조금 올라가도 너무 좁은 객실은 피하고 싶어요.", scores: { umeda: 3, hommachi: 3, universal: 2, namba: -1 } },
-                    { title: "아이와 걷는 거리", desc: "아이와 함께 오래 걷는 동선은 줄이고 싶어요.", scores: { universal: 4, hommachi: 3, umeda: 2 } }
+                    { title: "밤 소음", desc: "늦은 시간까지 시끄러운 번화가 한복판은 피하고 싶어요.", scores: { hommachi: 4, umeda: 3, tennoji: 2, shinsaibashi: -1, namba: -3 } },
+                    { title: "긴 이동", desc: "매일 주요 동선까지 오래 이동하는 위치는 부담스러워요.", scores: { namba: 4, umeda: 4, shinsaibashi: 3, hommachi: 3, universal: -2 } },
+                    { title: "환승 복잡", desc: "길 찾기와 환승이 복잡한 위치는 피하고 싶어요.", scores: { namba: 4, umeda: 3, tennoji: 2, universal: 2, hommachi: 2 } },
+                    { title: "식당 부족", desc: "저녁에 걸어서 갈 만한 식당이 적은 위치는 피하고 싶어요.", scores: { namba: 4, shinsaibashi: 4, umeda: 3, hommachi: 2, universal: -2 } },
+                    { title: "긴 도보", desc: "역과 명소까지 걷는 시간이 긴 위치는 피하고 싶어요.", scores: { namba: 3, umeda: 3, universal: 4, hommachi: 2, tennoji: 2 } }
                   ]
                 }
       ]

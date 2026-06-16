@@ -12807,3 +12807,16 @@ margin-right: -24px;
   }
 }
 /* End WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V7 */
+
+
+/* WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V8 */
+.wt-location-page .wt-option {
+  justify-content: center;
+  text-align: center;
+}
+
+.wt-location-page .wt-option-title {
+  width: 100%;
+  text-align: center;
+}
+/* End WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V8 */

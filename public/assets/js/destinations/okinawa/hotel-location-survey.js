@@ -1010,41 +1010,33 @@ const cityConfig = {
           ]
         },
     {
-          "title": "마지막 날 공항 이동은 얼마나 중요하나요?",
-          "help": "아침 비행기라면 숙소 위치가 꽤 중요합니다.",
+          "title": "호텔 위치를 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
+          "help": "호텔 자체보다 숙소 주변 위치에서 피하고 싶은 불편을 기준으로 맞춰볼게요.",
           "options": [
             {
-              "title": "아침 비행기",
-              "desc": "마지막 날은 이동을 줄이고 싶어요.",
-              "scores": {
-                "nahaKokusai": 7,
-                "southCoast": 5
-              }
+              "title": "렌터카 없음",
+              "desc": "차 없이 움직이기 어려운 위치는 피하고 싶어요.",
+              "scores": { "nahaKokusai": 6, "chatanAmericanVillage": 3, "onnaResort": -2, "nagoMotobu": -3, "yomitanZanpa": -2 }
             },
             {
-              "title": "해변 휴식",
-              "desc": "마지막까지 바다 근처에 있고 싶어요.",
-              "scores": {
-                "onnaResort": 4,
-                "yomitanZanpa": 4,
-                "southCoast": 4
-              }
+              "title": "공항 멀리",
+              "desc": "첫날과 마지막 날 공항 이동이 너무 긴 위치는 피하고 싶어요.",
+              "scores": { "nahaKokusai": 5, "southCoast": 4, "chatanAmericanVillage": 2, "onnaResort": -1, "nagoMotobu": -3 }
             },
             {
-              "title": "북부 출발 가능",
-              "desc": "운전 시간을 감수할 수 있어요.",
-              "scores": {
-                "nagoMotobu": 3,
-                "onnaResort": 2
-              }
+              "title": "식당 부족",
+              "desc": "저녁에 걸어서 갈 만한 식당이 적은 위치는 피하고 싶어요.",
+              "scores": { "nahaKokusai": 5, "chatanAmericanVillage": 5, "onnaResort": 2, "nagoMotobu": -1, "yomitanZanpa": -2, "southCoast": -1 }
             },
             {
-              "title": "항공편 미정",
-              "desc": "무난한 위치가 좋아요.",
-              "scores": {
-                "nahaKokusai": 4,
-                "chatanAmericanVillage": 4
-              }
+              "title": "긴 운전",
+              "desc": "매일 운전 시간이 길어지는 위치는 부담스러워요.",
+              "scores": { "nahaKokusai": 5, "chatanAmericanVillage": 4, "southCoast": 3, "onnaResort": 1, "nagoMotobu": -3, "yomitanZanpa": -1 }
+            },
+            {
+              "title": "번잡한 중심가",
+              "desc": "관광객이 많은 중심가 한복판은 피하고 싶어요.",
+              "scores": { "onnaResort": 4, "yomitanZanpa": 4, "nagoMotobu": 3, "southCoast": 3, "chatanAmericanVillage": -1, "nahaKokusai": -2 }
             }
           ]
         }
