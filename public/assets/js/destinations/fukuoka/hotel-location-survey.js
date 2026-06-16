@@ -235,67 +235,67 @@ const cityConfig = {
           title: "이번 후쿠오카 여행은 몇 번째인가요?",
           help: "첫 여행일수록 이동이 단순하고 대표 동선 접근성이 좋은 위치가 유리합니다.",
           options: [
-            { title: "첫 여행", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { hakata: 5, nakasuKawabata: 4, tenjin: 2, gion: 2 } },
-            { title: "재방문", desc: "너무 뻔한 중심지만 고집하지 않아도 괜찮아요.", scores: { tenjin: 4, yakuinWatanabedori: 3, gion: 2, hakata: 1 } },
-            { title: "익숙한 여행", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { yakuinWatanabedori: 4, ohoriMomochi: 3, tenjin: 2 } }
+            { title: "첫 여행", desc: "대표 명소와 맛집 동선을 쉽게 잡고 싶어요.", scores: { hakata: 4, nakasuKawabata: 4, tenjin: 2, gion: 3 } },
+            { title: "재방문", desc: "너무 뻔한 중심지만 고집하지 않아도 괜찮아요.", scores: { tenjin: 4, yakuinWatanabedori: 4, gion: 2, hakata: 1 } },
+            { title: "익숙한 여행", desc: "조금 더 실속 있거나 여유로운 지역도 좋아요.", scores: { yakuinWatanabedori: 5, ohoriMomochi: 3, tenjin: 2, gion: 1 } }
           ]
         },
     {
           title: "이번 여행 동행자는 누구인가요?",
           help: "혼자, 커플, 친구, 가족 여부에 따라 좋은 위치가 달라집니다.",
           options: [
-            { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { hakata: 4, tenjin: 2, gion: 2 } },
-            { title: "커플 여행", desc: "맛집, 쇼핑, 분위기를 함께 보고 싶어요.", scores: { tenjin: 4, nakasuKawabata: 3, yakuinWatanabedori: 2 } },
+            { title: "혼자 여행", desc: "교통과 주변 편의성이 중요해요.", scores: { hakata: 4, tenjin: 2, gion: 3 } },
+            { title: "커플 여행", desc: "맛집, 쇼핑, 분위기를 함께 보고 싶어요.", scores: { tenjin: 4, nakasuKawabata: 3, yakuinWatanabedori: 3, gion: 1 } },
             { title: "친구 여행", desc: "밤에도 활기차고 먹거리 많은 곳이 좋아요.", scores: { nakasuKawabata: 5, tenjin: 3, hakata: 1 } },
             { title: "가족·아이", desc: "무리 없는 이동과 안정적인 동선이 중요해요.", scores: { ohoriMomochi: 6, hakata: 2, gion: 1 } },
-            { title: "부모님 동반", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { hakata: 4, gion: 3, ohoriMomochi: 2 } }
+            { title: "부모님 동반", desc: "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.", scores: { hakata: 4, gion: 4, ohoriMomochi: 2 } }
           ]
         },
     {
           title: "이번 여행에서 가장 중요한 것은 무엇인가요?",
           help: "여행의 핵심 목적에 따라 숙소 위치가 달라집니다.",
           options: [
-            { title: "맛집·밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { nakasuKawabata: 6, tenjin: 2, hakata: 2 } },
-            { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { tenjin: 6, hakata: 2, nakasuKawabata: 1 } },
-            { title: "교통 편의", desc: "공항 이동과 근교 이동을 편하게 하고 싶어요.", scores: { hakata: 6, gion: 3, tenjin: 1 } },
-            { title: "아이 동반", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { ohoriMomochi: 6, hakata: 2, yakuinWatanabedori: 1 } }
+            { title: "맛집·밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { nakasuKawabata: 7, tenjin: 2, hakata: 1 } },
+            { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { tenjin: 6, hakata: 1, nakasuKawabata: 1, yakuinWatanabedori: 2 } },
+            { title: "교통 편의", desc: "공항 이동과 근교 이동을 편하게 하고 싶어요.", scores: { hakata: 5, gion: 4, tenjin: 1 } },
+            { title: "아이 동반", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { ohoriMomochi: 6, hakata: 2, yakuinWatanabedori: 1, gion: 1 } }
           ]
         },
     {
           title: "공항 이동은 얼마나 중요한가요?",
           help: "후쿠오카공항 이동을 중요하게 보면 하카타 쪽이 강한 후보가 됩니다.",
           options: [
-            { title: "매우 중요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { hakata: 6, gion: 3, tenjin: 1 } },
-            { title: "보통", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { hakata: 3, gion: 2, tenjin: 2 } },
-            { title: "중요 낮음", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { tenjin: 2, nakasuKawabata: 2, ohoriMomochi: 2 } }
+            { title: "매우 중요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { hakata: 5, gion: 3, tenjin: 1 } },
+            { title: "보통", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { hakata: 3, gion: 3, tenjin: 2 } },
+            { title: "중요 낮음", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { tenjin: 2, nakasuKawabata: 2, ohoriMomochi: 2, yakuinWatanabedori: 1 } }
           ]
         },
     {
           title: "오호리공원·모모치 해변 일정이 있나요?",
           help: "오호리공원, 모모치 해변, 후쿠오카타워가 핵심이면 숙소 위치 선택이 달라집니다.",
           options: [
-            { title: "오호리·모모치 핵심", desc: "공원·해변 이동과 휴식 시간을 여유롭게 잡고 싶어요.", scores: { ohoriMomochi: 9 } },
+            { title: "오호리·모모치 핵심", desc: "공원·해변 이동과 휴식 시간을 여유롭게 잡고 싶어요.", scores: { ohoriMomochi: 8 } },
             { title: "하루 방문", desc: "오호리·모모치도 가지만 시내 관광도 중요해요.", scores: { ohoriMomochi: 3, tenjin: 2, hakata: 2 } },
-            { title: "방문 없음", desc: "시내 관광, 맛집, 쇼핑 중심으로 움직일 예정이에요.", scores: { hakata: 3, tenjin: 3, nakasuKawabata: 2, gion: 1 } }
+            { title: "방문 없음", desc: "시내 관광, 맛집, 쇼핑 중심으로 움직일 예정이에요.", scores: { hakata: 2, tenjin: 3, nakasuKawabata: 2, gion: 1 } }
           ]
         },
     {
           title: "후쿠오카 근교 여행 계획이 있나요?",
           help: "다자이후, 이토시마, 기타큐슈처럼 다른 지역을 함께 다녀올 예정이라면 숙소 위치 기준이 달라집니다.",
           options: [
-            { title: "근교 2일 이상", desc: "후쿠오카 시내와 근교를 함께 다녀오고 싶어요.", scores: { hakata: 7, gion: 3, tenjin: 1 } },
-            { title: "근교 하루", desc: "시내 관광도 중요하지만 하루쯤은 다른 지역도 보고 싶어요.", scores: { hakata: 4, tenjin: 2, gion: 2 } },
-            { title: "시내 중심", desc: "나카스, 하카타, 텐진처럼 시내 동선을 더 중요하게 봐요.", scores: { nakasuKawabata: 4, tenjin: 3, hakata: 2, gion: 2 } },
-            { title: "미정", desc: "일정이 바뀔 수 있어서 이동 선택지가 많은 곳이면 좋아요.", scores: { hakata: 4, tenjin: 2, gion: 2 } }
+            { title: "근교 2일 이상", desc: "후쿠오카 시내와 근교를 함께 다녀오고 싶어요.", scores: { hakata: 6, gion: 3, tenjin: 1 } },
+            { title: "근교 하루", desc: "시내 관광도 중요하지만 하루쯤은 다른 지역도 보고 싶어요.", scores: { hakata: 3, tenjin: 2, gion: 3 } },
+            { title: "시내 중심", desc: "나카스, 하카타, 텐진처럼 시내 동선을 더 중요하게 봐요.", scores: { nakasuKawabata: 5, tenjin: 3, hakata: 1, gion: 2 } },
+            { title: "미정", desc: "일정이 바뀔 수 있어서 이동 선택지가 많은 곳이면 좋아요.", scores: { hakata: 3, tenjin: 2, gion: 3 } }
           ]
         },
     {
           title: "숙소 주변 분위기는 어떤 쪽이 좋나요?",
           help: "같은 후쿠오카여도 지역마다 밤 분위기와 체감 소음이 다릅니다.",
           options: [
-            { title: "번화가", desc: "밤에도 주변에 볼거리와 먹거리가 많았으면 해요.", scores: { nakasuKawabata: 6, tenjin: 3 } },
-            { title: "깔끔한 도심", desc: "백화점, 쇼핑몰, 역세권 분위기를 선호해요.", scores: { tenjin: 5, hakata: 3, gion: 1 } },
-            { title: "차분한 숙소", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { yakuinWatanabedori: 5, gion: 3, ohoriMomochi: 2 } },
+            { title: "번화가", desc: "밤에도 주변에 볼거리와 먹거리가 많았으면 해요.", scores: { nakasuKawabata: 7, tenjin: 3 } },
+            { title: "깔끔한 도심", desc: "백화점, 쇼핑몰, 역세권 분위기를 선호해요.", scores: { tenjin: 5, hakata: 2, gion: 2, yakuinWatanabedori: 1 } },
+            { title: "차분한 숙소", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { yakuinWatanabedori: 6, gion: 3, ohoriMomochi: 2 } },
             { title: "가족형 분위기", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { ohoriMomochi: 5, hakata: 2, gion: 1 } }
           ]
         },
@@ -303,8 +303,8 @@ const cityConfig = {
           title: "숙소 예산은 어떤 편인가요?",
           help: "위치가 중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.",
           options: [
-            { title: "예산 절약", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { yakuinWatanabedori: 5, gion: 3, ohoriMomochi: 2 } },
-            { title: "가격·위치 균형", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { gion: 3, yakuinWatanabedori: 3, tenjin: 3, hakata: 2 } },
+            { title: "예산 절약", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { yakuinWatanabedori: 6, gion: 3, ohoriMomochi: 2 } },
+            { title: "가격·위치 균형", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { gion: 5, yakuinWatanabedori: 4, tenjin: 3, hakata: 1 } },
             { title: "위치 우선", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { hakata: 4, nakasuKawabata: 4, tenjin: 3 } }
           ]
         }
@@ -472,6 +472,90 @@ function applyFukuokaAccuracyAdjustments(scores) {
   const firstTrip = answerIs(0, "첫 여행");
   const repeatTrip = answerIn(0, ["재방문", "익숙한 여행"]);
   const airportImportant = answerIs(3, "매우 중요");
+  const airportNormal = answerIs(3, "보통");
+  const nearTripHeavy = answerIs(5, "근교 2일 이상");
+  const nearTripOneDay = answerIs(5, "근교 하루");
+  const cityOnly = answerIs(5, "시내 중심");
+  const nightFood = answerIs(2, "맛집·밤거리") || answerIs(6, "번화가");
+  const shopping = answerIs(2, "쇼핑") || answerIs(6, "깔끔한 도심");
+  const family = answerIn(1, ["가족·아이", "부모님 동반"]);
+  const ohoriCore = answerIs(4, "오호리·모모치 핵심");
+  const quietStay = answerIs(6, "차분한 숙소");
+  const budgetSave = answerIs(7, "예산 절약");
+  const balanceBudget = answerIs(7, "가격·위치 균형");
+  const locationFirst = answerIs(7, "위치 우선");
+
+  // 하카타는 공항·근교가 뚜렷할 때만 추가 보정합니다.
+  // 이전처럼 무난한 답변까지 모두 하카타로 몰리지 않도록 기본 보너스를 낮췄습니다.
+  if (firstTrip && (airportImportant || nearTripHeavy || nearTripOneDay)) {
+    addAreaScore(scores, "hakata", 2);
+  }
+  if (airportImportant && nearTripHeavy) {
+    addAreaScore(scores, "hakata", 2);
+    addAreaScore(scores, "gion", 1);
+  }
+  if (locationFirst && airportImportant && nearTripHeavy) {
+    addAreaScore(scores, "hakata", 2);
+  }
+
+  // 나카스&카와바타는 밤 일정·맛집·친구 여행일 때 텐진과 확실히 갈라지도록 보정합니다.
+  if (nightFood && cityOnly) {
+    addAreaScore(scores, "nakasuKawabata", 4);
+  }
+  if (nightFood && answerIs(1, "친구 여행")) {
+    addAreaScore(scores, "nakasuKawabata", 4);
+  }
+
+  // 텐진은 쇼핑·깔끔한 도심·커플/친구 여행 중심일 때 우선합니다.
+  if (shopping && !nearTripHeavy) {
+    addAreaScore(scores, "tenjin", 2);
+  }
+  if (shopping && answerIn(1, ["커플 여행", "친구 여행"])) {
+    addAreaScore(scores, "tenjin", 2);
+  }
+
+  // 오호리&모모치는 가족 여행과 서쪽 권역 일정이 함께 있을 때 강하게 반응합니다.
+  if (family && ohoriCore) {
+    addAreaScore(scores, "ohoriMomochi", 5);
+  }
+  if (family && answerIs(2, "아이 동반")) {
+    addAreaScore(scores, "ohoriMomochi", 3);
+    addAreaScore(scores, "hakata", 1);
+  }
+
+  // 야쿠인 &와타나베도리는 재방문·차분함·예산 절약뿐 아니라 텐진 접근형 도심 여행까지 반영합니다.
+  if (quietStay && budgetSave) {
+    addAreaScore(scores, "yakuinWatanabedori", 4);
+    addAreaScore(scores, "gion", 1);
+  }
+  if (repeatTrip && quietStay) {
+    addAreaScore(scores, "yakuinWatanabedori", 3);
+  }
+  if (repeatTrip && shopping && !nearTripHeavy) {
+    addAreaScore(scores, "yakuinWatanabedori", 2);
+  }
+
+  // 기온은 가격·위치 균형, 보통 수준의 공항 이동, 하카타·나카스 중간 동선에서만 1위 후보가 되도록 보정합니다.
+  if (balanceBudget && !airportImportant && !ohoriCore) {
+    addAreaScore(scores, "gion", 2);
+  }
+  if (firstTrip && balanceBudget && cityOnly) {
+    addAreaScore(scores, "gion", 1);
+  }
+  if (airportNormal && balanceBudget && !ohoriCore) {
+    addAreaScore(scores, "gion", 1);
+  }
+}
+
+function getFukuokaTieBreakScores() {
+  const tieBreakScores = {};
+  Object.keys(cityConfig.areas).forEach((areaKey) => {
+    tieBreakScores[areaKey] = 0;
+  });
+
+  const firstTrip = answerIs(0, "첫 여행");
+  const repeatTrip = answerIn(0, ["재방문", "익숙한 여행"]);
+  const airportImportant = answerIs(3, "매우 중요");
   const nearTripHeavy = answerIs(5, "근교 2일 이상");
   const nearTripOneDay = answerIs(5, "근교 하루");
   const cityOnly = answerIs(5, "시내 중심");
@@ -483,45 +567,20 @@ function applyFukuokaAccuracyAdjustments(scores) {
   const budgetSave = answerIs(7, "예산 절약");
   const balanceBudget = answerIs(7, "가격·위치 균형");
 
-  if (firstTrip && (airportImportant || nearTripHeavy || nearTripOneDay)) {
-    addAreaScore(scores, "hakata", 3);
-  }
-  if (airportImportant && nearTripHeavy) {
-    addAreaScore(scores, "hakata", 3);
-    addAreaScore(scores, "gion", 1);
-  }
-  if (nightFood && cityOnly) {
-    addAreaScore(scores, "nakasuKawabata", 3);
-  }
-  if (nightFood && answerIs(1, "친구 여행")) {
-    addAreaScore(scores, "nakasuKawabata", 3);
-  }
-  if (shopping && !nearTripHeavy) {
-    addAreaScore(scores, "tenjin", 3);
-  }
-  if (shopping && answerIn(1, ["커플 여행", "친구 여행"])) {
-    addAreaScore(scores, "tenjin", 2);
-  }
-  if (family && ohoriCore) {
-    addAreaScore(scores, "ohoriMomochi", 5);
-  }
-  if (family && answerIs(2, "아이 동반")) {
-    addAreaScore(scores, "ohoriMomochi", 3);
-    addAreaScore(scores, "hakata", 1);
-  }
-  if (quietStay && budgetSave) {
-    addAreaScore(scores, "yakuinWatanabedori", 4);
-  }
-  if (repeatTrip && quietStay) {
-    addAreaScore(scores, "yakuinWatanabedori", 2);
-  }
-  if (balanceBudget && !airportImportant && !ohoriCore) {
-    addAreaScore(scores, "gion", 2);
-  }
-  if (firstTrip && balanceBudget && cityOnly) {
-    addAreaScore(scores, "gion", 2);
-    addAreaScore(scores, "hakata", 1);
-  }
+  if (firstTrip && (airportImportant || nearTripHeavy)) tieBreakScores.hakata += 3;
+  if (nearTripOneDay && airportImportant) tieBreakScores.hakata += 2;
+  if (shopping) tieBreakScores.tenjin += 3;
+  if (shopping && answerIn(1, ["커플 여행", "친구 여행"])) tieBreakScores.tenjin += 1;
+  if (nightFood) tieBreakScores.nakasuKawabata += 3;
+  if (nightFood && cityOnly) tieBreakScores.nakasuKawabata += 2;
+  if (balanceBudget) tieBreakScores.gion += 3;
+  if (cityOnly && !nightFood && !shopping) tieBreakScores.gion += 1;
+  if (repeatTrip && (quietStay || budgetSave)) tieBreakScores.yakuinWatanabedori += 3;
+  if (quietStay && budgetSave) tieBreakScores.yakuinWatanabedori += 2;
+  if (family && ohoriCore) tieBreakScores.ohoriMomochi += 3;
+  if (ohoriCore) tieBreakScores.ohoriMomochi += 2;
+
+  return tieBreakScores;
 }
 
 function calculateScores() {
@@ -542,9 +601,16 @@ function calculateScores() {
 
   applyFukuokaAccuracyAdjustments(scores);
 
+  const tieBreakScores = getFukuokaTieBreakScores();
+
   return Object.entries(scores)
-    .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
-    .sort((a, b) => b.score - a.score);
+    .map(([key, score]) => ({
+      key,
+      score,
+      tieBreakScore: tieBreakScores[key] || 0,
+      ...cityConfig.areas[key]
+    }))
+    .sort((a, b) => (b.score - a.score) || (b.tieBreakScore - a.tieBreakScore));
 }
 
 function renderHotelCards(area) {
