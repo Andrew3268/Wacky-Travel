@@ -5944,3 +5944,10 @@ label,
 button {
   font-weight: 500;
 }
+
+/* Travel topbar flat override */
+.topbar.topbar--editorial.topbar--travel {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+/* End travel topbar flat override */
