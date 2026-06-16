@@ -1468,16 +1468,77 @@ function getTieBreakPriority(areaKey) {
     }
 
     function getPersuasiveContent(area) {
-      const intro = `${area.name}은(는) 이번 여행의 이동, 분위기, 예산 기준과 가장 잘 맞는 위치입니다. 숙소를 이 구역 안에서 먼저 비교하면 불필요한 이동과 고민을 줄이기 쉽습니다.`;
-      const reasons = [
-        { title: area.leadTitle || "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
-        { title: "숙소 위치를 좁히기 쉽습니다", text: Array.isArray(area.stayRange) ? area.stayRange[0] : area.compareGood },
-        { title: "예약 전 확인할 점도 분명합니다", text: Array.isArray(area.bookingTips) ? area.bookingTips[0] : area.compareCaution }
-      ];
-      return {
-        intro,
-        reasons,
-        conclusionTitle: `결론: ${area.name}부터 비교해보세요.`,
+      const contents = {
+        sapporoStation: {
+          intro: "삿포로역은 공항 이동, 오타루·비에이·후라노 출발, 겨울철 이동 부담까지 함께 고려할 때 가장 안정적인 위치입니다.",
+          reasons: [
+            { title: "공항과 근교 이동이 단순합니다", text: "JR 삿포로역을 기준으로 움직이면 신치토세공항, 오타루, 투어 집결지 이동을 한 번에 정리하기 쉽습니다." },
+            { title: "겨울에는 체감 차이가 큽니다", text: "눈길을 오래 걷지 않아도 되는 위치는 겨울 여행에서 가격만큼 중요한 요소가 됩니다." },
+            { title: "첫날과 마지막 날이 편해집니다", text: "짐을 들고 이동하는 날, 이른 귀국일, 근교 투어가 있는 날에 특히 안정적인 선택입니다." }
+          ],
+          conclusionTitle: "삿포로역이 맞는 경우: 공항·JR·투어 동선을 가장 단순하게 만들고 싶을 때",
+          conclusionText: "스스키노 저녁 일정이 매일 길다면 남쪽 이동이 반복될 수 있습니다. JR 삿포로역 접근성과 지하 보행공간 접근성을 함께 확인하세요."
+        },
+        odoriTanukikoji: {
+          intro: "오도리 & 타누키코지는 삿포로 시내 관광, 쇼핑, 식사, 겨울 축제 동선을 균형 있게 잡기 좋은 중심 위치입니다.",
+          reasons: [
+            { title: "시내 중심 동선이 좋습니다", text: "오도리공원, 삿포로 TV타워, 타누키코지, 스스키노 방향을 도보 또는 짧은 이동으로 묶기 쉽습니다." },
+            { title: "첫 삿포로 여행에 무난합니다", text: "삿포로역보다 저녁 동선이 편하고, 스스키노보다 숙소 분위기를 조금 더 정돈하기 좋습니다." },
+            { title: "겨울 축제 일정과 잘 맞습니다", text: "눈축제나 오도리공원 중심 일정이라면 숙소에서 행사장까지 이동 부담을 줄일 수 있습니다." }
+          ],
+          conclusionTitle: "오도리 & 타누키코지가 맞는 경우: 시내 중심과 저녁 동선을 함께 챙기고 싶을 때",
+          conclusionText: "근교 투어와 공항 이동이 많다면 삿포로역도 함께 비교하세요. 타누키코지 안쪽 숙소는 소음과 출입 동선을 후기에서 확인하는 것이 좋습니다."
+        },
+        susukino: {
+          intro: "스스키노는 저녁 식사, 술집, 라멘·징기스칸 맛집처럼 밤 일정이 여행 만족도에 큰 영향을 주는 경우 잘 맞습니다.",
+          reasons: [
+            { title: "저녁 이후 이동이 짧습니다", text: "식당과 술집, 야식 동선이 밀집해 있어 늦은 시간에도 숙소 복귀 부담이 적습니다." },
+            { title: "친구 여행에 강합니다", text: "하루 일정을 마친 뒤에도 주변에서 식사와 가벼운 산책을 이어가기 쉽습니다." },
+            { title: "겨울 밤 이동을 줄일 수 있습니다", text: "눈이 오는 날에는 저녁 장소와 숙소가 가까운 것만으로도 체감 만족도가 올라갑니다." }
+          ],
+          conclusionTitle: "스스키노가 맞는 경우: 맛집과 밤 동선이 여행의 핵심일 때",
+          conclusionText: "조용한 숙소가 최우선이면 스스키노 한복판보다 나카지마공원 또는 오도리 남쪽도 함께 비교하세요. 저층 객실은 밤 소음 후기를 꼭 확인하세요."
+        },
+        nakajimaPark: {
+          intro: "나카지마공원은 스스키노 접근성은 남기면서 숙소 주변은 조금 더 조용하게 가져가고 싶은 여행자에게 좋은 위치입니다.",
+          reasons: [
+            { title: "번화가와 휴식 사이의 균형이 좋습니다", text: "스스키노까지 접근이 가능하면서도 숙소 주변은 공원 분위기가 있어 쉬는 시간이 한결 편합니다." },
+            { title: "커플·가족 여행에 잘 맞습니다", text: "저녁 식사 동선을 포기하지 않으면서 너무 번잡한 숙박을 피할 수 있습니다." },
+            { title: "연박 만족도를 챙기기 좋습니다", text: "여러 날 머물 때는 숙소 주변의 조용함과 산책 환경이 체감 만족도에 영향을 줍니다." }
+          ],
+          conclusionTitle: "나카지마공원이 맞는 경우: 스스키노 접근성과 조용한 숙박을 함께 원할 때",
+          conclusionText: "공항 이동과 근교 투어가 많다면 삿포로역보다 이동이 늘어날 수 있습니다. 겨울에는 지하철역까지의 실제 도보 동선을 확인하세요."
+        },
+        maruyama: {
+          intro: "마루야마 & 오도리 서쪽은 삿포로를 이미 어느 정도 알고 있고, 카페·공원·조용한 동네 분위기를 더 중요하게 보는 여행자에게 어울립니다.",
+          reasons: [
+            { title: "차분한 로컬 분위기가 있습니다", text: "중심 번화가보다 조용하고 카페·공원 동선이 좋아 쉬어가는 여행에 잘 맞습니다." },
+            { title: "재방문 여행에 매력적입니다", text: "삿포로역과 스스키노 중심을 이미 경험했다면 조금 더 취향이 드러나는 숙소 위치를 고르기 좋습니다." },
+            { title: "봄·여름·가을 여행에 특히 좋습니다", text: "마루야마공원과 카페, 산책 동선이 살아나는 계절에는 중심지와 다른 만족도를 줍니다." }
+          ],
+          conclusionTitle: "마루야마 & 오도리 서쪽이 맞는 경우: 조용한 동네 분위기와 카페 동선을 원할 때",
+          conclusionText: "첫 삿포로 여행이나 겨울 근교 투어 중심 일정이라면 삿포로역·오도리가 더 쉬울 수 있습니다. 지하철역과 호텔 사이 도보 시간을 꼭 확인하세요."
+        },
+        jozankei: {
+          intro: "조잔케이 온천권은 삿포로 시내 관광보다 온천, 휴식, 료칸형 숙박 경험을 더 중요하게 보는 여행자에게 맞습니다.",
+          reasons: [
+            { title: "온천 휴식 목적이 분명합니다", text: "시내 호텔보다 숙소 자체에서 보내는 시간이 중요할 때 조잔케이는 가장 설득력 있는 선택입니다." },
+            { title: "가족·커플 여행에 잘 맞습니다", text: "대중교통으로 촘촘히 돌아다니는 일정이 아니라 휴식 중심 일정이라면 만족도가 높습니다." },
+            { title: "삿포로 여행에 변화를 줄 수 있습니다", text: "시내 2박 후 조잔케이 1박처럼 나누면 관광과 휴식을 함께 챙길 수 있습니다." }
+          ],
+          conclusionTitle: "조잔케이가 맞는 경우: 온천 1박과 휴식이 여행의 핵심일 때",
+          conclusionText: "시내 관광을 매일 촘촘히 할 계획이라면 이동이 불편합니다. 전 일정 숙박보다 마지막 1박 또는 중간 1박으로 나누는 방식이 더 효율적입니다."
+        }
+      };
+
+      return contents[area.key] || {
+        intro: area.summary,
+        reasons: [
+          { title: "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
+          { title: "숙소 위치를 좁히기 쉽습니다", text: Array.isArray(area.stayRange) ? area.stayRange[0] : area.compareGood },
+          { title: "예약 전 확인할 점도 분명합니다", text: Array.isArray(area.bookingTips) ? area.bookingTips[0] : area.compareCaution }
+        ],
+        conclusionTitle: `${area.name}부터 비교해보세요.`,
         conclusionText: area.compareCaution ? `${area.compareGood} 다만 ${area.compareCaution}` : area.summary
       };
     }

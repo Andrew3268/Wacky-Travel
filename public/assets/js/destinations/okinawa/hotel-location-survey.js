@@ -1525,16 +1525,77 @@ function getTieBreakPriority(areaKey) {
     }
 
     function getPersuasiveContent(area) {
-      const intro = `${area.name}은(는) 이번 여행의 이동, 분위기, 예산 기준과 가장 잘 맞는 위치입니다. 숙소를 이 구역 안에서 먼저 비교하면 불필요한 이동과 고민을 줄이기 쉽습니다.`;
-      const reasons = [
-        { title: area.leadTitle || "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
-        { title: "숙소 위치를 좁히기 쉽습니다", text: Array.isArray(area.stayRange) ? area.stayRange[0] : area.compareGood },
-        { title: "예약 전 확인할 점도 분명합니다", text: Array.isArray(area.bookingTips) ? area.bookingTips[0] : area.compareCaution }
-      ];
-      return {
-        intro,
-        reasons,
-        conclusionTitle: `결론: ${area.name}부터 비교해보세요.`,
+      const contents = {
+        nahaKokusai: {
+          intro: "나하 & 국제거리는 렌터카 없이 움직이거나 짧은 일정에서 공항, 식당, 쇼핑, 항구 이동을 가장 단순하게 만들 수 있는 위치입니다.",
+          reasons: [
+            { title: "공항 접근이 가장 편합니다", text: "도착일과 귀국일 이동 부담이 작고, 유이레일을 활용하면 렌터카가 없어도 기본 동선을 만들 수 있습니다." },
+            { title: "짧은 일정에 효율적입니다", text: "2박 3일처럼 시간이 부족한 여행에서는 해변보다 공항·식당·쇼핑 동선을 줄이는 것이 더 현실적일 수 있습니다." },
+            { title: "항구 투어와도 잘 맞습니다", text: "케라마 제도 투어나 도마리항 집결 일정이 있다면 나하 숙박이 이동 리스크를 줄여줍니다." }
+          ],
+          conclusionTitle: "나하 & 국제거리가 맞는 경우: 렌터카 없이 짧고 편하게 움직이고 싶을 때",
+          conclusionText: "해변 리조트 분위기는 약합니다. 바다 휴식이 핵심이라면 차탄, 온나손, 남부 해안도 함께 비교하세요. 렌터카가 있다면 주차비와 주차장 위치를 꼭 확인하세요."
+        },
+        chatanAmericanVillage: {
+          intro: "차탄 & 아메리칸빌리지는 바다 산책, 식당, 쇼핑, 저녁 분위기를 함께 즐기고 싶은 여행자에게 잘 맞습니다.",
+          reasons: [
+            { title: "저녁 동선이 즐겁습니다", text: "아메리칸빌리지 주변은 식당, 카페, 산책 코스가 모여 있어 숙소 주변에서 시간을 보내기 좋습니다." },
+            { title: "렌터카 여행의 중간 거점이 됩니다", text: "나하보다 바다 분위기가 있고, 북부·중부 드라이브로 확장하기에도 비교적 무난한 위치입니다." },
+            { title: "커플·친구 여행에 강합니다", text: "리조트에만 머무르기보다 매일 저녁 밖에서 식사와 산책을 즐기고 싶은 여행에 잘 맞습니다." }
+          ],
+          conclusionTitle: "차탄 & 아메리칸빌리지가 맞는 경우: 바다와 저녁 산책을 함께 즐기고 싶을 때",
+          conclusionText: "온전한 리조트 휴식이나 북부 관광이 핵심이면 온나손·나고 & 모토부가 더 맞을 수 있습니다. 주차 가능 여부와 야간 소음 후기를 함께 확인하세요."
+        },
+        onnaResort: {
+          intro: "온나손 리조트권은 해변 리조트, 수영장, 조식, 객실에서 쉬는 시간을 중요하게 보는 가족·커플 여행에 가장 잘 맞습니다.",
+          reasons: [
+            { title: "리조트 체류 만족도가 높습니다", text: "해변, 수영장, 조식, 객실 컨디션을 여행의 중심으로 둘 때 가장 설득력 있는 권역입니다." },
+            { title: "중부·북부 이동을 나누기 좋습니다", text: "렌터카가 있다면 나하보다 북부 관광 접근이 좋아 수족관·만좌모·중부 드라이브를 묶기 좋습니다." },
+            { title: "가족 여행에 안정적입니다", text: "아이와 함께라면 매일 이동하는 것보다 숙소 안에서 쉬고 놀 수 있는 환경이 만족도에 크게 영향을 줍니다." }
+          ],
+          conclusionTitle: "온나손 리조트권이 맞는 경우: 해변 리조트 체류가 여행의 중심일 때",
+          conclusionText: "렌터카가 없으면 이동이 불편할 수 있습니다. 주변 식당 선택지, 주차비, 조식 포함 여부, 해변 접근성을 함께 비교하세요."
+        },
+        nagoMotobu: {
+          intro: "나고 & 모토부는 츄라우미 수족관, 코우리섬, 북부 드라이브처럼 오키나와 북부 일정이 핵심일 때 잘 맞습니다.",
+          reasons: [
+            { title: "북부 관광 시간을 줄입니다", text: "나하나 차탄에서 북부를 왕복하면 운전 시간이 길어집니다. 북부 숙박은 수족관과 코우리섬 일정을 여유롭게 만듭니다." },
+            { title: "드라이브 여행에 적합합니다", text: "렌터카를 이용해 해안도로, 전망대, 카페를 천천히 둘러보는 일정에 잘 맞습니다." },
+            { title: "가족 여행 피로를 줄일 수 있습니다", text: "아이와 함께 북부 관광을 한다면 하루 왕복보다 북부 1박이 체력 부담을 줄여줍니다." }
+          ],
+          conclusionTitle: "나고 & 모토부가 맞는 경우: 수족관과 북부 드라이브가 핵심일 때",
+          conclusionText: "공항과 나하 도심에서는 멉니다. 도착일 또는 귀국일 숙소로 고정하기보다 중간 1박 또는 북부 중심 일정일 때 선택하는 편이 좋습니다."
+        },
+        yomitanZanpa: {
+          intro: "요미탄 & 잔파곶은 차분한 바다, 선셋, 중부 서해안 드라이브를 좋아하는 여행자에게 어울립니다.",
+          reasons: [
+            { title: "조용한 바다 분위기가 있습니다", text: "차탄보다 번잡함이 덜하고, 온나손보다 비교적 차분한 해안 분위기를 느끼기 좋습니다." },
+            { title: "선셋과 드라이브에 강합니다", text: "잔파곶, 해안도로, 카페 동선을 여유롭게 즐기고 싶은 일정에 잘 맞습니다." },
+            { title: "재방문 여행에 매력적입니다", text: "나하·차탄·온나손 중심을 이미 경험했다면 조금 더 취향이 드러나는 위치 선택이 됩니다." }
+          ],
+          conclusionTitle: "요미탄 & 잔파곶이 맞는 경우: 조용한 바다와 선셋을 원할 때",
+          conclusionText: "식당과 쇼핑 편의성은 차탄보다 약할 수 있습니다. 렌터카를 전제로 보고, 주변 식당·편의점·주차 후기를 함께 확인하세요."
+        },
+        southCoast: {
+          intro: "남부 해안 & 이토만 & 난조는 공항 접근을 완전히 포기하지 않으면서 조용한 해안, 드라이브, 카페·전망 명소를 즐기고 싶은 여행자에게 맞습니다.",
+          reasons: [
+            { title: "공항과 해안 분위기의 균형이 좋습니다", text: "나하보다 조용하면서도 북부 리조트권보다 공항 접근 부담이 작아 첫날·마지막 날 일정에 활용하기 좋습니다." },
+            { title: "남부 드라이브와 잘 맞습니다", text: "이토만, 난조, 카페, 전망 명소를 여유롭게 둘러보는 렌터카 일정에 적합합니다." },
+            { title: "번잡한 중심지를 피하기 좋습니다", text: "국제거리 중심 숙박이 답답하게 느껴지는 여행자에게 더 차분한 대안이 됩니다." }
+          ],
+          conclusionTitle: "남부 해안이 맞는 경우: 공항 접근과 조용한 해안 분위기를 함께 원할 때",
+          conclusionText: "대중교통만으로는 불편합니다. 렌터카 이용 여부, 주차, 주변 식당 선택지를 먼저 확인하고 예약하는 것이 좋습니다."
+        }
+      };
+
+      return contents[area.key] || {
+        intro: area.summary,
+        reasons: [
+          { title: "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
+          { title: "숙소 위치를 좁히기 쉽습니다", text: Array.isArray(area.stayRange) ? area.stayRange[0] : area.compareGood },
+          { title: "예약 전 확인할 점도 분명합니다", text: Array.isArray(area.bookingTips) ? area.bookingTips[0] : area.compareCaution }
+        ],
+        conclusionTitle: `${area.name}부터 비교해보세요.`,
         conclusionText: area.compareCaution ? `${area.compareGood} 다만 ${area.compareCaution}` : area.summary
       };
     }
