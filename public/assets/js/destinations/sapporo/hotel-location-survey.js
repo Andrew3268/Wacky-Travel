@@ -280,7 +280,7 @@ const cityConfig = {
       "bookingTips": [
         "소음, 주변 분위기, 객실 층수 후기를 같이 확인하세요.",
         "가족 여행이라면 스스키노 한복판보다 나카지마공원 방향도 비교하세요.",
-        "식당 접근성은 좋지만 공항·근교 이동은 삿포로역보다 불편할 수 있습니다."
+        "식당 접근성은 좋지만 공항·근교은 삿포로역보다 불편할 수 있습니다."
       ],
       "chips": [
         "맛집",
@@ -735,7 +735,7 @@ const cityConfig = {
           "help": "여행의 중심이 도심 관광인지, 근교 이동인지, 저녁 식사인지에 따라 숙소 위치가 달라집니다.",
           "options": [
             {
-              "title": "처음 가는 삿포로라 대표 명소를 편하게 보고 싶어요",
+              "title": "첫 삿포로",
               "desc": "오도리공원, TV타워, 스스키노, 시장을 무리 없이 보고 싶어요.",
               "scores": {
                 "odoriTanukikoji": 6,
@@ -744,7 +744,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "오타루·비에이·후라노 같은 근교 일정이 중요해요",
+              "title": "근교 일정",
               "desc": "아침 출발과 저녁 복귀가 편했으면 해요.",
               "scores": {
                 "sapporoStation": 8,
@@ -752,7 +752,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "저녁 식사와 맛집이 가장 기대돼요",
+              "title": "맛집·저녁",
               "desc": "라멘, 징기스칸, 이자카야를 편하게 다니고 싶어요.",
               "scores": {
                 "susukino": 8,
@@ -761,7 +761,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "조용히 쉬는 시간이 더 중요해요",
+              "title": "조용한 휴식",
               "desc": "번화가보다는 차분한 숙소 주변 분위기를 원해요.",
               "scores": {
                 "nakajimaPark": 6,
@@ -795,7 +795,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "친구와 여행",
+              "title": "친구 여행",
               "desc": "저녁에도 활기차고 먹거리 많은 곳이 좋아요.",
               "scores": {
                 "susukino": 6,
@@ -803,7 +803,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "가족·아이 동반",
+              "title": "가족·아이",
               "desc": "무리 없는 이동과 안정적인 동선이 중요해요.",
               "scores": {
                 "sapporoStation": 5,
@@ -812,7 +812,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "부모님과 여행",
+              "title": "부모님 동반",
               "desc": "교통이 편하고 너무 복잡하지 않은 곳이 좋아요.",
               "scores": {
                 "sapporoStation": 5,
@@ -827,7 +827,7 @@ const cityConfig = {
           "help": "겨울에는 눈길 이동과 지하 보행공간 접근성이 숙소 만족도에 큰 영향을 줍니다.",
           "options": [
             {
-              "title": "겨울 또는 눈축제 시즌이에요",
+              "title": "겨울·눈축제",
               "desc": "눈길 이동을 줄이고 싶어요.",
               "scores": {
                 "sapporoStation": 6,
@@ -836,7 +836,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "봄·여름·가을이에요",
+              "title": "봄·여름·가을",
               "desc": "도심 산책과 공원 일정도 여유롭게 넣고 싶어요.",
               "scores": {
                 "odoriTanukikoji": 4,
@@ -845,7 +845,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "계절보다 온천 휴식이 더 중요해요",
+              "title": "온천 휴식",
               "desc": "도심보다 하루 쉬어가는 느낌을 원해요.",
               "scores": {
                 "jozankei": 8,
@@ -859,7 +859,7 @@ const cityConfig = {
           "help": "오타루, 비에이, 후라노, 조잔케이 여부에 따라 추천 위치가 달라집니다.",
           "options": [
             {
-              "title": "근교 여행을 2일 이상 계획하고 있어요",
+              "title": "근교 2일 이상",
               "desc": "오타루나 비에이·후라노까지 볼 예정이에요.",
               "scores": {
                 "sapporoStation": 8,
@@ -867,7 +867,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "오타루 하루 정도만 다녀올 예정이에요",
+              "title": "오타루 하루",
               "desc": "시내 관광도 중요하지만 하루는 근교를 보고 싶어요.",
               "scores": {
                 "sapporoStation": 5,
@@ -875,7 +875,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "조잔케이 온천 1박을 넣고 싶어요",
+              "title": "조잔케이 1박",
               "desc": "도심과 온천을 나눠 쉬고 싶어요.",
               "scores": {
                 "jozankei": 8,
@@ -883,7 +883,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "삿포로 시내 위주로만 볼 예정이에요",
+              "title": "시내 중심",
               "desc": "오도리, 스스키노, 시장, 쇼핑 동선이 더 중요해요.",
               "scores": {
                 "odoriTanukikoji": 5,
@@ -898,7 +898,7 @@ const cityConfig = {
           "help": "삿포로는 스스키노와 공원 주변의 체감 분위기가 꽤 다릅니다.",
           "options": [
             {
-              "title": "활기찬 번화가가 좋아요",
+              "title": "번화가",
               "desc": "저녁에도 주변에 식당과 볼거리가 많았으면 해요.",
               "scores": {
                 "susukino": 7,
@@ -906,7 +906,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "깔끔한 도심이 좋아요",
+              "title": "깔끔한 도심",
               "desc": "역, 백화점, 지하상가가 가까우면 좋아요.",
               "scores": {
                 "sapporoStation": 6,
@@ -914,7 +914,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "조금 차분한 곳이 좋아요",
+              "title": "차분한 숙소",
               "desc": "중심 접근성은 필요하지만 너무 복잡한 건 싫어요.",
               "scores": {
                 "nakajimaPark": 5,
@@ -923,7 +923,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "온천과 휴식 분위기가 좋아요",
+              "title": "온천·휴식",
               "desc": "시내 관광보다 쉬는 시간이 중요해요.",
               "scores": {
                 "jozankei": 8,
@@ -937,7 +937,7 @@ const cityConfig = {
           "help": "중심부와 축제 기간에는 가격이 올라갈 수 있어 외곽 대안도 함께 봐야 합니다.",
           "options": [
             {
-              "title": "숙소비를 아끼고 싶어요",
+              "title": "예산 절약",
               "desc": "중심가 바로 앞이 아니어도 괜찮아요.",
               "scores": {
                 "nakajimaPark": 4,
@@ -947,7 +947,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "가격과 위치 균형이 중요해요",
+              "title": "가격·위치 균형",
               "desc": "너무 비싸지 않으면서 이동도 편했으면 해요.",
               "scores": {
                 "odoriTanukikoji": 4,
@@ -956,7 +956,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "위치가 좋다면 조금 더 써도 괜찮아요",
+              "title": "위치 우선",
               "desc": "짧은 일정이라 이동 시간을 줄이고 싶어요.",
               "scores": {
                 "sapporoStation": 5,
@@ -965,7 +965,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "온천 숙소는 예산을 조금 더 써도 괜찮아요",
+              "title": "온천 예산 추가",
               "desc": "하루는 제대로 쉬고 싶어요.",
               "scores": {
                 "jozankei": 8
@@ -978,7 +978,7 @@ const cityConfig = {
           "help": "마지막으로 피하고 싶은 요소를 반영하면 결과가 더 현실적으로 정리됩니다.",
           "options": [
             {
-              "title": "눈길을 오래 걷는 것",
+              "title": "눈길 장거리",
               "desc": "겨울 이동이 힘들까 봐 걱정돼요.",
               "scores": {
                 "sapporoStation": 5,
@@ -988,7 +988,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "늦은 시간 소음",
+              "title": "밤 소음",
               "desc": "숙소 주변이 너무 시끄러운 건 피하고 싶어요.",
               "scores": {
                 "nakajimaPark": 5,
@@ -1032,7 +1032,7 @@ const cityConfig = {
           "help": "마지막 취향을 반영해 추천 구역을 더 선명하게 정리합니다.",
           "options": [
             {
-              "title": "공항과 근교 이동의 안정감",
+              "title": "교통 안정감",
               "desc": "여행 내내 이동이 편했으면 해요.",
               "scores": {
                 "sapporoStation": 7,
@@ -1040,7 +1040,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "오도리공원과 도심 산책",
+              "title": "오도리 산책",
               "desc": "삿포로다운 중심부 분위기를 느끼고 싶어요.",
               "scores": {
                 "odoriTanukikoji": 6,
@@ -1048,7 +1048,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "스스키노 맛집과 저녁 일정",
+              "title": "스스키노 맛집",
               "desc": "저녁 식사와 밤 산책이 기대돼요.",
               "scores": {
                 "susukino": 7,
@@ -1056,7 +1056,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "공원과 조용한 숙소 분위기",
+              "title": "공원·조용함",
               "desc": "관광보다 편하게 쉬는 느낌이 좋아요.",
               "scores": {
                 "nakajimaPark": 5,
@@ -1064,7 +1064,7 @@ const cityConfig = {
               }
             },
             {
-              "title": "온천에서 하루 쉬기",
+              "title": "온천 하루",
               "desc": "조잔케이 같은 온천 숙소도 생각하고 있어요.",
               "scores": {
                 "jozankei": 9
@@ -1172,7 +1172,6 @@ const cityConfig = {
       question.options.forEach((option, optionIndex) => {
         const button = document.createElement("button");
         const title = document.createElement("span");
-        const desc = document.createElement("span");
 
         button.type = "button";
         button.className = "wt-option";
@@ -1185,12 +1184,7 @@ const cityConfig = {
         title.className = "wt-option-title";
         title.textContent = option.title;
 
-        desc.className = "wt-option-desc";
-        desc.textContent = option.desc;
-
         button.appendChild(title);
-        button.appendChild(desc);
-
         button.addEventListener("click", () => {
           answers[currentQuestionIndex] = optionIndex;
           renderQuestion();
