@@ -12715,3 +12715,29 @@ margin-right: -24px;
   }
 }
 /* End WACKYTRAVEL_LOCATION_SURVEY_START_TOP_V5 */
+
+/* WACKYTRAVEL_LOCATION_SURVEY_SPACING_V6 */
+@media (max-width: 767px) {
+  .wt-location-page:not(.is-survey-started) {
+    align-items: flex-start;
+    min-height: auto;
+    padding-top: clamp(16px, 5vw, 24px);
+    padding-bottom: 42px;
+  }
+
+  .wt-location-page:not(.is-survey-started) .wt-location-shell {
+    margin-top: 0;
+  }
+
+  .wt-location-page:not(.is-survey-started) .wt-survey-top-link {
+    margin-bottom: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .wt-location-page .wt-survey-wrap.is-survey-started:not(.is-result-mode) .wt-survey-body {
+    padding-top: 0;
+  }
+}
+/* End WACKYTRAVEL_LOCATION_SURVEY_SPACING_V6 */
+
