@@ -933,6 +933,24 @@ const cityConfig = {
           ]
         },
     {
+          "title": "눈길·도보 이동이 걱정되나요?",
+          "help": "겨울 삿포로는 지하보도와 역 접근성이 체감 만족도에 크게 영향을 줍니다.",
+          "options": [
+            { "title": "매우 걱정", "desc": "눈길에서 오래 걷는 동선은 피하고 싶어요.", "scores": { "sapporoStation": 6, "odoriTanukikoji": 5, "nakajimaPark": 2 } },
+            { "title": "보통", "desc": "중심부 안에서 적당히 걷는 정도는 괜찮아요.", "scores": { "odoriTanukikoji": 4, "sapporoStation": 3, "susukino": 2 } },
+            { "title": "상관없음", "desc": "이동보다 분위기와 휴식감을 더 중요하게 봐요.", "scores": { "maruyama": 4, "nakajimaPark": 3, "jozankei": 3 } }
+          ]
+        },
+    {
+          "title": "저녁 동선은 얼마나 중요한가요?",
+          "help": "저녁 식사와 술집, 야간 이동을 중요하게 보면 스스키노와 오도리 쪽이 강해집니다.",
+          "options": [
+            { "title": "매우 중요", "desc": "저녁에도 걸어서 먹고 이동하기 쉬운 곳이 좋아요.", "scores": { "susukino": 7, "odoriTanukikoji": 4, "nakajimaPark": 2 } },
+            { "title": "보통", "desc": "저녁 동선도 필요하지만 너무 번잡한 곳은 아니어도 괜찮아요.", "scores": { "odoriTanukikoji": 4, "sapporoStation": 3, "nakajimaPark": 2 } },
+            { "title": "조용함 우선", "desc": "저녁보다 숙소 주변의 차분함과 휴식이 더 중요해요.", "scores": { "nakajimaPark": 5, "maruyama": 4, "jozankei": 3 } }
+          ]
+        },
+    {
           "title": "숙소 예산은 어떤 편인가요?",
           "help": "중심부와 축제 기간에는 가격이 올라갈 수 있어 외곽 대안도 함께 봐야 합니다.",
           "options": [
@@ -970,37 +988,6 @@ const cityConfig = {
               "scores": {
                 "jozankei": 8
               }
-            }
-          ]
-        },
-    {
-          "title": "호텔 위치를 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
-          "help": "호텔 자체보다 숙소 주변 위치에서 피하고 싶은 불편을 기준으로 맞춰볼게요.",
-          "options": [
-            {
-              "title": "눈길 이동",
-              "desc": "눈 오는 날 지상 이동이 긴 위치는 피하고 싶어요.",
-              "scores": { "sapporoStation": 5, "odoriTanukikoji": 4, "nakajimaPark": 3, "susukino": 2, "maruyama": -1, "jozankei": -2 }
-            },
-            {
-              "title": "밤 소음",
-              "desc": "늦은 시간까지 시끄러운 번화가 한복판은 피하고 싶어요.",
-              "scores": { "nakajimaPark": 5, "maruyama": 4, "jozankei": 3, "sapporoStation": 2, "susukino": -3 }
-            },
-            {
-              "title": "긴 이동",
-              "desc": "매일 주요 동선까지 오래 이동하는 위치는 부담스러워요.",
-              "scores": { "odoriTanukikoji": 4, "sapporoStation": 4, "susukino": 3, "nakajimaPark": 2, "jozankei": -3 }
-            },
-            {
-              "title": "환승 복잡",
-              "desc": "길 찾기와 환승이 복잡한 위치는 피하고 싶어요.",
-              "scores": { "sapporoStation": 5, "odoriTanukikoji": 3, "susukino": 2, "nakajimaPark": 2, "jozankei": -2 }
-            },
-            {
-              "title": "식당 부족",
-              "desc": "저녁에 걸어서 갈 만한 식당이 적은 위치는 피하고 싶어요.",
-              "scores": { "susukino": 4, "odoriTanukikoji": 4, "sapporoStation": 3, "nakajimaPark": 2, "jozankei": -2 }
             }
           ]
         }

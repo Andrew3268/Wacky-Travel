@@ -161,17 +161,21 @@ const cityConfig = {
           { title: "차분한 숙소", desc: "번화가 접근성은 필요하지만 너무 복잡한 건 싫어요.", scores: { akasakaRoppongi: 6, uenoAsakusa: 3, ginzaTokyoStation: 2 } },
           { title: "가족형 분위기", desc: "아이와 함께 무리 없는 동선을 만들고 싶어요.", scores: { odaibaBay: 6, ginzaTokyoStation: 3 } }
         ]},
+    { title: "공항 이동은 얼마나 중요한가요?", help: "하네다·나리타 이동을 중요하게 보면 역 접근성과 노선이 단순한 위치가 유리합니다.", options: [
+          { title: "매우 중요", desc: "공항에서 숙소까지 길 찾기를 최대한 단순하게 하고 싶어요.", scores: { ginzaTokyoStation: 6, uenoAsakusa: 4, shinjuku: 3 } },
+          { title: "보통", desc: "한 번 정도 갈아타는 것은 괜찮지만 너무 복잡한 건 싫어요.", scores: { ginzaTokyoStation: 3, shinjuku: 3, uenoAsakusa: 2, akasakaRoppongi: 2 } },
+          { title: "중요 낮음", desc: "공항보다 현지 일정과 숙소 주변 분위기가 더 중요해요.", scores: { shibuya: 3, shinjuku: 2, akasakaRoppongi: 2, odaibaBay: 1 } }
+        ]},
+    { title: "디즈니·오다이바 일정이 있나요?", help: "디즈니, 오다이바, 도쿄베이 일정이 있으면 숙소 위치 기준이 달라집니다.", options: [
+          { title: "디즈니 핵심", desc: "디즈니 이동을 편하게 잡고 싶어요.", scores: { odaibaBay: 7, ginzaTokyoStation: 4 } },
+          { title: "오다이바 핵심", desc: "도쿄베이와 오다이바 주변을 여유롭게 보고 싶어요.", scores: { odaibaBay: 8, ginzaTokyoStation: 2 } },
+          { title: "하루 방문", desc: "하루 정도만 들르고 시내 일정도 중요해요.", scores: { ginzaTokyoStation: 3, shinjuku: 2, akasakaRoppongi: 2, odaibaBay: 2 } },
+          { title: "방문 없음", desc: "신주쿠, 시부야, 긴자, 우에노 같은 시내 동선이 더 중요해요.", scores: { shinjuku: 3, shibuya: 3, uenoAsakusa: 2, ginzaTokyoStation: 2 } }
+        ]},
     { title: "숙소 예산은 어떤 편인가요?", help: "도쿄는 위치가 중심에 가까울수록 가격이 올라가거나 객실이 작아질 수 있습니다.", options: [
           { title: "예산 절약", desc: "중심가 바로 앞이 아니어도 괜찮아요.", scores: { uenoAsakusa: 6, shibuya: 2, shinjuku: 1 } },
           { title: "가격·위치 균형", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { shinjuku: 4, uenoAsakusa: 4, shibuya: 3 } },
           { title: "위치 우선", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { shinjuku: 4, ginzaTokyoStation: 5, shibuya: 4, akasakaRoppongi: 3 } }
-        ]},
-    { title: "호텔 위치를 고를 때 가장 피하고 싶은 불편은 무엇인가요?", help: "호텔 자체보다 숙소 주변 위치에서 피하고 싶은 불편을 기준으로 맞춰볼게요.", options: [
-          { title: "밤 소음", desc: "늦은 시간까지 시끄러운 번화가 한복판은 피하고 싶어요.", scores: { akasakaRoppongi: 4, ginzaTokyoStation: 4, uenoAsakusa: 3, odaibaBay: 3, shinjuku: -2, shibuya: -2 } },
-          { title: "긴 이동", desc: "매일 주요 동선까지 오래 이동하는 위치는 부담스러워요.", scores: { shinjuku: 4, ginzaTokyoStation: 4, shibuya: 3, uenoAsakusa: 3, odaibaBay: -3 } },
-          { title: "환승 복잡", desc: "길 찾기와 환승이 복잡한 위치는 피하고 싶어요.", scores: { ginzaTokyoStation: 5, uenoAsakusa: 3, shinjuku: 2, shibuya: 2, odaibaBay: -1 } },
-          { title: "식당 부족", desc: "저녁에 걸어서 갈 만한 식당이 적은 위치는 피하고 싶어요.", scores: { shinjuku: 4, shibuya: 4, ginzaTokyoStation: 3, uenoAsakusa: 3, odaibaBay: -2 } },
-          { title: "긴 도보", desc: "역과 명소까지 걷는 시간이 긴 위치는 피하고 싶어요.", scores: { ginzaTokyoStation: 4, shinjuku: 3, uenoAsakusa: 3, odaibaBay: 2, shibuya: 2 } }
         ]}
   ]
 };

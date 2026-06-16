@@ -523,17 +523,6 @@ const cityConfig = {
                     { title: "가격·위치 균형", desc: "너무 비싸지 않으면서 이동도 편했으면 해요.", scores: { shinsaibashi: 4, tennoji: 3, namba: 2, umeda: 2 } },
                     { title: "위치 우선", desc: "짧은 일정이라 이동 시간을 줄이고 싶어요.", scores: { namba: 4, umeda: 4, universal: 3 } }
                   ]
-                },
-        {
-                  title: "호텔 위치를 고를 때 가장 피하고 싶은 불편은 무엇인가요?",
-                  help: "호텔 자체보다 숙소 주변 위치에서 피하고 싶은 불편을 기준으로 맞춰볼게요.",
-                  options: [
-                    { title: "밤 소음", desc: "늦은 시간까지 시끄러운 번화가 한복판은 피하고 싶어요.", scores: { hommachi: 4, umeda: 3, tennoji: 2, shinsaibashi: -1, namba: -3 } },
-                    { title: "긴 이동", desc: "매일 주요 동선까지 오래 이동하는 위치는 부담스러워요.", scores: { namba: 4, umeda: 4, shinsaibashi: 3, hommachi: 3, universal: -2 } },
-                    { title: "환승 복잡", desc: "길 찾기와 환승이 복잡한 위치는 피하고 싶어요.", scores: { namba: 4, umeda: 3, tennoji: 2, universal: 2, hommachi: 2 } },
-                    { title: "식당 부족", desc: "저녁에 걸어서 갈 만한 식당이 적은 위치는 피하고 싶어요.", scores: { namba: 4, shinsaibashi: 4, umeda: 3, hommachi: 2, universal: -2 } },
-                    { title: "긴 도보", desc: "역과 명소까지 걷는 시간이 긴 위치는 피하고 싶어요.", scores: { namba: 3, umeda: 3, universal: 4, hommachi: 2, tennoji: 2 } }
-                  ]
                 }
       ]
     };
