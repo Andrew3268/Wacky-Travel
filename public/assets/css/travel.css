@@ -10764,3 +10764,27 @@ body {
     padding-right: 0 !important;
   }
 }
+
+/* WACKYTRAVEL_BREADCRUMB_HOTEL_BUTTON_REFINEMENT_V1 */
+.breadcrumbs.container li:last-child > span,
+.breadcrumbs li:last-child > span {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.wt-purpose-page #hotels .wt-hotel-actions .wt-btn--primary,
+.wt-purpose-page--first-trip #hotels .wt-hotel-actions .wt-btn--primary {
+  border-color: #2563eb !important;
+  background: #fff !important;
+  color: #2563eb !important;
+  box-shadow: none !important;
+}
+
+.wt-purpose-page #hotels .wt-hotel-actions .wt-btn--primary:hover,
+.wt-purpose-page--first-trip #hotels .wt-hotel-actions .wt-btn--primary:hover {
+  border-color: #2563eb !important;
+  background: #fff !important;
+  color: #2563eb !important;
+}
+
