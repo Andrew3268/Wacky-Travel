@@ -1524,7 +1524,56 @@ function getTieBreakPriority(areaKey) {
       });
     }
 
-    function getPersuasiveContent(area) {
+    function getSelectedAnswerSignals() {
+      return answers
+        .map((_, questionIndex) => getSelectedOptionTitle(questionIndex))
+        .filter(Boolean)
+        .filter((item, index, arr) => arr.indexOf(item) === index)
+        .slice(0, 5);
+    }
+
+    function getSignalSentence() {
+      const signals = getSelectedAnswerSignals();
+      if (!signals.length) return "";
+      return `이번 조건의 핵심은 ${signals.join(" · ")}입니다.`;
+    }
+
+    function getScoreFitSentence(rankedAreas) {
+      const top = rankedAreas?.[0];
+      const second = rankedAreas?.[1];
+      if (!top || !second) return "";
+
+      const gap = top.score - second.score;
+      if (gap <= 2) {
+        return `${top.name}이 1순위이지만 ${second.name}도 거의 같은 수준입니다. 최종 예약 전에는 두 지역의 호텔 가격, 객실 크기, 실제 이동 시간을 함께 비교하는 편이 좋습니다.`;
+      }
+      if (gap <= 5) {
+        return `${top.name}이 더 잘 맞지만 ${second.name}도 현실적인 대안입니다. 일정의 중심이 바뀌면 두 지역의 체감 만족도가 뒤집힐 수 있습니다.`;
+      }
+      return `${top.name}이 다른 지역보다 조건 일치도가 뚜렷합니다. 숙소 위치를 먼저 좁힌 뒤 호텔 가격과 객실 후기를 비교하면 결정이 쉬워집니다.`;
+    }
+
+    function getAlternativeSentence(area, rankedAreas) {
+      const second = rankedAreas?.[1];
+      if (!second) return "";
+
+      const gap = rankedAreas[0].score - second.score;
+      const prefix = gap <= 2 ? "거의 같은 후보로" : "대안으로";
+      return `${prefix} ${second.name}도 볼 만합니다. ${second.compareGood || second.summary}`;
+    }
+
+    function normalizeResultReasons(area, reasons) {
+      const next = Array.isArray(reasons) ? [...reasons] : [];
+      if (next.length < 4) {
+        const cautionText = [area.compareCaution, area.mismatchNote]
+          .filter(Boolean)
+          .join(" ") || "추천 지역도 일정 성격에 따라 장단점이 달라집니다. 호텔 예약 전 이동 시간, 주변 분위기, 최근 후기를 함께 확인하세요.";
+        next.push({ title: "주의할 점도 함께 보세요", text: cautionText });
+      }
+      return next.slice(0, 4);
+    }
+
+    function getPersuasiveContent(area, rankedAreas) {
       const contents = {
         nahaKokusai: {
           intro: "나하 & 국제거리는 렌터카 없이 움직이거나 짧은 일정에서 공항, 식당, 쇼핑, 항구 이동을 가장 단순하게 만들 수 있는 위치입니다.",
@@ -1588,7 +1637,7 @@ function getTieBreakPriority(areaKey) {
         }
       };
 
-      return contents[area.key] || {
+      const content = contents[area.key] || {
         intro: area.summary,
         reasons: [
           { title: "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
@@ -1598,10 +1647,21 @@ function getTieBreakPriority(areaKey) {
         conclusionTitle: `${area.name}부터 비교해보세요.`,
         conclusionText: area.compareCaution ? `${area.compareGood} 다만 ${area.compareCaution}` : area.summary
       };
+
+      const signalText = getSignalSentence();
+      const fitText = getScoreFitSentence(rankedAreas);
+      const alternativeText = getAlternativeSentence(area, rankedAreas);
+
+      return {
+        ...content,
+        reasons: normalizeResultReasons(area, content.reasons),
+        intro: [signalText, content.intro, fitText].filter(Boolean).join(" "),
+        conclusionText: [content.conclusionText, alternativeText].filter(Boolean).join(" ")
+      };
     }
 
-    function renderPersuasiveResult(topArea) {
-      const content = getPersuasiveContent(topArea);
+    function renderPersuasiveResult(topArea, rankedAreas) {
+      const content = getPersuasiveContent(topArea, rankedAreas);
       const reasonCardList = document.getElementById("reasonCardList");
 
       setText("resultWhyText", content.intro);
@@ -1646,7 +1706,7 @@ function getTieBreakPriority(areaKey) {
       setText("resultLeadTitle", topArea.leadTitle);
       setText("resultLeadText", topArea.leadText);
 
-      renderPersuasiveResult(topArea);
+      renderPersuasiveResult(topArea, rankedAreas);
       renderHotelCards(topArea);
       renderRelatedPosts(topArea);
 
