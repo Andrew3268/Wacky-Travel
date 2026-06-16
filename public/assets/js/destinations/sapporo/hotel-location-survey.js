@@ -1260,6 +1260,7 @@ const cityConfig = {
         const location = document.createElement("p");
         const reason = document.createElement("p");
         const meta = document.createElement("div");
+        const footer = document.createElement("div");
         const linkWrap = document.createElement("div");
         const link = document.createElement("a");
 
@@ -1271,6 +1272,7 @@ const cityConfig = {
         location.className = "wt-hotel-location";
         reason.className = "wt-hotel-reason";
         meta.className = "wt-hotel-meta";
+        footer.className = "wt-hotel-card-footer";
         linkWrap.className = "wt-hotel-link-wrap";
         link.className = "wt-hotel-link";
 
@@ -1280,8 +1282,8 @@ const cityConfig = {
         location.textContent = hotel.location;
         reason.textContent = hotel.reason;
         link.href = hotel.url || "#";
-        link.textContent = "호텔 자세히 보기";
-        link.setAttribute("aria-label", `${hotel.name} 자세히 보기`);
+        link.textContent = "잔여 객실 확인";
+        link.setAttribute("aria-label", `${hotel.name} 잔여 객실 확인`);
 
         (hotel.meta || []).forEach((item) => {
           const chip = document.createElement("span");
@@ -1292,12 +1294,13 @@ const cityConfig = {
         top.appendChild(rank);
         top.appendChild(tag);
         linkWrap.appendChild(link);
+        footer.appendChild(meta);
+        footer.appendChild(linkWrap);
         article.appendChild(top);
         article.appendChild(name);
         article.appendChild(location);
         article.appendChild(reason);
-        article.appendChild(meta);
-        article.appendChild(linkWrap);
+        article.appendChild(footer);
         hotelCardList.appendChild(article);
       });
     }

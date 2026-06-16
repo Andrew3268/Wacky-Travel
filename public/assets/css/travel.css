@@ -12649,3 +12649,43 @@ margin-right: -24px;
 }
 }
 /* End hotel location survey styles */
+
+/* WACKYTRAVEL_LOCATION_SURVEY_HOTEL_CARD_FOOTER_V2 */
+.wt-location-page .wt-hotel-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.wt-location-page .wt-hotel-card-top {
+  order: 1;
+}
+
+.wt-location-page .wt-hotel-name {
+  order: 2;
+}
+
+.wt-location-page .wt-hotel-location {
+  order: 3;
+}
+
+.wt-location-page .wt-hotel-reason {
+  order: 4;
+}
+
+.wt-location-page .wt-hotel-card-footer {
+  order: 5;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.wt-location-page .wt-hotel-card-footer .wt-hotel-meta {
+  margin-top: 0;
+}
+
+.wt-location-page .wt-hotel-card-footer .wt-hotel-link-wrap {
+  margin-top: 14px;
+}
+
+.wt-location-page .wt-hotel-card-footer .wt-hotel-link {
+  margin-top: 0;
+}
