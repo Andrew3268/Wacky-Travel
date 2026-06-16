@@ -1166,6 +1166,121 @@ const cityConfig = {
       renderQuestion();
     }
 
+
+function getSelectedOption(questionIndex) {
+  const answerIndex = answers[questionIndex];
+  if (answerIndex === null || answerIndex === undefined) return null;
+  return cityConfig.questions[questionIndex]?.options?.[answerIndex] || null;
+}
+
+function getSelectedOptionTitle(questionIndex) {
+  return getSelectedOption(questionIndex)?.title || "";
+}
+
+function answerIs(questionIndex, title) {
+  return getSelectedOptionTitle(questionIndex) === title;
+}
+
+function answerIn(questionIndex, titles) {
+  return titles.includes(getSelectedOptionTitle(questionIndex));
+}
+
+function addAreaScore(scores, areaKey, amount) {
+  if (Object.prototype.hasOwnProperty.call(scores, areaKey)) {
+    scores[areaKey] += amount;
+  }
+}
+
+function applyAccuracyAdjustments(scores) {
+  const firstOkinawa = answerIs(0, "첫 오키나와");
+  const sunsetWalk = answerIs(0, "바다·저녁 산책");
+  const resortBeach = answerIs(0, "해변 리조트") || answerIs(6, "해변 리조트 분위기") || answerIs(7, "수영장·해변");
+  const northDrive = answerIs(0, "북부 드라이브") || answerIs(5, "수족관·코우리섬");
+  const friendsSolo = answerIs(1, "혼자·친구");
+  const couple = answerIs(1, "커플 여행");
+  const family = answerIn(1, ["아이 동반", "부모님 동반"]);
+  const noCar = answerIs(2, "렌터카 없음");
+  const fullCar = answerIs(2, "전 일정 렌터카");
+  const partialCar = answerIs(2, "일부 렌터카");
+  const carUnknown = answerIs(2, "미정");
+  const airportImportant = answerIs(3, "매우 중요");
+  const arrivalDeparture = answerIs(3, "첫날·마지막날");
+  const airportLow = answerIs(3, "중요 낮음");
+  const shortTrip = answerIs(4, "2박 3일 이하");
+  const mediumTrip = answerIs(4, "3박 4일");
+  const longTrip = answerIs(4, "4박 5일 이상") || answerIs(4, "긴 휴식 일정");
+  const aquariumCore = answerIs(5, "수족관·코우리섬");
+  const aquariumDay = answerIs(5, "수족관 하루");
+  const beachPriority = answerIs(5, "해변 리조트 우선");
+  const northUnknown = answerIs(5, "북부 미정");
+  const foodShopping = answerIs(6, "식당·쇼핑 근처");
+  const sunsetQuiet = answerIs(6, "바다·선셋");
+  const northNature = answerIs(6, "북부 자연");
+  const keramaTour = answerIs(7, "케라마 투어");
+  const blueCave = answerIs(7, "푸른동굴");
+  const drive = answerIs(7, "드라이브");
+
+  if (noCar || (firstOkinawa && shortTrip) || airportImportant || keramaTour) {
+    addAreaScore(scores, "nahaKokusai", 7);
+  }
+  if ((airportImportant || arrivalDeparture) && (noCar || carUnknown || shortTrip)) {
+    addAreaScore(scores, "nahaKokusai", 4);
+  }
+  if (foodShopping && noCar) {
+    addAreaScore(scores, "nahaKokusai", 3);
+  }
+
+  if ((sunsetWalk || foodShopping) && (partialCar || carUnknown || mediumTrip)) {
+    addAreaScore(scores, "chatanAmericanVillage", 5);
+  }
+  if ((friendsSolo || family) && foodShopping && !airportLow) {
+    addAreaScore(scores, "chatanAmericanVillage", 3);
+  }
+  if (aquariumDay && mediumTrip) {
+    addAreaScore(scores, "chatanAmericanVillage", 2);
+  }
+
+  if (resortBeach && (fullCar || family || couple)) {
+    addAreaScore(scores, "onnaResort", 7);
+  }
+  if (blueCave && (fullCar || partialCar)) {
+    addAreaScore(scores, "onnaResort", 5);
+  }
+  if (beachPriority && !noCar) {
+    addAreaScore(scores, "onnaResort", 4);
+  }
+
+  if ((northDrive || aquariumCore || northNature) && (fullCar || longTrip)) {
+    addAreaScore(scores, "nagoMotobu", 8);
+  }
+  if (aquariumCore && mediumTrip) {
+    addAreaScore(scores, "nagoMotobu", 4);
+  }
+  if (northUnknown && fullCar && longTrip) {
+    addAreaScore(scores, "nagoMotobu", 3);
+  }
+
+  if ((sunsetQuiet || drive) && (fullCar || longTrip) && !aquariumCore) {
+    addAreaScore(scores, "yomitanZanpa", 6);
+  }
+  if (couple && sunsetQuiet && !noCar) {
+    addAreaScore(scores, "yomitanZanpa", 3);
+  }
+  if (blueCave && sunsetQuiet) {
+    addAreaScore(scores, "yomitanZanpa", 3);
+  }
+
+  if ((drive || longTrip) && (airportLow || arrivalDeparture) && !northDrive && !aquariumCore) {
+    addAreaScore(scores, "southCoast", 5);
+  }
+  if (arrivalDeparture && fullCar && longTrip) {
+    addAreaScore(scores, "southCoast", 3);
+  }
+  if (sunsetQuiet && drive && !blueCave) {
+    addAreaScore(scores, "southCoast", 2);
+  }
+}
+
     function calculateScores() {
       const scores = {};
       Object.keys(cityConfig.areas).forEach((areaKey) => {
@@ -1179,6 +1294,8 @@ const cityConfig = {
           scores[areaKey] += score;
         });
       });
+
+      applyAccuracyAdjustments(scores);
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
@@ -1202,7 +1319,7 @@ const cityConfig = {
 
       section.style.display = "block";
       setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-      setText("hotelSectionDesc", "추천 위치 결과와 잘 맞는 호텔 후보입니다. 데스크탑에서는 좌우로 넘겨 비교할 수 있으며, 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
+      setText("hotelSectionDesc", "추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 후보입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
       hotelCardList.innerHTML = "";
 
       hotels.forEach((hotel, index) => {
@@ -1331,7 +1448,7 @@ const cityConfig = {
     }
 
     function getPersuasiveContent(area) {
-      const intro = `${area.name}은(는) 선택한 답변에서 중요하게 본 이동, 분위기, 예산 기준과 가장 잘 맞는 위치입니다. 숙소를 이 구역 안에서 먼저 비교하면 불필요한 이동과 고민을 줄이기 쉽습니다.`;
+      const intro = `${area.name}은(는) 이번 여행의 이동, 분위기, 예산 기준과 가장 잘 맞는 위치입니다. 숙소를 이 구역 안에서 먼저 비교하면 불필요한 이동과 고민을 줄이기 쉽습니다.`;
       const reasons = [
         { title: area.leadTitle || "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
         { title: "숙소 위치를 좁히기 쉽습니다", text: Array.isArray(area.stayRange) ? area.stayRange[0] : area.compareGood },

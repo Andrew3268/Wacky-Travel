@@ -1,4 +1,6 @@
-# Wacky Travel SSR Blog
+# Wacky Travel
+
+- v11: 오사카·도쿄·삿포로·오키나와 hotel-location-survey 결과 정확도 보정 로직 추가 및 결과 문구 일부 개선. SSR Blog
 
 Wacky Travel은 독립적으로 운영되는 여행 제휴마케팅/애드센스 블로그입니다.  
 Cloudflare Pages Functions + D1 + SSR + Edge Cache 구조로 여행지 허브, 호텔 추천 글, 일반 여행 글을 빠르게 출력하도록 구성되어 있습니다.

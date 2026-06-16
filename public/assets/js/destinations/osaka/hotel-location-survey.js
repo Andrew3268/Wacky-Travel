@@ -672,6 +672,111 @@ const cityConfig = {
       renderQuestion();
     }
 
+
+function getSelectedOption(questionIndex) {
+  const answerIndex = answers[questionIndex];
+  if (answerIndex === null || answerIndex === undefined) return null;
+  return cityConfig.questions[questionIndex]?.options?.[answerIndex] || null;
+}
+
+function getSelectedOptionTitle(questionIndex) {
+  return getSelectedOption(questionIndex)?.title || "";
+}
+
+function answerIs(questionIndex, title) {
+  return getSelectedOptionTitle(questionIndex) === title;
+}
+
+function answerIn(questionIndex, titles) {
+  return titles.includes(getSelectedOptionTitle(questionIndex));
+}
+
+function addAreaScore(scores, areaKey, amount) {
+  if (Object.prototype.hasOwnProperty.call(scores, areaKey)) {
+    scores[areaKey] += amount;
+  }
+}
+
+function applyAccuracyAdjustments(scores) {
+  const firstTrip = answerIs(0, "첫 여행");
+  const repeatTrip = answerIn(0, ["재방문", "익숙한 여행"]);
+  const solo = answerIs(1, "혼자 여행");
+  const couple = answerIs(1, "커플 여행");
+  const friends = answerIs(1, "친구 여행");
+  const family = answerIn(1, ["가족·아이", "부모님 동반"]);
+  const foodNight = answerIs(2, "맛집·밤거리") || answerIs(6, "번화가");
+  const shopping = answerIs(2, "쇼핑");
+  const transport = answerIs(2, "교통 편의");
+  const childFocused = answerIs(2, "아이 동반") || answerIs(6, "가족형 분위기");
+  const airportImportant = answerIs(3, "매우 중요");
+  const usjCore = answerIs(4, "USJ 핵심");
+  const usjDay = answerIs(4, "하루 방문");
+  const noUsj = answerIs(4, "방문 없음");
+  const nearHeavy = answerIs(5, "근교 2일 이상");
+  const nearOneDay = answerIs(5, "근교 하루");
+  const cityOnly = answerIs(5, "시내 중심");
+  const cleanCity = answerIs(6, "깔끔한 도심");
+  const quietStay = answerIs(6, "차분한 숙소");
+  const budgetSave = answerIs(7, "예산 절약");
+  const balanceBudget = answerIs(7, "가격·위치 균형");
+  const locationFirst = answerIs(7, "위치 우선");
+
+  if (firstTrip && foodNight && (airportImportant || cityOnly || locationFirst)) {
+    addAreaScore(scores, "namba", 5);
+  }
+  if (friends && foodNight && noUsj) {
+    addAreaScore(scores, "namba", 4);
+  }
+  if (airportImportant && !nearHeavy && !usjCore) {
+    addAreaScore(scores, "namba", 3);
+  }
+
+  if ((shopping || cleanCity) && (couple || friends) && !airportImportant) {
+    addAreaScore(scores, "shinsaibashi", 4);
+  }
+  if (shopping && balanceBudget) {
+    addAreaScore(scores, "shinsaibashi", 3);
+    addAreaScore(scores, "hommachi", 2);
+  }
+  if (quietStay && !nearHeavy && !usjCore) {
+    addAreaScore(scores, "hommachi", 3);
+  }
+  if ((balanceBudget || budgetSave) && repeatTrip && !foodNight) {
+    addAreaScore(scores, "hommachi", 3);
+  }
+
+  if ((transport || nearHeavy || nearOneDay) && !airportImportant) {
+    addAreaScore(scores, "umeda", 4);
+  }
+  if (nearHeavy && (family || solo || cleanCity)) {
+    addAreaScore(scores, "umeda", 5);
+  }
+  if (nearOneDay && transport) {
+    addAreaScore(scores, "umeda", 3);
+  }
+
+  if (usjCore) {
+    addAreaScore(scores, "universal", 8);
+  }
+  if ((usjCore || usjDay) && (family || childFocused)) {
+    addAreaScore(scores, "universal", 5);
+  }
+  if (childFocused && !usjCore && !foodNight) {
+    addAreaScore(scores, "umeda", 2);
+    addAreaScore(scores, "hommachi", 2);
+  }
+
+  if (budgetSave && (repeatTrip || quietStay)) {
+    addAreaScore(scores, "tennoji", 4);
+  }
+  if (airportImportant && budgetSave) {
+    addAreaScore(scores, "tennoji", 2);
+  }
+  if (cityOnly && repeatTrip && !foodNight) {
+    addAreaScore(scores, "tennoji", 2);
+  }
+}
+
     function calculateScores() {
       const scores = {};
       Object.keys(cityConfig.areas).forEach((areaKey) => {
@@ -685,6 +790,8 @@ const cityConfig = {
           scores[areaKey] += score;
         });
       });
+
+      applyAccuracyAdjustments(scores);
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
@@ -708,7 +815,7 @@ const cityConfig = {
 
       section.style.display = "block";
       setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-      setText("hotelSectionDesc", "추천 위치 결과와 잘 맞는 호텔 후보입니다. 데스크탑에서는 좌우로 넘겨 비교할 수 있으며, 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
+      setText("hotelSectionDesc", "추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 후보입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
       hotelCardList.innerHTML = "";
 
       hotels.forEach((hotel, index) => {
@@ -839,7 +946,7 @@ const cityConfig = {
     function getPersuasiveContent(area) {
       const contents = {
         namba: {
-          intro: "선택한 답변에서 대표 명소, 맛집, 쇼핑, 공항 이동처럼 ‘짧고 단순한 동선’이 중요한 기준으로 반영되었습니다. 그래서 난바는 이동 시간을 줄이고 여행 만족도를 빠르게 높이기 좋은 선택입니다.",
+          intro: "대표 명소, 맛집, 쇼핑, 공항 이동이 모두 중요하다면 난바가 가장 단순합니다. 짧은 일정에서도 이동 시간을 줄이고 여행 만족도를 빠르게 높이기 좋은 위치입니다.",
           reasons: [
             { title: "처음 가도 동선이 단순합니다", text: "도톤보리, 구로몬시장, 신사이바시, 난바역 주변을 한 권역으로 묶어 움직일 수 있어 일정이 복잡해지지 않습니다." },
             { title: "저녁 시간이 편해집니다", text: "맛집과 쇼핑, 밤거리 이동이 짧아 늦은 시간에도 숙소로 돌아오는 부담이 적습니다." },
@@ -849,7 +956,7 @@ const cityConfig = {
           conclusionText: "다만 도톤보리 바로 앞은 소음이 있을 수 있으니, 난바역·닛폰바시역 도보권이면서 번화가와 한 블록 정도 떨어진 호텔을 우선 비교하는 방식이 좋습니다."
         },
         shinsaibashi: {
-          intro: "선택한 답변에서 쇼핑, 도보 이동, 번화가 접근성, 조금 더 차분한 분위기가 함께 반영되었습니다. 신사이바시는 난바의 장점은 가져가면서 숙소 주변 분위기를 조금 정돈하기 좋은 위치입니다.",
+          intro: "쇼핑, 도보 이동, 번화가 접근성, 차분한 숙소 분위기를 함께 원한다면 신사이바시가 좋습니다. 난바의 장점은 가져가면서 숙소 주변 분위기를 조금 정돈하기 좋은 위치입니다.",
           reasons: [
             { title: "쇼핑 동선이 자연스럽습니다", text: "신사이바시스지, 도톤보리, 난바 방면을 도보 또는 짧은 지하철 이동으로 연결하기 쉽습니다." },
             { title: "너무 번잡한 숙박을 피하기 좋습니다", text: "난바 한복판보다 차분한 호텔 후보가 많아 밤 소음과 번잡함을 줄이고 싶은 여행자에게 잘 맞습니다." },
@@ -859,7 +966,7 @@ const cityConfig = {
           conclusionText: "도톤보리 늦은 시간 동선이 핵심이면 너무 북쪽으로 올라가지 말고, 신사이바시역·나가호리바시역·혼마치역 도보권을 중심으로 비교하세요."
         },
         umeda: {
-          intro: "선택한 답변에서 교통 편의, 근교 이동, 깔끔한 도심 분위기가 강하게 반영되었습니다. 우메다은 오사카 시내뿐 아니라 교토, 고베, 나라까지 함께 보는 일정에 특히 강합니다.",
+          intro: "교통 편의, 근교 이동, 깔끔한 도심 분위기가 중요하다면 우메다가 유리합니다. 오사카 시내뿐 아니라 교토, 고베, 나라까지 함께 보는 일정에 특히 강합니다.",
           reasons: [
             { title: "근교 당일치기에 유리합니다", text: "JR, 한큐, 한신 등 선택지가 많아 교토·고베·나라 일정을 넣을 때 이동 계획을 세우기 쉽습니다." },
             { title: "쇼핑몰 중심으로 움직이기 좋습니다", text: "백화점과 대형 쇼핑몰이 많아 비 오는 날이나 부모님 동반 일정에서도 동선 부담이 적습니다." },
@@ -869,7 +976,7 @@ const cityConfig = {
           conclusionText: "단, 난바 밤거리 중심 여행이라면 매번 이동이 필요합니다. 우메다를 고를 때는 호텔이 실제로 어떤 역 출구와 가까운지까지 확인하는 것이 중요합니다."
         },
         tennoji: {
-          intro: "선택한 답변에서 예산, 실속, 남쪽 관광지 동선, 재방문 여행 성향이 반영되었습니다. 덴노지는 중심가 숙소비가 부담될 때 이동 편의성을 완전히 포기하지 않는 현실적인 선택입니다.",
+          intro: "예산, 실속, 남쪽 관광지 동선, 재방문 여행 성향이 강하다면 덴노지가 현실적인 선택입니다. 중심가 숙소비가 부담될 때 이동 편의성을 완전히 포기하지 않는 대안이 됩니다.",
           reasons: [
             { title: "가격 대비 위치 효율이 좋습니다", text: "난바 중심부보다 숙소비 부담을 낮추면서도 지하철과 JR 이동을 활용해 주요 지역으로 접근할 수 있습니다." },
             { title: "남쪽 일정과 잘 맞습니다", text: "아베노하루카스, 신세카이, 덴노지공원 등 남쪽 관광지를 넣는 일정이라면 이동이 자연스럽습니다." },
@@ -879,7 +986,7 @@ const cityConfig = {
           conclusionText: "다만 첫 오사카 여행에서 도톤보리와 난바를 매일 오갈 계획이라면 이동 시간이 쌓일 수 있으니, 가격만 보지 말고 실제 이동 횟수까지 계산해보는 것이 좋습니다."
         },
         universal: {
-          intro: "선택한 답변에서 USJ, 가족 여행, 아이 동반, 체력 부담 감소가 강하게 반영되었습니다. 유니버셜 시티는 오사카 전체 관광보다 테마파크 경험을 최우선으로 둘 때 가장 설득력 있는 위치입니다.",
+          intro: "USJ, 가족 여행, 아이 동반, 체력 부담 감소가 중요하다면 유니버셜 시티가 가장 명확합니다. 오사카 전체 관광보다 테마파크 경험을 최우선으로 둘 때 설득력 있는 위치입니다.",
           reasons: [
             { title: "USJ 입장 전 피로가 줄어듭니다", text: "아침 일찍 입장해야 하는 일정에서 이동 시간이 짧으면 대기와 체력 부담을 줄일 수 있습니다." },
             { title: "퇴장 후 숙소 복귀가 편합니다", text: "아이 동반이나 폐장 시간까지 머무는 일정에서는 숙소가 가까운 것만으로도 만족도가 크게 올라갑니다." },
@@ -889,7 +996,7 @@ const cityConfig = {
           conclusionText: "오사카 시내 관광도 많다면 전 일정 숙박보다 USJ 전날 또는 당일 1박만 유니버셜 시티로 나누는 방식도 효율적입니다."
         },
         hommachi: {
-          intro: "선택한 답변에서 이동 균형, 차분한 도심, 가격 대비 만족도가 함께 반영되었습니다. 혼마치는 난바와 우메다 사이에서 동선을 나누기 좋은 위치입니다.",
+          intro: "이동 균형, 차분한 도심, 가격 대비 만족도를 함께 원한다면 혼마치가 좋습니다. 난바와 우메다 사이에서 동선을 나누기 좋은 위치입니다.",
           reasons: [
             { title: "남쪽과 북쪽 이동 균형이 좋습니다", text: "난바, 신사이바시, 우메다를 모두 오갈 때 한쪽으로 치우치지 않는 기준점이 됩니다." },
             { title: "숙소 주변 분위기가 비교적 차분합니다", text: "도톤보리 한복판보다 번잡함이 덜해 쉬는 시간의 만족도를 챙기기 좋습니다." },

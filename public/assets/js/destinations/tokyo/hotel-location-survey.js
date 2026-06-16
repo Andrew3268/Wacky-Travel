@@ -325,6 +325,123 @@ const cityConfig = {
       renderQuestion();
     }
 
+
+function getSelectedOption(questionIndex) {
+  const answerIndex = answers[questionIndex];
+  if (answerIndex === null || answerIndex === undefined) return null;
+  return cityConfig.questions[questionIndex]?.options?.[answerIndex] || null;
+}
+
+function getSelectedOptionTitle(questionIndex) {
+  return getSelectedOption(questionIndex)?.title || "";
+}
+
+function answerIs(questionIndex, title) {
+  return getSelectedOptionTitle(questionIndex) === title;
+}
+
+function answerIn(questionIndex, titles) {
+  return titles.includes(getSelectedOptionTitle(questionIndex));
+}
+
+function addAreaScore(scores, areaKey, amount) {
+  if (Object.prototype.hasOwnProperty.call(scores, areaKey)) {
+    scores[areaKey] += amount;
+  }
+}
+
+function applyAccuracyAdjustments(scores) {
+  const firstTrip = answerIs(0, "첫 여행");
+  const repeatTrip = answerIn(0, ["재방문", "익숙한 여행"]);
+  const couple = answerIs(1, "커플 여행");
+  const friends = answerIs(1, "친구 여행");
+  const family = answerIn(1, ["가족·아이", "부모님 동반"]);
+  const parents = answerIs(1, "부모님 동반");
+  const basicTour = answerIs(2, "관광·맛집");
+  const shoppingCafe = answerIs(2, "쇼핑·카페") || answerIs(4, "트렌디한 거리");
+  const traditionalBudget = answerIs(2, "전통·가성비");
+  const airportNear = answerIs(2, "공항·근교");
+  const familyLeisure = answerIs(2, "가족 여유") || answerIs(4, "가족형 분위기");
+  const nearHeavy = answerIs(3, "근교 2일 이상");
+  const nearOneDay = answerIs(3, "근교 하루");
+  const disneyInNear = answerIs(3, "디즈니 일정");
+  const cityOnly = answerIs(3, "시내 중심");
+  const busyNight = answerIs(4, "번화가");
+  const cleanCity = answerIs(4, "깔끔한 도심");
+  const quietStay = answerIs(4, "차분한 숙소");
+  const airportImportant = answerIs(5, "매우 중요");
+  const airportNormal = answerIs(5, "보통");
+  const disneyCore = answerIs(6, "디즈니 핵심");
+  const odaibaCore = answerIs(6, "오다이바 핵심");
+  const bayDay = answerIs(6, "하루 방문");
+  const noBay = answerIs(6, "방문 없음");
+  const budgetSave = answerIs(7, "예산 절약");
+  const balanceBudget = answerIs(7, "가격·위치 균형");
+  const locationFirst = answerIs(7, "위치 우선");
+
+  if (firstTrip && basicTour && (cityOnly || busyNight || locationFirst) && noBay) {
+    addAreaScore(scores, "shinjuku", 5);
+  }
+  if (friends && busyNight && !disneyCore && !odaibaCore) {
+    addAreaScore(scores, "shinjuku", 4);
+  }
+  if (nearOneDay && basicTour) {
+    addAreaScore(scores, "shinjuku", 2);
+  }
+
+  if (shoppingCafe && (couple || friends || repeatTrip)) {
+    addAreaScore(scores, "shibuya", 5);
+  }
+  if (shoppingCafe && !airportImportant && noBay) {
+    addAreaScore(scores, "shibuya", 3);
+  }
+
+  if ((airportNear || nearHeavy || airportImportant) && (parents || cleanCity || locationFirst)) {
+    addAreaScore(scores, "ginzaTokyoStation", 5);
+  }
+  if (airportImportant && (nearHeavy || nearOneDay || airportNear)) {
+    addAreaScore(scores, "ginzaTokyoStation", 4);
+  }
+  if (parents && airportNormal) {
+    addAreaScore(scores, "ginzaTokyoStation", 3);
+  }
+
+  if (traditionalBudget && budgetSave) {
+    addAreaScore(scores, "uenoAsakusa", 6);
+  }
+  if (traditionalBudget && airportImportant) {
+    addAreaScore(scores, "uenoAsakusa", 3);
+  }
+  if (budgetSave && !shoppingCafe && !disneyCore && !odaibaCore) {
+    addAreaScore(scores, "uenoAsakusa", 3);
+  }
+
+  if ((disneyCore || odaibaCore || disneyInNear) && (family || familyLeisure)) {
+    addAreaScore(scores, "odaibaBay", 7);
+  }
+  if (odaibaCore) {
+    addAreaScore(scores, "odaibaBay", 5);
+  }
+  if (disneyCore && !cityOnly) {
+    addAreaScore(scores, "odaibaBay", 4);
+    addAreaScore(scores, "ginzaTokyoStation", 2);
+  }
+  if (bayDay && family) {
+    addAreaScore(scores, "ginzaTokyoStation", 2);
+    addAreaScore(scores, "odaibaBay", 2);
+  }
+
+  if (quietStay && (repeatTrip || couple) && !budgetSave) {
+    addAreaScore(scores, "akasakaRoppongi", 5);
+  }
+  if (cleanCity && couple && !airportImportant) {
+    addAreaScore(scores, "akasakaRoppongi", 3);
+  }
+  if (repeatTrip && locationFirst && noBay) {
+    addAreaScore(scores, "akasakaRoppongi", 2);
+  }
+}
+
     function calculateScores() {
       const scores = {};
       Object.keys(cityConfig.areas).forEach((areaKey) => {
@@ -338,6 +455,8 @@ const cityConfig = {
           scores[areaKey] += score;
         });
       });
+
+      applyAccuracyAdjustments(scores);
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
@@ -361,7 +480,7 @@ const cityConfig = {
 
       section.style.display = "block";
       setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-      setText("hotelSectionDesc", "추천 위치 결과와 잘 맞는 호텔 후보입니다. 데스크탑에서는 좌우로 넘겨 비교할 수 있으며, 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 함께 확인하세요.");
+      setText("hotelSectionDesc", "추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 후보입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 함께 확인하세요.");
       hotelCardList.innerHTML = "";
 
       hotels.forEach((hotel, index) => {

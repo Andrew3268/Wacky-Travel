@@ -1139,6 +1139,113 @@ const cityConfig = {
       renderQuestion();
     }
 
+
+function getSelectedOption(questionIndex) {
+  const answerIndex = answers[questionIndex];
+  if (answerIndex === null || answerIndex === undefined) return null;
+  return cityConfig.questions[questionIndex]?.options?.[answerIndex] || null;
+}
+
+function getSelectedOptionTitle(questionIndex) {
+  return getSelectedOption(questionIndex)?.title || "";
+}
+
+function answerIs(questionIndex, title) {
+  return getSelectedOptionTitle(questionIndex) === title;
+}
+
+function answerIn(questionIndex, titles) {
+  return titles.includes(getSelectedOptionTitle(questionIndex));
+}
+
+function addAreaScore(scores, areaKey, amount) {
+  if (Object.prototype.hasOwnProperty.call(scores, areaKey)) {
+    scores[areaKey] += amount;
+  }
+}
+
+function applyAccuracyAdjustments(scores) {
+  const firstSapporo = answerIs(0, "첫 삿포로");
+  const nearSchedule = answerIs(0, "근교 일정") || answerIs(3, "근교 2일 이상") || answerIs(3, "오타루 하루");
+  const foodDinner = answerIs(0, "맛집·저녁") || answerIs(6, "매우 중요") || answerIs(4, "번화가");
+  const quietRest = answerIs(0, "조용한 휴식") || answerIs(4, "차분한 숙소") || answerIs(6, "조용함 우선");
+  const family = answerIn(1, ["가족·아이", "부모님 동반"]);
+  const friends = answerIs(1, "친구 여행");
+  const couple = answerIs(1, "커플 여행");
+  const winter = answerIs(2, "겨울·눈축제");
+  const greenSeason = answerIs(2, "봄·여름·가을");
+  const onsenSeason = answerIs(2, "온천 휴식");
+  const jozankeiNight = answerIs(3, "조잔케이 1박");
+  const cityOnly = answerIs(3, "시내 중심");
+  const cleanCity = answerIs(4, "깔끔한 도심");
+  const onsenMood = answerIs(4, "온천·휴식");
+  const snowVery = answerIs(5, "매우 걱정");
+  const snowNormal = answerIs(5, "보통");
+  const snowOk = answerIs(5, "상관없음");
+  const dinnerNormal = answerIs(6, "보통");
+  const budgetSave = answerIs(7, "예산 절약");
+  const balanceBudget = answerIs(7, "가격·위치 균형");
+  const locationFirst = answerIs(7, "위치 우선");
+  const onsenBudget = answerIs(7, "온천 예산 추가");
+
+  if ((nearSchedule || winter || snowVery) && (family || locationFirst || firstSapporo)) {
+    addAreaScore(scores, "sapporoStation", 5);
+  }
+  if (nearSchedule && winter) {
+    addAreaScore(scores, "sapporoStation", 3);
+  }
+  if (cleanCity && snowVery) {
+    addAreaScore(scores, "sapporoStation", 2);
+  }
+
+  if (firstSapporo && (cityOnly || snowNormal || balanceBudget)) {
+    addAreaScore(scores, "odoriTanukikoji", 5);
+  }
+  if (greenSeason && cityOnly) {
+    addAreaScore(scores, "odoriTanukikoji", 3);
+  }
+  if (balanceBudget && !nearSchedule && !foodDinner) {
+    addAreaScore(scores, "odoriTanukikoji", 2);
+  }
+
+  if (foodDinner && (friends || cityOnly)) {
+    addAreaScore(scores, "susukino", 7);
+  }
+  if (foodDinner && !family && !snowVery) {
+    addAreaScore(scores, "susukino", 3);
+  }
+
+  if (quietRest && (family || couple || dinnerNormal)) {
+    addAreaScore(scores, "nakajimaPark", 5);
+  }
+  if (foodDinner && quietRest) {
+    addAreaScore(scores, "nakajimaPark", 3);
+  }
+  if (budgetSave && quietRest) {
+    addAreaScore(scores, "nakajimaPark", 2);
+  }
+
+  if (greenSeason && quietRest && !nearSchedule) {
+    addAreaScore(scores, "maruyama", 6);
+  }
+  if (snowOk && quietRest && !cityOnly) {
+    addAreaScore(scores, "maruyama", 3);
+  }
+  if (budgetSave && greenSeason) {
+    addAreaScore(scores, "maruyama", 2);
+  }
+
+  if (jozankeiNight || onsenSeason || onsenMood || onsenBudget) {
+    addAreaScore(scores, "jozankei", 6);
+  }
+  if ((jozankeiNight || onsenBudget) && family) {
+    addAreaScore(scores, "jozankei", 4);
+  }
+  if (onsenSeason && onsenBudget) {
+    addAreaScore(scores, "jozankei", 5);
+  }
+}
+
     function calculateScores() {
       const scores = {};
       Object.keys(cityConfig.areas).forEach((areaKey) => {
@@ -1152,6 +1259,8 @@ const cityConfig = {
           scores[areaKey] += score;
         });
       });
+
+      applyAccuracyAdjustments(scores);
 
       return Object.entries(scores)
         .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
@@ -1175,7 +1284,7 @@ const cityConfig = {
 
       section.style.display = "block";
       setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-      setText("hotelSectionDesc", "추천 위치 결과와 잘 맞는 호텔 후보입니다. 데스크탑에서는 좌우로 넘겨 비교할 수 있으며, 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
+      setText("hotelSectionDesc", "추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 후보입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
       hotelCardList.innerHTML = "";
 
       hotels.forEach((hotel, index) => {
@@ -1304,7 +1413,7 @@ const cityConfig = {
     }
 
     function getPersuasiveContent(area) {
-      const intro = `${area.name}은(는) 선택한 답변에서 중요하게 본 이동, 분위기, 예산 기준과 가장 잘 맞는 위치입니다. 숙소를 이 구역 안에서 먼저 비교하면 불필요한 이동과 고민을 줄이기 쉽습니다.`;
+      const intro = `${area.name}은(는) 이번 여행의 이동, 분위기, 예산 기준과 가장 잘 맞는 위치입니다. 숙소를 이 구역 안에서 먼저 비교하면 불필요한 이동과 고민을 줄이기 쉽습니다.`;
       const reasons = [
         { title: area.leadTitle || "일정 흐름이 단순해집니다", text: area.leadText || area.summary },
         { title: "숙소 위치를 좁히기 쉽습니다", text: Array.isArray(area.stayRange) ? area.stayRange[0] : area.compareGood },
