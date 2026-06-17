@@ -121,7 +121,7 @@
           <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
         </div>
         <div class="country-destination-group__actions">
-          <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}">${escapeHtml(countryName)} 전체 보기 <span aria-hidden="true">→</span></a>
+          <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}" aria-label="${escapeHtml(countryName)} 전체 보기"><span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="destination-chip-list" aria-label="${escapeHtml(countryName)} 도시 목록">
