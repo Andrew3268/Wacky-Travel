@@ -16,9 +16,9 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260615fontWeightRelatedFix" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260615fontWeightRelatedFix" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260615fontWeightRelatedFix" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260618OsakaAreaTabsV13" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오사카","item":"/destinations/osaka"},{"@type":"ListItem","position":4,"name":"오사카 근교 여행 숙소 위치 추천","item":"/destinations/osaka/near-trip/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 근교 여행 숙소 추천 구역","itemListElement":[{"@type":"ListItem","position":1,"name":"우메다"},{"@type":"ListItem","position":2,"name":"신오사카"},{"@type":"ListItem","position":3,"name":"난바"},{"@type":"ListItem","position":4,"name":"텐노지"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오사카 근교 여행 숙소 추천 구역","itemListElement":[{"@type":"ListItem","position":1,"name":"난바"},{"@type":"ListItem","position":2,"name":"신사이바시"},{"@type":"ListItem","position":3,"name":"우메다"},{"@type":"ListItem","position":4,"name":"덴노지"},{"@type":"ListItem","position":5,"name":"유니버셜 시티"},{"@type":"ListItem","position":6,"name":"혼마치"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"교토와 고베를 모두 가면 숙소는 어디가 좋나요?","acceptedAnswer":{"@type":"Answer","text":"교토와 고베를 모두 고려한다면 여러 노선을 활용하기 쉬운 우메다가 가장 무난합니다."}},{"@type":"Question","name":"신오사카와 우메다 중 어디가 근교 여행에 더 좋나요?","acceptedAnswer":{"@type":"Answer","text":"교토 이동을 반복하거나 신칸센을 이용한다면 신오사카가 단순하고, 오사카 시내 쇼핑과 식사까지 같이 즐기려면 우메다가 편합니다."}},{"@type":"Question","name":"나라 당일치기는 어느 지역 숙소가 편한가요?","acceptedAnswer":{"@type":"Answer","text":"긴테쓰 나라 이동을 생각하면 난바가 편합니다. 특히 도톤보리 저녁 일정과 같이 묶기 좋습니다."}},{"@type":"Question","name":"근교 여행이 많아도 난바 숙소가 괜찮나요?","acceptedAnswer":{"@type":"Answer","text":"나라 중심이거나 늦은 시간에 도톤보리를 즐기고 싶다면 난바도 괜찮습니다. 다만 교토·고베 이동이 많다면 우메다나 신오사카가 더 효율적입니다."}},{"@type":"Question","name":"근교 여행 호텔 예약 전 무엇을 확인해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"목적지별 출발역, 환승 횟수, 막차 후 숙소 복귀 동선, 역에서 호텔까지의 캐리어 이동 경로를 먼저 확인하는 것이 좋습니다."}}]}</script>
 </head>
 <body>
@@ -84,47 +84,90 @@
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Area Guide</div>
-<h2 class="wt-section-title" id="areaTitle">우메다·신오사카·난바·텐노지, 이렇게 보세요</h2>
-<p class="wt-section-desc">근교 목적지가 어디인지에 따라 편한 숙소 구역이 달라집니다.</p>
+<h2 class="wt-section-title" id="areaTitle">근교 일정이 있어도 6개 지역 기준으로 비교하세요</h2>
+<p class="wt-section-desc">교토, 고베, 나라, USJ처럼 목적지가 달라지면 편한 출발지가 달라집니다. 오사카 시내 저녁 동선까지 함께 보세요.</p>
 </div>
 <div aria-label="지역별 선택 가이드" class="wt-area-tabs" data-area-tabs="true">
 <input checked="checked" class="wt-area-tab-input" id="near-trip-area-tab-1" name="near-trip-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="near-trip-area-tab-2" name="near-trip-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="near-trip-area-tab-3" name="near-trip-area-tabs" type="radio"/>
 <input class="wt-area-tab-input" id="near-trip-area-tab-4" name="near-trip-area-tabs" type="radio"/>
-<div aria-label="지역 선택" class="wt-area-tab-list"><label class="wt-area-tab-button" for="near-trip-area-tab-1">우메다</label><label class="wt-area-tab-button" for="near-trip-area-tab-2">신오사카</label><label class="wt-area-tab-button" for="near-trip-area-tab-3">난바</label><label class="wt-area-tab-button" for="near-trip-area-tab-4">텐노지</label></div>
+<input class="wt-area-tab-input" id="near-trip-area-tab-5" name="near-trip-area-tabs" type="radio"/>
+<input class="wt-area-tab-input" id="near-trip-area-tab-6" name="near-trip-area-tabs" type="radio"/>
+<div aria-label="지역 선택" class="wt-area-tab-list"><label class="wt-area-tab-button" for="near-trip-area-tab-1">난바</label><label class="wt-area-tab-button" for="near-trip-area-tab-2">신사이바시</label><label class="wt-area-tab-button" for="near-trip-area-tab-3">우메다</label><label class="wt-area-tab-button" for="near-trip-area-tab-4">덴노지</label><label class="wt-area-tab-button" for="near-trip-area-tab-5">유니버셜 시티</label><label class="wt-area-tab-button" for="near-trip-area-tab-6">혼마치</label></div>
 <div class="wt-area-tab-panels">
 <article aria-labelledby="near-trip-area-title-1" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">교토와 고베를 함께 본다면</span>
-<h3 id="near-trip-area-title-1">우메다</h3>
-<p class="wt-area-card__lead">JR, 한큐, 한신 등 선택지가 많아 교토와 고베를 함께 보는 근교 일정의 중심으로 잡기 좋습니다.</p>
+<span class="wt-area-card__label">시내 저녁과 공항 이동 중심</span>
+<h3 id="near-trip-area-title-1">난바</h3>
+<p class="wt-area-card__lead">낮에는 근교를 다녀오고 저녁에는 도톤보리·난바 맛집을 즐기는 일정에 잘 맞습니다.</p>
 </div>
-<div class="wt-area-tab-panel__details"><div class="wt-area-card__note"><strong>해결되는 고민</strong><span>근교로 나갈 때마다 출발역이 달라 헷갈리거나, 아침 이동 시간이 길어지는 문제를 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>교토와 고베를 모두 넣은 일정, 3박 이상 여행, 쇼핑과 근교 이동을 둘 다 챙기고 싶은 분께 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>JR 오사카역, 한큐 우메다, 한신 우메다 중 자주 탈 노선을 먼저 정하고 호텔에서 해당 개찰구까지의 실제 동선을 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>우메다는 역 구조가 넓고 복잡합니다. 숙소가 우메다 생활권이어도 매일 이용할 노선과 멀면 피로가 커질 수 있습니다.</span></div></div>
-</article>
-<article aria-labelledby="near-trip-area-title-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>해결되는 고민</strong><span>오사카가 처음이고 이동을 단순하게 만들고 싶다면 가장 안전한 기본 후보입니다.</span></div>
+<div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>첫 방문, 2박 3일 짧은 일정, 도톤보리 야경, 구로몬시장, 저녁 식사 동선이 중요한 여행에 잘 맞습니다.</span></div>
+<div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>“난바역 근처”라는 표현만 보지 말고 난카이 난바역, 오사카난바역, 지하철 난바역 중 실제로 이용할 역과 가까운지 확인하세요.</span></div>
+<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>도톤보리 바로 앞이나 번화가 저층 객실은 소음과 혼잡이 부담될 수 있습니다. 조용한 휴식을 원하면 큰길에서 살짝 떨어진 위치가 더 편할 수 있습니다.</span></div>
+</div>
+</article><article aria-labelledby="near-trip-area-title-2" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">교토를 여러 번 간다면</span>
-<h3 id="near-trip-area-title-2">신오사카</h3>
-<p class="wt-area-card__lead">교토 이동이나 신칸센, JR 이용 비중이 높은 일정이라면 출발과 복귀가 단순해지는 장점이 있습니다.</p>
+<span class="wt-area-card__label">쇼핑과 시내 복귀 균형</span>
+<h3 id="near-trip-area-title-2">신사이바시</h3>
+<p class="wt-area-card__lead">근교 이동 후에도 쇼핑과 카페, 도톤보리 산책을 포기하고 싶지 않을 때 비교하기 좋습니다.</p>
 </div>
-<div class="wt-area-tab-panel__details"><div class="wt-area-card__note"><strong>해결되는 고민</strong><span>교토로 여러 번 이동하거나 이른 시간 열차를 타야 할 때, 숙소에서 출발역까지 이동하는 부담을 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>교토 반복 이동, 신칸센 이용, 늦은 도착·이른 출발, 근교 비중이 높은 실용형 일정에 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>신오사카역 안에서도 신칸센·JR·지하철 동선이 다릅니다. 실제 이용할 개찰구 기준으로 호텔 위치를 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>난바·도톤보리 중심의 저녁 일정에는 분위기가 약하고 이동이 필요합니다. 오사카 시내 관광 비중이 높다면 우메다나 난바도 같이 보세요.</span></div></div>
-</article>
-<article aria-labelledby="near-trip-area-title-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>해결되는 고민</strong><span>난바 접근성은 살리면서 숙소 주변의 번잡함을 조금 줄이고 싶을 때 좋은 대안입니다.</span></div>
+<div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>쇼핑, 카페, 커플 여행, 도보 중심 일정, 난바와 도톤보리를 자주 오가는 여행에 잘 맞습니다.</span></div>
+<div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>신사이바시역 주변은 이동이 편하고, 나가호리바시 방향은 상대적으로 차분할 수 있습니다. 도톤보리까지 자주 갈 계획이라면 실제 도보 시간을 확인하세요.</span></div>
+<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>공항에서 바로 들어오는 동선은 난바보다 한 번 더 계산이 필요할 수 있습니다. 첫날 피로를 줄이려면 공항에서 호텔까지의 환승 방법을 미리 정하세요.</span></div>
+</div>
+</article><article aria-labelledby="near-trip-area-title-3" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">나라와 난바 저녁 일정을 묶는다면</span>
-<h3 id="near-trip-area-title-3">난바</h3>
-<p class="wt-area-card__lead">긴테쓰 나라 이동과 도톤보리 저녁 일정을 같이 묶고 싶다면 난바가 실용적인 선택이 될 수 있습니다.</p>
+<span class="wt-area-card__label">교토·고베·나라 이동 중심</span>
+<h3 id="near-trip-area-title-3">우메다</h3>
+<p class="wt-area-card__lead">근교 당일치기가 여러 번 있다면 출발역 접근성이 좋아 아침 이동과 저녁 복귀가 수월합니다.</p>
 </div>
-<div class="wt-area-tab-panel__details"><div class="wt-area-card__note"><strong>해결되는 고민</strong><span>나라 당일치기 후 저녁에 도톤보리나 난바 일정을 이어가고 싶은데 숙소 복귀가 번거로울까 걱정되는 문제를 줄여줍니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>나라 일정이 있고, 도톤보리·구로몬시장·신사이바시 저녁 이동도 중요하게 보는 분께 잘 맞습니다.</span></div><div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>긴테쓰 오사카난바역, 지하철 난바역, 난카이 난바역 중 어떤 노선을 쓸지 정하고 호텔과의 거리를 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>교토·고베 이동이 반복된다면 우메다나 신오사카보다 효율이 떨어질 수 있습니다. 근교 목적지를 먼저 정한 뒤 선택하세요.</span></div></div>
-</article>
-<article aria-labelledby="near-trip-area-title-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>해결되는 고민</strong><span>근교 이동과 쇼핑 비중이 높다면 난바보다 더 편하게 느껴질 수 있는 지역입니다.</span></div>
+<div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>근교 당일치기, 부모님 동반, 쇼핑, 3박 이상 일정, 대형역 주변 편의시설을 중요하게 보는 여행에 잘 맞습니다.</span></div>
+<div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>오사카역, 우메다역, 한큐·한신·JR 노선이 모여 있어 이름은 비슷해도 실제 동선은 다릅니다. 매일 이용할 노선과 가까운 쪽으로 호텔을 좁히세요.</span></div>
+<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>역 구조가 복잡해 첫 방문자는 초반에 길 찾기가 어렵게 느껴질 수 있습니다. 도톤보리 늦은 시간 일정이 많다면 난바보다 복귀가 번거로울 수 있습니다.</span></div>
+</div>
+</article><article aria-labelledby="near-trip-area-title-4" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
 <div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">공항과 남부 동선이 중요하다면</span>
-<h3 id="near-trip-area-title-4">텐노지</h3>
-<p class="wt-area-card__lead">남부 일정, 아베노하루카스, 간사이공항 이동을 함께 보는 분이라면 텐노지도 실용적입니다.</p>
+<span class="wt-area-card__label">남부·나라 이동까지 본다면</span>
+<h3 id="near-trip-area-title-4">덴노지</h3>
+<p class="wt-area-card__lead">오사카 남부 일정과 나라 이동, 공항 이동을 함께 생각할 때 현실적인 선택지가 됩니다.</p>
 </div>
-<div class="wt-area-tab-panel__details"><div class="wt-area-card__note"><strong>해결되는 고민</strong><span>공항 이동과 남부 관광지를 함께 넣었을 때 이동이 흩어지는 문제를 줄이고, 첫날·마지막 날 동선을 단순하게 만들 수 있습니다.</span></div><div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>아베노하루카스, 신세카이, 남부 지역, 공항 이동을 함께 고려하는 일정이나 난바보다 숙박비를 조절하고 싶은 분께 좋습니다.</span></div><div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>JR, 지하철, 공항철도 중 실제로 자주 쓸 노선을 먼저 정하고 역에서 호텔까지의 보행 동선을 확인하세요.</span></div><div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>교토·고베 중심 근교 일정이라면 우메다나 신오사카보다 효율이 떨어질 수 있습니다. 남부·공항 동선 비중이 높을 때 추천됩니다.</span></div></div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>해결되는 고민</strong><span>가격과 교통을 함께 보면서 오사카 남부 일정까지 넣고 싶을 때 현실적인 후보입니다.</span></div>
+<div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>가성비 숙소, 남부 관광, 가족 여행, 공항 이동과 시내 이동을 함께 고려하는 일정에 잘 맞습니다.</span></div>
+<div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>JR, 지하철, 공항 이동 중 어떤 노선을 주로 쓸지 먼저 정하고, 역 주변에서도 호텔까지의 실제 경로와 출구를 확인하세요.</span></div>
+<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>난바·우메다 중심 일정이 많다면 매번 이동 시간이 쌓일 수 있습니다. 숙박비가 낮아도 실제 동선이 길어지면 체감 만족도가 떨어질 수 있습니다.</span></div>
+</div>
+</article><article aria-labelledby="near-trip-area-title-5" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">USJ를 길게 즐긴다면</span>
+<h3 id="near-trip-area-title-5">유니버셜 시티</h3>
+<p class="wt-area-card__lead">USJ를 하루 이상 길게 보낼 계획이라면 시내 왕복 피로를 크게 줄여줍니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>해결되는 고민</strong><span>USJ가 일정의 중심이라면 이동 피로를 가장 확실하게 줄여주는 선택지입니다.</span></div>
+<div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>USJ 중심 일정, 아이 동반, 가족 여행, 오픈런, 밤까지 파크에 머무는 여행에 잘 맞습니다.</span></div>
+<div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>유니버셜 시티역에서 호텔까지의 실제 도보 시간, 편의점·세탁 시설, 조식 여부, 파크 입구까지의 경로를 함께 확인하세요.</span></div>
+<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>오사카 시내 관광이 많은 일정에는 난바나 우메다를 매번 오가야 해서 불편할 수 있습니다. USJ 비중이 높을 때 우선순위가 올라갑니다.</span></div>
+</div>
+</article><article aria-labelledby="near-trip-area-title-6" class="wt-area-card wt-area-card--decision wt-area-tab-panel">
+<div class="wt-area-tab-panel__summary">
+<span class="wt-area-card__label">난바·우메다 사이 균형형</span>
+<h3 id="near-trip-area-title-6">혼마치</h3>
+<p class="wt-area-card__lead">여러 방향으로 움직이면서 숙박비와 조용한 분위기를 함께 보고 싶을 때 좋습니다.</p>
+</div>
+<div class="wt-area-tab-panel__details">
+<div class="wt-area-card__note"><strong>해결되는 고민</strong><span>숙박비, 조용함, 난바·우메다 사이 이동 균형을 함께 보고 싶을 때 좋은 후보입니다.</span></div>
+<div class="wt-area-card__note"><strong>잘 맞는 분들</strong><span>가성비, 조용한 숙박, 재방문, 여러 구역을 나눠 다니는 일정, 객실 컨디션을 함께 보는 여행에 잘 맞습니다.</span></div>
+<div class="wt-area-card__note"><strong>호텔 위치 잡는 법</strong><span>혼마치역은 노선과 출구가 많아 편리하지만 처음에는 복잡하게 느껴질 수 있습니다. 호텔에서 가까운 출구 번호와 엘리베이터 위치를 같이 확인하세요.</span></div>
+<div class="wt-area-card__note wt-area-card__note--caution"><strong>주의할 점</strong><span>도톤보리 같은 즉각적인 여행 분위기는 약할 수 있습니다. 첫날부터 오사카다운 활기를 느끼고 싶다면 난바나 신사이바시도 함께 비교하세요.</span></div>
+</div>
 </article>
 </div>
 </div>
@@ -203,7 +246,7 @@
 </div>
 <div class="wt-link-grid">
 <a class="wt-link-card" href="/destinations/osaka/"><h3>오사카 메인 가이드</h3><p>여행 스타일별 숙소 위치를 한눈에 비교합니다.</p></a>
-<a class="wt-link-card" href="/destinations/osaka/hotel-guide/"><h3>오사카 숙소 위치 가이드</h3><p>난바, 우메다, 신사이바시, 혼마치의 차이를 자세히 정리했습니다.</p></a>
+<a class="wt-link-card" href="/destinations/osaka/hotel-guide/"><h3>오사카 숙소 위치 가이드</h3><p>난바, 신사이바시, 우메다, 덴노지, 유니버셜 시티, 혼마치의 차이를 자세히 정리했습니다.</p></a>
 </div>
 </div>
 </section>
@@ -232,5 +275,6 @@
 </nav>
 </div>
 </footer>
+<script defer="" src="/assets/js/area-tabs-scroll.js?v=20260618OsakaAreaTabsV13"></script>
 </body>
 </html>
