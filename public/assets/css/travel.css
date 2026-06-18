@@ -12896,6 +12896,7 @@ margin-right: -24px;
   height: 38px !important;
   padding: 0 !important;
   border: 0 !important;
+  outline: 0 !important;
   background: transparent !important;
   color: #101828 !important;
   font-size: 13.5px !important;
@@ -14460,6 +14461,7 @@ main.travel-page :where(
 ) {
   border: 0 !important;
   border-color: transparent !important;
+  outline: 0 !important;
 }
 
 main.travel-page :where(.wt-area-tab-list, .wt-city-area-tab-list) {
@@ -14486,3 +14488,179 @@ main.travel-page :where(.travel-hero__image, .hotel-detail__image, .travel-card,
   }
 }
 /* End WACKYTRAVEL_MINIMAL_SURFACE_REFINEMENT_V110 */
+
+
+/* WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111
+   - 흰 배경 기조 유지
+   - 호텔 카드와 배너 버튼에는 최소 border 복구
+   - 목적별 Area Guide와 서베이 CTA 간격 축소
+   - border 제거 후 생긴 횡한 느낌을 spacing/정렬/얇은 구획감으로 보완
+========================================================= */
+main.travel-page {
+  --travel-line: rgba(15, 23, 42, 0.08);
+  --border: rgba(15, 23, 42, 0.08);
+  --card: #ffffff;
+  --shadow: none;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* 버튼을 제외한 메인 배너/CTA 표면은 흰색으로 유지 */
+main.travel-page :where(
+  .wt-city-cta__inner,
+  .wt-cta-band,
+  .wt-section--survey-cta,
+  .wt-section--survey-cta .container,
+  .wt-city-cta,
+  .wt-city-cta.container,
+  .wt-city-hero,
+  .wt-page-hero,
+  .wt-section,
+  .wt-city-section,
+  .wt-area-tabs,
+  .wt-city-area-tabs,
+  .wt-area-tab-panel,
+  .wt-city-area-tab-panel
+) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* 배너 버튼: 미니멀한 border 복구 */
+main.travel-page :where(
+  .wt-city-cta .wt-city-button,
+  .wt-section--survey-cta .wt-city-button,
+  .wt-cta-band .wt-city-button,
+  .wt-city-hero__actions .wt-city-button,
+  .wt-hotel-actions .wt-btn
+) {
+  border: 1px solid rgba(37, 99, 235, 0.18) !important;
+}
+
+main.travel-page :where(
+  .wt-city-cta .wt-city-button--primary,
+  .wt-section--survey-cta .wt-city-button--primary,
+  .wt-cta-band .wt-city-button--primary,
+  .wt-city-hero__actions .wt-city-button--primary,
+  .wt-hotel-actions .wt-btn--primary
+) {
+  border-color: rgba(37, 99, 235, 0.22) !important;
+  background: #2563eb !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+main.travel-page :where(
+  .wt-city-cta .wt-city-button--ghost,
+  .wt-section--survey-cta .wt-city-button--ghost,
+  .wt-cta-band .wt-city-button--ghost,
+  .wt-city-hero__actions .wt-city-button--ghost,
+  .wt-hotel-actions .wt-btn--ghost
+) {
+  border-color: rgba(15, 23, 42, 0.10) !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+/* 호텔 카드: 카드 구분에 필요한 최소 border 복구 */
+main.travel-page :where(.wt-hotel-card),
+main.travel-page.wt-purpose-page :where(.wt-hotel-card),
+main.travel-page :where(.wt-purpose-page .wt-hotel-card) {
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+main.travel-page :where(.wt-hotel-card .wt-badge, .wt-hotel-card__meta-list .wt-badge) {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* 목적별 Area Guide와 서베이 CTA 간격 재조정 */
+main.travel-page.wt-purpose-page #area-compare.wt-section,
+.travel-page.wt-purpose-page #area-compare.wt-section {
+  padding-bottom: clamp(8px, 1.2vw, 14px) !important;
+}
+
+main.travel-page.wt-purpose-page #area-compare.wt-section + .wt-section--survey-cta,
+.travel-page.wt-purpose-page #area-compare.wt-section + .wt-section--survey-cta,
+main.travel-page #area-compare.wt-section + .wt-section--survey-cta,
+.travel-page #area-compare.wt-section + .wt-section--survey-cta {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+main.travel-page.wt-purpose-page .wt-section--survey-cta,
+.travel-page.wt-purpose-page .wt-section--survey-cta {
+  padding-top: 0 !important;
+  padding-bottom: clamp(34px, 4vw, 56px) !important;
+}
+
+main.travel-page.wt-purpose-page .wt-section--survey-cta .wt-cta-band,
+.travel-page.wt-purpose-page .wt-section--survey-cta .wt-cta-band {
+  margin-top: 0 !important;
+  padding: clamp(20px, 3vw, 30px) !important;
+}
+
+/* border 제거 후 생기는 횡함 보완: 여백을 넓히지 않고 콘텐츠 밀도를 안정화 */
+main.travel-page :where(.wt-section-head, .section-heading) {
+  margin-bottom: clamp(18px, 2.4vw, 28px) !important;
+}
+
+main.travel-page :where(.wt-area-tabs, .wt-city-area-tabs) {
+  gap: clamp(12px, 1.8vw, 18px) !important;
+}
+
+main.travel-page :where(.wt-area-tab-panel, .wt-city-area-tab-panel) {
+  padding-top: clamp(14px, 2vw, 22px) !important;
+}
+
+main.travel-page :where(.wt-hotel-grid, .travel-card-grid, .wt-content-grid) {
+  gap: clamp(16px, 2.2vw, 24px) !important;
+}
+
+main.travel-page :where(.wt-cta-band, .wt-city-cta__inner) {
+  gap: clamp(16px, 3vw, 28px) !important;
+  border: 0 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  main.travel-page.wt-purpose-page #area-compare.wt-section,
+  .travel-page.wt-purpose-page #area-compare.wt-section {
+    padding-bottom: 10px !important;
+  }
+
+  main.travel-page.wt-purpose-page .wt-section--survey-cta .wt-cta-band,
+  .travel-page.wt-purpose-page .wt-section--survey-cta .wt-cta-band {
+    padding: 22px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main.travel-page.wt-purpose-page #area-compare.wt-section,
+  .travel-page.wt-purpose-page #area-compare.wt-section {
+    padding-bottom: 6px !important;
+  }
+
+  main.travel-page.wt-purpose-page .wt-section--survey-cta,
+  .travel-page.wt-purpose-page .wt-section--survey-cta {
+    padding-top: 0 !important;
+    padding-bottom: 32px !important;
+  }
+
+  main.travel-page.wt-purpose-page .wt-section--survey-cta .wt-cta-band,
+  .travel-page.wt-purpose-page .wt-section--survey-cta .wt-cta-band {
+    padding: 20px 0 !important;
+  }
+
+  main.travel-page :where(.wt-section-head, .section-heading) {
+    margin-bottom: 16px !important;
+  }
+
+  main.travel-page :where(.wt-hotel-grid, .travel-card-grid, .wt-content-grid) {
+    gap: 14px !important;
+  }
+}
+/* End WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111 */
