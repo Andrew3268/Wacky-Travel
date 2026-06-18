@@ -14908,3 +14908,75 @@ main.travel-page.wt-city-page #area-guide .wt-city-area-panel__decision span,
   }
 }
 /* End WACKYTRAVEL_CITY_AREA_PANEL_REFINEMENT_V112 */
+
+/* WACKYTRAVEL_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113
+   - breadcrumb ol/current item horizontal padding reset
+   - city hotel-guide survey panel text visibility fix on white surfaces
+========================================================= */
+.breadcrumbs.container > ol,
+.breadcrumbs ol {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.breadcrumbs.container a,
+.breadcrumbs a,
+.breadcrumbs.container span[aria-current="page"],
+.breadcrumbs span[aria-current="page"],
+.breadcrumbs.container li:last-child > span,
+.breadcrumbs li:last-child > span {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+main.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__link,
+.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__link,
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__link,
+.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__link {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+}
+
+main.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__eyebrow,
+.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__eyebrow,
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__eyebrow,
+.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__eyebrow {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: transparent !important;
+  color: #2563eb !important;
+}
+
+main.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__content,
+.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__content,
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__content,
+.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__content {
+  color: #333333 !important;
+}
+
+main.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__content strong,
+.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__content strong,
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__content strong,
+.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__content strong {
+  color: #111827 !important;
+}
+
+main.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__content span:last-child,
+.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__content span:last-child,
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__content span:last-child,
+.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__content span:last-child {
+  color: #333333 !important;
+}
+
+main.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__button,
+.travel-page.wt-city-hotel-guide-page .wt-city-guide-survey-panel__button,
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__button,
+.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__button {
+  background: #2563eb !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(37, 99, 235, 0.28) !important;
+}
+/* End WACKYTRAVEL_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113 */
