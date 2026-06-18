@@ -60,7 +60,18 @@ const STATIC_ROUTES = [
   "/destinations/okinawa/value-hotel/",
   "/destinations/okinawa/near-trip/",
   "/destinations/okinawa/family-trip/",
-  "/destinations/okinawa/quiet-stay/"
+  "/destinations/okinawa/quiet-stay/",
+  "/destinations/da-nang/",
+  "/destinations/da-nang/hotel-recommendations/",
+  "/destinations/da-nang/hotels/",
+  "/destinations/da-nang/travel-guide/",
+  "/destinations/da-nang/hotel-guide/",
+  "/destinations/da-nang/hotel-location-survey/",
+  "/destinations/da-nang/first-trip/",
+  "/destinations/da-nang/value-hotel/",
+  "/destinations/da-nang/near-trip/",
+  "/destinations/da-nang/family-trip/",
+  "/destinations/da-nang/quiet-stay/"
 ];
 
 function xmlEscape(value) {

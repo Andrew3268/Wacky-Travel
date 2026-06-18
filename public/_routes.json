@@ -18,6 +18,8 @@
     "/destinations/sapporo",
     "/destinations/sapporo/*",
     "/destinations/okinawa",
-    "/destinations/okinawa/*"
+    "/destinations/okinawa/*",
+    "/destinations/da-nang",
+    "/destinations/da-nang/*"
   ]
 }

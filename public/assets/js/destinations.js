@@ -15,6 +15,10 @@
     "필리핀": "philippines"
   };
 
+  const STATIC_DESTINATIONS = [
+    { slug: "da-nang", name: "다낭", city: "다낭", country: "베트남", sort_order: 1, status: "published", is_active: 1 }
+  ];
+
   const normalizeText = (value) => String(value || "").trim();
   const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch]));
   const countryToSlug = (value) => {
@@ -149,7 +153,10 @@
 
     const items = mergeDestinationSources(
       Array.isArray(destData.items) ? destData.items : [],
-      Array.isArray(settingsData.destinations) ? settingsData.destinations : []
+      [
+        ...(Array.isArray(settingsData.destinations) ? settingsData.destinations : []),
+        ...STATIC_DESTINATIONS
+      ]
     );
     const groups = buildCountryGroups(items, Array.isArray(settingsData.countries) ? settingsData.countries : []);
 
