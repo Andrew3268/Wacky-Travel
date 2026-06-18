@@ -14062,3 +14062,113 @@ margin-right: -24px;
   }
 }
 /* End WACKYTRAVEL_TOKYO_MAIN_AREA_GUIDE_TABS_V1 */
+
+/* WACKYTRAVEL_TOKYO_AREA_TAB_STYLE_ALIGN_20260618 */
+.wt-city-page--tokyo .wt-city-area-tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  max-width: 100%;
+  gap: 8px;
+  margin: 18px 0 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.wt-city-page--tokyo .wt-city-area-tab-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  word-break: keep-all;
+  box-shadow: none;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.wt-city-page--tokyo .wt-city-area-tab-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.18);
+  background: #f8fafc;
+  color: #0f172a;
+  box-shadow: none;
+}
+
+.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
+.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
+.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
+.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
+.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
+.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: #eff6ff;
+  color: #1d4ed8;
+  box-shadow: none;
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  .wt-purpose-page--near-trip .wt-area-tab-list {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wt-city-page--tokyo .wt-city-area-tab-list,
+  .wt-purpose-page--near-trip .wt-area-tab-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .wt-city-page--tokyo .wt-city-area-tab-list::-webkit-scrollbar,
+  .wt-purpose-page--near-trip .wt-area-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wt-city-page--tokyo .wt-city-area-tab-button,
+  .wt-purpose-page--near-trip .wt-area-tab-button {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .wt-city-page--tokyo .wt-city-area-tab-list {
+    gap: 8px;
+    margin: 18px -25px 16px 0;
+    padding: 6px 25px 8px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .wt-city-page--tokyo .wt-city-area-tab-button {
+    min-height: 44px;
+    padding: 0 16px;
+    background: #fff;
+    box-shadow: none;
+  }
+}
+/* End WACKYTRAVEL_TOKYO_AREA_TAB_STYLE_ALIGN_20260618 */
+
