@@ -14172,3 +14172,55 @@ margin-right: -24px;
 }
 /* End WACKYTRAVEL_TOKYO_AREA_TAB_STYLE_ALIGN_20260618 */
 
+/* WACKYTRAVEL_TOKYO_PURPOSE_AREA_TAB_SCROLL_V11 */
+.wt-purpose-page--first-trip .wt-area-tab-list,
+.wt-purpose-page--near-trip .wt-area-tab-list,
+.wt-purpose-page--family-trip .wt-area-tab-list,
+.wt-purpose-page--quiet-stay .wt-area-tab-list,
+.wt-purpose-page--value-hotel .wt-area-tab-list {
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .wt-purpose-page--first-trip .wt-area-tab-list,
+  .wt-purpose-page--near-trip .wt-area-tab-list,
+  .wt-purpose-page--family-trip .wt-area-tab-list,
+  .wt-purpose-page--quiet-stay .wt-area-tab-list,
+  .wt-purpose-page--value-hotel .wt-area-tab-list {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wt-purpose-page--first-trip .wt-area-tab-list,
+  .wt-purpose-page--near-trip .wt-area-tab-list,
+  .wt-purpose-page--family-trip .wt-area-tab-list,
+  .wt-purpose-page--quiet-stay .wt-area-tab-list,
+  .wt-purpose-page--value-hotel .wt-area-tab-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .wt-purpose-page--first-trip .wt-area-tab-list::-webkit-scrollbar,
+  .wt-purpose-page--near-trip .wt-area-tab-list::-webkit-scrollbar,
+  .wt-purpose-page--family-trip .wt-area-tab-list::-webkit-scrollbar,
+  .wt-purpose-page--quiet-stay .wt-area-tab-list::-webkit-scrollbar,
+  .wt-purpose-page--value-hotel .wt-area-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wt-purpose-page--first-trip .wt-area-tab-button,
+  .wt-purpose-page--near-trip .wt-area-tab-button,
+  .wt-purpose-page--family-trip .wt-area-tab-button,
+  .wt-purpose-page--quiet-stay .wt-area-tab-button,
+  .wt-purpose-page--value-hotel .wt-area-tab-button {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+}
+/* End WACKYTRAVEL_TOKYO_PURPOSE_AREA_TAB_SCROLL_V11 */
+
