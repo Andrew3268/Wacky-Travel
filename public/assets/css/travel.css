@@ -14522,3 +14522,57 @@ main.travel-page.wt-purpose-page .wt-section--survey-cta,
   }
 }
 /* End WACKYTRAVEL_TARGETED_SPACING_TIGHTEN_V18 */
+
+/* WACKYTRAVEL_HERO_BREADCRUMB_REFINEMENT_V19
+   - 목적별 페이지: breadcrumb 아래 wt-page-hero 상단 여백 15px 고정
+   - 도시 메인 index: breadcrumb 아래 wt-city-hero.container 상단 여백 15px 고정
+   - breadcrumb 링크 자체 padding 제거
+========================================================= */
+.breadcrumbs.container a,
+.breadcrumbs a {
+  padding: 0 !important;
+}
+
+main.travel-page.wt-purpose-page > .wt-page-hero:first-child,
+.travel-page.wt-purpose-page > .wt-page-hero:first-child,
+main.travel-page.wt-purpose-page .wt-page-hero,
+.travel-page.wt-purpose-page .wt-page-hero {
+  padding-top: 15px !important;
+}
+
+.breadcrumbs.container + main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+.travel-page.wt-city-page > .wt-city-hero.container:first-child {
+  padding-top: 15px !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  main.travel-page.wt-purpose-page > .wt-page-hero:first-child,
+  .travel-page.wt-purpose-page > .wt-page-hero:first-child,
+  main.travel-page.wt-purpose-page .wt-page-hero,
+  .travel-page.wt-purpose-page .wt-page-hero,
+  .breadcrumbs.container + main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+  main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+  .travel-page.wt-city-page > .wt-city-hero.container:first-child {
+    padding-top: 15px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main.travel-page.wt-purpose-page > .wt-page-hero:first-child,
+  .travel-page.wt-purpose-page > .wt-page-hero:first-child,
+  main.travel-page.wt-purpose-page .wt-page-hero,
+  .travel-page.wt-purpose-page .wt-page-hero,
+  .breadcrumbs.container + main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+  main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+  .travel-page.wt-city-page > .wt-city-hero.container:first-child {
+    padding-top: 15px !important;
+  }
+
+  .breadcrumbs.container a,
+  .breadcrumbs a {
+    padding: 0 !important;
+  }
+}
+/* End WACKYTRAVEL_HERO_BREADCRUMB_REFINEMENT_V19 */
+
