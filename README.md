@@ -5,6 +5,13 @@
 Wacky Travel은 독립적으로 운영되는 여행 제휴마케팅/애드센스 블로그입니다.  
 Cloudflare Pages Functions + D1 + SSR + Edge Cache 구조로 여행지 허브, 호텔 추천 글, 일반 여행 글을 빠르게 출력하도록 구성되어 있습니다.
 
+
+## wackytravel-v1.12 변경 요약
+
+- 일본 5개 도시 메인 index 페이지 Area Guide에서 `wt-city-area-panel__eyebrow`와 `wt-city-area-panel__decision span`의 좌우 패딩을 0으로 조정했습니다.
+- 데스크탑에서 Area Guide의 정보 그리드와 한 줄 판단 영역 사이, 한 줄 판단 영역 하단 간격을 줄였습니다.
+- 압축파일에는 `README.md` 외 별도 Markdown 문서를 포함하지 않도록 정리했습니다.
+
 ## 핵심 구조
 
 ```text

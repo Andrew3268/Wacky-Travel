@@ -14876,3 +14876,35 @@ main.travel-page.wt-city-page .wt-city-cta,
   }
 }
 /* End WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111 */
+
+
+/* WACKYTRAVEL_CITY_AREA_PANEL_REFINEMENT_V112
+   - 일본 도시 메인 Area Guide eyebrow/decision label 좌우 패딩 제거
+   - 데스크탑에서 Area Guide grid와 decision 사이/하단 간격 압축
+========================================================= */
+main.travel-page.wt-city-page #area-guide .wt-city-area-panel__eyebrow,
+.travel-page.wt-city-page #area-guide .wt-city-area-panel__eyebrow {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+main.travel-page.wt-city-page #area-guide .wt-city-area-panel__decision span,
+.travel-page.wt-city-page #area-guide .wt-city-area-panel__decision span {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (min-width: 1025px) {
+  main.travel-page.wt-city-page #area-guide .wt-city-area-panel__grid,
+  .travel-page.wt-city-page #area-guide .wt-city-area-panel__grid {
+    padding-bottom: 10px !important;
+  }
+
+  main.travel-page.wt-city-page #area-guide .wt-city-area-panel__decision,
+  .travel-page.wt-city-page #area-guide .wt-city-area-panel__decision {
+    margin-bottom: 18px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+}
+/* End WACKYTRAVEL_CITY_AREA_PANEL_REFINEMENT_V112 */
