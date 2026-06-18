@@ -486,7 +486,7 @@ body{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  font-weight:500;
+  font-weight: 500;
   letter-spacing:-.03em;
 }
 .brand__mark{
@@ -517,7 +517,7 @@ body{
   box-shadow:0 8px 20px rgba(15,23,42,.06) !important;
   font:inherit;
   font-size:13px !important;
-  font-weight:500 !important;
+  font-weight: 500 !important;
   line-height:1;
   display:inline-flex;
   align-items:center;
@@ -542,7 +542,7 @@ body{
   border-color:rgba(23,23,23,.10) !important;
   background:#fff !important;
   box-shadow:0 8px 20px rgba(15,23,42,.06) !important;
-  font-weight:500 !important;
+  font-weight: 500 !important;
 }
 .travel-page{
   overflow:hidden;
@@ -572,7 +572,7 @@ body{
   font-size:clamp(2.8rem, 6.5vw, 5.9rem);
   line-height:.94;
   letter-spacing:-.075em;
-  font-weight:500;
+  font-weight: 500;
 }
 .travel-hero__summary{
   font-size:1.08rem;
@@ -631,7 +631,7 @@ body{
   background:#eef4ff;
   color:var(--travel-brand);
   font-size:.75rem;
-  font-weight:500;
+  font-weight: 500;
   letter-spacing:.08em;
 }
 .travel-flow{
@@ -658,7 +658,7 @@ body{
   border-radius:15px;
   background:#171717;
   color:#fff;
-  font-weight:500;
+  font-weight: 500;
 }
 .travel-flow b{
   font-size:1.05rem;
@@ -715,7 +715,7 @@ body{
   gap:22px;
 }
 .section-heading h2{
-  font-weight:500;
+  font-weight: 500;
   color:#171717;
 }
 .travel-card-grid{
@@ -766,7 +766,7 @@ body{
 .travel-card h2,
 .travel-card h3,
 .travel-list h3{
-  font-weight:500;
+  font-weight: 500;
   color:#171717;
 }
 .travel-card p,
@@ -815,7 +815,7 @@ body{
   box-shadow:var(--travel-shadow-soft);
 }
 .hotel-detail__hero h1{
-  font-weight:500;
+  font-weight: 500;
 }
 .hotel-detail__image,
 .travel-hero__image{
@@ -823,7 +823,7 @@ body{
 }
 .content-card h2,
 .side-card h2{
-  font-weight:500;
+  font-weight: 500;
   letter-spacing:-.035em;
 }
 .content-card--notice{
@@ -2180,7 +2180,7 @@ body{
   border-radius:999px;
   background:transparent;
   color:#555;
-  font-weight:500;
+  font-weight: 500;
   letter-spacing:-.02em;
   cursor:pointer;
   transition:background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
@@ -2225,7 +2225,7 @@ body{
   border-radius:999px;
   background:#fff;
   color:#171717;
-  font-weight:500;
+  font-weight: 500;
   cursor:pointer;
   box-shadow:0 12px 26px rgba(25,35,60,.08);
   transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -14077,3 +14077,275 @@ margin-right: -24px;
   }
 }
 /* End WACKYTRAVEL_AREA_GUIDE_COMPONENTS_V16 */
+
+/* WACKYTRAVEL_TYPOGRAPHY_SPACING_REFINEMENT_V17 */
+main.travel-page p,
+.travel-page p,
+.wt-location-page p {
+  color: #333 !important;
+  font-weight: 400 !important;
+}
+
+main.travel-page strong,
+main.travel-page b,
+.travel-page strong,
+.travel-page b,
+.wt-location-page strong,
+.wt-location-page b {
+  font-weight: 500 !important;
+}
+
+main.travel-page .travel-section,
+.travel-page .travel-section {
+  padding-top: clamp(54px, 5.4vw, 76px) !important;
+  padding-bottom: clamp(54px, 5.4vw, 76px) !important;
+}
+
+main.travel-page .travel-section--compact,
+.travel-page .travel-section--compact {
+  padding-top: clamp(42px, 4vw, 56px) !important;
+}
+
+main.travel-page .section-heading,
+.travel-page .section-heading {
+  margin-bottom: clamp(24px, 2.8vw, 34px) !important;
+}
+
+main.travel-page .wt-page-hero,
+.travel-page .wt-page-hero,
+main.travel-page.wt-purpose-page .wt-page-hero,
+.travel-page.wt-purpose-page .wt-page-hero {
+  padding-top: clamp(24px, 3.8vw, 44px) !important;
+  padding-bottom: clamp(54px, 5.6vw, 80px) !important;
+}
+
+main.travel-page .wt-city-snapshot,
+main.travel-page .wt-city-guide-links,
+main.travel-page .wt-city-section,
+main.travel-page .wt-city-faq,
+.travel-page .wt-city-snapshot,
+.travel-page .wt-city-guide-links,
+.travel-page .wt-city-section,
+.travel-page .wt-city-faq {
+  padding-top: clamp(56px, 6vw, 86px) !important;
+  padding-bottom: clamp(56px, 6vw, 86px) !important;
+}
+
+main.travel-page .wt-city-dynamic-section,
+.travel-page .wt-city-dynamic-section {
+  padding-top: clamp(54px, 5.8vw, 82px) !important;
+  padding-bottom: clamp(54px, 5.8vw, 82px) !important;
+}
+
+main.travel-page .wt-city-section + .wt-city-section,
+.travel-page .wt-city-section + .wt-city-section,
+main.travel-page .wt-section + .wt-section,
+.travel-page .wt-section + .wt-section {
+  margin-top: clamp(8px, 1.4vw, 18px) !important;
+}
+
+main.travel-page #area-guide.wt-city-section,
+.travel-page #area-guide.wt-city-section {
+  padding-top: clamp(58px, 6vw, 88px) !important;
+  padding-bottom: clamp(52px, 5.5vw, 78px) !important;
+}
+
+main.travel-page #area-guide + .wt-city-cta,
+.travel-page #area-guide + .wt-city-cta {
+  padding-top: clamp(36px, 4vw, 56px) !important;
+}
+
+main.travel-page .wt-city-cta,
+.travel-page .wt-city-cta {
+  padding-top: clamp(48px, 5vw, 72px) !important;
+  padding-bottom: clamp(58px, 6vw, 88px) !important;
+}
+
+main.travel-page .wt-section,
+.travel-page .wt-section,
+main.travel-page.wt-purpose-page .wt-section,
+.travel-page.wt-purpose-page .wt-section {
+  padding-top: clamp(54px, 5.2vw, 76px) !important;
+  padding-bottom: clamp(54px, 5.2vw, 76px) !important;
+}
+
+main.travel-page .wt-section--compact,
+.travel-page .wt-section--compact,
+main.travel-page.wt-purpose-page .wt-section--compact,
+.travel-page.wt-purpose-page .wt-section--compact {
+  padding-top: clamp(44px, 4.2vw, 62px) !important;
+}
+
+main.travel-page .wt-section--first-answer,
+.travel-page .wt-section--first-answer,
+main.travel-page.wt-purpose-page .wt-section--first-answer,
+.travel-page.wt-purpose-page .wt-section--first-answer {
+  padding-top: clamp(34px, 3.8vw, 54px) !important;
+}
+
+main.travel-page .wt-section-head,
+.travel-page .wt-section-head {
+  margin-bottom: clamp(26px, 3vw, 38px) !important;
+}
+
+main.travel-page .wt-area-tabs,
+.travel-page .wt-area-tabs {
+  margin-top: clamp(1.25rem, 2.6vw, 2rem) !important;
+}
+
+main.travel-page .wt-area-tab-panels,
+.travel-page .wt-area-tab-panels {
+  margin-top: clamp(1.1rem, 2.4vw, 1.7rem) !important;
+}
+
+main.travel-page .wt-section--survey-cta,
+.travel-page .wt-section--survey-cta,
+main.travel-page.wt-purpose-page .wt-section--survey-cta,
+.travel-page.wt-purpose-page .wt-section--survey-cta {
+  padding-top: clamp(38px, 4vw, 58px) !important;
+  padding-bottom: clamp(54px, 5.6vw, 82px) !important;
+}
+
+main.travel-page #area-compare.wt-section,
+.travel-page #area-compare.wt-section,
+main.travel-page.wt-purpose-page #area-compare.wt-section,
+.travel-page.wt-purpose-page #area-compare.wt-section {
+  padding-bottom: clamp(46px, 4.8vw, 70px) !important;
+}
+
+main.travel-page #area-compare.wt-section + .wt-section--survey-cta,
+.travel-page #area-compare.wt-section + .wt-section--survey-cta,
+main.travel-page.wt-purpose-page #area-compare.wt-section + .wt-section--survey-cta,
+.travel-page.wt-purpose-page #area-compare.wt-section + .wt-section--survey-cta {
+  padding-top: clamp(38px, 4vw, 58px) !important;
+}
+
+main.travel-page .wt-cta-band,
+.travel-page .wt-cta-band {
+  padding: clamp(30px, 4vw, 44px) !important;
+}
+
+main.travel-page .wt-purpose-faq,
+.travel-page .wt-purpose-faq {
+  padding-bottom: clamp(64px, 6vw, 92px) !important;
+}
+
+main.travel-page .wt-city-guide-section,
+main.travel-page .city-guide-section,
+.travel-page .wt-city-guide-section,
+.travel-page .city-guide-section {
+  margin-bottom: clamp(28px, 3.6vw, 48px) !important;
+  padding-top: clamp(34px, 4vw, 56px) !important;
+  padding-bottom: clamp(34px, 4vw, 56px) !important;
+}
+
+main.travel-page .wt-city-guide-hero,
+main.travel-page .city-guide-hero,
+.travel-page .wt-city-guide-hero,
+.travel-page .city-guide-hero {
+  padding-top: clamp(34px, 4.5vw, 58px) !important;
+  padding-bottom: clamp(56px, 6vw, 88px) !important;
+}
+
+@media (max-width: 1024px) {
+  main.travel-page .travel-section,
+  .travel-page .travel-section,
+  main.travel-page .wt-section,
+  .travel-page .wt-section,
+  main.travel-page.wt-purpose-page .wt-section,
+  .travel-page.wt-purpose-page .wt-section,
+  main.travel-page .wt-city-snapshot,
+  main.travel-page .wt-city-guide-links,
+  main.travel-page .wt-city-section,
+  main.travel-page .wt-city-faq,
+  main.travel-page .wt-city-dynamic-section,
+  .travel-page .wt-city-snapshot,
+  .travel-page .wt-city-guide-links,
+  .travel-page .wt-city-section,
+  .travel-page .wt-city-faq,
+  .travel-page .wt-city-dynamic-section {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+
+  main.travel-page .wt-page-hero,
+  .travel-page .wt-page-hero,
+  main.travel-page.wt-purpose-page .wt-page-hero,
+  .travel-page.wt-purpose-page .wt-page-hero {
+    padding-top: 20px !important;
+    padding-bottom: 52px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main.travel-page .travel-section,
+  .travel-page .travel-section,
+  main.travel-page .wt-section,
+  .travel-page .wt-section,
+  main.travel-page.wt-purpose-page .wt-section,
+  .travel-page.wt-purpose-page .wt-section,
+  main.travel-page .wt-city-snapshot,
+  main.travel-page .wt-city-guide-links,
+  main.travel-page .wt-city-section,
+  main.travel-page .wt-city-faq,
+  main.travel-page .wt-city-dynamic-section,
+  .travel-page .wt-city-snapshot,
+  .travel-page .wt-city-guide-links,
+  .travel-page .wt-city-section,
+  .travel-page .wt-city-faq,
+  .travel-page .wt-city-dynamic-section {
+    padding-top: 42px !important;
+    padding-bottom: 42px !important;
+  }
+
+  main.travel-page .wt-page-hero,
+  .travel-page .wt-page-hero,
+  main.travel-page.wt-purpose-page .wt-page-hero,
+  .travel-page.wt-purpose-page .wt-page-hero {
+    padding-top: 16px !important;
+    padding-bottom: 44px !important;
+  }
+
+  main.travel-page .section-heading,
+  .travel-page .section-heading,
+  main.travel-page .wt-section-head,
+  .travel-page .wt-section-head {
+    margin-bottom: 22px !important;
+  }
+
+  main.travel-page #area-guide.wt-city-section,
+  .travel-page #area-guide.wt-city-section {
+    padding-top: 44px !important;
+    padding-bottom: 42px !important;
+  }
+
+  main.travel-page .wt-section--first-answer,
+  .travel-page .wt-section--first-answer,
+  main.travel-page.wt-purpose-page .wt-section--first-answer,
+  .travel-page.wt-purpose-page .wt-section--first-answer {
+    padding-top: 30px !important;
+  }
+
+  main.travel-page .wt-section--survey-cta,
+  .travel-page .wt-section--survey-cta,
+  main.travel-page.wt-purpose-page .wt-section--survey-cta,
+  .travel-page.wt-purpose-page .wt-section--survey-cta {
+    padding-top: 34px !important;
+    padding-bottom: 44px !important;
+  }
+
+  main.travel-page .wt-cta-band,
+  .travel-page .wt-cta-band {
+    padding: 26px !important;
+  }
+
+  main.travel-page .wt-city-guide-section,
+  main.travel-page .city-guide-section,
+  .travel-page .wt-city-guide-section,
+  .travel-page .city-guide-section {
+    margin-bottom: 24px !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+}
+

@@ -1884,7 +1884,7 @@ select:focus {
 .post-card__title {
   font-size: 28px;
   line-height: 1.25;
-  font-weight: 300;
+  font-weight: 400;
   color: #102A45;
   letter-spacing: -0.045em;
 }
@@ -5926,7 +5926,7 @@ select:focus {
    Font weight guardrail: keep typography light and editorial
 ========================================================= */
 body {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h1,
@@ -5951,3 +5951,15 @@ button {
   box-shadow: none !important;
 }
 /* End travel topbar flat override */
+
+/* WACKYTRAVEL_GLOBAL_TYPOGRAPHY_REFINEMENT_V17 */
+p {
+  color: #333;
+  font-weight: 400;
+}
+
+strong,
+b {
+  font-weight: 500;
+}
+
