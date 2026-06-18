@@ -13738,423 +13738,296 @@ margin-right: -24px;
 }
 /* End WACKYTRAVEL_HOME_HERO_DESTINATION_HUB_V22 */
 
+/* WACKYTRAVEL_AREA_GUIDE_COMPONENTS_V16
+   공통 Area Guide 컴포넌트입니다.
+   도시가 추가되어도 tokyo/osaka/fukuoka/sapporo/okinawa 같은 도시별 선택자를 늘리지 않고,
+   아래 공통 클래스만 재사용합니다. 특정 도시만 달라야 하는 예외는 이 블록 아래에서 최소 범위로만 추가합니다. */
+.wt-city-area-tabs,
+.wt-area-tabs {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 24px);
+  margin-top: clamp(18px, 3vw, 28px);
+}
 
-/* Tokyo purpose pages - six-region area guide refinement */
-.wt-purpose-page .wt-area-tab-list {
+.wt-city-area-tab-input,
+.wt-area-tab-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wt-city-area-tab-list,
+.wt-area-tab-list {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  border-radius: 22px;
-  padding: 6px;
-  gap: 6px;
+  align-items: center;
+  width: auto;
+  max-width: 100%;
+  gap: 8px;
+  margin: 18px 0 16px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-@media (min-width: 921px) {
-  .wt-purpose-page .wt-area-tab-list {
-    justify-content: center;
-  }
+.wt-city-area-tab-button,
+.wt-area-tab-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  word-break: keep-all;
+  box-shadow: none;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
-.wt-purpose-page .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
-.wt-purpose-page .wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
-.wt-purpose-page .wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
-.wt-purpose-page .wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4),
-.wt-purpose-page .wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(5),
-.wt-purpose-page .wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(6) {
+.wt-city-area-tab-button:hover,
+.wt-area-tab-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 23, 42, 0.18);
+  background: #f8fafc;
+  color: #0f172a;
+  box-shadow: none;
+}
+
+.wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
+.wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
+.wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
+.wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
+.wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
+.wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6),
+.wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(1),
+.wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(2),
+.wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(3),
+.wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(4),
+.wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(5),
+.wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(6) {
+  border-color: rgba(37, 99, 235, 0.32);
+  background: #eff6ff;
+  color: #1d4ed8;
+  box-shadow: none;
+  transform: none;
+}
+
+.wt-city-area-panels,
+.wt-area-tab-panels {
+  position: relative;
+}
+
+.wt-city-area-panel,
+.wt-area-tab-panels > .wt-area-card {
+  display: none;
+}
+
+.wt-city-area-panel {
+  overflow: hidden;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.08), transparent 24rem),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.06);
+}
+
+.wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(1),
+.wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(2),
+.wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(3),
+.wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(4),
+.wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(5),
+.wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(6) {
+  display: block;
+}
+
+.wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
+.wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
+.wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
+.wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4),
+.wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(5),
+.wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(6) {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.2rem, 3vw, 2.1rem);
+  align-items: stretch;
   border: 1px solid #e5e7eb;
   background: #fff;
   box-shadow: none;
 }
 
-@media (min-width: 921px) {
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(5),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(6) {
-    display: grid;
-    grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
-    gap: clamp(1.2rem, 3vw, 2.1rem);
-    align-items: stretch;
+.wt-area-tab-panel::before {
+  display: none;
+}
+
+.wt-city-area-panel__hero {
+  padding: clamp(24px, 4vw, 38px) clamp(22px, 4vw, 40px) clamp(16px, 3vw, 24px);
+}
+
+.wt-city-area-panel__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.wt-city-area-panel h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.15;
+}
+
+.wt-city-area-panel__hero p {
+  max-width: 850px;
+  margin: 12px 0 0;
+  color: #475569;
+  font-size: 0.98rem;
+  line-height: 1.78;
+  word-break: keep-all;
+}
+
+.wt-city-area-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
+}
+
+.wt-city-area-info-card {
+  min-height: 156px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+.wt-city-area-info-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #0f172a;
+  font-size: 0.96rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.wt-city-area-info-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.91rem;
+  line-height: 1.68;
+  word-break: keep-all;
+}
+
+.wt-city-area-panel__decision {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: #eef6ff;
+}
+
+.wt-city-area-panel__decision span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.wt-city-area-panel__decision strong {
+  color: #1e3a8a;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+@media (max-width: 1024px) {
+  .wt-city-area-panel__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wt-city-area-info-card {
+    min-height: auto;
+  }
+
+  .wt-city-area-tab-list,
+  .wt-area-tab-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .wt-city-area-tab-list::-webkit-scrollbar,
+  .wt-area-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wt-city-area-tab-button,
+  .wt-area-tab-button {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
   }
 }
 
 @media (max-width: 920px) {
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(5),
-  .wt-purpose-page .wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(6) {
+  .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(1),
+  .wt-area-tab-input:nth-of-type(2):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(2),
+  .wt-area-tab-input:nth-of-type(3):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(3),
+  .wt-area-tab-input:nth-of-type(4):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(4),
+  .wt-area-tab-input:nth-of-type(5):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(5),
+  .wt-area-tab-input:nth-of-type(6):checked ~ .wt-area-tab-panels .wt-area-card:nth-child(6) {
     display: block;
   }
-
-  .wt-purpose-page .wt-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-
-/* WACKYTRAVEL_TOKYO_MAIN_AREA_GUIDE_TABS_V1 */
-.wt-city-page--tokyo .wt-city-area-tabs {
-  display: grid;
-  gap: clamp(16px, 2.4vw, 24px);
-  margin-top: clamp(18px, 3vw, 28px);
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-list {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 8px;
-  padding: 8px;
-  border: 1px solid rgba(37, 99, 235, .08);
-  border-radius: 999px;
-  background: #f8fbff;
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-button {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 12px;
-  border-radius: 999px;
-  color: #64748b;
-  font-size: .88rem;
-  font-weight: 500;
-  letter-spacing: -.025em;
-  line-height: 1.25;
-  text-align: center;
-  word-break: keep-all;
-  cursor: pointer;
-  transition: background .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-button:hover {
-  background: #ffffff;
-  color: #2563eb;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
-  background: #ffffff;
-  color: #1d4ed8;
-  box-shadow: 0 12px 28px rgba(37, 99, 235, .12);
-}
-
-.wt-city-page--tokyo .wt-city-area-panels {
-  position: relative;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel {
-  display: none;
-  overflow: hidden;
-  border: 1px solid rgba(37, 99, 235, .1);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .08), transparent 24rem),
-    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(1),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(2),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(3),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(4),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(5),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(6) {
-  display: block;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__hero {
-  padding: clamp(24px, 4vw, 38px) clamp(22px, 4vw, 40px) clamp(16px, 3vw, 24px);
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, .08);
-  color: #2563eb;
-  font-size: .8rem;
-  font-weight: 500;
-  letter-spacing: -.01em;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel h3 {
-  margin: 0;
-  color: #0f172a;
-  font-size: clamp(1.55rem, 3vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-  line-height: 1.15;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__hero p {
-  max-width: 850px;
-  margin: 12px 0 0;
-  color: #475569;
-  font-size: .98rem;
-  line-height: 1.78;
-  word-break: keep-all;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-}
-
-.wt-city-page--tokyo .wt-city-area-info-card {
-  min-height: 156px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .86);
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--tokyo .wt-city-area-info-card strong {
-  display: block;
-  margin-bottom: 8px;
-  color: #0f172a;
-  font-size: .96rem;
-  font-weight: 500;
-  letter-spacing: -.025em;
-}
-
-.wt-city-page--tokyo .wt-city-area-info-card p {
-  margin: 0;
-  color: #64748b;
-  font-size: .91rem;
-  line-height: 1.68;
-  word-break: keep-all;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__decision {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  margin: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: #eef6ff;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__decision span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #2563eb;
-  font-size: .78rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.wt-city-page--tokyo .wt-city-area-panel__decision strong {
-  color: #1e3a8a;
-  font-size: .95rem;
-  font-weight: 500;
-  line-height: 1.55;
-  word-break: keep-all;
-}
-
-@media (max-width: 1024px) {
-  .wt-city-page--tokyo .wt-city-area-tab-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-radius: 26px;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-panel__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-info-card {
-    min-height: auto;
-  }
 }
 
 @media (max-width: 767px) {
-  .wt-city-page--tokyo .wt-city-area-tabs {
+  .wt-city-area-tabs,
+  .wt-area-tabs {
     gap: 14px;
     margin-top: 16px;
   }
 
-  .wt-city-page--tokyo .wt-city-area-tab-list {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    margin-right: -25px;
-    padding: 6px 25px 6px 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-tab-button {
-    flex: 0 0 auto;
-    min-height: 40px;
-    padding: 9px 14px;
-    background: #f8fbff;
-    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, .08);
-    scroll-snap-align: start;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-panel {
-    border-radius: 26px;
-    box-shadow: none;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-panel__hero {
-    padding: 22px 20px 14px;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-panel__grid {
-    gap: 10px;
-    padding: 0 14px 14px;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-info-card {
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-panel__decision {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 8px;
-    margin: 0 14px 14px;
-    padding: 15px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-panel__decision span {
-    justify-self: start;
-  }
-}
-/* End WACKYTRAVEL_TOKYO_MAIN_AREA_GUIDE_TABS_V1 */
-
-/* WACKYTRAVEL_TOKYO_AREA_TAB_STYLE_ALIGN_20260618 */
-.wt-city-page--tokyo .wt-city-area-tab-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: auto;
-  max-width: 100%;
-  gap: 8px;
-  margin: 18px 0 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-button {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  color: #334155;
-  font: inherit;
-  font-size: 0.92rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  white-space: nowrap;
-  word-break: keep-all;
-  box-shadow: none;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15, 23, 42, 0.18);
-  background: #f8fafc;
-  color: #0f172a;
-  box-shadow: none;
-}
-
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
-.wt-city-page--tokyo .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
-  border-color: rgba(37, 99, 235, 0.32);
-  background: #eff6ff;
-  color: #1d4ed8;
-  box-shadow: none;
-  transform: none;
-}
-
-@media (min-width: 768px) {
-  .wt-purpose-page--near-trip .wt-area-tab-list {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 1024px) {
-  .wt-city-page--tokyo .wt-city-area-tab-list,
-  .wt-purpose-page--near-trip .wt-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-tab-list::-webkit-scrollbar,
-  .wt-purpose-page--near-trip .wt-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-city-page--tokyo .wt-city-area-tab-button,
-  .wt-purpose-page--near-trip .wt-area-tab-button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .wt-city-page--tokyo .wt-city-area-tab-list {
+  .wt-city-area-tab-list,
+  .wt-area-tab-list {
     gap: 8px;
     margin: 18px -25px 16px 0;
     padding: 6px 25px 8px 0;
@@ -14163,336 +14036,34 @@ margin-right: -24px;
     background: transparent;
   }
 
-  .wt-city-page--tokyo .wt-city-area-tab-button {
-    min-height: 44px;
-    padding: 0 16px;
-    background: #fff;
-    box-shadow: none;
-  }
-}
-/* End WACKYTRAVEL_TOKYO_AREA_TAB_STYLE_ALIGN_20260618 */
-
-/* WACKYTRAVEL_TOKYO_PURPOSE_AREA_TAB_SCROLL_V11 */
-.wt-purpose-page--first-trip .wt-area-tab-list,
-.wt-purpose-page--near-trip .wt-area-tab-list,
-.wt-purpose-page--family-trip .wt-area-tab-list,
-.wt-purpose-page--quiet-stay .wt-area-tab-list,
-.wt-purpose-page--value-hotel .wt-area-tab-list {
-  justify-content: flex-start;
-}
-
-@media (min-width: 768px) {
-  .wt-purpose-page--first-trip .wt-area-tab-list,
-  .wt-purpose-page--near-trip .wt-area-tab-list,
-  .wt-purpose-page--family-trip .wt-area-tab-list,
-  .wt-purpose-page--quiet-stay .wt-area-tab-list,
-  .wt-purpose-page--value-hotel .wt-area-tab-list {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 1024px) {
-  .wt-purpose-page--first-trip .wt-area-tab-list,
-  .wt-purpose-page--near-trip .wt-area-tab-list,
-  .wt-purpose-page--family-trip .wt-area-tab-list,
-  .wt-purpose-page--quiet-stay .wt-area-tab-list,
-  .wt-purpose-page--value-hotel .wt-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .wt-purpose-page--first-trip .wt-area-tab-list::-webkit-scrollbar,
-  .wt-purpose-page--near-trip .wt-area-tab-list::-webkit-scrollbar,
-  .wt-purpose-page--family-trip .wt-area-tab-list::-webkit-scrollbar,
-  .wt-purpose-page--quiet-stay .wt-area-tab-list::-webkit-scrollbar,
-  .wt-purpose-page--value-hotel .wt-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-purpose-page--first-trip .wt-area-tab-button,
-  .wt-purpose-page--near-trip .wt-area-tab-button,
-  .wt-purpose-page--family-trip .wt-area-tab-button,
-  .wt-purpose-page--quiet-stay .wt-area-tab-button,
-  .wt-purpose-page--value-hotel .wt-area-tab-button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
-}
-/* End WACKYTRAVEL_TOKYO_PURPOSE_AREA_TAB_SCROLL_V11 */
-
-/* WACKYTRAVEL_FUKUOKA_AREA_TABS_V12 */
-.wt-city-page--fukuoka .wt-city-area-tabs {
-  display: grid;
-  gap: clamp(16px, 2.4vw, 24px);
-  margin-top: clamp(18px, 3vw, 28px);
-}
-
-.wt-city-page--fukuoka .wt-city-area-tab-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.wt-city-page--fukuoka .wt-city-area-tab-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: auto;
-  max-width: 100%;
-  gap: 8px;
-  margin: 18px 0 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.wt-city-page--fukuoka .wt-city-area-tab-button {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  color: #334155;
-  font: inherit;
-  font-size: 0.92rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  white-space: nowrap;
-  word-break: keep-all;
-  box-shadow: none;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-.wt-city-page--fukuoka .wt-city-area-tab-button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15, 23, 42, 0.18);
-  background: #f8fafc;
-  color: #0f172a;
-  box-shadow: none;
-}
-
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
-  border-color: rgba(37, 99, 235, 0.32);
-  background: #eff6ff;
-  color: #1d4ed8;
-  box-shadow: none;
-  transform: none;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panels {
-  position: relative;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel {
-  display: none;
-  overflow: hidden;
-  border: 1px solid rgba(37, 99, 235, .1);
-  border-radius: 30px;
-  background: radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .08), transparent 24rem), linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(1),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(2),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(3),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(4),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(5),
-.wt-city-page--fukuoka .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(6) {
-  display: block;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__hero {
-  padding: clamp(24px, 4vw, 38px) clamp(22px, 4vw, 40px) clamp(16px, 3vw, 24px);
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, .08);
-  color: #2563eb;
-  font-size: .8rem;
-  font-weight: 500;
-  letter-spacing: -.01em;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel h3 {
-  margin: 0;
-  color: #0f172a;
-  font-size: clamp(1.55rem, 3vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-  line-height: 1.15;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__hero p {
-  max-width: 850px;
-  margin: 12px 0 0;
-  color: #475569;
-  font-size: .98rem;
-  line-height: 1.78;
-  word-break: keep-all;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-}
-
-.wt-city-page--fukuoka .wt-city-area-info-card {
-  min-height: 156px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .86);
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--fukuoka .wt-city-area-info-card strong {
-  display: block;
-  margin-bottom: 8px;
-  color: #0f172a;
-  font-size: .96rem;
-  font-weight: 500;
-  letter-spacing: -.025em;
-}
-
-.wt-city-page--fukuoka .wt-city-area-info-card p {
-  margin: 0;
-  color: #64748b;
-  font-size: .91rem;
-  line-height: 1.68;
-  word-break: keep-all;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__decision {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  margin: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: #eef6ff;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__decision span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #2563eb;
-  font-size: .78rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.wt-city-page--fukuoka .wt-city-area-panel__decision strong {
-  color: #1e3a8a;
-  font-size: .95rem;
-  font-weight: 500;
-  line-height: 1.55;
-  word-break: keep-all;
-}
-
-@media (max-width: 1024px) {
-  .wt-city-page--fukuoka .wt-city-area-panel__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wt-city-page--fukuoka .wt-city-area-info-card {
-    min-height: auto;
-  }
-
-  .wt-city-page--fukuoka .wt-city-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .wt-city-page--fukuoka .wt-city-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-city-page--fukuoka .wt-city-area-tab-button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .wt-city-page--fukuoka .wt-city-area-tabs {
-    gap: 14px;
-    margin-top: 16px;
-  }
-
-  .wt-city-page--fukuoka .wt-city-area-tab-list {
-    gap: 8px;
-    margin: 18px -25px 16px 0;
-    padding: 6px 25px 8px 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-
-  .wt-city-page--fukuoka .wt-city-area-tab-button {
+  .wt-city-area-tab-button,
+  .wt-area-tab-button {
     min-height: 44px;
     padding: 0 16px;
     background: #fff;
     box-shadow: none;
   }
 
-  .wt-city-page--fukuoka .wt-city-area-panel {
+  .wt-city-area-panel {
     border-radius: 26px;
     box-shadow: none;
   }
 
-  .wt-city-page--fukuoka .wt-city-area-panel__hero {
+  .wt-city-area-panel__hero {
     padding: 22px 20px 14px;
   }
 
-  .wt-city-page--fukuoka .wt-city-area-panel__grid {
+  .wt-city-area-panel__grid {
     gap: 10px;
     padding: 0 14px 14px;
   }
 
-  .wt-city-page--fukuoka .wt-city-area-info-card {
+  .wt-city-area-info-card {
     padding: 16px;
     border-radius: 18px;
   }
 
-  .wt-city-page--fukuoka .wt-city-area-panel__decision {
+  .wt-city-area-panel__decision {
     grid-template-columns: 1fr;
     align-items: start;
     gap: 8px;
@@ -14501,857 +14072,8 @@ margin-right: -24px;
     border-radius: 18px;
   }
 
-  .wt-city-page--fukuoka .wt-city-area-panel__decision span {
+  .wt-city-area-panel__decision span {
     justify-self: start;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_AREA_TABS_V12 */
-
-/* WACKYTRAVEL_OSAKA_AREA_TABS_V13 */
-.wt-city-page--osaka .wt-city-area-tabs {
-  display: grid;
-  gap: clamp(16px, 2.4vw, 24px);
-  margin-top: clamp(18px, 3vw, 28px);
-}
-
-.wt-city-page--osaka .wt-city-area-tab-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.wt-city-page--osaka .wt-city-area-tab-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: auto;
-  max-width: 100%;
-  gap: 8px;
-  margin: 18px 0 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.wt-city-page--osaka .wt-city-area-tab-button {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  color: #334155;
-  font: inherit;
-  font-size: 0.92rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  white-space: nowrap;
-  word-break: keep-all;
-  box-shadow: none;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-.wt-city-page--osaka .wt-city-area-tab-button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15, 23, 42, 0.18);
-  background: #f8fafc;
-  color: #0f172a;
-  box-shadow: none;
-}
-
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
-  border-color: rgba(37, 99, 235, 0.32);
-  background: #eff6ff;
-  color: #1d4ed8;
-  box-shadow: none;
-  transform: none;
-}
-
-.wt-city-page--osaka .wt-city-area-panels {
-  position: relative;
-}
-
-.wt-city-page--osaka .wt-city-area-panel {
-  display: none;
-  overflow: hidden;
-  border: 1px solid rgba(37, 99, 235, .1);
-  border-radius: 30px;
-  background: radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .08), transparent 24rem), linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(1),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(2),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(3),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(4),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(5),
-.wt-city-page--osaka .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(6) {
-  display: block;
-}
-
-.wt-city-page--osaka .wt-city-area-panel__hero {
-  padding: clamp(24px, 4vw, 38px) clamp(22px, 4vw, 40px) clamp(16px, 3vw, 24px);
-}
-
-.wt-city-page--osaka .wt-city-area-panel__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, .08);
-  color: #2563eb;
-  font-size: .8rem;
-  font-weight: 500;
-  letter-spacing: -.01em;
-}
-
-.wt-city-page--osaka .wt-city-area-panel h3 {
-  margin: 0;
-  color: #0f172a;
-  font-size: clamp(1.55rem, 3vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-  line-height: 1.15;
-}
-
-.wt-city-page--osaka .wt-city-area-panel__hero p {
-  max-width: 850px;
-  margin: 12px 0 0;
-  color: #475569;
-  font-size: .98rem;
-  line-height: 1.78;
-  word-break: keep-all;
-}
-
-.wt-city-page--osaka .wt-city-area-panel__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-}
-
-.wt-city-page--osaka .wt-city-area-info-card {
-  min-height: 156px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .86);
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--osaka .wt-city-area-info-card strong {
-  display: block;
-  margin-bottom: 8px;
-  color: #0f172a;
-  font-size: .96rem;
-  font-weight: 500;
-  letter-spacing: -.025em;
-}
-
-.wt-city-page--osaka .wt-city-area-info-card p {
-  margin: 0;
-  color: #64748b;
-  font-size: .91rem;
-  line-height: 1.68;
-  word-break: keep-all;
-}
-
-.wt-city-page--osaka .wt-city-area-panel__decision {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  margin: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: #eef6ff;
-}
-
-.wt-city-page--osaka .wt-city-area-panel__decision span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #2563eb;
-  font-size: .78rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.wt-city-page--osaka .wt-city-area-panel__decision strong {
-  color: #1e3a8a;
-  font-size: .95rem;
-  font-weight: 500;
-  line-height: 1.55;
-  word-break: keep-all;
-}
-
-@media (max-width: 1024px) {
-  .wt-city-page--osaka .wt-city-area-panel__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wt-city-page--osaka .wt-city-area-info-card {
-    min-height: auto;
-  }
-
-  .wt-city-page--osaka .wt-city-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .wt-city-page--osaka .wt-city-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-city-page--osaka .wt-city-area-tab-button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .wt-city-page--osaka .wt-city-area-tabs {
-    gap: 14px;
-    margin-top: 16px;
-  }
-
-  .wt-city-page--osaka .wt-city-area-tab-list {
-    gap: 8px;
-    margin: 18px -25px 16px 0;
-    padding: 6px 25px 8px 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-
-  .wt-city-page--osaka .wt-city-area-tab-button {
-    min-height: 44px;
-    padding: 0 16px;
-    background: #fff;
-    box-shadow: none;
-  }
-
-  .wt-city-page--osaka .wt-city-area-panel {
-    border-radius: 26px;
-    box-shadow: none;
-  }
-
-  .wt-city-page--osaka .wt-city-area-panel__hero {
-    padding: 22px 20px 14px;
-  }
-
-  .wt-city-page--osaka .wt-city-area-panel__grid {
-    gap: 10px;
-    padding: 0 14px 14px;
-  }
-
-  .wt-city-page--osaka .wt-city-area-info-card {
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--osaka .wt-city-area-panel__decision {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 8px;
-    margin: 0 14px 14px;
-    padding: 15px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--osaka .wt-city-area-panel__decision span {
-    justify-self: start;
-  }
-}
-/* End WACKYTRAVEL_OSAKA_AREA_TABS_V13 */
-
-/* WACKYTRAVEL_SAPPORO_AREA_TABS_V14 */
-.wt-city-page--sapporo .wt-city-area-tabs {
-  display: grid;
-  gap: clamp(16px, 2.4vw, 24px);
-  margin-top: clamp(18px, 3vw, 28px);
-}
-
-.wt-city-page--sapporo .wt-city-area-tab-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.wt-city-page--sapporo .wt-city-area-tab-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: auto;
-  max-width: 100%;
-  gap: 8px;
-  margin: 18px 0 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.wt-city-page--sapporo .wt-city-area-tab-button {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  color: #334155;
-  font: inherit;
-  font-size: 0.92rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  white-space: nowrap;
-  word-break: keep-all;
-  box-shadow: none;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-.wt-city-page--sapporo .wt-city-area-tab-button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15, 23, 42, 0.18);
-  background: #f8fafc;
-  color: #0f172a;
-  box-shadow: none;
-}
-
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
-  border-color: rgba(37, 99, 235, 0.32);
-  background: #eff6ff;
-  color: #1d4ed8;
-  box-shadow: none;
-  transform: none;
-}
-
-.wt-city-page--sapporo .wt-city-area-panels {
-  position: relative;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel {
-  display: none;
-  overflow: hidden;
-  border: 1px solid rgba(37, 99, 235, .1);
-  border-radius: 30px;
-  background: radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .08), transparent 24rem), linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(1),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(2),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(3),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(4),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(5),
-.wt-city-page--sapporo .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(6) {
-  display: block;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__hero {
-  padding: clamp(24px, 4vw, 38px) clamp(22px, 4vw, 40px) clamp(16px, 3vw, 24px);
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, .08);
-  color: #2563eb;
-  font-size: .8rem;
-  font-weight: 500;
-  letter-spacing: -.01em;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel h3 {
-  margin: 0;
-  color: #0f172a;
-  font-size: clamp(1.55rem, 3vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-  line-height: 1.15;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__hero p {
-  max-width: 850px;
-  margin: 12px 0 0;
-  color: #475569;
-  font-size: .98rem;
-  line-height: 1.78;
-  word-break: keep-all;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-}
-
-.wt-city-page--sapporo .wt-city-area-info-card {
-  min-height: 156px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .86);
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--sapporo .wt-city-area-info-card strong {
-  display: block;
-  margin-bottom: 8px;
-  color: #0f172a;
-  font-size: .96rem;
-  font-weight: 500;
-  letter-spacing: -.025em;
-}
-
-.wt-city-page--sapporo .wt-city-area-info-card p {
-  margin: 0;
-  color: #64748b;
-  font-size: .91rem;
-  line-height: 1.68;
-  word-break: keep-all;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__decision {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  margin: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: #eef6ff;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__decision span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #2563eb;
-  font-size: .78rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.wt-city-page--sapporo .wt-city-area-panel__decision strong {
-  color: #1e3a8a;
-  font-size: .95rem;
-  font-weight: 500;
-  line-height: 1.55;
-  word-break: keep-all;
-}
-
-@media (max-width: 1024px) {
-  .wt-city-page--sapporo .wt-city-area-panel__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-info-card {
-    min-height: auto;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-tab-button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .wt-city-page--sapporo .wt-city-area-tabs {
-    gap: 14px;
-    margin-top: 16px;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-tab-list {
-    gap: 8px;
-    margin: 18px -25px 16px 0;
-    padding: 6px 25px 8px 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-tab-button {
-    min-height: 44px;
-    padding: 0 16px;
-    background: #fff;
-    box-shadow: none;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-panel {
-    border-radius: 26px;
-    box-shadow: none;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-panel__hero {
-    padding: 22px 20px 14px;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-panel__grid {
-    gap: 10px;
-    padding: 0 14px 14px;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-info-card {
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-panel__decision {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 8px;
-    margin: 0 14px 14px;
-    padding: 15px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--sapporo .wt-city-area-panel__decision span {
-    justify-self: start;
-  }
-}
-/* End WACKYTRAVEL_SAPPORO_AREA_TABS_V14 */
-
-/* WACKYTRAVEL_OKINAWA_AREA_TABS_V15 */
-.wt-city-page--okinawa .wt-city-area-tabs {
-  display: grid;
-  gap: clamp(16px, 2.4vw, 24px);
-  margin-top: clamp(18px, 3vw, 28px);
-}
-
-.wt-city-page--okinawa .wt-city-area-tab-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.wt-city-page--okinawa .wt-city-area-tab-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: auto;
-  max-width: 100%;
-  gap: 8px;
-  margin: 18px 0 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.wt-city-page--okinawa .wt-city-area-tab-button {
-  appearance: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  border-radius: 999px;
-  background: #fff;
-  color: #334155;
-  font: inherit;
-  font-size: 0.92rem;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  white-space: nowrap;
-  word-break: keep-all;
-  box-shadow: none;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-.wt-city-page--okinawa .wt-city-area-tab-button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(15, 23, 42, 0.18);
-  background: #f8fafc;
-  color: #0f172a;
-  box-shadow: none;
-}
-
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
-  border-color: rgba(37, 99, 235, 0.32);
-  background: #eff6ff;
-  color: #1d4ed8;
-  box-shadow: none;
-  transform: none;
-}
-
-.wt-city-page--okinawa .wt-city-area-panels {
-  position: relative;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel {
-  display: none;
-  overflow: hidden;
-  border: 1px solid rgba(37, 99, 235, .1);
-  border-radius: 30px;
-  background: radial-gradient(circle at 100% 0%, rgba(37, 99, 235, .08), transparent 24rem), linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(1),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(2),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(3),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(4),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(5),
-.wt-city-page--okinawa .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-panels .wt-city-area-panel:nth-child(6) {
-  display: block;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__hero {
-  padding: clamp(24px, 4vw, 38px) clamp(22px, 4vw, 40px) clamp(16px, 3vw, 24px);
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: rgba(37, 99, 235, .08);
-  color: #2563eb;
-  font-size: .8rem;
-  font-weight: 500;
-  letter-spacing: -.01em;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel h3 {
-  margin: 0;
-  color: #0f172a;
-  font-size: clamp(1.55rem, 3vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -.055em;
-  line-height: 1.15;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__hero p {
-  max-width: 850px;
-  margin: 12px 0 0;
-  color: #475569;
-  font-size: .98rem;
-  line-height: 1.78;
-  word-break: keep-all;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  padding: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-}
-
-.wt-city-page--okinawa .wt-city-area-info-card {
-  min-height: 156px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, .86);
-  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06);
-}
-
-.wt-city-page--okinawa .wt-city-area-info-card strong {
-  display: block;
-  margin-bottom: 8px;
-  color: #0f172a;
-  font-size: .96rem;
-  font-weight: 500;
-  letter-spacing: -.025em;
-}
-
-.wt-city-page--okinawa .wt-city-area-info-card p {
-  margin: 0;
-  color: #64748b;
-  font-size: .91rem;
-  line-height: 1.68;
-  word-break: keep-all;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__decision {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 14px;
-  margin: 0 clamp(18px, 3.4vw, 34px) clamp(18px, 3.4vw, 34px);
-  padding: 16px 18px;
-  border-radius: 22px;
-  background: #eef6ff;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__decision span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #2563eb;
-  font-size: .78rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.wt-city-page--okinawa .wt-city-area-panel__decision strong {
-  color: #1e3a8a;
-  font-size: .95rem;
-  font-weight: 500;
-  line-height: 1.55;
-  word-break: keep-all;
-}
-
-@media (max-width: 1024px) {
-  .wt-city-page--okinawa .wt-city-area-panel__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-info-card {
-    min-height: auto;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-tab-list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-tab-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-tab-button {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
-}
-
-@media (max-width: 767px) {
-  .wt-city-page--okinawa .wt-city-area-tabs {
-    gap: 14px;
-    margin-top: 16px;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-tab-list {
-    gap: 8px;
-    margin: 18px -25px 16px 0;
-    padding: 6px 25px 8px 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-tab-button {
-    min-height: 44px;
-    padding: 0 16px;
-    background: #fff;
-    box-shadow: none;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-panel {
-    border-radius: 26px;
-    box-shadow: none;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-panel__hero {
-    padding: 22px 20px 14px;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-panel__grid {
-    gap: 10px;
-    padding: 0 14px 14px;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-info-card {
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-panel__decision {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 8px;
-    margin: 0 14px 14px;
-    padding: 15px;
-    border-radius: 18px;
-  }
-
-  .wt-city-page--okinawa .wt-city-area-panel__decision span {
-    justify-self: start;
-  }
-}
-/* End WACKYTRAVEL_OKINAWA_AREA_TABS_V15 */
+/* End WACKYTRAVEL_AREA_GUIDE_COMPONENTS_V16 */

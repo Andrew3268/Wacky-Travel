@@ -1,5 +1,6 @@
 (() => {
-  const selectors = '.wt-area-tab-list, .wt-city-area-tab-list';
+  const selectors = '[data-area-tabs="true"] .wt-area-tab-list, [data-area-tabs="true"] .wt-city-area-tab-list, .wt-area-tab-list, .wt-city-area-tab-list';
+  const initialized = new WeakSet();
 
   const findInput = (button) => {
     const id = button && button.getAttribute('for');
@@ -8,7 +9,7 @@
 
   const centerButton = (button, behavior = 'smooth') => {
     if (!button) return;
-    const list = button.closest(selectors);
+    const list = button.closest('.wt-area-tab-list, .wt-city-area-tab-list');
     if (!list || list.scrollWidth <= list.clientWidth + 1) return;
 
     const targetLeft = button.offsetLeft - ((list.clientWidth - button.offsetWidth) / 2);
@@ -31,6 +32,9 @@
   };
 
   const setupList = (list) => {
+    if (initialized.has(list)) return;
+    initialized.add(list);
+
     list.addEventListener('click', (event) => {
       const button = event.target.closest('label[for]');
       if (!button || !list.contains(button)) return;
