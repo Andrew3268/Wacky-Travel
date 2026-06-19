@@ -14980,3 +14980,33 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__button,
   border: 1px solid rgba(37, 99, 235, 0.28) !important;
 }
 /* End WACKYTRAVEL_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113 */
+
+/* V113 - common archive, breadcrumb, and guide hero refinement */
+@media (min-width: 721px) {
+  .breadcrumbs.container {
+    padding-left: 18px !important;
+  }
+}
+
+.wt-city-archive-page .wt-city-dynamic-section,
+main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
+.travel-page.wt-city-archive-page .wt-city-dynamic-section {
+  padding-top: 0 !important;
+}
+
+.wt-city-guide-hero h1,
+.city-guide-hero h1 {
+  font-size: clamp(1.95rem, 3.6vw, 3.25rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.042em !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 720px) {
+  .wt-city-guide-hero h1,
+  .city-guide-hero h1 {
+    font-size: clamp(1.72rem, 8.4vw, 2.25rem) !important;
+    line-height: 1.18 !important;
+    letter-spacing: -0.035em !important;
+  }
+}
