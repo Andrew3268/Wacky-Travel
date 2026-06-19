@@ -1,6 +1,7 @@
 const cityConfig = {
   "cityName": "다낭",
   "destinationSlug": "da-nang",
+  "postContentType": "top5_series",
   "areas": {
     "myKhe": {
       "name": "미케비치·푸억미",
@@ -144,7 +145,74 @@ function goNext(){ if(answers[currentQuestionIndex]===null)return; if(currentQue
 function goPrev(){ if(currentQuestionIndex===0){ closeSurveyToStart(); return; } currentQuestionIndex-=1; renderQuestion(); }
 function calculateScores(){ const scores={}; Object.keys(cityConfig.areas).forEach((k)=>scores[k]=0); answers.forEach((answerIndex, qi)=>{ if(answerIndex===null)return; const selected=cityConfig.questions[qi].options[answerIndex]; Object.entries(selected.scores||{}).forEach(([key,score])=>{ if(Object.prototype.hasOwnProperty.call(scores,key)) scores[key]+=score; }); }); return Object.entries(scores).map(([key,score])=>({key,score,...cityConfig.areas[key]})).sort((a,b)=>b.score-a.score); }
 function renderHotelCards(area){ const section=document.getElementById("hotelRecommendSection"); const list=document.getElementById("hotelCardList"); const hotels=Array.isArray(area.hotels)?area.hotels.slice(0,5):[]; if(!hotels.length){ section.style.display="none"; return; } section.style.display="block"; setText("hotelSectionTitle", `${area.name}에서 비교해볼 만한 호텔`); setText("hotelSectionDesc", "실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 함께 확인하세요."); list.innerHTML=hotels.map((h)=>`<article class="wt-hotel-card"><div class="wt-hotel-card__body"><div class="wt-hotel-card__topline"><div class="wt-hotel-card__fit">${escapeHtml(h.tag||"추천 호텔")}</div><span class="wt-hotel-card__stars">${escapeHtml(h.area||area.name)}</span></div><h3>${escapeHtml(h.kr||h.name)}</h3><div class="wt-hotel-card__subname">${escapeHtml(h.name||"")}</div><div class="wt-hotel-card__point">${escapeHtml(h.tag||"비교 후보")}</div><p>${escapeHtml(h.text||"")}</p><div class="wt-hotel-actions"><a class="wt-btn wt-btn--primary" href="/destinations/da-nang/hotel-recommendations/">잔여 객실 확인</a></div></div></article>`).join(""); }
-function renderRelatedPosts(area){ const sec=document.getElementById("relatedPostSection"); const list=document.getElementById("relatedPostList"); sec.style.display="block"; setText("relatedPostTitle", `${area.name} 숙소를 고르기 전 함께 보면 좋은 글`); setText("relatedPostDesc", "숙소 위치와 여행 동선을 함께 보면 호텔 선택이 더 쉬워집니다."); const posts=[['다낭 숙소 위치 가이드','/destinations/da-nang/hotel-guide/'],['다낭 여행 가이드','/destinations/da-nang/travel-guide/'],['다낭 호텔 추천 글','/destinations/da-nang/hotel-recommendations/']]; list.innerHTML=posts.map(([title,href])=>`<li><a href="${href}">${escapeHtml(title)}</a></li>`).join(""); }
+const RELATED_TOP5_REGION_SLUGS = {
+  "myKhe": ["my-khe", "phuoc-my", "my-khe-phuoc-my", "미케비치·푸억미", "미케비치", "푸억미"],
+  "nonNuoc": ["non-nuoc", "hoa-hai", "ngu-hanh-son", "non-nuoc-ngu-hanh-son", "논느억·오행산 리조트권", "논느억·오행산", "논느억", "오행산"],
+  "cityCenter": ["da-nang-city", "hai-chau", "han-market", "da-nang-city-han-market", "다낭 시내·한시장", "다낭 시내", "한시장"],
+  "hanRiverEast": ["han-river-east", "dragon-bridge", "an-hai-bac", "한강 동쪽·용다리", "한강 동쪽", "용다리"],
+  "northTransit": ["da-nang-north", "airport-station", "airport-train-station", "다낭 북부·공항·기차역 주변", "다낭 북부", "공항·기차역"]
+};
+function getRelatedPostRegionSlugs(area) {
+  return [...new Set([
+    ...(RELATED_TOP5_REGION_SLUGS[area?.key] || []),
+    area?.regionSlug,
+    ...(Array.isArray(area?.regionSlugAliases) ? area.regionSlugAliases : []),
+    area?.name,
+    area?.key
+  ].map((item) => String(item || "").trim()).filter(Boolean))];
+}
+async function fetchRelatedPostsByRegion(area) {
+  const regionSlugs = getRelatedPostRegionSlugs(area);
+  for (const regionSlug of regionSlugs) {
+    const params = new URLSearchParams({
+      destination: cityConfig.destinationSlug,
+      type: cityConfig.postContentType || "top5_series",
+      region: regionSlug,
+      limit: "5"
+    });
+    try {
+      const response = await fetch(`/api/destination-posts?${params.toString()}`, {
+        headers: { accept: "application/json" },
+        cache: "no-store"
+      });
+      if (!response.ok) continue;
+      const data = await response.json();
+      const items = Array.isArray(data.items) ? data.items : [];
+      if (items.length) return items.slice(0, 5);
+    } catch (_) {
+      return [];
+    }
+  }
+  return [];
+}
+async function renderRelatedPosts(area) {
+  const section = document.getElementById("relatedPostSection");
+  const list = document.getElementById("relatedPostList");
+  if (!section || !list) return;
+  section.style.display = "none";
+  list.innerHTML = "";
+  setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
+  setText("relatedPostDesc", "현재 추천된 지역에 연결된 호텔 추천 TOP5 글만 보여줍니다.");
+  const posts = await fetchRelatedPostsByRegion(area);
+  if (!posts.length) {
+    section.style.display = "none";
+    list.innerHTML = "";
+    return;
+  }
+  section.style.display = "block";
+  list.innerHTML = "";
+  posts.forEach((post) => {
+    const title = String(post.title || "호텔 추천 TOP5 글").trim();
+    const slug = String(post.slug || "").trim();
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.textContent = title;
+    link.setAttribute("aria-label", `${title} 보기`);
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+}
 function showResult(){ const ranked=calculateScores(); const top=ranked[0]; locationPage?.classList.add("is-survey-started","is-result-mode"); surveyWrap?.classList.add("is-survey-started","is-result-mode"); surveyView.style.display="none"; resultView.classList.add("is-active"); setText("resultTitle", top.name); setText("resultSummary", top.summary); setText("resultLeadTitle", top.leadTitle); setText("resultLeadText", top.leadText); setText("resultWhyText", `${top.name}은(는) 이번 답변에서 중요하게 고른 조건을 가장 많이 충족한 지역입니다.`); const reasonList=document.getElementById("reasonCardList"); const reasons=[['동선', top.summary], ['숙소 분위기', top.leadText], ['대안 지역', ranked[1] ? `${ranked[1].name}도 함께 비교하면 선택 폭이 넓어집니다.` : '여행 일정에 맞춰 주변 지역도 함께 비교해보세요.']]; reasonList.innerHTML=reasons.map((r,i)=>`<article class="wt-reason-card"><span class="wt-reason-number">${i+1}</span><h4>${escapeHtml(r[0])}</h4><p>${escapeHtml(r[1])}</p></article>`).join(""); setText("decisionConclusionTitle", `${top.name}부터 비교해보세요`); setText("decisionConclusionText", "같은 지역 안에서도 해변 바로 앞, 큰길 안쪽, 강변 전망 객실처럼 체감 차이가 있으니 실제 도보 경로와 최근 후기를 함께 확인하는 편이 좋습니다."); renderHotelCards(top); renderRelatedPosts(top); progressText.textContent="추천 결과가 나왔어요!"; progressFill.style.width="100%"; progressBar.setAttribute("aria-valuenow","100"); window.scrollTo({top:0,behavior:"smooth"}); }
 function resetSurvey(){ closeSurveyToStart(); }
 startSurveyBtn?.addEventListener("click", startSurvey); backBtn?.addEventListener("click",()=>window.history.back()); nextBtn.addEventListener("click", goNext); prevBtn.addEventListener("click", goPrev); resetBtn.addEventListener("click", resetSurvey); renderQuestion();
