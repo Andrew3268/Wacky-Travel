@@ -15027,3 +15027,181 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
   }
 }
 /* End WACKYTRAVEL_BREADCRUMB_TABLET_AND_SURVEY_RELATED_TOP5_V114 */
+
+
+/* WACKYTRAVEL_LOCATION_SURVEY_RESULT_BREATHING_ROOM_V9 */
+.wt-location-page.is-survey-started:not(.is-result-mode) .wt-survey-top-link {
+  display: none;
+}
+
+.wt-location-page.is-result-mode {
+  padding-top: clamp(22px, 3.5vw, 42px);
+  padding-bottom: clamp(72px, 8vw, 112px);
+}
+
+.wt-location-page.is-result-mode .wt-location-shell {
+  max-width: min(100%, 1100px);
+}
+
+.wt-location-page.is-result-mode .wt-survey-top-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 42px;
+  margin: 0 0 clamp(20px, 2.6vw, 32px);
+  padding: 0 16px 0 12px;
+  border-radius: 999px;
+  border: 1px solid #e5ebf2;
+  background: #ffffff;
+  color: #263241;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.wt-location-page.is-result-mode .wt-survey-top-link:hover {
+  background: #f8fafc;
+  border-color: #d8e1eb;
+}
+
+.wt-location-page .wt-result.is-active .wt-result-card {
+  padding-top: clamp(30px, 4.8vw, 58px);
+}
+
+.wt-location-page .wt-result.is-active .wt-result-summary {
+  margin-top: 18px;
+  line-height: 1.82;
+}
+
+.wt-location-page .wt-result.is-active .wt-result-lead {
+  margin-top: clamp(32px, 4vw, 46px);
+  padding: clamp(24px, 3.2vw, 34px);
+  border: 1px solid #e8edf3;
+  border-radius: 26px;
+  background: #ffffff;
+}
+
+.wt-location-page .wt-result.is-active .wt-result-story {
+  margin-top: clamp(58px, 6vw, 82px);
+  padding: clamp(28px, 4vw, 40px);
+  border: 1px solid #e8edf3;
+  border-radius: 30px;
+  background: #ffffff;
+}
+
+.wt-location-page .wt-result.is-active .wt-result-story-desc {
+  margin-top: 16px;
+}
+
+.wt-location-page .wt-result.is-active .wt-reason-list {
+  gap: clamp(16px, 2vw, 22px);
+  margin-top: clamp(30px, 3.4vw, 42px);
+}
+
+.wt-location-page .wt-result.is-active .wt-reason-card {
+  padding: clamp(24px, 3vw, 32px);
+  border: 1px solid #edf1f5;
+  border-radius: 26px;
+  background: #fbfcfe;
+}
+
+.wt-location-page .wt-result.is-active .wt-reason-card p {
+  margin-top: 10px;
+}
+
+.wt-location-page .wt-result.is-active .wt-decision-box {
+  margin-top: clamp(24px, 3vw, 34px);
+  padding: clamp(24px, 3vw, 32px);
+  border-radius: 26px;
+}
+
+.wt-location-page .wt-result.is-active .wt-hotel-section {
+  margin-top: clamp(64px, 7vw, 92px);
+  padding: clamp(26px, 4vw, 40px);
+  border: 1px solid #e8edf3;
+  border-radius: 32px;
+  background: #fbfcfe;
+}
+
+.wt-location-page .wt-result.is-active .wt-section-heading {
+  margin-bottom: clamp(24px, 3vw, 34px);
+}
+
+.wt-location-page .wt-result.is-active .wt-hotel-grid {
+  gap: clamp(18px, 2.4vw, 24px);
+  margin-right: 0 !important;
+  padding: 4px 4px 22px !important;
+}
+
+.wt-location-page .wt-result.is-active .wt-hotel-card {
+  flex-basis: clamp(320px, 32vw, 372px);
+  padding: clamp(24px, 2.6vw, 30px);
+  border: 1px solid #edf1f5;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.05);
+}
+
+.wt-location-page .wt-result.is-active .wt-hotel-card-footer {
+  padding-top: 22px;
+}
+
+.wt-location-page .wt-result.is-active .wt-post-list-section {
+  margin-top: clamp(54px, 6vw, 76px);
+  padding: clamp(26px, 4vw, 38px);
+  border: 1px solid #e8edf3;
+  border-radius: 30px;
+  background: #ffffff;
+}
+
+.wt-location-page .wt-result.is-active + .wt-reset-area,
+.wt-location-page .wt-result.is-active .wt-reset-area {
+  margin-top: clamp(38px, 5vw, 58px);
+}
+
+@media (max-width: 820px) {
+  .wt-location-page.is-result-mode {
+    padding-top: 24px;
+  }
+
+  .wt-location-page.is-result-mode .wt-survey-top-link {
+    margin-bottom: 22px;
+  }
+
+  .wt-location-page .wt-result.is-active .wt-result-card {
+    padding-top: 28px;
+  }
+
+  .wt-location-page .wt-result.is-active .wt-result-story,
+  .wt-location-page .wt-result.is-active .wt-hotel-section,
+  .wt-location-page .wt-result.is-active .wt-post-list-section {
+    border-radius: 26px;
+  }
+
+  .wt-location-page .wt-result.is-active .wt-hotel-card {
+    flex-basis: min(78vw, 340px);
+  }
+}
+
+@media (max-width: 560px) {
+  .wt-location-page.is-result-mode {
+    padding-left: clamp(22px, 6vw, 28px);
+    padding-right: clamp(22px, 6vw, 28px);
+  }
+
+  .wt-location-page .wt-result.is-active .wt-result-lead,
+  .wt-location-page .wt-result.is-active .wt-result-story,
+  .wt-location-page .wt-result.is-active .wt-hotel-section,
+  .wt-location-page .wt-result.is-active .wt-post-list-section {
+    padding: 22px;
+  }
+
+  .wt-location-page .wt-result.is-active .wt-hotel-grid {
+    gap: 16px;
+    padding-bottom: 20px !important;
+  }
+
+  .wt-location-page .wt-result.is-active .wt-hotel-card {
+    flex-basis: min(82vw, 318px);
+    padding: 22px;
+  }
+}
+/* End WACKYTRAVEL_LOCATION_SURVEY_RESULT_BREATHING_ROOM_V9 */
