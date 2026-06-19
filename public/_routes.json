@@ -20,6 +20,8 @@
     "/destinations/okinawa",
     "/destinations/okinawa/*",
     "/destinations/da-nang",
-    "/destinations/da-nang/*"
+    "/destinations/da-nang/*",
+    "/destinations/nha-trang",
+    "/destinations/nha-trang/*"
   ]
 }

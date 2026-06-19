@@ -16,7 +16,8 @@
   };
 
   const STATIC_DESTINATIONS = [
-    { slug: "da-nang", name: "다낭", city: "다낭", country: "베트남", sort_order: 1, status: "published", is_active: 1 }
+    { slug: "da-nang", name: "다낭", city: "다낭", country: "베트남", sort_order: 1, status: "published", is_active: 1 },
+    { slug: "nha-trang", name: "나트랑", city: "나트랑", country: "베트남", sort_order: 2, status: "published", is_active: 1 }
   ];
 
   const normalizeText = (value) => String(value || "").trim();
