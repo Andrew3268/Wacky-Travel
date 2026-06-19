@@ -15221,3 +15221,36 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
   color: #64748b;
 }
 /* End WACKYTRAVEL_NHA_TRANG_LOCAL_PHRASE_PRONUNCIATION_V1 */
+
+
+/* V117 - Nha Trang travel guide related CTA visibility fix */
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-related--visible.container {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 1;
+  clear: both;
+  width: min(100% - 40px, 1120px) !important;
+  max-width: 1120px !important;
+  margin-top: clamp(28px, 4vw, 52px) !important;
+  margin-right: auto !important;
+  margin-bottom: clamp(42px, 6vw, 76px) !important;
+  margin-left: auto !important;
+  box-sizing: border-box;
+}
+
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-layout + .wt-city-guide-related--visible.container {
+  margin-top: clamp(30px, 4.5vw, 58px) !important;
+}
+
+@media (max-width: 767px) {
+  main.travel-page.wt-city-travel-guide-page .wt-city-guide-related--visible.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-top: 28px !important;
+    margin-right: 0 !important;
+    margin-bottom: 44px !important;
+    margin-left: 0 !important;
+  }
+}
