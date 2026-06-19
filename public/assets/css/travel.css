@@ -15254,3 +15254,12 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-layout + .wt-city-guid
     margin-left: 0 !important;
   }
 }
+
+/* V118 - Nha Trang travel guide related CTA text color fix */
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-related.container h2 {
+  color: #000 !important;
+}
+
+main.travel-page.wt-city-travel-guide-page .wt-city-guide-related__links a {
+  color: #000 !important;
+}
