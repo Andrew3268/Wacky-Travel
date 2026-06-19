@@ -5,8 +5,8 @@ const cityConfig = {
   "areas": {
     "cityBeach": {
       "name": "나트랑 시내·나트랑 비치",
-      "summary": "쩐푸 비치와 시내 중심 생활권을 함께 보는 나트랑 대표 숙박 지역입니다. 해변 산책, 야시장, 식당, 마사지, 카페 동선을 짧게 만들기 좋습니다.",
-      "leadTitle": "나트랑이 처음이라면 가장 실패 확률이 낮은 기본 숙박지입니다.",
+      "summary": "쩐푸 비치와 시내 중심 생활권이 겹치는 나트랑 대표 숙박 지역입니다. 해변 산책, 야시장, 식당, 마사지, 카페 동선을 짧게 만들기 좋습니다.",
+      "leadTitle": "나트랑이 처음이라면 처음 나트랑을 간다면 가장 무난하게 고르기 좋은 숙박지입니다.",
       "leadText": "첫 여행, 자유여행, 친구·커플 여행, 짧은 일정, 저녁 산책과 식사 동선이 중요한 일정",
       "hotels": [
         {
@@ -57,7 +57,7 @@ const cityConfig = {
           "kr": "아미아나 리조트 나트랑",
           "area": "혼총·팜반동",
           "tag": "북부 리조트형",
-          "text": "시내에서 벗어난 조용한 해변 휴식과 리조트 분위기를 함께 보는 후보입니다."
+          "text": "시내에서 벗어나 조용한 해변과 리조트 분위기를 누리고 싶을 때 어울립니다."
         },
         {
           "name": "Muong Thanh Luxury Vien Trieu Hotel",
@@ -91,8 +91,8 @@ const cityConfig = {
     },
     "vinpearlHonTam": {
       "name": "빈펄·혼땀",
-      "summary": "혼트레 섬의 빈펄 계열 리조트와 혼땀 섬 리조트를 함께 보는 목적형 숙박지입니다. 선택지는 많지 않지만 가족 리조트, 워터파크, 섬 휴양 목적이 뚜렷할 때 의미가 있습니다.",
-      "leadTitle": "일반 숙소 비교용이라기보다 빈펄·혼땀을 목적지로 잡은 여행자에게 맞는 특수 숙박지입니다.",
+      "summary": "혼트레 섬의 빈펄 계열 리조트와 혼땀 섬 리조트를 한데 묶은 섬 리조트 지역입니다. 선택지는 많지 않지만 가족 리조트, 워터파크, 섬에서 머무는 일정이 뚜렷할 때 따로 볼 만합니다.",
+      "leadTitle": "일반 시내 호텔처럼 고르는 곳은 아니고, 빈펄이나 혼땀에서 머무는 일정이 분명할 때 보는 지역입니다.",
       "leadText": "빈원더스 일정, 아이 동반 가족 여행, 리조트 안에서 쉬는 시간, 섬 휴양을 중심으로 둔 일정",
       "hotels": [
         {
@@ -128,7 +128,7 @@ const cityConfig = {
           "kr": "나트랑 메리어트 리조트 앤 스파 혼트레 아일랜드",
           "area": "빈펄·혼땀",
           "tag": "섬 리조트형",
-          "text": "혼트레 섬에서 객실 컨디션과 리조트 시설을 함께 보고 싶은 경우 비교 후보입니다."
+          "text": "혼트레 섬에서 객실 컨디션과 리조트 시설을 함께 보고 싶을 때 비교할 만합니다."
         }
       ]
     },
@@ -150,7 +150,7 @@ const cityConfig = {
           "kr": "더 아남 깜란",
           "area": "깜란·바이다이",
           "tag": "고급 리조트형",
-          "text": "바이다이 해변의 차분한 분위기와 고급 리조트 체류를 함께 보는 후보입니다."
+          "text": "바이다이 해변의 차분한 분위기와 고급 리조트 체류를 함께 기대할 수 있습니다."
         },
         {
           "name": "Alma Resort Cam Ranh",
@@ -171,15 +171,15 @@ const cityConfig = {
           "kr": "래디슨 블루 리조트 깜란",
           "area": "깜란·바이다이",
           "tag": "공항 접근형",
-          "text": "공항 접근성과 바이다이 해변 휴식을 함께 보는 일정에 비교할 만합니다."
+          "text": "공항 접근성과 바이다이 해변 휴식을 함께 챙기기 좋습니다."
         }
       ]
     },
     "ninhHoa": {
       "name": "닌호아·족렛",
-      "summary": "닌호아, 족렛 비치, 닌반베이 주변을 함께 보는 외곽 휴양 지역입니다. 한적한 해변, 고급 리조트, 조용한 체류를 원하는 재방문자에게 어울립니다.",
+      "summary": "닌호아, 족렛 비치, 닌반베이 주변을 묶어 보는 외곽 휴양 지역입니다. 한적한 해변과 조용한 리조트 체류를 원하는 재방문자에게 어울립니다.",
       "leadTitle": "나트랑을 관광 도시보다 조용한 휴양지로 쓰고 싶을 때 선택하는 지역입니다.",
-      "leadText": "완전 휴양, 조용한 커플 여행, 고급 리조트 체류, 재방문 여행, 시내보다 자연과 한적함을 우선하는 일정",
+      "leadText": "조용한 휴양, 커플 여행, 고급 리조트 체류, 재방문 여행, 시내보다 자연과 한적함을 우선하는 일정",
       "hotels": [
         {
           "name": "Six Senses Ninh Van Bay",
@@ -497,7 +497,7 @@ function closeSurveyToStart(){ currentQuestionIndex=0; answers=new Array(cityCon
 function goNext(){ if(answers[currentQuestionIndex]===null)return; if(currentQuestionIndex<cityConfig.questions.length-1){ currentQuestionIndex+=1; renderQuestion(); questionTitle.focus?.(); } else { showResult(); } }
 function goPrev(){ if(currentQuestionIndex===0){ closeSurveyToStart(); return; } currentQuestionIndex-=1; renderQuestion(); }
 function calculateScores(){ const scores={}; Object.keys(cityConfig.areas).forEach((k)=>scores[k]=0); answers.forEach((answerIndex, qi)=>{ if(answerIndex===null)return; const selected=cityConfig.questions[qi].options[answerIndex]; Object.entries(selected.scores||{}).forEach(([key,score])=>{ if(Object.prototype.hasOwnProperty.call(scores,key)) scores[key]+=score; }); }); return Object.entries(scores).map(([key,score])=>({key,score,...cityConfig.areas[key]})).sort((a,b)=>b.score-a.score); }
-function renderHotelCards(area){ const section=document.getElementById("hotelRecommendSection"); const list=document.getElementById("hotelCardList"); const hotels=Array.isArray(area.hotels)?area.hotels.slice(0,5):[]; if(!hotels.length){ section.style.display="none"; return; } section.style.display="block"; setText("hotelSectionTitle", `${area.name}에서 비교해볼 만한 호텔`); setText("hotelSectionDesc", "실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 함께 확인하세요."); list.innerHTML=hotels.map((h)=>`<article class="wt-hotel-card"><div class="wt-hotel-card__body"><div class="wt-hotel-card__topline"><div class="wt-hotel-card__fit">${escapeHtml(h.tag||"추천 호텔")}</div><span class="wt-hotel-card__stars">${escapeHtml(h.area||area.name)}</span></div><h3>${escapeHtml(h.kr||h.name)}</h3><div class="wt-hotel-card__subname">${escapeHtml(h.name||"")}</div><div class="wt-hotel-card__point">${escapeHtml(h.tag||"비교 후보")}</div><p>${escapeHtml(h.text||"")}</p><div class="wt-hotel-actions"><a class="wt-btn wt-btn--primary" href="/destinations/nha-trang/hotel-recommendations/">잔여 객실 확인</a></div></div></article>`).join(""); }
+function renderHotelCards(area){ const section=document.getElementById("hotelRecommendSection"); const list=document.getElementById("hotelCardList"); const hotels=Array.isArray(area.hotels)?area.hotels.slice(0,5):[]; if(!hotels.length){ section.style.display="none"; return; } section.style.display="block"; setText("hotelSectionTitle", `${area.name}에서 비교해볼 만한 호텔`); setText("hotelSectionDesc", "실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 함께 확인하세요."); list.innerHTML=hotels.map((h)=>`<article class="wt-hotel-card"><div class="wt-hotel-card__body"><div class="wt-hotel-card__topline"><div class="wt-hotel-card__fit">${escapeHtml(h.tag||"추천 호텔")}</div><span class="wt-hotel-card__stars">${escapeHtml(h.area||area.name)}</span></div><h3>${escapeHtml(h.kr||h.name)}</h3><div class="wt-hotel-card__subname">${escapeHtml(h.name||"")}</div><div class="wt-hotel-card__point">${escapeHtml(h.tag||"비교할 만한 후보")}</div><p>${escapeHtml(h.text||"")}</p><div class="wt-hotel-actions"><a class="wt-btn wt-btn--primary" href="/destinations/nha-trang/hotel-recommendations/">잔여 객실 확인</a></div></div></article>`).join(""); }
 const RELATED_TOP5_REGION_SLUGS = {
   "cityBeach": ["nha-trang-city-beach", "tran-phu-beach", "loc-tho", "나트랑 시내·나트랑 비치", "나트랑 시내", "나트랑 비치", "쩐푸 비치"],
   "honChong": ["hon-chong", "pham-van-dong", "hon-chong-pham-van-dong", "혼총·팜반동", "혼총", "팜반동"],
