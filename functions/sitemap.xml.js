@@ -71,7 +71,18 @@ const STATIC_ROUTES = [
   "/destinations/da-nang/value-hotel/",
   "/destinations/da-nang/near-trip/",
   "/destinations/da-nang/family-trip/",
-  "/destinations/da-nang/quiet-stay/"
+  "/destinations/da-nang/quiet-stay/",
+  "/destinations/nha-trang/",
+  "/destinations/nha-trang/hotel-recommendations/",
+  "/destinations/nha-trang/hotels/",
+  "/destinations/nha-trang/travel-guide/",
+  "/destinations/nha-trang/hotel-guide/",
+  "/destinations/nha-trang/hotel-location-survey/",
+  "/destinations/nha-trang/first-trip/",
+  "/destinations/nha-trang/value-hotel/",
+  "/destinations/nha-trang/near-trip/",
+  "/destinations/nha-trang/family-trip/",
+  "/destinations/nha-trang/quiet-stay/"
 ];
 
 function xmlEscape(value) {

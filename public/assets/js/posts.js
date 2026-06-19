@@ -287,6 +287,20 @@ function buildPostsHeroNav(categories = []) {
       fallback: '/destinations/okinawa/hotels/',
       fallbackLabel: '오키나와 호텔 글 더 보기 →'
     }
+    ,
+    'da-nang': {
+      top5_series: '/destinations/da-nang/hotel-recommendations/',
+      hotel_intro: '/destinations/da-nang/hotels/',
+      fallback: '/destinations/da-nang/hotels/',
+      fallbackLabel: '다낭 호텔 글 더 보기 →'
+    },
+    'nha-trang': {
+      top5_series: '/destinations/nha-trang/hotel-recommendations/',
+      hotel_intro: '/destinations/nha-trang/hotels/',
+      fallback: '/destinations/nha-trang/hotels/',
+      fallbackLabel: '나트랑 호텔 글 더 보기 →'
+    }
+
   };
 
   const HOTEL_ARCHIVE_LABELS = {
