@@ -46,6 +46,381 @@ const cityConfig = {
   ]
 };
 
+const resultDetails = {
+  "district1": {
+    "why": "대표 관광, 식사, 마사지, 투어 픽업이 한 구역에 몰립니다. 첫 방문자는 이동 판단을 줄일 수 있습니다.",
+    "fit": [
+      {
+        "label": "첫 방문 동선",
+        "score": 96
+      },
+      {
+        "label": "투어 픽업 편의",
+        "score": 92
+      },
+      {
+        "label": "숙면 안정감",
+        "score": 62
+      }
+    ],
+    "reasons": [
+      {
+        "title": "핵심 동선",
+        "desc": "벤탄시장·통일궁·중앙우체국·동커이를 짧게 연결합니다."
+      },
+      {
+        "title": "저녁 이동",
+        "desc": "마사지, 식당, 루프톱바 선택지가 많아 밤 이동이 단순합니다."
+      },
+      {
+        "title": "투어 출발",
+        "desc": "메콩델타·꾸찌터널 투어 픽업 가능성이 높은 편입니다."
+      },
+      {
+        "title": "예산 감각",
+        "desc": "저가부터 4성급까지 폭이 넓어 비교가 쉽습니다."
+      },
+      {
+        "title": "주의 구역",
+        "desc": "부이비엔 인접 저층 객실은 밤 소음 후기를 확인하세요."
+      },
+      {
+        "title": "추천 숙박",
+        "desc": "2~3박 첫 여행, 짧은 일정, 친구 여행에 가장 무난합니다."
+      }
+    ],
+    "checklist": [
+      "부이비엔까지 도보 5분 이내인지 확인",
+      "창문·방음·저층 소음 후기 확인",
+      "투어 픽업 가능 주소인지 확인",
+      "벤탄시장 기준 실제 도보 시간을 지도에서 확인"
+    ],
+    "dayFlow": [
+      "오전: 통일궁·중앙우체국",
+      "오후: 벤탄시장·카페",
+      "저녁: 마사지·식사·야경"
+    ],
+    "decision": "첫 호치민이라면 1군·벤탄이 가장 안전한 선택입니다. 다만 조용한 숙면이 최우선이면 동커이·3군을 함께 비교하세요.",
+    "hotelNotes": [
+      "벤탄시장 접근",
+      "중심 실속",
+      "감각형 부티크",
+      "짧은 일정",
+      "쇼핑 연결"
+    ]
+  },
+  "dongkhoi": {
+    "why": "중심 접근성은 유지하면서 주변 분위기가 더 정돈되어 있습니다. 커플, 부모님 동반, 호텔 컨디션 중시 일정에 맞습니다.",
+    "fit": [
+      {
+        "label": "도심 산책",
+        "score": 94
+      },
+      {
+        "label": "호텔 만족도",
+        "score": 91
+      },
+      {
+        "label": "예산 절약",
+        "score": 58
+      }
+    ],
+    "reasons": [
+      {
+        "title": "깔끔한 중심가",
+        "desc": "오페라하우스·응우옌후에·사이공강 산책을 묶기 좋습니다."
+      },
+      {
+        "title": "부모님 동반",
+        "desc": "과하게 번잡한 분위기를 피하면서 중심 이동은 쉽습니다."
+      },
+      {
+        "title": "호텔 선택",
+        "desc": "고급 호텔과 안정적인 4~5성급 후보가 많습니다."
+      },
+      {
+        "title": "저녁 일정",
+        "desc": "식사, 쇼핑몰, 강변 산책을 무리 없이 연결합니다."
+      },
+      {
+        "title": "주의점",
+        "desc": "1군 안에서도 벤탄보다 숙박비가 높게 잡힐 수 있습니다."
+      },
+      {
+        "title": "추천 숙박",
+        "desc": "2박 이상, 커플, 부모님, 기념일 여행에 적합합니다."
+      }
+    ],
+    "checklist": [
+      "동커이·응우옌후에·사이공강 중 실제 위치 확인",
+      "리버뷰 객실은 전망 보장 여부 확인",
+      "조식 포함 여부와 주변 식당 동선 비교",
+      "택시 승하차가 편한 호텔 입구인지 확인"
+    ],
+    "dayFlow": [
+      "오전: 중앙우체국·노트르담 주변",
+      "오후: 동커이 쇼핑·카페",
+      "저녁: 응우옌후에·강변 산책"
+    ],
+    "decision": "숙소 만족도와 중심 이동을 함께 잡고 싶다면 동커이·응우옌후에가 좋습니다. 예산이 중요하면 3군과 비교하세요.",
+    "hotelNotes": [
+      "동커이 핵심",
+      "강변 클래식",
+      "쇼핑 균형",
+      "기념일 숙소",
+      "고급 리버뷰"
+    ]
+  },
+  "district3": {
+    "why": "1군 접근성을 크게 잃지 않으면서 숙박비와 번잡함을 줄일 수 있습니다. 재방문, 가성비, 차분한 도심 일정에 맞습니다.",
+    "fit": [
+      {
+        "label": "가격·위치 균형",
+        "score": 93
+      },
+      {
+        "label": "조용한 도심",
+        "score": 86
+      },
+      {
+        "label": "완전 도보 여행",
+        "score": 61
+      }
+    ],
+    "reasons": [
+      {
+        "title": "가성비",
+        "desc": "1군 중심보다 숙박비 부담을 낮추기 쉽습니다."
+      },
+      {
+        "title": "중심 접근",
+        "desc": "전쟁박물관·1군까지 짧은 그랩 이동으로 연결됩니다."
+      },
+      {
+        "title": "동네 분위기",
+        "desc": "로컬 카페와 식당이 있어 재방문 여행에 좋습니다."
+      },
+      {
+        "title": "숙면",
+        "desc": "부이비엔 주변보다 밤 분위기가 차분한 편입니다."
+      },
+      {
+        "title": "주의점",
+        "desc": "매일 1군 도보 관광을 원하면 번거롭게 느껴질 수 있습니다."
+      },
+      {
+        "title": "추천 숙박",
+        "desc": "3박 이상, 실속형, 조용한 도심 선호 여행에 맞습니다."
+      }
+    ],
+    "checklist": [
+      "1군까지 그랩 예상 시간 확인",
+      "출퇴근 시간대 이동 계획 조정",
+      "전쟁박물관·통일궁과의 거리 확인",
+      "주변 편의점·카페 접근성 확인"
+    ],
+    "dayFlow": [
+      "오전: 전쟁박물관·통일궁",
+      "오후: 3군 카페·로컬 맛집",
+      "저녁: 1군 이동 후 식사"
+    ],
+    "decision": "가성비와 차분함이 중요하면 3군이 좋습니다. 단, 첫 여행에서 모든 동선을 도보로 끝내고 싶다면 1군을 우선하세요.",
+    "hotelNotes": [
+      "3군 휴식",
+      "가족·장기",
+      "부대시설",
+      "실속 안정",
+      "부티크"
+    ]
+  },
+  "thaodien": {
+    "why": "중심 관광보다 카페, 레스토랑, 조용한 동네 체류가 중요한 일정에 맞습니다. 재방문이나 장기 숙박에 강합니다.",
+    "fit": [
+      {
+        "label": "카페·여유",
+        "score": 96
+      },
+      {
+        "label": "장기 체류",
+        "score": 90
+      },
+      {
+        "label": "첫 여행 효율",
+        "score": 52
+      }
+    ],
+    "reasons": [
+      {
+        "title": "동네 매력",
+        "desc": "카페, 레스토랑, 편집숍을 여유 있게 즐기기 좋습니다."
+      },
+      {
+        "title": "휴식감",
+        "desc": "1군보다 조용하고 숙소 체류 만족도를 보기 좋습니다."
+      },
+      {
+        "title": "장기 일정",
+        "desc": "레지던스형 숙소와 생활 편의시설을 찾기 쉽습니다."
+      },
+      {
+        "title": "커플 여행",
+        "desc": "감성적인 식당과 리버사이드 분위기를 함께 잡을 수 있습니다."
+      },
+      {
+        "title": "주의점",
+        "desc": "대표 관광지는 그랩 이동이 기본이라 짧은 첫 여행에는 비효율적입니다."
+      },
+      {
+        "title": "추천 숙박",
+        "desc": "재방문, 4박 이상, 카페 여행, 조용한 휴식에 적합합니다."
+      }
+    ],
+    "checklist": [
+      "1군까지 이동 시간과 비용 확인",
+      "메트로역·큰 도로 접근성 확인",
+      "밤 늦은 귀가 시 그랩 동선 확인",
+      "주변 카페·식당 밀집 구역 확인"
+    ],
+    "dayFlow": [
+      "오전: 숙소 조식·카페",
+      "오후: 타오디엔 산책·쇼핑",
+      "저녁: 리버사이드 식사"
+    ],
+    "decision": "호치민을 천천히 즐기는 일정이면 타오디엔이 매력적입니다. 대표 명소 중심의 2박 첫 여행이라면 1군이 더 효율적입니다.",
+    "hotelNotes": [
+      "리버사이드",
+      "가족·장기",
+      "동네형",
+      "실속 체류",
+      "장기 숙박"
+    ]
+  },
+  "airport": {
+    "why": "숙소 위치의 목적이 관광이 아니라 비행 전후 피로를 줄이는 경우에 맞습니다. 밤 도착, 새벽 출국, 경유 1박에 실용적입니다.",
+    "fit": [
+      {
+        "label": "공항 이동",
+        "score": 98
+      },
+      {
+        "label": "경유 1박",
+        "score": 94
+      },
+      {
+        "label": "시내 관광",
+        "score": 45
+      }
+    ],
+    "reasons": [
+      {
+        "title": "비행 동선",
+        "desc": "떤선녓공항 이동 시간을 가장 줄이기 좋습니다."
+      },
+      {
+        "title": "새벽 출국",
+        "desc": "체크아웃 후 공항 이동 부담이 작습니다."
+      },
+      {
+        "title": "밤 도착",
+        "desc": "늦은 시간 시내 이동을 줄이고 바로 쉬기 좋습니다."
+      },
+      {
+        "title": "출장",
+        "desc": "공항권 업무 일정이나 짧은 체류에 실용적입니다."
+      },
+      {
+        "title": "주의점",
+        "desc": "대표 관광, 맛집, 카페 여행의 거점으로는 약합니다."
+      },
+      {
+        "title": "추천 숙박",
+        "desc": "첫날 1박, 마지막 날 1박, 새벽 비행 전후에 적합합니다."
+      }
+    ],
+    "checklist": [
+      "호텔-공항 셔틀 유무 확인",
+      "새벽 택시 이동 후기 확인",
+      "무료 취소 가능 여부 확인",
+      "시내 일정이 많다면 1군 이동 시간 확인"
+    ],
+    "dayFlow": [
+      "도착일: 공항 근처 숙박",
+      "다음날: 체크아웃 후 1군 이동",
+      "출국일: 마지막 밤만 공항권 이동"
+    ],
+    "decision": "비행 시간이 애매하면 공항·떤빈이 실용적입니다. 호치민 관광을 즐기는 전체 숙소로는 1군이나 동커이가 더 낫습니다.",
+    "hotelNotes": [
+      "공항 접근",
+      "안정형",
+      "공항·컨디션",
+      "1박 실속",
+      "레지던스"
+    ]
+  },
+  "binhthanh": {
+    "why": "객실 여유, 리버뷰, 쇼핑몰 접근성을 중시할 때 좋습니다. 가족 여행이나 숙소 체류 시간이 긴 일정에 맞습니다.",
+    "fit": [
+      {
+        "label": "가족 체류",
+        "score": 94
+      },
+      {
+        "label": "객실 여유",
+        "score": 92
+      },
+      {
+        "label": "도보 관광",
+        "score": 50
+      }
+    ],
+    "reasons": [
+      {
+        "title": "객실 여유",
+        "desc": "레지던스형·넓은 객실 후보를 비교하기 좋습니다."
+      },
+      {
+        "title": "가족 여행",
+        "desc": "아이 동반, 부모님 동반 일정에서 이동 피로를 줄이기 좋습니다."
+      },
+      {
+        "title": "쇼핑 편의",
+        "desc": "랜드마크81·쇼핑몰 접근성이 장점입니다."
+      },
+      {
+        "title": "리버뷰",
+        "desc": "숙소에서 쉬는 시간이 긴 여행에 만족도가 높습니다."
+      },
+      {
+        "title": "주의점",
+        "desc": "대표 명소는 그랩 이동이 기본이라 도보 중심 여행에는 맞지 않습니다."
+      },
+      {
+        "title": "추천 숙박",
+        "desc": "가족, 장기 일정, 리버뷰, 휴식형 여행에 적합합니다."
+      }
+    ],
+    "checklist": [
+      "1군까지 그랩 이동 시간 확인",
+      "객실 내 주방·세탁 시설 확인",
+      "쇼핑몰과 연결 또는 도보권 여부 확인",
+      "리버뷰 객실 보장 조건 확인"
+    ],
+    "dayFlow": [
+      "오전: 숙소 휴식·수영장",
+      "오후: 1군 관광 이동",
+      "저녁: 랜드마크81·쇼핑몰"
+    ],
+    "decision": "숙소에서 보내는 시간이 길다면 빈탄·랜드마크81이 좋습니다. 관광 효율만 보면 1군·동커이가 더 빠릅니다.",
+    "hotelNotes": [
+      "고층 리버뷰",
+      "아파트형",
+      "조용한 부티크",
+      "로컬 동네",
+      "가족형"
+    ]
+  }
+};
+
 (function () {
   const $ = (id) => document.getElementById(id);
   const els = {
@@ -53,8 +428,8 @@ const cityConfig = {
     backBtn: $("backBtn"), start: $("startSurveyBtn"), survey: $("surveyView"), result: $("resultView"),
     qCount: $("questionCount"), progressText: $("progressText"), progressBar: $("progressBar"), progressFill: $("progressFill"),
     qTitle: $("questionTitle"), qHelp: $("questionHelp"), options: $("optionsArea"), prev: $("prevBtn"), next: $("nextBtn"), reset: $("resetBtn"),
-    resultTitle: $("resultTitle"), resultSummary: $("resultSummary"), resultLeadTitle: $("resultLeadTitle"), resultLeadText: $("resultLeadText"), resultWhyText: $("resultWhyText"),
-    reasonCardList: $("reasonCardList"), decisionTitle: $("decisionConclusionTitle"), decisionText: $("decisionConclusionText"),
+    resultTitle: $("resultTitle"), resultSummary: $("resultSummary"), resultLeadTitle: $("resultLeadTitle"), resultLeadText: $("resultLeadText"), resultFitList: $("resultFitList"), resultWhyText: $("resultWhyText"),
+    reasonCardList: $("reasonCardList"), resultDetailGrid: $("resultDetailGrid"), decisionTitle: $("decisionConclusionTitle"), decisionText: $("decisionConclusionText"),
     hotelSectionTitle: $("hotelSectionTitle"), hotelSectionDesc: $("hotelSectionDesc"), hotelCardList: $("hotelCardList"),
     relatedPostTitle: $("relatedPostTitle"), relatedPostDesc: $("relatedPostDesc"), relatedPostList: $("relatedPostList")
   };
@@ -97,6 +472,8 @@ const cityConfig = {
   function renderResult() {
     const key = calculateResult();
     const area = cityConfig.areas[key];
+    const detail = resultDetails[key] || {};
+    const hotelNotes = detail.hotelNotes || [];
     els.locationPage?.classList.add("is-result-mode");
     els.surveyWrap?.classList.add("is-result-mode");
     els.result?.classList.add("is-active");
@@ -107,17 +484,33 @@ const cityConfig = {
     els.resultSummary.textContent = area.summary;
     els.resultLeadTitle.textContent = area.leadTitle;
     els.resultLeadText.textContent = area.leadText;
-    els.resultWhyText.textContent = `${area.name}은(는) 이번 답변에서 중요하게 본 이동 방식과 숙소 분위기에 가장 가깝습니다.`;
-    els.reasonCardList.innerHTML = [
-      ["잘 맞는 여행", area.bestFor.join(", ")],
-      ["예약 전 확인", area.bookingTips[0]],
-      ["주의할 점", area.notFor.join(", ")]
-    ].map(([t, d]) => `<article class="wt-reason-card"><strong>${escapeHtml(t)}</strong><p>${escapeHtml(d)}</p></article>`).join("");
+    if (els.resultFitList) {
+      els.resultFitList.innerHTML = (detail.fit || []).map((item) => `<div class="wt-fit-item"><div class="wt-fit-top"><span>${escapeHtml(item.label)}</span><span class="wt-fit-badge">${Number(item.score) || 0}%</span></div><div class="wt-fit-line" aria-hidden="true"><div class="wt-fit-fill" style="width:${Math.max(0, Math.min(100, Number(item.score) || 0))}%"></div></div></div>`).join("");
+    }
+    els.resultWhyText.textContent = detail.why || `${area.name}은(는) 이번 답변에서 중요하게 본 이동 방식과 숙소 분위기에 가장 가깝습니다.`;
+    const reasonItems = detail.reasons || [
+      { title: "잘 맞는 여행", desc: area.bestFor.join(", ") },
+      { title: "예약 전 확인", desc: area.bookingTips[0] },
+      { title: "주의할 점", desc: area.notFor.join(", ") }
+    ];
+    els.reasonCardList.innerHTML = reasonItems.map((item, idx) => `<article class="wt-reason-card"><span class="wt-reason-number">${idx + 1}</span><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.desc)}</p></article>`).join("");
+    if (els.resultDetailGrid) {
+      const checklist = detail.checklist || area.bookingTips || [];
+      const dayFlow = detail.dayFlow || [];
+      els.resultDetailGrid.innerHTML = [
+        { title: "예약 전 빠른 체크", items: checklist },
+        { title: "추천 일정 흐름", items: dayFlow }
+      ].map((box) => `<article class="wt-info-box"><h3>${escapeHtml(box.title)}</h3><ul class="wt-bullet-list">${(box.items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></article>`).join("");
+    }
     els.decisionTitle.textContent = "한 줄 결론";
-    els.decisionText.textContent = area.compareGood;
+    els.decisionText.textContent = detail.decision || area.compareGood;
     els.hotelSectionTitle.textContent = `${area.name}에서 비교해볼 만한 호텔`;
-    els.hotelSectionDesc.textContent = "실제 예약 전에는 객실 타입, 환불 조건, 조식, 최근 후기를 함께 확인하세요.";
-    els.hotelCardList.innerHTML = area.hotels.map((h) => `<article class="wt-hotel-card"><div class="wt-hotel-card__body"><div class="wt-hotel-card__fit">${escapeHtml(h.tag)}</div><h3>${escapeHtml(h.name)}</h3><p>${escapeHtml(h.reason)}</p><div class="wt-hotel-meta"><span>${escapeHtml(h.location)}</span></div><div class="wt-hotel-card__score-list">${h.meta.map((m) => `<span>${escapeHtml(m)}</span>`).join("")}</div></div><div class="wt-hotel-link-wrap"><a class="wt-hotel-link" href="${escapeHtml(h.url)}">잔여 객실 확인</a></div></article>`).join("");
+    els.hotelSectionDesc.textContent = "위치, 객실 타입, 취소 조건, 최근 후기를 함께 비교하세요.";
+    els.hotelCardList.innerHTML = area.hotels.map((h, idx) => {
+      const note = hotelNotes[idx] || h.tag;
+      const meta = [note, ...(h.meta || [])].slice(0, 4);
+      return `<article class="wt-hotel-card"><div class="wt-hotel-card-top"><span class="wt-hotel-rank">${idx + 1}</span><span class="wt-hotel-tag">${escapeHtml(h.tag)}</span></div><h3 class="wt-hotel-name">${escapeHtml(h.name)}</h3><p class="wt-hotel-location">${escapeHtml(h.location)}</p><p class="wt-hotel-reason">${escapeHtml(h.reason)}</p><div class="wt-hotel-meta">${meta.map((m) => `<span>${escapeHtml(m)}</span>`).join("")}</div><div class="wt-hotel-link-wrap"><a class="wt-hotel-link" href="${escapeHtml(h.url)}">잔여 객실 확인</a></div></article>`;
+    }).join("");
     els.relatedPostTitle.textContent = `${area.name} 숙소를 더 비교해보세요`;
     els.relatedPostDesc.textContent = "숙소 위치를 정했다면 여행 스타일별 추천 글로 호텔 후보를 좁혀보세요.";
     els.relatedPostList.innerHTML = area.links.map((link) => `<li><a href="${escapeHtml(link.url)}">${escapeHtml(link.title)}</a></li>`).join("");
