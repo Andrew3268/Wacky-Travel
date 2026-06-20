@@ -26,6 +26,8 @@ export async function onRequestGet({ env, request }) {
     return okJson({ ok: false, error: "invalid_request", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 400, headers: noStoreHeaders() });
   }
 
+  await ensureTravelSettingsTables(env.TRAVEL_DB);
+
   const destination = await env.TRAVEL_DB.prepare(`
     SELECT slug, name, city
     FROM destinations
@@ -35,8 +37,6 @@ export async function onRequestGet({ env, request }) {
   if (!destination) {
     return okJson({ ok: false, error: "destination_not_found", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 404, headers: noStoreHeaders() });
   }
-
-  await ensureTravelSettingsTables(env.TRAVEL_DB);
 
   const postQuery = buildDestinationPostQuery(destination, {
     regionSlug,
@@ -131,11 +131,28 @@ function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommen
   };
 }
 
+const DESTINATION_SEARCH_ALIASES = Object.freeze({
+  "ho-chi-minh-city": [
+    "호치민",
+    "호치민시",
+    "호찌민",
+    "호찌민시",
+    "사이공",
+    "ho chi minh",
+    "ho chi minh city",
+    "hochiminh",
+    "saigon",
+    "sai gon"
+  ]
+});
+
 function getDestinationSearchTerms(destination = {}) {
+  const slug = String(destination.slug || "").trim();
   return [...new Set([
     destination.name,
     destination.city,
-    destination.slug
+    slug,
+    ...(DESTINATION_SEARCH_ALIASES[slug] || [])
   ].map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter((value) => value.length >= 2))];
 }
 

@@ -299,6 +299,12 @@ function buildPostsHeroNav(categories = []) {
       hotel_intro: '/destinations/nha-trang/hotels/',
       fallback: '/destinations/nha-trang/hotels/',
       fallbackLabel: '나트랑 호텔 글 더 보기 →'
+    },
+    'ho-chi-minh-city': {
+      top5_series: '/destinations/ho-chi-minh-city/hotel-recommendations/',
+      hotel_intro: '/destinations/ho-chi-minh-city/hotels/',
+      fallback: '/destinations/ho-chi-minh-city/hotels/',
+      fallbackLabel: '호치민 호텔 글 더 보기 →'
     }
 
   };
