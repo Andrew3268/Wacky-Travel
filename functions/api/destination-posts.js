@@ -28,12 +28,13 @@ export async function onRequestGet({ env, request }) {
 
   await ensureTravelSettingsTables(env.TRAVEL_DB);
 
-  const destination = await env.TRAVEL_DB.prepare(`
+  const destinationRow = await env.TRAVEL_DB.prepare(`
     SELECT slug, name, city
     FROM destinations
     WHERE slug = ? AND status = 'published'
   `).bind(destinationSlug).first();
 
+  const destination = destinationRow || getFallbackDestination(destinationSlug);
   if (!destination) {
     return okJson({ ok: false, error: "destination_not_found", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 404, headers: noStoreHeaders() });
   }
@@ -58,7 +59,7 @@ export async function onRequestGet({ env, request }) {
   ]);
 
   const allPosts = (postRows.results || []).filter((post) => {
-    const hotelGroup = getHotelPostGroup(post);
+    const hotelGroup = getHotelPostGroup(post, requestedType);
     return requestedType === TRAVEL_CONTENT_TYPE ? !hotelGroup : hotelGroup === requestedType;
   });
   const items = allPosts.slice(offset, offset + limit);
@@ -88,22 +89,27 @@ function noStoreHeaders() {
 
 function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommendationCategorySlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
   const destinationSlug = String(destination.slug || "").trim();
+  const slugAliases = getDestinationSlugAliases(destinationSlug);
   const terms = getDestinationSearchTerms(destination);
   const fallbackBinds = [];
   const fallbackConditions = [];
 
   terms.forEach((term) => {
-    const like = `%${term.toLowerCase()}%`;
+    const normalizedTerm = term.toLowerCase();
+    const like = `%${normalizedTerm}%`;
     fallbackConditions.push("LOWER(COALESCE(title, '')) LIKE ?");
     fallbackBinds.push(like);
     fallbackConditions.push("LOWER(COALESCE(summary, '')) LIKE ?");
     fallbackBinds.push(like);
     fallbackConditions.push("LOWER(COALESCE(tags_json, '')) LIKE ?");
     fallbackBinds.push(like);
-    fallbackConditions.push("LOWER(TRIM(COALESCE(category, ''))) = ?");
-    fallbackBinds.push(term.toLowerCase());
+    fallbackConditions.push("LOWER(COALESCE(category, '')) LIKE ?");
+    fallbackBinds.push(like);
   });
 
+  const slugMatchSql = slugAliases.length
+    ? `LOWER(TRIM(COALESCE(destination_slug, ''))) IN (${slugAliases.map(() => "?").join(", ")})`
+    : "LOWER(TRIM(COALESCE(destination_slug, ''))) = ?";
   const fallbackSql = fallbackConditions.length
     ? `OR (${fallbackConditions.join(" OR ")})`
     : "";
@@ -112,11 +118,11 @@ function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommen
     sql: `
       SELECT ${selectSql}
       FROM posts
-      WHERE status = 'published'
+      WHERE ${normalizedStatusSql()} = 'published'
         ${regionSlug ? "AND TRIM(COALESCE(region_slug, '')) = ?" : ""}
         ${recommendationCategorySlug ? "AND TRIM(COALESCE(recommendation_category_slug, '')) = ?" : ""}
         AND (
-          TRIM(COALESCE(destination_slug, '')) = ?
+          ${slugMatchSql}
           ${fallbackSql}
         )
       ${orderSql || ""}
@@ -124,7 +130,7 @@ function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommen
     binds: [
       ...(regionSlug ? [regionSlug] : []),
       ...(recommendationCategorySlug ? [recommendationCategorySlug] : []),
-      destinationSlug,
+      ...(slugAliases.length ? slugAliases : [destinationSlug.toLowerCase()]),
       ...fallbackBinds,
       ...(Array.isArray(orderBinds) ? orderBinds : [])
     ]
@@ -142,9 +148,54 @@ const DESTINATION_SEARCH_ALIASES = Object.freeze({
     "ho chi minh city",
     "hochiminh",
     "saigon",
-    "sai gon"
+    "sai gon",
+    "hcmc"
   ]
 });
+
+const DESTINATION_SLUG_ALIASES = Object.freeze({
+  "ho-chi-minh-city": [
+    "ho-chi-minh-city",
+    "ho-chi-minh",
+    "hochiminh",
+    "hochiminh-city",
+    "hcmc",
+    "saigon",
+    "sai-gon",
+    "호치민",
+    "호찌민",
+    "호치민시",
+    "호찌민시"
+  ],
+  "da-nang": ["da-nang", "danang", "다낭"],
+  "nha-trang": ["nha-trang", "nhatrang", "나트랑"]
+});
+
+const FALLBACK_DESTINATIONS = Object.freeze({
+  "ho-chi-minh-city": { slug: "ho-chi-minh-city", name: "호치민", city: "호치민" },
+  "ho-chi-minh": { slug: "ho-chi-minh-city", name: "호치민", city: "호치민" },
+  "saigon": { slug: "ho-chi-minh-city", name: "호치민", city: "호치민" },
+  "hcmc": { slug: "ho-chi-minh-city", name: "호치민", city: "호치민" },
+  "da-nang": { slug: "da-nang", name: "다낭", city: "다낭" },
+  "danang": { slug: "da-nang", name: "다낭", city: "다낭" },
+  "nha-trang": { slug: "nha-trang", name: "나트랑", city: "나트랑" }
+});
+
+function normalizedStatusSql() {
+  return "LOWER(TRIM(COALESCE(status, 'published')))";
+}
+
+function getFallbackDestination(slug = "") {
+  const key = String(slug || "").trim().toLowerCase();
+  return FALLBACK_DESTINATIONS[key] || null;
+}
+
+function getDestinationSlugAliases(slug = "") {
+  const key = String(slug || "").trim().toLowerCase();
+  return [...new Set([key, ...(DESTINATION_SLUG_ALIASES[key] || [])]
+    .map((value) => String(value || "").trim().toLowerCase())
+    .filter(Boolean))];
+}
 
 function getDestinationSearchTerms(destination = {}) {
   const slug = String(destination.slug || "").trim();
@@ -156,11 +207,84 @@ function getDestinationSearchTerms(destination = {}) {
   ].map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter((value) => value.length >= 2))];
 }
 
-function getHotelPostGroup(post = {}) {
+function getHotelPostGroup(post = {}, requestedType = "") {
   const type = normalizeContentType(post.content_type);
   if (type === "top5_series") return "top5_series";
   if (type === "hotel_intro") return "hotel_intro";
+
+  const normalizedRequestedType = normalizeContentType(requestedType);
+  const text = normalizeComparableText([
+    post.content_type,
+    post.title,
+    post.category,
+    post.summary,
+    post.tags_json,
+    post.hotel_slug,
+    post.hotel_name,
+    post.recommendation_category_slug,
+    post.recommendation_category_name
+  ].join(" "));
+
+  if (!looksLikeHotelPost(text, post)) return "";
+
+  const top5Signals = [
+    "top5",
+    "top 5",
+    "호텔추천",
+    "추천호텔",
+    "숙소추천",
+    "여행스타일별호텔추천",
+    "가성비호텔",
+    "가족여행호텔",
+    "첫여행호텔",
+    "위치좋은호텔",
+    "호텔베스트",
+    "best hotel",
+    "hotel pick",
+    "hotel picks",
+    "hotel recommendation"
+  ];
+  const introSignals = [
+    "호텔리뷰",
+    "호텔후기",
+    "추천호텔리뷰",
+    "개별호텔",
+    "hotelreview",
+    "hotel review"
+  ];
+
+  const hasTop5Signal = hasComparableSignal(text, top5Signals);
+  const hasIntroSignal = hasComparableSignal(text, introSignals);
+
+  if (normalizedRequestedType === "top5_series" && (hasTop5Signal || post.recommendation_category_slug || post.recommendation_category_name)) return "top5_series";
+  if (normalizedRequestedType === "hotel_intro" && (hasIntroSignal || post.hotel_slug || post.hotel_name)) return "hotel_intro";
+
+  if (hasTop5Signal) return "top5_series";
+  if (hasIntroSignal || post.hotel_slug || post.hotel_name) return "hotel_intro";
+
   return "";
+}
+
+function normalizeComparableText(value = "") {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[\s_ ]+/g, "")
+    .replace(/[-–—|｜·.,，、:：/\\()\[\]{}]+/g, "")
+    .trim();
+}
+
+
+function hasComparableSignal(text = "", signals = []) {
+  return signals.some((signal) => {
+    const normalizedSignal = normalizeComparableText(signal);
+    return Boolean(normalizedSignal && text.includes(normalizedSignal));
+  });
+}
+
+function looksLikeHotelPost(text = "", post = {}) {
+  if (post.hotel_slug || post.hotel_name) return true;
+  if (!text) return false;
+  return ["호텔", "숙소", "hotel", "stay"].some((signal) => text.includes(signal));
 }
 
 function extractHotelNameFromTitle(title = "") {
