@@ -82,7 +82,18 @@ const STATIC_ROUTES = [
   "/destinations/nha-trang/value-hotel/",
   "/destinations/nha-trang/near-trip/",
   "/destinations/nha-trang/family-trip/",
-  "/destinations/nha-trang/quiet-stay/"
+  "/destinations/nha-trang/quiet-stay/",
+  "/destinations/ho-chi-minh-city/",
+  "/destinations/ho-chi-minh-city/hotel-recommendations/",
+  "/destinations/ho-chi-minh-city/hotels/",
+  "/destinations/ho-chi-minh-city/travel-guide/",
+  "/destinations/ho-chi-minh-city/hotel-guide/",
+  "/destinations/ho-chi-minh-city/hotel-location-survey/",
+  "/destinations/ho-chi-minh-city/first-trip/",
+  "/destinations/ho-chi-minh-city/value-hotel/",
+  "/destinations/ho-chi-minh-city/near-trip/",
+  "/destinations/ho-chi-minh-city/family-trip/",
+  "/destinations/ho-chi-minh-city/quiet-stay/",
 ];
 
 function xmlEscape(value) {
