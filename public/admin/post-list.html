@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>글 상태별 목록 | Wacky Travel</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260620StatusListV1" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
+</head>
+<body>
+  <header class="topbar topbar--editorial">
+    <div class="topbar__inner topbar__inner--editorial">
+      <button class="topbar-hamburger" type="button" aria-expanded="false" aria-controls="mobileSiteMenu" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="topbar-left-slot"><div class="topbar-admin-status" data-admin-status hidden aria-live="polite">관리자 로그인 중</div></div>
+
+      <a class="brand brand--center" href="/" aria-label="Wacky Travel 홈">
+        <span class="brand__text">Wacky Travel</span>
+      </a>
+
+      <nav class="nav nav--utility nav--right" aria-label="오른쪽 메뉴">
+        <a href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside id="mobileSiteMenu" class="mobile-site-menu" hidden aria-hidden="true">
+    <div class="mobile-site-menu__panel">
+      <div class="mobile-site-menu__close-wrap">
+        <button class="mobile-site-menu__close-toggle topbar-hamburger is-open" type="button" aria-label="메뉴 닫기" data-mobile-menu-close>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-site-menu__nav" aria-label="모바일 주요 메뉴"></nav>
+      <div class="mobile-site-menu__section mobile-site-menu__section--categories">
+        <div id="mobileSiteCategoryBar" class="topbar-categories__list topbar-categories__list--mobile"></div>
+      </div>
+      <div class="mobile-site-menu__section mobile-site-menu__section--admin" data-mobile-admin-section hidden>
+        <a class="mobile-site-menu__text-link" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="container dashboard-shell admin-post-list-shell">
+    <section class="hero card dashboard-hero admin-post-list-hero">
+      <div class="hero-copy">
+        <span class="badge">Post Status List</span>
+        <span class="badge" id="adminPostListStatusBadge">불러오는 중</span>
+        <h1 class="hero-title" id="adminPostListTitle">글 목록</h1>
+        <p class="p hero-desc" id="adminPostListDesc">대시보드 통계 카드에서 선택한 상태의 글을 한 번에 확인합니다.</p>
+        <div class="row dashboard-actions" style="margin-top:12px;flex-wrap:wrap">
+          <a class="btn" href="/admin/dashboard.html">대시보드로 돌아가기</a>
+          <a class="btn btn--brand" href="/add.html">새 글 작성</a>
+        </div>
+      </div>
+      <div class="dashboard-stats admin-post-list-summary" aria-label="선택한 글 상태 요약">
+        <a class="dashboard-stat dashboard-stat--link admin-post-status-tab" href="/admin/post-list.html?status=published" data-status-tab="published">
+          <div class="dashboard-stat__label">발행 글</div>
+          <strong class="dashboard-stat__value" id="adminPostPublishedCount">-</strong>
+          <span class="dashboard-stat__hint">발행 글 전체 보기</span>
+        </a>
+        <a class="dashboard-stat dashboard-stat--link admin-post-status-tab" href="/admin/post-list.html?status=draft" data-status-tab="draft">
+          <div class="dashboard-stat__label">초안 글</div>
+          <strong class="dashboard-stat__value" id="adminPostDraftCount">-</strong>
+          <span class="dashboard-stat__hint">초안 글 리스트 보기</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="card dashboard-panel admin-post-list-panel" style="margin-top:16px">
+      <div class="dashboard-panel__head admin-post-list-panel__head">
+        <div>
+          <h2 class="h2" id="adminPostListPanelTitle">글 목록</h2>
+          <p class="small" id="adminPostListMeta">데이터를 불러오는 중입니다.</p>
+        </div>
+        <div class="admin-post-list-tools">
+          <label class="sr-only" for="adminPostListSearch">글 검색</label>
+          <input class="input admin-post-list-search" id="adminPostListSearch" type="search" placeholder="제목, 카테고리, 요약 검색" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="admin-post-list-table-wrap">
+        <table class="admin-post-list-table">
+          <thead>
+            <tr>
+              <th scope="col">제목</th>
+              <th scope="col">종류</th>
+              <th scope="col">연결</th>
+              <th scope="col">작성/수정일</th>
+              <th scope="col">관리</th>
+            </tr>
+          </thead>
+          <tbody id="adminPostListBody">
+            <tr><td colspan="5" class="admin-post-list-empty">불러오는 중입니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
+  <script src="/assets/js/admin-guard.js"></script>
+  <script src="/assets/js/admin-ui.js" defer></script>
+  <script src="/assets/js/nav.js" defer></script>
+  <script src="/assets/js/admin-post-list.js?v=20260620StatusListV1" defer></script>
+  <script src="/assets/js/post-admin-actions.js?v=20260516admin1" defer></script>
+</body>
+</html>

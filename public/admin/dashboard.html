@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260620StatusListV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
 </head>
 <body>
@@ -62,7 +62,7 @@
           <a class="btn" href="/admin/items.html">항목 관리</a>
           <a class="btn" href="/admin/home-hub.html">여행 허브 관리</a>
           <a class="btn" href="/">블로그 홈으로 가기</a>
-          <a class="btn" href="/?status=draft">초안글 보기</a>
+          <a class="btn" href="/admin/post-list.html?status=draft">초안 글 목록</a>
         </div>
       </div>
       <div class="dashboard-stats" aria-label="글 운영 현황">
@@ -70,14 +70,16 @@
           <div class="dashboard-stat__label">작성된 글</div>
           <strong class="dashboard-stat__value" id="dashboardTotalCount">-</strong>
         </div>
-        <div class="dashboard-stat">
+        <a class="dashboard-stat dashboard-stat--link" href="/admin/post-list.html?status=published" aria-label="발행 글 전체 목록 보기">
           <div class="dashboard-stat__label">발행 글</div>
           <strong class="dashboard-stat__value" id="dashboardPublishedCount">-</strong>
-        </div>
-        <div class="dashboard-stat">
+          <span class="dashboard-stat__hint">발행 글 전체 보기</span>
+        </a>
+        <a class="dashboard-stat dashboard-stat--link" href="/admin/post-list.html?status=draft" aria-label="초안 글 목록 보기">
           <div class="dashboard-stat__label">초안 글</div>
           <strong class="dashboard-stat__value" id="dashboardDraftCount">-</strong>
-        </div>
+          <span class="dashboard-stat__hint">초안 글 리스트 보기</span>
+        </a>
       </div>
     </section>
 
@@ -137,7 +139,7 @@
   <script src="/assets/js/admin-guard.js"></script>
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
-  <script src="/assets/js/admin-dashboard.js?v=20260522v29" defer></script>
+  <script src="/assets/js/admin-dashboard.js?v=20260620StatusListV1" defer></script>
   <script src="/assets/js/post-admin-actions.js?v=20260516admin1" defer></script>
 </body>
 </html>

@@ -6053,3 +6053,180 @@ b {
     transform: none;
   }
 }
+
+/* Admin dashboard status list links 20260620 */
+a.dashboard-stat.dashboard-stat--link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+a.dashboard-stat.dashboard-stat--link:hover,
+a.dashboard-stat.dashboard-stat--link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.28);
+  background: #fff;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
+}
+
+a.dashboard-stat.dashboard-stat--link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), 0 18px 38px rgba(15, 23, 42, 0.10);
+}
+
+a.dashboard-stat.dashboard-stat--link:active {
+  transform: translateY(0);
+}
+
+.dashboard-stat__hint {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 8px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.dashboard-stat__hint::after {
+  content: "→";
+  margin-left: 5px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.admin-post-list-hero {
+  grid-template-columns: minmax(0,1.05fr) minmax(320px,.95fr);
+}
+
+.admin-post-list-summary {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+.admin-post-status-tab.is-active {
+  border-color: rgba(37, 99, 235, 0.38);
+  background: linear-gradient(180deg,#fff 0%,#eff6ff 100%);
+  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.10);
+}
+
+.admin-post-list-panel__head {
+  align-items: center;
+}
+
+.admin-post-list-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: min(320px, 100%);
+}
+
+.admin-post-list-search {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 13px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.admin-post-list-search:focus {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+  outline: none;
+}
+
+.admin-post-list-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-post-list-table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.admin-post-list-table th,
+.admin-post-list-table td {
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  padding: 14px 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.admin-post-list-table th {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+  background: #f8fafc;
+  white-space: nowrap;
+}
+
+.admin-post-list-title-cell {
+  min-width: 280px;
+}
+
+.admin-post-list-title {
+  display: inline-block;
+  max-width: 420px;
+  color: #111827;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.admin-post-list-title:hover,
+.admin-post-list-title:focus-visible {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.admin-post-list-sub,
+.admin-post-list-date {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.admin-post-list-actions {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+.admin-post-list-empty {
+  padding: 26px 12px !important;
+  color: #64748b;
+  text-align: center !important;
+}
+
+@media (max-width: 900px) {
+  .admin-post-list-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-post-list-panel__head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-post-list-tools {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-post-list-summary {
+    grid-template-columns: 1fr;
+  }
+}
