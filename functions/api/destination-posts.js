@@ -207,84 +207,24 @@ function getDestinationSearchTerms(destination = {}) {
   ].map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter((value) => value.length >= 2))];
 }
 
-function getHotelPostGroup(post = {}, requestedType = "") {
-  const type = normalizeContentType(post.content_type);
+function getHotelPostGroup(post = {}) {
+  const rawType = String(post.content_type || "").trim();
+  const type = normalizeContentType(rawType);
+
+  // 여행 팁 글이 제목·요약에 "호텔", "숙소" 같은 단어를 포함하더라도
+  // 호텔 추천 섹션으로 섞이면 안 됩니다.
+  // 호텔 섹션은 관리자에서 선택한 content_type을 기준으로만 분류합니다.
   if (type === "top5_series") return "top5_series";
   if (type === "hotel_intro") return "hotel_intro";
 
-  const normalizedRequestedType = normalizeContentType(requestedType);
-  const text = normalizeComparableText([
-    post.content_type,
-    post.title,
-    post.category,
-    post.summary,
-    post.tags_json,
-    post.hotel_slug,
-    post.hotel_name,
-    post.recommendation_category_slug,
-    post.recommendation_category_name
-  ].join(" "));
-
-  if (!looksLikeHotelPost(text, post)) return "";
-
-  const top5Signals = [
-    "top5",
-    "top 5",
-    "호텔추천",
-    "추천호텔",
-    "숙소추천",
-    "여행스타일별호텔추천",
-    "가성비호텔",
-    "가족여행호텔",
-    "첫여행호텔",
-    "위치좋은호텔",
-    "호텔베스트",
-    "best hotel",
-    "hotel pick",
-    "hotel picks",
-    "hotel recommendation"
-  ];
-  const introSignals = [
-    "호텔리뷰",
-    "호텔후기",
-    "추천호텔리뷰",
-    "개별호텔",
-    "hotelreview",
-    "hotel review"
-  ];
-
-  const hasTop5Signal = hasComparableSignal(text, top5Signals);
-  const hasIntroSignal = hasComparableSignal(text, introSignals);
-
-  if (normalizedRequestedType === "top5_series" && (hasTop5Signal || post.recommendation_category_slug || post.recommendation_category_name)) return "top5_series";
-  if (normalizedRequestedType === "hotel_intro" && (hasIntroSignal || post.hotel_slug || post.hotel_name)) return "hotel_intro";
-
-  if (hasTop5Signal) return "top5_series";
-  if (hasIntroSignal || post.hotel_slug || post.hotel_name) return "hotel_intro";
+  // content_type이 비어 있던 오래된 글만 최소한의 구조 필드로 보정합니다.
+  // travel_tip처럼 명시적으로 여행 콘텐츠로 분류된 글은 여기로 들어오지 않습니다.
+  if (!rawType) {
+    if (post.hotel_slug || post.hotel_name) return "hotel_intro";
+    if (post.recommendation_category_slug || post.recommendation_category_name) return "top5_series";
+  }
 
   return "";
-}
-
-function normalizeComparableText(value = "") {
-  return String(value || "")
-    .toLowerCase()
-    .replace(/[\s_ ]+/g, "")
-    .replace(/[-–—|｜·.,，、:：/\\()\[\]{}]+/g, "")
-    .trim();
-}
-
-
-function hasComparableSignal(text = "", signals = []) {
-  return signals.some((signal) => {
-    const normalizedSignal = normalizeComparableText(signal);
-    return Boolean(normalizedSignal && text.includes(normalizedSignal));
-  });
-}
-
-function looksLikeHotelPost(text = "", post = {}) {
-  if (post.hotel_slug || post.hotel_name) return true;
-  if (!text) return false;
-  return ["호텔", "숙소", "hotel", "stay"].some((signal) => text.includes(signal));
 }
 
 function extractHotelNameFromTitle(title = "") {
