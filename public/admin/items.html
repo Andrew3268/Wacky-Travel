@@ -11,7 +11,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <meta content="#2563EB" name="theme-color"/>
-<link href="/assets/css/app.css?v=20260620AdminItemsSectionNavV1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260620AdminItemsPostsV1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260620AdminItemsStatScrollV1" rel="stylesheet"/>
 </head>
 <body>
@@ -55,6 +55,7 @@
 <a class="btn btn--brand" href="/admin/dashboard.html">대시보드로</a>
 <a class="btn" href="/add.html">새 글 작성</a>
 <a class="btn" href="/admin/home-hub.html">여행 허브 관리</a>
+<a class="btn" href="/admin/items-posts.html">전체 글 보기</a>
 <a class="btn" href="/">블로그 홈</a>
 </div>
 </div>
@@ -84,6 +85,11 @@
 <div class="dashboard-stat__label">추천 카테고리</div>
 <strong class="dashboard-stat__value" id="itemRecommendationCategoryCount">-</strong>
 <span class="dashboard-stat__hint">관리하기</span>
+</a>
+<a aria-label="전체 글 보기 페이지로 이동" class="dashboard-stat admin-items-overview__stat admin-items-overview__stat--posts" href="/admin/items-posts.html">
+<div class="dashboard-stat__label">전체 글 보기</div>
+<strong class="dashboard-stat__value">글 목록</strong>
+<span class="dashboard-stat__hint">나라·도시·지역별 확인</span>
 </a>
 </div>
 
@@ -223,6 +229,6 @@
 <script src="/assets/js/admin-guard.js"></script>
 <script defer="" src="/assets/js/admin-ui.js"></script>
 <script defer="" src="/assets/js/nav.js"></script>
-<script defer="" src="/assets/js/admin-items.js?v=20260620SectionNavV1"></script>
+<script defer="" src="/assets/js/admin-items.js?v=20260620AdminItemsPostsV1"></script>
 </body>
 </html>
