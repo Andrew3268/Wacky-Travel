@@ -5896,3 +5896,90 @@ b {
   font-weight: 500;
 }
 
+
+
+/* Admin items dashboard-stat section jump 20260620 */
+.admin-items-overview a.dashboard-stat,
+.admin-items-overview__stat {
+  color: inherit;
+  text-decoration: none;
+}
+
+.admin-items-overview__stat {
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.admin-items-overview__stat:hover,
+.admin-items-overview__stat:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.28);
+  background: #ffffff;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
+}
+
+.admin-items-overview__stat:focus-visible {
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), 0 18px 38px rgba(15, 23, 42, 0.10);
+}
+
+.admin-items-overview__stat:active {
+  transform: translateY(0);
+}
+
+.admin-items-overview .dashboard-stat__hint {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 2px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.admin-items-overview .dashboard-stat__hint::after {
+  content: "↓";
+  margin-left: 5px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.admin-items-panel {
+  scroll-margin-top: 96px;
+}
+
+.admin-items-panel.is-scroll-highlighted {
+  animation: adminItemsPanelPulse 1.5s ease;
+}
+
+@keyframes adminItemsPanelPulse {
+  0% {
+    border-color: rgba(37, 99, 235, 0.46);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.22), 0 20px 48px rgba(15, 23, 42, 0.08);
+  }
+  45% {
+    border-color: rgba(37, 99, 235, 0.34);
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.10), 0 20px 48px rgba(15, 23, 42, 0.08);
+  }
+  100% {
+    border-color: rgba(16, 42, 69, 0.08);
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-items-overview__stat {
+    transition: none;
+  }
+
+  .admin-items-overview__stat:hover,
+  .admin-items-overview__stat:focus-visible {
+    transform: none;
+  }
+
+  .admin-items-panel.is-scroll-highlighted {
+    animation: none;
+    border-color: rgba(37, 99, 235, 0.36);
+  }
+}

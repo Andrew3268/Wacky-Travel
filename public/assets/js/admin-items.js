@@ -208,6 +208,20 @@ function showRequiredMessage(message, fieldId) {
   if (fieldId) focusField(fieldId);
 }
 
+function scrollToAdminItemsSection(targetId = "") {
+  const section = $(targetId);
+  if (!section) return;
+
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
+  section.setAttribute("tabindex", "-1");
+  section.focus({ preventScroll: true });
+  section.classList.add("is-scroll-highlighted");
+
+  window.setTimeout(() => {
+    section.classList.remove("is-scroll-highlighted");
+  }, 1500);
+}
+
 async function requestTravelSettingsApi(method = "GET", payload = null) {
   const options = {
     method,
@@ -807,6 +821,13 @@ function bindEvents() {
   });
 
   document.addEventListener("click", (event) => {
+    const statLink = event.target.closest("[data-admin-items-scroll-target]");
+    if (statLink) {
+      event.preventDefault();
+      scrollToAdminItemsSection(statLink.dataset.adminItemsScrollTarget || "");
+      return;
+    }
+
     const target = event.target.closest("button");
     if (!target) return;
     if (target.dataset.adminDestinationCountryTab) {

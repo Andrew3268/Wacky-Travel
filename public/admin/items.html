@@ -11,8 +11,8 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <meta content="#2563EB" name="theme-color"/>
-<link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
-<link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260620AdminItemsStatScrollV1" rel="stylesheet"/>
+<link href="/assets/css/components.css?v=20260620AdminItemsStatScrollV1" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar topbar--editorial">
@@ -60,26 +60,31 @@
 </div>
 
 </section><div aria-label="관리 항목 현황" class="admin-items-overview">
-<div class="dashboard-stat">
+<a aria-label="글 종류 관리 섹션으로 이동" class="dashboard-stat admin-items-overview__stat" data-admin-items-scroll-target="contentTypes" href="#contentTypes">
 <div class="dashboard-stat__label">글 종류</div>
 <strong class="dashboard-stat__value" id="itemContentTypeCount">-</strong>
-</div>
-<div class="dashboard-stat">
+<span class="dashboard-stat__hint">관리하기</span>
+</a>
+<a aria-label="나라 관리 섹션으로 이동" class="dashboard-stat admin-items-overview__stat" data-admin-items-scroll-target="countries" href="#countries">
 <div class="dashboard-stat__label">나라</div>
 <strong class="dashboard-stat__value" id="itemCountryCount">-</strong>
-</div>
-<div class="dashboard-stat">
+<span class="dashboard-stat__hint">관리하기</span>
+</a>
+<a aria-label="도시 관리 섹션으로 이동" class="dashboard-stat admin-items-overview__stat" data-admin-items-scroll-target="destinations" href="#destinations">
 <div class="dashboard-stat__label">도시</div>
 <strong class="dashboard-stat__value" id="itemDestinationCount">-</strong>
-</div>
-<div class="dashboard-stat">
+<span class="dashboard-stat__hint">관리하기</span>
+</a>
+<a aria-label="지역 관리 섹션으로 이동" class="dashboard-stat admin-items-overview__stat" data-admin-items-scroll-target="regions" href="#regions">
 <div class="dashboard-stat__label">지역</div>
 <strong class="dashboard-stat__value" id="itemRegionCount">-</strong>
-</div>
-<div class="dashboard-stat">
+<span class="dashboard-stat__hint">관리하기</span>
+</a>
+<a aria-label="추천 카테고리 관리 섹션으로 이동" class="dashboard-stat admin-items-overview__stat" data-admin-items-scroll-target="recommendationCategories" href="#recommendationCategories">
 <div class="dashboard-stat__label">추천 카테고리</div>
 <strong class="dashboard-stat__value" id="itemRecommendationCategoryCount">-</strong>
-</div>
+<span class="dashboard-stat__hint">관리하기</span>
+</a>
 </div>
 
 
@@ -188,6 +193,6 @@
 <script src="/assets/js/admin-guard.js"></script>
 <script defer="" src="/assets/js/admin-ui.js"></script>
 <script defer="" src="/assets/js/nav.js"></script>
-<script defer="" src="/assets/js/admin-items.js?v=20260613regioncity1"></script>
+<script defer="" src="/assets/js/admin-items.js?v=20260620StatScrollV1"></script>
 </body>
 </html>
