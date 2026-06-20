@@ -15255,14 +15255,6 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-layout + .wt-city-guid
   }
 }
 
-/* V118 - Nha Trang travel guide related CTA text color fix */
-main.travel-page.wt-city-travel-guide-page .wt-city-guide-related.container h2 {
-  color: #000 !important;
-}
-
-main.travel-page.wt-city-travel-guide-page .wt-city-guide-related__links a {
-  color: #000 !important;
-}
 
 /* WACKYTRAVEL_GUIDE_RELATED_VISIBILITY_FIX_V1
    Fixes guide CTA text/link visibility on all /travel-guide/ and /hotel-guide/ pages.
