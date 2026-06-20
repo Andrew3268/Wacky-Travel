@@ -94,6 +94,17 @@ const STATIC_ROUTES = [
   "/destinations/ho-chi-minh-city/near-trip/",
   "/destinations/ho-chi-minh-city/family-trip/",
   "/destinations/ho-chi-minh-city/quiet-stay/",
+  "/destinations/phu-quoc/",
+  "/destinations/phu-quoc/hotel-recommendations/",
+  "/destinations/phu-quoc/hotels/",
+  "/destinations/phu-quoc/travel-guide/",
+  "/destinations/phu-quoc/hotel-guide/",
+  "/destinations/phu-quoc/hotel-location-survey/",
+  "/destinations/phu-quoc/first-trip/",
+  "/destinations/phu-quoc/value-hotel/",
+  "/destinations/phu-quoc/near-trip/",
+  "/destinations/phu-quoc/family-trip/",
+  "/destinations/phu-quoc/quiet-stay/",
 ];
 
 function xmlEscape(value) {

@@ -19,7 +19,8 @@
     { slug: "da-nang", name: "다낭", city: "다낭", country: "베트남", sort_order: 1, status: "published", is_active: 1 },
     { slug: "nha-trang", name: "나트랑", city: "나트랑", country: "베트남", sort_order: 2, status: "published", is_active: 1 },
     { slug: "ho-chi-minh-city", name: "호치민", city: "호치민", country: "베트남", sort_order: 3, status: "published", is_active: 1 },
-    { slug: "hanoi", name: "하노이", city: "하노이", country: "베트남", sort_order: 4, status: "published", is_active: 1 }
+    { slug: "hanoi", name: "하노이", city: "하노이", country: "베트남", sort_order: 4, status: "published", is_active: 1 },
+    { slug: "phu-quoc", name: "푸꾸옥", city: "푸꾸옥", country: "베트남", sort_order: 5, status: "published", is_active: 1 }
   ];
 
   const normalizeText = (value) => String(value || "").trim();

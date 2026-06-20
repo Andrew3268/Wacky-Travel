@@ -26,6 +26,8 @@
     "/destinations/ho-chi-minh-city",
     "/destinations/ho-chi-minh-city/*",
     "/destinations/hanoi",
-    "/destinations/hanoi/*"
+    "/destinations/hanoi/*",
+    "/destinations/phu-quoc",
+    "/destinations/phu-quoc/*"
   ]
 }

@@ -306,6 +306,20 @@ function buildPostsHeroNav(categories = []) {
       fallback: '/destinations/ho-chi-minh-city/hotels/',
       fallbackLabel: '호치민 호텔 글 더 보기 →'
     }
+    ,
+    hanoi: {
+      top5_series: '/destinations/hanoi/hotel-recommendations/',
+      hotel_intro: '/destinations/hanoi/hotels/',
+      fallback: '/destinations/hanoi/hotels/',
+      fallbackLabel: '하노이 호텔 글 더 보기 →'
+    }
+    ,
+    'phu-quoc': {
+      top5_series: '/destinations/phu-quoc/hotel-recommendations/',
+      hotel_intro: '/destinations/phu-quoc/hotels/',
+      fallback: '/destinations/phu-quoc/hotels/',
+      fallbackLabel: '푸꾸옥 호텔 글 더 보기 →'
+    }
 
   };
 
