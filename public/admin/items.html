@@ -11,7 +11,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <meta content="#2563EB" name="theme-color"/>
-<link href="/assets/css/app.css?v=20260620AdminItemsStatScrollV1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260620AdminItemsSectionNavV1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260620AdminItemsStatScrollV1" rel="stylesheet"/>
 </head>
 <body>
@@ -97,6 +97,12 @@
 <p class="small">예: 호텔 추천 TOP5, 개별 호텔 소개, 여행 가이드처럼 글이 어느 섹션에 노출될지 결정합니다.</p>
 </div>
 </div>
+<nav aria-label="다른 관리 섹션으로 이동" class="admin-items-section-nav">
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="countries" href="#countries">나라 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="destinations" href="#destinations">도시 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="regions" href="#regions">지역 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="recommendationCategories" href="#recommendationCategories">추천 카테고리 관리</a>
+</nav>
 <div class="category-manager__create">
 <div class="category-manager__create-row admin-items-create-row--3">
 <input class="input" id="newContentTypeLabel" placeholder="글 종류 이름 예: 여행 스타일별 호텔 추천"/>
@@ -114,6 +120,12 @@
 <p class="small">도시를 묶는 상위 항목입니다. 예: 일본, 베트남, 태국</p>
 </div>
 </div>
+<nav aria-label="다른 관리 섹션으로 이동" class="admin-items-section-nav">
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="contentTypes" href="#contentTypes">글 종류 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="destinations" href="#destinations">도시 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="regions" href="#regions">지역 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="recommendationCategories" href="#recommendationCategories">추천 카테고리 관리</a>
+</nav>
 <div class="category-manager__create">
 <div class="category-manager__create-row admin-items-create-row--2">
 <input class="input" id="newCountryName" placeholder="나라명 예: 일본"/>
@@ -130,6 +142,12 @@
 <p class="small">도시를 추가하면 글 작성/수정 화면의 도시 선택 목록에 반영됩니다.</p>
 </div>
 </div>
+<nav aria-label="다른 관리 섹션으로 이동" class="admin-items-section-nav">
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="contentTypes" href="#contentTypes">글 종류 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="countries" href="#countries">나라 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="regions" href="#regions">지역 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="recommendationCategories" href="#recommendationCategories">추천 카테고리 관리</a>
+</nav>
 <div class="category-manager__create">
 <div class="category-manager__create-row admin-items-create-row--4">
 <select class="input" id="newDestinationCountry">
@@ -151,6 +169,12 @@
 <p class="small">도시별 하위 지역을 추가하면 글 작성/수정 화면의 지역 선택과 호텔 목록 필터에 반영됩니다.</p>
 </div>
 </div>
+<nav aria-label="다른 관리 섹션으로 이동" class="admin-items-section-nav">
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="contentTypes" href="#contentTypes">글 종류 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="countries" href="#countries">나라 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="destinations" href="#destinations">도시 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="recommendationCategories" href="#recommendationCategories">추천 카테고리 관리</a>
+</nav>
 <div class="category-manager__create">
 <div class="category-manager__create-row admin-items-create-row--5">
 <select class="input" id="newRegionCountry">
@@ -176,6 +200,12 @@
 <p class="small">여행 스타일별 호텔 추천 글을 묶는 전역 카테고리입니다. 한 번 등록하면 모든 도시의 호텔 추천 글 전체 보기 페이지 필터에 공통으로 반영됩니다.</p>
 </div>
 </div>
+<nav aria-label="다른 관리 섹션으로 이동" class="admin-items-section-nav">
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="contentTypes" href="#contentTypes">글 종류 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="countries" href="#countries">나라 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="destinations" href="#destinations">도시 관리</a>
+<a class="admin-items-section-nav__link" data-admin-items-scroll-target="regions" href="#regions">지역 관리</a>
+</nav>
 <div class="category-manager__create">
 <div class="category-manager__create-row admin-items-create-row--3">
 <input class="input" id="newRecommendationCategoryName" placeholder="카테고리명 예: 누구와 함께"/>
@@ -193,6 +223,6 @@
 <script src="/assets/js/admin-guard.js"></script>
 <script defer="" src="/assets/js/admin-ui.js"></script>
 <script defer="" src="/assets/js/nav.js"></script>
-<script defer="" src="/assets/js/admin-items.js?v=20260620StatScrollV1"></script>
+<script defer="" src="/assets/js/admin-items.js?v=20260620SectionNavV1"></script>
 </body>
 </html>

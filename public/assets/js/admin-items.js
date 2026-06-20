@@ -11,9 +11,9 @@ let countryItems = [];
 let destinationItems = [];
 let regionItems = [];
 let recommendationCategoryItems = [];
-let destinationCountryFilter = "all";
-let regionCountryFilter = "all";
-let regionDestinationFilter = "all";
+let destinationCountryFilter = "";
+let regionCountryFilter = "";
+let regionDestinationFilter = "";
 
 function escapeHtml(value = "") {
   return String(value ?? "")
@@ -104,8 +104,9 @@ function getCountryTabItems() {
 }
 
 function ensureCountryFilterValue(currentValue) {
-  if (!currentValue || currentValue === "all") return "all";
-  return getCountryTabItems().some((country) => String(country.slug || "") === String(currentValue)) ? currentValue : "all";
+  const countries = getCountryTabItems();
+  if (!countries.length) return "";
+  return countries.some((country) => String(country.slug || "") === String(currentValue)) ? currentValue : String(countries[0].slug || "");
 }
 
 function countDestinationsByCountry(countrySlug = "") {
@@ -137,27 +138,23 @@ function countRegionsByDestination(destinationSlug = "") {
 }
 
 function ensureRegionDestinationFilterValue(currentValue) {
-  if (!currentValue || currentValue === "all") return "all";
-  if (regionCountryFilter === "all") return "all";
-  return getActiveDestinationsByCountry(regionCountryFilter).some((destination) => String(destination.slug || "") === String(currentValue)) ? currentValue : "all";
+  const destinations = getActiveDestinationsByCountry(regionCountryFilter);
+  if (!destinations.length) return "";
+  return destinations.some((destination) => String(destination.slug || "") === String(currentValue)) ? currentValue : String(destinations[0].slug || "");
 }
 
-function renderDestinationTabs(targetId, selectedValue, dataName, destinations, counter, totalLabel = "전체 도시") {
+function renderDestinationTabs(targetId, selectedValue, dataName, destinations, counter) {
   const tabEl = $(targetId);
   if (!tabEl) return;
   if (!destinations.length) {
     tabEl.innerHTML = '<div class="admin-city-tabs__empty small">선택한 나라에 등록된 도시가 없습니다.</div>';
     return;
   }
-  const totalCount = destinations.reduce((sum, destination) => sum + counter(destination.slug || ""), 0);
-  const buttons = [
-    `<button class="admin-country-tab admin-city-tab${selectedValue === "all" ? " is-active" : ""}" type="button" role="tab" aria-selected="${selectedValue === "all" ? "true" : "false"}" data-${dataName}="all">${escapeHtml(totalLabel)} <span>${totalCount}</span></button>`,
-    ...destinations.map((destination) => {
-      const slug = String(destination.slug || "");
-      const active = selectedValue === slug;
-      return `<button class="admin-country-tab admin-city-tab${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" data-${dataName}="${escapeHtml(slug)}">${escapeHtml(getDestinationLabel(destination) || slug)} <span>${counter(slug)}</span></button>`;
-    })
-  ];
+  const buttons = destinations.map((destination) => {
+    const slug = String(destination.slug || "");
+    const active = selectedValue === slug;
+    return `<button class="admin-country-tab admin-city-tab${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" data-${dataName}="${escapeHtml(slug)}">${escapeHtml(getDestinationLabel(destination) || slug)} <span>${counter(slug)}</span></button>`;
+  });
   tabEl.innerHTML = buttons.join("");
 }
 
@@ -165,15 +162,15 @@ function renderCountryTabs(targetId, selectedValue, dataName, counter) {
   const tabEl = $(targetId);
   if (!tabEl) return;
   const countries = getCountryTabItems();
-  const totalCount = countries.reduce((sum, country) => sum + counter(country.slug || ""), 0);
-  const buttons = [
-    `<button class="admin-country-tab${selectedValue === "all" ? " is-active" : ""}" type="button" role="tab" aria-selected="${selectedValue === "all" ? "true" : "false"}" data-${dataName}="all">전체 <span>${totalCount}</span></button>`,
-    ...countries.map((country) => {
-      const slug = String(country.slug || "");
-      const active = selectedValue === slug;
-      return `<button class="admin-country-tab${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" data-${dataName}="${escapeHtml(slug)}">${escapeHtml(country.name || slug)} <span>${counter(slug)}</span></button>`;
-    })
-  ];
+  if (!countries.length) {
+    tabEl.innerHTML = '<div class="admin-city-tabs__empty small">등록된 나라가 없습니다.</div>';
+    return;
+  }
+  const buttons = countries.map((country) => {
+    const slug = String(country.slug || "");
+    const active = selectedValue === slug;
+    return `<button class="admin-country-tab${active ? " is-active" : ""}" type="button" role="tab" aria-selected="${active ? "true" : "false"}" data-${dataName}="${escapeHtml(slug)}">${escapeHtml(country.name || slug)} <span>${counter(slug)}</span></button>`;
+  });
   tabEl.innerHTML = buttons.join("");
 }
 
@@ -350,10 +347,12 @@ function renderRegionDestinationSelect() {
 function renderDestinationManager() {
   destinationCountryFilter = ensureCountryFilterValue(destinationCountryFilter);
   renderCountryTabs("destinationCountryTabs", destinationCountryFilter, "admin-destination-country-tab", countDestinationsByCountry);
+  const destinationCountrySelect = $("newDestinationCountry");
+  if (destinationCountrySelect && !destinationCountrySelect.value && destinationCountryFilter) destinationCountrySelect.value = destinationCountryFilter;
   const listEl = $("travelDestinationList");
   if (!listEl) return;
   const items = [...destinationItems]
-    .filter((item) => destinationCountryFilter === "all" || getCountrySlugFromDestination(item) === destinationCountryFilter)
+    .filter((item) => !destinationCountryFilter || getCountrySlugFromDestination(item) === destinationCountryFilter)
     .sort((a, b) => sortByOrderThenName(a, b, getDestinationLabel));
   listEl.innerHTML = items.length
     ? items.map((item) => {
@@ -371,30 +370,30 @@ function renderDestinationManager() {
           </div>
         </div>`;
     }).join("")
-    : '<div class="category-manager__empty small">선택한 나라에 등록된 도시가 없습니다.</div>';
+    : `<div class="category-manager__empty small">${destinationCountryFilter ? "선택한 나라에 등록된 도시가 없습니다." : "등록된 도시가 없습니다."}</div>`;
 }
 
 function renderRegionManager() {
   regionCountryFilter = ensureCountryFilterValue(regionCountryFilter);
   regionDestinationFilter = ensureRegionDestinationFilterValue(regionDestinationFilter);
+  const regionCountrySelect = $("newRegionCountry");
+  if (regionCountrySelect && regionCountryFilter) regionCountrySelect.value = regionCountryFilter;
   renderRegionDestinationSelect();
+  const regionDestinationSelect = $("newRegionDestination");
+  if (regionDestinationSelect && regionDestinationFilter) regionDestinationSelect.value = regionDestinationFilter;
   renderCountryTabs("regionCountryTabs", regionCountryFilter, "admin-region-country-tab", countRegionsByCountry);
 
   const cityTabEl = $("regionDestinationTabs");
-  const cityTabs = regionCountryFilter === "all" ? [] : getActiveDestinationsByCountry(regionCountryFilter);
+  const cityTabs = getActiveDestinationsByCountry(regionCountryFilter);
   if (cityTabEl) {
-    if (regionCountryFilter === "all") {
-      cityTabEl.innerHTML = '<div class="admin-city-tabs__empty small">나라 탭을 선택하면 해당 나라의 도시 탭이 표시됩니다.</div>';
-    } else {
-      renderDestinationTabs("regionDestinationTabs", regionDestinationFilter, "admin-region-destination-tab", cityTabs, countRegionsByDestination);
-    }
+    renderDestinationTabs("regionDestinationTabs", regionDestinationFilter, "admin-region-destination-tab", cityTabs, countRegionsByDestination);
   }
 
   const listEl = $("travelRegionList");
   if (!listEl) return;
   const items = [...regionItems]
-    .filter((item) => regionCountryFilter === "all" || getRegionCountrySlug(item) === regionCountryFilter)
-    .filter((item) => regionDestinationFilter === "all" || getRegionDestinationSlug(item) === regionDestinationFilter)
+    .filter((item) => !regionCountryFilter || getRegionCountrySlug(item) === regionCountryFilter)
+    .filter((item) => !regionDestinationFilter || getRegionDestinationSlug(item) === regionDestinationFilter)
     .sort((a, b) => {
       const countryCompare = getRegionCountrySlug(a).localeCompare(getRegionCountrySlug(b), "ko");
       if (countryCompare !== 0) return countryCompare;
@@ -402,10 +401,10 @@ function renderRegionManager() {
       if (destinationCompare !== 0) return destinationCompare;
       return sortByOrderThenName(a, b, getRegionLabel);
     });
-  const emptyMessage = regionCountryFilter === "all"
-    ? "나라 탭을 선택하면 도시별 지역을 더 쉽게 확인할 수 있습니다."
-    : regionDestinationFilter === "all"
-      ? "선택한 나라에 등록된 지역이 없습니다."
+  const emptyMessage = !regionCountryFilter
+    ? "등록된 지역이 없습니다."
+    : !regionDestinationFilter
+      ? "선택한 나라에 등록된 도시가 없습니다."
       : "선택한 도시에 등록된 지역이 없습니다.";
   listEl.innerHTML = items.length
     ? items.map((item) => {
@@ -587,6 +586,7 @@ async function addTravelDestination() {
   if (!slug) return showRequiredMessage("사용 가능한 도시 slug를 입력해 주세요.", "newDestinationSlug");
   try {
     await requestTravelSettingsApi("POST", { entity: "destination", slug, name, city, country_slug: countrySlug, country: countryName, status: "published" });
+    destinationCountryFilter = countrySlug;
     ["newDestinationName", "newDestinationCity", "newDestinationSlug", "newRegionName", "newRegionSlug"].forEach((id) => { if ($(id)) $(id).value = ""; });
     await afterChanged("도시가 추가되었습니다.");
   } catch (error) {
@@ -798,13 +798,15 @@ function bindEvents() {
   $("addRegionBtn")?.addEventListener("click", addTravelRegion);
   $("addRecommendationCategoryBtn")?.addEventListener("click", addTravelRecommendationCategory);
   $("newRegionCountry")?.addEventListener("change", () => {
-    renderRegionDestinationSelect();
+    regionCountryFilter = $("newRegionCountry")?.value || regionCountryFilter;
+    regionDestinationFilter = "";
+    renderRegionManager();
   });
   $("newRegionDestination")?.addEventListener("change", () => {
     const selectedDestination = getDestinationBySlug($("newRegionDestination")?.value || "");
     const selectedCountry = getCountrySlugFromDestination(selectedDestination);
     if (selectedCountry) regionCountryFilter = selectedCountry;
-    regionDestinationFilter = $("newRegionDestination")?.value || "all";
+    regionDestinationFilter = $("newRegionDestination")?.value || "";
     renderRegionManager();
   });
 
@@ -831,23 +833,23 @@ function bindEvents() {
     const target = event.target.closest("button");
     if (!target) return;
     if (target.dataset.adminDestinationCountryTab) {
-      destinationCountryFilter = target.dataset.adminDestinationCountryTab || "all";
-      if (destinationCountryFilter !== "all" && $("newDestinationCountry")) $("newDestinationCountry").value = destinationCountryFilter;
+      destinationCountryFilter = target.dataset.adminDestinationCountryTab || "";
+      if ($("newDestinationCountry")) $("newDestinationCountry").value = destinationCountryFilter;
       renderDestinationManager();
       return;
     }
     if (target.dataset.adminRegionCountryTab) {
-      regionCountryFilter = target.dataset.adminRegionCountryTab || "all";
-      regionDestinationFilter = "all";
-      if ($("newRegionCountry")) $("newRegionCountry").value = regionCountryFilter === "all" ? "" : regionCountryFilter;
+      regionCountryFilter = target.dataset.adminRegionCountryTab || "";
+      regionDestinationFilter = "";
+      if ($("newRegionCountry")) $("newRegionCountry").value = regionCountryFilter;
       renderRegionDestinationSelect();
       if ($("newRegionDestination")) $("newRegionDestination").value = "";
       renderRegionManager();
       return;
     }
     if (target.dataset.adminRegionDestinationTab) {
-      regionDestinationFilter = target.dataset.adminRegionDestinationTab || "all";
-      if ($("newRegionDestination")) $("newRegionDestination").value = regionDestinationFilter === "all" ? "" : regionDestinationFilter;
+      regionDestinationFilter = target.dataset.adminRegionDestinationTab || "";
+      if ($("newRegionDestination")) $("newRegionDestination").value = regionDestinationFilter;
       renderRegionManager();
       return;
     }
