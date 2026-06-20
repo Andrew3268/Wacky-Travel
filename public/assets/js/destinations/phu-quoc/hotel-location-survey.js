@@ -924,31 +924,110 @@ const cityConfig = {
   const resetBtn = $('resetBtn');
   const setText = (id, value) => { const el = $(id); if (el) el.textContent = value || ''; };
   const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
-  function startSurvey() { locationPage?.classList.add('is-survey-started'); surveyWrap?.classList.add('is-survey-started'); renderQuestion(); }
+  function getAnsweredPercent() {
+    if (!cityConfig.questions.length) return 0;
+    return Math.round((currentQuestionIndex / cityConfig.questions.length) * 100);
+  }
+
+  function getProgressMessage() {
+    if (currentQuestionIndex === 0) return '가볍게 시작해볼까요?';
+    if (currentQuestionIndex >= cityConfig.questions.length - 2) return '거의 다 왔어요';
+    return '내 여행 스타일을 맞춰보는 중입니다';
+  }
+
+  function getOptionTitle(option) {
+    return option?.title || option?.label || '';
+  }
+
+  function startSurvey() {
+    locationPage?.classList.add('is-survey-started');
+    locationPage?.classList.remove('is-result-mode');
+    surveyWrap?.classList.add('is-survey-started');
+    surveyWrap?.classList.remove('is-result-mode');
+    resultView?.classList.remove('is-active');
+    surveyView.style.display = 'block';
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeSurveyToStart() {
+    currentQuestionIndex = 0;
+    answers = new Array(cityConfig.questions.length).fill(null);
+    resultView?.classList.remove('is-active');
+    surveyWrap?.classList.remove('is-result-mode');
+    surveyWrap?.classList.remove('is-survey-started');
+    locationPage?.classList.remove('is-result-mode');
+    locationPage?.classList.remove('is-survey-started');
+    surveyView.style.display = 'block';
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function renderQuestion() {
-    const q = cityConfig.questions[currentQuestionIndex];
+    const question = cityConfig.questions[currentQuestionIndex];
+    const selectedIndex = answers[currentQuestionIndex];
+    const percent = getAnsweredPercent();
+
     questionCount.textContent = `${currentQuestionIndex + 1} / ${cityConfig.questions.length}`;
-    progressText.textContent = currentQuestionIndex === 0 ? '가볍게 시작해볼까요?' : '거의 다 왔어요';
-    const progress = Math.round((currentQuestionIndex / cityConfig.questions.length) * 100);
-    progressFill.style.width = `${progress}%`;
-    progressBar.setAttribute('aria-valuenow', String(progress));
-    questionTitle.textContent = q.title;
-    questionHelp.textContent = q.help || '';
+    progressText.textContent = getProgressMessage();
+    progressFill.style.width = `${percent}%`;
+    progressBar.setAttribute('aria-valuenow', String(percent));
+
+    questionTitle.textContent = question.title;
+    questionHelp.textContent = question.help || '';
     optionsArea.innerHTML = '';
-    q.options.forEach((option, idx) => {
+
+    question.options.forEach((option, optionIndex) => {
       const button = document.createElement('button');
+      const title = document.createElement('span');
+
       button.type = 'button';
-      button.className = 'wt-option' + (answers[currentQuestionIndex] === idx ? ' is-selected' : '');
-      button.innerHTML = `<strong>${escapeHtml(option.label)}</strong><span>${escapeHtml(option.desc || '')}</span>`;
-      button.addEventListener('click', () => { answers[currentQuestionIndex] = idx; nextBtn.disabled = false; renderQuestion(); });
+      button.className = 'wt-option';
+      button.setAttribute('aria-pressed', selectedIndex === optionIndex ? 'true' : 'false');
+
+      if (selectedIndex === optionIndex) {
+        button.classList.add('is-selected');
+      }
+
+      title.className = 'wt-option-title';
+      title.textContent = getOptionTitle(option);
+
+      button.appendChild(title);
+      button.addEventListener('click', () => {
+        answers[currentQuestionIndex] = optionIndex;
+        renderQuestion();
+      });
+
       optionsArea.appendChild(button);
     });
-    prevBtn.disabled = currentQuestionIndex === 0;
+
+    prevBtn.disabled = false;
+    prevBtn.textContent = currentQuestionIndex === 0 ? '닫기' : '이전';
+    nextBtn.disabled = selectedIndex === null;
     nextBtn.textContent = currentQuestionIndex === cityConfig.questions.length - 1 ? '결과 보기' : '다음';
-    nextBtn.disabled = answers[currentQuestionIndex] === null;
   }
-  function goNext() { if (answers[currentQuestionIndex] === null) return; if (currentQuestionIndex >= cityConfig.questions.length - 1) return showResult(); currentQuestionIndex += 1; renderQuestion(); }
-  function goPrev() { if (currentQuestionIndex === 0) return; currentQuestionIndex -= 1; renderQuestion(); }
+
+  function goNext() {
+    if (answers[currentQuestionIndex] === null) return;
+
+    if (currentQuestionIndex < cityConfig.questions.length - 1) {
+      currentQuestionIndex += 1;
+      renderQuestion();
+      questionTitle.focus?.();
+    } else {
+      showResult();
+    }
+  }
+
+  function goPrev() {
+    if (currentQuestionIndex === 0) {
+      closeSurveyToStart();
+      return;
+    }
+    currentQuestionIndex -= 1;
+    renderQuestion();
+  }
+
   function calculateScores() {
     const scores = Object.fromEntries(Object.keys(cityConfig.areas).map(key => [key, 0]));
     answers.forEach((answer, qIndex) => { const option = cityConfig.questions[qIndex].options[answer]; Object.entries(option?.scores || {}).forEach(([key, value]) => { scores[key] = (scores[key] || 0) + Number(value || 0); }); });
@@ -964,11 +1043,77 @@ const cityConfig = {
     ].forEach((item, index) => { const article = document.createElement('article'); article.className = 'wt-reason-card'; article.innerHTML = `<span class="wt-reason-number">${index + 1}</span><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.text)}</p>`; list.appendChild(article); });
   }
   function renderHotelCards(area) {
-    const list = $('hotelCardList'); if (!list) return;
-    setText('hotelSectionTitle', `${area.name}에서 먼저 비교할 만한 호텔`);
-    setText('hotelSectionDesc', '아래 호텔은 위치 성격을 설명하기 위한 대표 후보입니다. 실제 예약 전에는 객실 타입, 조식, 환불 조건, 최근 후기를 함께 확인하세요.');
-    list.innerHTML = (area.hotels || []).map((hotel) => `<article class="wt-hotel-card"><div class="wt-hotel-card__top"><span class="wt-hotel-card__fit">${escapeHtml(hotel.tag)}</span><span class="wt-hotel-card__stars">추천 후보</span></div><h3>${escapeHtml(hotel.name)}</h3><p>${escapeHtml(hotel.reason)}</p><div class="wt-hotel-card__score-list">${(hotel.meta || []).map(m => `<span>${escapeHtml(m)}</span>`).join('')}</div><div class="wt-hotel-meta"><span>${escapeHtml(hotel.location)}</span></div><div class="wt-hotel-actions"><a class="wt-hotel-link" href="${escapeHtml(hotel.url)}">잔여 객실 확인</a></div></article>`).join('');
+    const section = document.getElementById('hotelRecommendSection');
+    const hotelCardList = document.getElementById('hotelCardList');
+    const hotels = Array.isArray(area.hotels) ? area.hotels.slice(0, 5) : [];
+
+    if (!section || !hotelCardList) return;
+
+    if (hotels.length === 0) {
+      section.style.display = 'none';
+      hotelCardList.innerHTML = '';
+      return;
+    }
+
+    section.style.display = 'block';
+    setText('hotelSectionTitle', `${area.name}에서 먼저 비교해볼 호텔 5곳`);
+    setText('hotelSectionDesc', '추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 후보입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.');
+    hotelCardList.innerHTML = '';
+
+    hotels.forEach((hotel, index) => {
+      const article = document.createElement('article');
+      const top = document.createElement('div');
+      const rank = document.createElement('span');
+      const tag = document.createElement('span');
+      const name = document.createElement('h4');
+      const location = document.createElement('p');
+      const reason = document.createElement('p');
+      const meta = document.createElement('div');
+      const footer = document.createElement('div');
+      const linkWrap = document.createElement('div');
+      const link = document.createElement('a');
+
+      article.className = 'wt-hotel-card';
+      top.className = 'wt-hotel-card-top';
+      rank.className = 'wt-hotel-rank';
+      tag.className = 'wt-hotel-tag';
+      name.className = 'wt-hotel-name';
+      location.className = 'wt-hotel-location';
+      reason.className = 'wt-hotel-reason';
+      meta.className = 'wt-hotel-meta';
+      footer.className = 'wt-hotel-card-footer';
+      linkWrap.className = 'wt-hotel-link-wrap';
+      link.className = 'wt-hotel-link';
+
+      rank.textContent = `${index + 1}`;
+      tag.textContent = hotel.tag || '추천 후보';
+      name.textContent = hotel.name;
+      location.textContent = hotel.location;
+      reason.textContent = hotel.reason;
+      link.href = hotel.url || '#';
+      link.textContent = '잔여 객실 확인';
+      link.setAttribute('aria-label', `${hotel.name} 잔여 객실 확인`);
+
+      (hotel.meta || []).forEach((item) => {
+        const chip = document.createElement('span');
+        chip.textContent = item;
+        meta.appendChild(chip);
+      });
+
+      top.appendChild(rank);
+      top.appendChild(tag);
+      linkWrap.appendChild(link);
+      footer.appendChild(meta);
+      footer.appendChild(linkWrap);
+      article.appendChild(top);
+      article.appendChild(name);
+      article.appendChild(location);
+      article.appendChild(reason);
+      article.appendChild(footer);
+      hotelCardList.appendChild(article);
+    });
   }
+
   function renderRelatedPosts(area) {
     const list = $('relatedPostList'); if (!list) return;
     setText('relatedPostTitle', `${area.name} 관련 글`);
@@ -976,15 +1121,34 @@ const cityConfig = {
     list.innerHTML = (area.links || []).map(link => `<li><a href="${escapeHtml(link.url)}">${escapeHtml(link.title)}</a></li>`).join('');
   }
   function showResult() {
-    const ranked = calculateScores(); const topArea = ranked[0];
-    locationPage?.classList.add('is-result-mode'); surveyWrap?.classList.add('is-result-mode');
-    surveyView.style.display = 'none'; resultView.classList.add('is-active');
-    setText('resultTitle', topArea.name); setText('resultSummary', topArea.summary); setText('resultLeadTitle', topArea.leadTitle); setText('resultLeadText', topArea.leadText);
+    const ranked = calculateScores();
+    const topArea = ranked[0];
+
+    locationPage?.classList.add('is-survey-started');
+    locationPage?.classList.add('is-result-mode');
+    surveyView.style.display = 'none';
+    resultView.classList.add('is-active');
+    surveyWrap?.classList.add('is-survey-started');
+    surveyWrap?.classList.add('is-result-mode');
+
+    setText('resultTitle', topArea.name);
+    setText('resultSummary', topArea.summary);
+    setText('resultLeadTitle', topArea.leadTitle);
+    setText('resultLeadText', topArea.leadText);
     setText('resultWhyText', `${topArea.name}은 이번 답변에서 가장 높은 점수를 받은 숙소 권역입니다.`);
-    setText('decisionConclusionTitle', '결론'); setText('decisionConclusionText', topArea.decision);
-    renderReasons(topArea); renderHotelCards(topArea); renderRelatedPosts(topArea);
-    progressText.textContent = '추천 결과가 나왔어요!'; progressFill.style.width = '100%'; progressBar.setAttribute('aria-valuenow', '100'); window.scrollTo({ top: 0, behavior: 'smooth' });
+    setText('decisionConclusionTitle', '결론');
+    setText('decisionConclusionText', topArea.decision);
+
+    renderReasons(topArea);
+    renderHotelCards(topArea);
+    renderRelatedPosts(topArea);
+
+    progressText.textContent = '추천 결과가 나왔어요!';
+    progressFill.style.width = '100%';
+    progressBar.setAttribute('aria-valuenow', '100');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
   function resetSurvey() { currentQuestionIndex = 0; answers = new Array(cityConfig.questions.length).fill(null); resultView.classList.remove('is-active'); surveyWrap?.classList.remove('is-result-mode'); surveyWrap?.classList.remove('is-survey-started'); locationPage?.classList.remove('is-result-mode'); locationPage?.classList.remove('is-survey-started'); surveyView.style.display = 'block'; renderQuestion(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  startSurveyBtn?.addEventListener('click', startSurvey); backBtn?.addEventListener('click', () => { window.location.href = `/destinations/${cityConfig.destinationSlug}/`; }); nextBtn.addEventListener('click', goNext); prevBtn.addEventListener('click', goPrev); resetBtn.addEventListener('click', resetSurvey); renderQuestion();
+  startSurveyBtn?.addEventListener('click', startSurvey); backBtn?.addEventListener('click', () => { if (window.history.length > 1) { window.history.back(); } else { window.location.href = `/destinations/${cityConfig.destinationSlug}/`; } }); nextBtn.addEventListener('click', goNext); prevBtn.addEventListener('click', goPrev); resetBtn.addEventListener('click', resetSurvey); renderQuestion();
 })();
