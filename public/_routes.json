@@ -24,6 +24,8 @@
     "/destinations/nha-trang",
     "/destinations/nha-trang/*",
     "/destinations/ho-chi-minh-city",
-    "/destinations/ho-chi-minh-city/*"
+    "/destinations/ho-chi-minh-city/*",
+    "/destinations/hanoi",
+    "/destinations/hanoi/*"
   ]
 }
