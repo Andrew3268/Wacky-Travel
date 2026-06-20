@@ -5,11 +5,11 @@ const cityConfig = {
   "areas": {
     "duongdong": {
       "name": "즈엉동·롱비치 북부",
-      "summary": "푸꾸옥을 처음 방문하거나 일정이 짧다면 가장 이해하기 쉬운 기준점입니다.",
+      "summary": "푸꾸옥을 처음 방문하거나 일정이 짧다면 가장 기준을 잡기 쉬운 지역입니다.",
       "leadTitle": "첫 여행 · 야시장 · 식당 동선",
       "leadText": "야시장, 식당, 마사지, 투어 픽업, 서쪽 해변을 한 번에 묶기 좋습니다. 공항과도 비교적 가까워 밤 도착·짧은 일정에서 이동 피로를 줄이기 좋습니다.",
-      "compareGood": "푸꾸옥을 처음 방문하거나 일정이 짧다면 가장 이해하기 쉬운 기준점입니다.",
-      "compareCaution": "중심부 호텔은 해변 프라이빗감이 약할 수 있어 수영장·해변 접근 후기를 확인하세요.",
+      "compareGood": "푸꾸옥을 처음 방문하거나 일정이 짧다면 가장 기준을 잡기 쉬운 지역입니다.",
+      "compareCaution": "중심부 호텔은 프라이빗한 해변 분위기가 약할 수 있으니 수영장과 해변 접근 후기를 함께 확인하세요.",
       "decision": "처음 푸꾸옥이면 즈엉동과 롱비치 북부를 기준으로 잡고, 조용함이나 리조트 체류가 더 중요하면 옹랑·바이켐을 함께 비교하세요.",
       "bestFor": [
         "첫 푸꾸옥 여행",
@@ -23,8 +23,8 @@ const cityConfig = {
         "대형 테마파크 중심 가족 여행"
       ],
       "bookingTips": [
-        "야시장 바로 앞보다 해변·중심 사이에 잡으면 밤 소음과 이동 편의의 균형이 좋습니다.",
-        "중심부 호텔은 해변 프라이빗감이 약할 수 있어 수영장·해변 접근 후기를 확인하세요."
+        "야시장 바로 앞보다는 해변과 중심가 사이에 숙소를 잡는 편이 밤 소음과 이동 편의의 균형을 맞추기 좋습니다.",
+        "중심부 호텔은 프라이빗한 해변 분위기가 약할 수 있으니 수영장과 해변 접근 후기를 함께 확인하세요."
       ],
       "chips": [
         "첫 여행",
@@ -48,7 +48,7 @@ const cityConfig = {
           "name": "Seashells Phu Quoc Hotel & Spa",
           "tag": "즈엉동 중심",
           "location": "즈엉동·롱비치 북부",
-          "reason": "야시장과 중심 식당 동선을 짧게 묶기 좋은 도심형 호텔 후보입니다.",
+          "reason": "야시장과 중심가 식당을 자주 이용할 첫 여행자에게 잘 맞는 도심형 호텔입니다.",
           "meta": [
             "야시장",
             "중심",
@@ -60,7 +60,7 @@ const cityConfig = {
           "name": "L'Azure Resort and Spa",
           "tag": "롱비치 휴식",
           "location": "롱비치 북부",
-          "reason": "중심 접근성과 해변 휴식을 함께 보고 싶은 일정에 어울립니다.",
+          "reason": "중심가 접근성과 해변 휴식을 함께 챙기고 싶은 일정에 어울립니다.",
           "meta": [
             "해변",
             "휴식",
@@ -72,7 +72,7 @@ const cityConfig = {
           "name": "Saigon Phu Quoc Resort & Spa",
           "tag": "중심 리조트",
           "location": "즈엉동·롱비치",
-          "reason": "야시장 접근과 리조트형 휴식을 함께 비교하기 좋은 오래된 대표 후보입니다.",
+          "reason": "야시장 접근성과 리조트형 휴식을 함께 원하는 여행자에게 오래전부터 많이 선택된 숙소입니다.",
           "meta": [
             "중심",
             "리조트",
@@ -151,7 +151,7 @@ const cityConfig = {
           "name": "InterContinental Phu Quoc Long Beach Resort",
           "tag": "롱비치 대형",
           "location": "롱비치·즈엉토",
-          "reason": "수영장, 해변, 부대시설을 함께 보는 가족·커플 여행에 비교하기 좋습니다.",
+          "reason": "수영장, 해변, 부대시설을 모두 중요하게 보는 가족·커플 여행에 잘 맞습니다.",
           "meta": [
             "리조트",
             "가족",
@@ -175,7 +175,7 @@ const cityConfig = {
           "name": "Novotel Phu Quoc Resort",
           "tag": "가족 실속",
           "location": "롱비치·즈엉토",
-          "reason": "공항 접근, 해변, 가족형 객실을 균형 있게 비교할 수 있는 후보입니다.",
+          "reason": "공항 접근성과 해변 휴식, 가족형 객실을 함께 보는 여행자에게 무난한 선택지입니다.",
           "meta": [
             "가족",
             "공항",
@@ -187,7 +187,7 @@ const cityConfig = {
           "name": "Dusit Princess Moonrise Beach Resort",
           "tag": "해변 균형",
           "location": "롱비치",
-          "reason": "롱비치 해변 접근과 가격·컨디션 균형을 함께 보고 싶을 때 좋습니다.",
+          "reason": "롱비치 해변 접근성과 가격, 객실 컨디션의 균형을 함께 보고 싶을 때 좋습니다.",
           "meta": [
             "해변",
             "커플",
@@ -199,7 +199,7 @@ const cityConfig = {
           "name": "Salinda Resort Phu Quoc Island",
           "tag": "휴식 균형",
           "location": "롱비치",
-          "reason": "공항과 중심 접근을 크게 잃지 않으면서 리조트 만족도를 챙기기 좋은 후보입니다.",
+          "reason": "공항과 중심가 접근을 크게 포기하지 않으면서 리조트 만족도까지 챙기기 좋은 선택지입니다.",
           "meta": [
             "리조트",
             "커플",
@@ -213,10 +213,10 @@ const cityConfig = {
       "name": "옹랑·끄어깐",
       "summary": "중심의 번잡함을 줄이고 해변에서 천천히 쉬고 싶은 여행자에게 잘 맞습니다.",
       "leadTitle": "조용한 해변 · 감성 리조트 · 커플",
-      "leadText": "옹랑과 끄어깐은 푸꾸옥의 차분한 해변 분위기를 느끼기 좋은 권역입니다. 맛집·상점은 중심보다 적지만 숙소에서 쉬는 시간이 많은 일정에서는 만족도가 높습니다.",
+      "leadText": "옹랑과 끄어깐은 푸꾸옥의 차분한 해변 분위기를 느끼기 좋은 지역입니다. 맛집·상점은 중심보다 적지만 숙소에서 쉬는 시간이 많은 일정에서는 만족도가 높습니다.",
       "compareGood": "중심의 번잡함을 줄이고 해변에서 천천히 쉬고 싶은 여행자에게 잘 맞습니다.",
       "compareCaution": "해변 접근이 리조트별로 다르므로 “오션뷰”보다 실제 해변 도보 동선을 먼저 보세요.",
-      "decision": "조용함이 1순위라면 옹랑·끄어깐이 가장 먼저 볼 권역입니다.",
+      "decision": "조용함이 1순위라면 옹랑·끄어깐이 가장 먼저 볼 지역입니다.",
       "bestFor": [
         "조용한 휴식",
         "커플 여행",
@@ -229,7 +229,7 @@ const cityConfig = {
         "늦은 밤 식당 선택지 중요"
       ],
       "bookingTips": [
-        "숙소 밖 식당을 자주 이용할 계획이면 주변 도보 식당과 그랩 호출 가능성을 확인하세요.",
+        "숙소 밖 식당을 자주 이용할 계획이라면 도보권 식당과 그랩 호출 가능성을 함께 확인하세요.",
         "해변 접근이 리조트별로 다르므로 “오션뷰”보다 실제 해변 도보 동선을 먼저 보세요."
       ],
       "chips": [
@@ -266,7 +266,7 @@ const cityConfig = {
           "name": "Phu Quoc Eco Beach Resort",
           "tag": "옹랑 실속",
           "location": "옹랑",
-          "reason": "옹랑의 차분한 해변 분위기를 비교적 실속 있게 경험하기 좋은 후보입니다.",
+          "reason": "옹랑의 차분한 해변 분위기를 비교적 부담 없이 느끼기 좋은 선택지입니다.",
           "meta": [
             "옹랑",
             "가성비",
@@ -278,7 +278,7 @@ const cityConfig = {
           "name": "Chen Sea Resort & Spa Phu Quoc",
           "tag": "조용한 리조트",
           "location": "옹랑·끄어깐",
-          "reason": "프라이빗한 해변감과 조용한 숙소 분위기를 중요하게 볼 때 비교해볼 만합니다.",
+          "reason": "프라이빗한 해변 분위기와 조용한 숙소 분위기를 중요하게 볼 때 살펴볼 만합니다.",
           "meta": [
             "조용함",
             "리조트",
@@ -314,10 +314,10 @@ const cityConfig = {
     },
     "ganhdau": {
       "name": "간다우·바이다이·그랜드월드",
-      "summary": "빈원더스, 그랜드월드, 사파리, 대형 리조트를 한 번에 묶는 북부 휴양권입니다.",
+      "summary": "빈원더스, 그랜드월드, 사파리, 대형 리조트를 한 번에 묶는 북부 리조트 구역입니다.",
       "leadTitle": "북부 리조트 · 빈원더스 · 가족 여행",
       "leadText": "푸꾸옥 북부는 대형 리조트와 테마파크형 일정에 강합니다. 아이와 함께 리조트와 놀이시설을 이용하거나, 숙소 안에서 오래 머무는 여행에 특히 편합니다.",
-      "compareGood": "빈원더스, 그랜드월드, 사파리, 대형 리조트를 한 번에 묶는 북부 휴양권입니다.",
+      "compareGood": "빈원더스, 그랜드월드, 사파리, 대형 리조트를 한 번에 묶는 북부 리조트 구역입니다.",
       "compareCaution": "리조트 밖 식당 선택지가 제한될 수 있어 조식·석식 포함 여부를 확인하는 편이 좋습니다.",
       "decision": "가족형 리조트와 테마파크가 목적이면 간다우·바이다이 권역이 가장 효율적입니다.",
       "bestFor": [
@@ -357,7 +357,7 @@ const cityConfig = {
           "name": "Wyndham Grand Phu Quoc",
           "tag": "북부 대형",
           "location": "바이다이·간다우",
-          "reason": "그랜드월드와 북부 테마파크 동선을 함께 보기 좋은 대형 리조트 후보입니다.",
+          "reason": "그랜드월드와 북부 테마파크 일정을 함께 잡기 좋은 대형 리조트입니다.",
           "meta": [
             "가족",
             "테마파크",
@@ -369,7 +369,7 @@ const cityConfig = {
           "name": "Crowne Plaza Phu Quoc Starbay",
           "tag": "북부 가족",
           "location": "바이다이",
-          "reason": "북부 해변과 리조트 부대시설을 함께 원하는 가족 여행에 비교하기 좋습니다.",
+          "reason": "북부 해변과 리조트 부대시설을 함께 원하는 가족 여행에 잘 맞습니다.",
           "meta": [
             "가족",
             "리조트",
@@ -405,7 +405,7 @@ const cityConfig = {
           "name": "Radisson Blu Resort Phu Quoc",
           "tag": "북부 안정형",
           "location": "간다우·바이다이",
-          "reason": "북부 리조트권에서 시설과 이동 편의를 함께 비교할 수 있습니다.",
+          "reason": "북부 리조트권에서 시설과 이동 편의를 함께 살펴볼 수 있습니다.",
           "meta": [
             "북부",
             "가족",
@@ -417,10 +417,10 @@ const cityConfig = {
     },
     "baikhem": {
       "name": "바이켐·안터이·선셋타운",
-      "summary": "혼똔 케이블카, 선셋타운, 남부 섬투어와 고급 리조트를 함께 보는 권역입니다.",
+      "summary": "혼똔 케이블카, 선셋타운, 남부 섬투어와 고급 리조트 휴양을 함께 묶기 좋은 지역입니다.",
       "leadTitle": "남부 럭셔리 · 케이블카 · 섬투어",
       "leadText": "푸꾸옥 남부는 켐비치, 안터이항, 선셋타운, 혼똔 케이블카 동선과 잘 맞습니다. 리조트 체류와 남부 액티비티를 묶기 좋지만 즈엉동·북부 이동은 따로 계산해야 합니다.",
-      "compareGood": "혼똔 케이블카, 선셋타운, 남부 섬투어와 고급 리조트를 함께 보는 권역입니다.",
+      "compareGood": "혼똔 케이블카, 선셋타운, 남부 섬투어와 고급 리조트 휴양을 함께 묶기 좋은 지역입니다.",
       "compareCaution": "남부는 분위기가 좋지만 섬 전체를 다니는 일정에는 이동 시간이 길어질 수 있습니다.",
       "decision": "남부 액티비티와 리조트 체류를 함께 잡고 싶다면 바이켐·안터이가 가장 자연스럽습니다.",
       "bestFor": [
@@ -472,7 +472,7 @@ const cityConfig = {
           "name": "New World Phu Quoc Resort",
           "tag": "남부 풀빌라",
           "location": "바이켐",
-          "reason": "가족·커플 모두에게 남부 해변과 리조트 체류를 함께 제안하기 좋은 후보입니다.",
+          "reason": "남부 해변과 리조트 휴식을 함께 원하는 가족·커플 여행에 잘 맞는 선택지입니다.",
           "meta": [
             "풀빌라",
             "가족",
@@ -484,7 +484,7 @@ const cityConfig = {
           "name": "Premier Residences Phu Quoc Emerald Bay",
           "tag": "남부 실속",
           "location": "바이켐",
-          "reason": "켐비치 접근성과 레지던스형 편의성을 함께 보는 가족·실속 여행에 좋습니다.",
+          "reason": "켐비치 접근성과 레지던스형 편의성을 함께 챙기는 가족·실속 여행에 좋습니다.",
           "meta": [
             "레지던스",
             "가족",
@@ -496,7 +496,7 @@ const cityConfig = {
           "name": "La Festa Phu Quoc, Curio Collection by Hilton",
           "tag": "선셋타운",
           "location": "선셋타운·안터이",
-          "reason": "선셋타운 야간 분위기와 남부 액티비티를 함께 즐기고 싶을 때 비교하기 좋습니다.",
+          "reason": "선셋타운 야간 분위기와 남부 액티비티를 함께 즐기고 싶을 때 잘 맞습니다.",
           "meta": [
             "선셋타운",
             "커플",
@@ -520,10 +520,10 @@ const cityConfig = {
     },
     "baisao": {
       "name": "사오비치·함닌",
-      "summary": "숙박 1순위라기보다 사오비치, 함닌, 로컬 식당을 일정에 넣을 때 이해하면 좋은 권역입니다.",
+      "summary": "첫 숙소로 고르기보다 사오비치, 함닌, 로컬 식당을 일정에 넣을 때 이해하면 좋은 지역입니다.",
       "leadTitle": "동남부 해변 · 로컬 식당 · 당일 이동",
-      "leadText": "사오비치와 함닌은 푸꾸옥의 다른 얼굴을 보여주는 동남부·동부 동선입니다. 숙소 선택지는 중심·북부·남부보다 제한적이지만, 하루 코스로 넣으면 해변과 로컬 식사를 함께 즐기기 좋습니다.",
-      "compareGood": "숙박 1순위라기보다 사오비치, 함닌, 로컬 식당을 일정에 넣을 때 이해하면 좋은 권역입니다.",
+      "leadText": "사오비치와 함닌은 푸꾸옥 동남부·동부의 로컬한 분위기를 느끼기 좋은 코스입니다. 숙소 선택지는 많지 않지만, 하루 일정으로 넣으면 해변과 로컬 식사를 함께 즐기기 좋습니다.",
+      "compareGood": "첫 숙소로 고르기보다 사오비치, 함닌, 로컬 식당을 일정에 넣을 때 이해하면 좋은 지역입니다.",
       "compareCaution": "상점과 교통 선택지가 적어 늦은 시간 이동은 미리 준비하는 것이 좋습니다.",
       "decision": "사오비치·함닌은 숙소보다 일정 구역으로 이해하면 만족도가 높습니다.",
       "bestFor": [
@@ -538,7 +538,7 @@ const cityConfig = {
         "다양한 호텔 선택지 우선"
       ],
       "bookingTips": [
-        "숙박보다 당일 이동지로 보는 편이 안전합니다. 숙박한다면 주변 식당과 이동 수단을 먼저 확인하세요.",
+        "숙박지보다는 당일 코스로 넣는 편이 안전합니다. 이 지역에 머문다면 주변 식당과 이동 수단을 미리 확인하세요.",
         "상점과 교통 선택지가 적어 늦은 시간 이동은 미리 준비하는 것이 좋습니다."
       ],
       "chips": [
@@ -563,7 +563,7 @@ const cityConfig = {
           "name": "JM Boutique Hotel",
           "tag": "바이켐 실속",
           "location": "바이켐",
-          "reason": "바이켐 주변에서 숙박비 부담을 낮춰 남부 일정을 잡고 싶을 때 비교하기 좋습니다.",
+          "reason": "바이켐 주변에서 숙박비 부담을 낮추고 남부 일정을 잡고 싶을 때 잘 맞습니다.",
           "meta": [
             "실속",
             "바이켐",
@@ -575,7 +575,7 @@ const cityConfig = {
           "name": "Premier Residences Phu Quoc Emerald Bay",
           "tag": "남부 실속",
           "location": "바이켐",
-          "reason": "켐비치 접근성과 레지던스형 편의성을 함께 보는 가족·실속 여행에 좋습니다.",
+          "reason": "켐비치 접근성과 레지던스형 편의성을 함께 챙기는 가족·실속 여행에 좋습니다.",
           "meta": [
             "레지던스",
             "가족",
@@ -587,7 +587,7 @@ const cityConfig = {
           "name": "New World Phu Quoc Resort",
           "tag": "남부 풀빌라",
           "location": "바이켐",
-          "reason": "가족·커플 모두에게 남부 해변과 리조트 체류를 함께 제안하기 좋은 후보입니다.",
+          "reason": "남부 해변과 리조트 휴식을 함께 원하는 가족·커플 여행에 잘 맞는 선택지입니다.",
           "meta": [
             "풀빌라",
             "가족",
@@ -611,7 +611,7 @@ const cityConfig = {
           "name": "La Festa Phu Quoc, Curio Collection by Hilton",
           "tag": "선셋타운",
           "location": "선셋타운·안터이",
-          "reason": "선셋타운 야간 분위기와 남부 액티비티를 함께 즐기고 싶을 때 비교하기 좋습니다.",
+          "reason": "선셋타운 야간 분위기와 남부 액티비티를 함께 즐기고 싶을 때 잘 맞습니다.",
           "meta": [
             "선셋타운",
             "커플",
@@ -1057,7 +1057,7 @@ const cityConfig = {
 
     section.style.display = 'block';
     setText('hotelSectionTitle', `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-    setText('hotelSectionDesc', '추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 후보입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.');
+    setText('hotelSectionDesc', '추천된 위치를 기준으로 먼저 비교해볼 만한 호텔입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.');
     hotelCardList.innerHTML = '';
 
     hotels.forEach((hotel, index) => {
@@ -1086,7 +1086,7 @@ const cityConfig = {
       link.className = 'wt-hotel-link';
 
       rank.textContent = `${index + 1}`;
-      tag.textContent = hotel.tag || '추천 후보';
+      tag.textContent = hotel.tag || '추천 호텔';
       name.textContent = hotel.name;
       location.textContent = hotel.location;
       reason.textContent = hotel.reason;
@@ -1135,7 +1135,7 @@ const cityConfig = {
     setText('resultSummary', topArea.summary);
     setText('resultLeadTitle', topArea.leadTitle);
     setText('resultLeadText', topArea.leadText);
-    setText('resultWhyText', `${topArea.name}은 이번 답변에서 가장 높은 점수를 받은 숙소 권역입니다.`);
+    setText('resultWhyText', `${topArea.name}은 입력한 답변을 기준으로 가장 잘 맞는 숙소 위치입니다.`);
     setText('decisionConclusionTitle', '결론');
     setText('decisionConclusionText', topArea.decision);
 
