@@ -122,15 +122,45 @@ async function adminPostsRequestJson(url) {
 }
 
 async function adminPostsLoadSettings() {
-  const json = await adminPostsRequestJson(`/api/travel-settings?ts=${Date.now()}`);
-  adminPostsState.countries = Array.isArray(json.countries) ? json.countries : [];
-  adminPostsState.destinations = Array.isArray(json.destinations) ? json.destinations : [];
-  adminPostsState.regions = Array.isArray(json.regions) ? json.regions : [];
-  adminPostsState.contentTypes = Array.isArray(json.content_types) ? json.content_types : [];
+  try {
+    const json = await adminPostsRequestJson(`/api/travel-settings?ts=${Date.now()}`);
+    adminPostsState.countries = Array.isArray(json.countries) ? json.countries : [];
+    adminPostsState.destinations = Array.isArray(json.destinations) ? json.destinations : [];
+    adminPostsState.regions = Array.isArray(json.regions) ? json.regions : [];
+    adminPostsState.contentTypes = Array.isArray(json.content_types) ? json.content_types : [];
+    return true;
+  } catch (error) {
+    console.warn("Travel settings load failed", error);
+    adminPostsState.countries = [];
+    adminPostsState.destinations = [];
+    adminPostsState.regions = [];
+    adminPostsState.contentTypes = [];
+    return false;
+  }
 }
 
-async function adminPostsLoadAllPosts() {
-  const allPosts = [];
+function adminPostsMergeUniquePosts(groups = []) {
+  const map = new Map();
+  groups.flat().forEach((post) => {
+    const key = String(post?.slug || "").trim() || `${post?.title || "untitled"}-${post?.updated_at || post?.published_at || Math.random()}`;
+    const existing = map.get(key);
+    if (!existing) {
+      map.set(key, post);
+      return;
+    }
+    const currentTime = new Date(existing.updated_at || existing.published_at || 0).getTime() || 0;
+    const nextTime = new Date(post.updated_at || post.published_at || 0).getTime() || 0;
+    if (nextTime >= currentTime) map.set(key, post);
+  });
+  return [...map.values()].sort((a, b) => {
+    const aTime = new Date(a.updated_at || a.published_at || 0).getTime() || 0;
+    const bTime = new Date(b.updated_at || b.published_at || 0).getTime() || 0;
+    return bTime - aTime;
+  });
+}
+
+async function adminPostsFetchPagesByStatus(status = "published") {
+  const posts = [];
   let page = 1;
   let hasMore = true;
   const perPage = 24;
@@ -138,7 +168,7 @@ async function adminPostsLoadAllPosts() {
 
   while (hasMore && page <= maxPages) {
     const params = new URLSearchParams({
-      status: "all",
+      status,
       per_page: String(perPage),
       page: String(page),
       sort: "updated",
@@ -147,12 +177,35 @@ async function adminPostsLoadAllPosts() {
     });
     const json = await adminPostsRequestJson(`/api/posts?${params.toString()}`);
     const items = Array.isArray(json.items) ? json.items : [];
-    allPosts.push(...items);
+    posts.push(...items);
     hasMore = Boolean(json.pagination?.has_more);
     page += 1;
   }
 
-  adminPostsState.posts = allPosts;
+  return posts;
+}
+
+async function adminPostsLoadAllPosts() {
+  let allPosts = [];
+  let allLoadError = null;
+
+  try {
+    allPosts = await adminPostsFetchPagesByStatus("all");
+  } catch (error) {
+    allLoadError = error;
+    console.warn("All posts load failed", error);
+  }
+
+  const settled = await Promise.allSettled([
+    adminPostsFetchPagesByStatus("published"),
+    adminPostsFetchPagesByStatus("draft")
+  ]);
+  const fallbackGroups = settled
+    .filter((result) => result.status === "fulfilled" && Array.isArray(result.value))
+    .map((result) => result.value);
+
+  adminPostsState.posts = adminPostsMergeUniquePosts([allPosts, ...fallbackGroups]);
+  if (allLoadError && adminPostsState.posts.length === 0) throw allLoadError;
 }
 
 function adminPostsGetFilteredPosts() {
@@ -325,10 +378,11 @@ async function adminPostsLoad() {
   if (reloadBtn) reloadBtn.disabled = true;
 
   try {
-    await adminPostsLoadSettings();
+    const settingsLoaded = await adminPostsLoadSettings();
     await adminPostsLoadAllPosts();
     adminPostsRender();
-    adminPostsSetStatus(`전체 글 ${adminPostsState.posts.length}개를 불러왔습니다.`);
+    const suffix = settingsLoaded ? "" : " 나라·도시·지역 설정은 임시로 slug 기준 표시 중입니다.";
+    adminPostsSetStatus(`전체 글 ${adminPostsState.posts.length}개를 불러왔습니다.${suffix}`, !settingsLoaded);
   } catch (error) {
     adminPostsSetStatus(error.message || "전체 글을 불러오지 못했습니다.", true);
     const listEl = adminPosts$("adminPostsGroupedList");
@@ -359,6 +413,20 @@ function adminPostsBindEvents() {
 
   adminPosts$("adminPostsReloadBtn")?.addEventListener("click", adminPostsLoad);
 }
+
+let adminPostsReloadTimer = 0;
+function adminPostsScheduleReload() {
+  clearTimeout(adminPostsReloadTimer);
+  adminPostsReloadTimer = setTimeout(() => adminPostsLoad(), 250);
+}
+
+window.addEventListener("storage", (event) => {
+  if (event.key === "wackyTravelPostUpdated") adminPostsScheduleReload();
+});
+
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) adminPostsScheduleReload();
+});
 
 adminPostsBindEvents();
 adminPostsLoad();
