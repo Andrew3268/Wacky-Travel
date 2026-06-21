@@ -28,6 +28,8 @@
     "/destinations/hanoi",
     "/destinations/hanoi/*",
     "/destinations/phu-quoc",
-    "/destinations/phu-quoc/*"
+    "/destinations/phu-quoc/*",
+    "/destinations/taipei",
+    "/destinations/taipei/*"
   ]
 }

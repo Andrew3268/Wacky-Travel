@@ -20,7 +20,8 @@
     { slug: "nha-trang", name: "나트랑", city: "나트랑", country: "베트남", sort_order: 2, status: "published", is_active: 1 },
     { slug: "ho-chi-minh-city", name: "호치민", city: "호치민", country: "베트남", sort_order: 3, status: "published", is_active: 1 },
     { slug: "hanoi", name: "하노이", city: "하노이", country: "베트남", sort_order: 4, status: "published", is_active: 1 },
-    { slug: "phu-quoc", name: "푸꾸옥", city: "푸꾸옥", country: "베트남", sort_order: 5, status: "published", is_active: 1 }
+    { slug: "phu-quoc", name: "푸꾸옥", city: "푸꾸옥", country: "베트남", sort_order: 5, status: "published", is_active: 1 },
+    { slug: "taipei", name: "타이베이", city: "타이베이", country: "대만", sort_order: 1, status: "published", is_active: 1 }
   ];
 
   const normalizeText = (value) => String(value || "").trim();
@@ -100,7 +101,7 @@
   function renderDestinationChip(item) {
     const label = getDestinationName(item);
     const slug = getDestinationSlug(item);
-    const href = `/destinations/${encodeURIComponent(slug)}`;
+    const href = `/destinations/${encodeURIComponent(slug)}/`;
     return `<div class="destination-chip destination-chip--public">
       <span class="destination-chip__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">

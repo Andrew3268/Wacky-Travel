@@ -538,7 +538,7 @@
 
     function renderDestinationCard(item) {
       const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
-      const href = `/destinations/${encodeURIComponent(item.slug || '')}`;
+      const href = `/destinations/${encodeURIComponent(item.slug || '')}/`;
       return `<a class="destination-chip destination-chip--editable" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">${escapeHtml(label)}</a>`;
     }
 
