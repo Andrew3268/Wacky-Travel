@@ -321,6 +321,14 @@ function buildPostsHeroNav(categories = []) {
       fallbackLabel: '푸꾸옥 호텔 글 더 보기 →'
     }
 
+    ,
+    taipei: {
+      top5_series: '/destinations/taipei/hotel-recommendations/',
+      hotel_intro: '/destinations/taipei/hotels/',
+      fallback: '/destinations/taipei/hotels/',
+      fallbackLabel: '타이베이 호텔 글 더 보기 →'
+    }
+
   };
 
   const HOTEL_ARCHIVE_LABELS = {
