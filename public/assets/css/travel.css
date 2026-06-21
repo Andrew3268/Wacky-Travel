@@ -15390,3 +15390,274 @@ main.travel-page .wt-city-guide-related__grid a p,
 main.travel-page .wt-city-guide-related__card p {
   color: rgba(255, 255, 255, 0.78) !important;
 }
+
+
+/* WACKYTRAVEL_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1
+   /destinations/ 전체 여행지 페이지를 메인 index 여행지 허브 카드와 동일한 카드형 UI로 통일하고,
+   데이터 로딩 중에는 스켈레톤 카드를 먼저 보여준다. */
+.travel-section--destinations-archive {
+  --archive-hub-border: rgba(15, 23, 42, 0.065);
+  --archive-hub-chip-bg: #f7f9fc;
+  --archive-hub-chip-hover: #eef6ff;
+}
+
+.travel-section--destinations-archive .country-destination-list--all {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: clamp(14px, 2vw, 18px) !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+
+.travel-section--destinations-archive .country-destination-group--compact {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  padding: clamp(20px, 2.15vw, 26px) !important;
+  border: 1px solid var(--archive-hub-border) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%) !important;
+  backdrop-filter: none !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__head {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  min-width: 0 !important;
+  padding: 0 0 12px !important;
+  border-bottom: 1px solid var(--archive-hub-border) !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__title {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: calc(100% - 46px) !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__head h3 {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  color: #111827 !important;
+  font-size: clamp(1.02rem, 1.2vw, 1.16rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.2 !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin-left: auto !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 31px !important;
+  height: 31px !important;
+  flex: 0 0 31px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  color: rgba(23, 76, 120, 0.76) !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__link span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  transform: translateY(-0.5px) !important;
+}
+
+.travel-section--destinations-archive .country-destination-group__link:hover {
+  background: rgba(23, 76, 120, 0.055) !important;
+  color: var(--travel-brand-deep) !important;
+  transform: translateX(1px) !important;
+}
+
+.travel-section--destinations-archive .destination-chip-list {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+}
+
+.travel-section--destinations-archive .destination-chip,
+.travel-section--destinations-archive .destination-chip.destination-chip--public {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 43px !important;
+  padding: 10px 8px !important;
+  border: 0 !important;
+  border-radius: 15px !important;
+  background: var(--archive-hub-chip-bg) !important;
+  color: #1f2937 !important;
+  transform: none !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  font-size: 0.92rem !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.2 !important;
+  transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease !important;
+}
+
+.travel-section--destinations-archive .destination-chip:hover,
+.travel-section--destinations-archive .destination-chip.destination-chip--public:hover {
+  border: 0 !important;
+  background: var(--archive-hub-chip-hover) !important;
+  color: var(--travel-brand-deep) !important;
+  transform: translateY(-1px) !important;
+}
+
+.travel-section--destinations-archive .destination-chip__icon,
+.travel-section--destinations-archive .destination-chip__arrow {
+  display: none !important;
+}
+
+.travel-section--destinations-archive .destination-chip__link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.travel-section--destinations-archive .destination-chip__name {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: inherit !important;
+}
+
+.travel-section--destinations-archive .country-destination-list--all.is-loading {
+  pointer-events: none;
+}
+
+.travel-section--destinations-archive .country-destination-group--skeleton {
+  min-height: 210px;
+}
+
+.travel-section--destinations-archive .destination-skeleton {
+  display: block;
+  overflow: hidden;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #edf2f7 0%, #f8fafc 42%, #edf2f7 78%);
+  background-size: 220% 100%;
+  animation: wtDestinationsSkeleton 1.35s ease-in-out infinite;
+}
+
+.travel-section--destinations-archive .destination-skeleton--title {
+  width: min(128px, 64%);
+  height: 22px;
+}
+
+.travel-section--destinations-archive .destination-skeleton--circle {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+}
+
+.travel-section--destinations-archive .destination-skeleton--chip {
+  width: 100%;
+  min-height: 43px;
+  border-radius: 15px;
+}
+
+@keyframes wtDestinationsSkeleton {
+  0% { background-position: 120% 0; }
+  100% { background-position: -120% 0; }
+}
+
+@media (min-width: 768px) {
+  .travel-section--destinations-archive .country-destination-list--all {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1120px) {
+  .travel-section--destinations-archive .country-destination-list--all {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .travel-section--destinations-archive .country-destination-list--all {
+    gap: 16px !important;
+  }
+
+  .travel-section--destinations-archive .country-destination-group--compact {
+    padding: 18px !important;
+    border-radius: 24px !important;
+    background: #ffffff !important;
+  }
+
+  .travel-section--destinations-archive .country-destination-group__head {
+    gap: 12px !important;
+    padding-bottom: 13px !important;
+  }
+
+  .travel-section--destinations-archive .country-destination-group__title {
+    max-width: calc(100% - 42px) !important;
+  }
+
+  .travel-section--destinations-archive .country-destination-group__head h3 {
+    font-size: 1.02rem !important;
+  }
+
+  .travel-section--destinations-archive .country-destination-group__link {
+    width: 30px !important;
+    height: 30px !important;
+    flex-basis: 30px !important;
+  }
+
+  .travel-section--destinations-archive .country-destination-group__link span {
+    font-size: 14px !important;
+  }
+
+  .travel-section--destinations-archive .destination-chip,
+  .travel-section--destinations-archive .destination-chip.destination-chip--public,
+  .travel-section--destinations-archive .destination-skeleton--chip {
+    min-height: 44px !important;
+    padding: 11px 10px !important;
+    border-radius: 16px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .travel-section--destinations-archive .destination-skeleton {
+    animation: none;
+  }
+}
+/* End WACKYTRAVEL_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1 */

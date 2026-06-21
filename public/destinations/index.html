@@ -8,7 +8,7 @@
   <link rel="canonical" href="/destinations/" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260619NhaTravelGuideRelatedColorV118" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260621DestinationsHubSkeletonV1" />
 </head>
 <body>
   <header class="topbar topbar--editorial topbar--travel">
@@ -17,7 +17,7 @@
     </div>
   </header>
   <main class="travel-page travel-page--destinations-index">
-    <section class="container travel-section">
+    <section class="container travel-section travel-section--destination-hub travel-section--destinations-archive">
       <div class="section-heading section-heading--split">
         <div>
           <p class="eyebrow">Travel Hub</p>
@@ -25,10 +25,47 @@
           <p>나라별로 모아둔 도시를 천천히 둘러보며, 마음이 가는 여행지의 호텔 추천 글과 여행 정보를 바로 확인해보세요.</p>
         </div>
       </div>
-      <div id="destinationsGrid" class="country-destination-list country-destination-list--all"></div>
+      <div id="destinationsGrid" class="country-destination-list country-destination-list--all is-loading" aria-live="polite" aria-busy="true">
+        <section class="country-destination-group country-destination-group--compact country-destination-group--skeleton" aria-hidden="true">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title"><span class="destination-skeleton destination-skeleton--title"></span></div>
+            <span class="destination-skeleton destination-skeleton--circle"></span>
+          </div>
+          <div class="destination-chip-list">
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+          </div>
+        </section>
+        <section class="country-destination-group country-destination-group--compact country-destination-group--skeleton" aria-hidden="true">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title"><span class="destination-skeleton destination-skeleton--title"></span></div>
+            <span class="destination-skeleton destination-skeleton--circle"></span>
+          </div>
+          <div class="destination-chip-list">
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+          </div>
+        </section>
+        <section class="country-destination-group country-destination-group--compact country-destination-group--skeleton" aria-hidden="true">
+          <div class="country-destination-group__head">
+            <div class="country-destination-group__title"><span class="destination-skeleton destination-skeleton--title"></span></div>
+            <span class="destination-skeleton destination-skeleton--circle"></span>
+          </div>
+          <div class="destination-chip-list">
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+            <span class="destination-skeleton destination-skeleton--chip"></span>
+          </div>
+        </section>
+      </div>
     </section>
   </main>
   <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
-  <script src="/assets/js/destinations.js?v=20260619NhaTrangStaticV1" defer></script>
+  <script src="/assets/js/destinations.js?v=20260621DestinationsHubSkeletonV1" defer></script>
 </body>
 </html>

@@ -138,6 +138,31 @@
     </section>`;
   }
 
+
+  function renderLoadingSkeleton(count = 6) {
+    const skeletonGroup = () => `<section class="country-destination-group country-destination-group--compact country-destination-group--skeleton" aria-hidden="true">
+      <div class="country-destination-group__head">
+        <div class="country-destination-group__title"><span class="destination-skeleton destination-skeleton--title"></span></div>
+        <span class="destination-skeleton destination-skeleton--circle"></span>
+      </div>
+      <div class="destination-chip-list">
+        <span class="destination-skeleton destination-skeleton--chip"></span>
+        <span class="destination-skeleton destination-skeleton--chip"></span>
+        <span class="destination-skeleton destination-skeleton--chip"></span>
+        <span class="destination-skeleton destination-skeleton--chip"></span>
+      </div>
+    </section>`;
+    grid.classList.add("is-loading");
+    grid.setAttribute("aria-busy", "true");
+    grid.innerHTML = Array.from({ length: count }, skeletonGroup).join("");
+  }
+
+  function renderLoadedContent(html) {
+    grid.classList.remove("is-loading");
+    grid.setAttribute("aria-busy", "false");
+    grid.innerHTML = html;
+  }
+
   async function fetchJson(url, fallback) {
     try {
       const res = await fetch(url, { cache: "no-store" });
@@ -149,7 +174,7 @@
   }
 
   async function init() {
-    grid.innerHTML = `<div class="empty-card">여행지를 불러오는 중입니다.</div>`;
+    renderLoadingSkeleton();
     const [destData, settingsData] = await Promise.all([
       fetchJson("/api/destinations?limit=500", { items: [] }),
       fetchJson(`/api/travel-settings?ts=${Date.now()}`, { countries: [], destinations: [] })
@@ -165,11 +190,11 @@
     const groups = buildCountryGroups(items, Array.isArray(settingsData.countries) ? settingsData.countries : []);
 
     if (!groups.length) {
-      grid.innerHTML = `<div class="empty-card">등록된 여행지가 없습니다.</div>`;
+      renderLoadedContent(`<div class="empty-card">등록된 여행지가 없습니다.</div>`);
       return;
     }
 
-    grid.innerHTML = groups.map(renderCountryGroup).join("");
+    renderLoadedContent(groups.map(renderCountryGroup).join(""));
   }
 
   init();
