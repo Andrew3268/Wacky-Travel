@@ -15845,3 +15845,11 @@ main.travel-page .wt-city-guide-related__card p {
   }
 }
 /* End WACKYTRAVEL_COUNTRY_PAGE_SKELETON_V1 */
+
+/* Travel heading readability */
+.travel-page h2,
+.travel-page h3 {
+  line-height: 1.4;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
