@@ -15661,3 +15661,187 @@ main.travel-page .wt-city-guide-related__card p {
   }
 }
 /* End WACKYTRAVEL_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1 */
+
+/* WACKYTRAVEL_COUNTRY_PAGE_SKELETON_V1: 국가별 페이지 스켈레톤 로딩 */
+.travel-page--country-hub .country-page-skeleton {
+  display: none;
+}
+
+.travel-page--country-hub.is-loading .country-page-content {
+  display: none !important;
+}
+
+.travel-page--country-hub.is-loading .country-page-skeleton {
+  display: grid;
+}
+
+.travel-page--country-hub.is-loading .country-page-skeleton--posts {
+  display: block;
+}
+
+.country-page-skeleton--cities {
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.country-page-skeleton-card,
+.country-page-skeleton-post-section {
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.05);
+}
+
+.country-page-skeleton-card--city {
+  min-height: 360px;
+}
+
+.country-page-skeleton__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+}
+
+.country-page-skeleton__body {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+
+.country-page-skeleton__line,
+.country-page-skeleton__media,
+.country-page-skeleton__button,
+.country-page-skeleton-post-row {
+  display: block;
+  overflow: hidden;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #edf2f7 0%, #f8fafc 44%, #edf2f7 78%);
+  background-size: 220% 100%;
+  animation: wtCountryPageSkeleton 1.35s ease-in-out infinite;
+}
+
+.country-page-skeleton__line--meta {
+  width: 34%;
+  height: 13px;
+}
+
+.country-page-skeleton__line--title {
+  width: 68%;
+  height: 24px;
+}
+
+.country-page-skeleton__line--heading {
+  width: 58%;
+  height: 22px;
+}
+
+.country-page-skeleton__line--hero-title {
+  width: min(420px, 78%);
+  height: 30px;
+}
+
+.country-page-skeleton__line--text {
+  width: 100%;
+  height: 14px;
+}
+
+.country-page-skeleton__line--text.short {
+  width: 72%;
+}
+
+.country-page-skeleton__button {
+  width: 118px;
+  height: 20px;
+  margin-top: 4px;
+}
+
+.country-page-skeleton--posts {
+  padding-top: 20px;
+}
+
+.country-page-skeleton-heading {
+  display: grid;
+  gap: 12px;
+  max-width: 720px;
+  margin-bottom: 22px;
+}
+
+.country-page-skeleton-post-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.country-page-skeleton-post-section {
+  display: grid;
+  gap: 12px;
+  min-height: 250px;
+  padding: 22px;
+  box-shadow: none;
+}
+
+.country-page-skeleton-post-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.country-page-skeleton-post-row {
+  width: 100%;
+  height: 44px;
+  border-radius: 14px;
+}
+
+@keyframes wtCountryPageSkeleton {
+  0% { background-position: 120% 0; }
+  100% { background-position: -120% 0; }
+}
+
+@media (min-width: 768px) {
+  .country-page-skeleton--cities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1120px) {
+  .country-page-skeleton--cities,
+  .country-page-skeleton-post-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .country-page-skeleton--cities {
+    gap: 16px;
+  }
+
+  .country-page-skeleton-card,
+  .country-page-skeleton-post-section {
+    border-radius: 22px;
+  }
+
+  .country-page-skeleton-card--city {
+    min-height: 310px;
+  }
+
+  .country-page-skeleton__body,
+  .country-page-skeleton-post-section {
+    padding: 18px;
+  }
+
+  .country-page-skeleton__line--hero-title {
+    height: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .country-page-skeleton__line,
+  .country-page-skeleton__media,
+  .country-page-skeleton__button,
+  .country-page-skeleton-post-row {
+    animation: none;
+  }
+}
+/* End WACKYTRAVEL_COUNTRY_PAGE_SKELETON_V1 */

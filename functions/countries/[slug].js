@@ -88,30 +88,36 @@ export async function onRequestGet({ params, env, request }) {
         { name: countryName, url: canonical, href: canonical }
       ];
       const jsonLdItems = [buildBreadcrumbJsonLd(breadcrumbItems)];
+      const countryContentHubHtml = renderCountryContentHub(countryName, posts, contentTypes);
 
       const html = `<!doctype html>
 <html lang="ko">
 <head>
   ${renderTravelHead({ title, description, canonical, image: destinations[0].cover_image })}
   ${renderJsonLdScripts(jsonLdItems)}
+  <noscript><style>.travel-page--country-hub.is-loading .country-page-content{display:block!important}.travel-page--country-hub.is-loading .country-page-skeleton{display:none!important}</style></noscript>
 </head>
 <body>
   ${renderSiteHeader({ active: "destinations" })}
   ${renderBreadcrumbs(breadcrumbItems)}
-  <main class="travel-page">
-    <section class="container travel-section">
+  <main class="travel-page travel-page--country-hub is-loading" data-country-hub-page>
+    <section class="container travel-section travel-section--country-cities">
       <div class="section-heading">
         <p class="eyebrow">Cities</p>
         <h1>${escapeHtml(countryName)}에서 어디로 떠나시나요?</h1>
         <p>도시마다 다른 분위기와 여행 동선을 살펴보며, 마음이 가는 여행지의 호텔 추천 글과 준비 팁을 천천히 확인해보세요.</p>
       </div>
-      <div class="travel-card-grid">
-        ${destinations.map(renderDestinationCard).join("")}
+      ${renderCountryCitySkeleton(destinations.length)}
+      <div class="country-page-content country-page-content--cities" aria-live="polite" aria-busy="true">
+        <div class="travel-card-grid">
+          ${destinations.map(renderDestinationCard).join("")}
+        </div>
       </div>
     </section>
 
-    ${renderCountryContentHub(countryName, posts, contentTypes)}
+    ${countryContentHubHtml ? `${renderCountryPostSkeleton()}<div class="country-page-content country-page-content--posts">${countryContentHubHtml}</div>` : ""}
   </main>
+  ${renderCountryLoadingScript()}
   ${renderFooter()}
 </body>
 </html>`;
@@ -147,6 +153,50 @@ function renderDestinationCard(destination) {
       </span>
     </a>
   </article>`;
+}
+
+function renderCountryCitySkeleton(count = 3) {
+  const skeletonCount = Math.min(6, Math.max(3, Number(count || 0)));
+  const card = () => `<article class="country-page-skeleton-card country-page-skeleton-card--city">
+    <span class="country-page-skeleton__media"></span>
+    <span class="country-page-skeleton__body">
+      <span class="country-page-skeleton__line country-page-skeleton__line--meta"></span>
+      <span class="country-page-skeleton__line country-page-skeleton__line--title"></span>
+      <span class="country-page-skeleton__line country-page-skeleton__line--text"></span>
+      <span class="country-page-skeleton__line country-page-skeleton__line--text short"></span>
+      <span class="country-page-skeleton__button"></span>
+    </span>
+  </article>`;
+
+  return `<div class="country-page-skeleton country-page-skeleton--cities" aria-hidden="true">${Array.from({ length: skeletonCount }, card).join("")}</div>`;
+}
+
+function renderCountryPostSkeleton() {
+  const section = () => `<section class="country-page-skeleton-post-section">
+    <span class="country-page-skeleton__line country-page-skeleton__line--meta"></span>
+    <span class="country-page-skeleton__line country-page-skeleton__line--heading"></span>
+    <span class="country-page-skeleton__line country-page-skeleton__line--text"></span>
+    <div class="country-page-skeleton-post-list">
+      <span class="country-page-skeleton-post-row"></span>
+      <span class="country-page-skeleton-post-row"></span>
+      <span class="country-page-skeleton-post-row"></span>
+    </div>
+  </section>`;
+
+  return `<div class="container travel-section country-page-skeleton country-page-skeleton--posts" aria-hidden="true">
+    <div class="country-page-skeleton-heading">
+      <span class="country-page-skeleton__line country-page-skeleton__line--meta"></span>
+      <span class="country-page-skeleton__line country-page-skeleton__line--hero-title"></span>
+      <span class="country-page-skeleton__line country-page-skeleton__line--text"></span>
+    </div>
+    <div class="country-page-skeleton-post-grid">
+      ${Array.from({ length: 3 }, section).join("")}
+    </div>
+  </div>`;
+}
+
+function renderCountryLoadingScript() {
+  return `<script>(function(){var page=document.querySelector('[data-country-hub-page]');if(!page)return;var done=false;function finish(){if(done)return;done=true;page.classList.remove('is-loading');var contents=page.querySelectorAll('.country-page-content[aria-busy]');contents.forEach(function(el){el.setAttribute('aria-busy','false');});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(function(){requestAnimationFrame(finish);});},{once:true});}else{requestAnimationFrame(function(){requestAnimationFrame(finish);});}setTimeout(finish,900);})();</script>`;
 }
 
 function getDestinationCardTitle(destination) {
