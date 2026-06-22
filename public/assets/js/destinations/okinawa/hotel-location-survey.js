@@ -1282,7 +1282,7 @@ function applyAccuracyAdjustments(scores) {
 
 
   // v13 accuracy reinforcement: give Yomitan and the southern coast a real path when users choose rental car, sunset, driving and quieter coasts.
-  const driveIntent = answerIs(0, "드라이브") || drive;
+  const driveIntent = northDrive || drive;
   const southFriendly = driveIntent && (fullCar || partialCar) && !aquariumCore && !northDrive;
   if (southFriendly && (arrivalDeparture || airportLow || longTrip)) {
     addAreaScore(scores, "southCoast", 12);

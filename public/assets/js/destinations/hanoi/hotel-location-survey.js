@@ -1425,12 +1425,12 @@ cityConfig.postContentType = "top5_series";
   const resetBtn = document.getElementById("resetBtn");
 
   const RELATED_TOP5_REGION_SLUGS = {
-    district1: ["district-1", "ben-thanh", "district-1-ben-thanh", "1군·벤탄", "1군", "벤탄"],
-    dongkhoi: ["dong-khoi", "nguyen-hue", "dong-khoi-nguyen-hue", "동커이·응우옌후에", "동커이", "응우옌후에"],
-    district3: ["district-3", "war-remnants-museum", "district-3-war-museum", "3군·전쟁박물관", "3군", "전쟁박물관"],
-    thaodien: ["thao-dien", "thu-duc", "thao-dien-thu-duc", "타오디엔·투득", "타오디엔", "투득"],
-    airport: ["airport", "tan-binh", "airport-tan-binh", "공항·떤빈", "공항", "떤빈"],
-    binhthanh: ["binh-thanh", "landmark-81", "binh-thanh-landmark-81", "빈탄·랜드마크81", "빈탄", "랜드마크81"]
+    oldquarter: ["old-quarter", "hoan-kiem", "old-quarter-hoan-kiem", "hoan-kiem-old-quarter", "호안끼엠·올드쿼터", "호안끼엠", "올드쿼터"],
+    french: ["french-quarter", "opera-house", "french-quarter-opera-house", "프렌치쿼터·오페라하우스", "프렌치쿼터", "오페라하우스"],
+    westlake: ["west-lake", "tay-ho", "west-lake-tay-ho", "서호·타이호", "서호", "타이호"],
+    badinh: ["ba-dinh", "lotte-center", "ba-dinh-lotte-center", "바딘·롯데센터", "바딘", "롯데센터"],
+    dongda: ["dong-da", "temple-of-literature", "train-street", "dong-da-temple-of-literature-train-street", "동다·문묘·기차거리", "동다", "문묘", "기차거리"],
+    mydinh: ["my-dinh", "cau-giay", "my-dinh-cau-giay", "미딩·꺼우저이", "미딩", "꺼우저이"]
   };
 
   function setText(id, text) {
