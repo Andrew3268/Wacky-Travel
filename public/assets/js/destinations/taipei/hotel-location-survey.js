@@ -8,7 +8,7 @@ const cityConfig = {
   "postContentType": "top5_series",
   "areas": {
     "station": {
-      "name": "타이베이역·중정",
+      "name": "타이베이역",
       "regionSlug": "taipei-main-station",
       "regionSlugAliases": [
         "타이베이역",
@@ -126,7 +126,7 @@ const cityConfig = {
       ]
     },
     "ximending": {
-      "name": "시먼딩·완화",
+      "name": "시먼딩",
       "regionSlug": "ximending",
       "regionSlugAliases": [
         "시먼딩",
@@ -244,7 +244,7 @@ const cityConfig = {
       ]
     },
     "zhongshan": {
-      "name": "중산·쑹장난징",
+      "name": "중산",
       "regionSlug": "zhongshan",
       "regionSlugAliases": [
         "중산",
@@ -362,7 +362,7 @@ const cityConfig = {
       ]
     },
     "daan": {
-      "name": "다안·융캉제",
+      "name": "다안",
       "regionSlug": "daan-yongkang",
       "regionSlugAliases": [
         "다안",
@@ -480,7 +480,7 @@ const cityConfig = {
       ]
     },
     "xinyi": {
-      "name": "신이·타이베이101",
+      "name": "신이",
       "regionSlug": "xinyi-taipei101",
       "regionSlugAliases": [
         "신이",
@@ -598,7 +598,7 @@ const cityConfig = {
       ]
     },
     "beitou": {
-      "name": "베이터우·스린",
+      "name": "베이터우",
       "regionSlug": "beitou-shilin",
       "regionSlugAliases": [
         "베이터우",
@@ -1188,136 +1188,108 @@ function addAreaScore(scores, areaKey, amount) {
 }
 
 function applyAccuracyAdjustments(scores) {
-  const firstTrip = answerIs(0, "첫 여행");
-  const repeatTrip = answerIn(0, ["재방문", "익숙한 여행"]);
-  const solo = answerIs(1, "혼자 여행");
-  const couple = answerIs(1, "커플 여행");
-  const friends = answerIs(1, "친구 여행");
-  const family = answerIn(1, ["가족·아이", "부모님 동반"]);
-  const foodNight = answerIs(2, "맛집·밤거리") || answerIs(6, "번화가");
-  const shopping = answerIs(2, "쇼핑");
-  const transport = answerIs(2, "교통 편의");
-  const childFocused = answerIs(2, "아이 동반") || answerIs(6, "가족형 분위기");
-  const airportImportant = answerIs(3, "매우 중요");
-  const usjCore = answerIs(4, "USJ 핵심");
-  const usjDay = answerIs(4, "하루 방문");
-  const noUsj = answerIs(4, "방문 없음");
-  const nearHeavy = answerIs(5, "근교 2일 이상");
-  const nearOneDay = answerIs(5, "근교 하루");
-  const cityOnly = answerIs(5, "시내 중심");
-  const cleanCity = answerIs(6, "깔끔한 도심");
-  const quietStay = answerIs(6, "차분한 숙소");
-  const budgetSave = answerIs(7, "예산 절약");
-  const balanceBudget = answerIs(7, "가격·위치 균형");
-  const locationFirst = answerIs(7, "위치 우선");
+  const firstTrip = answerIs(0, "처음이에요");
+  const repeatTrip = answerIs(0, "두 번째 이상");
+  const familyTrip = answerIs(0, "가족과 함께");
+  const coupleFriendsTrip = answerIs(0, "커플·친구 여행");
 
-  if (firstTrip && foodNight && (airportImportant || cityOnly || locationFirst)) {
-    addAreaScore(scores, "namba", 5);
-  }
-  if (friends && foodNight && noUsj) {
-    addAreaScore(scores, "namba", 4);
-  }
-  if (airportImportant && !nearHeavy && !usjCore) {
-    addAreaScore(scores, "namba", 3);
-  }
+  const airportStationMove = answerIs(1, "공항·역 이동");
+  const nightMarketWalk = answerIs(1, "야시장·저녁 산책");
+  const cafeWalk = answerIs(1, "카페·동네 산책");
+  const skylineShopping = answerIs(1, "야경·쇼핑몰");
 
-  if ((shopping || cleanCity) && (couple || friends) && !airportImportant) {
-    addAreaScore(scores, "shinsaibashi", 4);
-  }
-  if (shopping && balanceBudget) {
-    addAreaScore(scores, "shinsaibashi", 3);
-    addAreaScore(scores, "hommachi", 2);
-  }
-  if (quietStay && !nearHeavy && !usjCore) {
-    addAreaScore(scores, "hommachi", 3);
-  }
-  if ((balanceBudget || budgetSave) && repeatTrip && !foodNight) {
-    addAreaScore(scores, "hommachi", 3);
-  }
+  const jiufenTour = answerIs(2, "예류·지우펀·스펀 투어");
+  const danshuiBeitou = answerIs(2, "단수이·베이터우");
+  const cityCenterOnly = answerIs(2, "시내 중심");
+  const undecidedItinerary = answerIs(2, "아직 미정");
 
-  if ((transport || nearHeavy || nearOneDay) && !airportImportant) {
-    addAreaScore(scores, "umeda", 4);
+  const livelyArea = answerIs(3, "활기 있는 번화가");
+  const calmCity = answerIs(3, "차분한 도심");
+  const quietNeighborhood = answerIs(3, "조용한 동네");
+  const restFocused = answerIs(3, "휴식형 분위기");
+
+  const soloOrFriends = answerIs(4, "혼자 또는 친구");
+  const couple = answerIs(4, "커플");
+  const parents = answerIs(4, "부모님 동반");
+  const kids = answerIs(4, "아이와 함께");
+
+  const budgetSave = answerIs(5, "예산 절약");
+  const balanceBudget = answerIs(5, "가격·위치 균형");
+  const locationFirst = answerIs(5, "위치 우선");
+  const hotelMoodFirst = answerIs(5, "호텔 분위기 우선");
+
+  const avoidAirportStress = answerIs(6, "공항 이동 스트레스");
+  const avoidNoiseCrowd = answerIs(6, "밤 소음과 혼잡");
+  const avoidNothingNearby = answerIs(6, "숙소 주변 할 것 없음");
+  const avoidLongMove = answerIs(6, "매일 긴 이동");
+
+  // 타이베이역: 공항철도·기차·투어 집결지·첫 방문 일정이 겹칠 때 확실히 우선합니다.
+  if (firstTrip && (airportStationMove || jiufenTour || avoidAirportStress || locationFirst)) {
+    addAreaScore(scores, "station", 5);
   }
-  if (nearHeavy && (family || solo || cleanCity)) {
-    addAreaScore(scores, "umeda", 5);
+  if ((parents || kids || familyTrip) && (airportStationMove || avoidLongMove || undecidedItinerary)) {
+    addAreaScore(scores, "station", 3);
   }
-  if (nearOneDay && transport) {
-    addAreaScore(scores, "umeda", 3);
+  if (jiufenTour && (locationFirst || avoidLongMove)) {
+    addAreaScore(scores, "station", 3);
   }
 
-  if (usjCore) {
-    addAreaScore(scores, "universal", 8);
+  // 시먼딩: 밤 동선, 먹거리, 첫 여행의 활기 있는 분위기를 선택했을 때 강하게 보정합니다.
+  if ((nightMarketWalk || livelyArea || avoidNothingNearby) && (soloOrFriends || coupleFriendsTrip || firstTrip)) {
+    addAreaScore(scores, "ximending", 5);
   }
-  if ((usjCore || usjDay) && (family || childFocused)) {
-    addAreaScore(scores, "universal", 5);
+  if (livelyArea && locationFirst && !avoidNoiseCrowd) {
+    addAreaScore(scores, "ximending", 3);
   }
-  if (childFocused && !usjCore && !foodNight) {
-    addAreaScore(scores, "umeda", 2);
-    addAreaScore(scores, "hommachi", 2);
-  }
-
-  if (budgetSave && (repeatTrip || quietStay)) {
-    addAreaScore(scores, "tennoji", 4);
-  }
-  if (airportImportant && budgetSave) {
-    addAreaScore(scores, "tennoji", 2);
-  }
-  if (cityOnly && repeatTrip && !foodNight) {
-    addAreaScore(scores, "tennoji", 2);
+  if (avoidNoiseCrowd || quietNeighborhood || restFocused) {
+    addAreaScore(scores, "ximending", -3);
   }
 
-
-  // v13 accuracy reinforcement: keep classic hubs strong, but let balance/quiet/value answers surface Hommachi and Tennoji.
-  const airportLow = answerIs(3, "중요 낮음");
-  const airportNormal = answerIs(3, "보통");
-  if ((quietStay || balanceBudget || budgetSave) && airportLow && !usjCore && !foodNight) {
-    addAreaScore(scores, "hommachi", 8);
+  // 중산: 가격·위치 균형, 차분한 도심, 가족 이동 편의가 섞인 답변에서 중심 후보로 올립니다.
+  if ((calmCity || balanceBudget || budgetSave || avoidLongMove) && !livelyArea) {
+    addAreaScore(scores, "zhongshan", 4);
   }
-  if ((cleanCity || shopping) && balanceBudget && !airportImportant && !usjCore) {
-    addAreaScore(scores, "hommachi", 5);
+  if ((parents || kids || familyTrip) && (calmCity || balanceBudget || avoidNoiseCrowd)) {
+    addAreaScore(scores, "zhongshan", 3);
   }
-  if (repeatTrip && (quietStay || balanceBudget || budgetSave) && !foodNight && !usjCore) {
-    addAreaScore(scores, "hommachi", 7);
-  }
-  if ((family || childFocused) && (quietStay || balanceBudget) && !usjCore) {
-    addAreaScore(scores, "hommachi", 5);
-  }
-  if (cityOnly && budgetSave && repeatTrip && !foodNight && !usjCore) {
-    addAreaScore(scores, "tennoji", 6);
-  }
-  if ((airportImportant || airportNormal) && budgetSave && !nearHeavy && !usjCore) {
-    addAreaScore(scores, "tennoji", 5);
-  }
-  if (repeatTrip && cityOnly && !shopping && !foodNight && !usjCore) {
-    addAreaScore(scores, "tennoji", 5);
-  }
-  if (shopping && !foodNight && !nearHeavy && !airportImportant) {
-    addAreaScore(scores, "shinsaibashi", 3);
-  }
-  if (nearHeavy && !airportImportant) {
-    addAreaScore(scores, "namba", -2);
-  }
-  if (airportImportant && nearHeavy) {
-    addAreaScore(scores, "umeda", 2);
-    addAreaScore(scores, "namba", -1);
-  }
-  if ((balanceBudget || budgetSave) && !nearHeavy && !airportImportant && !usjCore) {
-    addAreaScore(scores, "umeda", -2);
+  if (repeatTrip && (calmCity || cafeWalk || balanceBudget)) {
+    addAreaScore(scores, "zhongshan", 3);
   }
 
+  // 다안: 카페·공원·동네 산책, 조용한 숙소, 커플 여행 성향을 선택했을 때 보정합니다.
+  if ((cafeWalk || quietNeighborhood || avoidNoiseCrowd) && !airportStationMove) {
+    addAreaScore(scores, "daan", 5);
+  }
+  if (couple && (cafeWalk || hotelMoodFirst || quietNeighborhood)) {
+    addAreaScore(scores, "daan", 3);
+  }
+  if (repeatTrip && (cafeWalk || quietNeighborhood) && !danshuiBeitou) {
+    addAreaScore(scores, "daan", 3);
+  }
 
-  // v13 balance pass: strengthen Shinsaibashi as a distinct shopping/couple zone and keep Umeda from swallowing neutral answers.
-  if (shopping && (couple || friends || repeatTrip) && !airportImportant && !nearHeavy) {
-    addAreaScore(scores, "shinsaibashi", 5);
+  // 신이: 타이베이101, 야경, 쇼핑몰, 호텔 분위기 우선 답변이 모일 때 별도 후보로 살립니다.
+  if ((skylineShopping || hotelMoodFirst) && (couple || coupleFriendsTrip || cityCenterOnly)) {
+    addAreaScore(scores, "xinyi", 5);
   }
-  if (cleanCity && balanceBudget && !nearHeavy && !airportImportant) {
-    addAreaScore(scores, "shinsaibashi", 3);
+  if (skylineShopping && locationFirst) {
+    addAreaScore(scores, "xinyi", 3);
   }
-  if (!nearHeavy && !transport && !cleanCity && !locationFirst) {
-    addAreaScore(scores, "umeda", -2);
+  if (budgetSave && !skylineShopping) {
+    addAreaScore(scores, "xinyi", -2);
   }
-  if (quietStay && balanceBudget && repeatTrip && !foodNight) {
-    addAreaScore(scores, "hommachi", 3);
+
+  // 베이터우: 북쪽 일정·온천·휴식 성향이 있을 때만 결과로 잘 올라오도록 보정합니다.
+  if (danshuiBeitou || restFocused) {
+    addAreaScore(scores, "beitou", 6);
+  }
+  if ((parents || kids || familyTrip) && (danshuiBeitou || restFocused || hotelMoodFirst)) {
+    addAreaScore(scores, "beitou", 3);
+  }
+  if (avoidNoiseCrowd && (danshuiBeitou || restFocused)) {
+    addAreaScore(scores, "beitou", 2);
+  }
+  if ((airportStationMove || jiufenTour || locationFirst) && !danshuiBeitou && !restFocused) {
+    addAreaScore(scores, "beitou", -3);
   }
 }
 
