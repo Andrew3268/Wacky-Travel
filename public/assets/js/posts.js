@@ -355,6 +355,14 @@ function buildPostsHeroNav(categories = []) {
       fallback: '/destinations/taipei/hotels/',
       fallbackLabel: '타이베이 호텔 글 더 보기 →'
     }
+    ,
+    taichung: {
+      top5_series: '/destinations/taichung/hotel-recommendations/',
+      hotel_intro: '/destinations/taichung/hotels/',
+      fallback: '/destinations/taichung/hotels/',
+      fallbackLabel: '타이중 호텔 글 더 보기 →'
+    }
+
 
   };
 
