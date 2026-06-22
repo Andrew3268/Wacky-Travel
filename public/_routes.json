@@ -30,12 +30,6 @@
     "/destinations/phu-quoc",
     "/destinations/phu-quoc/*",
     "/destinations/taipei",
-    "/destinations/taipei/*",
-    "/destinations/taichung",
-    "/destinations/taichung/*",
-    "/destinations/tainan",
-    "/destinations/tainan/*",
-    "/destinations/kaohsiung",
-    "/destinations/kaohsiung/*"
+    "/destinations/taipei/*"
   ]
 }
