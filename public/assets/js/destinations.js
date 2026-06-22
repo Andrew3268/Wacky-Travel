@@ -23,7 +23,8 @@
     { slug: "phu-quoc", name: "푸꾸옥", city: "푸꾸옥", country: "베트남", sort_order: 5, status: "published", is_active: 1 },
     { slug: "taipei", name: "타이베이", city: "타이베이", country: "대만", sort_order: 1, status: "published", is_active: 1 },
     { slug: "taichung", name: "타이중", city: "타이중", country: "대만", sort_order: 2, status: "published", is_active: 1 },
-    { slug: "tainan", name: "타이난", city: "타이난", country: "대만", sort_order: 3, status: "published", is_active: 1 }
+    { slug: "tainan", name: "타이난", city: "타이난", country: "대만", sort_order: 3, status: "published", is_active: 1 },
+    { slug: "kaohsiung", name: "가오슝", city: "가오슝", country: "대만", sort_order: 4, status: "published", is_active: 1 }
   ];
 
   const normalizeText = (value) => String(value || "").trim();
