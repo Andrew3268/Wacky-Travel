@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="타이중 여행 스타일별 호텔 추천 글을 카테고리별로 모아보고, 누구와 함께 가는지·어디에 머무는지·예산과 테마에 맞춰 숙소 선택 흐름을 비교해보세요." property="og:description"/>
+<meta content="/destinations/taichung/hotel-recommendations/" property="og:url"/>
+<meta content="ko_KR" property="og:locale"/>
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
+<link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" rel="stylesheet"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"타이중","item":"/destinations/taichung"},{"@type":"ListItem","position":4,"name":"타이중 호텔 추천 글","item":"/destinations/taichung/hotel-recommendations/"}]}</script>
+</head>
+<body data-destination-slug="taichung">
+<header class="topbar topbar--editorial topbar--travel">
+<div class="topbar__inner container">
+<a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+</div>
+</header>
+<nav aria-label="현재 위치" class="breadcrumbs container">
+<ol>
+<li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li>
+<li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li>
+<li><a href="/destinations/taichung/">타이중</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li>
+<li><span aria-current="page">타이중 호텔 추천 글</span></li>
+</ol>
+</nav>
+<main class="travel-page wt-city-page wt-city-page--taichung wt-city-archive-page">
+<section aria-labelledby="taichungArchiveTitle" class="wt-city-hero container">
+<div class="wt-city-hero__content">
+<p class="wt-city-kicker">Taichung Hotel Picks</p>
+<h1 id="taichungArchiveTitle">타이중 호텔 추천 글을
+여행 스타일별로 모아봤어요</h1>
+<p class="wt-city-hero__lead">첫 여행, 야시장 중심 일정, 가성비, 근교 여행, 조용한 숙박처럼 여행 준비할 때 실제로 고민하는 상황별 호텔 추천 글을 한곳에 모았습니다. 내 여행 목적에 맞는 글을 고르고, 타이중 숙소 선택지를 더 빠르게 줄여보세요.</p>
+</div>
+</section>
+<section aria-label="타이중 호텔 추천 글 목록" class="container travel-section wt-city-dynamic-section">
+<div aria-label="타이중 호텔 추천 글 카테고리 필터" class="wt-region-filter" data-category-filter="" hidden=""></div>
+<div class="wt-category-filter-description" data-category-description="" hidden=""></div>
+<div class="wt-city-archive-summary">
+<div class="wt-city-archive-count" data-archive-count="">타이중 호텔 추천 글을 정리하고 있어요.</div>
+</div>
+<div class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
+<div class="empty-card">타이중 호텔 추천 글을 불러오는 중입니다.</div>
+</div>
+</section>
+</main>
+<footer class="footer container">
+<div class="footer__inner">
+<div>© 2026 Wacky Travel</div>
+<nav aria-label="푸터 메뉴" class="footer__links">
+<a href="/about/">Wacky Travel 소개</a>
+<a href="/destinations/">여행지</a>
+</nav>
+</div>
+</footer>
+<script>
+    (() => {
+      const grid = document.querySelector('[data-archive-grid]');
+      const count = document.querySelector('[data-archive-count]');
+      const filterWrap = document.querySelector('[data-category-filter]');
+      const descriptionBox = document.querySelector('[data-category-description]');
+      const destination = 'taichung';
+      const type = 'top5_series';
+      const limit = 60;
+      let activeCategory = '';
+      let categoryItems = [];
+      let hasLoadedPosts = false;
+      let allPostsTotal = 0;
+
+      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+
+      const getCategorySlug = (item = {}) => String(item.slug || item.recommendation_category_slug || '').trim();
+      const getCategoryName = (item = {}) => String(item.name || item.recommendation_category_name || getCategorySlug(item)).trim();
+      const getCategoryDescription = (item = {}) => String(item.description || item.recommendation_category_description || '').trim();
+
+      const fetchSettings = async () => {
+        try {
+          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return [];
+          const json = await response.json();
+          if (!Array.isArray(json.recommendation_categories)) return [];
+          const seen = new Set();
+          return json.recommendation_categories
+            .filter((category) => Number(category.is_active ?? 1) !== 0)
+            .filter((category) => {
+              const slug = getCategorySlug(category);
+              if (!slug || seen.has(slug)) return false;
+              seen.add(slug);
+              return true;
+            });
+        } catch (_) {
+          return [];
+        }
+      };
+
+      const getCategoryItem = (slug = '') => {
+        if (!slug) return null;
+        return categoryItems.find((item) => getCategorySlug(item) === slug) || null;
+      };
+
+      const getCategoryLabel = (slug = '') => {
+        const item = getCategoryItem(slug);
+        return item ? getCategoryName(item) : String(slug || '').trim();
+      };
+
+      const isValidCategory = (slug = '') => {
+        if (!slug) return true;
+        return Boolean(getCategoryItem(slug));
+      };
+
+      const resolveCategory = (category = '') => {
+        const value = String(category || '').trim();
+        return isValidCategory(value) ? value : '';
+      };
+
+      const getCategoryFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get('category') || '').trim();
+      };
+
+      const updateCategoryUrl = (category = '', replace = false) => {
+        const nextUrl = new URL(window.location.href);
+        if (category) {
+          nextUrl.searchParams.set('category', category);
+        } else {
+          nextUrl.searchParams.delete('category');
+        }
+        const nextPath = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextPath === currentPath) return;
+        window.history[replace ? 'replaceState' : 'pushState']({ category }, '', nextPath);
+      };
+
+      const renderCategoryFilter = () => {
+        if (!filterWrap) return;
+        if (!categoryItems.length) {
+          filterWrap.hidden = true;
+          filterWrap.innerHTML = '';
+          return;
+        }
+        filterWrap.hidden = false;
+        const buttons = [
+          { slug: '', name: '전체' },
+          ...categoryItems.map((category) => ({ slug: getCategorySlug(category), name: getCategoryName(category) }))
+        ];
+        filterWrap.innerHTML = buttons.map((item) => `
+          <button class="wt-region-filter__button ${item.slug === activeCategory ? 'is-active' : ''}" type="button" data-category-filter-value="${escapeHtml(item.slug)}" aria-pressed="${item.slug === activeCategory ? 'true' : 'false'}">
+            ${escapeHtml(item.name)}
+          </button>
+        `).join('');
+      };
+
+      const renderCategoryDescription = () => {
+        if (!descriptionBox) return;
+        const item = getCategoryItem(activeCategory);
+        if (!item) {
+          descriptionBox.hidden = true;
+          descriptionBox.innerHTML = '';
+          return;
+        }
+        const title = getCategoryName(item);
+        const description = getCategoryDescription(item);
+        descriptionBox.hidden = false;
+        descriptionBox.innerHTML = `
+          <strong>${escapeHtml(title)}</strong>
+          ${description ? `<p>${escapeHtml(description)}</p>` : ''}
+        `;
+      };
+
+      const centerActiveCategoryFilter = () => {
+        if (!filterWrap || filterWrap.hidden) return;
+        const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
+        if (!activeButton) return;
+        window.requestAnimationFrame(() => {
+          const filterRect = filterWrap.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
+          const offset = buttonRect.left - filterRect.left - (filterRect.width / 2) + (buttonRect.width / 2);
+          if (Math.abs(offset) < 1) return;
+          filterWrap.scrollBy({ left: offset, behavior: 'smooth' });
+        });
+      };
+
+      const fetchJson = async (offset = 0) => {
+        const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
+        try {
+          const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+          return await response.json();
+        } catch (_) {
+          return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+        }
+      };
+
+      const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
+
+      const renderEmptyMessage = (categorySlug = '') => {
+        if (!grid) return;
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const categoryName = getCategoryLabel(categorySlug);
+        const message = categoryName
+          ? `${escapeHtml(categoryName)} 카테고리에 연결된 타이중 호텔 추천 글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.`
+          : '현재 준비 중인 타이중 호텔 추천 글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.';
+        grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
+      };
+
+      const applyCategoryFilter = (category = '', options = {}) => {
+        if (!grid || !hasLoadedPosts) return;
+        const shouldUpdateUrl = options.updateUrl === true;
+        const shouldReplaceUrl = options.replaceUrl === true;
+        activeCategory = resolveCategory(category);
+        if (shouldUpdateUrl) updateCategoryUrl(activeCategory, shouldReplaceUrl);
+        renderCategoryFilter();
+        renderCategoryDescription();
+        centerActiveCategoryFilter();
+
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const cards = getCards();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardCategory = String(card.dataset.recommendationCategory || '').trim();
+          const isVisible = !activeCategory || cardCategory === activeCategory;
+          card.hidden = !isVisible;
+          card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+          if (isVisible) visibleCount += 1;
+        });
+
+        const categoryName = getCategoryLabel(activeCategory);
+        if (count) {
+          count.textContent = activeCategory
+            ? `${categoryName} 호텔 추천 글 ${visibleCount}개를 모아봤어요.`
+            : `타이중 호텔 추천 글 ${allPostsTotal || visibleCount}개를 모아봤어요.`;
+        }
+
+        if (!visibleCount) {
+          renderEmptyMessage(activeCategory);
+        }
+      };
+
+      const loadAllPostsOnce = async (initialCategory = '') => {
+        if (!grid) return;
+        grid.innerHTML = '<div class="empty-card">타이중 호텔 추천 글을 불러오는 중입니다.</div>';
+        if (count) count.textContent = '타이중 호텔 추천 글을 정리하고 있어요.';
+
+        let offset = 0;
+        let html = '';
+        let total = 0;
+        let guard = 0;
+
+        while (guard < 20) {
+          const data = await fetchJson(offset);
+          if (!data.ok) break;
+          if (typeof data.total === 'number') total = data.total;
+          if (data.html) html += data.html;
+          if (!data.hasMore) break;
+          const nextOffset = Number(data.nextOffset || 0);
+          if (nextOffset <= offset) break;
+          offset = nextOffset;
+          guard += 1;
+        }
+
+        allPostsTotal = total || 0;
+        hasLoadedPosts = true;
+
+        if (!html) {
+          grid.innerHTML = '';
+          applyCategoryFilter(initialCategory);
+          return;
+        }
+
+        grid.innerHTML = html;
+        if (!allPostsTotal) allPostsTotal = getCards().length;
+        applyCategoryFilter(initialCategory);
+      };
+
+      filterWrap?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-category-filter-value]');
+        if (!button) return;
+        applyCategoryFilter(button.dataset.categoryFilterValue || '', { updateUrl: true });
+      });
+
+      window.addEventListener('popstate', () => {
+        applyCategoryFilter(getCategoryFromUrl(), { updateUrl: false });
+      });
+
+      const init = async () => {
+        categoryItems = await fetchSettings();
+        const requestedCategory = getCategoryFromUrl();
+        const initialCategory = resolveCategory(requestedCategory);
+        activeCategory = initialCategory;
+        if (requestedCategory && requestedCategory !== initialCategory) {
+          updateCategoryUrl('', true);
+        }
+        renderCategoryFilter();
+        renderCategoryDescription();
+        await loadAllPostsOnce(initialCategory);
+      };
+
+      init();
+    })();
+  </script>
+</body>
+</html>
