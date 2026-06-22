@@ -250,11 +250,38 @@ function buildPostsHeroNav(categories = []) {
 }
 
 
-/* CITY_HOTEL_PICKS_RUNTIME_V3 */
+/* CITY_HOTEL_PICKS_RUNTIME_V4 */
 (function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
-  if (!cityPostRoots.length && !cityTravelRoots.length) return;
+  const hotelHeroButtons = Array.from(document.querySelectorAll('.wt-city-hero__actions a[href="#hotel-posts"]'));
+
+  const setHotelHeroButtonsVisible = (visible) => {
+    hotelHeroButtons.forEach((button) => {
+      button.hidden = !visible;
+      button.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      if (visible) {
+        button.removeAttribute('tabindex');
+        button.removeAttribute('aria-disabled');
+      } else {
+        button.setAttribute('tabindex', '-1');
+        button.setAttribute('aria-disabled', 'true');
+      }
+    });
+  };
+
+  const syncHotelHeroButtonsWithSection = (section) => {
+    const targetSection = section || document.getElementById('hotel-posts');
+    const isVisible = Boolean(targetSection && !targetSection.hidden && targetSection.getAttribute('aria-hidden') !== 'true');
+    setHotelHeroButtonsVisible(isVisible);
+  };
+
+  if (hotelHeroButtons.length) setHotelHeroButtonsVisible(false);
+
+  if (!cityPostRoots.length && !cityTravelRoots.length) {
+    syncHotelHeroButtonsWithSection();
+    return;
+  }
 
   const CITY_ARCHIVES = {
     osaka: {
@@ -432,6 +459,7 @@ function buildPostsHeroNav(categories = []) {
 
     if (section) section.hidden = !hasAnyContent;
     root.hidden = !hasAnyContent;
+    syncHotelHeroButtonsWithSection(section);
     if (!hasAnyContent) return;
 
     root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
