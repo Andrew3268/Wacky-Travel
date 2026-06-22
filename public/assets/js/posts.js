@@ -355,6 +355,27 @@ function buildPostsHeroNav(categories = []) {
       fallback: '/destinations/taipei/hotels/',
       fallbackLabel: '타이베이 호텔 글 더 보기 →'
     }
+    ,
+    taichung: {
+      top5_series: '/destinations/taichung/hotel-recommendations/',
+      hotel_intro: '/destinations/taichung/hotels/',
+      fallback: '/destinations/taichung/hotels/',
+      fallbackLabel: '타이중 호텔 글 더 보기 →'
+    }
+    ,
+    tainan: {
+      top5_series: '/destinations/tainan/hotel-recommendations/',
+      hotel_intro: '/destinations/tainan/hotels/',
+      fallback: '/destinations/tainan/hotels/',
+      fallbackLabel: '타이난 호텔 글 더 보기 →'
+    }
+    ,
+    kaohsiung: {
+      top5_series: '/destinations/kaohsiung/hotel-recommendations/',
+      hotel_intro: '/destinations/kaohsiung/hotels/',
+      fallback: '/destinations/kaohsiung/hotels/',
+      fallbackLabel: '가오슝 호텔 글 더 보기 →'
+    }
 
   };
 
