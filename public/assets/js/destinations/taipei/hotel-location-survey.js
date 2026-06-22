@@ -1247,13 +1247,13 @@ function applyAccuracyAdjustments(scores) {
 
   // 중산: 가격·위치 균형, 차분한 도심, 가족 이동 편의가 섞인 답변에서 중심 후보로 올립니다.
   if ((calmCity || balanceBudget || budgetSave || avoidLongMove) && !livelyArea) {
-    addAreaScore(scores, "zhongshan", 4);
+    addAreaScore(scores, "zhongshan", 2);
   }
   if ((parents || kids || familyTrip) && (calmCity || balanceBudget || avoidNoiseCrowd)) {
-    addAreaScore(scores, "zhongshan", 3);
+    addAreaScore(scores, "zhongshan", 2);
   }
   if (repeatTrip && (calmCity || cafeWalk || balanceBudget)) {
-    addAreaScore(scores, "zhongshan", 3);
+    addAreaScore(scores, "zhongshan", 2);
   }
 
   // 다안: 카페·공원·동네 산책, 조용한 숙소, 커플 여행 성향을 선택했을 때 보정합니다.
@@ -1269,24 +1269,24 @@ function applyAccuracyAdjustments(scores) {
 
   // 신이: 타이베이101, 야경, 쇼핑몰, 호텔 분위기 우선 답변이 모일 때 별도 후보로 살립니다.
   if ((skylineShopping || hotelMoodFirst) && (couple || coupleFriendsTrip || cityCenterOnly)) {
-    addAreaScore(scores, "xinyi", 5);
+    addAreaScore(scores, "xinyi", 8);
   }
   if (skylineShopping && locationFirst) {
-    addAreaScore(scores, "xinyi", 3);
+    addAreaScore(scores, "xinyi", 5);
   }
   if (budgetSave && !skylineShopping) {
-    addAreaScore(scores, "xinyi", -2);
+    addAreaScore(scores, "xinyi", -1);
   }
 
   // 베이터우: 북쪽 일정·온천·휴식 성향이 있을 때만 결과로 잘 올라오도록 보정합니다.
   if (danshuiBeitou || restFocused) {
-    addAreaScore(scores, "beitou", 6);
+    addAreaScore(scores, "beitou", 7);
   }
   if ((parents || kids || familyTrip) && (danshuiBeitou || restFocused || hotelMoodFirst)) {
-    addAreaScore(scores, "beitou", 3);
+    addAreaScore(scores, "beitou", 4);
   }
   if (avoidNoiseCrowd && (danshuiBeitou || restFocused)) {
-    addAreaScore(scores, "beitou", 2);
+    addAreaScore(scores, "beitou", 3);
   }
   if ((airportStationMove || jiufenTour || locationFirst) && !danshuiBeitou && !restFocused) {
     addAreaScore(scores, "beitou", -3);
