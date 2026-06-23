@@ -769,7 +769,7 @@ const cityConfig = {
           "title": "처음이에요",
           "desc": "대표 명소와 이동을 쉽게 잡고 싶어요.",
           "scores": {
-            "station": 7,
+            "station": 8,
             "fengjia": 4,
             "greenway": 3
           }
@@ -812,7 +812,7 @@ const cityConfig = {
           "title": "기차·도착 이동",
           "desc": "타이중역과 구도심을 쉽게 쓰고 싶어요.",
           "scores": {
-            "station": 8,
+            "station": 9,
             "yizhong": 3,
             "greenway": 2
           }
