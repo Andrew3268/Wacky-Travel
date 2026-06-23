@@ -1186,104 +1186,115 @@ function addAreaScore(scores, areaKey, amount) {
 
 function applyAccuracyAdjustments(scores) {
   const firstTrip = answerIs(0, "처음이에요");
-  const coupleFriendsTrip = answerIs(0, "친구·커플 여행이에요");
-  const familyParentsTrip = answerIs(0, "가족·부모님과 함께해요");
-  const restTrip = answerIs(0, "쉬는 시간이 중요해요");
+  const foodTrip = answerIs(0, "먹거리 여행이에요");
+  const familyTrip = answerIs(0, "가족과 함께 가요");
+  const quietRestTrip = answerIs(0, "조용히 쉬고 싶어요");
 
-  const stationMove = answerIs(1, "기차·도착 이동");
-  const nightMove = answerIs(1, "야시장·저녁 동선");
-  const cafeArtMove = answerIs(1, "카페·미술관 산책");
-  const mallTaxiMove = answerIs(1, "쇼핑몰·택시 이동");
+  const trainAccess = answerIs(1, "기차역 접근");
+  const downtownWalk = answerIs(1, "구도심 도보 산책");
+  const anpingMove = answerIs(1, "안핑 이동");
+  const nightFoodReturn = answerIs(1, "밤 먹거리 복귀");
 
-  const fengjiaNight = answerIs(2, "펑지아 야시장에 오래 있을래요");
-  const localFood = answerIs(2, "로컬 먹거리 위주가 좋아요");
-  const quietDinner = answerIs(2, "카페나 식당에서 조용히 보내고 싶어요");
-  const stayRest = answerIs(2, "숙소에서 쉬는 시간이 더 중요해요");
+  const guohuaFood = answerIs(2, "국화거리·보안로 먹거리");
+  const shennongNight = answerIs(2, "신농제 밤 산책");
+  const flowerMarket = answerIs(2, "화원야시장");
+  const stayRest = answerIs(2, "숙소에서 쉬기");
 
-  const centralLandmarks = answerIs(3, "미야하라·타이중공원·구도심");
-  const theaterShopping = answerIs(3, "국립타이중극장·쇼핑몰");
-  const fengjiaShopping = answerIs(3, "펑지아 야시장·쇼핑");
-  const hotSpringNature = answerIs(3, "구관온천·자연 휴식");
+  const downtownLandmarks = answerIs(3, "적감루·공자묘·하야시백화점");
+  const anpingItinerary = answerIs(3, "안핑고성·안핑수옥");
+  const guohuaTour = answerIs(3, "국화거리 먹거리 투어");
+  const flowerMarketPlan = answerIs(3, "화원야시장");
 
-  const livelyDistrict = answerIs(4, "활기 있는 상권");
-  const calmCreativeDistrict = answerIs(4, "차분한 감성 도심");
-  const cleanNewTown = answerIs(4, "깔끔한 신도심");
-  const natureHotSpringMood = answerIs(4, "자연·온천 분위기");
+  const easyOldTown = answerIs(4, "편한 구도심");
+  const emotionalAlley = answerIs(4, "감성 골목");
+  const waterfrontLeisure = answerIs(4, "물가와 여유");
+  const livelyNight = answerIs(4, "활기 있는 밤");
 
   const budgetSave = answerIs(5, "예산 절약");
   const balanceBudget = answerIs(5, "가격·위치 균형");
   const locationFirst = answerIs(5, "위치 우선");
-  const hotelMoodFirst = answerIs(5, "호텔 분위기 우선");
+  const hotelConditionFirst = answerIs(5, "호텔 컨디션 우선");
 
   const avoidArrivalStress = answerIs(6, "도착·출발 이동 스트레스");
   const avoidNoiseCrowd = answerIs(6, "밤 소음과 혼잡");
-  const avoidNothingNearby = answerIs(6, "숙소 주변 할 것 없음");
+  const avoidNoFoodNearby = answerIs(6, "주변에 먹을 곳 없음");
   const avoidLongMove = answerIs(6, "매일 긴 이동");
 
-  // 타이중역·중구: 첫 방문, 구도심, 기차 이동, 도착·출발 스트레스 회피가 겹치면 우선순위로 올립니다.
-  if (firstTrip && (stationMove || centralLandmarks || avoidArrivalStress || locationFirst)) {
+  // 타이난역·중서구: 첫 방문, 기차역 접근, 도착·출발 스트레스 회피가 겹치면 우선순위로 올립니다.
+  if (firstTrip && (trainAccess || downtownWalk || easyOldTown || locationFirst || avoidArrivalStress)) {
     addAreaScore(scores, "station", 5);
   }
-  if ((stationMove || centralLandmarks) && (balanceBudget || avoidLongMove)) {
-    addAreaScore(scores, "station", 3);
+  if (trainAccess && (avoidArrivalStress || avoidLongMove || locationFirst)) {
+    addAreaScore(scores, "station", 4);
   }
-  if (nightMove && fengjiaNight && !centralLandmarks) {
+
+  // 공자묘·하야시백화점: 대표 명소, 가족 여행, 조용한 도심 숙박 조건이 모일 때 안정적으로 보정합니다.
+  if ((downtownWalk || downtownLandmarks || easyOldTown) && (firstTrip || familyTrip || quietRestTrip || hotelConditionFirst)) {
+    addAreaScore(scores, "confucius", 5);
+  }
+  if ((familyTrip || quietRestTrip) && (avoidNoiseCrowd || hotelConditionFirst || stayRest)) {
+    addAreaScore(scores, "confucius", 4);
+  }
+
+  // 하이안로·신농제: 감성 골목, 밤 산책, 카페·바 분위기를 명확히 고르면 결과로 잘 올라오도록 보정합니다.
+  if (shennongNight || emotionalAlley) {
+    addAreaScore(scores, "shennong", 7);
+  }
+  if ((foodTrip || nightFoodReturn || livelyNight) && (shennongNight || emotionalAlley)) {
+    addAreaScore(scores, "shennong", 4);
+  }
+  if ((balanceBudget || locationFirst) && (shennongNight || emotionalAlley)) {
+    addAreaScore(scores, "shennong", 2);
+  }
+
+  // 안핑·운하: 안핑고성, 안핑수옥, 운하 산책, 가족·휴식 조건이 모이면 강하게 보정합니다.
+  if (anpingMove || anpingItinerary || waterfrontLeisure) {
+    addAreaScore(scores, "anping", 6);
+  }
+  if ((familyTrip || quietRestTrip || hotelConditionFirst || stayRest) && (anpingMove || anpingItinerary || waterfrontLeisure || avoidNoiseCrowd)) {
+    addAreaScore(scores, "anping", 4);
+  }
+
+  // 국화거리·보안로: 먹거리 여행, 도보 맛집, 예산 절약, 주변 식당 조건이 겹치면 우선순위로 올립니다.
+  if (foodTrip || guohuaFood || guohuaTour || avoidNoFoodNearby) {
+    addAreaScore(scores, "guohua", 5);
+  }
+  if (budgetSave && (foodTrip || guohuaFood || guohuaTour || nightFoodReturn || avoidNoFoodNearby)) {
+    addAreaScore(scores, "guohua", 3);
+  }
+  if ((nightFoodReturn || livelyNight) && !avoidNoiseCrowd) {
+    addAreaScore(scores, "guohua", 2);
+  }
+
+  // 화원야시장·북구: 화원야시장을 직접 선택했거나 활기 있는 밤 동선이 뚜렷할 때만 결과로 올라오도록 보정합니다.
+  if (flowerMarket || flowerMarketPlan || (livelyNight && nightFoodReturn)) {
+    addAreaScore(scores, "flower", 8);
+  }
+  if (flowerMarket && flowerMarketPlan) {
+    addAreaScore(scores, "flower", 5);
+  }
+  if ((foodTrip || budgetSave || avoidNoFoodNearby) && (flowerMarket || flowerMarketPlan || livelyNight)) {
+    addAreaScore(scores, "flower", 4);
+  }
+
+  // 상충 조건 보정: 명확히 다른 동선을 고른 경우 과도한 추천을 줄입니다.
+  if ((anpingMove || anpingItinerary) && !(trainAccess || avoidArrivalStress)) {
     addAreaScore(scores, "station", -2);
   }
-
-  // 펑지아·시툰: 야시장, 쇼핑, 활기 있는 밤 동선이 명확하면 강하게 보정합니다.
-  if ((nightMove || fengjiaNight || fengjiaShopping || livelyDistrict || avoidNothingNearby) && !avoidNoiseCrowd) {
-    addAreaScore(scores, "fengjia", 5);
+  if ((trainAccess || downtownWalk || downtownLandmarks || locationFirst) && !(anpingMove || anpingItinerary || waterfrontLeisure)) {
+    addAreaScore(scores, "anping", -2);
   }
-  if (coupleFriendsTrip && (nightMove || fengjiaNight || livelyDistrict)) {
-    addAreaScore(scores, "fengjia", 4);
+  if ((quietRestTrip || hotelConditionFirst || avoidNoiseCrowd) && !(guohuaFood || guohuaTour || avoidNoFoodNearby)) {
+    addAreaScore(scores, "guohua", -2);
   }
-  if (avoidNoiseCrowd || restTrip || natureHotSpringMood) {
-    addAreaScore(scores, "fengjia", -3);
+  if ((quietRestTrip || avoidNoiseCrowd) && !(shennongNight || emotionalAlley)) {
+    addAreaScore(scores, "shennong", -2);
   }
-
-  // 초오도·근미술관: 카페, 미술관, 조용한 도심, 가격·위치 균형 답변이 모이면 중심 선택지로 올립니다.
-  if (cafeArtMove || calmCreativeDistrict || quietDinner || balanceBudget || avoidNoiseCrowd) {
-    addAreaScore(scores, "greenway", 4);
+  if ((avoidNoiseCrowd || quietRestTrip || stayRest || hotelConditionFirst) && !(flowerMarket || flowerMarketPlan)) {
+    addAreaScore(scores, "flower", -3);
   }
-  if ((familyParentsTrip || coupleFriendsTrip) && (calmCreativeDistrict || quietDinner || cafeArtMove)) {
-    addAreaScore(scores, "greenway", 2);
-  }
-  if (localFood && !fengjiaNight) {
-    addAreaScore(scores, "greenway", 1);
-  }
-
-  // 시정부·국립가극원: 쇼핑몰, 택시 이동, 깔끔한 호텔, 가족·부모님 동반 조건에서 안정적인 선택지로 올립니다.
-  if (mallTaxiMove || theaterShopping || cleanNewTown || hotelMoodFirst) {
-    addAreaScore(scores, "cityhall", 5);
-  }
-  if (familyParentsTrip && (mallTaxiMove || cleanNewTown || avoidLongMove || hotelMoodFirst)) {
-    addAreaScore(scores, "cityhall", 4);
-  }
-  if (budgetSave && !hotelMoodFirst) {
-    addAreaScore(scores, "cityhall", -1);
-  }
-
-  // 이중상권·타이중공원: 예산 절약, 로컬 먹거리, 구도심 접근을 선택했을 때 실속 선택지로 보정합니다.
-  if (budgetSave || localFood || livelyDistrict) {
-    addAreaScore(scores, "yizhong", 5);
-  }
-  if (centralLandmarks && (budgetSave || localFood)) {
-    addAreaScore(scores, "yizhong", 4);
-  }
-  if (hotelMoodFirst || cleanNewTown || natureHotSpringMood) {
-    addAreaScore(scores, "yizhong", -1);
-  }
-
-  // 구관온천·외곽휴식: 온천·자연·숙소 휴식이 명확할 때만 결과로 잘 올라오도록 보정합니다.
-  if (restTrip || stayRest || hotSpringNature || natureHotSpringMood) {
-    addAreaScore(scores, "guguan", 7);
-  }
-  if ((familyParentsTrip || hotelMoodFirst) && (restTrip || stayRest || hotSpringNature)) {
-    addAreaScore(scores, "guguan", 3);
-  }
-  if ((stationMove || centralLandmarks || nightMove || fengjiaNight || locationFirst) && !(hotSpringNature || natureHotSpringMood || stayRest)) {
-    addAreaScore(scores, "guguan", -4);
+  if ((trainAccess || downtownWalk || downtownLandmarks || locationFirst || avoidLongMove) && !(flowerMarket || flowerMarketPlan || livelyNight)) {
+    addAreaScore(scores, "flower", -2);
   }
 }
     
