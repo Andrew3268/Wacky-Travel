@@ -30,15 +30,15 @@
 <section aria-labelledby="taichungArchiveTitle" class="wt-city-hero container">
 <div class="wt-city-hero__content">
 <p class="wt-city-kicker">Taichung Hotel Picks</p>
-<h1 id="taichungArchiveTitle">타이중 호텔 추천 글을<br/>여행 스타일별로 모아봤어요</h1>
-<p class="wt-city-hero__lead">첫 여행, 위치 중심 일정, 가성비, 근교 여행, 조용한 숙박처럼 여행 준비할 때 실제로 고민하는 상황별 호텔 추천 글을 한곳에 모았습니다. 내 여행 목적에 맞는 글을 고르고, 타이중 숙소 선택지를 더 빠르게 줄여보세요.</p>
+<h1 id="taichungArchiveTitle">타이중 호텔 추천 글을 여행 스타일별로 모았습니다</h1>
+<p class="wt-city-hero__lead">첫 여행, 위치 중심 일정, 가성비, 근교 여행, 조용한 숙박처럼 여행을 준비할 때 실제로 고민하는 상황별 호텔 추천 글을 한곳에 모았습니다. 내 여행 목적에 맞는 글을 고르고, 타이중 숙소 선택지를 더 자연스럽게 좁혀보세요.</p>
 </div>
 </section>
 <section aria-label="타이중 호텔 추천 글 목록" class="container travel-section wt-city-dynamic-section">
 <div aria-label="타이중 호텔 추천 글 카테고리 필터" class="wt-region-filter" data-category-filter="" hidden=""></div>
 <div class="wt-category-filter-description" data-category-description="" hidden=""></div>
 <div class="wt-city-archive-summary">
-<div class="wt-city-archive-count" data-archive-count="">타이중 호텔 추천 글을 정리하고 있어요.</div>
+<div class="wt-city-archive-count" data-archive-count="">조건에 맞는 타이중 호텔 추천 글을 불러오는 중입니다.</div>
 </div>
 <div class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
 <div class="empty-card">타이중 호텔 추천 글을 불러오는 중입니다.</div>
@@ -241,7 +241,7 @@
       const loadAllPostsOnce = async (initialCategory = '') => {
         if (!grid) return;
         grid.innerHTML = '<div class="empty-card">타이중 호텔 추천 글을 불러오는 중입니다.</div>';
-        if (count) count.textContent = '타이중 호텔 추천 글을 정리하고 있어요.';
+        if (count) count.textContent = '조건에 맞는 타이중 호텔 추천 글을 불러오는 중입니다.';
 
         let offset = 0;
         let html = '';
