@@ -362,6 +362,13 @@ function buildPostsHeroNav(categories = []) {
       fallback: '/destinations/taichung/hotels/',
       fallbackLabel: '타이중 호텔 글 더 보기 →'
     }
+    ,
+    tainan: {
+      top5_series: '/destinations/tainan/hotel-recommendations/',
+      hotel_intro: '/destinations/tainan/hotels/',
+      fallback: '/destinations/tainan/hotels/',
+      fallbackLabel: '타이난 호텔 글 더 보기 →'
+    }
 
 
   };

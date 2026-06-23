@@ -32,6 +32,8 @@
     "/destinations/taipei",
     "/destinations/taipei/*",
     "/destinations/taichung",
-    "/destinations/taichung/*"
+    "/destinations/taichung/*",
+    "/destinations/tainan",
+    "/destinations/tainan/*"
   ]
 }
