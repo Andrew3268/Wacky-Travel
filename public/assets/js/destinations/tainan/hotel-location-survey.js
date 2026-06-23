@@ -1265,15 +1265,21 @@ function applyAccuracyAdjustments(scores) {
     addAreaScore(scores, "guohua", 2);
   }
 
-  // 화원야시장·북구: 화원야시장을 직접 선택했거나 활기 있는 밤 동선이 뚜렷할 때만 결과로 올라오도록 보정합니다.
+  // 화원야시장·북구: 화원야시장을 직접 선택한 경우에는 국화거리·보안로에 밀리지 않도록 보정합니다.
   if (flowerMarket || flowerMarketPlan || (livelyNight && nightFoodReturn)) {
-    addAreaScore(scores, "flower", 8);
+    addAreaScore(scores, "flower", 9);
   }
   if (flowerMarket && flowerMarketPlan) {
-    addAreaScore(scores, "flower", 5);
+    addAreaScore(scores, "flower", 6);
+  }
+  if ((flowerMarket || flowerMarketPlan) && (livelyNight || nightFoodReturn)) {
+    addAreaScore(scores, "flower", 3);
   }
   if ((foodTrip || budgetSave || avoidNoFoodNearby) && (flowerMarket || flowerMarketPlan || livelyNight)) {
     addAreaScore(scores, "flower", 4);
+  }
+  if ((flowerMarket || flowerMarketPlan) && !(guohuaFood || guohuaTour)) {
+    addAreaScore(scores, "guohua", -1);
   }
 
   // 상충 조건 보정: 명확히 다른 동선을 고른 경우 과도한 추천을 줄입니다.
