@@ -8,7 +8,7 @@ const cityConfig = {
   "postContentType": "top5_series",
   "areas": {
     "station": {
-      "name": "타이중역",
+      "name": "타이중역·중구",
       "regionSlug": "taichung-station-central",
       "regionSlugAliases": [
         "타이중역",
@@ -133,7 +133,7 @@ const cityConfig = {
       ]
     },
     "fengjia": {
-      "name": "펑지아",
+      "name": "펑지아·시툰",
       "regionSlug": "fengjia-xitun",
       "regionSlugAliases": [
         "펑지아",
@@ -258,7 +258,7 @@ const cityConfig = {
       ]
     },
     "greenway": {
-      "name": "초오도",
+      "name": "초오도·근미술관",
       "regionSlug": "calligraphy-greenway-west",
       "regionSlugAliases": [
         "초오도",
@@ -383,7 +383,7 @@ const cityConfig = {
       ]
     },
     "cityhall": {
-      "name": "시정부",
+      "name": "시정부·국립가극원",
       "regionSlug": "city-hall-national-theater",
       "regionSlugAliases": [
         "시정부",
@@ -508,10 +508,11 @@ const cityConfig = {
       ]
     },
     "yizhong": {
-      "name": "이중상권",
+      "name": "이중상권·타이중공원",
       "regionSlug": "yizhong-taichung-park",
       "regionSlugAliases": [
         "이중상권",
+        "이중상권·타이중공원",
         "이중야시장",
         "타이중공원"
       ],
@@ -633,10 +634,11 @@ const cityConfig = {
       ]
     },
     "guguan": {
-      "name": "구관온천",
+      "name": "구관온천·외곽휴식",
       "regionSlug": "guguan-hot-spring-outskirts",
       "regionSlugAliases": [
         "구관온천",
+        "구관온천·외곽휴식",
         "구관",
         "외곽휴식"
       ],
