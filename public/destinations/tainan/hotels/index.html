@@ -43,7 +43,15 @@
 </div>
 </section>
 <section aria-label="타이난 추천 호텔 리뷰 목록" class="container travel-section wt-city-dynamic-section">
-<div aria-label="타이난 호텔 지역 필터" class="wt-region-filter" data-region-filter="" hidden=""></div>
+<div aria-label="타이난 호텔 지역 필터" class="wt-region-filter" data-region-filter="">
+<button class="wt-region-filter__button is-active" type="button" data-region-filter-value="" aria-pressed="true">전체</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="tainan-station-west-central" aria-pressed="false">타이난역</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="haian-shennong" aria-pressed="false">신농제</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="confucius-hayashi" aria-pressed="false">공자묘</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="anping-canal" aria-pressed="false">안핑</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="guohua-baoan" aria-pressed="false">국화거리</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="flower-night-market-north" aria-pressed="false">화원야시장(북구)</button>
+</div>
 <div class="wt-city-archive-summary" hidden>
 <div class="wt-city-archive-count" data-archive-count=""></div>
 </div>
@@ -131,7 +139,15 @@
       const type = 'hotel_intro';
       const limit = 60;
       let activeRegion = '';
-      let regionItems = [];
+      const defaultRegionItems = [
+        { slug: 'tainan-station-west-central', name: '타이난역' },
+        { slug: 'haian-shennong', name: '신농제' },
+        { slug: 'confucius-hayashi', name: '공자묘' },
+        { slug: 'anping-canal', name: '안핑' },
+        { slug: 'guohua-baoan', name: '국화거리' },
+        { slug: 'flower-night-market-north', name: '화원야시장(북구)' }
+      ];
+      let regionItems = [...defaultRegionItems];
       let hasLoadedPosts = false;
       let allPostsTotal = 0;
 
@@ -254,13 +270,14 @@
       };
 
       const applyRegionFilter = (region = '', options = {}) => {
-        if (!grid || !hasLoadedPosts) return;
+        if (!grid) return;
         const shouldUpdateUrl = options.updateUrl === true;
         const shouldReplaceUrl = options.replaceUrl === true;
         activeRegion = resolveRegion(region);
         if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
         renderRegionFilter();
         centerActiveRegionFilter();
+        if (!hasLoadedPosts) return;
 
         grid.querySelector('[data-filter-empty]')?.remove();
         const cards = getCards();
@@ -317,14 +334,14 @@
         if (!html) {
           grid.innerHTML = '';
           grid.setAttribute('aria-busy', 'false');
-          applyRegionFilter(initialRegion);
+          applyRegionFilter(activeRegion || initialRegion);
           return;
         }
 
         grid.innerHTML = html;
         grid.setAttribute('aria-busy', 'false');
         if (!allPostsTotal) allPostsTotal = getCards().length;
-        applyRegionFilter(initialRegion);
+        applyRegionFilter(activeRegion || initialRegion);
       };
 
       filterWrap?.addEventListener('click', (event) => {
@@ -338,14 +355,20 @@
       });
 
       const init = async () => {
-        regionItems = await fetchSettings();
         const requestedRegion = getRegionFromUrl();
+        activeRegion = resolveRegion(requestedRegion);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+
+        const fetchedRegionItems = await fetchSettings();
+        if (fetchedRegionItems.length) regionItems = fetchedRegionItems;
         const initialRegion = resolveRegion(requestedRegion);
         activeRegion = initialRegion;
         if (requestedRegion && requestedRegion !== initialRegion) {
           updateRegionUrl('', true);
         }
         renderRegionFilter();
+        centerActiveRegionFilter();
         await loadAllPostsOnce(initialRegion);
       };
 
