@@ -369,6 +369,13 @@ function buildPostsHeroNav(categories = []) {
       fallback: '/destinations/tainan/hotels/',
       fallbackLabel: '타이난 호텔 글 더 보기 →'
     }
+    ,
+    kaohsiung: {
+      top5_series: '/destinations/kaohsiung/hotel-recommendations/',
+      hotel_intro: '/destinations/kaohsiung/hotels/',
+      fallback: '/destinations/kaohsiung/hotels/',
+      fallbackLabel: '가오슝 호텔 글 더 보기 →'
+    }
 
 
   };
