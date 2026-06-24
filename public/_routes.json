@@ -34,6 +34,8 @@
     "/destinations/taichung",
     "/destinations/taichung/*",
     "/destinations/tainan",
-    "/destinations/tainan/*"
+    "/destinations/tainan/*",
+    "/destinations/kaohsiung",
+    "/destinations/kaohsiung/*"
   ]
 }
