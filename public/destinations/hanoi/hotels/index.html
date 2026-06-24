@@ -15,7 +15,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260624StaticFilterAllCitiesV1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"하노이","item":"/destinations/hanoi"},{"@type":"ListItem","position":4,"name":"추천 호텔 리뷰","item":"/destinations/hanoi/hotels/"}]}</script>
 </head>
 <body data-destination-slug="hanoi">
@@ -26,8 +26,330 @@
 </header>
 <nav aria-label="현재 위치" class="breadcrumbs container"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/hanoi/">하노이</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">추천 호텔 리뷰</span></li></ol></nav>
 <main class="travel-page wt-city-page wt-city-page--hanoi wt-city-archive-page"><section aria-labelledby="hanoiArchiveTitle" class="wt-city-hero container"><div class="wt-city-hero__content"><p class="wt-city-kicker">Hanoi Hotel Archive</p><h1 id="hanoiArchiveTitle">하노이 호텔을
-지역별로 비교해보세요</h1><p class="wt-city-hero__lead">호안끼엠·올드쿼터, 프렌치쿼터, 서호, 바딘처럼 숙소를 고를 때 많이 고민하는 지역별로 하노이 호텔 글을 모았습니다.</p></div></section><section aria-label="하노이 추천 호텔 리뷰 목록" class="container travel-section wt-city-dynamic-section"><div aria-label="하노이 호텔 지역 필터" class="wt-region-filter" data-region-filter="" hidden=""></div><div class="wt-category-filter-description" data-category-description="" hidden=""></div><div class="wt-city-archive-summary"><div class="wt-city-archive-count" data-archive-count="">하노이 추천 호텔 리뷰를 정리하고 있어요.</div></div><div class="travel-card-grid travel-card-grid--hotels" data-archive-grid=""><div class="empty-card">하노이 추천 호텔 리뷰를 불러오는 중입니다.</div></div></section></main><footer class="footer container">
+지역별로 비교해보세요</h1><p class="wt-city-hero__lead">호안끼엠·올드쿼터, 프렌치쿼터, 서호, 바딘처럼 숙소를 고를 때 많이 고민하는 지역별로 하노이 호텔 글을 모았습니다.</p></div></section><section aria-label="하노이 추천 호텔 리뷰 목록" class="container travel-section wt-city-dynamic-section">
+<div aria-label="하노이 호텔 지역 필터" class="wt-region-filter" data-region-filter="">
+<button class="wt-region-filter__button is-active" type="button" data-region-filter-value="" aria-pressed="true">전체</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="old-quarter" aria-pressed="false">호안끼엠·올드쿼터</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="french-quarter" aria-pressed="false">프렌치쿼터·오페라하우스</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="west-lake" aria-pressed="false">서호·타이호</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="ba-dinh" aria-pressed="false">바딘·롯데센터</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="dong-da" aria-pressed="false">동다·문묘·기차거리</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="my-dinh-cau-giay" aria-pressed="false">미딩·꺼우저이</button>
+</div>
+<div class="wt-city-archive-summary" hidden>
+<div class="wt-city-archive-count" data-archive-count=""></div>
+</div>
+<div aria-busy="true" class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<div class="wt-sr-only" role="status">하노이 호텔 글을 불러오는 중입니다.</div>
+</div>
+</section></main><footer class="footer container">
 <div class="footer__inner"><div>© 2026 Wacky Travel</div><nav aria-label="푸터 메뉴" class="footer__links"><a href="/about/">Wacky Travel 소개</a><a href="/destinations/">여행지</a></nav></div>
-</footer><script>(()=>{const grid=document.querySelector('[data-archive-grid]');const count=document.querySelector('[data-archive-count]');const escapeHtml=(v)=>String(v||'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));async function init(){if(!grid)return;try{const p=new URLSearchParams({destination:'hanoi',type:'hotel_intro',offset:'0',limit:'60'});const r=await fetch('/api/destination-posts?'+p.toString(),{headers:{accept:'application/json'},cache:'no-store'});const j=r.ok?await r.json():{};if(j.ok&&j.html){grid.innerHTML=j.html; if(count) count.textContent=`하노이 추천 호텔 리뷰 ${j.total||grid.querySelectorAll('.travel-card').length}개를 모았습니다.`;}else{grid.innerHTML='<div class="empty-card">현재 준비 중인 하노이 추천 호텔 리뷰가 없습니다. 곧 더 다양한 콘텐츠를 확인하실 수 있습니다.</div>'; if(count) count.textContent='하노이 추천 호텔 리뷰를 준비 중입니다.';}}catch(e){grid.innerHTML='<div class="empty-card">현재 준비 중인 하노이 추천 호텔 리뷰가 없습니다. 곧 더 다양한 콘텐츠를 확인하실 수 있습니다.</div>';}}init();})();</script>
+</footer><script>
+    (() => {
+      const grid = document.querySelector('[data-archive-grid]');
+      const count = document.querySelector('[data-archive-count]');
+      const summary = document.querySelector('.wt-city-archive-summary');
+      const filterWrap = document.querySelector('[data-region-filter]');
+      const destination = "hanoi";
+      const type = 'hotel_intro';
+      const limit = 60;
+      let activeRegion = '';
+      const defaultRegionItems = [
+        { slug: "old-quarter", name: "호안끼엠·올드쿼터" },
+        { slug: "french-quarter", name: "프렌치쿼터·오페라하우스" },
+        { slug: "west-lake", name: "서호·타이호" },
+        { slug: "ba-dinh", name: "바딘·롯데센터" },
+        { slug: "dong-da", name: "동다·문묘·기차거리" },
+        { slug: "my-dinh-cau-giay", name: "미딩·꺼우저이" }
+      ];
+      let regionItems = [...defaultRegionItems];
+      let hasLoadedPosts = false;
+      let allPostsTotal = 0;
+
+      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+
+      const fetchSettings = async () => {
+        try {
+          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return [];
+          const json = await response.json();
+          return Array.isArray(json.regions)
+            ? json.regions.filter((region) => String(region.destination_slug || '') === destination && Number(region.is_active ?? 1) !== 0)
+            : [];
+        } catch (_) {
+          return [];
+        }
+      };
+
+      const getRegionName = (slug = '') => {
+        if (!slug) return '';
+        const region = regionItems.find((item) => String(item.slug || '') === slug);
+        return region?.name || slug;
+      };
+
+      const isValidRegion = (slug = '') => {
+        if (!slug) return true;
+        return regionItems.some((item) => String(item.slug || '') === slug);
+      };
+
+      const resolveRegion = (region = '') => {
+        const value = String(region || '').trim();
+        return isValidRegion(value) ? value : '';
+      };
+
+      const getRegionFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get('region') || '').trim();
+      };
+
+      const updateRegionUrl = (region = '', replace = false) => {
+        const nextUrl = new URL(window.location.href);
+        if (region) {
+          nextUrl.searchParams.set('region', region);
+        } else {
+          nextUrl.searchParams.delete('region');
+        }
+        const nextPath = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextPath === currentPath) return;
+        window.history[replace ? 'replaceState' : 'pushState']({ region }, '', nextPath);
+      };
+
+      const renderRegionFilter = () => {
+        if (!filterWrap) return;
+        if (!regionItems.length) {
+          filterWrap.hidden = true;
+          filterWrap.innerHTML = '';
+          return;
+        }
+        filterWrap.hidden = false;
+        const buttons = [
+          { slug: '', name: '전체' },
+          ...regionItems.map((region) => ({ slug: String(region.slug || ''), name: String(region.name || region.slug || '') }))
+        ];
+        filterWrap.innerHTML = buttons.map((item) => `
+          <button class="wt-region-filter__button ${item.slug === activeRegion ? 'is-active' : ''}" type="button" data-region-filter-value="${escapeHtml(item.slug)}" aria-pressed="${item.slug === activeRegion ? 'true' : 'false'}">
+            ${escapeHtml(item.name)}
+          </button>
+        `).join('');
+      };
+
+      const centerActiveRegionFilter = () => {
+        if (!filterWrap || filterWrap.hidden) return;
+        const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
+        if (!activeButton) return;
+        window.requestAnimationFrame(() => {
+          const filterRect = filterWrap.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
+          const offset = buttonRect.left - filterRect.left - (filterRect.width / 2) + (buttonRect.width / 2);
+          if (Math.abs(offset) < 1) return;
+          filterWrap.scrollBy({ left: offset, behavior: 'smooth' });
+        });
+      };
+
+      const fetchJson = async (offset = 0) => {
+        const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
+        try {
+          const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+          return await response.json();
+        } catch (_) {
+          return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+        }
+      };
+
+
+      const renderArchiveSkeleton = (message = '') => `${Array.from({ length: 6 }, () => `
+        <article aria-hidden="true" class="wt-archive-skeleton-card">
+          <div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+          <div class="wt-archive-skeleton-card__body">
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+          </div>
+        </article>
+      `).join('')}<div class="wt-sr-only" role="status">${escapeHtml(message)}</div>`;
+
+      const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
+
+      const renderEmptyMessage = (regionSlug = '') => {
+        if (!grid) return;
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const regionName = getRegionName(regionSlug);
+        const message = regionName
+          ? `${escapeHtml(regionName)} 지역에 연결된 하노이 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.`
+          : '현재 준비 중인 하노이 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.';
+        grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
+      };
+
+      const applyRegionFilter = (region = '', options = {}) => {
+        if (!grid) return;
+        const shouldUpdateUrl = options.updateUrl === true;
+        const shouldReplaceUrl = options.replaceUrl === true;
+        activeRegion = resolveRegion(region);
+        if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+        if (!hasLoadedPosts) return;
+
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const cards = getCards();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardRegion = String(card.dataset.region || '').trim();
+          const isVisible = !activeRegion || cardRegion === activeRegion;
+          card.hidden = !isVisible;
+          card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+          if (isVisible) visibleCount += 1;
+        });
+
+        const regionName = getRegionName(activeRegion);
+        if (summary) summary.hidden = false;
+        if (count) {
+          count.textContent = regionName
+            ? `${regionName} 호텔 글 ${visibleCount}개를 모아봤어요.`
+            : `하노이 호텔 글 ${allPostsTotal || visibleCount}개를 모아봤어요.`;
+        }
+
+        if (!visibleCount) {
+          renderEmptyMessage(activeRegion);
+        }
+      };
+
+      const loadAllPostsOnce = async (initialRegion = '') => {
+        if (!grid) return;
+        grid.setAttribute('aria-busy', 'true');
+        grid.innerHTML = renderArchiveSkeleton('하노이 호텔 글을 불러오는 중입니다.');
+        if (summary) summary.hidden = true;
+        if (count) count.textContent = '';
+
+        let offset = 0;
+        let html = '';
+        let total = 0;
+        let guard = 0;
+
+        while (guard < 20) {
+          const data = await fetchJson(offset);
+          if (!data.ok) break;
+          if (typeof data.total === 'number') total = data.total;
+          if (data.html) html += data.html;
+          if (!data.hasMore) break;
+          const nextOffset = Number(data.nextOffset || 0);
+          if (nextOffset <= offset) break;
+          offset = nextOffset;
+          guard += 1;
+        }
+
+        allPostsTotal = total || 0;
+        hasLoadedPosts = true;
+
+        if (!html) {
+          grid.innerHTML = '';
+          grid.setAttribute('aria-busy', 'false');
+          applyRegionFilter(activeRegion || initialRegion);
+          return;
+        }
+
+        grid.innerHTML = html;
+        grid.setAttribute('aria-busy', 'false');
+        if (!allPostsTotal) allPostsTotal = getCards().length;
+        applyRegionFilter(activeRegion || initialRegion);
+      };
+
+      filterWrap?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-region-filter-value]');
+        if (!button) return;
+        applyRegionFilter(button.dataset.regionFilterValue || '', { updateUrl: true });
+      });
+
+      window.addEventListener('popstate', () => {
+        applyRegionFilter(getRegionFromUrl(), { updateUrl: false });
+      });
+
+      const init = async () => {
+        const requestedRegion = getRegionFromUrl();
+        activeRegion = resolveRegion(requestedRegion);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+
+        const fetchedRegionItems = await fetchSettings();
+        if (fetchedRegionItems.length) regionItems = fetchedRegionItems;
+        const requestedRegionAfterSettings = getRegionFromUrl();
+        const initialRegion = resolveRegion(requestedRegionAfterSettings);
+        activeRegion = initialRegion;
+        if (requestedRegionAfterSettings && requestedRegionAfterSettings !== initialRegion) {
+          updateRegionUrl('', true);
+        }
+        renderRegionFilter();
+        centerActiveRegionFilter();
+        await loadAllPostsOnce(initialRegion);
+      };
+
+      init();
+    })();
+  </script>
 </body>
 </html>

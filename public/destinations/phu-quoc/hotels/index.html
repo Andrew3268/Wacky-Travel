@@ -15,10 +15,332 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260624StaticFilterAllCitiesV1" rel="stylesheet"/>
 </head>
 <body data-destination-slug="phu-quoc">
 <header class="topbar topbar--editorial topbar--travel"><div class="topbar__inner container"><a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a></div></header>
 <nav aria-label="현재 위치" class="breadcrumbs container"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/phu-quoc/">푸꾸옥</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">푸꾸옥 추천 호텔 리뷰</span></li></ol></nav>
 <main class="travel-page wt-city-archive wt-city-archive--phu-quoc"><section class="wt-city-hero container"><div class="wt-city-hero__content"><p class="wt-city-kicker">Phu Quoc Hotel Picks</p><h1>푸꾸옥 호텔을
-지역별로 비교해보세요</h1><p>즈엉동, 롱비치, 옹랑, 바이다이, 바이켐 등 푸꾸옥 호텔 리뷰 글을 모아보는 페이지입니다.</p><div class="wt-city-hero__actions"><a class="wt-city-button wt-city-button--primary" href="/destinations/phu-quoc/hotel-location-survey/">숙소 위치 찾기</a><a class="wt-city-button" href="/destinations/phu-quoc/">푸꾸옥 메인</a></div></div></section><section class="container travel-section"><div class="post-grid" data-archive-post-root data-destination-slug="phu-quoc" data-content-type="hotel_intro" data-page-size="12"><div class="empty-card">아직 관련글이 없습니다.</div></div></section></main><footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div><nav aria-label="푸터 메뉴" class="footer__links"><a href="/about/">Wacky Travel 소개</a><a href="/destinations/">여행지</a></nav></div></footer><script defer src="/assets/js/posts.js?v=20260620PhuQuocStaticV1"></script></body></html>
+지역별로 비교해보세요</h1><p>즈엉동, 롱비치, 옹랑, 바이다이, 바이켐 등 푸꾸옥 호텔 리뷰 글을 모아보는 페이지입니다.</p><div class="wt-city-hero__actions"><a class="wt-city-button wt-city-button--primary" href="/destinations/phu-quoc/hotel-location-survey/">숙소 위치 찾기</a><a class="wt-city-button" href="/destinations/phu-quoc/">푸꾸옥 메인</a></div></div></section><section aria-label="푸꾸옥 추천 호텔 리뷰 목록" class="container travel-section wt-city-dynamic-section">
+<div aria-label="푸꾸옥 호텔 지역 필터" class="wt-region-filter" data-region-filter="">
+<button class="wt-region-filter__button is-active" type="button" data-region-filter-value="" aria-pressed="true">전체</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="duongdong" aria-pressed="false">즈엉동·롱비치 북부</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="longbeach" aria-pressed="false">롱비치·즈엉토</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="onglang" aria-pressed="false">옹랑·끄어깐</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="ganhdau" aria-pressed="false">바이다이·그랜드월드</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="baikhem" aria-pressed="false">바이켐·안터이</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="baisao" aria-pressed="false">사오비치·함닌</button>
+</div>
+<div class="wt-city-archive-summary" hidden>
+<div class="wt-city-archive-count" data-archive-count=""></div>
+</div>
+<div aria-busy="true" class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<div class="wt-sr-only" role="status">푸꾸옥 호텔 글을 불러오는 중입니다.</div>
+</div>
+</section></main><footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div><nav aria-label="푸터 메뉴" class="footer__links"><a href="/about/">Wacky Travel 소개</a><a href="/destinations/">여행지</a></nav></div></footer><script>
+    (() => {
+      const grid = document.querySelector('[data-archive-grid]');
+      const count = document.querySelector('[data-archive-count]');
+      const summary = document.querySelector('.wt-city-archive-summary');
+      const filterWrap = document.querySelector('[data-region-filter]');
+      const destination = "phu-quoc";
+      const type = 'hotel_intro';
+      const limit = 60;
+      let activeRegion = '';
+      const defaultRegionItems = [
+        { slug: "duongdong", name: "즈엉동·롱비치 북부" },
+        { slug: "longbeach", name: "롱비치·즈엉토" },
+        { slug: "onglang", name: "옹랑·끄어깐" },
+        { slug: "ganhdau", name: "바이다이·그랜드월드" },
+        { slug: "baikhem", name: "바이켐·안터이" },
+        { slug: "baisao", name: "사오비치·함닌" }
+      ];
+      let regionItems = [...defaultRegionItems];
+      let hasLoadedPosts = false;
+      let allPostsTotal = 0;
+
+      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+
+      const fetchSettings = async () => {
+        try {
+          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return [];
+          const json = await response.json();
+          return Array.isArray(json.regions)
+            ? json.regions.filter((region) => String(region.destination_slug || '') === destination && Number(region.is_active ?? 1) !== 0)
+            : [];
+        } catch (_) {
+          return [];
+        }
+      };
+
+      const getRegionName = (slug = '') => {
+        if (!slug) return '';
+        const region = regionItems.find((item) => String(item.slug || '') === slug);
+        return region?.name || slug;
+      };
+
+      const isValidRegion = (slug = '') => {
+        if (!slug) return true;
+        return regionItems.some((item) => String(item.slug || '') === slug);
+      };
+
+      const resolveRegion = (region = '') => {
+        const value = String(region || '').trim();
+        return isValidRegion(value) ? value : '';
+      };
+
+      const getRegionFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get('region') || '').trim();
+      };
+
+      const updateRegionUrl = (region = '', replace = false) => {
+        const nextUrl = new URL(window.location.href);
+        if (region) {
+          nextUrl.searchParams.set('region', region);
+        } else {
+          nextUrl.searchParams.delete('region');
+        }
+        const nextPath = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextPath === currentPath) return;
+        window.history[replace ? 'replaceState' : 'pushState']({ region }, '', nextPath);
+      };
+
+      const renderRegionFilter = () => {
+        if (!filterWrap) return;
+        if (!regionItems.length) {
+          filterWrap.hidden = true;
+          filterWrap.innerHTML = '';
+          return;
+        }
+        filterWrap.hidden = false;
+        const buttons = [
+          { slug: '', name: '전체' },
+          ...regionItems.map((region) => ({ slug: String(region.slug || ''), name: String(region.name || region.slug || '') }))
+        ];
+        filterWrap.innerHTML = buttons.map((item) => `
+          <button class="wt-region-filter__button ${item.slug === activeRegion ? 'is-active' : ''}" type="button" data-region-filter-value="${escapeHtml(item.slug)}" aria-pressed="${item.slug === activeRegion ? 'true' : 'false'}">
+            ${escapeHtml(item.name)}
+          </button>
+        `).join('');
+      };
+
+      const centerActiveRegionFilter = () => {
+        if (!filterWrap || filterWrap.hidden) return;
+        const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
+        if (!activeButton) return;
+        window.requestAnimationFrame(() => {
+          const filterRect = filterWrap.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
+          const offset = buttonRect.left - filterRect.left - (filterRect.width / 2) + (buttonRect.width / 2);
+          if (Math.abs(offset) < 1) return;
+          filterWrap.scrollBy({ left: offset, behavior: 'smooth' });
+        });
+      };
+
+      const fetchJson = async (offset = 0) => {
+        const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
+        try {
+          const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+          return await response.json();
+        } catch (_) {
+          return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+        }
+      };
+
+
+      const renderArchiveSkeleton = (message = '') => `${Array.from({ length: 6 }, () => `
+        <article aria-hidden="true" class="wt-archive-skeleton-card">
+          <div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+          <div class="wt-archive-skeleton-card__body">
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+          </div>
+        </article>
+      `).join('')}<div class="wt-sr-only" role="status">${escapeHtml(message)}</div>`;
+
+      const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
+
+      const renderEmptyMessage = (regionSlug = '') => {
+        if (!grid) return;
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const regionName = getRegionName(regionSlug);
+        const message = regionName
+          ? `${escapeHtml(regionName)} 지역에 연결된 푸꾸옥 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.`
+          : '현재 준비 중인 푸꾸옥 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.';
+        grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
+      };
+
+      const applyRegionFilter = (region = '', options = {}) => {
+        if (!grid) return;
+        const shouldUpdateUrl = options.updateUrl === true;
+        const shouldReplaceUrl = options.replaceUrl === true;
+        activeRegion = resolveRegion(region);
+        if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+        if (!hasLoadedPosts) return;
+
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const cards = getCards();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardRegion = String(card.dataset.region || '').trim();
+          const isVisible = !activeRegion || cardRegion === activeRegion;
+          card.hidden = !isVisible;
+          card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+          if (isVisible) visibleCount += 1;
+        });
+
+        const regionName = getRegionName(activeRegion);
+        if (summary) summary.hidden = false;
+        if (count) {
+          count.textContent = regionName
+            ? `${regionName} 호텔 글 ${visibleCount}개를 모아봤어요.`
+            : `푸꾸옥 호텔 글 ${allPostsTotal || visibleCount}개를 모아봤어요.`;
+        }
+
+        if (!visibleCount) {
+          renderEmptyMessage(activeRegion);
+        }
+      };
+
+      const loadAllPostsOnce = async (initialRegion = '') => {
+        if (!grid) return;
+        grid.setAttribute('aria-busy', 'true');
+        grid.innerHTML = renderArchiveSkeleton('푸꾸옥 호텔 글을 불러오는 중입니다.');
+        if (summary) summary.hidden = true;
+        if (count) count.textContent = '';
+
+        let offset = 0;
+        let html = '';
+        let total = 0;
+        let guard = 0;
+
+        while (guard < 20) {
+          const data = await fetchJson(offset);
+          if (!data.ok) break;
+          if (typeof data.total === 'number') total = data.total;
+          if (data.html) html += data.html;
+          if (!data.hasMore) break;
+          const nextOffset = Number(data.nextOffset || 0);
+          if (nextOffset <= offset) break;
+          offset = nextOffset;
+          guard += 1;
+        }
+
+        allPostsTotal = total || 0;
+        hasLoadedPosts = true;
+
+        if (!html) {
+          grid.innerHTML = '';
+          grid.setAttribute('aria-busy', 'false');
+          applyRegionFilter(activeRegion || initialRegion);
+          return;
+        }
+
+        grid.innerHTML = html;
+        grid.setAttribute('aria-busy', 'false');
+        if (!allPostsTotal) allPostsTotal = getCards().length;
+        applyRegionFilter(activeRegion || initialRegion);
+      };
+
+      filterWrap?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-region-filter-value]');
+        if (!button) return;
+        applyRegionFilter(button.dataset.regionFilterValue || '', { updateUrl: true });
+      });
+
+      window.addEventListener('popstate', () => {
+        applyRegionFilter(getRegionFromUrl(), { updateUrl: false });
+      });
+
+      const init = async () => {
+        const requestedRegion = getRegionFromUrl();
+        activeRegion = resolveRegion(requestedRegion);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+
+        const fetchedRegionItems = await fetchSettings();
+        if (fetchedRegionItems.length) regionItems = fetchedRegionItems;
+        const requestedRegionAfterSettings = getRegionFromUrl();
+        const initialRegion = resolveRegion(requestedRegionAfterSettings);
+        activeRegion = initialRegion;
+        if (requestedRegionAfterSettings && requestedRegionAfterSettings !== initialRegion) {
+          updateRegionUrl('', true);
+        }
+        renderRegionFilter();
+        centerActiveRegionFilter();
+        await loadAllPostsOnce(initialRegion);
+      };
+
+      init();
+    })();
+  </script></body></html>

@@ -16,7 +16,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260624StaticFilterAllCitiesV1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"후쿠오카","item":"/destinations/fukuoka"},{"@type":"ListItem","position":4,"name":"후쿠오카 호텔 추천 글","item":"/destinations/fukuoka/hotel-recommendations/"}]}</script>
 </head>
 <body data-destination-slug="fukuoka">
@@ -42,13 +42,82 @@
 </div>
 </section>
 <section aria-label="후쿠오카 호텔 추천 글 목록" class="container travel-section wt-city-dynamic-section">
-<div aria-label="후쿠오카 호텔 추천 글 카테고리 필터" class="wt-region-filter" data-category-filter="" hidden=""></div>
-<div class="wt-category-filter-description" data-category-description="" hidden=""></div>
-<div class="wt-city-archive-summary">
-<div class="wt-city-archive-count" data-archive-count="">후쿠오카 호텔 추천 글을 정리하고 있어요.</div>
+<div aria-label="후쿠오카 호텔 추천 글 카테고리 필터" class="wt-region-filter" data-category-filter="">
+<button class="wt-region-filter__button is-active" type="button" data-category-filter-value="" aria-pressed="true">전체</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="with-who" aria-pressed="false">누구와 함께</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="location" aria-pressed="false">어디에 위치</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="value" aria-pressed="false">얼마나 가성비</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="staycation" aria-pressed="false">즐길거리 호텔</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="theme" aria-pressed="false">특별한 테마</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="must-check" aria-pressed="false">필수 체크</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="season-holiday" aria-pressed="false">시즌과 연휴</button>
 </div>
-<div class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
-<div class="empty-card">후쿠오카 호텔 추천 글을 불러오는 중입니다.</div>
+<div class="wt-category-filter-description" data-category-description="" hidden=""></div>
+<div class="wt-city-archive-summary" hidden>
+<div class="wt-city-archive-count" data-archive-count=""></div>
+</div>
+<div aria-busy="true" class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<div class="wt-sr-only" role="status">후쿠오카 호텔 추천 글을 불러오는 중입니다.</div>
 </div>
 </section>
 </main>
@@ -65,13 +134,23 @@
     (() => {
       const grid = document.querySelector('[data-archive-grid]');
       const count = document.querySelector('[data-archive-count]');
+      const summary = document.querySelector('.wt-city-archive-summary');
       const filterWrap = document.querySelector('[data-category-filter]');
       const descriptionBox = document.querySelector('[data-category-description]');
-      const destination = 'fukuoka';
+      const destination = "fukuoka";
       const type = 'top5_series';
       const limit = 60;
       let activeCategory = '';
-      let categoryItems = [];
+      const defaultCategoryItems = [
+        { slug: "with-who", name: "누구와 함께", description: "여행을 같이 가는 사람의 특성에 맞춰 완벽한 하루를 보낼 수 있는 숙소 추천" },
+        { slug: "location", name: "어디에 위치", description: "동선 낭비 없이 여행 목적지나 주요 관광지와 접근성이 좋은 위치별 숙소 추천" },
+        { slug: "value", name: "얼마나 가성비", description: "지출 대비 만족도를 극대화하는 알뜰 숙소부터 특별한 날을 위한 럭셔리 숙소 추천" },
+        { slug: "staycation", name: "즐길거리 호텔", description: "호텔 밖으로 나가지 않아도 안에서 수영, 스파, 미식 등 모든 것을 해결하는 호캉스 숙소 추천" },
+        { slug: "theme", name: "특별한 테마", description: "뻔한 인테리어를 벗어나 이국적인 무드나 트렌디한 감성을 느낄 수 있는 이색 숙소 추천" },
+        { slug: "must-check", name: "필수 체크", description: "대가족, 취사, 반려동물 동반 등 특별한 조건과 제약 사항을 만족시키는 맞춤 숙소 추천" },
+        { slug: "season-holiday", name: "시즌과 연휴", description: "날씨, 계절 변화, 명절 연휴 등 특정 시기에 방문했을 때 만족도가 극대화되는 숙소 추천" }
+      ];
+      let categoryItems = [...defaultCategoryItems];
       let hasLoadedPosts = false;
       let allPostsTotal = 0;
 
@@ -199,6 +278,20 @@
         }
       };
 
+
+      const renderArchiveSkeleton = (message = '') => `${Array.from({ length: 6 }, () => `
+        <article aria-hidden="true" class="wt-archive-skeleton-card">
+          <div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+          <div class="wt-archive-skeleton-card__body">
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+          </div>
+        </article>
+      `).join('')}<div class="wt-sr-only" role="status">${escapeHtml(message)}</div>`;
+
       const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
 
       const renderEmptyMessage = (categorySlug = '') => {
@@ -212,7 +305,7 @@
       };
 
       const applyCategoryFilter = (category = '', options = {}) => {
-        if (!grid || !hasLoadedPosts) return;
+        if (!grid) return;
         const shouldUpdateUrl = options.updateUrl === true;
         const shouldReplaceUrl = options.replaceUrl === true;
         activeCategory = resolveCategory(category);
@@ -220,6 +313,7 @@
         renderCategoryFilter();
         renderCategoryDescription();
         centerActiveCategoryFilter();
+        if (!hasLoadedPosts) return;
 
         grid.querySelector('[data-filter-empty]')?.remove();
         const cards = getCards();
@@ -234,6 +328,7 @@
         });
 
         const categoryName = getCategoryLabel(activeCategory);
+        if (summary) summary.hidden = false;
         if (count) {
           count.textContent = activeCategory
             ? `${categoryName} 호텔 추천 글 ${visibleCount}개를 모아봤어요.`
@@ -247,8 +342,10 @@
 
       const loadAllPostsOnce = async (initialCategory = '') => {
         if (!grid) return;
-        grid.innerHTML = '<div class="empty-card">후쿠오카 호텔 추천 글을 불러오는 중입니다.</div>';
-        if (count) count.textContent = '후쿠오카 호텔 추천 글을 정리하고 있어요.';
+        grid.setAttribute('aria-busy', 'true');
+        grid.innerHTML = renderArchiveSkeleton('후쿠오카 호텔 추천 글을 불러오는 중입니다.');
+        if (summary) summary.hidden = true;
+        if (count) count.textContent = '';
 
         let offset = 0;
         let html = '';
@@ -272,13 +369,15 @@
 
         if (!html) {
           grid.innerHTML = '';
-          applyCategoryFilter(initialCategory);
+          grid.setAttribute('aria-busy', 'false');
+          applyCategoryFilter(activeCategory || initialCategory);
           return;
         }
 
         grid.innerHTML = html;
+        grid.setAttribute('aria-busy', 'false');
         if (!allPostsTotal) allPostsTotal = getCards().length;
-        applyCategoryFilter(initialCategory);
+        applyCategoryFilter(activeCategory || initialCategory);
       };
 
       filterWrap?.addEventListener('click', (event) => {
@@ -292,15 +391,23 @@
       });
 
       const init = async () => {
-        categoryItems = await fetchSettings();
         const requestedCategory = getCategoryFromUrl();
-        const initialCategory = resolveCategory(requestedCategory);
+        activeCategory = resolveCategory(requestedCategory);
+        renderCategoryFilter();
+        renderCategoryDescription();
+        centerActiveCategoryFilter();
+
+        const fetchedCategoryItems = await fetchSettings();
+        if (fetchedCategoryItems.length) categoryItems = fetchedCategoryItems;
+        const requestedCategoryAfterSettings = getCategoryFromUrl();
+        const initialCategory = resolveCategory(requestedCategoryAfterSettings);
         activeCategory = initialCategory;
-        if (requestedCategory && requestedCategory !== initialCategory) {
+        if (requestedCategoryAfterSettings && requestedCategoryAfterSettings !== initialCategory) {
           updateCategoryUrl('', true);
         }
         renderCategoryFilter();
         renderCategoryDescription();
+        centerActiveCategoryFilter();
         await loadAllPostsOnce(initialCategory);
       };
 

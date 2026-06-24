@@ -16,7 +16,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260624StaticFilterAllCitiesV1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오키나와","item":"/destinations/okinawa"},{"@type":"ListItem","position":4,"name":"추천 호텔 리뷰","item":"/destinations/okinawa/hotels/"}]}</script>
 </head>
 <body data-destination-slug="okinawa">
@@ -43,12 +43,80 @@
 </div>
 </section>
 <section aria-label="오키나와 추천 호텔 리뷰 목록" class="container travel-section wt-city-dynamic-section">
-<div aria-label="오키나와 호텔 지역 필터" class="wt-region-filter" data-region-filter="" hidden=""></div>
-<div class="wt-city-archive-summary">
-<div class="wt-city-archive-count" data-archive-count="">오키나와 호텔 글을 정리하고 있어요.</div>
+<div aria-label="오키나와 호텔 지역 필터" class="wt-region-filter" data-region-filter="">
+<button class="wt-region-filter__button is-active" type="button" data-region-filter-value="" aria-pressed="true">전체</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="naha-kokusai-dori" aria-pressed="false">나하 &amp; 국제거리</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="chatan-american-village" aria-pressed="false">차탄 &amp; 아메리칸빌리지</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="onnason-resort" aria-pressed="false">온나손 리조트권</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="nago-motobu" aria-pressed="false">나고 &amp; 모토부</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="yomitan-zanpamisaki" aria-pressed="false">요미탄 &amp; 잔파곶</button>
+<button class="wt-region-filter__button" type="button" data-region-filter-value="southern-coast-itoman-nanjo" aria-pressed="false">남부 해안 &amp; 이토만 &amp; 난조</button>
 </div>
-<div class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
-<div class="empty-card">오키나와 호텔 글을 불러오는 중입니다.</div>
+<div class="wt-city-archive-summary" hidden>
+<div class="wt-city-archive-count" data-archive-count=""></div>
+</div>
+<div aria-busy="true" class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<div class="wt-sr-only" role="status">오키나와 호텔 글을 불러오는 중입니다.</div>
 </div>
 </section>
 </main>
@@ -65,12 +133,21 @@
     (() => {
       const grid = document.querySelector('[data-archive-grid]');
       const count = document.querySelector('[data-archive-count]');
+      const summary = document.querySelector('.wt-city-archive-summary');
       const filterWrap = document.querySelector('[data-region-filter]');
-      const destination = 'okinawa';
+      const destination = "okinawa";
       const type = 'hotel_intro';
       const limit = 60;
       let activeRegion = '';
-      let regionItems = [];
+      const defaultRegionItems = [
+        { slug: "naha-kokusai-dori", name: "나하 & 국제거리" },
+        { slug: "chatan-american-village", name: "차탄 & 아메리칸빌리지" },
+        { slug: "onnason-resort", name: "온나손 리조트권" },
+        { slug: "nago-motobu", name: "나고 & 모토부" },
+        { slug: "yomitan-zanpamisaki", name: "요미탄 & 잔파곶" },
+        { slug: "southern-coast-itoman-nanjo", name: "남부 해안 & 이토만 & 난조" }
+      ];
+      let regionItems = [...defaultRegionItems];
       let hasLoadedPosts = false;
       let allPostsTotal = 0;
 
@@ -166,24 +243,41 @@
         }
       };
 
+
+      const renderArchiveSkeleton = (message = '') => `${Array.from({ length: 6 }, () => `
+        <article aria-hidden="true" class="wt-archive-skeleton-card">
+          <div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+          <div class="wt-archive-skeleton-card__body">
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+          </div>
+        </article>
+      `).join('')}<div class="wt-sr-only" role="status">${escapeHtml(message)}</div>`;
+
       const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
 
       const renderEmptyMessage = (regionSlug = '') => {
         if (!grid) return;
         grid.querySelector('[data-filter-empty]')?.remove();
         const regionName = getRegionName(regionSlug);
-        const message = '아직 관련글이 없습니다.';
+        const message = regionName
+          ? `${escapeHtml(regionName)} 지역에 연결된 오키나와 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.`
+          : '현재 준비 중인 오키나와 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.';
         grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
       };
 
       const applyRegionFilter = (region = '', options = {}) => {
-        if (!grid || !hasLoadedPosts) return;
+        if (!grid) return;
         const shouldUpdateUrl = options.updateUrl === true;
         const shouldReplaceUrl = options.replaceUrl === true;
         activeRegion = resolveRegion(region);
         if (shouldUpdateUrl) updateRegionUrl(activeRegion, shouldReplaceUrl);
         renderRegionFilter();
         centerActiveRegionFilter();
+        if (!hasLoadedPosts) return;
 
         grid.querySelector('[data-filter-empty]')?.remove();
         const cards = getCards();
@@ -198,6 +292,7 @@
         });
 
         const regionName = getRegionName(activeRegion);
+        if (summary) summary.hidden = false;
         if (count) {
           count.textContent = regionName
             ? `${regionName} 호텔 글 ${visibleCount}개를 모아봤어요.`
@@ -211,8 +306,10 @@
 
       const loadAllPostsOnce = async (initialRegion = '') => {
         if (!grid) return;
-        grid.innerHTML = '<div class="empty-card">오키나와 호텔 글을 불러오는 중입니다.</div>';
-        if (count) count.textContent = '오키나와 호텔 글을 정리하고 있어요.';
+        grid.setAttribute('aria-busy', 'true');
+        grid.innerHTML = renderArchiveSkeleton('오키나와 호텔 글을 불러오는 중입니다.');
+        if (summary) summary.hidden = true;
+        if (count) count.textContent = '';
 
         let offset = 0;
         let html = '';
@@ -236,13 +333,15 @@
 
         if (!html) {
           grid.innerHTML = '';
-          applyRegionFilter(initialRegion);
+          grid.setAttribute('aria-busy', 'false');
+          applyRegionFilter(activeRegion || initialRegion);
           return;
         }
 
         grid.innerHTML = html;
+        grid.setAttribute('aria-busy', 'false');
         if (!allPostsTotal) allPostsTotal = getCards().length;
-        applyRegionFilter(initialRegion);
+        applyRegionFilter(activeRegion || initialRegion);
       };
 
       filterWrap?.addEventListener('click', (event) => {
@@ -256,14 +355,21 @@
       });
 
       const init = async () => {
-        regionItems = await fetchSettings();
         const requestedRegion = getRegionFromUrl();
-        const initialRegion = resolveRegion(requestedRegion);
+        activeRegion = resolveRegion(requestedRegion);
+        renderRegionFilter();
+        centerActiveRegionFilter();
+
+        const fetchedRegionItems = await fetchSettings();
+        if (fetchedRegionItems.length) regionItems = fetchedRegionItems;
+        const requestedRegionAfterSettings = getRegionFromUrl();
+        const initialRegion = resolveRegion(requestedRegionAfterSettings);
         activeRegion = initialRegion;
-        if (requestedRegion && requestedRegion !== initialRegion) {
+        if (requestedRegionAfterSettings && requestedRegionAfterSettings !== initialRegion) {
           updateRegionUrl('', true);
         }
         renderRegionFilter();
+        centerActiveRegionFilter();
         await loadAllPostsOnce(initialRegion);
       };
 

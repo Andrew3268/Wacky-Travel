@@ -15,7 +15,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260624StaticFilterAllCitiesV1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"하노이","item":"/destinations/hanoi"},{"@type":"ListItem","position":4,"name":"호텔 추천 글","item":"/destinations/hanoi/hotel-recommendations/"}]}</script>
 </head>
 <body data-destination-slug="hanoi">
@@ -26,8 +26,369 @@
 </header>
 <nav aria-label="현재 위치" class="breadcrumbs container"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/hanoi/">하노이</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">호텔 추천 글</span></li></ol></nav>
 <main class="travel-page wt-city-page wt-city-page--hanoi wt-city-archive-page"><section aria-labelledby="hanoiArchiveTitle" class="wt-city-hero container"><div class="wt-city-hero__content"><p class="wt-city-kicker">Hanoi Hotel Picks</p><h1 id="hanoiArchiveTitle">하노이 호텔 추천 글을
-여행 스타일별로 모았습니다</h1><p class="wt-city-hero__lead">첫 여행, 위치 중심 일정, 가성비, 가족 여행, 조용한 휴식처럼 여행 준비할 때 실제로 고민하는 상황별 호텔 추천 글을 한곳에 모았습니다.</p></div></section><section aria-label="하노이 호텔 추천 글 목록" class="container travel-section wt-city-dynamic-section"><div aria-label="하노이 호텔 추천 글 카테고리 필터" class="wt-region-filter" data-category-filter="" hidden=""></div><div class="wt-category-filter-description" data-category-description="" hidden=""></div><div class="wt-city-archive-summary"><div class="wt-city-archive-count" data-archive-count="">하노이 호텔 추천 콘텐츠를 정리하고 있어요.</div></div><div class="travel-card-grid travel-card-grid--hotels" data-archive-grid=""><div class="empty-card">하노이 호텔 추천 글을 불러오는 중입니다.</div></div></section></main><footer class="footer container">
+여행 스타일별로 모았습니다</h1><p class="wt-city-hero__lead">첫 여행, 위치 중심 일정, 가성비, 가족 여행, 조용한 휴식처럼 여행 준비할 때 실제로 고민하는 상황별 호텔 추천 글을 한곳에 모았습니다.</p></div></section><section aria-label="하노이 호텔 추천 글 목록" class="container travel-section wt-city-dynamic-section">
+<div aria-label="하노이 호텔 추천 글 카테고리 필터" class="wt-region-filter" data-category-filter="">
+<button class="wt-region-filter__button is-active" type="button" data-category-filter-value="" aria-pressed="true">전체</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="with-who" aria-pressed="false">누구와 함께</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="location" aria-pressed="false">어디에 위치</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="value" aria-pressed="false">얼마나 가성비</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="staycation" aria-pressed="false">즐길거리 호텔</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="theme" aria-pressed="false">특별한 테마</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="must-check" aria-pressed="false">필수 체크</button>
+<button class="wt-region-filter__button" type="button" data-category-filter-value="season-holiday" aria-pressed="false">시즌과 연휴</button>
+</div>
+<div class="wt-category-filter-description" data-category-description="" hidden=""></div>
+<div class="wt-city-archive-summary" hidden>
+<div class="wt-city-archive-count" data-archive-count=""></div>
+</div>
+<div aria-busy="true" class="travel-card-grid travel-card-grid--hotels" data-archive-grid="">
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<article aria-hidden="true" class="wt-archive-skeleton-card">
+<div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+<div class="wt-archive-skeleton-card__body">
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+<span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+</div>
+</article>
+<div class="wt-sr-only" role="status">하노이 호텔 추천 글을 불러오는 중입니다.</div>
+</div>
+</section></main><footer class="footer container">
 <div class="footer__inner"><div>© 2026 Wacky Travel</div><nav aria-label="푸터 메뉴" class="footer__links"><a href="/about/">Wacky Travel 소개</a><a href="/destinations/">여행지</a></nav></div>
-</footer><script>(()=>{const grid=document.querySelector('[data-archive-grid]');const count=document.querySelector('[data-archive-count]');const escapeHtml=(v)=>String(v||'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));async function init(){if(!grid)return;try{const p=new URLSearchParams({destination:'hanoi',type:'top5_series',offset:'0',limit:'60'});const r=await fetch('/api/destination-posts?'+p.toString(),{headers:{accept:'application/json'},cache:'no-store'});const j=r.ok?await r.json():{};if(j.ok&&j.html){grid.innerHTML=j.html; if(count) count.textContent=`하노이 호텔 추천 글 ${j.total||grid.querySelectorAll('.travel-card').length}개를 모았습니다.`;}else{grid.innerHTML='<div class="empty-card">현재 준비 중인 하노이 호텔 추천 글이 없습니다. 곧 더 다양한 콘텐츠를 확인하실 수 있습니다.</div>'; if(count) count.textContent='하노이 호텔 추천 글을 준비 중입니다.';}}catch(e){grid.innerHTML='<div class="empty-card">현재 준비 중인 하노이 호텔 추천 글이 없습니다. 곧 더 다양한 콘텐츠를 확인하실 수 있습니다.</div>';}}init();})();</script>
+</footer><script>
+    (() => {
+      const grid = document.querySelector('[data-archive-grid]');
+      const count = document.querySelector('[data-archive-count]');
+      const summary = document.querySelector('.wt-city-archive-summary');
+      const filterWrap = document.querySelector('[data-category-filter]');
+      const descriptionBox = document.querySelector('[data-category-description]');
+      const destination = "hanoi";
+      const type = 'top5_series';
+      const limit = 60;
+      let activeCategory = '';
+      const defaultCategoryItems = [
+        { slug: "with-who", name: "누구와 함께", description: "여행을 같이 가는 사람의 특성에 맞춰 완벽한 하루를 보낼 수 있는 숙소 추천" },
+        { slug: "location", name: "어디에 위치", description: "동선 낭비 없이 여행 목적지나 주요 관광지와 접근성이 좋은 위치별 숙소 추천" },
+        { slug: "value", name: "얼마나 가성비", description: "지출 대비 만족도를 극대화하는 알뜰 숙소부터 특별한 날을 위한 럭셔리 숙소 추천" },
+        { slug: "staycation", name: "즐길거리 호텔", description: "호텔 밖으로 나가지 않아도 안에서 수영, 스파, 미식 등 모든 것을 해결하는 호캉스 숙소 추천" },
+        { slug: "theme", name: "특별한 테마", description: "뻔한 인테리어를 벗어나 이국적인 무드나 트렌디한 감성을 느낄 수 있는 이색 숙소 추천" },
+        { slug: "must-check", name: "필수 체크", description: "대가족, 취사, 반려동물 동반 등 특별한 조건과 제약 사항을 만족시키는 맞춤 숙소 추천" },
+        { slug: "season-holiday", name: "시즌과 연휴", description: "날씨, 계절 변화, 명절 연휴 등 특정 시기에 방문했을 때 만족도가 극대화되는 숙소 추천" }
+      ];
+      let categoryItems = [...defaultCategoryItems];
+      let hasLoadedPosts = false;
+      let allPostsTotal = 0;
+
+      const escapeHtml = (value) => String(value || '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
+
+      const getCategorySlug = (item = {}) => String(item.slug || item.recommendation_category_slug || '').trim();
+      const getCategoryName = (item = {}) => String(item.name || item.recommendation_category_name || getCategorySlug(item)).trim();
+      const getCategoryDescription = (item = {}) => String(item.description || item.recommendation_category_description || '').trim();
+
+      const fetchSettings = async () => {
+        try {
+          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return [];
+          const json = await response.json();
+          if (!Array.isArray(json.recommendation_categories)) return [];
+          const seen = new Set();
+          return json.recommendation_categories
+            .filter((category) => Number(category.is_active ?? 1) !== 0)
+            .filter((category) => {
+              const slug = getCategorySlug(category);
+              if (!slug || seen.has(slug)) return false;
+              seen.add(slug);
+              return true;
+            });
+        } catch (_) {
+          return [];
+        }
+      };
+
+      const getCategoryItem = (slug = '') => {
+        if (!slug) return null;
+        return categoryItems.find((item) => getCategorySlug(item) === slug) || null;
+      };
+
+      const getCategoryLabel = (slug = '') => {
+        const item = getCategoryItem(slug);
+        return item ? getCategoryName(item) : String(slug || '').trim();
+      };
+
+      const isValidCategory = (slug = '') => {
+        if (!slug) return true;
+        return Boolean(getCategoryItem(slug));
+      };
+
+      const resolveCategory = (category = '') => {
+        const value = String(category || '').trim();
+        return isValidCategory(value) ? value : '';
+      };
+
+      const getCategoryFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        return String(params.get('category') || '').trim();
+      };
+
+      const updateCategoryUrl = (category = '', replace = false) => {
+        const nextUrl = new URL(window.location.href);
+        if (category) {
+          nextUrl.searchParams.set('category', category);
+        } else {
+          nextUrl.searchParams.delete('category');
+        }
+        const nextPath = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`;
+        const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextPath === currentPath) return;
+        window.history[replace ? 'replaceState' : 'pushState']({ category }, '', nextPath);
+      };
+
+      const renderCategoryFilter = () => {
+        if (!filterWrap) return;
+        if (!categoryItems.length) {
+          filterWrap.hidden = true;
+          filterWrap.innerHTML = '';
+          return;
+        }
+        filterWrap.hidden = false;
+        const buttons = [
+          { slug: '', name: '전체' },
+          ...categoryItems.map((category) => ({ slug: getCategorySlug(category), name: getCategoryName(category) }))
+        ];
+        filterWrap.innerHTML = buttons.map((item) => `
+          <button class="wt-region-filter__button ${item.slug === activeCategory ? 'is-active' : ''}" type="button" data-category-filter-value="${escapeHtml(item.slug)}" aria-pressed="${item.slug === activeCategory ? 'true' : 'false'}">
+            ${escapeHtml(item.name)}
+          </button>
+        `).join('');
+      };
+
+      const renderCategoryDescription = () => {
+        if (!descriptionBox) return;
+        const item = getCategoryItem(activeCategory);
+        if (!item) {
+          descriptionBox.hidden = true;
+          descriptionBox.innerHTML = '';
+          return;
+        }
+        const title = getCategoryName(item);
+        const description = getCategoryDescription(item);
+        descriptionBox.hidden = false;
+        descriptionBox.innerHTML = `
+          <strong>${escapeHtml(title)}</strong>
+          ${description ? `<p>${escapeHtml(description)}</p>` : ''}
+        `;
+      };
+
+      const centerActiveCategoryFilter = () => {
+        if (!filterWrap || filterWrap.hidden) return;
+        const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
+        if (!activeButton) return;
+        window.requestAnimationFrame(() => {
+          const filterRect = filterWrap.getBoundingClientRect();
+          const buttonRect = activeButton.getBoundingClientRect();
+          const offset = buttonRect.left - filterRect.left - (filterRect.width / 2) + (buttonRect.width / 2);
+          if (Math.abs(offset) < 1) return;
+          filterWrap.scrollBy({ left: offset, behavior: 'smooth' });
+        });
+      };
+
+      const fetchJson = async (offset = 0) => {
+        const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
+        try {
+          const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+          return await response.json();
+        } catch (_) {
+          return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
+        }
+      };
+
+
+      const renderArchiveSkeleton = (message = '') => `${Array.from({ length: 6 }, () => `
+        <article aria-hidden="true" class="wt-archive-skeleton-card">
+          <div class="wt-archive-skeleton-card__media wt-archive-skeleton-shimmer"></div>
+          <div class="wt-archive-skeleton-card__body">
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--chip wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--title wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--text-short wt-archive-skeleton-shimmer"></span>
+            <span class="wt-archive-skeleton-line wt-archive-skeleton-line--button wt-archive-skeleton-shimmer"></span>
+          </div>
+        </article>
+      `).join('')}<div class="wt-sr-only" role="status">${escapeHtml(message)}</div>`;
+
+      const getCards = () => Array.from(grid?.querySelectorAll('.travel-card') || []);
+
+      const renderEmptyMessage = (categorySlug = '') => {
+        if (!grid) return;
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const categoryName = getCategoryLabel(categorySlug);
+        const message = categoryName
+          ? `${escapeHtml(categoryName)} 카테고리에 연결된 하노이 호텔 추천 글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.`
+          : '현재 준비 중인 하노이 호텔 추천 글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.';
+        grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
+      };
+
+      const applyCategoryFilter = (category = '', options = {}) => {
+        if (!grid) return;
+        const shouldUpdateUrl = options.updateUrl === true;
+        const shouldReplaceUrl = options.replaceUrl === true;
+        activeCategory = resolveCategory(category);
+        if (shouldUpdateUrl) updateCategoryUrl(activeCategory, shouldReplaceUrl);
+        renderCategoryFilter();
+        renderCategoryDescription();
+        centerActiveCategoryFilter();
+        if (!hasLoadedPosts) return;
+
+        grid.querySelector('[data-filter-empty]')?.remove();
+        const cards = getCards();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardCategory = String(card.dataset.recommendationCategory || '').trim();
+          const isVisible = !activeCategory || cardCategory === activeCategory;
+          card.hidden = !isVisible;
+          card.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+          if (isVisible) visibleCount += 1;
+        });
+
+        const categoryName = getCategoryLabel(activeCategory);
+        if (summary) summary.hidden = false;
+        if (count) {
+          count.textContent = activeCategory
+            ? `${categoryName} 호텔 추천 글 ${visibleCount}개를 모아봤어요.`
+            : `하노이 호텔 추천 글 ${allPostsTotal || visibleCount}개를 모아봤어요.`;
+        }
+
+        if (!visibleCount) {
+          renderEmptyMessage(activeCategory);
+        }
+      };
+
+      const loadAllPostsOnce = async (initialCategory = '') => {
+        if (!grid) return;
+        grid.setAttribute('aria-busy', 'true');
+        grid.innerHTML = renderArchiveSkeleton('하노이 호텔 추천 글을 불러오는 중입니다.');
+        if (summary) summary.hidden = true;
+        if (count) count.textContent = '';
+
+        let offset = 0;
+        let html = '';
+        let total = 0;
+        let guard = 0;
+
+        while (guard < 20) {
+          const data = await fetchJson(offset);
+          if (!data.ok) break;
+          if (typeof data.total === 'number') total = data.total;
+          if (data.html) html += data.html;
+          if (!data.hasMore) break;
+          const nextOffset = Number(data.nextOffset || 0);
+          if (nextOffset <= offset) break;
+          offset = nextOffset;
+          guard += 1;
+        }
+
+        allPostsTotal = total || 0;
+        hasLoadedPosts = true;
+
+        if (!html) {
+          grid.innerHTML = '';
+          grid.setAttribute('aria-busy', 'false');
+          applyCategoryFilter(activeCategory || initialCategory);
+          return;
+        }
+
+        grid.innerHTML = html;
+        grid.setAttribute('aria-busy', 'false');
+        if (!allPostsTotal) allPostsTotal = getCards().length;
+        applyCategoryFilter(activeCategory || initialCategory);
+      };
+
+      filterWrap?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-category-filter-value]');
+        if (!button) return;
+        applyCategoryFilter(button.dataset.categoryFilterValue || '', { updateUrl: true });
+      });
+
+      window.addEventListener('popstate', () => {
+        applyCategoryFilter(getCategoryFromUrl(), { updateUrl: false });
+      });
+
+      const init = async () => {
+        const requestedCategory = getCategoryFromUrl();
+        activeCategory = resolveCategory(requestedCategory);
+        renderCategoryFilter();
+        renderCategoryDescription();
+        centerActiveCategoryFilter();
+
+        const fetchedCategoryItems = await fetchSettings();
+        if (fetchedCategoryItems.length) categoryItems = fetchedCategoryItems;
+        const requestedCategoryAfterSettings = getCategoryFromUrl();
+        const initialCategory = resolveCategory(requestedCategoryAfterSettings);
+        activeCategory = initialCategory;
+        if (requestedCategoryAfterSettings && requestedCategoryAfterSettings !== initialCategory) {
+          updateCategoryUrl('', true);
+        }
+        renderCategoryFilter();
+        renderCategoryDescription();
+        centerActiveCategoryFilter();
+        await loadAllPostsOnce(initialCategory);
+      };
+
+      init();
+    })();
+  </script>
 </body>
 </html>
