@@ -375,6 +375,12 @@ function buildPostsHeroNav(categories = []) {
       hotel_intro: '/destinations/kaohsiung/hotels/',
       fallback: '/destinations/kaohsiung/hotels/',
       fallbackLabel: '가오슝 호텔 글 더 보기 →'
+    },
+    hualien: {
+      top5_series: '/destinations/hualien/hotel-recommendations/',
+      hotel_intro: '/destinations/hualien/hotels/',
+      fallback: '/destinations/hualien/hotels/',
+      fallbackLabel: '화렌 호텔 글 더 보기 →'
     }
 
 
