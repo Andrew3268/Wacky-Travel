@@ -82,11 +82,11 @@ const cityConfig = {
       ]
     },
     nakasuKawabata: {
-      name: "나카스&카와바타",
+      name: "나카스 & 카와바타",
       regionSlug: "나카스카와바타",
-      regionSlugAliases: ["nakasu-kawabata", "나카스-카와바타", "나카스&카와바타"],
+      regionSlugAliases: ["nakasu-kawabata", "나카스-카와바타", "나카스 & 카와바타"],
       label: "야경과 맛집, 도보 중심 밤 동선에 강한 위치",
-      summary: "저녁 식사, 포장마차, 강변 야경, 캐널시티 동선이 중요하다면 나카스&카와바타가 잘 맞습니다.",
+      summary: "저녁 식사, 포장마차, 강변 야경, 캐널시티 동선이 중요하다면 나카스 & 카와바타가 잘 맞습니다.",
       leadTitle: "밤에도 숙소로 돌아오는 길이 짧은 위치입니다.",
       leadText: "나카스 강변, 카와바타 상점가, 캐널시티, 텐진 남쪽까지 걸어서 연결하기 좋습니다. 친구 여행이나 맛집 중심 일정에서 체감 만족도가 높습니다.",
       stayRange: [
@@ -109,9 +109,9 @@ const cityConfig = {
       chips: ["맛집", "야경", "포장마차", "캐널시티", "친구 여행"],
       compareGood: "저녁 이후 동선이 짧아 식사와 야경을 즐긴 뒤 숙소로 돌아오기 편합니다.",
       compareCaution: "번화가에 가까울수록 소음과 주변 분위기 호불호가 생길 수 있습니다.",
-      mismatchNote: "이번 답변에서 조용함, 가족형 여유, 공항 이동을 더 중요하게 골랐다면 나카스&카와바타는 주의해서 비교해야 합니다.",
+      mismatchNote: "이번 답변에서 조용함, 가족형 여유, 공항 이동을 더 중요하게 골랐다면 나카스 & 카와바타는 주의해서 비교해야 합니다.",
       hotels: [
-        { name: "더 라이블리 후쿠오카 하카타", tag: "나카스 감성형", location: "나카스&카와바타 권역", reason: "나카스와 카와바타를 중심으로 도보 여행을 즐기고 싶은 여행자에게 어울립니다.", meta: ["나카스", "감성", "도보 동선"], url: "/post/the-lively-fukuoka-hakata" },
+        { name: "더 라이블리 후쿠오카 하카타", tag: "나카스 감성형", location: "나카스 & 카와바타 권역", reason: "나카스와 카와바타를 중심으로 도보 여행을 즐기고 싶은 여행자에게 어울립니다.", meta: ["나카스", "감성", "도보 동선"], url: "/post/the-lively-fukuoka-hakata" },
         { name: "미쓰이 가든 호텔 후쿠오카 나카스", tag: "나카스 중심", location: "나카스 권역", reason: "맛집과 야경 동선을 짧게 잡고 싶은 커플·친구 여행에 비교하기 좋습니다.", meta: ["나카스", "맛집", "커플"], url: "/post/mitsui-garden-hotel-fukuoka-nakasu" },
         { name: "호텔 리솔 트리니티 하카타", tag: "번화가 접근", location: "나카스카와바타 주변", reason: "나카스 접근성과 대중교통 동선을 함께 보고 싶은 경우 후보로 넣기 좋습니다.", meta: ["역세권", "밤 동선", "실속"], url: "/post/hotel-resol-trinity-hakata" },
         { name: "호텔 비스타 후쿠오카 나카스카와바타", tag: "카와바타 도보권", location: "카와바타 상점가 주변", reason: "나카스와 카와바타 상점가를 함께 이용하고 싶은 여행자에게 잘 맞습니다.", meta: ["카와바타", "상점가", "도보"], url: "/post/hotel-vista-fukuoka-nakasu-kawabata" },
@@ -156,11 +156,11 @@ const cityConfig = {
       ]
     },
     yakuinWatanabedori: {
-      name: "야쿠인 &와타나베도리",
+      name: "야쿠인 & 와타나베도리",
       regionSlug: "야쿠인-와타나베도리",
       regionSlugAliases: ["yakuin-watanabedori", "yakuin-watanabe-dori", "야쿠인와타나베도리", "야쿠인-와타나베-도리"],
       label: "조용한 도심 분위기와 가격 균형을 잡기 좋은 위치",
-      summary: "텐진 접근성은 유지하면서 차분한 숙박 분위기와 실속을 원한다면 야쿠인 &와타나베도리가 잘 맞습니다.",
+      summary: "텐진 접근성은 유지하면서 차분한 숙박 분위기와 실속을 원한다면 야쿠인 & 와타나베도리가 잘 맞습니다.",
       leadTitle: "번화가 바로 앞보다 한 박자 여유로운 도심 숙소를 찾기 좋습니다.",
       leadText: "야쿠인과 와타나베도리 주변은 텐진·나카스 접근성이 있으면서도 숙박 분위기가 비교적 차분합니다. 재방문 여행자나 숙소비와 분위기를 함께 보는 여행자에게 잘 맞습니다.",
       stayRange: [
@@ -183,7 +183,7 @@ const cityConfig = {
       chips: ["가성비", "차분함", "텐진 접근", "재방문", "커플"],
       compareGood: "중심가 접근성을 유지하면서 숙소비와 분위기의 균형을 잡기 좋습니다.",
       compareCaution: "하카타역과 나카스만 계속 오가는 첫 여행이면 이동이 애매하게 느껴질 수 있습니다.",
-      mismatchNote: "이번 답변에서 공항 이동, 근교 이동, 밤거리 최단 동선을 많이 골랐다면 야쿠인 &와타나베도리는 2순위 후보입니다.",
+      mismatchNote: "이번 답변에서 공항 이동, 근교 이동, 밤거리 최단 동선을 많이 골랐다면 야쿠인 & 와타나베도리는 2순위 후보입니다.",
       hotels: [
         { name: "호텔 몬토레 후쿠오카", tag: "와타나베도리 중심", location: "와타나베도리 권역", reason: "텐진 접근성과 차분한 도심 숙박을 함께 보고 싶은 여행자에게 잘 맞습니다.", meta: ["와타나베도리", "도심", "커플"], url: "/post/hotel-monterey-fukuoka" },
         { name: "호텔 몬테 에르마나 후쿠오카", tag: "실속 도심형", location: "와타나베도리 주변", reason: "숙소비와 위치 균형을 함께 보고 싶은 여행자에게 비교하기 좋은 후보입니다.", meta: ["가성비", "와타나베도리", "차분함"], url: "/post/hotel-monte-hermana-fukuoka" },
@@ -193,11 +193,11 @@ const cityConfig = {
       ]
     },
     ohoriMomochi: {
-      name: "오호리&모모치",
+      name: "오호리 & 모모치",
       regionSlug: "오호리모모치",
-      regionSlugAliases: ["ohori-momochi", "오호리-모모치", "오호리&모모치"],
+      regionSlugAliases: ["ohori-momochi", "오호리-모모치", "오호리 & 모모치"],
       label: "공원과 해변, 가족 여행의 여유를 만들기 좋은 위치",
-      summary: "오호리공원, 모모치 해변, 후쿠오카타워를 여유롭게 넣는 일정이라면 오호리&모모치가 잘 맞습니다.",
+      summary: "오호리공원, 모모치 해변, 후쿠오카타워를 여유롭게 넣는 일정이라면 오호리 & 모모치가 잘 맞습니다.",
       leadTitle: "도심 번화가보다 느린 일정과 휴식감이 강한 위치입니다.",
       leadText: "오호리공원 산책, 모모치 해변, 후쿠오카타워, 돔 주변 일정이 핵심이라면 도심을 매번 오가는 피로를 줄일 수 있습니다. 아이 동반 가족이나 여유로운 여행자에게 특히 좋습니다.",
       stayRange: [
@@ -220,7 +220,7 @@ const cityConfig = {
       chips: ["가족여행", "오호리공원", "모모치", "해변", "여유"],
       compareGood: "도심보다 여유롭고 공원·해변 중심의 하루 흐름을 만들기 좋습니다.",
       compareCaution: "하카타·텐진·나카스 중심 일정이 많다면 이동 시간이 길어질 수 있습니다.",
-      mismatchNote: "이번 답변에서 맛집, 쇼핑, 공항 이동을 강하게 골랐다면 오호리&모모치는 특수 목적형 후보에 가깝습니다.",
+      mismatchNote: "이번 답변에서 맛집, 쇼핑, 공항 이동을 강하게 골랐다면 오호리 & 모모치는 특수 목적형 후보에 가깝습니다.",
       hotels: [
         { name: "힐튼 후쿠오카 씨호크", tag: "모모치 대표형", location: "모모치·페이페이돔 주변", reason: "모모치 해변과 돔 주변 일정, 가족 여행을 함께 고려할 때 대표 후보가 됩니다.", meta: ["모모치", "가족", "전망"], url: "/post/hilton-fukuoka-sea-hawk" },
         { name: "더 레지덴셜 스위트 후쿠오카", tag: "가족형 객실", location: "모모치·니시진 권역", reason: "객실 여유와 가족형 숙박을 우선하는 경우 비교하기 좋습니다.", meta: ["가족", "객실 여유", "모모치"], url: "/post/the-residential-suites-fukuoka" },
@@ -498,7 +498,7 @@ function applyFukuokaAccuracyAdjustments(scores) {
     addAreaScore(scores, "hakata", 2);
   }
 
-  // 나카스&카와바타는 밤 일정·맛집·친구 여행일 때 텐진과 확실히 갈라지도록 보정합니다.
+  // 나카스 & 카와바타는 밤 일정·맛집·친구 여행일 때 텐진과 확실히 갈라지도록 보정합니다.
   if (nightFood && cityOnly) {
     addAreaScore(scores, "nakasuKawabata", 4);
   }
@@ -514,7 +514,7 @@ function applyFukuokaAccuracyAdjustments(scores) {
     addAreaScore(scores, "tenjin", 2);
   }
 
-  // 오호리&모모치는 가족 여행과 서쪽 권역 일정이 함께 있을 때 강하게 반응합니다.
+  // 오호리 & 모모치는 가족 여행과 서쪽 권역 일정이 함께 있을 때 강하게 반응합니다.
   if (family && ohoriCore) {
     addAreaScore(scores, "ohoriMomochi", 5);
   }
@@ -523,7 +523,7 @@ function applyFukuokaAccuracyAdjustments(scores) {
     addAreaScore(scores, "hakata", 1);
   }
 
-  // 야쿠인 &와타나베도리는 재방문·차분함·예산 절약뿐 아니라 텐진 접근형 도심 여행까지 반영합니다.
+  // 야쿠인 & 와타나베도리는 재방문·차분함·예산 절약뿐 아니라 텐진 접근형 도심 여행까지 반영합니다.
   if (quietStay && budgetSave) {
     addAreaScore(scores, "yakuinWatanabedori", 4);
     addAreaScore(scores, "gion", 1);
@@ -844,15 +844,15 @@ function getPersuasiveContent(area, rankedAreas) {
       conclusionText: "쇼핑, 맛집, 카페, 도심 분위기가 핵심이라면 텐진이 좋습니다. 공항 이동이나 유후인·다자이후 같은 근교 일정이 많다면 하카타도 함께 보세요."
     },
     nakasuKawabata: {
-      intro: "저녁 식사, 포장마차, 강변 야경, 늦은 귀가가 중요하면 나카스&카와바타가 강합니다. 숙소로 돌아오는 길이 짧아 밤 시간을 더 편하게 쓸 수 있습니다.",
+      intro: "저녁 식사, 포장마차, 강변 야경, 늦은 귀가가 중요하면 나카스 & 카와바타가 강합니다. 숙소로 돌아오는 길이 짧아 밤 시간을 더 편하게 쓸 수 있습니다.",
       reasons: [
         { title: "저녁 이후 동선이 짧습니다", text: "나카스 강변, 포장마차, 식당가를 이용한 뒤 택시나 긴 도보 없이 숙소로 돌아가기 쉽습니다." },
         { title: "캐널시티와 상점가를 묶기 좋습니다", text: "캐널시티, 카와바타 상점가, 나카스 야경을 한 흐름으로 연결하기 좋아 짧은 여행에서도 체류감이 큽니다." },
         { title: "친구 여행 만족도가 높습니다", text: "늦은 시간까지 식사와 산책을 넣기 좋아 일정을 빽빽하게 쓰는 여행자에게 잘 맞습니다." },
         { title: "소음 확인은 필수입니다", text: "나카스 중심 저층 객실은 밤 소음 호불호가 생길 수 있습니다. 조용함이 중요하면 카와바타 쪽이나 한 블록 떨어진 위치가 낫습니다." }
       ],
-      conclusionTitle: "나카스&카와바타를 1순위로 두면 좋은 여행",
-      conclusionText: "맛집과 밤 동선이 핵심이면 만족도가 높습니다. 부모님 동반, 아이 동반, 조용한 휴식이 우선이면 하카타·기온·오호리&모모치 쪽도 같이 비교하세요."
+      conclusionTitle: "나카스 & 카와바타를 1순위로 두면 좋은 여행",
+      conclusionText: "맛집과 밤 동선이 핵심이면 만족도가 높습니다. 부모님 동반, 아이 동반, 조용한 휴식이 우선이면 하카타·기온·오호리 & 모모치 쪽도 같이 비교하세요."
     },
     gion: {
       intro: "하카타와 나카스 사이에서 균형을 잡고 싶다면 기온이 좋습니다. 너무 번잡하지 않으면서 하카타역, 캐널시티, 나카스 접근성을 모두 가져갈 수 있습니다.",
@@ -866,25 +866,25 @@ function getPersuasiveContent(area, rankedAreas) {
       conclusionText: "하카타와 나카스 사이의 균형, 가성비, 차분한 도심 접근성을 함께 원할 때 좋습니다. 특정 목적이 강한 일정이라면 해당 목적에 더 가까운 지역도 함께 보세요."
     },
     yakuinWatanabedori: {
-      intro: "번화가 바로 앞은 부담스럽지만 텐진 접근성은 포기하고 싶지 않다면 야쿠인 &와타나베도리가 좋습니다. 숙소비와 분위기의 균형을 잡기 쉬운 도심형 대안입니다.",
+      intro: "번화가 바로 앞은 부담스럽지만 텐진 접근성은 포기하고 싶지 않다면 야쿠인 & 와타나베도리가 좋습니다. 숙소비와 분위기의 균형을 잡기 쉬운 도심형 대안입니다.",
       reasons: [
         { title: "차분한 도심 분위기입니다", text: "텐진과 가깝지만 숙소 주변 분위기는 조금 더 여유로워 번잡함을 줄이고 싶은 여행자에게 맞습니다." },
         { title: "실속형 호텔을 찾기 좋습니다", text: "하카타·텐진 핵심부보다 가격 부담을 낮추면서도 주요 도심 동선을 크게 잃지 않습니다." },
         { title: "재방문 여행에 잘 맞습니다", text: "대표 중심지를 이미 경험했다면 야쿠인과 와타나베도리의 생활권 분위기가 더 만족스럽게 느껴질 수 있습니다." },
         { title: "첫 여행자는 동선을 확인해야 합니다", text: "하카타역, 나카스, 공항을 자주 오가면 이동이 애매할 수 있으니 실제 지하철역과 도보 시간을 확인해야 합니다." }
       ],
-      conclusionTitle: "야쿠인 &와타나베도리를 1순위로 두면 좋은 여행",
+      conclusionTitle: "야쿠인 & 와타나베도리를 1순위로 두면 좋은 여행",
       conclusionText: "가성비, 조용한 도심, 커플 여행, 재방문 여행이라면 좋은 선택입니다. 첫 방문에서 대표 동선을 빠르게 훑는 일정이면 하카타나 기온도 함께 비교하세요."
     },
     ohoriMomochi: {
-      intro: "공원, 해변, 후쿠오카타워, 가족 여행의 여유가 중요하다면 오호리&모모치가 잘 맞습니다. 도심 번화가보다 쉬는 시간을 분명하게 만들 수 있습니다.",
+      intro: "공원, 해변, 후쿠오카타워, 가족 여행의 여유가 중요하다면 오호리 & 모모치가 잘 맞습니다. 도심 번화가보다 쉬는 시간을 분명하게 만들 수 있습니다.",
       reasons: [
         { title: "가족과 걷기 좋은 흐름입니다", text: "오호리공원과 모모치 해변 주변은 번화가보다 여유가 있어 아이 동반 일정에서 체감 피로가 낮습니다." },
         { title: "서쪽 권역 일정이 편해집니다", text: "후쿠오카타워, 페이페이돔, 모모치 해변, 오호리공원을 중심으로 움직이면 도심 왕복 시간을 줄일 수 있습니다." },
         { title: "숙박 분위기가 차분합니다", text: "하카타·텐진·나카스보다 밤 분위기가 덜 복잡해 쉬는 시간을 확보하기 좋습니다." },
         { title: "첫 여행 전체 동선은 길어질 수 있습니다", text: "하카타, 텐진, 나카스를 매일 오가야 한다면 이동 시간이 늘어납니다. 대표 명소를 짧게 많이 보는 일정에는 불리할 수 있습니다." }
       ],
-      conclusionTitle: "오호리&모모치를 1순위로 두면 좋은 여행",
+      conclusionTitle: "오호리 & 모모치를 1순위로 두면 좋은 여행",
       conclusionText: "가족 여행, 공원 산책, 해변 일정, 여유로운 숙박이 핵심이라면 좋습니다. 쇼핑·맛집·공항 이동이 더 중요하다면 텐진이나 하카타가 더 효율적입니다."
     }
   };
@@ -908,6 +908,119 @@ function getPersuasiveContent(area, rankedAreas) {
     intro: [content.intro, fitText].filter(Boolean).join(" "),
     conclusionText: [content.conclusionText, alternativeText].filter(Boolean).join(" ")
   };
+}
+
+
+function renderSimpleList(listId, items) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = "";
+
+  (Array.isArray(items) ? items : []).forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.appendChild(li);
+  });
+}
+
+function renderChipList(listId, items) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = "";
+
+  (Array.isArray(items) ? items : []).forEach((item) => {
+    const chip = document.createElement("span");
+    chip.textContent = item;
+    list.appendChild(chip);
+  });
+}
+
+function getAnswerSignalSummary() {
+  const selected = answers
+    .map((_, questionIndex) => {
+      const question = cityConfig.questions[questionIndex];
+      const option = getSelectedOption(questionIndex);
+      if (!question || !option) return null;
+      return {
+        question: question.title,
+        answer: option.title
+      };
+    })
+    .filter(Boolean);
+
+  const chips = selected
+    .map((item) => item.answer)
+    .filter((item, index, arr) => arr.indexOf(item) === index)
+    .slice(0, 6);
+
+  const mainSignals = chips.slice(0, 4);
+  const sentence = mainSignals.length
+    ? `${mainSignals.join(" · ")} 조건을 기준으로 이동 편의, 숙소 주변 분위기, 예산 균형을 함께 계산했습니다.`
+    : "선택한 답변을 기준으로 이동 편의, 숙소 주변 분위기, 예산 균형을 함께 계산했습니다.";
+
+  return { selected, chips, sentence };
+}
+
+function renderAnswerSummary(area) {
+  const box = document.getElementById("resultAnswerSummary");
+  const chips = document.getElementById("selectedAnswerList");
+  const signal = getAnswerSignalSummary();
+
+  if (!box || !chips) return;
+
+  chips.innerHTML = "";
+  signal.chips.forEach((item) => {
+    const chip = document.createElement("span");
+    chip.textContent = item;
+    chips.appendChild(chip);
+  });
+
+  setText("selectedAnswerText", `${signal.sentence} 그래서 ${withJosa(area.name, "이/가")} 이번 일정의 1순위 후보로 나왔습니다.`);
+}
+
+function getPracticalGuideDesc(area) {
+  if (!area) return "";
+  return `${withJosa(area.name, "을/를")} 고를 때는 지역명보다 실제 역 출구, 도보 시간, 밤 동선, 객실 크기를 함께 확인하는 것이 좋습니다.`;
+}
+
+function renderPracticalGuide(area) {
+  setText("practicalGuideDesc", getPracticalGuideDesc(area));
+  renderSimpleList("stayRangeList", area.stayRange);
+  renderSimpleList("avoidRangeList", area.avoidRange);
+  renderSimpleList("bookingTipList", area.bookingTips);
+  renderChipList("bestForList", area.bestFor);
+  renderChipList("notForList", area.notFor);
+}
+
+function getAlternativeDetail(topArea, rankedAreas) {
+  const second = rankedAreas?.[1];
+  if (!topArea || !second) return null;
+
+  const gap = topArea.score - second.score;
+  const title = gap <= 2
+    ? `${second.name}도 거의 같은 후보입니다`
+    : `${second.name}도 함께 비교해보세요`;
+
+  const text = gap <= 2
+    ? `${withJosa(topArea.name, "이/가")} 가장 잘 맞지만 점수 차이가 크지 않습니다. ${second.compareGood || second.summary} 호텔 가격이나 객실 크기 차이가 크다면 ${second.name}도 충분히 선택할 만합니다.`
+    : `${topArea.name} 조건이 더 강하게 나왔지만, 일정 일부가 ${second.name} 쪽에 가까우면 대안이 될 수 있습니다. ${second.compareGood || second.summary}`;
+
+  return { title, text };
+}
+
+function renderAlternativeArea(topArea, rankedAreas) {
+  const box = document.getElementById("alternativeAreaBox");
+  if (!box) return;
+
+  const detail = getAlternativeDetail(topArea, rankedAreas);
+  if (!detail) {
+    box.style.display = "none";
+    return;
+  }
+
+  box.style.display = "block";
+  setText("alternativeAreaTitle", detail.title);
+  setText("alternativeAreaText", detail.text);
 }
 
 function renderPersuasiveResult(topArea, rankedAreas) {
@@ -956,6 +1069,9 @@ function showResult() {
   setText("resultLeadTitle", topArea.leadTitle);
   setText("resultLeadText", topArea.leadText);
 
+  renderAnswerSummary(topArea);
+  renderPracticalGuide(topArea);
+  renderAlternativeArea(topArea, rankedAreas);
   renderPersuasiveResult(topArea, rankedAreas);
   renderHotelCards(topArea);
   renderRelatedPosts(topArea);
