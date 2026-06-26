@@ -935,6 +935,27 @@ function renderChipList(listId, items) {
   });
 }
 
+function getQuestionSignalLabel(questionIndex, questionTitle = "") {
+  const labels = [
+    "여행 경험",
+    "동행",
+    "핵심 목적",
+    "공항 이동",
+    "오호리·모모치",
+    "근교 일정",
+    "숙소 분위기",
+    "예산 기준"
+  ];
+
+  if (labels[questionIndex]) return labels[questionIndex];
+
+  return questionTitle
+    .replace(/^이번 후쿠오카 여행은 /, "")
+    .replace(/^이번 여행에서 /, "")
+    .replace(/[?？]$/g, "")
+    .trim() || "선택 조건";
+}
+
 function getAnswerSignalSummary() {
   const selected = answers
     .map((_, questionIndex) => {
@@ -942,20 +963,17 @@ function getAnswerSignalSummary() {
       const option = getSelectedOption(questionIndex);
       if (!question || !option) return null;
       return {
+        label: getQuestionSignalLabel(questionIndex, question.title),
         question: question.title,
         answer: option.title
       };
     })
     .filter(Boolean);
 
-  const chips = selected
-    .map((item) => item.answer)
-    .filter((item, index, arr) => arr.indexOf(item) === index)
-    .slice(0, 6);
-
+  const chips = selected.map((item) => `${item.label}: ${item.answer}`);
   const mainSignals = chips.slice(0, 4);
   const sentence = mainSignals.length
-    ? `${mainSignals.join(" · ")} 조건을 기준으로 이동 편의, 숙소 주변 분위기, 예산 균형을 함께 계산했습니다.`
+    ? `${mainSignals.join(" · ")} 같은 주요 조건을 기준으로 이동 편의, 숙소 주변 분위기, 예산 균형을 함께 계산했습니다.`
     : "선택한 답변을 기준으로 이동 편의, 숙소 주변 분위기, 예산 균형을 함께 계산했습니다.";
 
   return { selected, chips, sentence };
@@ -1070,10 +1088,10 @@ function showResult() {
   setText("resultLeadText", topArea.leadText);
 
   renderAnswerSummary(topArea);
-  renderPracticalGuide(topArea);
-  renderAlternativeArea(topArea, rankedAreas);
   renderPersuasiveResult(topArea, rankedAreas);
+  renderPracticalGuide(topArea);
   renderHotelCards(topArea);
+  renderAlternativeArea(topArea, rankedAreas);
   renderRelatedPosts(topArea);
 
   progressText.textContent = "추천 결과가 나왔어요!";

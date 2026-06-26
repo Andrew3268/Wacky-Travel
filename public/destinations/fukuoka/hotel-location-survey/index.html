@@ -14,7 +14,7 @@
 <meta content="/destinations/fukuoka/hotel-location-survey/" property="og:url"/>
 <meta content="ko_KR" property="og:locale"/>
 <link href="/favicon.ico" rel="icon" sizes="any"/>
-<link href="/assets/css/travel.css?v=20260626FukuokaSurveyResultV1" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260626FukuokaSurveyResultV2" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"후쿠오카 숙소 위치 추천 서베이","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":"ko-KR","url":"/destinations/fukuoka/hotel-location-survey/","description":"여행 일정과 동행자에 맞춰 후쿠오카 숙소 위치를 추천하는 간단한 서베이입니다."}</script>
 </head>
 <body class="wt-location-survey-page">
@@ -67,6 +67,18 @@
 <div class="wt-answer-chip-list" id="selectedAnswerList"></div>
 <p class="wt-result-answer-text" id="selectedAnswerText"></p>
 </div>
+<section aria-labelledby="resultWhyTitle" class="wt-result-story">
+<div class="wt-result-story-head">
+<p class="wt-section-eyebrow">추천 이유</p>
+<h3 class="wt-result-story-title" id="resultWhyTitle">왜 이 지역이 맞을까요?</h3>
+<p class="wt-result-story-desc" id="resultWhyText"></p>
+</div>
+<div class="wt-reason-list" id="reasonCardList"></div>
+<div class="wt-decision-box">
+<strong id="decisionConclusionTitle"></strong>
+<p id="decisionConclusionText"></p>
+</div>
+</section>
 <div class="wt-result-practical" id="resultPracticalGuide">
 <div class="wt-practical-head">
 <p class="wt-section-eyebrow">숙소 위치 체크</p>
@@ -96,25 +108,6 @@
 </article>
 </div>
 </div>
-<div class="wt-alternative-box" id="alternativeAreaBox">
-<div>
-<p class="wt-section-eyebrow">함께 비교할 지역</p>
-<h3 class="wt-result-mini-title" id="alternativeAreaTitle"></h3>
-<p id="alternativeAreaText"></p>
-</div>
-</div>
-<section aria-labelledby="resultWhyTitle" class="wt-result-story">
-<div class="wt-result-story-head">
-<p class="wt-section-eyebrow">추천 이유</p>
-<h3 class="wt-result-story-title" id="resultWhyTitle">왜 이 지역에 호텔을 잡는 게 좋을까요?</h3>
-<p class="wt-result-story-desc" id="resultWhyText"></p>
-</div>
-<div class="wt-reason-list" id="reasonCardList"></div>
-<div class="wt-decision-box">
-<strong id="decisionConclusionTitle"></strong>
-<p id="decisionConclusionText"></p>
-</div>
-</section>
 <div class="wt-hotel-section" id="hotelRecommendSection">
 <div class="wt-section-heading">
 <p class="wt-section-eyebrow">추천 호텔 5곳</p>
@@ -122,6 +115,13 @@
 <p class="wt-section-desc" id="hotelSectionDesc"></p>
 </div>
 <div class="wt-hotel-grid" id="hotelCardList"></div>
+</div>
+<div class="wt-alternative-box" id="alternativeAreaBox">
+<div>
+<p class="wt-section-eyebrow">함께 비교할 지역</p>
+<h3 class="wt-result-mini-title" id="alternativeAreaTitle"></h3>
+<p id="alternativeAreaText"></p>
+</div>
 </div>
 <div class="wt-post-list-section" id="relatedPostSection">
 <div class="wt-section-heading">
@@ -140,6 +140,6 @@
 </section>
 </div>
 </main>
-<script defer="" src="/assets/js/destinations/fukuoka/hotel-location-survey.js?v=20260626FukuokaSurveyResultV1"></script>
+<script defer="" src="/assets/js/destinations/fukuoka/hotel-location-survey.js?v=20260626FukuokaSurveyResultV2"></script>
 </body>
 </html>

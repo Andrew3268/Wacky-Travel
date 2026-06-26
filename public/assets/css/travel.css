@@ -16008,7 +16008,13 @@ main.travel-page .wt-city-guide-related__card p {
   color: #0f4c81;
   font-size: 0.88rem;
   font-weight: 800;
+  line-height: 1.45;
   letter-spacing: -0.02em;
+  white-space: normal;
+}
+
+.wt-location-page .wt-answer-chip-list span {
+  border-radius: 16px;
 }
 
 .wt-location-page .wt-practical-chip-list--muted span {
