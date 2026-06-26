@@ -433,6 +433,10 @@ function buildPostsHeroNav(categories = []) {
     footer.hidden = false;
   };
 
+
+
+  const sectionHasStaticPostFallback = (section) => Boolean(section?.querySelector?.('[data-city-post-static-fallback]'));
+
   const setActiveTab = (root, type) => {
     if (!root) return;
     root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
@@ -485,7 +489,8 @@ function buildPostsHeroNav(categories = []) {
       .map((item) => item.type);
     const hasAnyContent = availableTypes.length > 0;
 
-    if (section) section.hidden = !hasAnyContent;
+    const hasStaticFallback = sectionHasStaticPostFallback(section);
+    if (section) section.hidden = !hasAnyContent && !hasStaticFallback;
     root.hidden = !hasAnyContent;
     syncHotelHeroButtonsWithSection(section);
     if (!hasAnyContent) return;
@@ -570,7 +575,7 @@ function buildPostsHeroNav(categories = []) {
 
   cityPostRoots.forEach((root) => {
     const section = root.closest('.wt-city-dynamic-section');
-    if (section) section.hidden = true;
+    if (section) section.hidden = !sectionHasStaticPostFallback(section);
 
     root.addEventListener('click', (event) => {
       const tabButton = event.target.closest('[data-city-post-tab]');
