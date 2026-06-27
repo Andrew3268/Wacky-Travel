@@ -17280,3 +17280,37 @@ body.wt-location-survey-page--app .detailed-info-section .result-badge {
   word-break: keep-all;
 }
 /* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V5 */
+
+/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V6 */
+body.wt-location-survey-page--app .wt-result-lead--simple {
+  padding: 18px 18px 17px;
+  border: 1px solid #e2e6ee !important;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple::before {
+  display: none !important;
+}
+
+body.wt-location-survey-page--app .tab-menu-container {
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .result-upper-section {
+  align-items: flex-start !important;
+  text-align: left;
+}
+
+body.wt-location-survey-page--app .result-upper-section .result-badge,
+body.wt-location-survey-page--app .result-upper-section .result-destination {
+  text-align: left;
+}
+
+body.wt-location-survey-page--app .detailed-info-section .result-badge {
+  background: #f6f8fb;
+  color: #3f4652;
+  border: 1px solid #e8ebf1;
+}
+/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V6 */
