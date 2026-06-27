@@ -1151,6 +1151,20 @@ function renderAlternativeArea(topArea, rankedAreas) {
   setText("alternativeAreaText", detail.text);
 }
 
+const emotionalSummaryByArea = {
+  hakata: "공항과 하카타역을 복잡하게 헤매지 않고, 짧은 후쿠오카 일정 안에서 근교 이동과 도심 동선을 단정하게 묶고 싶은 당신에게 가장 편안하게 맞아떨어지는 안정적인 시작점입니다.",
+  tenjin: "낮에는 쇼핑 거리와 감각적인 카페를 가볍게 오가고, 저녁에는 맛집과 도심 분위기를 숙소 가까이에서 즐기고 싶은 당신에게 자연스럽게 어울리는 활기 있는 중심지입니다.",
+  nakasuKawabata: "강변 야경과 포장마차의 온기, 늦은 저녁까지 이어지는 후쿠오카의 맛집 동선을 숙소 가까이에서 누리고 싶은 당신에게 잘 맞는 생동감 있는 머무름의 자리입니다.",
+  gion: "하카타의 편리함과 나카스의 분위기 사이에서 너무 번잡하지 않게 머물고, 캐널시티와 구시다신사 주변을 천천히 걸어보고 싶은 당신에게 차분하게 맞는 균형형 위치입니다.",
+  yakuinWatanabedori: "텐진의 도심 접근성은 놓치지 않으면서도 번화가 한복판의 소란은 살짝 비켜가고 싶은 당신에게, 조용한 카페 거리와 실속 있는 숙박 감각이 함께 맞물리는 위치입니다.",
+  ohoriMomochi: "도심의 빠른 흐름에서 잠시 벗어나 오호리공원의 산책길과 모모치 해변의 여유를 일정 안에 담고 싶은 당신에게, 후쿠오카를 조금 더 느리게 즐기게 해주는 편안한 쉼의 위치입니다."
+};
+
+function getEmotionalSummary(area) {
+  if (!area || !area.key) return area?.summary || "이번 여행 스타일에 맞는 숙소 위치를 찾았습니다.";
+  return emotionalSummaryByArea[area.key] || area.summary;
+}
+
 function prepareResultContent() {
   const rankedAreas = calculateScores();
   const topArea = rankedAreas[0];
@@ -1159,7 +1173,7 @@ function prepareResultContent() {
 
   setText("resultTitle", topArea.name);
   setText("detailResultTitle", topArea.name);
-  setText("resultSummary", topArea.summary);
+  setText("resultSummary", getEmotionalSummary(topArea));
   setText("resultLeadTitle", topArea.leadTitle);
   setText("resultLeadText", topArea.leadText);
 

@@ -17171,3 +17171,69 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link {
   }
 }
 /* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V3 */
+
+/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V4 */
+body.wt-location-survey-page--app .logo-icon--intro {
+  width: 92px;
+  height: 92px;
+  margin-bottom: 30px;
+}
+
+body.wt-location-survey-page--app .tab-menu-container {
+  border-bottom: 0;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.025);
+}
+
+body.wt-location-survey-page--app .tab-content-container {
+  padding: 14px 24px 18px;
+  background: #ffffff;
+}
+
+body.wt-location-survey-page--app .tab-panel {
+  padding: 20px 0 4px;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple {
+  border: 0 !important;
+  box-shadow: none;
+}
+
+body.wt-location-survey-page--app .wt-reason-card,
+body.wt-location-survey-page--app .wt-practical-card,
+body.wt-location-survey-page--app .wt-decision-box,
+body.wt-location-survey-page--app .wt-post-list a {
+  border: 0 !important;
+  border-radius: 18px;
+  background: #f8f9fb;
+  box-shadow: none;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card.wt-hotel-card--compact {
+  border: 0 !important;
+  background: #f8f9fb;
+}
+
+body.wt-location-survey-page--app .wt-practical-chip-list span,
+body.wt-location-survey-page--app .wt-hotel-meta span,
+body.wt-location-survey-page--app .wt-hotel-tag {
+  border: 0;
+  background: #ffffff;
+}
+
+body.wt-location-survey-page--app .simple-brief-text {
+  max-width: 334px;
+  margin-bottom: 20px;
+  color: #3f4249;
+  font-size: 15.8px;
+  line-height: 1.78;
+  letter-spacing: -0.03em;
+}
+
+body.wt-location-survey-page--app .wt-section-eyebrow {
+  margin-bottom: 8px;
+}
+/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V4 */
