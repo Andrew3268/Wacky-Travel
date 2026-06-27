@@ -1166,12 +1166,12 @@ function getEmotionalSummary(area) {
 }
 
 const resultBadgeByArea = {
-  hakata: "이동이 편한 하카타 중심 일정",
-  tenjin: "쇼핑과 맛집을 즐기기 좋은 텐진",
-  nakasuKawabata: "저녁 동선이 편한 나카스·카와바타",
-  gion: "하카타와 나카스 사이의 균형형 위치",
-  yakuinWatanabedori: "차분한 도심 숙소를 찾기 좋은 야쿠인",
-  ohoriMomochi: "여유로운 산책 동선의 오호리·모모치"
+  hakata: "하카타 중심 숙소가 잘 맞아요",
+  tenjin: "텐진 중심 숙소가 잘 맞아요",
+  nakasuKawabata: "나카스·카와바타 숙소가 잘 맞아요",
+  gion: "기온 주변 숙소가 잘 맞아요",
+  yakuinWatanabedori: "야쿠인·와타나베도리 숙소가 잘 맞아요",
+  ohoriMomochi: "오호리·모모치 숙소가 잘 맞아요"
 };
 
 function getResultBadgeText(area) {
