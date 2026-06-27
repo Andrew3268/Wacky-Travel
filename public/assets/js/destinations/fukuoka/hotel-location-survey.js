@@ -1089,7 +1089,7 @@ function renderHotelCards(area) {
   if (!hotelCardList) return;
 
   setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-  setText("hotelSectionDesc", "호텔 설명을 길게 늘어놓기보다, 위치와 핵심 성격만 빠르게 비교할 수 있게 정리했습니다.");
+  setText("hotelSectionDesc", "위치와 핵심 조건만 빠르게 비교할 수 있도록 간단히 정리했습니다.");
   hotelCardList.innerHTML = "";
 
   if (hotels.length === 0) {
@@ -1103,38 +1103,64 @@ function renderHotelCards(area) {
 
   hotels.forEach((hotel, index) => {
     const article = document.createElement("article");
+    const header = document.createElement("div");
+    const headerLeft = document.createElement("div");
     const rank = document.createElement("span");
-    const body = document.createElement("div");
     const name = document.createElement("h4");
-    const location = document.createElement("p");
-    const info = document.createElement("div");
-    const tag = document.createElement("span");
     const link = document.createElement("a");
+    const locationMain = document.createElement("div");
+    const station = document.createElement("span");
+    const separator = document.createElement("span");
+    const airport = document.createElement("span");
+    const tagList = document.createElement("div");
+    const metaItems = Array.isArray(hotel.meta) ? hotel.meta.filter(Boolean).slice(0, 2) : [];
+    const highlightText = hotel.tag || metaItems[0] || "추천 후보";
 
     article.className = "wt-hotel-card wt-hotel-card--compact";
+    header.className = "wt-hotel-card-header";
+    headerLeft.className = "wt-hotel-header-left";
     rank.className = "wt-hotel-rank";
-    body.className = "wt-hotel-compact-body";
     name.className = "wt-hotel-name";
-    location.className = "wt-hotel-location";
-    info.className = "wt-hotel-compact-info";
-    tag.className = "wt-hotel-tag";
     link.className = "wt-hotel-link";
+    locationMain.className = "wt-hotel-location-main";
+    station.className = "wt-hotel-station";
+    separator.className = "wt-hotel-separator";
+    airport.className = "wt-hotel-airport";
+    tagList.className = "wt-hotel-tag-list";
 
     rank.textContent = `${index + 1}`;
     name.textContent = hotel.name || "호텔 후보";
-    location.textContent = hotel.location || area.name;
-    tag.textContent = hotel.tag || (Array.isArray(hotel.meta) && hotel.meta[0]) || "추천 후보";
     link.href = hotel.url || "#";
-    link.textContent = "보기";
-    link.setAttribute("aria-label", `${hotel.name || "호텔 후보"} 자세히 보기`);
+    link.textContent = "잔여 객실 확인";
+    link.setAttribute("aria-label", `${hotel.name || "호텔 후보"} 잔여 객실 확인`);
+    station.textContent = hotel.location || area.name;
+    separator.textContent = "|";
+    airport.textContent = highlightText;
 
-    info.appendChild(tag);
-    body.appendChild(name);
-    body.appendChild(location);
-    body.appendChild(info);
-    article.appendChild(rank);
-    article.appendChild(body);
-    article.appendChild(link);
+    headerLeft.appendChild(rank);
+    headerLeft.appendChild(name);
+    header.appendChild(headerLeft);
+    header.appendChild(link);
+
+    locationMain.appendChild(station);
+    locationMain.appendChild(separator);
+    locationMain.appendChild(airport);
+
+    metaItems.forEach((item) => {
+      const tag = document.createElement("span");
+      tag.className = "wt-hotel-tag wt-hotel-tag--base";
+      tag.textContent = item;
+      tagList.appendChild(tag);
+    });
+
+    const highlight = document.createElement("span");
+    highlight.className = "wt-hotel-tag wt-hotel-tag--highlight";
+    highlight.textContent = highlightText;
+    tagList.appendChild(highlight);
+
+    article.appendChild(header);
+    article.appendChild(locationMain);
+    article.appendChild(tagList);
     hotelCardList.appendChild(article);
   });
 }
