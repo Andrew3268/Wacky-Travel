@@ -17977,3 +17977,40 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlig
   }
 }
 /* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_STABLE_V10 */
+
+
+/* WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
+body.wt-location-survey-page--app .wt-hotel-card-list,
+body.wt-location-survey-page--app #hotelCardList {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-auto-rows: auto !important;
+  align-items: start !important;
+  gap: 12px !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card.wt-hotel-card--compact {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  align-self: start !important;
+  justify-self: stretch !important;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+  overflow: visible !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list {
+  margin-bottom: 0 !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact::before,
+body.wt-location-survey-page--app .wt-hotel-card--compact::after {
+  display: none !important;
+  content: none !important;
+}
+/* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
