@@ -16117,3 +16117,863 @@ main.travel-page .wt-city-guide-related__card p {
     grid-template-columns: 1fr;
   }
 }
+
+/* WACKYTRAVEL_FUKUOKA_SURVEY_APP_UI_V1 */
+body.wt-location-survey-page--app,
+body.wt-location-survey-page--app html {
+  width: 100%;
+}
+
+body.wt-location-survey-page--app {
+  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, system-ui, sans-serif;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+body.wt-location-survey-page--app .wt-location-app {
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+  padding: 0;
+  background: #f5f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.wt-location-survey-page--app .wt-app-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  height: 100dvh;
+  background: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  body.wt-location-survey-page--app .wt-app-container {
+    height: 85vh;
+    border-radius: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  }
+}
+
+body.wt-location-survey-page--app .page-view {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 24px 24px;
+  animation: wtSurveyFadeIn 0.4s ease-in-out forwards;
+  overflow: hidden;
+}
+
+body.wt-location-survey-page--app .page-view.active {
+  display: flex;
+}
+
+@keyframes wtSurveyFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body.wt-location-survey-page--app .header-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 40px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+body.wt-location-survey-page--app .close-btn {
+  border: 0;
+  background: transparent;
+  color: #86868b;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+body.wt-location-survey-page--app .main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+body.wt-location-survey-page--app .logo-icon {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 28px;
+}
+
+body.wt-location-survey-page--app .main-title {
+  margin: 0 0 18px;
+  color: #1d1d1f;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.045em;
+}
+
+body.wt-location-survey-page--app .sub-description {
+  max-width: 310px;
+  margin: 0;
+  color: #86868b;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+body.wt-location-survey-page--app .footer-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  flex-shrink: 0;
+}
+
+body.wt-location-survey-page--app .next-btn,
+body.wt-location-survey-page--app .primary-action-btn,
+body.wt-location-survey-page--app .secondary-action-btn,
+body.wt-location-survey-page--app .restart-btn {
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+body.wt-location-survey-page--app .next-btn {
+  width: 100%;
+  max-width: 220px;
+  height: 54px;
+  background: #1d1d1f;
+  color: #ffffff;
+  border: 0;
+  border-radius: 27px;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+body.wt-location-survey-page--app .next-btn:active,
+body.wt-location-survey-page--app .primary-action-btn:active,
+body.wt-location-survey-page--app .secondary-action-btn:active,
+body.wt-location-survey-page--app .restart-btn:active {
+  transform: scale(0.98);
+}
+
+body.wt-location-survey-page--app .result-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: #fff0f1;
+  color: #ff4b50;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+body.wt-location-survey-page--app .wt-progress {
+  width: 100%;
+  margin: 10px 0 22px;
+  flex-shrink: 0;
+}
+
+body.wt-location-survey-page--app .wt-progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+  color: #86868b;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+body.wt-location-survey-page--app .wt-progress-bar {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #e5e5ea;
+}
+
+body.wt-location-survey-page--app .wt-progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 2px;
+  background: #ff4b50;
+  transition: width 0.25s ease;
+}
+
+body.wt-location-survey-page--app .wt-question-scroll {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 0 18px;
+}
+
+body.wt-location-survey-page--app .wt-question-title {
+  margin: 0 auto 10px;
+  color: #1d1d1f;
+  font-size: clamp(22px, 6.2vw, 26px);
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.05em;
+  max-width: 330px;
+}
+
+body.wt-location-survey-page--app .wt-question-help {
+  max-width: 330px;
+  margin: 0 auto 24px;
+  color: #86868b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+body.wt-location-survey-page--app .wt-options {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 10px;
+  width: 100%;
+}
+
+body.wt-location-survey-page--app .wt-option {
+  width: 100%;
+  min-height: 70px;
+  padding: 15px 16px;
+  border: 1px solid #ececf0;
+  border-radius: 22px;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+}
+
+body.wt-location-survey-page--app .wt-option.is-selected {
+  border-color: rgba(255, 75, 80, 0.32);
+  background: #fff0f1;
+}
+
+body.wt-location-survey-page--app .wt-option-title {
+  width: 100%;
+  color: #1d1d1f;
+  font-size: 15.5px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  text-align: left;
+}
+
+body.wt-location-survey-page--app .wt-option-desc {
+  display: block !important;
+  margin-top: 5px;
+  color: #86868b;
+  font-size: 12.8px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+body.wt-location-survey-page--app .wt-survey-actions--split {
+  gap: 12px;
+  padding-top: 12px;
+  padding-bottom: 10px;
+}
+
+body.wt-location-survey-page--app .primary-action-btn,
+body.wt-location-survey-page--app .secondary-action-btn {
+  flex: 1;
+  height: 52px;
+  border-radius: 26px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+body.wt-location-survey-page--app .primary-action-btn {
+  border: 0;
+  background: #1d1d1f;
+  color: #ffffff;
+}
+
+body.wt-location-survey-page--app .primary-action-btn:disabled {
+  background: #d2d2d7;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+body.wt-location-survey-page--app .secondary-action-btn {
+  border: 1px solid #d2d2d7;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.wt-location-survey-page--app #loadingPage {
+  justify-content: center;
+}
+
+body.wt-location-survey-page--app .loader-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.wt-location-survey-page--app .loader-circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3.5px solid #f5f5f7;
+  border-top: 3.5px solid #ff4b50;
+  border-radius: 50%;
+  animation: wtSurveySpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+body.wt-location-survey-page--app .loader-circle.complete {
+  border-color: #25d366;
+  border-top-color: #25d366;
+  animation: wtSurveySpin 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+body.wt-location-survey-page--app .loader-icon-dynamic {
+  width: 42px;
+  height: 42px;
+  color: #1d1d1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: wtSurveyPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes wtSurveySpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes wtSurveyPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+body.wt-location-survey-page--app .loading-text {
+  height: 27px;
+  margin: 0 0 6px;
+  color: #1d1d1f;
+  font-size: 19px;
+  font-weight: 700;
+  transition: opacity 0.2s ease-in-out;
+}
+
+body.wt-location-survey-page--app .loading-sub-text {
+  height: 20px;
+  margin: 0;
+  color: #86868b;
+  font-size: 13.5px;
+  font-weight: 400;
+  transition: opacity 0.2s ease-in-out;
+}
+
+body.wt-location-survey-page--app .progress-bar-wrap {
+  width: 140px;
+  height: 4px;
+  margin-top: 24px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #e5e5ea;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+body.wt-location-survey-page--app .progress-bar-wrap.hide {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+body.wt-location-survey-page--app .progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: #ff4b50;
+}
+
+body.wt-location-survey-page--app #resultPage {
+  padding: 0;
+}
+
+body.wt-location-survey-page--app .scrollable-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.wt-location-survey-page--app .result-top-bar {
+  width: 100%;
+  padding: 20px 24px 0;
+  flex-shrink: 0;
+}
+
+body.wt-location-survey-page--app .simple-summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+  padding: 0 24px 52px;
+  animation: wtSurveyFadeIn 0.4s ease-in-out forwards;
+}
+
+body.wt-location-survey-page--app .result-destination {
+  margin: 0 0 16px;
+  color: #1d1d1f;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.055em;
+}
+
+body.wt-location-survey-page--app .simple-brief-text {
+  max-width: 320px;
+  margin: 0 0 18px;
+  color: #424245;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  text-align: center;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 0 28px;
+  padding: 18px;
+  border-radius: 24px;
+  background: #f5f5f7;
+  text-align: left;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #1d1d1f;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple p {
+  margin: 0;
+  color: #68686d;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+body.wt-location-survey-page--app .double-btn-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 340px;
+  justify-content: center;
+}
+
+body.wt-location-survey-page--app .detailed-info-section {
+  display: none;
+  width: 100%;
+  animation: wtSurveyFadeIn 0.4s ease-in-out forwards;
+}
+
+body.wt-location-survey-page--app .result-upper-section {
+  padding: 12px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.wt-location-survey-page--app .tab-menu-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  scrollbar-width: none;
+}
+
+body.wt-location-survey-page--app .tab-menu-container::-webkit-scrollbar {
+  display: none;
+}
+
+body.wt-location-survey-page--app .tab-menu-list {
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+body.wt-location-survey-page--app .tab-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 24px;
+  background: #f5f5f7;
+  color: #86868b;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body.wt-location-survey-page--app .tab-btn.active {
+  background: #1d1d1f;
+  color: #ffffff;
+}
+
+body.wt-location-survey-page--app .tab-content-container {
+  width: 100%;
+  padding: 16px 24px;
+}
+
+body.wt-location-survey-page--app .tab-panel {
+  display: none;
+  width: 100%;
+  padding: 24px 20px;
+  border-radius: 24px;
+  background: #f5f5f7;
+  text-align: left;
+}
+
+body.wt-location-survey-page--app .tab-panel.active {
+  display: block;
+}
+
+body.wt-location-survey-page--app .panel-title,
+body.wt-location-survey-page--app .wt-section-title,
+body.wt-location-survey-page--app .wt-result-mini-title {
+  margin: 0 0 14px;
+  color: #1d1d1f;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.035em;
+}
+
+body.wt-location-survey-page--app .panel-text,
+body.wt-location-survey-page--app .wt-section-desc,
+body.wt-location-survey-page--app .wt-result-story-desc,
+body.wt-location-survey-page--app .wt-decision-box p,
+body.wt-location-survey-page--app .wt-hotel-reason {
+  color: #424245;
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+
+body.wt-location-survey-page--app .panel-text p,
+body.wt-location-survey-page--app .wt-section-desc {
+  margin: 0 0 16px;
+}
+
+body.wt-location-survey-page--app .wt-section-eyebrow {
+  margin: 0 0 8px;
+  color: #ff4b50;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+body.wt-location-survey-page--app .wt-reason-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+body.wt-location-survey-page--app .wt-reason-card,
+body.wt-location-survey-page--app .wt-practical-card,
+body.wt-location-survey-page--app .wt-hotel-card,
+body.wt-location-survey-page--app .wt-decision-box {
+  padding: 18px;
+  border: 0;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+body.wt-location-survey-page--app .wt-reason-number,
+body.wt-location-survey-page--app .wt-hotel-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: #fff0f1;
+  color: #ff4b50;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body.wt-location-survey-page--app .wt-reason-card h4,
+body.wt-location-survey-page--app .wt-practical-card h4,
+body.wt-location-survey-page--app .wt-hotel-name,
+body.wt-location-survey-page--app .wt-decision-box strong {
+  margin: 0;
+  color: #1d1d1f;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+}
+
+body.wt-location-survey-page--app .wt-reason-card p {
+  margin: 8px 0 0;
+  color: #68686d;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+body.wt-location-survey-page--app .wt-decision-box {
+  margin-top: 14px;
+  background: #ffffff;
+}
+
+body.wt-location-survey-page--app .wt-decision-box p {
+  margin: 8px 0 0;
+}
+
+body.wt-location-survey-page--app .wt-practical-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+body.wt-location-survey-page--app .wt-practical-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.wt-location-survey-page--app .wt-practical-list li {
+  position: relative;
+  margin: 0 0 10px;
+  padding-left: 16px;
+  color: #424245;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+body.wt-location-survey-page--app .wt-practical-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff4b50;
+}
+
+body.wt-location-survey-page--app .wt-practical-chip-list,
+body.wt-location-survey-page--app .wt-hotel-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+body.wt-location-survey-page--app .wt-practical-chip-list span,
+body.wt-location-survey-page--app .wt-hotel-meta span,
+body.wt-location-survey-page--app .wt-hotel-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f5f5f7;
+  color: #68686d;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body.wt-location-survey-page--app .wt-hotel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 0;
+  overflow: visible;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+body.wt-location-survey-page--app .wt-hotel-rank {
+  margin-bottom: 0;
+}
+
+body.wt-location-survey-page--app .wt-hotel-location {
+  margin: 6px 0 0;
+  color: #86868b;
+  font-size: 13px;
+}
+
+body.wt-location-survey-page--app .wt-hotel-reason {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card-footer {
+  margin-top: 12px;
+  padding-top: 0;
+}
+
+body.wt-location-survey-page--app .wt-hotel-link-wrap {
+  margin-top: 12px;
+}
+
+body.wt-location-survey-page--app .wt-hotel-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: #1d1d1f;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+body.wt-location-survey-page--app .wt-post-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.wt-location-survey-page--app .wt-post-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 13px 15px;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #1d1d1f;
+  font-size: 13.5px;
+  font-weight: 650;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+body.wt-location-survey-page--app .wt-post-list a::after {
+  content: "→";
+  flex: 0 0 auto;
+  margin-left: 12px;
+  color: #86868b;
+}
+
+body.wt-location-survey-page--app .wt-post-empty {
+  display: none;
+  margin: 14px 0 0;
+  color: #86868b;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+body.wt-location-survey-page--app .result-footer {
+  width: 100%;
+  padding: 24px 24px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+body.wt-location-survey-page--app .restart-btn {
+  width: 100%;
+  max-width: 160px;
+  height: 46px;
+  border: 1px solid #d2d2d7;
+  border-radius: 23px;
+  background: #ffffff;
+  color: #86868b;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 380px) {
+  body.wt-location-survey-page--app .page-view {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  body.wt-location-survey-page--app .tab-content-container,
+  body.wt-location-survey-page--app .tab-menu-container,
+  body.wt-location-survey-page--app .result-top-bar,
+  body.wt-location-survey-page--app .result-upper-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  body.wt-location-survey-page--app .result-destination {
+    font-size: 28px;
+  }
+
+  body.wt-location-survey-page--app .wt-option {
+    min-height: 66px;
+    padding: 14px;
+  }
+}
+/* End WACKYTRAVEL_FUKUOKA_SURVEY_APP_UI_V1 */

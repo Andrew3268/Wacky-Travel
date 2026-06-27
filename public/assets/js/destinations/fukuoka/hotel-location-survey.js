@@ -311,15 +311,14 @@ const cityConfig = {
   ]
 };
 
+
 let currentQuestionIndex = 0;
 let answers = new Array(cityConfig.questions.length).fill(null);
+let lastRankedAreas = [];
+let lastTopArea = null;
 
+const pageIds = ["introPage", "questionPage", "completionPage", "loadingPage", "resultPage"];
 const locationPage = document.getElementById("locationPage");
-const surveyWrap = document.querySelector(".wt-survey-wrap");
-const surveyView = document.getElementById("surveyView");
-const resultView = document.getElementById("resultView");
-const startSurveyBtn = document.getElementById("startSurveyBtn");
-const backBtn = document.getElementById("backBtn");
 const questionCount = document.getElementById("questionCount");
 const progressText = document.getElementById("progressText");
 const progressBar = document.getElementById("progressBar");
@@ -327,13 +326,32 @@ const progressFill = document.getElementById("progressFill");
 const questionTitle = document.getElementById("questionTitle");
 const questionHelp = document.getElementById("questionHelp");
 const optionsArea = document.getElementById("optionsArea");
+const startSurveyBtn = document.getElementById("startSurveyBtn");
+const backBtn = document.getElementById("backBtn");
+const questionCloseBtn = document.getElementById("questionCloseBtn");
+const completionCloseBtn = document.getElementById("completionCloseBtn");
+const resultCloseBtn = document.getElementById("resultCloseBtn");
+const resultReadyBtn = document.getElementById("resultReadyBtn");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const resetBtn = document.getElementById("resetBtn");
+const detailBtn = document.getElementById("detailBtn");
+const hotelTabBtn = document.getElementById("hotelTabBtn");
 
 function setText(id, text) {
   const element = document.getElementById(id);
-  if (element) element.textContent = text;
+  if (element) element.textContent = text || "";
+}
+
+function navigateTo(pageId) {
+  pageIds.forEach((id) => {
+    const page = document.getElementById(id);
+    if (!page) return;
+    page.classList.toggle("active", id === pageId);
+  });
+
+  locationPage?.classList.toggle("is-survey-started", pageId !== "introPage");
+  locationPage?.classList.toggle("is-result-mode", pageId === "resultPage");
 }
 
 function getAnsweredPercent() {
@@ -346,39 +364,20 @@ function getProgressMessage() {
   const step = currentQuestionIndex + 1;
 
   if (step === 1) return "가볍게 시작해볼까요?";
-  if (step === total) return "마지막 질문이에요!";
+  if (step === total) return "마지막 질문이에요";
   if (step >= total - 1) return "거의 다 왔어요";
-  if (step >= Math.ceil(total * 0.65)) return "조금만 더 가면 추천 완료!";
+  if (step >= Math.ceil(total * 0.65)) return "조금만 더 가면 추천 완료";
   if (step >= Math.ceil(total * 0.4)) return "좋아요, 취향이 보이기 시작해요";
   return "동선을 하나씩 맞춰보는 중이에요";
 }
 
 function startSurvey() {
-  locationPage?.classList.add("is-survey-started");
-  locationPage?.classList.remove("is-result-mode");
-  surveyWrap?.classList.add("is-survey-started");
-  surveyWrap?.classList.remove("is-result-mode");
-  resultView?.classList.remove("is-active");
-  surveyView.style.display = "block";
+  navigateTo("questionPage");
   renderQuestion();
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function goBack() {
   window.history.back();
-}
-
-function closeSurveyToStart() {
-  currentQuestionIndex = 0;
-  answers = new Array(cityConfig.questions.length).fill(null);
-  resultView?.classList.remove("is-active");
-  surveyWrap?.classList.remove("is-result-mode");
-  surveyWrap?.classList.remove("is-survey-started");
-  locationPage?.classList.remove("is-result-mode");
-  locationPage?.classList.remove("is-survey-started");
-  surveyView.style.display = "block";
-  renderQuestion();
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderQuestion() {
@@ -398,6 +397,7 @@ function renderQuestion() {
   question.options.forEach((option, optionIndex) => {
     const button = document.createElement("button");
     const title = document.createElement("span");
+    const desc = document.createElement("span");
 
     button.type = "button";
     button.className = "wt-option";
@@ -407,7 +407,11 @@ function renderQuestion() {
 
     title.className = "wt-option-title";
     title.textContent = option.title;
+    desc.className = "wt-option-desc";
+    desc.textContent = option.desc || "";
+
     button.appendChild(title);
+    if (option.desc) button.appendChild(desc);
     button.addEventListener("click", () => {
       answers[currentQuestionIndex] = optionIndex;
       renderQuestion();
@@ -416,10 +420,9 @@ function renderQuestion() {
     optionsArea.appendChild(button);
   });
 
-  prevBtn.disabled = false;
-  prevBtn.textContent = currentQuestionIndex === 0 ? "닫기" : "이전";
+  prevBtn.textContent = currentQuestionIndex === 0 ? "처음" : "이전";
   nextBtn.disabled = selectedIndex === null;
-  nextBtn.textContent = currentQuestionIndex === cityConfig.questions.length - 1 ? "결과 보기" : "다음";
+  nextBtn.textContent = "다음";
 }
 
 function goNext() {
@@ -429,20 +432,26 @@ function goNext() {
     currentQuestionIndex += 1;
     renderQuestion();
     questionTitle.focus?.();
-  } else {
-    showResult();
+    return;
   }
+
+  showCompletionPage();
 }
 
 function goPrev() {
   if (currentQuestionIndex === 0) {
-    closeSurveyToStart();
+    resetSurvey(false);
     return;
   }
+
   currentQuestionIndex -= 1;
   renderQuestion();
+  questionTitle.focus?.();
 }
 
+function showCompletionPage() {
+  navigateTo("completionPage");
+}
 
 function getSelectedOption(questionIndex) {
   const answerIndex = answers[questionIndex];
@@ -613,7 +622,7 @@ function calculateScores() {
     .sort((a, b) => (b.score - a.score) || (b.tieBreakScore - a.tieBreakScore));
 }
 
-function renderHotelCards(area) {
+function renderHotelCardsLegacy(area) {
   const section = document.getElementById("hotelRecommendSection");
   const hotelCardList = document.getElementById("hotelCardList");
   const hotels = Array.isArray(area.hotels) ? area.hotels.slice(0, 5) : [];
@@ -719,7 +728,7 @@ async function fetchRelatedPostsByRegion(area) {
   return [];
 }
 
-async function renderRelatedPosts(area) {
+async function renderRelatedPostsLegacy(area) {
   const section = document.getElementById("relatedPostSection");
   const list = document.getElementById("relatedPostList");
 
@@ -1026,7 +1035,7 @@ function getAlternativeDetail(topArea, rankedAreas) {
   return { title, text };
 }
 
-function renderAlternativeArea(topArea, rankedAreas) {
+function renderAlternativeAreaLegacy(topArea, rankedAreas) {
   const box = document.getElementById("alternativeAreaBox");
   if (!box) return;
 
@@ -1071,52 +1080,284 @@ function renderPersuasiveResult(topArea, rankedAreas) {
   }
 }
 
-function showResult() {
+
+
+function renderHotelCards(area) {
+  const hotelCardList = document.getElementById("hotelCardList");
+  const hotels = Array.isArray(area.hotels) ? area.hotels.slice(0, 5) : [];
+
+  if (!hotelCardList) return;
+
+  setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
+  setText("hotelSectionDesc", "이 지역을 기준으로 먼저 비교해볼 만한 후보입니다. 예약 전에는 객실 크기, 취소 조건, 최근 후기를 함께 확인하세요.");
+  hotelCardList.innerHTML = "";
+
+  if (hotels.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "wt-post-empty";
+    empty.style.display = "block";
+    empty.textContent = "아직 연결된 호텔 후보가 없습니다.";
+    hotelCardList.appendChild(empty);
+    return;
+  }
+
+  hotels.forEach((hotel, index) => {
+    const article = document.createElement("article");
+    const top = document.createElement("div");
+    const rank = document.createElement("span");
+    const tag = document.createElement("span");
+    const name = document.createElement("h4");
+    const location = document.createElement("p");
+    const reason = document.createElement("p");
+    const meta = document.createElement("div");
+    const footer = document.createElement("div");
+    const linkWrap = document.createElement("div");
+    const link = document.createElement("a");
+
+    article.className = "wt-hotel-card";
+    top.className = "wt-hotel-card-top";
+    rank.className = "wt-hotel-rank";
+    tag.className = "wt-hotel-tag";
+    name.className = "wt-hotel-name";
+    location.className = "wt-hotel-location";
+    reason.className = "wt-hotel-reason";
+    meta.className = "wt-hotel-meta";
+    footer.className = "wt-hotel-card-footer";
+    linkWrap.className = "wt-hotel-link-wrap";
+    link.className = "wt-hotel-link";
+
+    rank.textContent = `${index + 1}`;
+    tag.textContent = hotel.tag || "추천 후보";
+    name.textContent = hotel.name;
+    location.textContent = hotel.location || "";
+    reason.textContent = hotel.reason || "";
+    link.href = hotel.url || "#";
+    link.textContent = "잔여 객실 확인";
+    link.setAttribute("aria-label", `${hotel.name} 잔여 객실 확인`);
+
+    (hotel.meta || []).forEach((item) => {
+      const chip = document.createElement("span");
+      chip.textContent = item;
+      meta.appendChild(chip);
+    });
+
+    top.appendChild(rank);
+    top.appendChild(tag);
+    linkWrap.appendChild(link);
+    footer.appendChild(meta);
+    footer.appendChild(linkWrap);
+    article.appendChild(top);
+    article.appendChild(name);
+    article.appendChild(location);
+    article.appendChild(reason);
+    article.appendChild(footer);
+    hotelCardList.appendChild(article);
+  });
+}
+
+function renderAlternativeArea(topArea, rankedAreas) {
+  const detail = getAlternativeDetail(topArea, rankedAreas);
+  if (!detail) {
+    setText("alternativeAreaTitle", "함께 비교할 지역이 없습니다");
+    setText("alternativeAreaText", "이번 답변에서는 추천 지역의 적합도가 가장 높게 나왔습니다.");
+    return;
+  }
+
+  setText("alternativeAreaTitle", detail.title);
+  setText("alternativeAreaText", detail.text);
+}
+
+function prepareResultContent() {
   const rankedAreas = calculateScores();
   const topArea = rankedAreas[0];
-
-  locationPage?.classList.add("is-survey-started");
-  locationPage?.classList.add("is-result-mode");
-  surveyView.style.display = "none";
-  resultView.classList.add("is-active");
-  surveyWrap.classList.add("is-survey-started");
-  surveyWrap.classList.add("is-result-mode");
+  lastRankedAreas = rankedAreas;
+  lastTopArea = topArea;
 
   setText("resultTitle", topArea.name);
+  setText("detailResultTitle", topArea.name);
   setText("resultSummary", topArea.summary);
   setText("resultLeadTitle", topArea.leadTitle);
   setText("resultLeadText", topArea.leadText);
 
-  renderAnswerSummary(topArea);
   renderPersuasiveResult(topArea, rankedAreas);
   renderPracticalGuide(topArea);
   renderHotelCards(topArea);
   renderAlternativeArea(topArea, rankedAreas);
   renderRelatedPosts(topArea);
 
-  progressText.textContent = "추천 결과가 나왔어요!";
-  progressFill.style.width = "100%";
-  progressBar.setAttribute("aria-valuenow", "100");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  return { rankedAreas, topArea };
 }
 
-function resetSurvey() {
+const loadingIcons = {
+  step1: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64" fill="none"><rect x="14" y="10" width="36" height="44" rx="6" fill="#F5F5F7" stroke="#1D1D1F" stroke-width="2.5"/><line x1="22" y1="22" x2="42" y2="22" stroke="#1D1D1F" stroke-width="3" stroke-linecap="round"/><line x1="22" y1="32" x2="36" y2="32" stroke="#1D1D1F" stroke-width="3" stroke-linecap="round"/><circle cx="40" cy="38" r="7" fill="#FF4B50" opacity="0.2"/><circle cx="40" cy="38" r="5" stroke="#FF4B50" stroke-width="2.5"/><line x1="44" y1="42" x2="49" y2="47" stroke="#FF4B50" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  step2: `<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 64 64" fill="none"><path d="M14 18 L26 12 L38 18 L50 12 L50 46 L38 52 L26 46 L14 52 Z" fill="#E8F4F8" stroke="#1D1D1F" stroke-width="2" stroke-linejoin="round"/><path d="M26 12 L26 46" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="2 2"/><path d="M38 18 L38 52" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="2 2"/><g transform="translate(26, 18)"><path d="M6 0 C2.6 0 0 2.6 0 6 C0 10.5 6 16 6 16 C6 16 12 10.5 12 6 C12 2.6 9.4 0 6 0 Z" fill="#FF4B50"/><circle cx="6" cy="6" r="2" fill="#FFFFFF"/></g></svg>`,
+  step3: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="24" fill="#E8F8F5"/><circle cx="32" cy="32" r="20" fill="#25D366" opacity="0.2"/><path d="M20 32 L28 40 L44 22" stroke="#25D366" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+};
+
+function getLoadingTips(area) {
+  const name = area?.name || "추천 지역";
+  return {
+    step1: { main: "당신의 여행 성향 분석 중...", sub: "선택한 답변에서 이동 기준과 숙소 분위기를 정리하고 있어요." },
+    step2: { main: `${name} 적합도 확인 중...`, sub: "공항 이동, 주요 동선, 주변 분위기, 예산 균형을 함께 비교합니다." },
+    step3: { main: "맞춤 숙소 위치를 찾았어요! ✨", sub: "결과 화면으로 이동합니다." }
+  };
+}
+
+function processAnalysis() {
+  const { topArea } = prepareResultContent();
+  const circle = document.getElementById("loaderCircle");
+  const barWrap = document.getElementById("loadingProgressWrap");
+  const txtMain = document.getElementById("loadingText");
+  const txtSub = document.getElementById("loadingSubText");
+  const iconContainer = document.getElementById("loaderIcon");
+  const progress = document.getElementById("loadingProgressBar");
+  const tips = getLoadingTips(topArea);
+
+  circle.classList.remove("complete");
+  barWrap.classList.remove("hide");
+  progress.style.transition = "none";
+  progress.style.width = "0%";
+  document.getElementById("simpleSummaryCard").style.display = "flex";
+  document.getElementById("detailedInfoSection").style.display = "none";
+  resetTabs(0);
+  navigateTo("loadingPage");
+
+  requestAnimationFrame(() => {
+    progress.style.transition = "width 0.8s cubic-bezier(0.25, 1, 0.5, 1)";
+    progress.style.width = "35%";
+    txtMain.innerText = tips.step1.main;
+    txtSub.innerText = tips.step1.sub;
+    iconContainer.innerHTML = loadingIcons.step1;
+  });
+
+  setTimeout(() => {
+    txtMain.style.opacity = 0;
+    txtSub.style.opacity = 0;
+    setTimeout(() => {
+      progress.style.transition = "width 1.1s cubic-bezier(0.16, 1, 0.3, 1)";
+      progress.style.width = "85%";
+      txtMain.innerText = tips.step2.main;
+      txtSub.innerText = tips.step2.sub;
+      iconContainer.innerHTML = loadingIcons.step2;
+      txtMain.style.opacity = 1;
+      txtSub.style.opacity = 1;
+    }, 150);
+  }, 800);
+
+  setTimeout(() => {
+    txtMain.style.opacity = 0;
+    txtSub.style.opacity = 0;
+    setTimeout(() => {
+      progress.style.transition = "width 0.3s ease-in";
+      progress.style.width = "100%";
+      txtMain.innerText = tips.step3.main;
+      txtSub.innerText = tips.step3.sub;
+      iconContainer.innerHTML = loadingIcons.step3;
+      circle.classList.add("complete");
+      barWrap.classList.add("hide");
+      txtMain.style.opacity = 1;
+      txtSub.style.opacity = 1;
+    }, 150);
+  }, 1950);
+
+  setTimeout(() => {
+    navigateTo("resultPage");
+    document.getElementById("mainScrollBody").scrollTop = 0;
+  }, 2550);
+}
+
+function showDetailedView(tabIndex = 0) {
+  document.getElementById("simpleSummaryCard").style.display = "none";
+  document.getElementById("detailedInfoSection").style.display = "block";
+  resetTabs(tabIndex);
+  document.getElementById("mainScrollBody").scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function resetTabs(index = 0) {
+  const buttons = Array.from(document.querySelectorAll(".tab-btn"));
+  const panels = Array.from(document.querySelectorAll(".tab-panel"));
+  buttons.forEach((btn, btnIndex) => btn.classList.toggle("active", btnIndex === index));
+  panels.forEach((panel, panelIndex) => panel.classList.toggle("active", panelIndex === index));
+}
+
+function switchTab(index, clickedBtn) {
+  resetTabs(index);
+  const container = document.getElementById("tabContainer");
+  if (!container || !clickedBtn) return;
+
+  const btnLeft = clickedBtn.offsetLeft;
+  const btnWidth = clickedBtn.offsetWidth;
+  const containerWidth = container.offsetWidth;
+  const targetScrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+
+  container.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+}
+
+function goToHotelTab() {
+  showDetailedView(2);
+}
+
+async function renderRelatedPosts(area) {
+  const section = document.getElementById("relatedPostSection");
+  const list = document.getElementById("relatedPostList");
+  const empty = document.getElementById("relatedPostEmpty");
+
+  if (!section || !list) return;
+
+  section.style.display = "";
+  list.innerHTML = "";
+  if (empty) empty.style.display = "none";
+  setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
+  setText("relatedPostDesc", "이 지역을 기준으로 작성된 여행 스타일별 호텔 추천 글만 모았습니다.");
+
+  const posts = await fetchRelatedPostsByRegion(area);
+
+  if (!posts.length) {
+    if (empty) empty.style.display = "block";
+    return;
+  }
+
+  posts.forEach((post) => {
+    const title = String(post.title || "여행 스타일별 호텔 추천 글").trim();
+    const slug = String(post.slug || "").trim();
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+
+    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.textContent = title;
+    link.setAttribute("aria-label", `${title} 보기`);
+
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+}
+
+function resetSurvey(toIntro = true) {
   currentQuestionIndex = 0;
   answers = new Array(cityConfig.questions.length).fill(null);
-  resultView.classList.remove("is-active");
-  surveyWrap.classList.remove("is-result-mode");
-  surveyWrap.classList.remove("is-survey-started");
-  locationPage?.classList.remove("is-result-mode");
-  locationPage?.classList.remove("is-survey-started");
-  surveyView.style.display = "block";
+  lastRankedAreas = [];
+  lastTopArea = null;
   renderQuestion();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("simpleSummaryCard").style.display = "flex";
+  document.getElementById("detailedInfoSection").style.display = "none";
+  resetTabs(0);
+  navigateTo(toIntro ? "introPage" : "introPage");
 }
 
 startSurveyBtn?.addEventListener("click", startSurvey);
 backBtn?.addEventListener("click", goBack);
-nextBtn.addEventListener("click", goNext);
-prevBtn.addEventListener("click", goPrev);
-resetBtn.addEventListener("click", resetSurvey);
+questionCloseBtn?.addEventListener("click", () => resetSurvey(true));
+completionCloseBtn?.addEventListener("click", () => resetSurvey(true));
+resultCloseBtn?.addEventListener("click", () => resetSurvey(true));
+resultReadyBtn?.addEventListener("click", processAnalysis);
+nextBtn?.addEventListener("click", goNext);
+prevBtn?.addEventListener("click", goPrev);
+resetBtn?.addEventListener("click", () => resetSurvey(true));
+detailBtn?.addEventListener("click", () => showDetailedView(0));
+hotelTabBtn?.addEventListener("click", goToHotelTab);
+
+document.querySelectorAll(".tab-btn").forEach((button, index) => {
+  button.addEventListener("click", () => switchTab(index, button));
+});
 
 renderQuestion();
