@@ -1165,6 +1165,20 @@ function getEmotionalSummary(area) {
   return emotionalSummaryByArea[area.key] || area.summary;
 }
 
+const resultBadgeByArea = {
+  hakata: "이번 여행은 하카타가 가장 편해요",
+  tenjin: "당신의 후쿠오카는 텐진 중심이 좋아요",
+  nakasuKawabata: "밤 산책과 맛집 동선은 나카스가 잘 맞아요",
+  gion: "하카타와 나카스 사이, 기온이 딱 좋아요",
+  yakuinWatanabedori: "조용한 도심 감성은 야쿠인이 어울려요",
+  ohoriMomochi: "여유로운 후쿠오카는 오호리·모모치가 좋아요"
+};
+
+function getResultBadgeText(area) {
+  if (!area || !area.key) return "이번 여행에 어울리는 숙소 위치";
+  return resultBadgeByArea[area.key] || `${area.name} 중심으로 보면 좋아요`;
+}
+
 function prepareResultContent() {
   const rankedAreas = calculateScores();
   const topArea = rankedAreas[0];
@@ -1173,6 +1187,7 @@ function prepareResultContent() {
 
   setText("resultTitle", topArea.name);
   setText("detailResultTitle", topArea.name);
+  setText("detailResultBadge", getResultBadgeText(topArea));
   setText("resultSummary", getEmotionalSummary(topArea));
   setText("resultLeadTitle", topArea.leadTitle);
   setText("resultLeadText", topArea.leadText);
