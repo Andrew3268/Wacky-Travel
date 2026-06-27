@@ -13,7 +13,7 @@
 <meta content="/destinations/fukuoka/hotel-location-survey/" property="og:url"/>
 <meta content="ko_KR" property="og:locale"/>
 <link href="/favicon.ico" rel="icon" sizes="any"/>
-<link href="/assets/css/travel.css?v=20260627FukuokaSurveyAppUIV1CleanHeader" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260627FukuokaSurveyAppUIV2MinimalBlue" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"후쿠오카 숙소 위치 추천 서베이","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":"ko-KR","url":"/destinations/fukuoka/hotel-location-survey/","description":"여행 일정과 동행자에 맞춰 후쿠오카 숙소 위치를 추천하는 간단한 서베이입니다."}</script>
 </head>
 <body class="wt-location-survey-page wt-location-survey-page--app">
@@ -31,13 +31,13 @@
           <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M 25,78 C 25,70 75,70 75,78" stroke="#1D1D1F" stroke-width="4.5" stroke-linecap="round"/>
             <path d="M 12,85 C 12,74 88,74 88,85" stroke="#1D1D1F" stroke-width="4.5" stroke-linecap="round"/>
-            <path d="M 50,75 C 22,46 22,20 50,20 C 78,20 78,46 50,75 Z" fill="#FF4B50" stroke="#1D1D1F" stroke-width="4.5" stroke-linejoin="round"/>
+            <path d="M 50,75 C 22,46 22,20 50,20 C 78,20 78,46 50,75 Z" fill="#2563EB" stroke="#1D1D1F" stroke-width="4.5" stroke-linejoin="round"/>
             <circle cx="50" cy="38" r="9" fill="#FFFFFF" stroke="#1D1D1F" stroke-width="4.5"/>
           </svg>
         </div>
         <p class="result-badge">후쿠오카 숙소 위치 추천</p>
         <h1 class="main-title" id="surveyTitle">내 일정에 맞는<br>숙소 위치를 찾아보세요</h1>
-        <p class="sub-description">몇 가지 질문에 답하면 하카타, 텐진, 나카스 & 카와바타, 기온, 야쿠인 & 와타나베도리, 오호리 & 모모치 중 가장 잘 맞는 위치를 추천해드립니다.</p>
+        <p class="sub-description">정답을 고르는 테스트가 아니에요. 이번 여행에서 더 편한 쪽을 가볍게 선택하면, 하카타·텐진·나카스 등 후쿠오카에서 숙소 잡기 좋은 위치를 정리해드립니다.</p>
       </div>
       <div class="footer-actions">
         <button class="next-btn" id="startSurveyBtn" type="button">
@@ -70,16 +70,19 @@
 
     <section id="completionPage" class="wt-app-page page-view" aria-labelledby="completionTitle">
       <div class="main-content">
-        <div class="logo-icon" aria-hidden="true">
+        <div class="logo-icon logo-icon--complete" aria-hidden="true">
           <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 25,78 C 25,70 75,70 75,78" stroke="#1D1D1F" stroke-width="4.5" stroke-linecap="round"/>
-            <path d="M 12,85 C 12,74 88,74 88,85" stroke="#1D1D1F" stroke-width="4.5" stroke-linecap="round"/>
-            <path d="M 50,75 C 22,46 22,20 50,20 C 78,20 78,46 50,75 Z" fill="#FF4B50" stroke="#1D1D1F" stroke-width="4.5" stroke-linejoin="round"/>
-            <circle cx="50" cy="38" r="9" fill="#FFFFFF" stroke="#1D1D1F" stroke-width="4.5"/>
+            <circle cx="50" cy="50" r="40" fill="#EFF6FF"/>
+            <rect x="27" y="20" width="46" height="60" rx="14" fill="#FFFFFF" stroke="#1D1D1F" stroke-width="4"/>
+            <path d="M39 30H61" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+            <path d="M39 43H57" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+            <path d="M36 61L45 70L66 47" stroke="#2563EB" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="71" cy="26" r="7" fill="#2563EB"/>
+            <path d="M68 26L70 28L74 23" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h1 class="main-title" id="completionTitle">모든 답변이<br>완료되었습니다</h1>
-        <p class="sub-description">과연 어떤 위치가 나왔을까요? 아래 버튼을 눌러 이번 후쿠오카 여행에 맞는 숙소 위치를 확인해보세요.</p>
+        <p class="sub-description">답변을 바탕으로 동선, 분위기, 주변 편의성을 함께 맞춰봤어요. 이제 이번 후쿠오카 여행에 어울리는 숙소 위치를 확인해보세요.</p>
       </div>
       <div class="footer-actions">
         <button class="next-btn" id="resultReadyBtn" type="button">

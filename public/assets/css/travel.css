@@ -16131,7 +16131,7 @@ body.wt-location-survey-page--app {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f5f5f7;
+  background: #f7f8fb;
   color: #1d1d1f;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", Roboto, system-ui, sans-serif;
@@ -16144,7 +16144,7 @@ body.wt-location-survey-page--app .wt-location-app {
   min-height: 100dvh;
   height: 100dvh;
   padding: 0;
-  background: #f5f5f7;
+  background: #f7f8fb;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16230,6 +16230,12 @@ body.wt-location-survey-page--app .logo-icon {
   margin-bottom: 28px;
 }
 
+body.wt-location-survey-page--app .logo-icon--complete {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 30px;
+}
+
 body.wt-location-survey-page--app .main-title {
   margin: 0 0 18px;
   color: #1d1d1f;
@@ -16295,8 +16301,8 @@ body.wt-location-survey-page--app .result-badge {
   margin: 0 0 16px;
   padding: 6px 16px;
   border-radius: 20px;
-  background: #fff0f1;
-  color: #ff4b50;
+  background: #eef5ff;
+  color: #2563eb;
   font-size: 13px;
   font-weight: 600;
   line-height: 1.2;
@@ -16330,7 +16336,7 @@ body.wt-location-survey-page--app .wt-progress-fill {
   width: 0%;
   height: 100%;
   border-radius: 2px;
-  background: #ff4b50;
+  background: #2563eb;
   transition: width 0.25s ease;
 }
 
@@ -16373,7 +16379,7 @@ body.wt-location-survey-page--app .wt-option {
   padding: 15px 16px;
   border: 1px solid #ececf0;
   border-radius: 22px;
-  background: #f5f5f7;
+  background: #f7f8fb;
   color: #1d1d1f;
   text-align: left;
   display: flex;
@@ -16384,8 +16390,8 @@ body.wt-location-survey-page--app .wt-option {
 }
 
 body.wt-location-survey-page--app .wt-option.is-selected {
-  border-color: rgba(255, 75, 80, 0.32);
-  background: #fff0f1;
+  border-color: rgba(37, 99, 235, 0.26);
+  background: #f8fbff;
 }
 
 body.wt-location-survey-page--app .wt-option-title {
@@ -16463,14 +16469,14 @@ body.wt-location-survey-page--app .loader-circle {
   width: 100%;
   height: 100%;
   border: 3.5px solid #f5f5f7;
-  border-top: 3.5px solid #ff4b50;
+  border-top: 3.5px solid #2563eb;
   border-radius: 50%;
   animation: wtSurveySpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
 body.wt-location-survey-page--app .loader-circle.complete {
-  border-color: #25d366;
-  border-top-color: #25d366;
+  border-color: #2563eb;
+  border-top-color: #2563eb;
   animation: wtSurveySpin 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
 }
 
@@ -16530,7 +16536,7 @@ body.wt-location-survey-page--app .progress-bar-wrap.hide {
 body.wt-location-survey-page--app .progress-bar-fill {
   width: 0%;
   height: 100%;
-  background: #ff4b50;
+  background: #2563eb;
 }
 
 body.wt-location-survey-page--app #resultPage {
@@ -16589,7 +16595,7 @@ body.wt-location-survey-page--app .wt-result-lead--simple {
   margin: 0 0 28px;
   padding: 18px;
   border-radius: 24px;
-  background: #f5f5f7;
+  background: #f7f8fb;
   text-align: left;
 }
 
@@ -16661,7 +16667,7 @@ body.wt-location-survey-page--app .tab-btn {
   padding: 10px 18px;
   border: 0;
   border-radius: 24px;
-  background: #f5f5f7;
+  background: #f7f8fb;
   color: #86868b;
   font-size: 14px;
   font-weight: 600;
@@ -16684,7 +16690,7 @@ body.wt-location-survey-page--app .tab-panel {
   width: 100%;
   padding: 24px 20px;
   border-radius: 24px;
-  background: #f5f5f7;
+  background: #f7f8fb;
   text-align: left;
 }
 
@@ -16720,7 +16726,7 @@ body.wt-location-survey-page--app .wt-section-desc {
 
 body.wt-location-survey-page--app .wt-section-eyebrow {
   margin: 0 0 8px;
-  color: #ff4b50;
+  color: #2563eb;
   font-size: 12.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -16752,8 +16758,8 @@ body.wt-location-survey-page--app .wt-hotel-rank {
   height: 30px;
   margin-bottom: 10px;
   border-radius: 999px;
-  background: #fff0f1;
-  color: #ff4b50;
+  background: #eef5ff;
+  color: #2563eb;
   font-size: 13px;
   font-weight: 700;
 }
@@ -16816,7 +16822,7 @@ body.wt-location-survey-page--app .wt-practical-list li::before {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #ff4b50;
+  background: #2563eb;
 }
 
 body.wt-location-survey-page--app .wt-practical-chip-list,
@@ -16835,7 +16841,7 @@ body.wt-location-survey-page--app .wt-hotel-tag {
   min-height: 28px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: #f5f5f7;
+  background: #f7f8fb;
   color: #68686d;
   font-size: 12px;
   font-weight: 600;
