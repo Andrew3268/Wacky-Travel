@@ -18014,3 +18014,41 @@ body.wt-location-survey-page--app .wt-hotel-card--compact::after {
   content: none !important;
 }
 /* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
+
+
+/* WACKYTRAVEL_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */
+body.wt-location-survey-page--app #relatedSectionDesc,
+body.wt-location-survey-page--app .related-section .wt-section-desc {
+  display: none !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-card-header {
+  align-items: center !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-header-left {
+  align-items: center !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-rank {
+  margin-top: 0 !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-name {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 32px !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link {
+  align-self: center !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-location-main {
+  font-weight: 500 !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list .wt-hotel-tag {
+  font-weight: 600 !important;
+}
+/* End WACKYTRAVEL_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */

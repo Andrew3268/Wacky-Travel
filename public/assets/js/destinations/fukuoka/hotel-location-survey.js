@@ -1,3 +1,68 @@
+
+const areaDestinationLabels = {
+  hakata: "이동이 편한 하카타",
+  tenjin: "쇼핑과 맛집의 텐진",
+  nakasuKawabata: "야경과 맛집의 나카스",
+  gion: "균형 잡힌 기온",
+  yakuinWatanabedori: "차분한 도심의 야쿠인",
+  ohoriMomochi: "여유로운 산책의 오호리"
+};
+
+const hotelAccessPresets = {
+  hakata: {
+    station: "하카타역 도보권",
+    airport: "공항역 지하철 약 5분"
+  },
+  tenjin: {
+    station: "텐진역 도보권",
+    airport: "공항역 지하철 약 11분"
+  },
+  nakasuKawabata: {
+    station: "나카스카와바타역 도보권",
+    airport: "공항역 지하철 약 9분"
+  },
+  gion: {
+    station: "기온역 도보권",
+    airport: "공항역 지하철 약 7분"
+  },
+  yakuinWatanabedori: {
+    station: "야쿠인·와타나베도리역 도보권",
+    airport: "공항역 환승 약 15분"
+  },
+  ohoriMomochi: {
+    station: "오호리공원·니시진역 도보권",
+    airport: "공항역 지하철 약 15분"
+  }
+};
+
+function getAreaKey(area) {
+  return Object.keys(cityConfig.areas).find((key) => cityConfig.areas[key] === area) || "";
+}
+
+function getAreaDestinationLabel(area) {
+  return areaDestinationLabels[getAreaKey(area)] || `${area.name} 중심 일정`;
+}
+
+function getHotelAccessInfo(hotel, area) {
+  const key = getAreaKey(area);
+  const fallback = hotelAccessPresets[key] || {
+    station: `${area.name} 주요역 도보권`,
+    airport: "공항 접근성 확인"
+  };
+
+  return {
+    station: hotel.stationAccess || fallback.station,
+    airport: hotel.airportAccess || fallback.airport
+  };
+}
+
+function getHotelDisplayTags(hotel) {
+  const star = hotel.starRating || "성급 확인";
+  const rating = hotel.guestRating || "평점 확인";
+  const cancel = hotel.freeCancel || "무료 취소 확인";
+  return [star, rating, cancel].filter(Boolean);
+}
+
 /*
  * Fukuoka hotel location survey logic.
  * This file is intentionally city-specific.
@@ -37,11 +102,11 @@ const cityConfig = {
       compareCaution: "숙소 주변의 여행 분위기는 나카스나 텐진보다 덜 화려하게 느껴질 수 있습니다.",
       mismatchNote: "이번 답변에서 밤거리, 쇼핑, 해변 산책을 더 중요하게 골랐다면 하카타는 1순위보다 안정적인 대안에 가깝습니다.",
       hotels: [
-        { name: "미야코 호텔 하카타", tag: "하카타역 최단 동선", location: "하카타 권역", reason: "하카타역 접근성과 객실 여유를 함께 보고 싶은 여행자에게 비교 가치가 높은 숙소입니다.", meta: ["하카타역", "공항 이동", "부모님 동반"], url: "/post/miyako-hotel-hakata" },
-        { name: "오리엔탈 호텔 후쿠오카 하카타 스테이션", tag: "역세권 안정형", location: "하카타역 주변", reason: "공항선과 JR 이동을 단순하게 만들고 싶은 첫 여행자에게 보기 좋은 후보입니다.", meta: ["역세권", "첫 여행", "짧은 일정"], url: "/post/oriental-hotel-fukuoka-hakata-station" },
-        { name: "호텔 닛코 후쿠오카", tag: "클래식 도심형", location: "하카타 중심", reason: "하카타역 생활권에서 안정적인 서비스와 이동 편의성을 함께 기대할 수 있습니다.", meta: ["하카타", "교통", "안정형"], url: "/post/hotel-nikko-fukuoka" },
-        { name: "JR 큐슈 호텔 블라섬 하카타 센트럴", tag: "실속 역세권", location: "하카타역 도보권", reason: "하카타역 주변에서 위치와 가격 균형을 함께 보고 싶은 여행자에게 적합합니다.", meta: ["가성비", "역세권", "교통"], url: "/post/jr-kyushu-hotel-blossom-hakata-central" },
-        { name: "호텔 포르자 하카타에키 치쿠시구치", tag: "짧은 일정 후보", location: "하카타역 치쿠시구치", reason: "공항 이동과 하카타역 출발 일정을 단순하게 만들고 싶은 경우 비교하기 좋습니다.", meta: ["공항선", "짧은 일정", "실속"], url: "/post/hotel-forza-hakataeki-chikushi-guchi" }
+        { name: "미야코 호텔 하카타", tag: "하카타역 최단 동선", location: "하카타 권역", reason: "하카타역 접근성과 객실 여유를 함께 보고 싶은 여행자에게 비교 가치가 높은 숙소입니다.", meta: ["하카타역", "공항 이동", "부모님 동반"], stationAccess: "하카타역 도보 약 1분", airportAccess: "공항역 지하철 약 5분", starRating: "5성급", guestRating: "★ 4.7", freeCancel: "무료 취소 확인", url: "/post/miyako-hotel-hakata" },
+        { name: "오리엔탈 호텔 후쿠오카 하카타 스테이션", tag: "역세권 안정형", location: "하카타역 주변", reason: "공항선과 JR 이동을 단순하게 만들고 싶은 첫 여행자에게 보기 좋은 후보입니다.", meta: ["역세권", "첫 여행", "짧은 일정"], stationAccess: "하카타역 도보 약 1분", airportAccess: "공항역 지하철 약 5분", starRating: "4성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/oriental-hotel-fukuoka-hakata-station" },
+        { name: "호텔 닛코 후쿠오카", tag: "클래식 도심형", location: "하카타 중심", reason: "하카타역 생활권에서 안정적인 서비스와 이동 편의성을 함께 기대할 수 있습니다.", meta: ["하카타", "교통", "안정형"], stationAccess: "하카타역 도보 약 3분", airportAccess: "공항역 지하철 약 5분", starRating: "5성급", guestRating: "★ 4.6", freeCancel: "무료 취소 확인", url: "/post/hotel-nikko-fukuoka" },
+        { name: "JR 큐슈 호텔 블라섬 하카타 센트럴", tag: "실속 역세권", location: "하카타역 도보권", reason: "하카타역 주변에서 위치와 가격 균형을 함께 보고 싶은 여행자에게 적합합니다.", meta: ["가성비", "역세권", "교통"], stationAccess: "하카타역 도보 약 2분", airportAccess: "공항역 지하철 약 5분", starRating: "4성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/jr-kyushu-hotel-blossom-hakata-central" },
+        { name: "호텔 포르자 하카타에키 치쿠시구치", tag: "짧은 일정 후보", location: "하카타역 치쿠시구치", reason: "공항 이동과 하카타역 출발 일정을 단순하게 만들고 싶은 경우 비교하기 좋습니다.", meta: ["공항선", "짧은 일정", "실속"], stationAccess: "하카타역 도보 약 1분", airportAccess: "공항역 지하철 약 5분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/hotel-forza-hakataeki-chikushi-guchi" }
       ]
     },
     tenjin: {
@@ -74,11 +139,11 @@ const cityConfig = {
       compareCaution: "하카타역 기반 근교 이동이나 이른 공항 이동은 하카타보다 한 번 더 계산해야 합니다.",
       mismatchNote: "이번 답변에서 공항 이동, 근교 여행, 부모님 동반을 더 많이 골랐다면 텐진보다 하카타가 더 편할 수 있습니다.",
       hotels: [
-        { name: "솔라리아 니시테츠 호텔 후쿠오카", tag: "텐진 중심", location: "텐진 권역", reason: "쇼핑과 식사, 니시테츠 이동을 한 번에 잡고 싶은 여행자에게 잘 맞는 후보입니다.", meta: ["쇼핑", "텐진역", "커플"], url: "/post/solaria-nishitetsu-hotel-fukuoka" },
-        { name: "리치몬드 호텔 텐진 니시도리", tag: "쇼핑 도보권", location: "텐진 니시도리", reason: "텐진 쇼핑 거리와 카페 동선을 짧게 잡고 싶은 일정에 어울립니다.", meta: ["니시도리", "쇼핑", "도보 동선"], url: "/post/richmond-hotel-tenjin-nishidori" },
-        { name: "호텔 몬토레 라 수르 후쿠오카", tag: "깔끔한 도심형", location: "텐진·아카사카 사이", reason: "텐진 접근성과 비교적 정돈된 숙박 분위기를 함께 보고 싶은 경우 좋습니다.", meta: ["텐진", "깔끔함", "커플"], url: "/post/hotel-monterey-la-soeur-fukuoka" },
-        { name: "니시테츠 그랜드 호텔", tag: "클래식 텐진", location: "텐진 중심", reason: "텐진 생활권을 중심으로 안정적인 숙박을 원하는 여행자에게 비교 후보가 됩니다.", meta: ["텐진", "안정형", "쇼핑"], url: "/post/nishitetsu-grand-hotel" },
-        { name: "램프 라이트 북스 호텔 후쿠오카", tag: "감성형 후보", location: "텐진·아카사카 권역", reason: "쇼핑·카페, 가벼운 도심 산책을 함께 즐기고 싶은 여행자에게 어울립니다.", meta: ["감성 숙소", "카페", "도심"], url: "/post/lamplight-books-hotel-fukuoka" }
+        { name: "솔라리아 니시테츠 호텔 후쿠오카", tag: "텐진 중심", location: "텐진 권역", reason: "쇼핑과 식사, 니시테츠 이동을 한 번에 잡고 싶은 여행자에게 잘 맞는 후보입니다.", meta: ["쇼핑", "텐진역", "커플"], stationAccess: "텐진역 도보 약 3분", airportAccess: "공항역 지하철 약 11분", starRating: "4성급", guestRating: "★ 4.6", freeCancel: "무료 취소 확인", url: "/post/solaria-nishitetsu-hotel-fukuoka" },
+        { name: "리치몬드 호텔 텐진 니시도리", tag: "쇼핑 도보권", location: "텐진 니시도리", reason: "텐진 쇼핑 거리와 카페 동선을 짧게 잡고 싶은 일정에 어울립니다.", meta: ["니시도리", "쇼핑", "도보 동선"], stationAccess: "텐진역 도보 약 5분", airportAccess: "공항역 지하철 약 11분", starRating: "3성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/richmond-hotel-tenjin-nishidori" },
+        { name: "호텔 몬토레 라 수르 후쿠오카", tag: "깔끔한 도심형", location: "텐진·아카사카 사이", reason: "텐진 접근성과 비교적 정돈된 숙박 분위기를 함께 보고 싶은 경우 좋습니다.", meta: ["텐진", "깔끔함", "커플"], stationAccess: "텐진역 도보 약 5분", airportAccess: "공항역 지하철 약 11분", starRating: "4성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/hotel-monterey-la-soeur-fukuoka" },
+        { name: "니시테츠 그랜드 호텔", tag: "클래식 텐진", location: "텐진 중심", reason: "텐진 생활권을 중심으로 안정적인 숙박을 원하는 여행자에게 비교 후보가 됩니다.", meta: ["텐진", "안정형", "쇼핑"], stationAccess: "텐진역 도보 약 5분", airportAccess: "공항역 지하철 약 11분", starRating: "4성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/nishitetsu-grand-hotel" },
+        { name: "램프 라이트 북스 호텔 후쿠오카", tag: "감성형 후보", location: "텐진·아카사카 권역", reason: "쇼핑·카페, 가벼운 도심 산책을 함께 즐기고 싶은 여행자에게 어울립니다.", meta: ["감성 숙소", "카페", "도심"], stationAccess: "텐진역 도보 약 8분", airportAccess: "공항역 지하철 약 11분", starRating: "3성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/lamplight-books-hotel-fukuoka" }
       ]
     },
     nakasuKawabata: {
@@ -111,11 +176,11 @@ const cityConfig = {
       compareCaution: "번화가에 가까울수록 소음과 주변 분위기 호불호가 생길 수 있습니다.",
       mismatchNote: "이번 답변에서 조용함, 가족형 여유, 공항 이동을 더 중요하게 골랐다면 나카스 & 카와바타는 주의해서 비교해야 합니다.",
       hotels: [
-        { name: "더 라이블리 후쿠오카 하카타", tag: "나카스 감성형", location: "나카스 & 카와바타 권역", reason: "나카스와 카와바타를 중심으로 도보 여행을 즐기고 싶은 여행자에게 어울립니다.", meta: ["나카스", "감성", "도보 동선"], url: "/post/the-lively-fukuoka-hakata" },
-        { name: "미쓰이 가든 호텔 후쿠오카 나카스", tag: "나카스 중심", location: "나카스 권역", reason: "맛집과 야경 동선을 짧게 잡고 싶은 커플·친구 여행에 비교하기 좋습니다.", meta: ["나카스", "맛집", "커플"], url: "/post/mitsui-garden-hotel-fukuoka-nakasu" },
-        { name: "호텔 리솔 트리니티 하카타", tag: "번화가 접근", location: "나카스카와바타 주변", reason: "나카스 접근성과 대중교통 동선을 함께 보고 싶은 경우 후보로 넣기 좋습니다.", meta: ["역세권", "밤 동선", "실속"], url: "/post/hotel-resol-trinity-hakata" },
-        { name: "호텔 비스타 후쿠오카 나카스카와바타", tag: "카와바타 도보권", location: "카와바타 상점가 주변", reason: "나카스와 카와바타 상점가를 함께 이용하고 싶은 여행자에게 잘 맞습니다.", meta: ["카와바타", "상점가", "도보"], url: "/post/hotel-vista-fukuoka-nakasu-kawabata" },
-        { name: "후쿠오카 플로럴 인 니시나카스", tag: "니시나카스 실속형", location: "나카스·텐진 사이", reason: "나카스와 텐진 남쪽을 함께 걸어 다니고 싶은 일정에서 비교할 만합니다.", meta: ["니시나카스", "가성비", "밤 동선"], url: "/post/fukuoka-floral-inn-nishinakasu" }
+        { name: "더 라이블리 후쿠오카 하카타", tag: "나카스 감성형", location: "나카스 & 카와바타 권역", reason: "나카스와 카와바타를 중심으로 도보 여행을 즐기고 싶은 여행자에게 어울립니다.", meta: ["나카스", "감성", "도보 동선"], stationAccess: "나카스카와바타역 도보 약 1분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/the-lively-fukuoka-hakata" },
+        { name: "미쓰이 가든 호텔 후쿠오카 나카스", tag: "나카스 중심", location: "나카스 권역", reason: "맛집과 야경 동선을 짧게 잡고 싶은 커플·친구 여행에 비교하기 좋습니다.", meta: ["나카스", "맛집", "커플"], stationAccess: "나카스카와바타역 도보 약 2분", airportAccess: "공항역 지하철 약 9분", starRating: "4성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/mitsui-garden-hotel-fukuoka-nakasu" },
+        { name: "호텔 리솔 트리니티 하카타", tag: "번화가 접근", location: "나카스카와바타 주변", reason: "나카스 접근성과 대중교통 동선을 함께 보고 싶은 경우 후보로 넣기 좋습니다.", meta: ["역세권", "밤 동선", "실속"], stationAccess: "나카스카와바타역 도보 약 1분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/hotel-resol-trinity-hakata" },
+        { name: "호텔 비스타 후쿠오카 나카스카와바타", tag: "카와바타 도보권", location: "카와바타 상점가 주변", reason: "나카스와 카와바타 상점가를 함께 이용하고 싶은 여행자에게 잘 맞습니다.", meta: ["카와바타", "상점가", "도보"], stationAccess: "나카스카와바타역 도보 약 3분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/hotel-vista-fukuoka-nakasu-kawabata" },
+        { name: "후쿠오카 플로럴 인 니시나카스", tag: "니시나카스 실속형", location: "나카스·텐진 사이", reason: "나카스와 텐진 남쪽을 함께 걸어 다니고 싶은 일정에서 비교할 만합니다.", meta: ["니시나카스", "가성비", "밤 동선"], stationAccess: "나카스카와바타역 도보 약 6분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.2", freeCancel: "무료 취소 확인", url: "/post/fukuoka-floral-inn-nishinakasu" }
       ]
     },
     gion: {
@@ -148,11 +213,11 @@ const cityConfig = {
       compareCaution: "텐진 쇼핑이나 오호리·모모치 일정이 중심이면 매번 이동이 필요할 수 있습니다.",
       mismatchNote: "이번 답변에서 텐진 쇼핑이나 오호리·모모치 휴식을 강하게 골랐다면 기온은 중간 대안으로 보는 편이 좋습니다.",
       hotels: [
-        { name: "다이와 로이넷 호텔 하카타 기온", tag: "기온역 중심", location: "기온 권역", reason: "하카타와 나카스 사이에서 실속 있는 역세권 숙소를 찾을 때 비교하기 좋습니다.", meta: ["기온역", "균형형", "가성비"], url: "/post/daiwa-roynet-hotel-hakata-gion" },
-        { name: "도미 인 하카타 기온", tag: "휴식형 실속", location: "기온 권역", reason: "도심 접근성과 숙소 내 휴식 요소를 함께 보고 싶은 여행자에게 어울립니다.", meta: ["기온", "대욕장", "실속"], url: "/post/dormy-inn-hakata-gion" },
-        { name: "호텔 토리피토 하카타 기온", tag: "깔끔한 도심형", location: "기온·구시다신사 주변", reason: "기온에서 깔끔한 객실과 주요 명소 접근성을 함께 보고 싶을 때 후보가 됩니다.", meta: ["기온", "깔끔함", "도보"], url: "/post/hotel-torifito-hakata-gion" },
-        { name: "더 로열 파크 호텔 후쿠오카", tag: "하카타·기온 사이", location: "하카타·기온 권역", reason: "하카타역과 기온 생활권을 함께 활용하고 싶은 일정에 비교할 만합니다.", meta: ["하카타", "기온", "안정형"], url: "/post/the-royal-park-hotel-fukuoka" },
-        { name: "9호텔 하카타", tag: "감성 실속형", location: "기온·구시다신사 주변", reason: "카와바타와 기온 사이의 차분한 도보 동선을 원하는 여행자에게 어울립니다.", meta: ["기온", "감성", "실속"], url: "/post/9-hotel-hakata" }
+        { name: "다이와 로이넷 호텔 하카타 기온", tag: "기온역 중심", location: "기온 권역", reason: "하카타와 나카스 사이에서 실속 있는 역세권 숙소를 찾을 때 비교하기 좋습니다.", meta: ["기온역", "균형형", "가성비"], stationAccess: "기온역 도보 약 1분", airportAccess: "공항역 지하철 약 7분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/daiwa-roynet-hotel-hakata-gion" },
+        { name: "도미 인 하카타 기온", tag: "휴식형 실속", location: "기온 권역", reason: "도심 접근성과 숙소 내 휴식 요소를 함께 보고 싶은 여행자에게 어울립니다.", meta: ["기온", "대욕장", "실속"], stationAccess: "기온역 도보 약 2분", airportAccess: "공항역 지하철 약 7분", starRating: "3성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/dormy-inn-hakata-gion" },
+        { name: "호텔 토리피토 하카타 기온", tag: "깔끔한 도심형", location: "기온·구시다신사 주변", reason: "기온에서 깔끔한 객실과 주요 명소 접근성을 함께 보고 싶을 때 후보가 됩니다.", meta: ["기온", "깔끔함", "도보"], stationAccess: "기온역 도보 약 5분", airportAccess: "공항역 지하철 약 7분", starRating: "3성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/hotel-torifito-hakata-gion" },
+        { name: "더 로열 파크 호텔 후쿠오카", tag: "하카타·기온 사이", location: "하카타·기온 권역", reason: "하카타역과 기온 생활권을 함께 활용하고 싶은 일정에 비교할 만합니다.", meta: ["하카타", "기온", "안정형"], stationAccess: "하카타역 도보 약 5분", airportAccess: "공항역 지하철 약 5분", starRating: "4성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/the-royal-park-hotel-fukuoka" },
+        { name: "9호텔 하카타", tag: "감성 실속형", location: "기온·구시다신사 주변", reason: "카와바타와 기온 사이의 차분한 도보 동선을 원하는 여행자에게 어울립니다.", meta: ["기온", "감성", "실속"], stationAccess: "구시다신사마에역 도보 약 3분", airportAccess: "공항역 지하철 약 8분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/9-hotel-hakata" }
       ]
     },
     yakuinWatanabedori: {
@@ -185,11 +250,11 @@ const cityConfig = {
       compareCaution: "하카타역과 나카스만 계속 오가는 첫 여행이면 이동이 애매하게 느껴질 수 있습니다.",
       mismatchNote: "이번 답변에서 공항 이동, 근교 이동, 밤거리 최단 동선을 많이 골랐다면 야쿠인 & 와타나베도리는 2순위 후보입니다.",
       hotels: [
-        { name: "호텔 몬토레 후쿠오카", tag: "와타나베도리 중심", location: "와타나베도리 권역", reason: "텐진 접근성과 차분한 도심 숙박을 함께 보고 싶은 여행자에게 잘 맞습니다.", meta: ["와타나베도리", "도심", "커플"], url: "/post/hotel-monterey-fukuoka" },
-        { name: "호텔 몬테 에르마나 후쿠오카", tag: "실속 도심형", location: "와타나베도리 주변", reason: "숙소비와 위치 균형을 함께 보고 싶은 여행자에게 비교하기 좋은 후보입니다.", meta: ["가성비", "와타나베도리", "차분함"], url: "/post/hotel-monte-hermana-fukuoka" },
-        { name: "퀸테사 호텔 후쿠오카 텐진 미나미", tag: "야쿠인 접근", location: "야쿠인·텐진미나미 권역", reason: "야쿠인 생활권과 텐진 남쪽 동선을 함께 활용하기 좋습니다.", meta: ["야쿠인", "실속", "도보"], url: "/post/quintessa-hotel-fukuoka-tenjin-minami" },
-        { name: "크로스 라이프 하카타 텐진", tag: "도심 감성형", location: "하루요시·와타나베도리 주변", reason: "텐진과 나카스 사이에서 감성적인 도심 숙박을 원하는 경우 비교할 만합니다.", meta: ["감성", "텐진 접근", "커플"], url: "/post/cross-life-hakata-tenjin" },
-        { name: "라이프 텐진 후쿠오카", tag: "재방문 감성형", location: "텐진·야쿠인 사이", reason: "혼자 또는 커플 여행에서 가볍고 트렌디한 숙박 분위기를 원할 때 어울립니다.", meta: ["감성 숙소", "재방문", "도심"], url: "/post/lyf-tenjin-fukuoka" }
+        { name: "호텔 몬토레 후쿠오카", tag: "와타나베도리 중심", location: "와타나베도리 권역", reason: "텐진 접근성과 차분한 도심 숙박을 함께 보고 싶은 여행자에게 잘 맞습니다.", meta: ["와타나베도리", "도심", "커플"], stationAccess: "와타나베도리역 도보 약 2분", airportAccess: "공항역 환승 약 15분", starRating: "4성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/hotel-monterey-fukuoka" },
+        { name: "호텔 몬테 에르마나 후쿠오카", tag: "실속 도심형", location: "와타나베도리 주변", reason: "숙소비와 위치 균형을 함께 보고 싶은 여행자에게 비교하기 좋은 후보입니다.", meta: ["가성비", "와타나베도리", "차분함"], stationAccess: "와타나베도리역 도보 약 2분", airportAccess: "공항역 환승 약 15분", starRating: "4성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/hotel-monte-hermana-fukuoka" },
+        { name: "퀸테사 호텔 후쿠오카 텐진 미나미", tag: "야쿠인 접근", location: "야쿠인·텐진미나미 권역", reason: "야쿠인 생활권과 텐진 남쪽 동선을 함께 활용하기 좋습니다.", meta: ["야쿠인", "실속", "도보"], stationAccess: "야쿠인역 도보 약 3분", airportAccess: "공항역 환승 약 15분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/quintessa-hotel-fukuoka-tenjin-minami" },
+        { name: "크로스 라이프 하카타 텐진", tag: "도심 감성형", location: "하루요시·와타나베도리 주변", reason: "텐진과 나카스 사이에서 감성적인 도심 숙박을 원하는 경우 비교할 만합니다.", meta: ["감성", "텐진 접근", "커플"], stationAccess: "와타나베도리역 도보 약 4분", airportAccess: "공항역 환승 약 15분", starRating: "3성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/cross-life-hakata-tenjin" },
+        { name: "라이프 텐진 후쿠오카", tag: "재방문 감성형", location: "텐진·야쿠인 사이", reason: "혼자 또는 커플 여행에서 가볍고 트렌디한 숙박 분위기를 원할 때 어울립니다.", meta: ["감성 숙소", "재방문", "도심"], stationAccess: "텐진미나미역 도보 약 5분", airportAccess: "공항역 환승 약 15분", starRating: "3성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/lyf-tenjin-fukuoka" }
       ]
     },
     ohoriMomochi: {
@@ -222,10 +287,10 @@ const cityConfig = {
       compareCaution: "하카타·텐진·나카스 중심 일정이 많다면 이동 시간이 길어질 수 있습니다.",
       mismatchNote: "이번 답변에서 맛집, 쇼핑, 공항 이동을 강하게 골랐다면 오호리 & 모모치는 특수 목적형 후보에 가깝습니다.",
       hotels: [
-        { name: "힐튼 후쿠오카 씨호크", tag: "모모치 대표형", location: "모모치·페이페이돔 주변", reason: "모모치 해변과 돔 주변 일정, 가족 여행을 함께 고려할 때 대표 후보가 됩니다.", meta: ["모모치", "가족", "전망"], url: "/post/hilton-fukuoka-sea-hawk" },
-        { name: "더 레지덴셜 스위트 후쿠오카", tag: "가족형 객실", location: "모모치·니시진 권역", reason: "객실 여유와 가족형 숙박을 우선하는 경우 비교하기 좋습니다.", meta: ["가족", "객실 여유", "모모치"], url: "/post/the-residential-suites-fukuoka" },
+        { name: "힐튼 후쿠오카 씨호크", tag: "모모치 대표형", location: "모모치·페이페이돔 주변", reason: "모모치 해변과 돔 주변 일정, 가족 여행을 함께 고려할 때 대표 후보가 됩니다.", meta: ["모모치", "가족", "전망"], stationAccess: "도진마치역 도보 약 19분", airportAccess: "공항역 지하철 약 18분", starRating: "5성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/hilton-fukuoka-sea-hawk" },
+        { name: "더 레지덴셜 스위트 후쿠오카", tag: "가족형 객실", location: "모모치·니시진 권역", reason: "객실 여유와 가족형 숙박을 우선하는 경우 비교하기 좋습니다.", meta: ["가족", "객실 여유", "모모치"], stationAccess: "니시진역 도보 약 10분", airportAccess: "공항역 지하철 약 15분", starRating: "3성급", guestRating: "★ 4.2", freeCancel: "무료 취소 확인", url: "/post/the-residential-suites-fukuoka" },
         { name: "시사이드 호텔 트윈스 모모치", tag: "모모치 실속형", location: "시사이드모모치 주변", reason: "모모치 해변과 후쿠오카타워 접근성을 우선 보고 싶은 여행자에게 어울립니다.", meta: ["모모치", "해변", "실속"], url: "/post/seaside-hotel-twins-momochi" },
-        { name: "원스 호텔 후쿠오카", tag: "오호리 접근", location: "오호리공원·도진마치 주변", reason: "오호리공원 산책과 도심 접근의 균형을 함께 보고 싶을 때 후보가 됩니다.", meta: ["오호리", "산책", "차분함"], url: "/post/ones-hotel-fukuoka" },
+        { name: "원스 호텔 후쿠오카", tag: "오호리 접근", location: "오호리공원·도진마치 주변", reason: "오호리공원 산책과 도심 접근의 균형을 함께 보고 싶을 때 후보가 됩니다.", meta: ["오호리", "산책", "차분함"], stationAccess: "오호리공원역 도보 약 6분", airportAccess: "공항역 지하철 약 15분", starRating: "3성급", guestRating: "★ 4.2", freeCancel: "무료 취소 확인", url: "/post/ones-hotel-fukuoka" },
         { name: "호텔 뉴 가이아 돔마에", tag: "돔 주변 실속형", location: "도진마치·페이페이돔 주변", reason: "돔 일정이나 모모치 서쪽 권역을 중심으로 움직이는 여행자에게 비교할 만합니다.", meta: ["돔", "모모치", "실속"], url: "/post/hotel-new-gaea-domemae" }
       ]
     }
@@ -1089,7 +1154,7 @@ function renderHotelCards(area) {
   if (!hotelCardList) return;
 
   setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-  setText("hotelSectionDesc", "위치와 핵심 조건만 빠르게 비교할 수 있도록 간단히 정리했습니다.");
+  setText("hotelSectionDesc", "역 접근성과 공항 이동 시간을 기준으로 빠르게 비교해보세요.");
   hotelCardList.innerHTML = "";
 
   if (hotels.length === 0) {
@@ -1113,8 +1178,8 @@ function renderHotelCards(area) {
     const separator = document.createElement("span");
     const airport = document.createElement("span");
     const tagList = document.createElement("div");
-    const metaItems = Array.isArray(hotel.meta) ? hotel.meta.filter(Boolean).slice(0, 2) : [];
-    const highlightText = hotel.tag || metaItems[0] || "추천 후보";
+    const access = getHotelAccessInfo(hotel, area);
+    const tags = getHotelDisplayTags(hotel);
 
     article.className = "wt-hotel-card wt-hotel-card--compact";
     header.className = "wt-hotel-card-header";
@@ -1133,9 +1198,9 @@ function renderHotelCards(area) {
     link.href = hotel.url || "#";
     link.textContent = "잔여 객실 확인";
     link.setAttribute("aria-label", `${hotel.name || "호텔 후보"} 잔여 객실 확인`);
-    station.textContent = hotel.location || area.name;
+    station.textContent = access.station;
     separator.textContent = "|";
-    airport.textContent = highlightText;
+    airport.textContent = access.airport;
 
     headerLeft.appendChild(rank);
     headerLeft.appendChild(name);
@@ -1146,17 +1211,14 @@ function renderHotelCards(area) {
     locationMain.appendChild(separator);
     locationMain.appendChild(airport);
 
-    metaItems.forEach((item) => {
+    tags.forEach((item, tagIndex) => {
       const tag = document.createElement("span");
-      tag.className = "wt-hotel-tag wt-hotel-tag--base";
+      tag.className = tagIndex === 2
+        ? "wt-hotel-tag wt-hotel-tag--highlight"
+        : "wt-hotel-tag wt-hotel-tag--base";
       tag.textContent = item;
       tagList.appendChild(tag);
     });
-
-    const highlight = document.createElement("span");
-    highlight.className = "wt-hotel-tag wt-hotel-tag--highlight";
-    highlight.textContent = highlightText;
-    tagList.appendChild(highlight);
 
     article.appendChild(header);
     article.appendChild(locationMain);
