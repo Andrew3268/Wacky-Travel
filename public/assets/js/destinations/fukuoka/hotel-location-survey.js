@@ -180,7 +180,7 @@ const cityConfig = {
         "근교 당일치기가 있다면 JR·버스터미널 이동이 쉬운 위치"
       ],
       avoidRange: [
-        "나카스 밤거리만 핵심인데 하카타역 뒤쪽에만 고정하는 선택",
+        "나카스 야경과 저녁 맛집이 핵심인데 하카타역 뒤쪽에만 고정하는 선택",
         "역과 가깝지만 캐리어 이동 동선이 복잡한 골목 안쪽 숙소",
         "객실 크기를 중요하게 보는데 초소형 비즈니스 호텔만 보는 선택"
       ],
@@ -194,7 +194,7 @@ const cityConfig = {
       chips: ["첫 여행", "공항 이동", "JR", "근교 이동", "부모님 동반"],
       compareGood: "공항과 JR, 버스 이동을 한 번에 잡기 좋아 일정이 바뀌어도 대응하기 쉽습니다.",
       compareCaution: "숙소 주변의 여행 분위기는 나카스나 텐진보다 덜 화려하게 느껴질 수 있습니다.",
-      mismatchNote: "이번 답변에서 밤거리, 쇼핑, 해변 산책을 더 중요하게 골랐다면 하카타는 1순위보다 안정적인 대안에 가깝습니다.",
+      mismatchNote: "이번 답변에서 야경·맛집, 쇼핑, 해변 산책을 더 중요하게 골랐다면 하카타는 1순위보다 안정적인 대안에 가깝습니다.",
       hotels: [
         { name: "미야코 호텔 하카타", tag: "하카타역 최단 동선", location: "하카타 권역", reason: "하카타역 접근성과 객실 여유를 함께 보고 싶은 여행자에게 비교 가치가 높은 숙소입니다.", meta: ["하카타역", "공항 이동", "부모님 동반"], stationAccess: "하카타역 도보 약 1분", airportAccess: "공항역 지하철 약 5분", starRating: "5성급", guestRating: "★ 4.7", freeCancel: "무료 취소 확인", url: "/post/miyako-hotel-hakata" },
         { name: "오리엔탈 호텔 후쿠오카 하카타 스테이션", tag: "역세권 안정형", location: "하카타역 주변", reason: "공항선과 JR 이동을 단순하게 만들고 싶은 첫 여행자에게 보기 좋은 후보입니다.", meta: ["역세권", "첫 여행", "짧은 일정"], stationAccess: "하카타역 도보 약 1분", airportAccess: "공항역 지하철 약 5분", starRating: "4성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/oriental-hotel-fukuoka-hakata-station" },
@@ -226,7 +226,7 @@ const cityConfig = {
       notFor: ["JR 근교 이동이 많은 일정", "해변·공원 중심 가족 여행", "숙소 주변 조용함이 최우선인 여행"],
       bookingTips: [
         "텐진역과 니시테츠후쿠오카역은 동선이 다르므로 자주 탈 노선을 먼저 정하세요.",
-        "나카스까지 걸을 계획이라면 밤길과 다리 이동 시간을 함께 확인하세요.",
+        "나카스까지 걸을 계획이라면 저녁 귀갓길과 다리 이동 시간을 함께 확인하세요.",
         "쇼핑 일정이 많다면 호텔 주변 코인락커보다 체크인 전 짐 보관 가능 여부를 확인하세요."
       ],
       chips: ["쇼핑", "맛집", "커플", "친구 여행", "도심"],
@@ -246,7 +246,7 @@ const cityConfig = {
       destinationLabel: areaDestinationLabels.nakasuKawabata,
       regionSlug: "나카스카와바타",
       regionSlugAliases: ["nakasu-kawabata", "나카스-카와바타", "나카스 & 카와바타"],
-      label: "야경과 맛집, 도보 중심 밤 동선에 강한 위치",
+      label: "야경과 맛집을 도보로 즐기기 좋은 위치",
       summary: "저녁 식사, 포장마차, 강변 야경, 캐널시티 동선이 중요하다면 나카스 & 카와바타가 잘 맞습니다.",
       leadTitle: "밤에도 숙소로 돌아오는 길이 짧은 위치입니다.",
       leadText: "나카스 강변, 카와바타 상점가, 캐널시티, 텐진 남쪽까지 걸어서 연결하기 좋습니다. 친구 여행이나 맛집 중심 일정에서 체감 만족도가 높습니다.",
@@ -257,26 +257,26 @@ const cityConfig = {
       ],
       avoidRange: [
         "밤 소음에 예민한데 나카스 중심 저층 객실을 고르는 선택",
-        "아이 동반 가족여행인데 주변 밤 분위기를 확인하지 않는 선택",
+        "아이 동반 가족여행인데 저녁 이후 주변 분위기를 확인하지 않는 선택",
         "근교 이동이 많은데 나카스 도보권만 보고 고르는 선택"
       ],
-      bestFor: ["맛집 여행", "밤 동선", "친구 여행", "커플 여행", "캐널시티 접근"],
+      bestFor: ["맛집 여행", "저녁 산책", "친구 여행", "커플 여행", "캐널시티 접근"],
       notFor: ["조용한 숙소가 최우선인 여행", "부모님 동반의 편안한 일정", "근교 이동이 많은 여행"],
       bookingTips: [
         "나카스 접근성과 소음은 함께 확인해야 합니다. 최근 후기에서 밤 소음 언급을 꼭 보세요.",
         "카와바타 쪽은 나카스와 가깝지만 체감 분위기가 조금 더 차분할 수 있습니다.",
-        "야식과 늦은 귀가가 많다면 호텔 입구 주변 분위기와 편의점 접근성도 확인하세요."
+        "늦은 저녁 식사와 귀가가 많다면 호텔 입구 주변 분위기와 편의점 접근성도 확인하세요."
       ],
       chips: ["맛집", "야경", "포장마차", "캐널시티", "친구 여행"],
-      compareGood: "저녁 이후 동선이 짧아 식사와 야경을 즐긴 뒤 숙소로 돌아오기 편합니다.",
+      compareGood: "저녁 식사와 야경을 즐긴 뒤 숙소로 돌아오기 편합니다.",
       compareCaution: "번화가에 가까울수록 소음과 주변 분위기 호불호가 생길 수 있습니다.",
       mismatchNote: "이번 답변에서 조용함, 가족형 여유, 공항 이동을 더 중요하게 골랐다면 나카스 & 카와바타는 주의해서 비교해야 합니다.",
       hotels: [
         { name: "더 라이블리 후쿠오카 하카타", tag: "나카스 감성형", location: "나카스 & 카와바타 권역", reason: "나카스와 카와바타를 중심으로 도보 여행을 즐기고 싶은 여행자에게 어울립니다.", meta: ["나카스", "감성", "도보 동선"], stationAccess: "나카스카와바타역 도보 약 1분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/the-lively-fukuoka-hakata" },
         { name: "미쓰이 가든 호텔 후쿠오카 나카스", tag: "나카스 중심", location: "나카스 권역", reason: "맛집과 야경 동선을 짧게 잡고 싶은 커플·친구 여행에 비교하기 좋습니다.", meta: ["나카스", "맛집", "커플"], stationAccess: "나카스카와바타역 도보 약 2분", airportAccess: "공항역 지하철 약 9분", starRating: "4성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/mitsui-garden-hotel-fukuoka-nakasu" },
-        { name: "호텔 리솔 트리니티 하카타", tag: "번화가 접근", location: "나카스카와바타 주변", reason: "나카스 접근성과 대중교통 동선을 함께 보고 싶은 경우 후보로 넣기 좋습니다.", meta: ["역세권", "밤 동선", "실속"], stationAccess: "나카스카와바타역 도보 약 1분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/hotel-resol-trinity-hakata" },
+        { name: "호텔 리솔 트리니티 하카타", tag: "번화가 접근", location: "나카스카와바타 주변", reason: "나카스 접근성과 대중교통 동선을 함께 보고 싶은 경우 후보로 넣기 좋습니다.", meta: ["역세권", "저녁 산책", "실속"], stationAccess: "나카스카와바타역 도보 약 1분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.3", freeCancel: "무료 취소 확인", url: "/post/hotel-resol-trinity-hakata" },
         { name: "호텔 비스타 후쿠오카 나카스카와바타", tag: "카와바타 도보권", location: "카와바타 상점가 주변", reason: "나카스와 카와바타 상점가를 함께 이용하고 싶은 여행자에게 잘 맞습니다.", meta: ["카와바타", "상점가", "도보"], stationAccess: "나카스카와바타역 도보 약 3분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/hotel-vista-fukuoka-nakasu-kawabata" },
-        { name: "후쿠오카 플로럴 인 니시나카스", tag: "니시나카스 실속형", location: "나카스·텐진 사이", reason: "나카스와 텐진 남쪽을 함께 걸어 다니고 싶은 일정에서 비교할 만합니다.", meta: ["니시나카스", "가성비", "밤 동선"], stationAccess: "나카스카와바타역 도보 약 6분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.2", freeCancel: "무료 취소 확인", url: "/post/fukuoka-floral-inn-nishinakasu" }
+        { name: "후쿠오카 플로럴 인 니시나카스", tag: "니시나카스 실속형", location: "나카스·텐진 사이", reason: "나카스와 텐진 남쪽을 함께 걸어 다니고 싶은 일정에서 비교할 만합니다.", meta: ["니시나카스", "가성비", "저녁 산책"], stationAccess: "나카스카와바타역 도보 약 6분", airportAccess: "공항역 지하철 약 9분", starRating: "3성급", guestRating: "★ 4.2", freeCancel: "무료 취소 확인", url: "/post/fukuoka-floral-inn-nishinakasu" }
       ]
     },
     gion: {
@@ -295,7 +295,7 @@ const cityConfig = {
       ],
       avoidRange: [
         "하카타역만 계속 이용하는데 기온 안쪽 저가 숙소만 보는 선택",
-        "나카스 밤 동선이 핵심인데 실제 도보 시간을 확인하지 않는 선택",
+        "나카스 야경과 저녁 식사가 핵심인데 실제 도보 시간을 확인하지 않는 선택",
         "역 출구와 호텔 사이 길 찾기 정보를 확인하지 않는 선택"
       ],
       bestFor: ["균형형 위치", "첫 여행", "캐널시티", "가성비", "차분한 도심"],
@@ -303,7 +303,7 @@ const cityConfig = {
       bookingTips: [
         "하카타역, 기온역, 구시다신사마에역 중 실제로 어떤 역을 쓸지 먼저 정하세요.",
         "기온은 조용함과 접근성의 균형이 장점이라 가격만 보고 너무 안쪽을 고르지 않는 편이 좋습니다.",
-        "캐널시티와 나카스까지 걸을 계획이면 밤길 동선도 함께 확인하세요."
+        "캐널시티와 나카스까지 걸을 계획이면 저녁 귀갓길도 함께 확인하세요."
       ],
       chips: ["균형형", "기온역", "캐널시티", "가성비", "차분함"],
       compareGood: "하카타와 나카스 사이에서 이동 균형을 잡기 좋아 호텔 선택 실패 확률을 낮추기 좋습니다.",
@@ -337,7 +337,7 @@ const cityConfig = {
         "늦은 밤 귀가가 많은데 텐진·나카스와의 실제 거리를 보지 않는 선택"
       ],
       bestFor: ["가성비", "차분한 도심", "재방문", "커플 여행", "텐진 접근"],
-      notFor: ["하카타역 중심 근교 이동", "나카스 밤거리 중심 여행", "오호리·모모치 중심 가족 여행"],
+      notFor: ["하카타역 중심 근교 이동", "나카스 야경·맛집 중심 여행", "오호리·모모치 중심 가족 여행"],
       bookingTips: [
         "야쿠인과 와타나베도리는 텐진과 가깝지만 역 동선이 다르므로 자주 이동할 방향을 먼저 정하세요.",
         "가격이 저렴해 보여도 지하철역까지의 실제 도보 시간을 꼭 확인하세요.",
@@ -346,7 +346,7 @@ const cityConfig = {
       chips: ["가성비", "차분함", "텐진 접근", "재방문", "커플"],
       compareGood: "중심가 접근성을 유지하면서 숙소비와 분위기의 균형을 잡기 좋습니다.",
       compareCaution: "하카타역과 나카스만 계속 오가는 첫 여행이면 이동이 애매하게 느껴질 수 있습니다.",
-      mismatchNote: "이번 답변에서 공항 이동, 근교 이동, 밤거리 최단 동선을 많이 골랐다면 야쿠인 & 와타나베도리는 2순위 후보입니다.",
+      mismatchNote: "이번 답변에서 공항 이동, 근교 이동, 야경·맛집 접근성을 많이 골랐다면 야쿠인 & 와타나베도리는 2순위 후보입니다.",
       hotels: [
         { name: "호텔 몬토레 후쿠오카", tag: "와타나베도리 중심", location: "와타나베도리 권역", reason: "텐진 접근성과 차분한 도심 숙박을 함께 보고 싶은 여행자에게 잘 맞습니다.", meta: ["와타나베도리", "도심", "커플"], stationAccess: "와타나베도리역 도보 약 2분", airportAccess: "공항역 환승 약 15분", starRating: "4성급", guestRating: "★ 4.5", freeCancel: "무료 취소 확인", url: "/post/hotel-monterey-fukuoka" },
         { name: "호텔 몬테 에르마나 후쿠오카", tag: "실속 도심형", location: "와타나베도리 주변", reason: "숙소비와 위치 균형을 함께 보고 싶은 여행자에게 비교하기 좋은 후보입니다.", meta: ["가성비", "와타나베도리", "차분함"], stationAccess: "와타나베도리역 도보 약 2분", airportAccess: "공항역 환승 약 15분", starRating: "4성급", guestRating: "★ 4.4", freeCancel: "무료 취소 확인", url: "/post/hotel-monte-hermana-fukuoka" },
@@ -419,7 +419,7 @@ const cityConfig = {
           title: "이번 여행에서 가장 중요한 것은 무엇인가요?",
           help: "여행의 핵심 목적에 따라 숙소 위치가 달라집니다.",
           options: [
-            { title: "맛집·밤거리", desc: "저녁에도 걸어서 다닐 수 있는 곳이 좋아요.", scores: { nakasuKawabata: 7, tenjin: 2, hakata: 1 } },
+            { title: "맛집·야경", desc: "저녁에도 걸어서 다니기 좋은 곳이 좋아요.", scores: { nakasuKawabata: 7, tenjin: 2, hakata: 1 } },
             { title: "쇼핑", desc: "쇼핑몰, 상점가, 백화점 접근성이 중요해요.", scores: { tenjin: 6, hakata: 1, nakasuKawabata: 1, yakuinWatanabedori: 2 } },
             { title: "교통 편의", desc: "공항 이동과 근교 이동을 편하게 하고 싶어요.", scores: { hakata: 5, gion: 4, tenjin: 1 } },
             { title: "아이 동반", desc: "이동 피로가 적고 동선이 단순했으면 좋겠어요.", scores: { ohoriMomochi: 6, hakata: 2, yakuinWatanabedori: 1, gion: 1 } }
@@ -649,7 +649,7 @@ function applyFukuokaAccuracyAdjustments(scores) {
   const nearTripHeavy = answerIs(5, "근교 2일 이상");
   const nearTripOneDay = answerIs(5, "근교 하루");
   const cityOnly = answerIs(5, "시내 중심");
-  const nightFood = answerIs(2, "맛집·밤거리") || answerIs(6, "번화가");
+  const nightFood = answerIs(2, "맛집·야경") || answerIs(6, "번화가");
   const shopping = answerIs(2, "쇼핑") || answerIs(6, "깔끔한 도심");
   const family = answerIn(1, ["가족·아이", "부모님 동반"]);
   const ohoriCore = answerIs(4, "오호리·모모치 핵심");
@@ -732,7 +732,7 @@ function getFukuokaTieBreakScores() {
   const nearTripHeavy = answerIs(5, "근교 2일 이상");
   const nearTripOneDay = answerIs(5, "근교 하루");
   const cityOnly = answerIs(5, "시내 중심");
-  const nightFood = answerIs(2, "맛집·밤거리") || answerIs(6, "번화가");
+  const nightFood = answerIs(2, "맛집·야경") || answerIs(6, "번화가");
   const shopping = answerIs(2, "쇼핑") || answerIs(6, "깔끔한 도심");
   const family = answerIn(1, ["가족·아이", "부모님 동반"]);
   const ohoriCore = answerIs(4, "오호리·모모치 핵심");
@@ -999,7 +999,7 @@ function getPersuasiveContent(area, rankedAreas) {
         { title: "공항 이동이 가장 단순합니다", text: "후쿠오카공항에서 하카타까지 이동 동선이 짧아 늦은 도착이나 이른 출국 일정에서 부담이 적습니다." },
         { title: "근교 일정에 강합니다", text: "JR 하카타역과 버스터미널을 활용하기 쉬워 다자이후, 유후인, 기타큐슈 같은 당일치기 계획을 세우기 좋습니다." },
         { title: "첫 여행 기준점으로 좋습니다", text: "하카타를 기준으로 잡으면 텐진, 나카스, 기온까지의 이동 방향이 명확해져 동선 실수가 줄어듭니다." },
-        { title: "주의할 점도 분명합니다", text: "쇼핑과 밤 분위기만 보면 텐진·나카스보다 덜 화려합니다. 숙소 주변 분위기보다 이동 효율을 우선할 때 가장 만족도가 높습니다." }
+        { title: "주의할 점도 분명합니다", text: "쇼핑과 저녁 분위기만 보면 텐진·나카스보다 덜 화려합니다. 숙소 주변 분위기보다 이동 효율을 우선할 때 가장 만족도가 높습니다." }
       ],
       conclusionTitle: "하카타를 1순위로 두면 좋은 여행",
       conclusionText: "2박 3일, 첫 방문, 공항 이동, 근교 이동이 겹친다면 하카타가 가장 안전합니다. 나카스 야경이나 텐진 쇼핑이 일정의 핵심이라면 그쪽을 대안으로 함께 비교하세요."
@@ -1016,15 +1016,15 @@ function getPersuasiveContent(area, rankedAreas) {
       conclusionText: "쇼핑, 맛집, 카페, 도심 분위기가 핵심이라면 텐진이 좋습니다. 공항 이동이나 유후인·다자이후 같은 근교 일정이 많다면 하카타도 함께 보세요."
     },
     nakasuKawabata: {
-      intro: "저녁 식사, 포장마차, 강변 야경, 늦은 귀가가 중요하면 나카스 & 카와바타가 강합니다. 숙소로 돌아오는 길이 짧아 밤 시간을 더 편하게 쓸 수 있습니다.",
+      intro: "저녁 식사, 포장마차, 강변 야경을 늦게까지 즐기고 싶다면 나카스 & 카와바타가 강합니다. 숙소로 돌아오는 길이 짧아 저녁 시간을 더 편하게 쓸 수 있습니다.",
       reasons: [
-        { title: "저녁 이후 동선이 짧습니다", text: "나카스 강변, 포장마차, 식당가를 이용한 뒤 택시나 긴 도보 없이 숙소로 돌아가기 쉽습니다." },
+        { title: "저녁 이후 이동이 편합니다", text: "나카스 강변, 포장마차, 식당가를 이용한 뒤 택시나 긴 도보 없이 숙소로 돌아가기 쉽습니다." },
         { title: "캐널시티와 상점가를 묶기 좋습니다", text: "캐널시티, 카와바타 상점가, 나카스 야경을 한 흐름으로 연결하기 좋아 짧은 여행에서도 체류감이 큽니다." },
         { title: "친구 여행 만족도가 높습니다", text: "늦은 시간까지 식사와 산책을 넣기 좋아 일정을 빽빽하게 쓰는 여행자에게 잘 맞습니다." },
         { title: "소음 확인은 필수입니다", text: "나카스 중심 저층 객실은 밤 소음 호불호가 생길 수 있습니다. 조용함이 중요하면 카와바타 쪽이나 한 블록 떨어진 위치가 낫습니다." }
       ],
       conclusionTitle: "나카스 & 카와바타를 1순위로 두면 좋은 여행",
-      conclusionText: "맛집과 밤 동선이 핵심이면 만족도가 높습니다. 부모님 동반, 아이 동반, 조용한 휴식이 우선이면 하카타·기온·오호리 & 모모치 쪽도 같이 비교하세요."
+      conclusionText: "맛집과 저녁 이후 이동이 핵심이면 만족도가 높습니다. 부모님 동반, 아이 동반, 조용한 휴식이 우선이면 하카타·기온·오호리 & 모모치 쪽도 같이 비교하세요."
     },
     gion: {
       intro: "하카타와 나카스 사이에서 균형을 잡고 싶다면 기온이 좋습니다. 너무 번잡하지 않으면서 하카타역, 캐널시티, 나카스 접근성을 모두 가져갈 수 있습니다.",
@@ -1032,7 +1032,7 @@ function getPersuasiveContent(area, rankedAreas) {
         { title: "위치 균형이 좋습니다", text: "하카타역과 나카스 사이에 있어 공항·역 이동과 저녁 도보 동선을 모두 무난하게 가져갈 수 있습니다." },
         { title: "첫 여행에도 부담이 적습니다", text: "하카타만큼 단순하고 나카스만큼 번화하지는 않지만, 주요 권역을 고르게 보기에는 안정적입니다." },
         { title: "가격과 위치를 함께 맞추기 좋습니다", text: "핵심 지역 바로 앞보다 부담을 낮추면서도 시내 중심 동선을 크게 포기하지 않는 선택이 가능합니다." },
-        { title: "목적이 뚜렷하면 비교가 필요합니다", text: "쇼핑만 보면 텐진, 근교 이동만 보면 하카타, 밤거리만 보면 나카스가 더 명확할 수 있습니다." }
+        { title: "목적이 뚜렷하면 비교가 필요합니다", text: "쇼핑만 보면 텐진, 근교 이동만 보면 하카타, 야경·맛집만 보면 나카스가 더 명확할 수 있습니다." }
       ],
       conclusionTitle: "기온을 1순위로 두면 좋은 여행",
       conclusionText: "하카타와 나카스 사이의 균형, 가성비, 차분한 도심 접근성을 함께 원할 때 좋습니다. 특정 목적이 강한 일정이라면 해당 목적에 더 가까운 지역도 함께 보세요."
@@ -1053,7 +1053,7 @@ function getPersuasiveContent(area, rankedAreas) {
       reasons: [
         { title: "가족과 걷기 좋은 흐름입니다", text: "오호리공원과 모모치 해변 주변은 번화가보다 여유가 있어 아이 동반 일정에서 체감 피로가 낮습니다." },
         { title: "서쪽 권역 일정이 편해집니다", text: "후쿠오카타워, 페이페이돔, 모모치 해변, 오호리공원을 중심으로 움직이면 도심 왕복 시간을 줄일 수 있습니다." },
-        { title: "숙박 분위기가 차분합니다", text: "하카타·텐진·나카스보다 밤 분위기가 덜 복잡해 쉬는 시간을 확보하기 좋습니다." },
+        { title: "숙박 분위기가 차분합니다", text: "하카타·텐진·나카스보다 저녁 이후 분위기가 덜 복잡해 쉬는 시간을 확보하기 좋습니다." },
         { title: "첫 여행 전체 동선은 길어질 수 있습니다", text: "하카타, 텐진, 나카스를 매일 오가야 한다면 이동 시간이 늘어납니다. 대표 명소를 짧게 많이 보는 일정에는 불리할 수 있습니다." }
       ],
       conclusionTitle: "오호리 & 모모치를 1순위로 두면 좋은 여행",
@@ -1170,7 +1170,7 @@ function renderAnswerSummary(area) {
 
 function getPracticalGuideDesc(area) {
   if (!area) return "";
-  return `${withJosa(area.name, "을/를")} 고를 때는 지역명보다 실제 역 출구, 도보 시간, 밤 동선, 객실 크기를 함께 확인하는 것이 좋습니다.`;
+  return `${withJosa(area.name, "을/를")} 고를 때는 지역명보다 실제 역 출구, 도보 시간, 저녁 이후 이동, 객실 크기를 함께 확인하는 것이 좋습니다.`;
 }
 
 function renderPracticalGuide(area) {
@@ -1185,7 +1185,7 @@ function renderPracticalGuide(area) {
 const alternativeAreaAppeals = {
   hakata: "공항과 근교 이동을 편하게 잡을 수 있는",
   tenjin: "쇼핑과 미식 동선을 더 가까이 누릴 수 있는",
-  nakasuKawabata: "강변 야경과 밤 동선이 살아나는",
+  nakasuKawabata: "강변 야경과 저녁 산책이 자연스러운",
   gion: "하카타와 나카스 사이에서 차분하게 머물 수 있는",
   yakuinWatanabedori: "카페 골목과 조용한 도심 분위기가 있는",
   ohoriMomochi: "공원 산책과 바다 여유를 더할 수 있는"
@@ -1194,7 +1194,7 @@ const alternativeAreaAppeals = {
 const topAreaMoodLeads = {
   hakata: "하카타의 편한 이동 흐름이 마음에 든다면",
   tenjin: "텐진의 활기 있는 도심 분위기가 끌린다면",
-  nakasuKawabata: "나카스·카와바타의 밤 산책 감성이 좋다면",
+  nakasuKawabata: "나카스·카와바타의 저녁 산책 감성이 좋다면",
   gion: "기온의 차분한 위치감이 마음에 든다면",
   yakuinWatanabedori: "야쿠인·와타나베도리의 느긋한 골목 분위기가 좋다면",
   ohoriMomochi: "오호리·모모치의 여유로운 흐름이 끌린다면"

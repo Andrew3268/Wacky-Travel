@@ -18052,3 +18052,24 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list .wt
   font-weight: 600 !important;
 }
 /* End WACKYTRAVEL_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */
+
+
+/* WACKYTRAVEL_FUKUOKA_SURVEY_COMPACT_HOTEL_PADDING_V21 */
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-location-main,
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list {
+  padding-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+  body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-location-main,
+  body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list {
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link {
+    margin-left: 0 !important;
+  }
+}
+/* End WACKYTRAVEL_FUKUOKA_SURVEY_COMPACT_HOTEL_PADDING_V21 */
