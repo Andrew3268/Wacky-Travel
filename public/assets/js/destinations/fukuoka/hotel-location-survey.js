@@ -1182,35 +1182,40 @@ function renderPracticalGuide(area) {
   renderChipList("notForList", area.notFor);
 }
 
+const alternativeAreaAppeals = {
+  hakata: "공항과 근교 이동을 편하게 잡을 수 있는",
+  tenjin: "쇼핑과 미식 동선을 더 가까이 누릴 수 있는",
+  nakasuKawabata: "강변 야경과 밤 동선이 살아나는",
+  gion: "하카타와 나카스 사이에서 차분하게 머물 수 있는",
+  yakuinWatanabedori: "카페 골목과 조용한 도심 분위기가 있는",
+  ohoriMomochi: "공원 산책과 바다 여유를 더할 수 있는"
+};
+
+const topAreaMoodLeads = {
+  hakata: "하카타의 편한 이동 흐름이 마음에 든다면",
+  tenjin: "텐진의 활기 있는 도심 분위기가 끌린다면",
+  nakasuKawabata: "나카스·카와바타의 밤 산책 감성이 좋다면",
+  gion: "기온의 차분한 위치감이 마음에 든다면",
+  yakuinWatanabedori: "야쿠인·와타나베도리의 느긋한 골목 분위기가 좋다면",
+  ohoriMomochi: "오호리·모모치의 여유로운 흐름이 끌린다면"
+};
+
 function getAlternativeDetail(topArea, rankedAreas) {
   const second = rankedAreas?.[1];
   if (!topArea || !second) return null;
 
-  const gap = topArea.score - second.score;
-  const title = gap <= 2
-    ? `${second.name}도 거의 같은 후보입니다`
-    : `${second.name}도 함께 비교해보세요`;
-
-  const text = gap <= 2
-    ? `${withJosa(topArea.name, "이/가")} 가장 잘 맞지만 점수 차이가 크지 않습니다. ${second.compareGood || second.summary} 호텔 가격이나 객실 크기 차이가 크다면 ${second.name}도 충분히 선택할 만합니다.`
-    : `${topArea.name} 조건이 더 강하게 나왔지만, 일정 일부가 ${second.name} 쪽에 가까우면 대안이 될 수 있습니다. ${second.compareGood || second.summary}`;
+  const topKey = getAreaKey(topArea);
+  const secondKey = getAreaKey(second);
+  const topLead = topAreaMoodLeads[topKey] || `${withJosa(topArea.name, "이/가")} 마음에 든다면`;
+  const secondAppeal = alternativeAreaAppeals[secondKey] || second.summary || "다른 분위기를 느낄 수 있는";
+  const title = "이런 지역도 함께 볼 만해요";
+  const text = `${topLead}, ${secondAppeal} ${second.name}도 자연스럽게 이어서 볼 만합니다. 호텔 가격과 실제 이동 시간이 잘 맞으면 충분히 좋은 선택이 될 수 있습니다.`;
 
   return { title, text };
 }
 
 function renderAlternativeAreaLegacy(topArea, rankedAreas) {
-  const box = document.getElementById("alternativeAreaBox");
-  if (!box) return;
-
-  const detail = getAlternativeDetail(topArea, rankedAreas);
-  if (!detail) {
-    box.style.display = "none";
-    return;
-  }
-
-  box.style.display = "block";
-  setText("alternativeAreaTitle", detail.title);
-  setText("alternativeAreaText", detail.text);
+  renderAlternativeArea(topArea, rankedAreas);
 }
 
 function renderPersuasiveResult(topArea, rankedAreas) {
@@ -1326,15 +1331,21 @@ function renderHotelCards(area) {
 }
 
 function renderAlternativeArea(topArea, rankedAreas) {
+  const box = document.getElementById("reasonAlternativeBox");
   const detail = getAlternativeDetail(topArea, rankedAreas);
+
+  if (!box) return;
+
   if (!detail) {
-    setText("alternativeAreaTitle", "함께 비교할 지역이 없습니다");
-    setText("alternativeAreaText", "이번 답변에서는 추천 지역의 적합도가 가장 높게 나왔습니다.");
+    box.style.display = "none";
+    setText("reasonAlternativeTitle", "");
+    setText("reasonAlternativeText", "");
     return;
   }
 
-  setText("alternativeAreaTitle", detail.title);
-  setText("alternativeAreaText", detail.text);
+  box.style.display = "";
+  setText("reasonAlternativeTitle", detail.title);
+  setText("reasonAlternativeText", detail.text);
 }
 
 const emotionalSummaryByArea = {

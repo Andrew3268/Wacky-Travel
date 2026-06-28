@@ -137,8 +137,7 @@
               <button class="tab-btn active" type="button" data-tab="0">추천 이유</button>
               <button class="tab-btn" type="button" data-tab="1">위치 체크</button>
               <button class="tab-btn" type="button" data-tab="2">추천 호텔</button>
-              <button class="tab-btn" type="button" data-tab="3">비교 지역</button>
-              <button class="tab-btn" type="button" data-tab="4">함께 볼 글</button>
+              <button class="tab-btn" type="button" data-tab="3">함께 볼 글</button>
             </div>
           </div>
 
@@ -151,6 +150,10 @@
               <div class="wt-decision-box">
                 <strong id="decisionConclusionTitle"></strong>
                 <p id="decisionConclusionText"></p>
+              </div>
+              <div class="wt-decision-box wt-decision-box--alternative" id="reasonAlternativeBox">
+                <strong id="reasonAlternativeTitle">이런 지역도 함께 볼 만해요</strong>
+                <p id="reasonAlternativeText"></p>
               </div>
             </article>
 
@@ -174,11 +177,6 @@
               <div class="wt-hotel-grid" id="hotelCardList"></div>
             </article>
 
-            <article class="tab-panel" id="alternativeAreaBox">
-              <p class="wt-section-eyebrow">함께 비교할 지역</p>
-              <h3 class="panel-title" id="alternativeAreaTitle"></h3>
-              <div class="panel-text"><p id="alternativeAreaText"></p></div>
-            </article>
 
             <article class="tab-panel" id="relatedPostSection">
               <p class="wt-section-eyebrow">함께 보면 좋은 글</p>
@@ -196,6 +194,6 @@
     </section>
   </div>
 </main>
-<script defer src="/assets/js/destinations/fukuoka/hotel-location-survey.js?v=20260628FukuokaResultBadgeV18"></script>
+<script defer src="/assets/js/destinations/fukuoka/hotel-location-survey.js?v=20260628FukuokaReasonAltV19"></script>
 </body>
 </html>
