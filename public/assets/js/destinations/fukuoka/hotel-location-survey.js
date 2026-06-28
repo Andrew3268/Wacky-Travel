@@ -8,6 +8,45 @@ const areaDestinationLabels = {
   ohoriMomochi: "공원 산책과 바다 쉼이 가까운, 오호리·모모치"
 };
 
+const areaDestinationLabelAliases = {
+  hakata: areaDestinationLabels.hakata,
+  "하카타": areaDestinationLabels.hakata,
+  tenjin: areaDestinationLabels.tenjin,
+  "텐진": areaDestinationLabels.tenjin,
+  nakasuKawabata: areaDestinationLabels.nakasuKawabata,
+  "nakasu-kawabata": areaDestinationLabels.nakasuKawabata,
+  "나카스카와바타": areaDestinationLabels.nakasuKawabata,
+  "나카스 & 카와바타": areaDestinationLabels.nakasuKawabata,
+  "나카스·카와바타": areaDestinationLabels.nakasuKawabata,
+  "나카스-카와바타": areaDestinationLabels.nakasuKawabata,
+  gion: areaDestinationLabels.gion,
+  "기온": areaDestinationLabels.gion,
+  yakuinWatanabedori: areaDestinationLabels.yakuinWatanabedori,
+  "yakuin-watanabedori": areaDestinationLabels.yakuinWatanabedori,
+  "야쿠인와타나베도리": areaDestinationLabels.yakuinWatanabedori,
+  "야쿠인 & 와타나베도리": areaDestinationLabels.yakuinWatanabedori,
+  "야쿠인·와타나베도리": areaDestinationLabels.yakuinWatanabedori,
+  "야쿠인-와타나베도리": areaDestinationLabels.yakuinWatanabedori,
+  ohoriMomochi: areaDestinationLabels.ohoriMomochi,
+  "ohori-momochi": areaDestinationLabels.ohoriMomochi,
+  "오호리모모치": areaDestinationLabels.ohoriMomochi,
+  "오호리 & 모모치": areaDestinationLabels.ohoriMomochi,
+  "오호리·모모치": areaDestinationLabels.ohoriMomochi,
+  "오호리-모모치": areaDestinationLabels.ohoriMomochi
+};
+
+function normalizeAreaToken(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s·ㆍ・&-]+/g, "");
+}
+
+const normalizedAreaDestinationLabels = Object.entries(areaDestinationLabelAliases).reduce((acc, [alias, label]) => {
+  acc[normalizeAreaToken(alias)] = label;
+  return acc;
+}, {});
+
 const hotelAccessPresets = {
   hakata: {
     station: "하카타역 도보권",
@@ -49,7 +88,22 @@ function getAreaKey(area) {
 
 function getAreaDestinationLabel(area) {
   const areaKey = getAreaKey(area);
-  return areaDestinationLabels[areaKey] || (area?.name ? `${area.name} 중심 일정` : "이번 여행에 어울리는 숙소 위치");
+  if (areaKey && areaDestinationLabels[areaKey]) return areaDestinationLabels[areaKey];
+  if (area?.destinationLabel) return area.destinationLabel;
+
+  const aliasCandidates = [
+    area?.name,
+    area?.regionSlug,
+    ...(Array.isArray(area?.regionSlugAliases) ? area.regionSlugAliases : [])
+  ];
+
+  for (const candidate of aliasCandidates) {
+    const label = normalizedAreaDestinationLabels[normalizeAreaToken(candidate)];
+    if (label) return label;
+  }
+
+  const displayName = String(area?.name || "").replace(/\s*&\s*/g, "·").trim();
+  return displayName ? `여행 리듬이 편안해지는, ${displayName}` : "이번 여행에 어울리는 숙소 위치";
 }
 
 function getHotelAccessInfo(hotel, area) {
@@ -83,6 +137,7 @@ const cityConfig = {
   areas: {
     hakata: {
       name: "하카타",
+      destinationLabel: areaDestinationLabels.hakata,
       regionSlug: "하카타",
       regionSlugAliases: ["hakata"],
       label: "공항 이동과 근교 이동까지 가장 단순하게 잡기 좋은 중심 위치",
@@ -120,6 +175,7 @@ const cityConfig = {
     },
     tenjin: {
       name: "텐진",
+      destinationLabel: areaDestinationLabels.tenjin,
       regionSlug: "텐진",
       regionSlugAliases: ["tenjin"],
       label: "쇼핑과 식사, 도심 분위기를 가장 쉽게 즐기기 좋은 위치",
@@ -157,6 +213,7 @@ const cityConfig = {
     },
     nakasuKawabata: {
       name: "나카스 & 카와바타",
+      destinationLabel: areaDestinationLabels.nakasuKawabata,
       regionSlug: "나카스카와바타",
       regionSlugAliases: ["nakasu-kawabata", "나카스-카와바타", "나카스 & 카와바타"],
       label: "야경과 맛집, 도보 중심 밤 동선에 강한 위치",
@@ -194,6 +251,7 @@ const cityConfig = {
     },
     gion: {
       name: "기온",
+      destinationLabel: areaDestinationLabels.gion,
       regionSlug: "기온",
       regionSlugAliases: ["gion"],
       label: "하카타와 나카스 사이에서 균형을 잡기 좋은 차분한 위치",
@@ -231,6 +289,7 @@ const cityConfig = {
     },
     yakuinWatanabedori: {
       name: "야쿠인 & 와타나베도리",
+      destinationLabel: areaDestinationLabels.yakuinWatanabedori,
       regionSlug: "야쿠인-와타나베도리",
       regionSlugAliases: ["yakuin-watanabedori", "yakuin-watanabe-dori", "야쿠인와타나베도리", "야쿠인-와타나베-도리"],
       label: "조용한 도심 분위기와 가격 균형을 잡기 좋은 위치",
@@ -268,6 +327,7 @@ const cityConfig = {
     },
     ohoriMomochi: {
       name: "오호리 & 모모치",
+      destinationLabel: areaDestinationLabels.ohoriMomochi,
       regionSlug: "오호리모모치",
       regionSlugAliases: ["ohori-momochi", "오호리-모모치", "오호리 & 모모치"],
       label: "공원과 해변, 가족 여행의 여유를 만들기 좋은 위치",
