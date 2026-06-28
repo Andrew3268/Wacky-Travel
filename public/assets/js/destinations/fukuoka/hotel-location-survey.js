@@ -1,11 +1,11 @@
 
 const areaResultBadges = {
-  hakata: "공항과 근교 길이 편안해지는",
-  tenjin: "쇼핑과 맛집 사이를 가볍게 걷는",
-  nakasuKawabata: "강변 야경과 맛집이 가까운",
-  gion: "하카타와 나카스를 차분히 잇는",
-  yakuinWatanabedori: "카페 골목의 여유가 머무는",
-  ohoriMomochi: "공원 산책과 바다 쉼이 가까운"
+  hakata: "공항에서 근교로, 편안해지는 발걸음",
+  tenjin: "쇼핑과 미식 사이, 가벼운 산책",
+  nakasuKawabata: "강변의 낭만 야경과 가까운 맛집",
+  gion: "하카타와 나카스를 잇는 잔잔한 길목",
+  yakuinWatanabedori: "카페 골목에 머무는 느린 여유",
+  ohoriMomochi: "초록빛 공원 산책과 푸른 바다의 휴식"
 };
 
 const areaDestinationLabels = {
