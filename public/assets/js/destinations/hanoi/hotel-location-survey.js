@@ -1,4 +1,4 @@
-/* Hanoi hotel location survey logic. */
+/* 하노이 hotel location survey logic. Modernized with the Fukuoka V23 survey UI flow. */
 const cityConfig = {
   "cityName": "하노이",
   "destinationSlug": "hanoi",
@@ -1026,794 +1026,712 @@ const cityConfig = {
   "postContentType": "top5_series"
 };
 
-const resultDetails = {
+const areaResultBadges = {
+  "oldquarter": "호수와 골목 미식이 이어지는 중심",
+  "french": "오페라하우스와 단정한 거리의 여유",
+  "westlake": "호수 바람과 카페 시간이 느린 휴식",
+  "badinh": "관광 동선과 쇼핑몰을 잇는 안정감",
+  "dongda": "문묘와 기차거리 사이 로컬 감성",
+  "mydinh": "출장과 장기 숙박에 편한 서쪽 동선"
+};
+
+const hotelAccessPresets = {
   "oldquarter": {
-    "why": "대표 명소, 길거리 음식, 카페, 투어 픽업 경로를 가장 쉽게 묶을 수 있습니다.",
-    "fit": [
-      {
-        "label": "첫 여행 동선",
-        "score": 96
-      },
-      {
-        "label": "투어 픽업 편의",
-        "score": 92
-      },
-      {
-        "label": "숙면 안정감",
-        "score": 60
-      }
-    ],
-    "reasons": [
-      {
-        "title": "핵심 동선",
-        "desc": "호안끼엠 호수와 올드쿼터, 맥주거리, 야시장, 주요 투어 픽업을 짧게 묶기 좋은 하노이 첫 여행의 기준으로 잡기 좋습니다."
-      },
-      {
-        "title": "잘 맞는 일정",
-        "desc": "첫 하노이 여행 · 2박 3일 짧은 일정 · 맛집·카페 중심 · 하롱베이·닌빈 투어 픽업에 특히 잘 맞습니다."
-      },
-      {
-        "title": "예약 전 체크",
-        "desc": "맥주거리와 야시장 바로 앞 저층 객실은 밤 소음 후기를 확인하세요."
-      },
-      {
-        "title": "주의점",
-        "desc": "골목이 좁고 밤에는 소음이 있을 수 있어 객실 방음과 엘리베이터 여부를 확인해야 합니다."
-      },
-      {
-        "title": "비교 기준",
-        "desc": "조용한 숙면, 리조트형 휴식, 넓은 객실을 우선한다면 올드쿼터보다 프렌치쿼터나 서호가 더 나을 수 있습니다."
-      },
-      {
-        "title": "추천 숙박",
-        "desc": "처음 방문자에게 가장 이해하기 쉬운 중심 위치입니다."
-      }
-    ],
-    "checklist": [
-      "맥주거리와 야시장 바로 앞 저층 객실은 밤 소음 후기를 확인하세요.",
-      "호안끼엠 호수 북쪽·동쪽·서쪽은 실제 분위기가 달라 실제 지도 위치를 확인하세요.",
-      "투어 픽업을 이용한다면 호텔 주소가 픽업 가능 구역인지 먼저 확인하세요.",
-      "골목이 좁고 밤에는 소음이 있을 수 있어 객실 방음과 엘리베이터 여부를 확인해야 합니다."
-    ],
-    "dayFlow": [
-      "오전: 주요 명소 또는 카페 이동",
-      "오후: 호텔 주변 산책·휴식",
-      "저녁: 식사 후 숙소 복귀 경로 확인"
-    ],
-    "decision": "호안끼엠·올드쿼터는 첫 하노이 여행과 2박 3일 짧은 일정에 잘 맞습니다. 다만 조용한 휴식이 최우선이라면 다른 구역도 함께 비교하세요.",
-    "hotelNotes": [
-      "올드쿼터 중심",
-      "호수 접근",
-      "실속 중심",
-      "스파·중심",
-      "상급 부티크"
-    ]
+    "station": "호안끼엠호수·올드쿼터 도보권",
+    "airport": "노이바이공항 차량 약 40~50분"
   },
   "french": {
-    "why": "정돈된 도심 분위기와 중심 접근성을 함께 챙길 수 있습니다.",
-    "fit": [
-      {
-        "label": "중심 산책",
-        "score": 94
-      },
-      {
-        "label": "호텔 만족도",
-        "score": 93
-      },
-      {
-        "label": "예산 절약",
-        "score": 58
-      }
-    ],
-    "reasons": [
-      {
-        "title": "핵심 동선",
-        "desc": "올드쿼터 접근성은 유지하면서 더 정돈된 거리, 고급 호텔, 호안끼엠 남쪽 산책 동선을 기대하기 좋은 구역입니다."
-      },
-      {
-        "title": "잘 맞는 일정",
-        "desc": "커플 여행 · 부모님 동반 · 기념일 여행처럼 호텔 컨디션을 중요하게 보는 일정에 잘 맞습니다."
-      },
-      {
-        "title": "예약 전 체크",
-        "desc": "오페라하우스·호안끼엠 남쪽·짱띠엔 쪽 중 실제 위치를 구분하세요."
-      },
-      {
-        "title": "주의점",
-        "desc": "올드쿼터 한복판보다 가격대가 높고 밤거리 선택지는 상대적으로 적습니다."
-      },
-      {
-        "title": "비교 기준",
-        "desc": "맥주거리와 야시장 중심의 활기찬 밤 일정을 원한다면 올드쿼터가 더 편합니다."
-      },
-      {
-        "title": "추천 숙박",
-        "desc": "중심 접근성과 숙소 만족도의 균형이 좋습니다."
-      }
-    ],
-    "checklist": [
-      "오페라하우스·호안끼엠 남쪽·짱띠엔 쪽 중 실제 위치를 구분하세요.",
-      "고급 호텔은 객실 전망과 조식 포함 여부를 함께 확인하세요.",
-      "올드쿼터를 자주 갈 계획이면 도보 10~15분 이내인지 보세요.",
-      "올드쿼터 한복판보다 가격대가 높고 밤거리 선택지는 상대적으로 적습니다."
-    ],
-    "dayFlow": [
-      "오전: 주요 명소 또는 카페 이동",
-      "오후: 호텔 주변 산책·휴식",
-      "저녁: 식사 후 숙소 복귀 경로 확인"
-    ],
-    "decision": "프렌치쿼터·오페라하우스는 커플 여행과 부모님 동반 일정에 잘 맞습니다. 다만 예산이 최우선이라면 다른 구역도 함께 비교하세요.",
-    "hotelNotes": [
-      "클래식 럭셔리",
-      "감성 럭셔리",
-      "오페라하우스 동선",
-      "호안끼엠 전망",
-      "도심 대형 호텔"
-    ]
+    "station": "오페라하우스·프렌치쿼터 도보권",
+    "airport": "공항 차량 약 40~50분"
   },
   "westlake": {
-    "why": "번잡함을 줄이고 숙소 체류 만족도와 여유로운 동네 분위기를 기대하기 좋습니다.",
-    "fit": [
-      {
-        "label": "조용한 휴식",
-        "score": 96
-      },
-      {
-        "label": "장기 체류",
-        "score": 91
-      },
-      {
-        "label": "대표 관광 효율",
-        "score": 54
-      }
-    ],
-    "reasons": [
-      {
-        "title": "핵심 동선",
-        "desc": "호수 산책, 카페, 레스토랑, 숙소에서 쉬는 시간을 중요하게 보는 재방문·장기 일정에 잘 맞습니다."
-      },
-      {
-        "title": "잘 맞는 일정",
-        "desc": "조용한 휴식 · 장기 일정 · 가족 여행 · 호수 전망·카페 여행에 특히 잘 맞습니다."
-      },
-      {
-        "title": "예약 전 체크",
-        "desc": "서호는 넓기 때문에 타이호·쑤언지에우·쩐부 방향을 구분하세요."
-      },
-      {
-        "title": "주의점",
-        "desc": "대표 관광지를 매일 다니면 이동 시간이 누적될 수 있습니다."
-      },
-      {
-        "title": "비교 기준",
-        "desc": "2박 3일 첫 여행이라면 서호 전체 숙박보다 첫날·마지막날 일부 일정에 넣는 편이 더 효율적일 수 있습니다."
-      },
-      {
-        "title": "추천 숙박",
-        "desc": "하노이를 천천히 머물고 싶은 여행자에게 좋습니다."
-      }
-    ],
-    "checklist": [
-      "서호는 넓기 때문에 타이호·쑤언지에우·쩐부 방향을 구분하세요.",
-      "올드쿼터 이동은 택시·그랩 기준으로 계산하세요.",
-      "호수 전망 객실은 전망 보장 여부를 확인하세요.",
-      "대표 관광지를 매일 다니면 이동 시간이 누적될 수 있습니다."
-    ],
-    "dayFlow": [
-      "오전: 주요 명소 또는 카페 이동",
-      "오후: 호텔 주변 산책·휴식",
-      "저녁: 식사 후 숙소 복귀 경로 확인"
-    ],
-    "decision": "서호·타이호는 조용한 휴식과 장기 일정에 잘 맞습니다. 다만 대표 관광만 빠르게 둘러보는 일정이라면 다른 구역도 함께 비교하세요.",
-    "hotelNotes": [
-      "호수 위 숙소",
-      "서호·쭉박 균형",
-      "안정형 대형 호텔",
-      "레지던스형",
-      "실속 레지던스"
-    ]
+    "station": "서호 카페·호수 산책권",
+    "airport": "공항 차량 약 25~40분"
   },
   "badinh": {
-    "why": "대형 호텔 안정감과 박물관·문묘·롯데센터 동선을 함께 기대할 수 있습니다.",
-    "fit": [
-      {
-        "label": "가족 안정감",
-        "score": 94
-      },
-      {
-        "label": "대형 호텔 선택",
-        "score": 90
-      },
-      {
-        "label": "밤거리 접근",
-        "score": 55
-      }
-    ],
-    "reasons": [
-      {
-        "title": "핵심 동선",
-        "desc": "호찌민 묘소, 문묘, 박물관, 롯데센터 주변을 묶기 좋고 대형 호텔과 안정적인 숙박 후보가 많은 구역입니다."
-      },
-      {
-        "title": "잘 맞는 일정",
-        "desc": "가족 여행 · 부모님 동반 · 대형 호텔 선호 · 박물관·문묘 일정에 특히 잘 맞습니다."
-      },
-      {
-        "title": "예약 전 체크",
-        "desc": "롯데센터 주변과 호찌민 묘소 주변은 분위기가 다르므로 위치를 나눠 보세요."
-      },
-      {
-        "title": "주의점",
-        "desc": "올드쿼터처럼 걸어서 밤 일정을 이어가기에는 불편할 수 있습니다."
-      },
-      {
-        "title": "비교 기준",
-        "desc": "첫 여행에서 길거리 음식과 밤 산책이 중심이면 호안끼엠이 더 편합니다."
-      },
-      {
-        "title": "추천 숙박",
-        "desc": "가족·부모님 동반에서 안정감 있게 비교하기 좋습니다."
-      }
-    ],
-    "checklist": [
-      "롯데센터 주변과 호찌민 묘소 주변은 분위기가 다르므로 위치를 나눠 보세요.",
-      "주요 관광지까지는 그랩 이동을 전제로 계산하세요.",
-      "가족 여행은 커넥팅룸·조식·수영장 조건을 함께 확인하세요.",
-      "올드쿼터처럼 걸어서 밤 일정을 이어가기에는 불편할 수 있습니다."
-    ],
-    "dayFlow": [
-      "오전: 주요 명소 또는 카페 이동",
-      "오후: 호텔 주변 산책·휴식",
-      "저녁: 식사 후 숙소 복귀 경로 확인"
-    ],
-    "decision": "바딘·롯데센터는 가족 여행, 부모님 동반 일정에 잘 맞습니다. 다만 올드쿼터 도보 중심이라면 다른 구역을 함께 비교하세요.",
-    "hotelNotes": [
-      "전망·대형 호텔",
-      "전통 대형 호텔",
-      "컨디션 균형",
-      "개성형 고급 호텔",
-      "레지던스형 실속"
-    ]
+    "station": "롯데센터·바딘 접근",
+    "airport": "공항 차량 약 35~45분"
   },
   "dongda": {
-    "why": "숙박비 부담을 낮추면서 중심 접근성을 크게 잃지 않을 수 있습니다.",
-    "fit": [
-      {
-        "label": "가격·위치 균형",
-        "score": 92
-      },
-      {
-        "label": "기차역 접근",
-        "score": 86
-      },
-      {
-        "label": "완전 도보 여행",
-        "score": 60
-      }
-    ],
-    "reasons": [
-      {
-        "title": "핵심 동선",
-        "desc": "올드쿼터 접근성은 유지하면서 숙박비와 차분한 로컬 분위기의 균형을 잡기 좋은 현실적인 선택지입니다."
-      },
-      {
-        "title": "잘 맞는 일정",
-        "desc": "가성비 · 재방문 · 기차역 이용 · 문묘·기차거리 일정에 특히 잘 맞습니다."
-      },
-      {
-        "title": "예약 전 체크",
-        "desc": "하노이역 주변은 골목·도로 환경이 달라 실제 도보 이동을 보세요."
-      },
-      {
-        "title": "주의점",
-        "desc": "대표 명소를 모두 걸어서 해결하기에는 올드쿼터보다 실제 접근성이 낮습니다."
-      },
-      {
-        "title": "비교 기준",
-        "desc": "처음 방문이고 일정이 짧다면 동다를 1순위보다 2순위 대안으로 두는 편이 안전합니다."
-      },
-      {
-        "title": "추천 숙박",
-        "desc": "가격과 중심 접근성의 균형을 보고 싶을 때 좋습니다."
-      }
-    ],
-    "checklist": [
-      "하노이역 주변은 골목·도로 환경이 달라 실제 도보 이동을 보세요.",
-      "기차거리 방문은 운영·통제 상황이 바뀔 수 있어 현지 안내를 확인하세요.",
-      "밤 일정이 많다면 올드쿼터까지의 택시 동선을 계산하세요.",
-      "대표 명소를 모두 걸어서 해결하기에는 올드쿼터보다 실제 접근성이 낮습니다."
-    ],
-    "dayFlow": [
-      "오전: 주요 명소 또는 카페 이동",
-      "오후: 호텔 주변 산책·휴식",
-      "저녁: 식사 후 숙소 복귀 경로 확인"
-    ],
-    "decision": "동다·문묘·기차거리는 가성비와 재방문 일정에 잘 맞습니다. 다만 완전 도보 중심의 첫 여행이라면 다른 구역도 함께 비교하세요.",
-    "hotelNotes": [
-      "문묘 인근",
-      "대형 호텔",
-      "하노이역 접근",
-      "기차역 실속",
-      "도심 실속"
-    ]
+    "station": "문묘·기차거리 접근",
+    "airport": "공항 차량 약 40~50분"
   },
   "mydinh": {
-    "why": "서쪽 일정과 한인타운 생활 편의성이 중요할 때 이동 피로를 줄일 수 있습니다.",
-    "fit": [
-      {
-        "label": "출장·서쪽 일정",
-        "score": 96
-      },
-      {
-        "label": "한인타운 편의",
-        "score": 91
-      },
-      {
-        "label": "관광 중심성",
-        "score": 42
-      }
-    ],
-    "reasons": [
-      {
-        "title": "핵심 동선",
-        "desc": "한인 식당, 비즈니스 일정, 컨벤션·서쪽 도심 이동이 중심인 여행자에게 실용적인 숙박권역입니다."
-      },
-      {
-        "title": "잘 맞는 일정",
-        "desc": "출장 · 장기 체류 · 한인타운 이동 · 서쪽 업무·쇼핑 일정에 특히 잘 맞습니다."
-      },
-      {
-        "title": "예약 전 체크",
-        "desc": "호안끼엠까지 이동 시간을 매일 계산하세요."
-      },
-      {
-        "title": "주의점",
-        "desc": "하노이 관광 중심 여행에서는 매번 시내 이동이 부담될 수 있습니다."
-      },
-      {
-        "title": "비교 기준",
-        "desc": "관광 일정이 대부분 호안끼엠·올드쿼터라면 미딩은 숙박 1순위가 아닙니다."
-      },
-      {
-        "title": "추천 숙박",
-        "desc": "관광보다 목적지가 서쪽에 있을 때 강점이 있습니다."
-      }
-    ],
-    "checklist": [
-      "호안끼엠까지 이동 시간을 매일 계산하세요.",
-      "목적지가 미딩·남뜨리엠·꺼우저이 중 어디인지 정확히 확인하세요.",
-      "출장 일정이면 교통 체증 시간대를 피해서 동선을 잡으세요.",
-      "하노이 관광 중심 여행에서는 매번 시내 이동이 부담될 수 있습니다."
-    ],
-    "dayFlow": [
-      "오전: 주요 명소 또는 카페 이동",
-      "오후: 호텔 주변 산책·휴식",
-      "저녁: 식사 후 숙소 복귀 경로 확인"
-    ],
-    "decision": "미딩·꺼우저이는 출장과 장기 체류 일정에 잘 맞습니다. 다만 첫 여행 대표 관광이 목적이라면 다른 구역도 함께 비교하세요.",
-    "hotelNotes": [
-      "랜드마크72",
-      "컨벤션·럭셔리",
-      "서쪽 안정형",
-      "장기 체류",
-      "대형 실속"
-    ]
+    "station": "미딩·꺼우저이 중심",
+    "airport": "공항 차량 약 30~40분"
   }
 };
 
-cityConfig.postContentType = "top5_series";
+function normalizeAreaToken(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s·ㆍ・&-]+/g, "");
+}
 
-(function () {
-  let currentQuestionIndex = 0;
-  let answers = new Array(cityConfig.questions.length).fill(null);
+function getAreaKey(area) {
+  if (!area) return "";
+  if (area.key && Object.prototype.hasOwnProperty.call(cityConfig.areas, area.key)) return area.key;
 
-  const locationPage = document.getElementById("locationPage");
-  const surveyWrap = document.querySelector(".wt-survey-wrap");
-  const surveyView = document.getElementById("surveyView");
-  const resultView = document.getElementById("resultView");
-  const startSurveyBtn = document.getElementById("startSurveyBtn");
-  const backBtn = document.getElementById("backBtn");
-  const questionCount = document.getElementById("questionCount");
-  const progressText = document.getElementById("progressText");
-  const progressBar = document.getElementById("progressBar");
-  const progressFill = document.getElementById("progressFill");
-  const questionTitle = document.getElementById("questionTitle");
-  const questionHelp = document.getElementById("questionHelp");
-  const optionsArea = document.getElementById("optionsArea");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const resetBtn = document.getElementById("resetBtn");
+  return Object.keys(cityConfig.areas).find((key) => {
+    const candidate = cityConfig.areas[key];
+    return candidate === area || candidate.name === area.name || candidate.regionSlug === area.regionSlug;
+  }) || "";
+}
 
-  const RELATED_TOP5_REGION_SLUGS = {
-    oldquarter: ["old-quarter", "hoan-kiem", "old-quarter-hoan-kiem", "hoan-kiem-old-quarter", "호안끼엠·올드쿼터", "호안끼엠", "올드쿼터"],
-    french: ["french-quarter", "opera-house", "french-quarter-opera-house", "프렌치쿼터·오페라하우스", "프렌치쿼터", "오페라하우스"],
-    westlake: ["west-lake", "tay-ho", "west-lake-tay-ho", "서호·타이호", "서호", "타이호"],
-    badinh: ["ba-dinh", "lotte-center", "ba-dinh-lotte-center", "바딘·롯데센터", "바딘", "롯데센터"],
-    dongda: ["dong-da", "temple-of-literature", "train-street", "dong-da-temple-of-literature-train-street", "동다·문묘·기차거리", "동다", "문묘", "기차거리"],
-    mydinh: ["my-dinh", "cau-giay", "my-dinh-cau-giay", "미딩·꺼우저이", "미딩", "꺼우저이"]
-  };
+function getAreaDisplayName(area) {
+  const displayName = String(area?.displayName || area?.name || "")
+    .replace(/\s*&\s*/g, "·")
+    .replace(/\s*-\s*/g, "·")
+    .trim();
+  return displayName || "추천 지역";
+}
 
-  function setText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text || "";
-  }
+function uniqueItems(items) {
+  return [...new Set((items || []).map((item) => String(item || "").trim()).filter(Boolean))];
+}
 
-  function escapeHtml(value) {
-    return String(value || "").replace(/[&<>'"]/g, (ch) => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      "'": "&#39;",
-      '"': "&quot;"
-    }[ch]));
-  }
+Object.entries(cityConfig.areas || {}).forEach(([key, area]) => {
+  area.key = area.key || key;
+  area.displayName = getAreaDisplayName(area);
+  area.resultBadge = area.resultBadge || areaResultBadges[key] || "이번 여행에 어울리는 숙소 위치";
+  area.destinationLabel = area.destinationLabel || `${area.resultBadge}, ${area.displayName}`;
+  area.bestFor = uniqueItems(area.bestFor || area.chips || ["일정이 짧은 여행", "위치 중심 숙소"]);
+  area.notFor = uniqueItems(area.notFor || ["숙소에서만 오래 쉬는 일정", "이동보다 리조트 시설이 더 중요한 여행"]);
+  area.bookingTips = uniqueItems(area.bookingTips || [
+    "예약 전 최근 후기에서 소음, 청결, 주변 공사 언급을 확인하세요.",
+    "공항·투어 픽업이 중요하면 호텔명보다 실제 픽업 가능 지역을 확인하세요.",
+    "택시나 그랩 이동이 많은 도시라면 예상 이동비도 함께 계산하세요."
+  ]);
+  area.stayRange = uniqueItems(area.stayRange || [
+    `${area.displayName} 안에서도 매일 갈 장소와 가장 가까운 위치`,
+    "식사·편의점·마사지 등 저녁 이후 편의시설이 가까운 큰길 주변",
+    "공항 이동이나 투어 픽업이 필요한 날의 동선이 단순한 숙소"
+  ]);
+  area.avoidRange = uniqueItems(area.avoidRange || [
+    "지도상 가까워 보여도 실제 도보 길이 불편한 안쪽 골목",
+    "저녁 이후 소음 후기가 반복되는 저층 객실",
+    "매일 이동할 목적지와 반대 방향으로 떨어진 숙소"
+  ]);
+});
 
-  function getProgressMessage() {
-    const step = currentQuestionIndex + 1;
-    const total = cityConfig.questions.length;
-    if (step === 1) return "가볍게 시작해볼까요?";
-    if (step === total) return "마지막 질문이에요!";
-    if (step >= total - 1) return "거의 다 왔어요";
-    if (step >= Math.ceil(total * 0.55)) return "숙소 위치 기준을 맞춰보는 중이에요";
-    return "동선을 하나씩 맞춰보는 중이에요";
-  }
+let currentQuestionIndex = 0;
+let answers = new Array(cityConfig.questions.length).fill(null);
+let lastRankedAreas = [];
+let lastTopArea = null;
 
-  function renderQuestion() {
-    const question = cityConfig.questions[currentQuestionIndex];
-    const selected = answers[currentQuestionIndex];
-    const answered = answers.filter((answer) => answer !== null).length;
-    const percent = Math.round((answered / cityConfig.questions.length) * 100);
+const pageIds = ["introPage", "questionPage", "completionPage", "loadingPage", "resultPage"];
+const locationPage = document.getElementById("locationPage");
+const questionCount = document.getElementById("questionCount");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+const progressFill = document.getElementById("progressFill");
+const questionTitle = document.getElementById("questionTitle");
+const questionHelp = document.getElementById("questionHelp");
+const optionsArea = document.getElementById("optionsArea");
+const startSurveyBtn = document.getElementById("startSurveyBtn");
+const backBtn = document.getElementById("backBtn");
+const resultCloseBtn = document.getElementById("resultCloseBtn");
+const resultReadyBtn = document.getElementById("resultReadyBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const resetBtn = document.getElementById("resetBtn");
+const detailBtn = document.getElementById("detailBtn");
+const hotelTabBtn = document.getElementById("hotelTabBtn");
 
-    surveyView.style.display = "block";
-    resultView.classList.remove("is-active");
-    questionCount.textContent = `${currentQuestionIndex + 1} / ${cityConfig.questions.length}`;
-    progressText.textContent = getProgressMessage();
-    progressFill.style.width = `${percent}%`;
-    progressBar.setAttribute("aria-valuenow", String(percent));
-    questionTitle.textContent = question.title;
-    questionHelp.textContent = question.help || "";
-    optionsArea.innerHTML = "";
+const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
 
-    question.options.forEach((option, index) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "wt-option";
-      button.setAttribute("aria-pressed", selected === index ? "true" : "false");
-      if (selected === index) button.classList.add("is-selected");
-      button.innerHTML = `
-        <span class="wt-option-title">${escapeHtml(option.title)}</span>
-        ${option.desc ? `<span class="wt-option-desc">${escapeHtml(option.desc)}</span>` : ""}
-      `;
-      button.addEventListener("click", () => {
-        answers[currentQuestionIndex] = index;
-        renderQuestion();
-      });
-      optionsArea.appendChild(button);
-    });
+function setText(id, text) {
+  const element = document.getElementById(id);
+  if (element) element.textContent = text || "";
+}
 
-    prevBtn.disabled = false;
-    prevBtn.textContent = currentQuestionIndex === 0 ? "닫기" : "이전";
-    nextBtn.disabled = selected === null;
-    nextBtn.textContent = currentQuestionIndex === cityConfig.questions.length - 1 ? "결과 보기" : "다음";
-  }
+function navigateTo(pageId) {
+  pageIds.forEach((id) => {
+    const page = document.getElementById(id);
+    if (!page) return;
+    page.classList.toggle("active", id === pageId);
+  });
+  locationPage?.classList.toggle("is-survey-started", pageId !== "introPage");
+  locationPage?.classList.toggle("is-result-mode", pageId === "resultPage");
+}
 
-  function startSurvey() {
-    locationPage?.classList.add("is-survey-started");
-    locationPage?.classList.remove("is-result-mode");
-    surveyWrap?.classList.add("is-survey-started");
-    surveyWrap?.classList.remove("is-result-mode");
-    resultView?.classList.remove("is-active");
-    surveyView.style.display = "block";
-    renderQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+function getAnsweredPercent() {
+  const answeredCount = answers.filter((answer) => answer !== null).length;
+  return Math.round((answeredCount / cityConfig.questions.length) * 100);
+}
 
-  function closeSurveyToStart() {
-    currentQuestionIndex = 0;
-    answers = new Array(cityConfig.questions.length).fill(null);
-    resultView?.classList.remove("is-active");
-    surveyWrap?.classList.remove("is-result-mode");
-    surveyWrap?.classList.remove("is-survey-started");
-    locationPage?.classList.remove("is-result-mode");
-    locationPage?.classList.remove("is-survey-started");
-    surveyView.style.display = "block";
-    renderQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+function getProgressMessage() {
+  const total = cityConfig.questions.length;
+  const step = currentQuestionIndex + 1;
+  if (step === 1) return "가볍게 시작해볼까요?";
+  if (step === total) return "마지막 질문이에요";
+  if (step >= total - 1) return "거의 다 왔어요";
+  if (step >= Math.ceil(total * 0.65)) return "조금만 더 가면 추천 완료";
+  if (step >= Math.ceil(total * 0.4)) return "좋아요, 취향이 보이기 시작해요";
+  return "동선을 하나씩 맞춰보는 중이에요";
+}
 
-  function goNext() {
-    if (answers[currentQuestionIndex] === null) return;
-    if (currentQuestionIndex < cityConfig.questions.length - 1) {
-      currentQuestionIndex += 1;
-      renderQuestion();
-      questionTitle.focus?.();
-    } else {
-      showResult();
-    }
-  }
-
-  function goPrev() {
-    if (currentQuestionIndex === 0) {
-      closeSurveyToStart();
-      return;
-    }
-    currentQuestionIndex -= 1;
-    renderQuestion();
-  }
-
-  function getTieBreakPriority(areaKey) {
-    const order = Object.keys(cityConfig.areas);
-    return order.length - order.indexOf(areaKey);
-  }
-
-  function calculateScores() {
-    const scores = {};
-    Object.keys(cityConfig.areas).forEach((areaKey) => {
-      scores[areaKey] = 0;
-    });
-
-    answers.forEach((answerIndex, questionIndex) => {
-      if (answerIndex === null) return;
-      const selectedOption = cityConfig.questions[questionIndex].options[answerIndex];
-      Object.entries(selectedOption.scores || {}).forEach(([areaKey, score]) => {
-        if (Object.prototype.hasOwnProperty.call(scores, areaKey)) {
-          scores[areaKey] += Number(score) || 0;
-        }
-      });
-    });
-
-    return Object.entries(scores)
-      .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
-      .sort((a, b) => (b.score - a.score) || (getTieBreakPriority(b.key) - getTieBreakPriority(a.key)));
-  }
-
-  function renderHotelCards(area) {
-    const section = document.getElementById("hotelRecommendSection");
-    const hotelCardList = document.getElementById("hotelCardList");
-    const hotels = Array.isArray(area.hotels) ? area.hotels.slice(0, 5) : [];
-
-    if (!section || !hotelCardList) return;
-
-    if (hotels.length === 0) {
-      section.style.display = "none";
-      hotelCardList.innerHTML = "";
-      return;
-    }
-
-    section.style.display = "block";
-    setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
-    setText("hotelSectionDesc", "추천된 위치를 기준으로 먼저 비교해볼 만한 호텔 선택지입니다. 실제 예약 전에는 가격, 객실 타입, 취소 조건, 최근 후기를 같이 확인하세요.");
-    hotelCardList.innerHTML = "";
-
-    hotels.forEach((hotel, index) => {
-      const article = document.createElement("article");
-      const top = document.createElement("div");
-      const rank = document.createElement("span");
-      const tag = document.createElement("span");
-      const name = document.createElement("h4");
-      const location = document.createElement("p");
-      const reason = document.createElement("p");
-      const meta = document.createElement("div");
-      const footer = document.createElement("div");
-      const linkWrap = document.createElement("div");
-      const link = document.createElement("a");
-
-      article.className = "wt-hotel-card";
-      top.className = "wt-hotel-card-top";
-      rank.className = "wt-hotel-rank";
-      tag.className = "wt-hotel-tag";
-      name.className = "wt-hotel-name";
-      location.className = "wt-hotel-location";
-      reason.className = "wt-hotel-reason";
-      meta.className = "wt-hotel-meta";
-      footer.className = "wt-hotel-card-footer";
-      linkWrap.className = "wt-hotel-link-wrap";
-      link.className = "wt-hotel-link";
-
-      rank.textContent = `${index + 1}`;
-      tag.textContent = hotel.tag || "추천 후보";
-      name.textContent = hotel.name;
-      location.textContent = hotel.location || area.name;
-      reason.textContent = hotel.reason || "추천된 위치를 기준으로 비교해볼 만한 호텔입니다.";
-      link.href = hotel.url || `/destinations/${cityConfig.destinationSlug}/hotel-recommendations/`;
-      link.textContent = "잔여 객실 확인";
-      link.setAttribute("aria-label", `${hotel.name} 잔여 객실 확인`);
-
-      (hotel.meta || []).forEach((item) => {
-        const chip = document.createElement("span");
-        chip.textContent = item;
-        meta.appendChild(chip);
-      });
-
-      top.appendChild(rank);
-      top.appendChild(tag);
-      linkWrap.appendChild(link);
-      footer.appendChild(meta);
-      footer.appendChild(linkWrap);
-      article.appendChild(top);
-      article.appendChild(name);
-      article.appendChild(location);
-      article.appendChild(reason);
-      article.appendChild(footer);
-      hotelCardList.appendChild(article);
-    });
-  }
-
-  function getRelatedPostRegionSlugs(area) {
-    return [...new Set([
-      ...(RELATED_TOP5_REGION_SLUGS[area?.key] || []),
-      area?.regionSlug,
-      ...(Array.isArray(area?.regionSlugAliases) ? area.regionSlugAliases : []),
-      area?.name,
-      area?.key
-    ].map((item) => String(item || "").trim()).filter(Boolean))];
-  }
-
-  async function fetchRelatedPostsByRegion(area) {
-    const regionSlugs = getRelatedPostRegionSlugs(area);
-
-    for (const regionSlug of regionSlugs) {
-      const params = new URLSearchParams({
-        destination: cityConfig.destinationSlug,
-        type: cityConfig.postContentType || "top5_series",
-        region: regionSlug,
-        limit: "5"
-      });
-
-      try {
-        const response = await fetch(`/api/destination-posts?${params.toString()}`, {
-          headers: { accept: "application/json" },
-          cache: "no-store"
-        });
-        if (!response.ok) continue;
-        const data = await response.json();
-        const items = Array.isArray(data.items) ? data.items : [];
-        if (items.length) return items.slice(0, 5);
-      } catch (_) {
-        return [];
-      }
-    }
-
-    return [];
-  }
-
-  async function renderRelatedPosts(area) {
-    const section = document.getElementById("relatedPostSection");
-    const list = document.getElementById("relatedPostList");
-
-    if (!section || !list) return;
-
-    section.style.display = "none";
-    list.innerHTML = "";
-    setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
-    setText("relatedPostDesc", "현재 추천된 지역에 연결된 여행 스타일별 호텔 추천 글만 보여줍니다.");
-
-    const posts = await fetchRelatedPostsByRegion(area);
-
-    if (!posts.length) {
-      section.style.display = "none";
-      list.innerHTML = "";
-      return;
-    }
-
-    section.style.display = "block";
-    list.innerHTML = "";
-
-    posts.forEach((post) => {
-      const title = String(post.title || "여행 스타일별 호텔 추천 글").trim();
-      const slug = String(post.slug || "").trim();
-      const item = document.createElement("li");
-      const link = document.createElement("a");
-
-      link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
-      link.textContent = title;
-      link.setAttribute("aria-label", `${title} 보기`);
-
-      item.appendChild(link);
-      list.appendChild(item);
-    });
-  }
-
-  function normalizeResultReasons(area, reasons) {
-    const base = Array.isArray(reasons) && reasons.length ? reasons : [
-      { title: "동선", desc: area.summary },
-      { title: "숙소 분위기", desc: area.leadText },
-      { title: "예약 전 확인", desc: Array.isArray(area.bookingTips) ? area.bookingTips[0] : "실제 위치와 최근 후기를 함께 확인하세요." }
-    ];
-
-    return base.slice(0, 3).map((reason) => ({
-      title: reason.title || "추천 이유",
-      text: reason.text || reason.desc || "이번 답변에서 선택한 조건과 잘 맞는 위치입니다."
-    }));
-  }
-
-  function getPersuasiveContent(area, rankedAreas) {
-    const detail = resultDetails[area.key] || {};
-    const runnerUp = rankedAreas[1];
-    const alternativeText = runnerUp ? `${runnerUp.name}도 함께 비교하면 예산과 분위기 선택 폭을 넓힐 수 있습니다.` : "같은 지역 안에서도 실제 도보 경로와 최근 후기는 꼭 확인하세요.";
-
-    return {
-      intro: detail.why || area.compareGood || area.summary,
-      reasons: normalizeResultReasons(area, detail.reasons),
-      conclusionTitle: `${area.name}부터 호텔 후보를 좁혀보세요`,
-      conclusionText: detail.decision || `${area.name}은(는) 이번 답변에서 가장 많이 맞아떨어진 위치입니다. ${alternativeText}`
-    };
-  }
-
-  function renderPersuasiveResult(topArea, rankedAreas) {
-    const content = getPersuasiveContent(topArea, rankedAreas);
-    const reasonCardList = document.getElementById("reasonCardList");
-
-    setText("resultWhyText", content.intro);
-    setText("decisionConclusionTitle", content.conclusionTitle);
-    setText("decisionConclusionText", content.conclusionText);
-
-    if (reasonCardList) {
-      reasonCardList.innerHTML = "";
-      content.reasons.forEach((reason, index) => {
-        const article = document.createElement("article");
-        const number = document.createElement("span");
-        const title = document.createElement("h4");
-        const text = document.createElement("p");
-
-        article.className = "wt-reason-card";
-        number.className = "wt-reason-number";
-        number.textContent = `${index + 1}`;
-        title.textContent = reason.title;
-        text.textContent = reason.text;
-
-        article.appendChild(number);
-        article.appendChild(title);
-        article.appendChild(text);
-        reasonCardList.appendChild(article);
-      });
-    }
-  }
-
-  function showResult() {
-    const rankedAreas = calculateScores();
-    const topArea = rankedAreas[0];
-
-    locationPage?.classList.add("is-survey-started");
-    locationPage?.classList.add("is-result-mode");
-    surveyView.style.display = "none";
-    resultView.classList.add("is-active");
-    surveyWrap?.classList.add("is-survey-started");
-    surveyWrap?.classList.add("is-result-mode");
-
-    setText("resultTitle", topArea.name);
-    setText("resultSummary", topArea.summary);
-    setText("resultLeadTitle", topArea.leadTitle);
-    setText("resultLeadText", topArea.leadText);
-
-    renderPersuasiveResult(topArea, rankedAreas);
-    renderHotelCards(topArea);
-    renderRelatedPosts(topArea);
-
-    progressText.textContent = "추천 결과가 나왔어요!";
-    progressFill.style.width = "100%";
-    progressBar.setAttribute("aria-valuenow", "100");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  function resetSurvey() {
-    currentQuestionIndex = 0;
-    answers = new Array(cityConfig.questions.length).fill(null);
-    resultView.classList.remove("is-active");
-    surveyWrap?.classList.remove("is-result-mode");
-    surveyWrap?.classList.remove("is-survey-started");
-    locationPage?.classList.remove("is-result-mode");
-    locationPage?.classList.remove("is-survey-started");
-    surveyView.style.display = "block";
-    renderQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  startSurveyBtn?.addEventListener("click", startSurvey);
-  backBtn?.addEventListener("click", () => { window.location.href = `/destinations/${cityConfig.destinationSlug}/`; });
-  nextBtn.addEventListener("click", goNext);
-  prevBtn.addEventListener("click", goPrev);
-  resetBtn.addEventListener("click", resetSurvey);
-
+function startSurvey() {
+  navigateTo("questionPage");
   renderQuestion();
-})();
+}
+
+function goBack() {
+  window.history.back();
+}
+
+function renderQuestion() {
+  const question = cityConfig.questions[currentQuestionIndex];
+  const selectedIndex = answers[currentQuestionIndex];
+  const percent = getAnsweredPercent();
+
+  questionCount.textContent = `${currentQuestionIndex + 1} / ${cityConfig.questions.length}`;
+  progressText.textContent = getProgressMessage();
+  progressFill.style.width = `${percent}%`;
+  progressBar.setAttribute("aria-valuenow", String(percent));
+
+  questionTitle.textContent = question.title;
+  questionHelp.textContent = question.help;
+  optionsArea.innerHTML = "";
+
+  question.options.forEach((option, optionIndex) => {
+    const button = document.createElement("button");
+    const title = document.createElement("span");
+    const desc = document.createElement("span");
+
+    button.type = "button";
+    button.className = "wt-option";
+    button.setAttribute("aria-pressed", selectedIndex === optionIndex ? "true" : "false");
+    if (selectedIndex === optionIndex) button.classList.add("is-selected");
+
+    title.className = "wt-option-title";
+    title.textContent = option.title;
+    desc.className = "wt-option-desc";
+    desc.textContent = option.desc || "";
+
+    button.appendChild(title);
+    if (option.desc) button.appendChild(desc);
+    button.addEventListener("click", () => {
+      answers[currentQuestionIndex] = optionIndex;
+      renderQuestion();
+    });
+    optionsArea.appendChild(button);
+  });
+
+  prevBtn.textContent = currentQuestionIndex === 0 ? "처음" : "이전";
+  nextBtn.disabled = selectedIndex === null;
+  nextBtn.textContent = "다음";
+}
+
+function goNext() {
+  if (answers[currentQuestionIndex] === null) return;
+  if (currentQuestionIndex < cityConfig.questions.length - 1) {
+    currentQuestionIndex += 1;
+    renderQuestion();
+    questionTitle.focus?.();
+    return;
+  }
+  navigateTo("completionPage");
+}
+
+function goPrev() {
+  if (currentQuestionIndex === 0) {
+    resetSurvey(false);
+    return;
+  }
+  currentQuestionIndex -= 1;
+  renderQuestion();
+  questionTitle.focus?.();
+}
+
+function getSelectedOption(questionIndex) {
+  const answerIndex = answers[questionIndex];
+  if (answerIndex === null || answerIndex === undefined) return null;
+  return cityConfig.questions[questionIndex]?.options?.[answerIndex] || null;
+}
+
+function calculateScores() {
+  const scores = {};
+  Object.keys(cityConfig.areas).forEach((areaKey) => { scores[areaKey] = 0; });
+
+  answers.forEach((answerIndex, questionIndex) => {
+    if (answerIndex === null) return;
+    const selectedOption = cityConfig.questions[questionIndex].options[answerIndex];
+    Object.entries(selectedOption.scores || {}).forEach(([areaKey, score]) => {
+      if (Object.prototype.hasOwnProperty.call(scores, areaKey)) scores[areaKey] += score;
+    });
+  });
+
+  return Object.entries(scores)
+    .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))
+    .sort((a, b) => b.score - a.score);
+}
+
+function getJosa(word, pair) {
+  const [has, none] = pair.split("/");
+  const last = String(word || "").trim().charCodeAt(String(word || "").trim().length - 1);
+  if (!last || last < 0xac00 || last > 0xd7a3) return none || has;
+  return ((last - 0xac00) % 28) ? has : none;
+}
+
+function withJosa(word, pair) {
+  return `${word}${getJosa(word, pair)}`;
+}
+
+function getScoreFitSentence(rankedAreas) {
+  if (!rankedAreas || rankedAreas.length < 2) return "";
+  const top = rankedAreas[0];
+  const second = rankedAreas[1];
+  const gap = top.score - second.score;
+  if (gap <= 1) return `${withJosa(second.name, "도/도")} 함께 볼 만하지만, 선택한 조건을 종합하면 ${withJosa(top.name, "이/가")} 조금 더 자연스럽습니다.`;
+  if (gap <= 4) return `${second.name}도 가까운 선택지지만, 이번 답변에서는 ${withJosa(top.name, "이/가")} 더 안정적으로 맞습니다.`;
+  return `이번 답변에서는 ${withJosa(top.name, "이/가")} 가장 또렷하게 맞는 흐름으로 정리됐습니다.`;
+}
+
+function getAlternativeSentence(area, rankedAreas) {
+  const second = rankedAreas?.[1];
+  if (!area || !second) return "";
+  return `${withJosa(area.name, "이/가")} 마음에 든다면, ${second.compareGood || second.summary || `${second.name}만의 다른 분위기`} ${second.name}도 함께 비교해볼 만합니다.`;
+}
+
+function getPersuasiveContent(area, rankedAreas) {
+  const reasons = [
+    { title: "여행 목적과 맞는 위치입니다", text: area.compareGood || area.summary || "이번 여행 조건과 잘 맞는 위치입니다." },
+    { title: "이동 기준이 단순해집니다", text: area.leadText || "매일 움직일 동선을 기준으로 숙소를 비교하기 쉽습니다." },
+    { title: "호텔 비교 기준이 명확해집니다", text: "지역을 먼저 정하면 가격, 객실, 주변 분위기, 최근 후기를 훨씬 빠르게 비교할 수 있습니다." }
+  ];
+  if (area.compareCaution || area.mismatchNote) {
+    reasons.push({ title: "예약 전 확인할 점도 있습니다", text: area.compareCaution || area.mismatchNote });
+  }
+
+  return {
+    intro: [area.summary, getScoreFitSentence(rankedAreas)].filter(Boolean).join(" "),
+    reasons,
+    conclusionTitle: `${area.name}부터 호텔을 비교해보세요`,
+    conclusionText: [
+      area.leadTitle || "이번 일정에서 먼저 볼 만한 숙소 위치입니다.",
+      getAlternativeSentence(area, rankedAreas)
+    ].filter(Boolean).join(" ")
+  };
+}
+
+function renderPersuasiveResult(topArea, rankedAreas) {
+  const content = getPersuasiveContent(topArea, rankedAreas);
+  const reasonCardList = document.getElementById("reasonCardList");
+
+  setText("resultWhyText", content.intro);
+  setText("decisionConclusionTitle", content.conclusionTitle);
+  setText("decisionConclusionText", content.conclusionText);
+
+  if (!reasonCardList) return;
+  reasonCardList.innerHTML = "";
+  content.reasons.forEach((reason, index) => {
+    const article = document.createElement("article");
+    const number = document.createElement("span");
+    const title = document.createElement("h4");
+    const text = document.createElement("p");
+    article.className = "wt-reason-card";
+    number.className = "wt-reason-number";
+    number.textContent = `${index + 1}`;
+    title.textContent = reason.title;
+    text.textContent = reason.text;
+    article.appendChild(number);
+    article.appendChild(title);
+    article.appendChild(text);
+    reasonCardList.appendChild(article);
+  });
+}
+
+function renderSimpleList(listId, items) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = "";
+  (Array.isArray(items) ? items : []).forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.appendChild(li);
+  });
+}
+
+function renderChipList(listId, items) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = "";
+  (Array.isArray(items) ? items : []).forEach((item) => {
+    const chip = document.createElement("span");
+    chip.textContent = item;
+    list.appendChild(chip);
+  });
+}
+
+function getPracticalGuideDesc(area) {
+  if (!area) return "";
+  return `${withJosa(area.name, "을/를")} 고를 때는 지역명보다 실제 도보 시간, 저녁 이후 이동, 공항·투어 동선, 객실 크기를 함께 확인하는 것이 좋습니다.`;
+}
+
+function renderPracticalGuide(area) {
+  setText("practicalGuideDesc", getPracticalGuideDesc(area));
+  renderSimpleList("stayRangeList", area.stayRange);
+  renderSimpleList("avoidRangeList", area.avoidRange);
+  renderSimpleList("bookingTipList", area.bookingTips);
+  renderChipList("bestForList", area.bestFor);
+  renderChipList("notForList", area.notFor);
+}
+
+function getAreaShortAppeal(area) {
+  if (!area) return "다른 분위기를 느낄 수 있는";
+  if (area.compareGood) return area.compareGood.replace(/[.。]\s*$/, "");
+  if (area.summary) return area.summary.replace(/[.。]\s*$/, "");
+  return `${getAreaDisplayName(area)}만의 다른 매력이 있는`;
+}
+
+function getAlternativeDetail(topArea, rankedAreas) {
+  const second = rankedAreas?.[1];
+  if (!topArea || !second) return null;
+  const title = "이런 지역도 함께 볼 만해요";
+  const text = `${withJosa(getAreaDisplayName(topArea), "이/가")} 마음에 든다면, ${getAreaShortAppeal(second)} ${getAreaDisplayName(second)}도 함께 비교해볼 만합니다. 호텔 가격과 실제 이동 시간이 잘 맞으면 충분히 좋은 선택이 될 수 있습니다.`;
+  return { title, text };
+}
+
+function renderAlternativeArea(topArea, rankedAreas) {
+  const box = document.getElementById("reasonAlternativeBox");
+  const detail = getAlternativeDetail(topArea, rankedAreas);
+  if (!box) return;
+  if (!detail) {
+    box.style.display = "none";
+    setText("reasonAlternativeTitle", "");
+    setText("reasonAlternativeText", "");
+    return;
+  }
+  box.style.display = "";
+  setText("reasonAlternativeTitle", detail.title);
+  setText("reasonAlternativeText", detail.text);
+}
+
+function getHotelAccessInfo(hotel, area) {
+  const key = getAreaKey(area);
+  const fallback = hotelAccessPresets[key] || {
+    station: `${getAreaDisplayName(area)} 주요 동선 확인`,
+    airport: "공항 접근성 확인"
+  };
+  return {
+    station: hotel.stationAccess || fallback.station,
+    airport: hotel.airportAccess || fallback.airport
+  };
+}
+
+function getHotelDisplayTags(hotel) {
+  const directTags = [hotel.starRating, hotel.guestRating, hotel.freeCancel].filter(Boolean);
+  if (directTags.length) return directTags.slice(0, 3);
+  const metaTags = Array.isArray(hotel.meta) ? hotel.meta : [];
+  return uniqueItems([hotel.tag, hotel.location, ...metaTags]).slice(0, 3);
+}
+
+function renderHotelCards(area) {
+  const hotelCardList = document.getElementById("hotelCardList");
+  const hotels = Array.isArray(area.hotels) ? area.hotels.slice(0, 5) : [];
+  if (!hotelCardList) return;
+
+  setText("hotelSectionTitle", `${area.name}에서 먼저 비교해볼 호텔 5곳`);
+  setText("hotelSectionDesc", "접근성과 실제 이동 시간을 기준으로 빠르게 비교해보세요.");
+  hotelCardList.innerHTML = "";
+
+  if (!hotels.length) {
+    const empty = document.createElement("p");
+    empty.className = "wt-post-empty";
+    empty.style.display = "block";
+    empty.textContent = "아직 연결된 호텔 후보가 없습니다.";
+    hotelCardList.appendChild(empty);
+    return;
+  }
+
+  hotels.forEach((hotel) => {
+    const article = document.createElement("article");
+    const header = document.createElement("div");
+    const headerLeft = document.createElement("div");
+    const name = document.createElement("h4");
+    const link = document.createElement("a");
+    const locationMain = document.createElement("div");
+    const station = document.createElement("span");
+    const separator = document.createElement("span");
+    const airport = document.createElement("span");
+    const tagList = document.createElement("div");
+    const access = getHotelAccessInfo(hotel, area);
+    const tags = getHotelDisplayTags(hotel);
+    const hotelName = hotel.kr || hotel.name || "호텔 후보";
+
+    article.className = "wt-hotel-card wt-hotel-card--compact";
+    header.className = "wt-hotel-card-header";
+    headerLeft.className = "wt-hotel-header-left";
+    name.className = "wt-hotel-name";
+    link.className = "wt-hotel-link";
+    locationMain.className = "wt-hotel-location-main";
+    station.className = "wt-hotel-station";
+    separator.className = "wt-hotel-separator";
+    airport.className = "wt-hotel-airport";
+    tagList.className = "wt-hotel-tag-list";
+
+    name.textContent = hotelName;
+    link.href = hotel.url || `/destinations/${cityConfig.destinationSlug}/hotel-recommendations/`;
+    link.textContent = "잔여 객실 확인";
+    link.setAttribute("aria-label", `${hotelName} 잔여 객실 확인`);
+    station.textContent = access.station;
+    separator.textContent = "|";
+    airport.textContent = access.airport;
+
+    headerLeft.appendChild(name);
+    header.appendChild(headerLeft);
+    header.appendChild(link);
+    locationMain.appendChild(station);
+    locationMain.appendChild(separator);
+    locationMain.appendChild(airport);
+
+    tags.forEach((item) => {
+      const tag = document.createElement("span");
+      tag.className = "wt-hotel-tag wt-hotel-tag--base";
+      tag.textContent = item;
+      tagList.appendChild(tag);
+    });
+
+    article.appendChild(header);
+    article.appendChild(locationMain);
+    article.appendChild(tagList);
+    hotelCardList.appendChild(article);
+  });
+}
+
+function getRelatedPostRegionSlugs(area) {
+  return uniqueItems([
+    area?.regionSlug,
+    ...(Array.isArray(area?.regionSlugAliases) ? area.regionSlugAliases : []),
+    area?.name,
+    area?.displayName,
+    area?.key
+  ]);
+}
+
+async function fetchRelatedPostsByRegion(area) {
+  const regionSlugs = getRelatedPostRegionSlugs(area);
+  for (const regionSlug of regionSlugs) {
+    const params = new URLSearchParams({
+      destination: cityConfig.destinationSlug,
+      type: cityConfig.postContentType || "top5_series",
+      region: regionSlug,
+      limit: "5"
+    });
+    try {
+      const response = await fetch(`/api/destination-posts?${params.toString()}`, {
+        headers: { accept: "application/json" },
+        cache: "no-store"
+      });
+      if (!response.ok) continue;
+      const data = await response.json();
+      const items = Array.isArray(data.items) ? data.items : [];
+      if (items.length) return items.slice(0, 5);
+    } catch (_) {
+      return [];
+    }
+  }
+  return [];
+}
+
+async function renderRelatedPosts(area) {
+  const list = document.getElementById("relatedPostList");
+  const empty = document.getElementById("relatedPostEmpty");
+  if (!list) return;
+  list.innerHTML = "";
+  if (empty) empty.style.display = "none";
+  setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
+
+  const posts = await fetchRelatedPostsByRegion(area);
+  if (!posts.length) {
+    if (empty) empty.style.display = "block";
+    return;
+  }
+
+  posts.forEach((post) => {
+    const title = String(post.title || "여행 스타일별 호텔 추천 글").trim();
+    const slug = String(post.slug || "").trim();
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.textContent = title;
+    link.setAttribute("aria-label", `${title} 보기`);
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+}
+
+function getEmotionalSummary(area) {
+  if (!area) return "이번 여행 스타일에 맞는 숙소 위치를 찾았습니다.";
+  return area.emotionalSummary || area.summary || area.leadText || "이번 여행 스타일에 맞는 숙소 위치를 찾았습니다.";
+}
+
+function getResultBadgeText(area) {
+  const areaKey = getAreaKey(area);
+  if (areaKey && areaResultBadges[areaKey]) return areaResultBadges[areaKey];
+  const label = area?.destinationLabel || "";
+  if (label.includes(",")) return label.split(",")[0].trim();
+  return "이번 여행에 어울리는 숙소 위치";
+}
+
+function prepareResultContent() {
+  const rankedAreas = calculateScores();
+  const topArea = rankedAreas[0];
+  lastRankedAreas = rankedAreas;
+  lastTopArea = topArea;
+
+  const displayName = getAreaDisplayName(topArea);
+  const resultBadgeText = getResultBadgeText(topArea);
+  setText("resultBadge", resultBadgeText);
+  setText("resultTitle", displayName);
+  setText("detailResultBadge", resultBadgeText);
+  setText("detailResultTitle", displayName);
+  setText("resultSummary", getEmotionalSummary(topArea));
+  setText("resultLeadTitle", topArea.leadTitle || `${displayName}이 이번 일정에 잘 맞습니다.`);
+  setText("resultLeadText", topArea.leadText || topArea.summary || "선택한 답변을 기준으로 이동과 숙소 분위기를 함께 비교했습니다.");
+
+  renderPersuasiveResult(topArea, rankedAreas);
+  renderPracticalGuide(topArea);
+  renderHotelCards(topArea);
+  renderAlternativeArea(topArea, rankedAreas);
+  renderRelatedPosts(topArea);
+
+  return { rankedAreas, topArea };
+}
+
+const loadingIcons = {
+  step1: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64" fill="none"><rect x="14" y="10" width="36" height="44" rx="6" fill="#F5F5F7" stroke="#1D1D1F" stroke-width="2.5"/><line x1="22" y1="22" x2="42" y2="22" stroke="#1D1D1F" stroke-width="3" stroke-linecap="round"/><line x1="22" y1="32" x2="36" y2="32" stroke="#1D1D1F" stroke-width="3" stroke-linecap="round"/><circle cx="40" cy="38" r="7" fill="#2563EB" opacity="0.2"/><circle cx="40" cy="38" r="5" stroke="#2563EB" stroke-width="2.5"/><line x1="44" y1="42" x2="49" y2="47" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  step2: `<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 64 64" fill="none"><path d="M14 18 L26 12 L38 18 L50 12 L50 46 L38 52 L26 46 L14 52 Z" fill="#EFF6FF" stroke="#1D1D1F" stroke-width="2" stroke-linejoin="round"/><path d="M26 12 L26 46" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="2 2"/><path d="M38 18 L38 52" stroke="#BDC3C7" stroke-width="1.5" stroke-dasharray="2 2"/><g transform="translate(26, 18)"><path d="M6 0 C2.6 0 0 2.6 0 6 C0 10.5 6 16 6 16 C6 16 12 10.5 12 6 C12 2.6 9.4 0 6 0 Z" fill="#2563EB"/><circle cx="6" cy="6" r="2" fill="#FFFFFF"/></g></svg>`,
+  step3: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="24" fill="#EFF6FF"/><circle cx="32" cy="32" r="20" fill="#2563EB" opacity="0.2"/><path d="M20 32 L28 40 L44 22" stroke="#2563EB" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+};
+
+function getLoadingTips(area) {
+  const name = area?.name || "추천 지역";
+  return {
+    step1: { main: "당신의 여행 성향 분석 중...", sub: "선택한 답변에서 이동 기준과 숙소 분위기를 정리하고 있어요." },
+    step2: { main: `${name} 적합도 확인 중...`, sub: "공항 이동, 주요 동선, 주변 분위기, 예산 균형을 함께 비교합니다." },
+    step3: { main: "맞춤 숙소 위치를 찾았어요! ✨", sub: "결과 화면으로 이동합니다." }
+  };
+}
+
+function processAnalysis() {
+  const { topArea } = prepareResultContent();
+  const circle = document.getElementById("loaderCircle");
+  const barWrap = document.getElementById("loadingProgressWrap");
+  const txtMain = document.getElementById("loadingText");
+  const txtSub = document.getElementById("loadingSubText");
+  const iconContainer = document.getElementById("loaderIcon");
+  const progress = document.getElementById("loadingProgressBar");
+  const tips = getLoadingTips(topArea);
+
+  circle.classList.remove("complete");
+  barWrap.classList.remove("hide");
+  progress.style.transition = "none";
+  progress.style.width = "0%";
+  document.getElementById("simpleSummaryCard").style.display = "flex";
+  document.getElementById("detailedInfoSection").style.display = "none";
+  resetTabs(0);
+  navigateTo("loadingPage");
+
+  requestAnimationFrame(() => {
+    progress.style.transition = "width 0.8s cubic-bezier(0.25, 1, 0.5, 1)";
+    progress.style.width = "35%";
+    txtMain.innerText = tips.step1.main;
+    txtSub.innerText = tips.step1.sub;
+    iconContainer.innerHTML = loadingIcons.step1;
+  });
+
+  setTimeout(() => {
+    txtMain.style.opacity = 0;
+    txtSub.style.opacity = 0;
+    setTimeout(() => {
+      progress.style.transition = "width 1.1s cubic-bezier(0.16, 1, 0.3, 1)";
+      progress.style.width = "85%";
+      txtMain.innerText = tips.step2.main;
+      txtSub.innerText = tips.step2.sub;
+      iconContainer.innerHTML = loadingIcons.step2;
+      txtMain.style.opacity = 1;
+      txtSub.style.opacity = 1;
+    }, 150);
+  }, 800);
+
+  setTimeout(() => {
+    txtMain.style.opacity = 0;
+    txtSub.style.opacity = 0;
+    setTimeout(() => {
+      progress.style.transition = "width 0.3s ease-in";
+      progress.style.width = "100%";
+      txtMain.innerText = tips.step3.main;
+      txtSub.innerText = tips.step3.sub;
+      iconContainer.innerHTML = loadingIcons.step3;
+      circle.classList.add("complete");
+      barWrap.classList.add("hide");
+      txtMain.style.opacity = 1;
+      txtSub.style.opacity = 1;
+    }, 150);
+  }, 1950);
+
+  setTimeout(() => {
+    navigateTo("resultPage");
+    document.getElementById("mainScrollBody").scrollTop = 0;
+  }, 2550);
+}
+
+function showDetailedView(tabIndex = 0) {
+  document.getElementById("simpleSummaryCard").style.display = "none";
+  document.getElementById("detailedInfoSection").style.display = "block";
+  resetTabs(tabIndex);
+  document.getElementById("mainScrollBody").scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function resetTabs(index = 0) {
+  const buttons = Array.from(document.querySelectorAll(".tab-btn"));
+  const panels = Array.from(document.querySelectorAll(".tab-panel"));
+  buttons.forEach((btn, btnIndex) => btn.classList.toggle("active", btnIndex === index));
+  panels.forEach((panel, panelIndex) => panel.classList.toggle("active", panelIndex === index));
+}
+
+function switchTab(index, clickedBtn) {
+  resetTabs(index);
+  const container = document.getElementById("tabContainer");
+  if (!container || !clickedBtn) return;
+  const btnLeft = clickedBtn.offsetLeft;
+  const btnWidth = clickedBtn.offsetWidth;
+  const containerWidth = container.offsetWidth;
+  const targetScrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+  container.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+}
+
+function goToHotelTab() {
+  showDetailedView(2);
+}
+
+function resetSurvey() {
+  currentQuestionIndex = 0;
+  answers = new Array(cityConfig.questions.length).fill(null);
+  lastRankedAreas = [];
+  lastTopArea = null;
+  renderQuestion();
+  document.getElementById("simpleSummaryCard").style.display = "flex";
+  document.getElementById("detailedInfoSection").style.display = "none";
+  resetTabs(0);
+  navigateTo("introPage");
+}
+
+startSurveyBtn?.addEventListener("click", startSurvey);
+backBtn?.addEventListener("click", goBack);
+resultCloseBtn?.addEventListener("click", resetSurvey);
+resultReadyBtn?.addEventListener("click", processAnalysis);
+nextBtn?.addEventListener("click", goNext);
+prevBtn?.addEventListener("click", goPrev);
+resetBtn?.addEventListener("click", resetSurvey);
+detailBtn?.addEventListener("click", () => showDetailedView(0));
+hotelTabBtn?.addEventListener("click", goToHotelTab);
+
+document.querySelectorAll(".tab-btn").forEach((button, index) => {
+  button.addEventListener("click", () => switchTab(index, button));
+});
+
+renderQuestion();
