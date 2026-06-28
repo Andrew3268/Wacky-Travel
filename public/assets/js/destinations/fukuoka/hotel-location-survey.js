@@ -106,6 +106,27 @@ function getAreaDestinationLabel(area) {
   return displayName ? `여행 리듬이 편안해지는, ${displayName}` : "이번 여행에 어울리는 숙소 위치";
 }
 
+function getAreaDisplayName(area) {
+  const areaKey = getAreaKey(area);
+  const displayNames = {
+    hakata: "하카타",
+    tenjin: "텐진",
+    nakasuKawabata: "나카스·카와바타",
+    gion: "기온",
+    yakuinWatanabedori: "야쿠인·와타나베도리",
+    ohoriMomochi: "오호리·모모치"
+  };
+
+  if (areaKey && displayNames[areaKey]) return displayNames[areaKey];
+
+  const displayName = String(area?.name || "")
+    .replace(/\s*&\s*/g, "·")
+    .replace(/\s*-\s*/g, "·")
+    .trim();
+
+  return displayName || "추천 지역";
+}
+
 function getHotelAccessInfo(hotel, area) {
   const key = getAreaKey(area);
   const fallback = hotelAccessPresets[key] || {
@@ -1342,7 +1363,8 @@ function prepareResultContent() {
   lastTopArea = topArea;
 
   const destinationLabel = getAreaDestinationLabel(topArea);
-  setText("resultTitle", destinationLabel);
+  const displayName = getAreaDisplayName(topArea);
+  setText("resultTitle", displayName);
   setText("detailResultTitle", destinationLabel);
   setText("detailResultBadge", getResultBadgeText(topArea));
   setText("resultSummary", getEmotionalSummary(topArea));
