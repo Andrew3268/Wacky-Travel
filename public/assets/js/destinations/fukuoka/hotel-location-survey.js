@@ -36,11 +36,20 @@ const hotelAccessPresets = {
 };
 
 function getAreaKey(area) {
-  return Object.keys(cityConfig.areas).find((key) => cityConfig.areas[key] === area) || "";
+  if (!area) return "";
+  if (area.key && Object.prototype.hasOwnProperty.call(cityConfig.areas, area.key)) {
+    return area.key;
+  }
+
+  return Object.keys(cityConfig.areas).find((key) => {
+    const candidate = cityConfig.areas[key];
+    return candidate === area || candidate.name === area.name || candidate.regionSlug === area.regionSlug;
+  }) || "";
 }
 
 function getAreaDestinationLabel(area) {
-  return areaDestinationLabels[getAreaKey(area)] || `${area.name} 중심 일정`;
+  const areaKey = getAreaKey(area);
+  return areaDestinationLabels[areaKey] || (area?.name ? `${area.name} 중심 일정` : "이번 여행에 어울리는 숙소 위치");
 }
 
 function getHotelAccessInfo(hotel, area) {
