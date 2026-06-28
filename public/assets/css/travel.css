@@ -16807,7 +16807,7 @@ body.wt-location-survey-page--app .wt-practical-list {
 
 body.wt-location-survey-page--app .wt-practical-list li {
   position: relative;
-  margin: 0 0 10px;
+  margin: 0;
   padding-left: 16px;
   color: #424245;
   font-size: 13.5px;
@@ -17507,9 +17507,9 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--base {
 }
 
 body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlight {
-  border: 1px solid #21252d !important;
-  background: #21252d !important;
-  color: #ffffff !important;
+  border: 1px solid #d7dce2 !important;
+  background: #ffffff !important;
+  color: #555c66 !important;
 }
 
 @media (max-width: 767px) {
@@ -17669,9 +17669,9 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--base {
 }
 
 body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlight {
-  border: 1px solid #21252d !important;
-  background: #21252d !important;
-  color: #ffffff !important;
+  border: 1px solid #d9dee4 !important;
+  background: #ffffff !important;
+  color: #555d67 !important;
 }
 
 @media (min-width: 768px) {
@@ -17894,9 +17894,9 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--base {
 }
 
 body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlight {
-  border: 1px solid #212529 !important;
-  background: #212529 !important;
-  color: #ffffff !important;
+  border: 1px solid #e4e8ed !important;
+  background: #ffffff !important;
+  color: #495057 !important;
 }
 
 @media (min-width: 768px) {

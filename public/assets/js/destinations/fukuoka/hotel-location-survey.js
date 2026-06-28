@@ -1312,9 +1312,7 @@ function renderHotelCards(area) {
 
     tags.forEach((item, tagIndex) => {
       const tag = document.createElement("span");
-      tag.className = tagIndex === 2
-        ? "wt-hotel-tag wt-hotel-tag--highlight"
-        : "wt-hotel-tag wt-hotel-tag--base";
+      tag.className = "wt-hotel-tag wt-hotel-tag--base";
       tag.textContent = item;
       tagList.appendChild(tag);
     });
