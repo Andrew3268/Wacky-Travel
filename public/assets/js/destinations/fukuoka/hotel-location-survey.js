@@ -1,11 +1,11 @@
 
 const areaDestinationLabels = {
-  hakata: "이동이 편한 하카타",
-  tenjin: "쇼핑과 맛집의 텐진",
-  nakasuKawabata: "야경과 맛집의 나카스",
-  gion: "균형 잡힌 기온",
-  yakuinWatanabedori: "차분한 도심의 야쿠인",
-  ohoriMomochi: "여유로운 산책의 오호리"
+  hakata: "공항과 근교 길이 편안해지는, 하카타",
+  tenjin: "쇼핑과 맛집 사이를 가볍게 걷는, 텐진",
+  nakasuKawabata: "강변 야경과 맛집이 가까운, 나카스·카와바타",
+  gion: "하카타와 나카스 사이를 차분히 잇는, 기온",
+  yakuinWatanabedori: "카페 골목의 여유가 머무는, 야쿠인·와타나베도리",
+  ohoriMomochi: "공원 산책과 바다 쉼이 가까운, 오호리·모모치"
 };
 
 const hotelAccessPresets = {
@@ -802,7 +802,6 @@ async function renderRelatedPostsLegacy(area) {
   section.style.display = "none";
   list.innerHTML = "";
   setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
-  setText("relatedPostDesc", "이 지역을 기준으로 작성된 여행 스타일별 호텔 추천 글만 모았습니다.");
 
   const posts = await fetchRelatedPostsByRegion(area);
 
@@ -1273,8 +1272,9 @@ function prepareResultContent() {
   lastRankedAreas = rankedAreas;
   lastTopArea = topArea;
 
-  setText("resultTitle", topArea.name);
-  setText("detailResultTitle", topArea.name);
+  const destinationLabel = getAreaDestinationLabel(topArea);
+  setText("resultTitle", destinationLabel);
+  setText("detailResultTitle", destinationLabel);
   setText("detailResultBadge", getResultBadgeText(topArea));
   setText("resultSummary", getEmotionalSummary(topArea));
   setText("resultLeadTitle", topArea.leadTitle);
@@ -1409,7 +1409,6 @@ async function renderRelatedPosts(area) {
   list.innerHTML = "";
   if (empty) empty.style.display = "none";
   setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
-  setText("relatedPostDesc", "이 지역을 기준으로 작성된 여행 스타일별 호텔 추천 글만 모았습니다.");
 
   const posts = await fetchRelatedPostsByRegion(area);
 
