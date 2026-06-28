@@ -1269,11 +1269,10 @@ function renderHotelCards(area) {
     return;
   }
 
-  hotels.forEach((hotel, index) => {
+  hotels.forEach((hotel) => {
     const article = document.createElement("article");
     const header = document.createElement("div");
     const headerLeft = document.createElement("div");
-    const rank = document.createElement("span");
     const name = document.createElement("h4");
     const link = document.createElement("a");
     const locationMain = document.createElement("div");
@@ -1287,7 +1286,6 @@ function renderHotelCards(area) {
     article.className = "wt-hotel-card wt-hotel-card--compact";
     header.className = "wt-hotel-card-header";
     headerLeft.className = "wt-hotel-header-left";
-    rank.className = "wt-hotel-rank";
     name.className = "wt-hotel-name";
     link.className = "wt-hotel-link";
     locationMain.className = "wt-hotel-location-main";
@@ -1296,7 +1294,6 @@ function renderHotelCards(area) {
     airport.className = "wt-hotel-airport";
     tagList.className = "wt-hotel-tag-list";
 
-    rank.textContent = `${index + 1}`;
     name.textContent = hotel.name || "호텔 후보";
     link.href = hotel.url || "#";
     link.textContent = "잔여 객실 확인";
@@ -1305,7 +1302,6 @@ function renderHotelCards(area) {
     separator.textContent = "|";
     airport.textContent = access.airport;
 
-    headerLeft.appendChild(rank);
     headerLeft.appendChild(name);
     header.appendChild(headerLeft);
     header.appendChild(link);
