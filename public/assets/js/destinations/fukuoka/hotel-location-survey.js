@@ -1,11 +1,20 @@
 
+const areaResultBadges = {
+  hakata: "공항과 근교 길이 편안해지는",
+  tenjin: "쇼핑과 맛집 사이를 가볍게 걷는",
+  nakasuKawabata: "강변 야경과 맛집이 가까운",
+  gion: "하카타와 나카스를 차분히 잇는",
+  yakuinWatanabedori: "카페 골목의 여유가 머무는",
+  ohoriMomochi: "공원 산책과 바다 쉼이 가까운"
+};
+
 const areaDestinationLabels = {
-  hakata: "공항과 근교 길이 편안해지는, 하카타",
-  tenjin: "쇼핑과 맛집 사이를 가볍게 걷는, 텐진",
-  nakasuKawabata: "강변 야경과 맛집이 가까운, 나카스·카와바타",
-  gion: "하카타와 나카스 사이를 차분히 잇는, 기온",
-  yakuinWatanabedori: "카페 골목의 여유가 머무는, 야쿠인·와타나베도리",
-  ohoriMomochi: "공원 산책과 바다 쉼이 가까운, 오호리·모모치"
+  hakata: `${areaResultBadges.hakata}, 하카타`,
+  tenjin: `${areaResultBadges.tenjin}, 텐진`,
+  nakasuKawabata: `${areaResultBadges.nakasuKawabata}, 나카스·카와바타`,
+  gion: `${areaResultBadges.gion}, 기온`,
+  yakuinWatanabedori: `${areaResultBadges.yakuinWatanabedori}, 야쿠인·와타나베도리`,
+  ohoriMomochi: `${areaResultBadges.ohoriMomochi}, 오호리·모모치`
 };
 
 const areaDestinationLabelAliases = {
@@ -1342,18 +1351,18 @@ function getEmotionalSummary(area) {
   return emotionalSummaryByArea[area.key] || area.summary;
 }
 
-const resultBadgeByArea = {
-  hakata: "하카타 중심 숙소가 잘 맞아요",
-  tenjin: "텐진 중심 숙소가 잘 맞아요",
-  nakasuKawabata: "나카스·카와바타 숙소가 잘 맞아요",
-  gion: "기온 주변 숙소가 잘 맞아요",
-  yakuinWatanabedori: "야쿠인·와타나베도리 숙소가 잘 맞아요",
-  ohoriMomochi: "오호리·모모치 숙소가 잘 맞아요"
-};
+const resultBadgeByArea = areaResultBadges;
 
 function getResultBadgeText(area) {
-  if (!area || !area.key) return "이번 여행에 어울리는 숙소 위치";
-  return resultBadgeByArea[area.key] || `${area.name} 중심으로 보면 좋아요`;
+  const areaKey = getAreaKey(area);
+  if (areaKey && resultBadgeByArea[areaKey]) return resultBadgeByArea[areaKey];
+
+  const destinationLabel = getAreaDestinationLabel(area);
+  if (destinationLabel.includes(",")) {
+    return destinationLabel.split(",")[0].trim();
+  }
+
+  return "이번 여행에 어울리는 숙소 위치";
 }
 
 function prepareResultContent() {
@@ -1362,11 +1371,12 @@ function prepareResultContent() {
   lastRankedAreas = rankedAreas;
   lastTopArea = topArea;
 
-  const destinationLabel = getAreaDestinationLabel(topArea);
   const displayName = getAreaDisplayName(topArea);
+  const resultBadgeText = getResultBadgeText(topArea);
+  setText("resultBadge", resultBadgeText);
   setText("resultTitle", displayName);
-  setText("detailResultTitle", destinationLabel);
-  setText("detailResultBadge", getResultBadgeText(topArea));
+  setText("detailResultBadge", resultBadgeText);
+  setText("detailResultTitle", displayName);
   setText("resultSummary", getEmotionalSummary(topArea));
   setText("resultLeadTitle", topArea.leadTitle);
   setText("resultLeadText", topArea.leadText);
