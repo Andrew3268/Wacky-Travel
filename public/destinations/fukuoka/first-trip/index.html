@@ -94,37 +94,79 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="firstAreaTitle" class="wt-section" id="area-compare">
+<section aria-labelledby="firstAreaTitle" class="wt-section wt-first-area-choice" id="area-compare">
+<style>
+.wt-first-area-choice{background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);overflow:hidden}.wt-first-area-choice .wt-section-head{max-width:780px}.wt-area-choice-shell{display:grid;gap:22px}.wt-choice-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.wt-choice-card{position:relative;display:flex;flex-direction:column;gap:16px;padding:24px;border:1px solid rgba(15,23,42,.1);border-radius:24px;background:#fff;box-shadow:0 18px 42px rgba(15,23,42,.08)}.wt-choice-card--primary{border-color:rgba(37,99,235,.22);background:linear-gradient(180deg,#ffffff 0%,#eff6ff 100%)}.wt-choice-card--secondary{border-color:rgba(245,158,11,.24);background:linear-gradient(180deg,#ffffff 0%,#fff7ed 100%)}.wt-choice-card__top{display:flex;align-items:center;justify-content:space-between;gap:12px}.wt-choice-card__badge{display:inline-flex;align-items:center;width:max-content;padding:7px 11px;border-radius:999px;background:#0f172a;color:#fff;font-size:13px;font-weight:800;line-height:1}.wt-choice-card--secondary .wt-choice-card__badge{background:#92400e}.wt-choice-card__role{font-size:13px;font-weight:800;color:#64748b}.wt-choice-card h3{margin:0;font-size:clamp(22px,3vw,30px);line-height:1.22;letter-spacing:-.04em;color:#0f172a}.wt-choice-card__lead{margin:0;color:#334155;font-size:16px;line-height:1.75}.wt-choice-point-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}.wt-choice-point-list li{display:flex;gap:9px;align-items:flex-start;color:#0f172a;font-size:15px;line-height:1.55}.wt-choice-point-list li::before{content:"";flex:0 0 7px;width:7px;height:7px;margin-top:8px;border-radius:999px;background:#2563eb}.wt-choice-card--secondary .wt-choice-point-list li::before{background:#f59e0b}.wt-choice-card__caution{margin-top:auto;padding:13px 14px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid rgba(15,23,42,.08);color:#475569;font-size:14px;line-height:1.6}.wt-choice-card__caution strong{display:block;margin-bottom:2px;color:#0f172a}.wt-choice-fast{padding:22px;border-radius:26px;background:#0f172a;color:#fff;box-shadow:0 20px 48px rgba(15,23,42,.16)}.wt-choice-fast__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}.wt-choice-fast__head h3{margin:0;font-size:22px;line-height:1.25;letter-spacing:-.03em;color:#fff}.wt-choice-fast__head p{margin:0;color:#cbd5e1;font-size:14px;line-height:1.55}.wt-choice-fast-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.wt-choice-fast-item{display:grid;gap:6px;padding:14px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}.wt-choice-fast-item span{color:#cbd5e1;font-size:13px;line-height:1.4}.wt-choice-fast-item strong{color:#fff;font-size:16px;line-height:1.35}.wt-choice-sub{display:grid;gap:14px}.wt-choice-sub__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}.wt-choice-sub__head h3{margin:0;color:#0f172a;font-size:22px;line-height:1.3;letter-spacing:-.03em}.wt-choice-sub__head p{margin:0;color:#64748b;font-size:14px;line-height:1.6}.wt-choice-sub-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.wt-choice-mini-card{display:grid;gap:10px;padding:18px;border-radius:20px;background:#fff;border:1px solid rgba(15,23,42,.09);box-shadow:0 12px 28px rgba(15,23,42,.06)}.wt-choice-mini-card__tag{width:max-content;padding:6px 9px;border-radius:999px;background:#f1f5f9;color:#334155;font-size:12px;font-weight:800}.wt-choice-mini-card h4{margin:0;color:#0f172a;font-size:18px;line-height:1.35;letter-spacing:-.025em}.wt-choice-mini-card p{margin:0;color:#475569;font-size:14px;line-height:1.65}.wt-choice-mini-card small{color:#64748b;font-size:13px;line-height:1.55}.wt-choice-final{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:16px;align-items:stretch;padding:22px;border-radius:26px;background:#fff;border:1px solid rgba(37,99,235,.16);box-shadow:0 18px 38px rgba(37,99,235,.09)}.wt-choice-final__text{display:grid;gap:10px}.wt-choice-final__text span{width:max-content;padding:7px 10px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:13px;font-weight:800}.wt-choice-final h3{margin:0;color:#0f172a;font-size:24px;line-height:1.32;letter-spacing:-.035em}.wt-choice-final p{margin:0;color:#334155;font-size:15px;line-height:1.7}.wt-choice-final__actions{display:grid;gap:10px;align-content:center}.wt-choice-final__button{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:16px;text-decoration:none;font-weight:800}.wt-choice-final__button--primary{background:#2563eb;color:#fff}.wt-choice-final__button--ghost{background:#f1f5f9;color:#0f172a}.wt-choice-final__button:focus-visible,.wt-choice-card:focus-within,.wt-choice-mini-card:focus-within{outline:3px solid rgba(37,99,235,.32);outline-offset:3px}@media (max-width:900px){.wt-choice-summary,.wt-choice-final{grid-template-columns:1fr}.wt-choice-fast-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wt-choice-sub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:640px){.wt-first-area-choice .wt-section-head{text-align:left}.wt-area-choice-shell{gap:16px}.wt-choice-card{padding:19px;border-radius:20px}.wt-choice-card__top{align-items:flex-start;flex-direction:column;gap:8px}.wt-choice-card h3{font-size:23px}.wt-choice-card__lead{font-size:15px;line-height:1.68}.wt-choice-fast{padding:18px;border-radius:22px}.wt-choice-fast__head{display:grid;gap:8px}.wt-choice-fast-grid,.wt-choice-sub-grid{grid-template-columns:1fr}.wt-choice-sub__head{display:grid;gap:6px}.wt-choice-mini-card{padding:16px}.wt-choice-final{padding:18px;border-radius:22px}.wt-choice-final h3{font-size:21px}.wt-choice-final__button{min-height:46px}.wt-choice-point-list li{font-size:14px}}
+</style>
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Area Choice</div>
-<h2 class="wt-section-title" id="firstAreaTitle">처음 가는 후쿠오카, 숙소 위치는 이렇게 좁히면 쉽습니다</h2>
-<p class="wt-section-desc">후쿠오카가 처음이라면 모든 지역을 같은 무게로 비교할 필요는 없습니다. 공항 이동과 근교 여행이 중요하면 하카타, 쇼핑과 맛집 동선을 중심에 두고 싶다면 텐진부터 보면 됩니다. 이후 저녁 분위기나 조용한 숙박 취향에 따라 보조 후보를 확인하면 선택이 훨씬 쉬워집니다.</p>
+<h2 class="wt-section-title" id="firstAreaTitle">처음 가는 후쿠오카, 숙소 위치는 하카타와 텐진부터 좁히세요</h2>
+<p class="wt-section-desc">첫 여행에서는 모든 지역을 같은 무게로 비교하면 오히려 헷갈립니다. 공항·기차·버스 이동이 중요하면 하카타, 쇼핑·맛집·카페 동선이 중요하면 텐진을 먼저 고르고, 나머지 지역은 일정 성격에 맞는 보조 후보로만 확인하면 충분합니다.</p>
 </div>
-<div class="wt-reason-grid">
-<article class="wt-reason-card"><span>1순위</span><h3>하카타 — 첫 여행 기본값에 가장 가까운 위치</h3><p>공항에서 도심으로 들어오기 쉽고, JR 하카타역과 버스터미널을 함께 쓰기 좋아 첫 후쿠오카 여행에서 실수 가능성이 가장 적은 지역입니다. 다자이후, 유후인, 기타큐슈처럼 근교 이동을 넣는 일정이라면 특히 편합니다.</p><p><strong>잘 맞는 일정</strong> 공항 이동, 짧은 2박 3일, 근교 여행, 짐을 들고 이동하는 첫날·마지막 날 일정</p><p><strong>아쉬운 점</strong> 쇼핑, 카페, 저녁 분위기를 숙소 주변에서 바로 즐기고 싶다면 텐진이나 나카스 쪽이 더 만족스러울 수 있습니다.</p></article>
-<article class="wt-reason-card"><span>2순위</span><h3>텐진 — 쇼핑과 맛집 중심 첫 여행자에게 좋은 위치</h3><p>백화점, 지하상가, 다이묘·이마이즈미 카페 거리, 맛집 동선을 한 번에 묶기 좋습니다. 후쿠오카 도심 분위기를 느끼고 싶다면 하카타보다 텐진 쪽 만족도가 높을 수 있습니다.</p><p><strong>잘 맞는 일정</strong> 쇼핑, 카페, 맛집, 도심 산책, 저녁까지 걸어 다니는 일정</p><p><strong>아쉬운 점</strong> 공항 이동과 JR 근교 이동만 보면 하카타보다 한 번 더 동선을 계산해야 할 수 있습니다.</p></article>
+<div class="wt-area-choice-shell">
+<div class="wt-choice-summary" aria-label="첫 후쿠오카 여행 핵심 숙소 후보">
+<article class="wt-choice-card wt-choice-card--primary">
+<div class="wt-choice-card__top"><span class="wt-choice-card__badge">가장 무난</span><span class="wt-choice-card__role">이동 중심</span></div>
+<h3>하카타</h3>
+<p class="wt-choice-card__lead">공항에서 들어오는 길이 단순하고 JR 하카타역·버스터미널을 함께 쓰기 좋아 첫 여행의 이동 실수를 줄이기 좋습니다.</p>
+<ul class="wt-choice-point-list">
+<li>2박 3일처럼 일정이 짧고 이동 시간을 아끼고 싶을 때</li>
+<li>다자이후·유후인·기타큐슈 등 근교 이동을 넣을 때</li>
+<li>첫날 도착 후 짐을 들고 호텔까지 쉽게 가고 싶을 때</li>
+</ul>
+<div class="wt-choice-card__caution"><strong>이런 경우는 다시 비교</strong>쇼핑몰, 카페, 저녁 식당을 숙소 주변에서 바로 즐기고 싶다면 텐진 쪽 만족도가 더 높을 수 있습니다.</div>
+</article>
+<article class="wt-choice-card wt-choice-card--secondary">
+<div class="wt-choice-card__top"><span class="wt-choice-card__badge">도심 체류</span><span class="wt-choice-card__role">쇼핑·맛집 중심</span></div>
+<h3>텐진</h3>
+<p class="wt-choice-card__lead">백화점, 지하상가, 다이묘·이마이즈미 카페 거리, 맛집 동선을 짧게 묶기 좋아 후쿠오카 도심 분위기를 느끼기 좋습니다.</p>
+<ul class="wt-choice-point-list">
+<li>쇼핑, 카페, 맛집을 여행의 중심에 두고 싶을 때</li>
+<li>낮에는 도심을 걷고 저녁에도 가까운 곳에서 식사하고 싶을 때</li>
+<li>하카타역보다 텐진·다이묘 주변에서 보내는 시간이 많을 때</li>
+</ul>
+<div class="wt-choice-card__caution"><strong>이런 경우는 다시 비교</strong>공항 이동과 근교 출발을 여러 번 해야 한다면 하카타보다 동선을 한 번 더 계산해야 할 수 있습니다.</div>
+</article>
 </div>
-<div class="wt-check-grid wt-check-grid--rich wt-check-grid--readable">
-<div class="wt-check-item"><strong>나카스 &amp; 카와바타</strong><span class="wt-check-item__lead">야타이, 강변 산책, 캐널시티 접근성을 중요하게 본다면 비교할 만합니다.</span><span>하카타와 텐진 사이에 있어 저녁 동선이 좋은 편입니다. 다만 숙소 위치에 따라 밤 분위기가 번잡하게 느껴질 수 있어 객실 후기와 주변 분위기를 함께 확인하는 편이 좋습니다.</span></div>
-<div class="wt-check-item"><strong>기온</strong><span class="wt-check-item__lead">하카타역과 캐널시티 사이를 차분하게 쓰고 싶을 때 좋습니다.</span><span>첫 여행에서도 이동이 어렵지 않고, 너무 번화한 분위기를 피하고 싶은 분들에게 어울립니다. 하카타 접근성과 조용한 숙박감을 함께 보고 싶을 때 현실적인 후보입니다.</span></div>
-<div class="wt-check-item"><strong>오호리 &amp; 모모치</strong><span class="wt-check-item__lead">공원, 바다, 여유로운 분위기를 원한다면 참고할 만합니다.</span><span>첫 여행이라도 느긋한 산책과 해변 일정을 넣고 싶다면 만족도가 높습니다. 다만 하카타·텐진 중심 일정을 많이 넣는다면 이동 시간이 더 길게 느껴질 수 있습니다.</span></div>
-<div class="wt-check-item"><strong>야쿠인 &amp; 와타나베도리</strong><span class="wt-check-item__lead">조용한 카페, 로컬 맛집, 차분한 숙소 분위기를 원할 때 어울립니다.</span><span>텐진 접근성은 유지하면서 번화가 한복판을 피하고 싶을 때 보기 좋습니다. 다만 첫 여행에서 대표 명소와 근교 이동이 우선이라면 하카타나 텐진보다 우선순위는 낮습니다.</span></div>
+<div class="wt-choice-fast" aria-label="상황별 빠른 선택">
+<div class="wt-choice-fast__head">
+<h3>3초 선택 기준</h3>
+<p>아래 문장 중 내 일정과 가장 가까운 것을 고르면 됩니다.</p>
 </div>
-<article class="wt-area-card wt-area-card--decision">
-<div class="wt-area-tab-panel__summary">
-<span class="wt-area-card__label">처음이라면 이렇게 고르세요</span>
-<h3>첫 후쿠오카 숙소 위치 한 줄 판단</h3>
-<p class="wt-area-card__lead">처음 방문이라면 하카타와 텐진 중 하나를 먼저 고르고, 저녁 분위기·조용함·여유 일정이 필요할 때 보조 후보를 붙이면 됩니다.</p>
+<div class="wt-choice-fast-grid">
+<div class="wt-choice-fast-item"><span>공항·근교·짧은 일정</span><strong>하카타 먼저 보기</strong></div>
+<div class="wt-choice-fast-item"><span>쇼핑·카페·도심 산책</span><strong>텐진 먼저 보기</strong></div>
+<div class="wt-choice-fast-item"><span>야타이·강변·캐널시티</span><strong>나카스·카와바타 보조</strong></div>
+<div class="wt-choice-fast-item"><span>중심 접근성 + 차분함</span><strong>기온 보조</strong></div>
+<div class="wt-choice-fast-item"><span>공원·해변·여유 일정</span><strong>오호리·모모치 참고</strong></div>
+<div class="wt-choice-fast-item"><span>로컬 카페·조용한 숙소</span><strong>야쿠인 참고</strong></div>
 </div>
-<div class="wt-area-tab-panel__details">
-<div class="wt-area-card__note"><strong>하카타</strong><span>공항 이동과 근교 여행이 많고, 짧은 일정에서 동선을 단순하게 잡고 싶을 때 가장 안전합니다.</span></div>
-<div class="wt-area-card__note"><strong>텐진</strong><span>쇼핑, 맛집, 카페, 도심 산책을 여행의 중심에 두고 싶을 때 잘 맞습니다.</span></div>
-<div class="wt-area-card__note"><strong>나카스 &amp; 카와바타</strong><span>야타이와 저녁 산책을 즐기고, 하카타와 텐진 사이 균형을 원할 때 비교할 만합니다.</span></div>
-<div class="wt-area-card__note"><strong>기온</strong><span>하카타 접근성과 캐널시티 동선은 살리면서 숙소 주변은 조금 더 차분했으면 할 때 좋습니다.</span></div>
-<div class="wt-area-card__note"><strong>오호리 &amp; 모모치</strong><span>공원과 바다를 넣은 여유로운 일정이라면 참고 후보로 볼 만합니다.</span></div>
+</div>
+<div class="wt-choice-sub">
+<div class="wt-choice-sub__head">
+<h3>나머지 지역은 ‘보조 후보’로만 보면 됩니다</h3>
+<p>첫 여행의 기본축은 하카타·텐진입니다. 아래 지역은 취향이나 세부 일정이 맞을 때만 추가로 비교하세요.</p>
+</div>
+<div class="wt-choice-sub-grid">
+<article class="wt-choice-mini-card"><span class="wt-choice-mini-card__tag">저녁 동선</span><h4>나카스·카와바타</h4><p>야타이, 강변 산책, 캐널시티를 저녁 일정에 넣고 싶다면 비교할 만합니다.</p><small>다만 숙소 위치에 따라 밤 분위기가 번잡할 수 있어 주변 후기를 함께 보는 편이 좋습니다.</small></article>
+<article class="wt-choice-mini-card"><span class="wt-choice-mini-card__tag">차분한 중심부</span><h4>기온</h4><p>하카타와 캐널시티 사이를 차분하게 쓰고 싶을 때 현실적인 후보입니다.</p><small>화려한 도심 분위기보다 조용한 숙박감과 이동 균형을 우선할 때 잘 맞습니다.</small></article>
+<article class="wt-choice-mini-card"><span class="wt-choice-mini-card__tag">여유 일정</span><h4>오호리·모모치</h4><p>공원, 바다, 산책을 넣은 느긋한 일정이라면 만족도가 높을 수 있습니다.</p><small>하카타·텐진 중심 일정이 많다면 이동 시간이 더 길게 느껴질 수 있습니다.</small></article>
+<article class="wt-choice-mini-card"><span class="wt-choice-mini-card__tag">로컬 분위기</span><h4>야쿠인·와타나베도리</h4><p>텐진 접근성은 살리면서 번화가 한복판은 피하고 싶을 때 보기 좋습니다.</p><small>첫 여행 대표 명소와 근교 이동이 우선이라면 우선순위는 낮습니다.</small></article>
+</div>
+</div>
+<article class="wt-choice-final" aria-label="첫 후쿠오카 숙소 위치 결론">
+<div class="wt-choice-final__text">
+<span>결론</span>
+<h3>처음이라면 하카타와 텐진 중 하나만 먼저 고르세요</h3>
+<p>이동이 걱정되면 하카타, 여행 분위기를 더 즐기고 싶으면 텐진이 기준입니다. 나카스·기온·오호리·야쿠인은 “내 일정에 특별히 맞는 이유가 있을 때” 추가로 비교하면 됩니다.</p>
+</div>
+<div class="wt-choice-final__actions">
+<a class="wt-choice-final__button wt-choice-final__button--primary" href="#hotels">추천 호텔 바로 보기</a>
+<a class="wt-choice-final__button wt-choice-final__button--ghost" href="/destinations/fukuoka/hotel-location-survey/">숙소 위치 테스트하기</a>
 </div>
 </article>
+</div>
 </div>
 </section>
 <section class="wt-section wt-section--soft wt-section--survey-cta">
