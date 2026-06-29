@@ -529,9 +529,9 @@ const areaResultBadges = {
   "namba": "도톤보리와 미식 사이, 가장 쉬운 시작",
   "shinsaibashi": "쇼핑 거리와 차분한 도심의 균형",
   "umeda": "근교로 이어지는 편안한 교통 중심",
-  "tennoji": "합리적인 가격과 남쪽 동선의 여유",
+  "tennoji": "합리적인 숙박비로 남쪽 동선을 잡기 좋은 곳",
   "universal": "USJ 하루를 가볍게 시작하는 위치",
-  "hommachi": "난바와 우메다 사이의 단정한 균형"
+  "hommachi": "난바와 우메다를 오가기 편한 조용한 위치"
 };
 const hotelAccessPresets = {
   "namba": {

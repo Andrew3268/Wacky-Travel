@@ -181,12 +181,12 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "shinjuku": "저녁 분위기와 교통이 빠르게 이어지는",
-  "shibuya": "트렌디한 거리와 쇼핑이 가까운",
-  "ginzaTokyoStation": "도심의 품격과 이동의 안정감",
-  "uenoAsakusa": "전통 산책과 실속 동선이 편한",
-  "odaibaBay": "베이 야경과 가족 일정이 여유로운",
-  "akasakaRoppongi": "도심 야경과 차분한 미식이 가까운"
+  "shinjuku": "늦은 시간에도 이동이 편한 도심",
+  "shibuya": "쇼핑과 트렌드를 가장 가까이 느끼는 거리",
+  "ginzaTokyoStation": "도쿄역 이동과 긴자 산책이 편한 도심",
+  "uenoAsakusa": "아사쿠사 골목과 우에노 산책을 함께 즐기는 하루",
+  "odaibaBay": "도쿄베이 야경과 여유로운 일정을 함께 즐기기 좋은 곳",
+  "akasakaRoppongi": "야경과 맛집을 차분하게 즐기기 좋은 도심"
 };
 const hotelAccessPresets = {
   "shinjuku": {

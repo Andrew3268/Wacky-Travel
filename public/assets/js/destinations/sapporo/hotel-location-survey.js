@@ -994,9 +994,9 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "sapporoStation": "공항과 근교로 이어지는 든든한 시작",
-  "odoriTanukikoji": "도심 산책과 쇼핑 골목의 균형",
-  "susukino": "저녁 미식과 활기가 가까운 거리",
+  "sapporoStation": "공항과 근교 이동을 시작하기 좋은 중심",
+  "odoriTanukikoji": "공원 산책과 쇼핑 골목을 함께 즐기기 좋은 곳",
+  "susukino": "저녁 식사와 술집 동선이 가장 편한 중심",
   "nakajimaPark": "공원 곁에 머무는 조용한 여유",
   "maruyama": "카페와 로컬 감성이 스미는 동네",
   "jozankei": "온천 쉼이 깊어지는 산속의 하루"

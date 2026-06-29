@@ -1,9 +1,9 @@
 
 const areaResultBadges = {
-  hakata: "공항에서 근교로, 편안해지는 발걸음",
-  tenjin: "쇼핑과 미식 사이, 가벼운 산책",
+  hakata: "공항에서 도심까지 가장 빠르게 이어지는 곳",
+  tenjin: "쇼핑과 맛집이 가장 편하게 모이는 중심",
   nakasuKawabata: "강변의 낭만 야경과 가까운 맛집",
-  gion: "하카타와 나카스를 잇는 잔잔한 길목",
+  gion: "하카타와 나카스 사이에서 조용히 머물기 좋은 곳",
   yakuinWatanabedori: "카페 골목에 머무는 느린 여유",
   ohoriMomochi: "초록빛 공원 산책과 푸른 바다의 휴식"
 };

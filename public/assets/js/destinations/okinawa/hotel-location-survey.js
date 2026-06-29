@@ -1021,11 +1021,11 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "nahaKokusai": "공항과 도심을 편하게 잇는 시작",
-  "chatanAmericanVillage": "바다 노을과 이국적인 산책",
+  "nahaKokusai": "공항 도착 후 첫날을 보내기 가장 쉬운 중심",
+  "chatanAmericanVillage": "노을과 이국적인 거리를 함께 즐기기 좋은 곳",
   "onnaResort": "리조트 휴식이 깊어지는 푸른 해안",
   "nagoMotobu": "북부 자연과 가족 일정이 가까운 곳",
-  "yomitanZanpa": "조용한 바다와 로컬 여유가 있는",
+  "yomitanZanpa": "조용한 바다와 로컬 분위기를 찾기 좋은 곳",
   "southCoast": "남부 해안 드라이브와 한적한 쉼"
 };
 const hotelAccessPresets = {

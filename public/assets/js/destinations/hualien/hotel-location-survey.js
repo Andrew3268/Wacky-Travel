@@ -814,11 +814,11 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "station": "기차역과 투어 출발이 편한 중심",
+  "station": "타이루거 투어와 시내 이동을 준비하기 좋은 중심",
   "dongdamen": "야시장과 구시가지 산책이 가까운",
-  "meilun": "항구 바람과 조용한 휴식의 여유",
-  "qixingtan": "푸른 해변과 아침 산책이 가까운",
-  "taroko": "협곡 여행과 산속 휴식이 깊어지는 곳"
+  "meilun": "조용한 항구 분위기에서 여유롭게 쉬기 좋은 곳",
+  "qixingtan": "자갈 해변과 태평양 풍경을 가까이 보는 곳",
+  "taroko": "타이루거 협곡 안에서 머물며 자연을 깊게 보는 곳"
 };
 
 const hotelAccessPresets = {

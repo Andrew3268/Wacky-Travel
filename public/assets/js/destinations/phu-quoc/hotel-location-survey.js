@@ -906,7 +906,7 @@ const cityConfig = {
 const areaResultBadges = {
   "duongdong": "야시장과 바다 산책이 가까운 첫 시작",
   "longbeach": "리조트 휴식과 공항 동선의 균형",
-  "onglang": "조용한 해변과 느린 카페 시간이 있는 곳",
+  "onglang": "조용한 해변에서 여유롭게 쉬기 좋은 곳",
   "ganhdau": "테마파크와 북부 리조트를 잇는 즐거움",
   "baikhem": "케이블카와 선셋타운이 가까운 남쪽 휴식",
   "baisao": "사오비치와 로컬 바다를 따라 쉬는 하루"

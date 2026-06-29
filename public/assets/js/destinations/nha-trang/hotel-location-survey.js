@@ -473,7 +473,7 @@ const cityConfig = {
 
 const areaResultBadges = {
   "cityBeach": "해변 산책과 시내 미식이 가까운 중심",
-  "honChong": "조금 더 차분한 바다 풍경",
+  "honChong": "현지 분위기의 바다 앞에서 조용히 쉬기 좋은 곳",
   "vinpearlHonTam": "섬 리조트에서 깊어지는 휴식",
   "camRanh": "넓은 해변과 리조트 시간이 흐르는 곳",
   "ninhHoa": "한적한 바다와 긴 휴식이 있는 곳"

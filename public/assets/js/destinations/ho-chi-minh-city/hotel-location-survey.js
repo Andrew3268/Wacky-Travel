@@ -47,12 +47,12 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "district1": "벤탄과 도심 명소를 가장 쉽게 잇는 시작",
+  "district1": "호치민 첫 여행을 시작하기 가장 쉬운 중심",
   "dongkhoi": "리버사이드와 세련된 도심의 산책",
   "district3": "조용한 도심과 실속을 함께 보는 여유",
-  "thaodien": "카페 골목과 강변이 느린 하루",
+  "thaodien": "브런치 카페와 강변 분위기를 즐기기 좋은 곳",
   "airport": "비행 전후 이동이 가벼운 실속 동선",
-  "binhthanh": "리버뷰와 객실 여유가 가까운 휴식"
+  "binhthanh": "사이공강 야경과 고층 전망을 기대하기 좋은 곳"
 };
 
 const hotelAccessPresets = {

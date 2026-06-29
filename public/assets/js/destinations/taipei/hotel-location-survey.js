@@ -1016,11 +1016,11 @@ const cityConfig = {
 
 const areaResultBadges = {
   "station": "기차역과 MRT 동선이 편한 중심",
-  "ximending": "쇼핑과 저녁 산책이 가까운 활기",
+  "ximending": "젊은 타이베이의 쇼핑과 야식이 모이는 곳",
   "zhongshan": "카페와 맛집 골목이 이어지는 여유",
-  "daan": "융캉제와 공원이 가까운 일상 산책",
+  "daan": "융캉제 맛집과 공원 산책을 함께 즐기기 좋은 곳",
   "xinyi": "타이베이101과 야경이 선명한 도심",
-  "beitou": "온천과 느린 휴식이 깊어지는 곳"
+  "beitou": "온천에서 하루를 천천히 쉬어가기 좋은 곳"
 };
 
 const hotelAccessPresets = {

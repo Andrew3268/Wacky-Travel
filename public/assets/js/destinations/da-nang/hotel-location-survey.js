@@ -119,11 +119,11 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "myKhe": "바다 산책과 미식이 가까운 해변",
-  "nonNuoc": "리조트 휴식이 깊어지는 남쪽 해변",
+  "myKhe": "해변 산책과 맛집 동선이 모두 편한 곳",
+  "nonNuoc": "리조트 휴식에 집중하기 좋은 남쪽 해변",
   "cityCenter": "시장과 로컬 식당이 편한 도심",
   "hanRiverEast": "용다리 야경과 해변을 잇는 강변",
-  "northTransit": "공항과 기차역 이동이 편한 실속 동선"
+  "northTransit": "이동 부담과 숙박비를 함께 줄이기 좋은 곳"
 };
 
 const hotelAccessPresets = {

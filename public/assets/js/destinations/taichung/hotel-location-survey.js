@@ -1052,9 +1052,9 @@ const cityConfig = {
 const areaResultBadges = {
   "station": "기차역과 원도심을 잇는 실속 동선",
   "fengjia": "야시장과 쇼핑이 가까운 활기",
-  "greenway": "초록 산책과 감성 카페의 여유",
+  "greenway": "미술관과 카페 거리를 함께 즐기기 좋은 동네",
   "cityhall": "국립가극원과 신도심을 잇는 균형",
-  "yizhong": "타이중공원과 로컬 먹거리가 가까운",
+  "yizhong": "공원 산책과 로컬 식당을 함께 즐기기 좋은 곳",
   "guguan": "온천과 산속 휴식이 깊어지는 곳"
 };
 

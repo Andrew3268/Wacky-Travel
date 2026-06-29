@@ -1027,12 +1027,12 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "oldquarter": "호수와 골목 미식이 이어지는 중심",
-  "french": "오페라하우스와 단정한 거리의 여유",
+  "oldquarter": "하노이 골목과 호수 분위기를 가장 가까이 느끼는 중심",
+  "french": "오페라하우스 주변의 차분한 거리를 걷기 좋은 곳",
   "westlake": "호수 바람과 카페 시간이 느린 휴식",
   "badinh": "관광 동선과 쇼핑몰을 잇는 안정감",
-  "dongda": "문묘와 기차거리 사이 로컬 감성",
-  "mydinh": "출장과 장기 숙박에 편한 서쪽 동선"
+  "dongda": "문묘와 로컬 거리를 함께 보기 좋은 곳",
+  "mydinh": "장기 숙박과 출장 동선이 편한 서쪽 지역"
 };
 
 const hotelAccessPresets = {
