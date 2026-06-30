@@ -18854,3 +18854,228 @@ body.home-search-is-open {
   }
 }
 /* End 20260630 Home compact hero refinement V4 */
+
+
+/* 20260630 Home hero reference refinement V5
+   - 첨부 레퍼런스처럼 흰 배경, 좌측 정렬, 강한 타이포그래피, 2개 CTA 버튼 구성
+   - 기존 카드형/풀스크린형 히어로를 미니멀 랜딩형 히어로로 재정리
+*/
+.travel-home .wthome-hero {
+  min-height: auto !important;
+  padding: clamp(82px, 10vw, 138px) clamp(16px, 2.2vw, 38px) clamp(72px, 8vw, 112px) !important;
+  display: block !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+.travel-home .wthome-hero__inner {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.travel-home .wthome-card {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.travel-home .wthome-card__visual {
+  min-height: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.travel-home .wthome-card__visual::before,
+.travel-home .wthome-card__visual::after {
+  display: none !important;
+  content: none !important;
+}
+
+.travel-home .wthome-card__visual-content {
+  width: min(760px, 100%) !important;
+  max-width: 760px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.travel-home .wthome-card__visual-content > :not(#wthomeHeroTitle) {
+  display: initial !important;
+}
+
+.travel-home .wthome-card__visual h1 {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #050505 !important;
+  font-size: clamp(54px, 7.2vw, 96px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.08em !important;
+  font-weight: 800 !important;
+  text-align: left !important;
+  text-wrap: balance !important;
+}
+
+.travel-home .wthome-hero__desc {
+  display: block !important;
+  max-width: 720px !important;
+  margin: clamp(30px, 3.8vw, 48px) 0 0 !important;
+  color: #4b5563 !important;
+  font-size: clamp(18px, 1.75vw, 27px) !important;
+  line-height: 1.72 !important;
+  letter-spacing: -0.055em !important;
+  font-weight: 400 !important;
+}
+
+.travel-home .wthome-hero__actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 18px !important;
+  margin-top: clamp(34px, 4.5vw, 58px) !important;
+}
+
+.travel-home .wthome-hero__button {
+  min-width: 178px !important;
+  min-height: 62px !important;
+  padding: 0 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 0 !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  text-decoration: none !important;
+  transition: transform 0.16s ease, background 0.16s ease, color 0.16s ease, border-color 0.16s ease !important;
+}
+
+.travel-home .wthome-hero__button--primary {
+  background: #050505 !important;
+  border: 2px solid #050505 !important;
+  color: #ffffff !important;
+}
+
+.travel-home .wthome-hero__button--secondary {
+  background: #ffffff !important;
+  border: 2px solid #050505 !important;
+  color: #050505 !important;
+}
+
+.travel-home .wthome-hero__button:hover {
+  transform: translateY(-1px) !important;
+}
+
+.travel-home .wthome-hero__button--primary:hover {
+  background: #111827 !important;
+  border-color: #111827 !important;
+}
+
+.travel-home .wthome-hero__button--secondary:hover {
+  background: #f8fafc !important;
+}
+
+.travel-home .wthome-hero__button:focus-visible {
+  outline: 3px solid rgba(17, 24, 39, 0.22) !important;
+  outline-offset: 3px !important;
+}
+
+.travel-home .travel-section--destination-hub {
+  padding-top: clamp(34px, 5vw, 64px) !important;
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .travel-home .wthome-hero {
+    padding: 86px 28px 78px !important;
+  }
+
+  .travel-home .wthome-card__visual h1 {
+    font-size: clamp(58px, 8.4vw, 84px) !important;
+  }
+
+  .travel-home .wthome-hero__desc {
+    max-width: 650px !important;
+    font-size: clamp(18px, 2.2vw, 24px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .travel-home .wthome-hero {
+    padding: 54px 20px 48px !important;
+  }
+
+  .travel-home .wthome-card__visual-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .travel-home .wthome-card__visual h1 {
+    max-width: 340px !important;
+    font-size: clamp(42px, 13.2vw, 58px) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.085em !important;
+  }
+
+  .travel-home .wthome-hero__desc {
+    max-width: 340px !important;
+    margin-top: 24px !important;
+    font-size: 16.5px !important;
+    line-height: 1.66 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .travel-home .wthome-hero__actions {
+    width: 100% !important;
+    gap: 10px !important;
+    margin-top: 30px !important;
+  }
+
+  .travel-home .wthome-hero__button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    min-height: 52px !important;
+    padding: 0 14px !important;
+    font-size: 15px !important;
+  }
+
+  .travel-home .travel-section--destination-hub {
+    padding-top: 28px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .travel-home .wthome-hero {
+    padding: 44px 18px 42px !important;
+  }
+
+  .travel-home .wthome-card__visual h1 {
+    max-width: 300px !important;
+    font-size: clamp(38px, 12.4vw, 49px) !important;
+  }
+
+  .travel-home .wthome-hero__desc {
+    font-size: 15.5px !important;
+  }
+
+  .travel-home .wthome-hero__button {
+    min-height: 50px !important;
+    font-size: 14px !important;
+  }
+}
+/* End 20260630 Home hero reference refinement V5 */
