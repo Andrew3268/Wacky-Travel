@@ -16,14 +16,56 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260621HeadingReadabilityV2" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260630HomeSearchOverlayV1" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
     <div class="topbar__inner container">
       <a class="brand" href="/" aria-label="Wacky Travel 홈"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+      <button class="topbar-search-button" id="homeSearchOpenBtn" type="button" aria-label="검색 열기" aria-controls="homeSearchOverlay" aria-expanded="false">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.4"></circle>
+          <path d="m16 16 4.5 4.5"></path>
+        </svg>
+      </button>
     </div>
   </header>
+
+  <section class="home-search-overlay" id="homeSearchOverlay" hidden aria-hidden="true">
+    <div class="home-search-overlay__backdrop" data-home-search-close></div>
+    <div class="home-search-overlay__panel" role="dialog" aria-modal="true" aria-labelledby="homeSearchOverlayTitle">
+      <div class="home-search-overlay__bar">
+        <button class="home-search-overlay__close" type="button" data-home-search-close aria-label="검색 닫기">
+          <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+            <path d="M6 6l12 12"></path>
+            <path d="M18 6L6 18"></path>
+          </svg>
+        </button>
+        <form class="home-search-overlay__form" id="homeFullscreenSearchForm" action="/search/" method="get" role="search" autocomplete="off">
+          <span class="home-search-overlay__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="11" cy="11" r="6.4"></circle>
+              <path d="m16 16 4.5 4.5"></path>
+            </svg>
+          </span>
+          <input id="homeFullscreenSearchInput" type="search" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" aria-label="여행지 또는 호텔 검색어 입력" />
+          <button class="home-search-overlay__submit" type="submit">검색</button>
+        </form>
+      </div>
+
+      <div class="home-search-overlay__content">
+        <p class="home-search-overlay__eyebrow">Search</p>
+        <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+        <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+        <div class="home-search-overlay__quick" aria-label="추천 검색어">
+          <button type="button" data-home-search-query="오사카 난바 호텔">오사카 난바 호텔</button>
+          <button type="button" data-home-search-query="후쿠오카 하카타 숙소">후쿠오카 하카타 숙소</button>
+          <button type="button" data-home-search-query="다낭 미케비치 호텔">다낭 미케비치 호텔</button>
+          <button type="button" data-home-search-query="타이베이 시먼딩 숙소">타이베이 시먼딩 숙소</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <main class="travel-page travel-home">
     <section class="wthome-hero" aria-labelledby="wthomeHeroTitle">
@@ -49,28 +91,6 @@
                 공항에서 숙소까지, 숙소에서 여행지까지<br />
                 실제 이동 흐름을 기준으로 비교하세요.
               </p>
-
-              <form class="wthome-search" id="wthomeSearchForm" action="/search/" method="get" role="search" autocomplete="off">
-                <div class="wthome-search__field">
-                  <span class="wthome-search__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" focusable="false">
-                      <circle cx="11" cy="11" r="6"></circle>
-                      <path d="m16 16 4 4"></path>
-                    </svg>
-                  </span>
-                  <input
-                    id="wthomeSearchInput"
-                    type="search"
-                    name="q"
-                    placeholder="도시나 호텔명을 검색해보세요"
-                    aria-label="호텔 또는 여행지 검색"
-                  />
-                </div>
-
-                <button type="submit" class="wthome-search__button">
-                  검색
-                </button>
-              </form>
 
               <div class="wthome-hero__hint" aria-label="추천 검색어">
                 <span>오사카 난바 호텔</span>
@@ -969,19 +989,69 @@
       }
     }
 
-    function bindHomeHeroSearch() {
-      const form = $('wthomeSearchForm');
-      const input = $('wthomeSearchInput');
-      if (!form || !input) return;
+    function bindHomeSearchOverlay() {
+      const overlay = $('homeSearchOverlay');
+      const openBtn = $('homeSearchOpenBtn');
+      const form = $('homeFullscreenSearchForm');
+      const input = $('homeFullscreenSearchInput');
+      if (!overlay || !openBtn || !form || !input) return;
 
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const query = normalizeText(input.value);
+      let closeTimer = null;
+
+      function submitSearch(queryValue) {
+        const query = normalizeText(queryValue);
         if (!query) {
           input.focus();
           return;
         }
         window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+      }
+
+      function openSearch() {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        overlay.hidden = false;
+        overlay.setAttribute('aria-hidden', 'false');
+        openBtn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('home-search-is-open');
+        requestAnimationFrame(() => {
+          overlay.classList.add('is-open');
+          window.setTimeout(() => {
+            input.focus();
+            input.select();
+          }, 80);
+        });
+      }
+
+      function closeSearch() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        openBtn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('home-search-is-open');
+        closeTimer = window.setTimeout(() => {
+          if (!overlay.classList.contains('is-open')) overlay.hidden = true;
+        }, 260);
+      }
+
+      openBtn.addEventListener('click', openSearch);
+      overlay.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        if (target.closest('[data-home-search-close]')) {
+          closeSearch();
+          return;
+        }
+        const queryBtn = target.closest('[data-home-search-query]');
+        if (queryBtn) submitSearch(queryBtn.dataset.homeSearchQuery || '');
+      });
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        submitSearch(input.value);
+      });
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeSearch();
       });
     }
 
@@ -1024,7 +1094,7 @@
       });
     }
 
-    bindHomeHeroSearch();
+    bindHomeSearchOverlay();
     bindDestinationManager();
     loadHome().catch(() => {
       renderHotels();
