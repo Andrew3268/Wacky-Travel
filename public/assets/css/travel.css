@@ -19591,3 +19591,54 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
   }
 }
 /* End 20260630 Home hero mobile/header V9 */
+
+/* 20260630 Home popular destination header V11
+   요청 반영: 모바일 topbar 좌우 16px, destination hub 설명문 제거 후 h2/버튼 한 줄 정렬 보정.
+*/
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading.section-heading--split {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading.section-heading--split > div {
+  min-width: 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .eyebrow {
+  margin-bottom: 10px !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading h2 {
+  margin: 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .text-link {
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
+  align-self: flex-end !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-home-body .topbar--travel .topbar__inner.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading.section-heading--split {
+    align-items: flex-end !important;
+    gap: 12px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .text-link {
+    font-size: 13px !important;
+  }
+}
+/* End 20260630 Home popular destination header V11 */
