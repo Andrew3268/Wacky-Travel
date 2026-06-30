@@ -19801,3 +19801,58 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 }
 /* End 20260630 Home destination horizontal scroll V12 */
+
+
+/* =========================================================
+   20260630 Home destination horizontal scroll image/text fix V13
+   - 기존 travel-page 공통 카드 초기화 규칙이 .dest-card-bg, .dest-card-info까지
+     background: #fff !important 로 덮어쓰는 문제를 인기 여행지 섹션 안에서만 복구
+   - 공통 규칙 자체를 제거하지 않아 도시/목적별 페이지 카드 UI 영향 없음
+========================================================= */
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-scroll-card {
+  background: #f8fafc !important;
+  background-color: #f8fafc !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  background-image: var(--dest-card-image) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-info {
+  position: relative !important;
+  z-index: 3 !important;
+  display: block !important;
+  margin: 0 -4px !important;
+  padding: 18px !important;
+  border-radius: 14px !important;
+  background: rgba(0, 0, 0, 0.18) !important;
+  background-color: rgba(0, 0, 0, 0.18) !important;
+  color: #ffffff !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-title,
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-tags {
+  position: relative !important;
+  z-index: 4 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-title {
+  color: #ffffff !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-tags {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+/* End 20260630 Home destination horizontal scroll image/text fix V13 */
