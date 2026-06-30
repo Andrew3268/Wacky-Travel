@@ -19642,3 +19642,162 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 }
 /* End 20260630 Home popular destination header V11 */
+
+
+/* 20260630 Home destination horizontal scroll V12
+   요청 반영: home static destination list를 인기 도시 10개 가로 스크롤 카드 UI로 변경.
+*/
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub {
+  overflow: visible !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .country-destination-list.country-destination-list--home-static.destinations-scroll-wrapper {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .scroll-wrapper {
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 20px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 12px 24px 32px !important;
+  margin: 0 -24px !important;
+  scroll-behavior: smooth !important;
+  scroll-snap-type: x proximity !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .scroll-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-scroll-card {
+  flex: 0 0 250px !important;
+  width: 250px !important;
+  height: 400px !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 24px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05) !important;
+  cursor: pointer !important;
+  scroll-snap-align: start !important;
+  isolation: isolate !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-scroll-card::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  background: linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.04) 44%, rgba(0,0,0,0.24) 100%) !important;
+  pointer-events: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-badge {
+  position: relative !important;
+  z-index: 3 !important;
+  align-self: flex-start !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 28px !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #0f172a !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-info {
+  position: relative !important;
+  z-index: 3 !important;
+  display: block !important;
+  margin: 0 -4px !important;
+  padding: 18px !important;
+  border-radius: 14px !important;
+  background: rgba(0, 0, 0, 0.18) !important;
+  color: #fff !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-title {
+  display: block !important;
+  margin: 0 0 6px !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.03em !important;
+  color: #fff !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-tags {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-scroll-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.10) !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .scroll-wrapper {
+    gap: 16px !important;
+    padding: 10px 16px 28px !important;
+    margin: 0 -16px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-scroll-card {
+    flex-basis: 238px !important;
+    width: 238px !important;
+    height: 368px !important;
+    padding: 20px !important;
+    border-radius: 20px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-title {
+    font-size: 18px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-info {
+    padding: 16px !important;
+  }
+}
+/* End 20260630 Home destination horizontal scroll V12 */

@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260630HomePopularDestinationV11" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260630HomeDestinationScrollV12" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -98,96 +98,89 @@
         </div>
         <a class="text-link" href="/destinations/">전체 여행지 보기</a>
       </div>
-      <div id="homeDestinations" class="country-destination-list country-destination-list--home-static">
-        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-japan">
-          <div class="country-destination-group__head">
-            <div class="country-destination-group__title">
-              <h3 id="country-japan">일본</h3>
-            </div>
-            <div class="country-destination-group__actions">
-              <a class="country-destination-group__link" href="/countries/japan" aria-label="일본 전체 보기"><span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-          <div class="destination-chip-list" aria-label="일본 도시 목록">
-            <a class="destination-chip" href="/destinations/osaka/">오사카</a>
-            <a class="destination-chip" href="/destinations/tokyo/">도쿄</a>
-            <a class="destination-chip" href="/destinations/fukuoka/">후쿠오카</a>
-            <a class="destination-chip" href="/destinations/sapporo/">삿포로</a>
-            <a class="destination-chip" href="/destinations/okinawa/">오키나와</a>
-          </div>
-        </section>
-
-        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-vietnam">
-          <div class="country-destination-group__head">
-            <div class="country-destination-group__title">
-              <h3 id="country-vietnam">베트남</h3>
-            </div>
-            <div class="country-destination-group__actions">
-              <a class="country-destination-group__link" href="/countries/vietnam" aria-label="베트남 전체 보기"><span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-          <div class="destination-chip-list" aria-label="베트남 도시 목록">
-            <a class="destination-chip" href="/destinations/da-nang/">다낭</a>
-            <a class="destination-chip" href="/destinations/nha-trang/">나트랑</a>
-            <a class="destination-chip" href="/destinations/ho-chi-minh-city/">호치민</a>
-            <a class="destination-chip" href="/destinations/hanoi/">하노이</a>
-            <a class="destination-chip" href="/destinations/phu-quoc/">푸꾸옥</a>
-          </div>
-        </section>
-
-        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-thailand">
-          <div class="country-destination-group__head">
-            <div class="country-destination-group__title">
-              <h3 id="country-thailand">태국</h3>
-            </div>
-            <div class="country-destination-group__actions">
-              <a class="country-destination-group__link" href="/countries/thailand" aria-label="태국 전체 보기"><span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-          <div class="destination-chip-list" aria-label="태국 도시 목록">
-            <a class="destination-chip" href="/destinations/bangkok/">방콕</a>
-            <a class="destination-chip" href="/destinations/pattaya/">파타야</a>
-            <a class="destination-chip" href="/destinations/phuket/">푸켓</a>
-            <a class="destination-chip" href="/destinations/chiang-mai/">치앙마이</a>
-            <a class="destination-chip" href="/destinations/koh-samui/">코사무이</a>
-          </div>
-        </section>
-
-        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-philippines">
-          <div class="country-destination-group__head">
-            <div class="country-destination-group__title">
-              <h3 id="country-philippines">필리핀</h3>
-            </div>
-            <div class="country-destination-group__actions">
-              <a class="country-destination-group__link" href="/countries/philippines" aria-label="필리핀 전체 보기"><span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-          <div class="destination-chip-list" aria-label="필리핀 도시 목록">
-            <a class="destination-chip" href="/destinations/cebu/">세부</a>
-            <a class="destination-chip" href="/destinations/boracay/">보라카이</a>
-            <a class="destination-chip" href="/destinations/bohol/">보홀</a>
-            <a class="destination-chip" href="/destinations/manila/">마닐라</a>
-            <a class="destination-chip" href="/destinations/clark/">클락</a>
-          </div>
-        </section>
-
-        <section class="country-destination-group country-destination-group--compact" aria-labelledby="country-taiwan">
-          <div class="country-destination-group__head">
-            <div class="country-destination-group__title">
-              <h3 id="country-taiwan">대만</h3>
-            </div>
-            <div class="country-destination-group__actions">
-              <a class="country-destination-group__link" href="/countries/taiwan" aria-label="대만 전체 보기"><span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-          <div class="destination-chip-list" aria-label="대만 도시 목록">
-            <a class="destination-chip" href="/destinations/taipei/">타이베이</a>
-            <a class="destination-chip" href="/destinations/taichung/">타이중</a>
-            <a class="destination-chip" href="/destinations/tainan/">타이난</a>
-            <a class="destination-chip" href="/destinations/kaohsiung/">가오슝</a>
-            <a class="destination-chip" href="/destinations/hualien/">화렌</a>
-          </div>
-        </section>
+      <div id="homeDestinations" class="country-destination-list country-destination-list--home-static destinations-scroll-wrapper" aria-label="인기 도시 10개">
+        <div class="scroll-wrapper" role="list">
+        <a class="dest-scroll-card" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Trending</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">후쿠오카, 일본</span>
+            <span class="dest-card-tags">하카타와 텐진 중심의 짧고 편한 도시 여행</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/tokyo/" aria-label="도쿄 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Popular</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">도쿄, 일본</span>
+            <span class="dest-card-tags">도심 쇼핑과 감성 골목을 함께 즐기는 대도시</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Top Rated</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">오사카, 일본</span>
+            <span class="dest-card-tags">난바와 우메다를 중심으로 즐기는 미식 여행</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Beach Life</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">나트랑, 베트남</span>
+            <span class="dest-card-tags">해변과 리조트 동선이 편한 베트남 휴양지</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Best Seller</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">다낭, 베트남</span>
+            <span class="dest-card-tags">미케비치와 호이안 일정을 함께 묶기 좋은 도시</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/taipei/" aria-label="타이베이 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">City Stay</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">타이베이, 대만</span>
+            <span class="dest-card-tags">시먼딩과 타이베이역 중심의 편한 첫 여행</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/sapporo/" aria-label="삿포로 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Winter Magic</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">삿포로, 일본</span>
+            <span class="dest-card-tags">계절 풍경과 먹거리가 선명한 홋카이도 여행</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/phu-quoc/" aria-label="푸꾸옥 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Luxury Stay</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">푸꾸옥, 베트남</span>
+            <span class="dest-card-tags">리조트 휴식과 섬 일정을 함께 즐기는 휴양지</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/ho-chi-minh-city/" aria-label="호치민 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">City Explorer</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">호치민, 베트남</span>
+            <span class="dest-card-tags">쇼핑과 맛집, 야경 동선이 밀집된 활기찬 도시</span>
+          </span>
+        </a>
+        <a class="dest-scroll-card" href="/destinations/kaohsiung/" aria-label="가오슝 여행지 보기">
+          <span class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-badge">Harbor City</span>
+          <span class="dest-card-info">
+            <span class="dest-card-title">가오슝, 대만</span>
+            <span class="dest-card-tags">보얼예술특구와 항구 감성이 매력적인 남부 도시</span>
+          </span>
+        </a>
+        </div>
       </div>
     </section>
 
