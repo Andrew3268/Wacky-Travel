@@ -19856,3 +19856,75 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   color: rgba(255, 255, 255, 0.92) !important;
 }
 /* End 20260630 Home destination horizontal scroll image/text fix V13 */
+
+
+/* =========================================================
+   20260630 Home destination scroll spacing/action V14
+   - scroll-wrapper 왼쪽 마진 0 고정, 오른쪽만 스크롤 여백 확장
+   - 전체 여행지 보기 버튼을 All + > 아이콘형으로 변경
+========================================================= */
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .scroll-wrapper {
+  margin: 0 -24px 0 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  min-height: 42px !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #2563eb !important;
+  font-size: clamp(1.25rem, 2vw, 1.65rem) !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-label,
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 1.18em !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  transform: translateY(1px) !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .scroll-wrapper {
+    margin: 0 -16px 0 0 !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link {
+    min-height: 34px !important;
+    gap: 6px !important;
+    font-size: 1.1rem !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon {
+    width: 18px !important;
+    height: 18px !important;
+    font-size: 1.12em !important;
+  }
+}
+/* End 20260630 Home destination scroll spacing/action V14 */
