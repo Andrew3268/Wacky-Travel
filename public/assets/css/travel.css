@@ -19536,3 +19536,58 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
   }
 }
 /* End 20260630 Home hero typography V8 */
+
+/* 20260630 Home hero mobile/header V9
+   요청 반영: hero action a 간격 15px 고정, 모바일 검색 버튼 장식 제거, 모바일 topbar inner 좌우 여백 제거.
+*/
+body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0 !important;
+  column-gap: 0 !important;
+  row-gap: 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions > a {
+  margin: 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions > a + a {
+  margin-left: 15px !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-home-body .topbar--travel .topbar__inner.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.travel-home-body .topbar-search-button,
+  body.travel-home-body .topbar-search-button:hover,
+  body.travel-home-body .topbar-search-button:focus-visible {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    column-gap: 0 !important;
+    row-gap: 0 !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions > a {
+    margin: 0 !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions > a + a {
+    margin-left: 15px !important;
+  }
+}
+/* End 20260630 Home hero mobile/header V9 */
