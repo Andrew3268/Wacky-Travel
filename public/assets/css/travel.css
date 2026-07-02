@@ -24497,3 +24497,104 @@ body.wt-location-survey-page--app #resultPage .wt-result-lead--simple {
   }
 }
 /* End WACKYTRAVEL_GUIDE_MOBILE_TABLET_CITY_PADDING_V29 */
+
+/* WACKYTRAVEL_SURVEY_MOBILE_TABLET_CITY_PADDING_V30
+   Hotel location survey pages: match /destinations/도시/ mobile and tablet spacing.
+   - outer survey page padding: 20px left/right
+   - inner app container: margin-left/right 0, padding-left/right 0
+   - result view content wrappers: no extra horizontal padding
+   Loading page structure and logo SVGs remain unchanged.
+========================================================= */
+@media (max-width: 1180px) {
+  body.wt-location-survey-page--app .wt-location-app,
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-location-survey-page--app .wt-app-container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  body.wt-location-survey-page--app .page-view:not(#loadingPage) {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage,
+  body.wt-location-survey-page--app #resultPage .scrollable-body,
+  body.wt-location-survey-page--app #resultPage .detailed-info-section {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage .result-top-bar,
+  body.wt-location-survey-page--app #resultPage .result-upper-section,
+  body.wt-location-survey-page--app #resultPage .tab-menu-container,
+  body.wt-location-survey-page--app #resultPage .tab-content-container,
+  body.wt-location-survey-page--app #resultPage .simple-summary-card,
+  body.wt-location-survey-page--app #resultPage .result-footer {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage .tab-panel {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage .wt-reason-card,
+  body.wt-location-survey-page--app #resultPage .wt-practical-card,
+  body.wt-location-survey-page--app #resultPage .wt-decision-box,
+  body.wt-location-survey-page--app #resultPage .wt-post-list a,
+  body.wt-location-survey-page--app #resultPage .wt-hotel-card.wt-hotel-card--compact,
+  body.wt-location-survey-page--app #resultPage .wt-result-lead--simple {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 479px) {
+  body.wt-location-survey-page--app .wt-location-app,
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-location-survey-page--app .page-view:not(#loadingPage),
+  body.wt-location-survey-page--app #resultPage .result-top-bar,
+  body.wt-location-survey-page--app #resultPage .result-upper-section,
+  body.wt-location-survey-page--app #resultPage .tab-menu-container,
+  body.wt-location-survey-page--app #resultPage .tab-content-container,
+  body.wt-location-survey-page--app #resultPage .simple-summary-card {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+/* End WACKYTRAVEL_SURVEY_MOBILE_TABLET_CITY_PADDING_V30 */
