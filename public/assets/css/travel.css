@@ -24411,3 +24411,89 @@ body.wt-location-survey-page--app #resultPage .wt-result-lead--simple {
   }
 }
 /* End WACKYTRAVEL_GUIDE_MOBILE_FULL_WIDTH_V28 */
+
+/* WACKYTRAVEL_GUIDE_MOBILE_TABLET_CITY_PADDING_V29
+   Hotel / travel guide pages: match /destinations/도시/ mobile and tablet spacing.
+   - outer page padding: 20px left/right
+   - inner containers: margin-left/right 0, padding-left/right 0
+   This override intentionally comes after V28 to prevent older guide spacing rules from narrowing content.
+========================================================= */
+@media (max-width: 1180px) {
+  body.wt-guide-body main.travel-page,
+  body.wt-guide-body main.travel-page.wt-city-guide-page,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page,
+  body.wt-guide-body main.travel-page.wt-guide-page {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-guide-body main.travel-page > .container,
+  body.wt-guide-body main.travel-page .container,
+  body.wt-guide-body main.travel-page.wt-city-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-guide-page .container,
+  body.wt-guide-body .wt-city-guide-hero.container,
+  body.wt-guide-body .wt-city-guide-snapshot.container,
+  body.wt-guide-body .wt-city-guide-survey-panel.container,
+  body.wt-guide-body .wt-city-guide-layout.container,
+  body.wt-guide-body .wt-city-guide-related.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.wt-guide-body .breadcrumbs.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-guide-body .footer.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-table-wrap,
+  body.wt-guide-body .wt-table-wrap {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+/* End WACKYTRAVEL_GUIDE_MOBILE_TABLET_CITY_PADDING_V29 */
