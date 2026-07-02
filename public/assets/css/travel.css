@@ -23635,3 +23635,76 @@ body.wt-guide-body .footer.container {
   }
 }
 /* End WACKYTRAVEL_ALL_GUIDE_PAGES_MINIMAL_V24 */
+
+/* V25 - Hotel guide content recovery and Osaka-baseline readability refinements */
+body.wt-guide-body main.wt-city-hotel-guide-page,
+body.wt-guide-body main.wt-guide-page {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+body.wt-guide-body .wt-city-guide-article,
+body.wt-guide-body main.wt-guide-page > .wt-section > .container {
+  word-break: keep-all !important;
+}
+
+body.wt-guide-body .wt-city-guide-section,
+body.wt-guide-body main.wt-guide-page .wt-section > .container {
+  scroll-margin-top: 96px !important;
+}
+
+body.wt-guide-body .wt-city-guide-section p + p,
+body.wt-guide-body .wt-section-desc + p,
+body.wt-guide-body .wt-section p + p {
+  margin-top: 12px !important;
+}
+
+body.wt-guide-body .wt-city-guide-list {
+  margin-top: 14px !important;
+  display: grid !important;
+  gap: 10px !important;
+}
+
+body.wt-guide-body .wt-city-guide-list li,
+body.wt-guide-body .wt-check-item {
+  line-height: 1.72 !important;
+}
+
+body.wt-guide-body .wt-city-guide-section--chapter .wt-city-guide-heading,
+body.wt-guide-body .wt-section-kicker {
+  color: #000 !important;
+}
+
+body.wt-guide-body .wt-city-guide-section--chapter {
+  border-color: #000 !important;
+}
+
+body.wt-guide-body .wt-city-guide-section--chapter .wt-city-guide-chapter-heading {
+  max-width: 760px !important;
+}
+
+body.wt-guide-body .wt-city-guide-related,
+body.wt-guide-body .wt-cta-band {
+  border-color: #000 !important;
+}
+
+body.wt-guide-body .wt-city-guide-related__links a,
+body.wt-guide-body .destination-guide-link,
+body.wt-guide-body .wt-hotel-link {
+  color: #000 !important;
+}
+
+@media (max-width: 640px) {
+  body.wt-guide-body .wt-city-guide-section,
+  body.wt-guide-body main.wt-guide-page .wt-section > .container {
+    padding: 22px 18px !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-section p,
+  body.wt-guide-body .wt-section p,
+  body.wt-guide-body .wt-city-guide-section li,
+  body.wt-guide-body .wt-section li {
+    font-size: 14px !important;
+    line-height: 1.74 !important;
+  }
+}
