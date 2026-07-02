@@ -22145,3 +22145,124 @@ body.travel-purpose-body .wt-city-faq__item summary {
 }
 /* End WACKYTRAVEL_ALL_PURPOSE_PAGES_MINIMAL_PREMIUM_V19 */
 
+
+/* WACKYTRAVEL_ALL_PURPOSE_PAGES_SPACING_COMFORT_V20 */
+body.travel-purpose-body .wt-city-faq__accordion,
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__accordion,
+body.travel-purpose-body .wt-faq-list {
+  display: grid !important;
+  gap: 14px !important;
+}
+
+body.travel-purpose-body .wt-city-faq__item,
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item,
+body.travel-purpose-body .wt-faq-list details {
+  padding: 20px !important;
+  margin: 0 !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 22px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-city-faq__item summary,
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item summary,
+body.travel-purpose-body .wt-faq-list summary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+}
+
+body.travel-purpose-body .wt-city-faq__item p,
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item p,
+body.travel-purpose-body .wt-faq-list p {
+  margin-top: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+body.travel-purpose-body .wt-choice-card > * + *,
+body.travel-purpose-body .wt-area-card > * + *,
+body.travel-purpose-body .wt-reason-card > * + *,
+body.travel-purpose-body .wt-check-item > * + *,
+body.travel-purpose-body .wt-link-card > * + *,
+body.travel-purpose-body .wt-practical-card > * + * {
+  margin-top: 10px !important;
+}
+
+body.travel-purpose-body .wt-choice-card__chips,
+body.travel-purpose-body .wt-hotel-card__score-list,
+body.travel-purpose-body .wt-hotel-actions {
+  gap: 8px !important;
+}
+
+body.travel-purpose-body .wt-flow-list,
+body.travel-purpose-body .wt-practical-list,
+body.travel-purpose-body .wt-check-list {
+  display: grid !important;
+  gap: 12px !important;
+  margin-top: 18px !important;
+}
+
+body.travel-purpose-body .wt-flow-list li,
+body.travel-purpose-body .wt-practical-list li,
+body.travel-purpose-body .wt-check-list li {
+  padding: 16px 18px !important;
+  margin: 0 !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+}
+
+body.travel-purpose-body .wt-section-head + :where(.wt-choice-main, .wt-reason-grid, .wt-check-grid, .wt-practical-grid, .wt-link-grid, .wt-area-choice-simple, .wt-hotel-grid, .wt-city-faq__accordion, .wt-faq-list) {
+  margin-top: 24px !important;
+}
+
+body.travel-purpose-body .wt-area-tab-panel {
+  padding: 24px !important;
+}
+
+body.travel-purpose-body .wt-area-tab-panel > * + * {
+  margin-top: 12px !important;
+}
+
+body.travel-purpose-body .wt-hotel-card__body > * + * {
+  margin-top: 12px !important;
+}
+
+body.travel-purpose-body .wt-hotel-card__topline,
+body.travel-purpose-body .wt-hotel-card__score-list {
+  margin-bottom: 12px !important;
+}
+
+body.travel-purpose-body .wt-hotel-more-banner {
+  padding: 24px !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-city-faq__accordion,
+  body.travel-purpose-body .wt-purpose-faq .wt-city-faq__accordion,
+  body.travel-purpose-body .wt-faq-list {
+    gap: 12px !important;
+  }
+
+  body.travel-purpose-body .wt-city-faq__item,
+  body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item,
+  body.travel-purpose-body .wt-faq-list details {
+    padding: 20px !important;
+    border-radius: 20px !important;
+  }
+
+  body.travel-purpose-body .wt-section-head + :where(.wt-choice-main, .wt-reason-grid, .wt-check-grid, .wt-practical-grid, .wt-link-grid, .wt-area-choice-simple, .wt-hotel-grid, .wt-city-faq__accordion, .wt-faq-list) {
+    margin-top: 20px !important;
+  }
+
+  body.travel-purpose-body .wt-area-tab-panel,
+  body.travel-purpose-body .wt-hotel-more-banner {
+    padding: 20px !important;
+  }
+}
+/* End WACKYTRAVEL_ALL_PURPOSE_PAGES_SPACING_COMFORT_V20 */
