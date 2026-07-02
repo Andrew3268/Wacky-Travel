@@ -23708,3 +23708,373 @@ body.wt-guide-body .wt-hotel-link {
     line-height: 1.74 !important;
   }
 }
+
+
+/* WACKYTRAVEL_ALL_SURVEY_MINIMAL_BW_V26
+   - 호텔 위치 서베이 UI를 메인 index V15/V25와 같은 블랙&화이트 미니멀 톤으로 통일
+   - 로고 SVG와 loadingPage 구조/동작은 변경하지 않음
+========================================================= */
+body.wt-location-survey-page--app {
+  --survey-ink: #111111;
+  --survey-muted: #666666;
+  --survey-soft: #f7f7f7;
+  --survey-line: #dcdcdc;
+  --survey-line-strong: #111111;
+  --survey-white: #ffffff;
+  background: #ffffff !important;
+  color: var(--survey-ink) !important;
+}
+
+body.wt-location-survey-page--app .wt-location-app {
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .wt-app-container {
+  background: #ffffff !important;
+  color: var(--survey-ink) !important;
+}
+
+@media (min-width: 480px) {
+  body.wt-location-survey-page--app .wt-app-container {
+    max-width: 430px !important;
+    border: 1px solid #111111 !important;
+    border-radius: 28px !important;
+    box-shadow: none !important;
+  }
+}
+
+body.wt-location-survey-page--app .page-view:not(#loadingPage) {
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .header-actions {
+  min-height: 44px !important;
+}
+
+body.wt-location-survey-page--app .close-btn {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  justify-content: center !important;
+  border: 1px solid var(--survey-line) !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .close-btn:hover,
+body.wt-location-survey-page--app .close-btn:focus-visible {
+  border-color: #111111 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+  outline: none !important;
+}
+
+body.wt-location-survey-page--app .main-title,
+body.wt-location-survey-page--app .result-destination,
+body.wt-location-survey-page--app .wt-question-title,
+body.wt-location-survey-page--app .panel-title,
+body.wt-location-survey-page--app .wt-section-title,
+body.wt-location-survey-page--app .wt-result-mini-title,
+body.wt-location-survey-page--app .wt-reason-card h4,
+body.wt-location-survey-page--app .wt-practical-card h4,
+body.wt-location-survey-page--app .wt-hotel-name,
+body.wt-location-survey-page--app .wt-decision-box strong,
+body.wt-location-survey-page--app .wt-result-lead--simple strong {
+  color: #111111 !important;
+}
+
+body.wt-location-survey-page--app .main-title {
+  font-size: clamp(27px, 7.2vw, 34px) !important;
+  line-height: 1.24 !important;
+  letter-spacing: -0.055em !important;
+  font-weight: 800 !important;
+}
+
+body.wt-location-survey-page--app .sub-description,
+body.wt-location-survey-page--app .wt-question-help,
+body.wt-location-survey-page--app .simple-brief-text,
+body.wt-location-survey-page--app .panel-text,
+body.wt-location-survey-page--app .wt-section-desc,
+body.wt-location-survey-page--app .wt-result-story-desc,
+body.wt-location-survey-page--app .wt-decision-box p,
+body.wt-location-survey-page--app .wt-hotel-reason,
+body.wt-location-survey-page--app .wt-result-lead--simple p,
+body.wt-location-survey-page--app .wt-reason-card p,
+body.wt-location-survey-page--app .wt-practical-list li {
+  color: var(--survey-muted) !important;
+}
+
+body.wt-location-survey-page--app .result-badge,
+body.wt-location-survey-page--app .detailed-info-section .result-badge,
+body.wt-location-survey-page--app .result-upper-section .result-badge,
+body.wt-location-survey-page--app .wt-section-eyebrow {
+  all: unset;
+  display: inline-block !important;
+  margin: 0 0 12px !important;
+  color: #111111 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.015em !important;
+}
+
+body.wt-location-survey-page--app .result-badge::after,
+body.wt-location-survey-page--app .wt-section-eyebrow::after {
+  content: "" !important;
+  display: block !important;
+  width: 28px !important;
+  height: 1px !important;
+  margin-top: 8px !important;
+  background: #111111 !important;
+}
+
+body.wt-location-survey-page--app .next-btn,
+body.wt-location-survey-page--app .primary-action-btn,
+body.wt-location-survey-page--app .restart-btn {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #111111 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .next-btn:hover,
+body.wt-location-survey-page--app .primary-action-btn:hover,
+body.wt-location-survey-page--app .restart-btn:hover,
+body.wt-location-survey-page--app .next-btn:focus-visible,
+body.wt-location-survey-page--app .primary-action-btn:focus-visible,
+body.wt-location-survey-page--app .restart-btn:focus-visible {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  outline: none !important;
+}
+
+body.wt-location-survey-page--app .secondary-action-btn {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid #111111 !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .secondary-action-btn:hover,
+body.wt-location-survey-page--app .secondary-action-btn:focus-visible {
+  background: #f7f7f7 !important;
+  color: #111111 !important;
+  border-color: #111111 !important;
+  outline: none !important;
+}
+
+body.wt-location-survey-page--app .primary-action-btn:disabled {
+  background: #f4f4f4 !important;
+  color: #b5b5b5 !important;
+  border-color: #e5e5e5 !important;
+  cursor: not-allowed !important;
+}
+
+body.wt-location-survey-page--app .wt-progress-top {
+  color: #666666 !important;
+}
+
+body.wt-location-survey-page--app .wt-progress-bar {
+  background: #e9e9e9 !important;
+}
+
+body.wt-location-survey-page--app .wt-progress-fill {
+  background: #111111 !important;
+}
+
+body.wt-location-survey-page--app .wt-option {
+  min-height: 74px !important;
+  border: 1px solid var(--survey-line) !important;
+  border-radius: 18px !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .wt-option:hover {
+  border-color: #111111 !important;
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .wt-option.is-selected {
+  border-color: #111111 !important;
+  background: #ffffff !important;
+  box-shadow: inset 0 0 0 1px #111111 !important;
+}
+
+body.wt-location-survey-page--app .wt-option-title {
+  color: #111111 !important;
+}
+
+body.wt-location-survey-page--app .wt-option-desc {
+  color: #666666 !important;
+}
+
+body.wt-location-survey-page--app .simple-summary-card {
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple,
+body.wt-location-survey-page--app .tab-panel,
+body.wt-location-survey-page--app .wt-reason-card,
+body.wt-location-survey-page--app .wt-practical-card,
+body.wt-location-survey-page--app .wt-decision-box,
+body.wt-location-survey-page--app .wt-post-list a,
+body.wt-location-survey-page--app .wt-hotel-card.wt-hotel-card--compact {
+  border: 1px solid var(--survey-line) !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .wt-result-lead--simple {
+  border-radius: 22px !important;
+}
+
+body.wt-location-survey-page--app .detailed-info-section {
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .result-upper-section {
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .tab-menu-container {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-top: 1px solid #f0f0f0 !important;
+  border-bottom: 1px solid #111111 !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .tab-btn {
+  border: 1px solid var(--survey-line) !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: #666666 !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .tab-btn.active {
+  border-color: #111111 !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .tab-content-container {
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .tab-panel {
+  padding: 22px 0 6px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+body.wt-location-survey-page--app .wt-reason-card,
+body.wt-location-survey-page--app .wt-practical-card,
+body.wt-location-survey-page--app .wt-decision-box,
+body.wt-location-survey-page--app .wt-post-list a {
+  border-radius: 18px !important;
+}
+
+body.wt-location-survey-page--app .wt-reason-number,
+body.wt-location-survey-page--app .wt-hotel-rank {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #111111 !important;
+}
+
+body.wt-location-survey-page--app .wt-practical-list li::before {
+  background: #111111 !important;
+}
+
+body.wt-location-survey-page--app .wt-practical-chip-list span,
+body.wt-location-survey-page--app .wt-hotel-meta span,
+body.wt-location-survey-page--app .wt-hotel-tag,
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--base,
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlight {
+  border: 1px solid var(--survey-line) !important;
+  background: #ffffff !important;
+  color: #555555 !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .wt-practical-chip-list--muted span {
+  color: #777777 !important;
+  background: #ffffff !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-location,
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-location-main {
+  color: #555555 !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card-list {
+  gap: 12px !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card.wt-hotel-card--compact {
+  max-width: 480px !important;
+  border-radius: 16px !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link,
+body.wt-location-survey-page--app .wt-hotel-link {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #111111 !important;
+  box-shadow: none !important;
+}
+
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link:hover,
+body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link:focus-visible,
+body.wt-location-survey-page--app .wt-hotel-link:hover,
+body.wt-location-survey-page--app .wt-hotel-link:focus-visible {
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+  outline: none !important;
+}
+
+body.wt-location-survey-page--app .wt-post-list a::after {
+  content: "" !important;
+  width: 7px !important;
+  height: 7px !important;
+  margin-left: 14px !important;
+  border-top: 1.5px solid #111111 !important;
+  border-right: 1.5px solid #111111 !important;
+  transform: rotate(45deg) !important;
+  background: transparent !important;
+  color: transparent !important;
+  flex: 0 0 7px !important;
+}
+
+body.wt-location-survey-page--app .result-footer {
+  background: #ffffff !important;
+}
+
+@media (max-width: 479px) {
+  body.wt-location-survey-page--app .wt-app-container {
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  body.wt-location-survey-page--app .page-view:not(#loadingPage) {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+
+  body.wt-location-survey-page--app .tab-content-container,
+  body.wt-location-survey-page--app .tab-menu-container,
+  body.wt-location-survey-page--app .result-top-bar,
+  body.wt-location-survey-page--app .result-upper-section {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+}
+/* End WACKYTRAVEL_ALL_SURVEY_MINIMAL_BW_V26 */
