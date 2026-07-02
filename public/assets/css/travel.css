@@ -21418,3 +21418,96 @@ body.travel-city-body a {
   }
 }
 /* End WACKYTRAVEL_ALL_CITY_INDEX_MINIMAL_PREMIUM_V17 */
+
+
+/* WACKYTRAVEL_ALL_CITY_INDEX_ALIGNMENT_BUTTONS_V18
+   - 도시 메인 index breadcrumb 좌우 기준선 보정
+   - 모바일 hero 버튼 3열 배치
+   - CTA primary 버튼은 모바일을 제외하고 오른쪽 정렬
+========================================================= */
+body.travel-city-body .breadcrumbs.container {
+  box-sizing: border-box !important;
+  width: min(calc(100% - 32px), var(--container)) !important;
+  max-width: var(--container) !important;
+  margin: 18px auto 0 !important;
+  padding: 0 16px !important;
+}
+
+body.travel-city-body .breadcrumbs.container > ol,
+body.travel-city-body .breadcrumbs ol {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.travel-city-body .breadcrumbs.container {
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  body.travel-city-body .wt-city-cta__inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: end !important;
+  }
+
+  body.travel-city-body .wt-city-cta__inner .wt-city-button--primary {
+    justify-self: end !important;
+    align-self: end !important;
+    width: auto !important;
+    min-width: max-content !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body .breadcrumbs.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 14px 0 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.travel-city-body .wt-city-hero__actions {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    margin-top: 28px !important;
+    width: 100% !important;
+  }
+
+  body.travel-city-body .wt-city-hero__actions .wt-city-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+    padding: 0 6px !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.045em !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+  }
+
+  body.travel-city-body .wt-city-cta__inner {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+
+  body.travel-city-body .wt-city-cta__inner .wt-city-button--primary {
+    justify-self: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+/* End WACKYTRAVEL_ALL_CITY_INDEX_ALIGNMENT_BUTTONS_V18 */
