@@ -22755,3 +22755,232 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn--primary {
   }
 }
 /* End WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_EXACT_V22 */
+
+/* WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_COMPACT_V23 */
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-grid,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-grid {
+  align-items: stretch !important;
+  gap: 18px !important;
+  padding-top: 6px !important;
+  padding-bottom: 20px !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card {
+  position: relative !important;
+  flex: 0 0 320px !important;
+  width: 320px !important;
+  max-width: 320px !important;
+  height: 480px !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  border: 1px solid #000 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card::before,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card::before {
+  content: 'HOTEL IMAGE' !important;
+  flex: 0 0 178px !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  height: 178px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #000 !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: .18em !important;
+  text-transform: uppercase !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 22px 22px 20px !important;
+  background: #fff !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body > * + *,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body > * + * {
+  margin-top: 0 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__topline,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__topline {
+  width: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  text-align: left !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__topline .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__stars,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__stars {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #7b7b7b !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__stars::before,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__stars::before {
+  content: '·' !important;
+  margin: 0 6px 0 0 !important;
+  color: #7b7b7b !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__subname,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__subname,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__point,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__point,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__score-list,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__score-list,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-price,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-price {
+  display: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card h3,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card h3 {
+  margin: 0 0 14px !important;
+  color: #000 !important;
+  font-size: 21px !important;
+  font-weight: 800 !important;
+  line-height: 1.24 !important;
+  letter-spacing: -0.055em !important;
+  word-break: keep-all !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card p,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card p {
+  margin: 0 !important;
+  color: #4a4a4a !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.58 !important;
+  letter-spacing: -0.04em !important;
+  word-break: keep-all !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions {
+  display: flex !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
+  margin-top: auto !important;
+  padding-top: 18px !important;
+  border-top: 1px dashed #000 !important;
+  background: #fff !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn--primary,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn--primary {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 16px !important;
+  border: 1px solid #000 !important;
+  border-radius: 0 !important;
+  background: #000 !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-grid,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-grid {
+    gap: 16px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card {
+    flex-basis: min(320px, calc(100vw - 40px)) !important;
+    width: min(320px, calc(100vw - 40px)) !important;
+    max-width: 320px !important;
+    height: 480px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card::before,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card::before {
+    flex-basis: 172px !important;
+    height: 172px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body {
+    padding: 21px 20px 19px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__fit,
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__stars,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card__fit,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card__stars {
+    font-size: 10.5px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card h3,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card h3 {
+    font-size: 20px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card p,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card p {
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+  }
+}
+/* End WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_COMPACT_V23 */
