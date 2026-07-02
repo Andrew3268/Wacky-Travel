@@ -16,7 +16,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260630HomeDestinationScrollV14" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260630HomeSearchOverlayV15" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -96,7 +96,14 @@
           <p class="eyebrow">Popular Destinations</p>
           <h2>인기 여행지</h2>
         </div>
-        <a class="text-link destinations-view-all-link" href="/destinations/" aria-label="전체 여행지 보기"><span class="destinations-view-all-label">All</span><span class="destinations-view-all-icon" aria-hidden="true">&gt;</span></a>
+        <a class="text-link destinations-view-all-link" href="/destinations/" aria-label="전체 여행지 보기">
+          <span class="destinations-view-all-label">All</span>
+          <span class="destinations-view-all-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" focusable="false">
+              <path d="M7.5 4.5 12.5 10l-5 5.5"></path>
+            </svg>
+          </span>
+        </a>
       </div>
       <div id="homeDestinations" class="country-destination-list country-destination-list--home-static destinations-scroll-wrapper" aria-label="인기 도시 10개">
         <div class="scroll-wrapper" role="list">
