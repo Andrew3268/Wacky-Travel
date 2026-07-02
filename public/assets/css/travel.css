@@ -20217,3 +20217,604 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 }
 /* End 20260630 Home search overlay + All icon refinement V15 */
+
+
+/* WACKYTRAVEL_FUKUOKA_CITY_INDEX_MINIMAL_PREMIUM_V16
+   /destinations/fukuoka/ 전용: 메인 index V15 톤과 맞춘 블랙&화이트 미니멀 프리미엄 UI
+   콘텐츠 구조와 문구는 유지하고, 색상·여백·버튼·카드 표면만 정리합니다.
+========================================================= */
+body.travel-city-body--fukuoka {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.travel-city-body--fukuoka .topbar--travel {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #ffffff !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+body.travel-city-body--fukuoka .topbar--travel .topbar__inner.container {
+  min-height: 64px !important;
+  border-bottom: 1px solid #000000 !important;
+  background: #ffffff !important;
+}
+
+body.travel-city-body--fukuoka .brand,
+body.travel-city-body--fukuoka .brand__text,
+body.travel-city-body--fukuoka .brand__mark {
+  color: #000000 !important;
+}
+
+body.travel-city-body--fukuoka .brand__mark {
+  border-color: #000000 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.travel-city-body--fukuoka .breadcrumbs.container {
+  margin-top: 18px !important;
+  margin-bottom: 0 !important;
+  color: rgba(0, 0, 0, 0.48) !important;
+}
+
+body.travel-city-body--fukuoka .breadcrumbs a,
+body.travel-city-body--fukuoka .breadcrumbs span,
+body.travel-city-body--fukuoka .breadcrumbs__separator {
+  color: rgba(0, 0, 0, 0.52) !important;
+}
+
+body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka,
+body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka :where(.container, .wt-city-hero, .wt-city-section, .wt-city-snapshot, .wt-city-guide-links, .wt-city-faq, .wt-city-dynamic-section, .wt-city-cta) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka {
+  color: #000000 !important;
+  overflow-x: hidden;
+}
+
+body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka > .wt-city-hero.container:first-child {
+  padding-top: clamp(38px, 6vw, 76px) !important;
+  padding-bottom: clamp(56px, 7vw, 92px) !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-hero__content {
+  max-width: 880px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-kicker,
+body.travel-city-body--fukuoka .eyebrow,
+body.travel-city-body--fukuoka .destination-guide-link__label,
+body.travel-city-body--fukuoka .wt-city-area-panel__eyebrow,
+body.travel-city-body--fukuoka .wt-city-choice-card span {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #000000 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-hero h1 {
+  max-width: 820px !important;
+  margin: 0 !important;
+  color: #000000 !important;
+  font-size: clamp(44px, 5.4vw, 64px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 1.06 !important;
+  word-break: keep-all !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-hero__lead {
+  max-width: 760px !important;
+  margin-top: 28px !important;
+  color: rgba(0, 0, 0, 0.66) !important;
+  font-size: clamp(15px, 1.35vw, 17px) !important;
+  font-weight: 400 !important;
+  line-height: 1.78 !important;
+  letter-spacing: -0.035em !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-hero__actions {
+  gap: 12px !important;
+  margin-top: 34px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-button,
+body.travel-city-body--fukuoka .wt-city-hero__actions .wt-city-button,
+body.travel-city-body--fukuoka .wt-city-cta .wt-city-button,
+body.travel-city-body--fukuoka .hotel-tabs__button,
+body.travel-city-body--fukuoka .hotel-tabs__footer a,
+body.travel-city-body--fukuoka .travel-card .btn,
+body.travel-city-body--fukuoka .travel-card .affiliate-btn,
+body.travel-city-body--fukuoka .wt-btn {
+  min-height: 44px !important;
+  padding: 0 18px !important;
+  border: 1px solid #000000 !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  text-decoration: none !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-button--primary,
+body.travel-city-body--fukuoka .wt-city-hero__actions .wt-city-button--primary,
+body.travel-city-body--fukuoka .wt-city-cta .wt-city-button--primary,
+body.travel-city-body--fukuoka .hotel-tabs__button.is-active,
+body.travel-city-body--fukuoka .wt-btn--primary {
+  border-color: #000000 !important;
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-button:hover,
+body.travel-city-body--fukuoka .wt-city-button:focus-visible,
+body.travel-city-body--fukuoka .hotel-tabs__button:hover,
+body.travel-city-body--fukuoka .hotel-tabs__button:focus-visible,
+body.travel-city-body--fukuoka .destination-guide-link:hover,
+body.travel-city-body--fukuoka .destination-guide-link:focus-visible,
+body.travel-city-body--fukuoka .wt-city-choice-card:hover,
+body.travel-city-body--fukuoka .wt-city-choice-card:focus-visible {
+  border-color: #000000 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-button:hover,
+body.travel-city-body--fukuoka .hotel-tabs__button:not(.is-active):hover,
+body.travel-city-body--fukuoka .hotel-tabs__button:not(.is-active):focus-visible {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-snapshot,
+body.travel-city-body--fukuoka .wt-city-section,
+body.travel-city-body--fukuoka .wt-city-dynamic-section,
+body.travel-city-body--fukuoka .wt-city-guide-links,
+body.travel-city-body--fukuoka .wt-city-faq {
+  padding-top: clamp(64px, 7vw, 104px) !important;
+  padding-bottom: clamp(64px, 7vw, 104px) !important;
+}
+
+body.travel-city-body--fukuoka .section-heading,
+body.travel-city-body--fukuoka .wt-city-snapshot__heading {
+  max-width: 860px !important;
+  margin-bottom: clamp(26px, 3vw, 38px) !important;
+}
+
+body.travel-city-body--fukuoka .section-heading h2,
+body.travel-city-body--fukuoka .wt-city-snapshot__heading h2 {
+  max-width: 820px !important;
+  margin: 0 !important;
+  color: #000000 !important;
+  font-size: clamp(30px, 4vw, 48px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 1.12 !important;
+  word-break: keep-all !important;
+}
+
+body.travel-city-body--fukuoka .section-heading p:not(.eyebrow),
+body.travel-city-body--fukuoka .wt-city-snapshot__heading p:not(.wt-city-kicker),
+body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka p {
+  color: rgba(0, 0, 0, 0.66) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.032em !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-snapshot__heading p:not(.wt-city-kicker),
+body.travel-city-body--fukuoka .section-heading p:not(.eyebrow) {
+  max-width: 760px !important;
+  margin-top: 18px !important;
+  font-size: 15px !important;
+  line-height: 1.78 !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-snapshot__grid {
+  gap: 14px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-choice-card,
+body.travel-city-body--fukuoka .destination-guide-link,
+body.travel-city-body--fukuoka .wt-city-area-panel,
+body.travel-city-body--fukuoka .wt-city-area-info-card,
+body.travel-city-body--fukuoka .wt-city-area-panel__decision,
+body.travel-city-body--fukuoka .wt-city-cta__inner,
+body.travel-city-body--fukuoka .wt-city-faq__item,
+body.travel-city-body--fukuoka .hotel-tabs,
+body.travel-city-body--fukuoka .hotel-tabs__nav,
+body.travel-city-body--fukuoka .travel-card,
+body.travel-city-body--fukuoka .empty-card {
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-choice-card {
+  min-height: 188px !important;
+  padding: 24px 48px 24px 24px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-choice-card::after,
+body.travel-city-body--fukuoka .destination-guide-link::after,
+body.travel-city-body--fukuoka .wt-city-faq__item summary::after {
+  color: #000000 !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-choice-card strong,
+body.travel-city-body--fukuoka .destination-guide-link strong,
+body.travel-city-body--fukuoka .wt-city-area-info-card strong,
+body.travel-city-body--fukuoka .wt-city-area-panel__decision strong,
+body.travel-city-body--fukuoka .wt-city-faq__item summary {
+  color: #000000 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-choice-card p,
+body.travel-city-body--fukuoka .destination-guide-link small,
+body.travel-city-body--fukuoka .wt-city-area-info-card p,
+body.travel-city-body--fukuoka .wt-city-area-panel__decision strong,
+body.travel-city-body--fukuoka .wt-city-faq__item p {
+  color: rgba(0, 0, 0, 0.62) !important;
+}
+
+body.travel-city-body--fukuoka #area-guide.wt-city-section {
+  padding-top: clamp(70px, 7.4vw, 112px) !important;
+  padding-bottom: clamp(40px, 5vw, 72px) !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-tab-list {
+  gap: 8px !important;
+  margin: 22px 0 18px !important;
+  background: transparent !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-tab-button {
+  min-height: 42px !important;
+  padding: 0 15px !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-tab-button:hover,
+body.travel-city-body--fukuoka .wt-city-area-tab-button:focus-visible,
+body.travel-city-body--fukuoka .wt-city-area-tab-input:nth-of-type(1):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(1),
+body.travel-city-body--fukuoka .wt-city-area-tab-input:nth-of-type(2):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(2),
+body.travel-city-body--fukuoka .wt-city-area-tab-input:nth-of-type(3):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(3),
+body.travel-city-body--fukuoka .wt-city-area-tab-input:nth-of-type(4):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(4),
+body.travel-city-body--fukuoka .wt-city-area-tab-input:nth-of-type(5):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(5),
+body.travel-city-body--fukuoka .wt-city-area-tab-input:nth-of-type(6):checked ~ .wt-city-area-tab-list .wt-city-area-tab-button:nth-child(6) {
+  border-color: #000000 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  transform: none !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-panel {
+  overflow: hidden !important;
+  border-color: #000000 !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-panel__hero {
+  padding: clamp(26px, 4vw, 42px) clamp(22px, 4vw, 42px) clamp(18px, 3vw, 26px) !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-panel h3 {
+  color: #000000 !important;
+  font-size: clamp(26px, 3.2vw, 40px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 1.14 !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-panel__hero p {
+  max-width: 860px !important;
+  color: rgba(0, 0, 0, 0.66) !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-info-card {
+  padding: 20px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-panel__decision {
+  padding: 18px 20px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-area-panel__decision span {
+  padding: 0 !important;
+  background: transparent !important;
+  color: #000000 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+body.travel-city-body--fukuoka #area-guide + .wt-city-cta,
+body.travel-city-body--fukuoka .wt-city-cta {
+  padding-top: clamp(28px, 4vw, 54px) !important;
+  padding-bottom: clamp(62px, 7vw, 104px) !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-cta__inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: end !important;
+  gap: clamp(22px, 4vw, 44px) !important;
+  padding: clamp(28px, 4vw, 46px) !important;
+  border-color: #000000 !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-cta h2 {
+  color: #000000 !important;
+  font-size: clamp(28px, 3.6vw, 44px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 1.14 !important;
+}
+
+body.travel-city-body--fukuoka .hotel-tabs,
+body.travel-city-body--fukuoka .hotel-tabs__nav {
+  border: 0 !important;
+  background: transparent !important;
+}
+
+body.travel-city-body--fukuoka .hotel-tabs__nav {
+  display: flex !important;
+  gap: 10px !important;
+  margin-bottom: 22px !important;
+  padding: 0 !important;
+}
+
+body.travel-city-body--fukuoka .hotel-tabs__button {
+  width: auto !important;
+  flex: 0 0 auto !important;
+}
+
+body.travel-city-body--fukuoka .hotel-tabs__button span,
+body.travel-city-body--fukuoka .hotel-tabs__button strong,
+body.travel-city-body--fukuoka .hotel-tabs__button .hotel-tabs__count {
+  color: inherit !important;
+}
+
+body.travel-city-body--fukuoka .travel-card-grid,
+body.travel-city-body--fukuoka .destination-guide-links {
+  gap: 14px !important;
+}
+
+body.travel-city-body--fukuoka .destination-guide-links--static-fukuoka {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+body.travel-city-body--fukuoka .destination-guide-link {
+  padding: clamp(22px, 3vw, 30px) !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-faq__accordion {
+  display: grid !important;
+  gap: 10px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-faq__item {
+  padding: 0 !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-faq__item summary {
+  min-height: 56px !important;
+  padding: 18px 44px 18px 18px !important;
+}
+
+body.travel-city-body--fukuoka .wt-city-faq__item p {
+  padding: 0 18px 18px !important;
+}
+
+body.travel-city-body--fukuoka .footer.container {
+  border-top: 1px solid #000000 !important;
+}
+
+body.travel-city-body--fukuoka .footer a,
+body.travel-city-body--fukuoka a {
+  color: #000000;
+}
+
+@media (min-width: 1181px) {
+  body.travel-city-body--fukuoka .breadcrumbs.container {
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  body.travel-city-body--fukuoka .topbar--travel .topbar__inner.container {
+    padding-left: clamp(24px, 6vw, 48px) !important;
+    padding-right: clamp(24px, 6vw, 48px) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  body.travel-city-body--fukuoka .wt-city-snapshot__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.travel-city-body--fukuoka .destination-guide-links--static-fukuoka {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-cta__inner {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body--fukuoka .topbar--travel .topbar__inner.container {
+    min-height: 58px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body.travel-city-body--fukuoka .breadcrumbs.container {
+    margin-top: 14px !important;
+  }
+
+  body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka > .container,
+  body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka .container,
+  body.travel-city-body--fukuoka .breadcrumbs.container,
+  body.travel-city-body--fukuoka .footer.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka > .wt-city-hero.container:first-child {
+    padding-top: 34px !important;
+    padding-bottom: 52px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-hero h1 {
+    font-size: clamp(38px, 11vw, 48px) !important;
+    line-height: 1.08 !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-hero__lead {
+    margin-top: 22px !important;
+    font-size: 15px !important;
+    line-height: 1.72 !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-hero__actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-top: 28px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-button,
+  body.travel-city-body--fukuoka .wt-city-hero__actions .wt-city-button,
+  body.travel-city-body--fukuoka .wt-city-cta .wt-city-button {
+    width: 100% !important;
+    min-height: 48px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-snapshot,
+  body.travel-city-body--fukuoka .wt-city-section,
+  body.travel-city-body--fukuoka .wt-city-dynamic-section,
+  body.travel-city-body--fukuoka .wt-city-guide-links,
+  body.travel-city-body--fukuoka .wt-city-faq {
+    padding-top: 54px !important;
+    padding-bottom: 54px !important;
+  }
+
+  body.travel-city-body--fukuoka .section-heading h2,
+  body.travel-city-body--fukuoka .wt-city-snapshot__heading h2 {
+    font-size: clamp(28px, 9vw, 36px) !important;
+    line-height: 1.16 !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-snapshot__grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-choice-card {
+    min-height: auto !important;
+    padding: 22px 44px 22px 20px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-tab-list {
+    margin: 18px -20px 16px 0 !important;
+    padding: 4px 20px 6px 0 !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-tab-button {
+    min-height: 40px !important;
+    padding: 0 14px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-panel__hero {
+    padding: 22px 18px 14px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-panel h3,
+  body.travel-city-body--fukuoka .wt-city-cta h2 {
+    font-size: clamp(26px, 8vw, 34px) !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-panel__grid {
+    padding: 0 12px 12px !important;
+    gap: 10px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-info-card {
+    padding: 17px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-area-panel__decision {
+    margin: 0 12px 12px !important;
+    padding: 17px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-cta__inner {
+    padding: 22px !important;
+  }
+
+  body.travel-city-body--fukuoka .hotel-tabs__nav {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    margin-right: -20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.travel-city-body--fukuoka .hotel-tabs__nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.travel-city-body--fukuoka .hotel-tabs__button {
+    min-height: 42px !important;
+    padding: 0 15px !important;
+    font-size: 13px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-faq__item summary {
+    padding: 17px 42px 17px 16px !important;
+  }
+
+  body.travel-city-body--fukuoka .wt-city-faq__item p {
+    padding: 0 16px 17px !important;
+  }
+}
+/* End WACKYTRAVEL_FUKUOKA_CITY_INDEX_MINIMAL_PREMIUM_V16 */
