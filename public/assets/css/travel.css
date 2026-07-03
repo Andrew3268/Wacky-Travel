@@ -25788,3 +25788,275 @@ body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc_
   border-top: 0 !important;
 }
 /* End 20260703 Topbar, guide spacing, and TOC simplification V6 */
+
+/* 20260703 Guide TOC/topbar/content unification V7
+   - hotel-guide/travel-guide TOC를 후쿠오카 hotel-guide 미니멀 톤으로 공통 적용
+   - guide topbar__inner.container를 /destinations/{city}/ 메인 페이지 기준으로 재통일
+   - guide 본문 좌우 여백을 도시 메인 페이지 기준으로 재통일
+   - 모바일 guide section border 제거
+*/
+body.wt-guide-body .topbar--travel .topbar__inner.container {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: var(--container) !important;
+  min-height: 64px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  border-bottom: 1px solid #000000 !important;
+  background: #ffffff !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 58px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] {
+  padding: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head {
+  padding: 24px 24px 18px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head .eyebrow {
+  margin-bottom: 8px !important;
+  color: rgba(0, 0, 0, 0.58) !important;
+  font-size: 15px !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head h2 {
+  margin: 0 !important;
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.04em !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head p:last-child {
+  max-width: 760px !important;
+  margin: 10px 0 0 !important;
+  color: rgba(0, 0, 0, 0.62) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc,
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__group,
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns {
+  display: grid !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  margin-top: 0 !important;
+  border-top: 0 !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
+  border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__label {
+  display: block !important;
+  margin: 0 !important;
+  padding: 18px 20px 10px !important;
+  color: rgba(0, 0, 0, 0.48) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc a {
+  display: block !important;
+  min-height: 0 !important;
+  padding: 15px 20px !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.07) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  font-size: 15px !important;
+  font-weight: 650 !important;
+  line-height: 1.55 !important;
+  letter-spacing: -0.03em !important;
+  text-decoration: none !important;
+  transform: none !important;
+}
+
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc a:hover,
+body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc a:focus-visible {
+  background: #f7f7f7 !important;
+  color: #000000 !important;
+}
+
+body.wt-guide-body .wt-seo-toc__group--featured {
+  display: none !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.wt-guide-body main.travel-page,
+  body.wt-guide-body main.travel-page.wt-city-guide-page,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page,
+  body.wt-guide-body main.travel-page.wt-guide-page {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  body.wt-guide-body main.travel-page > .container,
+  body.wt-guide-body main.travel-page .container,
+  body.wt-guide-body main.travel-page.wt-city-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-guide-page .container,
+  body.wt-guide-body .wt-city-guide-hero.container,
+  body.wt-guide-body .wt-city-guide-snapshot.container,
+  body.wt-guide-body .wt-city-guide-survey-panel.container,
+  body.wt-guide-body .wt-city-guide-layout.container,
+  body.wt-guide-body .wt-city-guide-related.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body main.travel-page,
+  body.wt-guide-body main.travel-page.wt-city-guide-page,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page,
+  body.wt-guide-body main.travel-page.wt-guide-page {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    overflow-x: hidden !important;
+  }
+
+  body.wt-guide-body main.travel-page > .container,
+  body.wt-guide-body main.travel-page .container,
+  body.wt-guide-body main.travel-page.wt-city-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page .container,
+  body.wt-guide-body main.travel-page.wt-guide-page > .container,
+  body.wt-guide-body main.travel-page.wt-guide-page .container,
+  body.wt-guide-body .wt-city-guide-hero.container,
+  body.wt-guide-body .wt-city-guide-snapshot.container,
+  body.wt-guide-body .wt-city-guide-survey-panel.container,
+  body.wt-guide-body .wt-city-guide-layout.container,
+  body.wt-guide-body .wt-city-guide-related.container,
+  body.wt-guide-body .footer.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.wt-guide-body .breadcrumbs.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-guide-body main.travel-page section,
+  body.wt-guide-body main.travel-page .wt-city-guide-section,
+  body.wt-guide-body main.travel-page .city-guide-section,
+  body.wt-guide-body main.travel-page .wt-seo-toc-section,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc {
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc],
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc {
+    border-radius: 0 !important;
+  }
+
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head {
+    padding: 20px 18px 16px !important;
+  }
+
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
+    border-left: 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__label,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__label {
+    padding: 16px 18px 8px !important;
+  }
+
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc a,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc a {
+    padding: 14px 18px !important;
+  }
+}
+/* End 20260703 Guide TOC/topbar/content unification V7 */
