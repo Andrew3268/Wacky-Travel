@@ -26416,3 +26416,23 @@ body.travel-archive-body .topbar--travel .topbar__inner.container {
   border-bottom: 0 !important;
 }
 /* End 20260703 Full-width travel topbar border V11 */
+
+/* 20260703 Main index destination card brightness V14
+   - scroll-wrapper 도시 카드 이미지가 과하게 어두워 보이지 않도록 오버레이를 완화
+   - 하단 흰색 텍스트 가독성은 유지하면서 이미지 노출감을 조금 밝게 조정
+*/
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-scroll-card::after {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(2, 6, 23, 0.04) 0%,
+      rgba(2, 6, 23, 0.03) 34%,
+      rgba(2, 6, 23, 0.25) 66%,
+      rgba(0, 0, 0, 0.62) 100%
+    ) !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .dest-card-bg {
+  filter: brightness(1.06) saturate(1.04) contrast(1.01) !important;
+}
+/* End 20260703 Main index destination card brightness V14 */
