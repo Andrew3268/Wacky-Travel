@@ -26395,3 +26395,24 @@ body.travel-purpose-body .wt-choice-main .wt-choice-card__line {
   }
 }
 /* End 20260703 Purpose page topbar/choice spacing refinement V10 */
+
+/* 20260703 Full-width travel topbar border V11
+   - 모든 travel topbar의 하단선을 header 전체 폭 기준으로 통일
+   - topbar__inner.container에 남아 있던 컨테이너 폭 border는 제거
+*/
+.topbar.topbar--travel,
+.topbar.topbar--editorial.topbar--travel {
+  border-bottom: 1px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+.topbar--travel .topbar__inner.container,
+body.travel-home-body .topbar--travel .topbar__inner.container,
+body.travel-city-body .topbar--travel .topbar__inner.container,
+body.travel-city-body--fukuoka .topbar--travel .topbar__inner.container,
+body.travel-purpose-body .topbar--travel .topbar__inner.container,
+body.wt-guide-body .topbar--travel .topbar__inner.container,
+body.travel-archive-body .topbar--travel .topbar__inner.container {
+  border-bottom: 0 !important;
+}
+/* End 20260703 Full-width travel topbar border V11 */
