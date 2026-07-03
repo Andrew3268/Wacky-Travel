@@ -26111,3 +26111,201 @@ body.wt-guide-body .topbar--travel .topbar__inner.container {
 }
 /* End 20260703 Guide topbar vertical padding fix V8 */
 
+
+/* 20260703 Guide hero and breadcrumb alignment V9
+   - 모든 hotel-guide / travel-guide의 breadcrumb와 hero intro를 도시 메인 index 기준으로 통일
+   - wt-city-guide-hero__inner를 wt-city-hero__content와 같은 타이포/간격 흐름으로 정리
+*/
+body.wt-guide-body .breadcrumbs.container {
+  box-sizing: border-box !important;
+  width: min(calc(100% - 32px), var(--container)) !important;
+  max-width: var(--container) !important;
+  margin: 18px auto 0 !important;
+  padding: 0 16px !important;
+  color: rgba(0, 0, 0, 0.48) !important;
+}
+
+body.wt-guide-body .breadcrumbs.container > ol,
+body.wt-guide-body .breadcrumbs ol {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+body.wt-guide-body .breadcrumbs li,
+body.wt-guide-body .breadcrumbs a,
+body.wt-guide-body .breadcrumbs span,
+body.wt-guide-body .breadcrumbs__separator {
+  color: rgba(0, 0, 0, 0.52) !important;
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+}
+
+body.wt-guide-body .breadcrumbs a,
+body.wt-guide-body .breadcrumbs span[aria-current="page"],
+body.wt-guide-body .breadcrumbs li:last-child > span {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+body.wt-guide-body .breadcrumbs span[aria-current="page"],
+body.wt-guide-body .breadcrumbs li:last-child > span {
+  max-width: 54vw !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body.wt-guide-body .breadcrumbs__separator {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.2rem !important;
+  line-height: 1 !important;
+}
+
+body.wt-guide-body .breadcrumbs.container + main.travel-page.wt-city-guide-page > .wt-city-guide-hero.container:first-child,
+body.wt-guide-body main.travel-page.wt-city-guide-page > .wt-city-guide-hero.container:first-child,
+body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .wt-city-guide-hero.container:first-child,
+body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .wt-city-guide-hero.container:first-child {
+  padding-top: 15px !important;
+  padding-bottom: clamp(56px, 7vw, 92px) !important;
+  background: #ffffff !important;
+}
+
+body.wt-guide-body .wt-city-guide-hero__inner {
+  display: block !important;
+  max-width: 880px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.wt-guide-body .wt-city-guide-hero__inner .eyebrow,
+body.wt-guide-body .wt-city-guide-hero__inner .wt-city-kicker,
+body.wt-guide-body .wt-city-guide-hero__inner .wt-eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #000000 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+}
+
+body.wt-guide-body .wt-city-guide-hero h1,
+body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .wt-city-guide-hero h1,
+body.wt-guide-body main.travel-page.wt-city-travel-guide-page .wt-city-guide-hero h1 {
+  max-width: 820px !important;
+  margin: 0 !important;
+  color: #000000 !important;
+  font-size: clamp(44px, 5.4vw, 64px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+  line-height: 1.06 !important;
+  word-break: keep-all !important;
+}
+
+body.wt-guide-body .wt-city-guide-hero__subtitle {
+  max-width: 760px !important;
+  margin: 22px 0 0 !important;
+  color: rgba(0, 0, 0, 0.66) !important;
+  font-size: clamp(15px, 1.35vw, 17px) !important;
+  font-weight: 400 !important;
+  line-height: 1.78 !important;
+  letter-spacing: -0.035em !important;
+  word-break: keep-all !important;
+}
+
+body.wt-guide-body .wt-city-guide-hero__lead {
+  max-width: 760px !important;
+  margin: 12px 0 0 !important;
+  color: rgba(0, 0, 0, 0.66) !important;
+  font-size: clamp(15px, 1.35vw, 17px) !important;
+  font-weight: 400 !important;
+  line-height: 1.78 !important;
+  letter-spacing: -0.035em !important;
+  word-break: keep-all !important;
+}
+
+body.wt-guide-body .wt-city-guide-hero__actions,
+body.wt-guide-body .wt-city-guide-hero__inner .wt-hero-actions {
+  gap: 12px !important;
+  margin-top: 34px !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.wt-guide-body .breadcrumbs.container {
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body .breadcrumbs.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 14px 0 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-guide-body .breadcrumbs.container + main.travel-page.wt-city-guide-page > .wt-city-guide-hero.container:first-child,
+  body.wt-guide-body main.travel-page.wt-city-guide-page > .wt-city-guide-hero.container:first-child,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .wt-city-guide-hero.container:first-child,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .wt-city-guide-hero.container:first-child {
+    padding-top: 15px !important;
+    padding-bottom: 52px !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-hero__inner {
+    max-width: 880px !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-hero h1,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .wt-city-guide-hero h1,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page .wt-city-guide-hero h1 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-hero__subtitle {
+    margin-top: 15px !important;
+    font-size: 15px !important;
+    line-height: 1.72 !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-hero__lead {
+    margin-top: 10px !important;
+    font-size: 15px !important;
+    line-height: 1.72 !important;
+  }
+
+  body.wt-guide-body .wt-city-guide-hero__actions,
+  body.wt-guide-body .wt-city-guide-hero__inner .wt-hero-actions {
+    margin-top: 28px !important;
+  }
+}
+/* End 20260703 Guide hero and breadcrumb alignment V9 */
