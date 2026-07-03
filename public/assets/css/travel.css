@@ -25405,3 +25405,32 @@ body.travel-archive-body a {
   }
 }
 /* End 20260703 Mobile heading size normalization V2 */
+
+/* 20260703 City FAQ and eyebrow refinement V3
+   - 도시 FAQ 아코디언 상단 보더 제거
+   - 도시 FAQ summary 좌우/상하 padding 18px 통일
+   - .eyebrow 폰트 크기 15px 통일
+*/
+.eyebrow {
+  font-size: 15px !important;
+}
+
+body.travel-city-body .wt-city-faq__accordion,
+body.travel-city-body--fukuoka .wt-city-faq__accordion {
+  border-top: 0 !important;
+}
+
+body.travel-city-body .wt-city-faq__item summary,
+body.travel-city-body--fukuoka .wt-city-faq__item summary {
+  padding: 18px !important;
+}
+
+body.travel-city-body .wt-city-kicker,
+body.travel-city-body .eyebrow,
+body.travel-city-body--fukuoka .wt-city-kicker,
+body.travel-city-body--fukuoka .eyebrow,
+body.travel-archive-body .wt-city-kicker,
+body.travel-archive-body .eyebrow {
+  font-size: 15px !important;
+}
+/* End 20260703 City FAQ and eyebrow refinement V3 */
