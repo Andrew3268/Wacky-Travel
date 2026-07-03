@@ -26309,3 +26309,89 @@ body.wt-guide-body .wt-city-guide-hero__inner .wt-hero-actions {
   }
 }
 /* End 20260703 Guide hero and breadcrumb alignment V9 */
+
+/* 20260703 Purpose page topbar/choice spacing refinement V10
+   - first-trip/value-hotel/near-trip/family-trip/quiet-stay topbar border overlap fix
+   - wt-choice-main article vertical rhythm compact and readable
+   - purpose page section kicker color unified
+*/
+body.travel-purpose-body .topbar--travel .topbar__inner.container {
+  border-bottom: 0 !important;
+}
+
+body.travel-purpose-body .wt-section-kicker {
+  color: rgba(0, 0, 0, 0.66) !important;
+}
+
+body.travel-purpose-body .wt-choice-main > article.wt-choice-card {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  padding: 22px !important;
+}
+
+body.travel-purpose-body .wt-choice-main > article.wt-choice-card > * + * {
+  margin-top: 0 !important;
+}
+
+body.travel-purpose-body .wt-choice-main .wt-choice-card__label {
+  margin: 0 !important;
+  color: rgba(0, 0, 0, 0.66) !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.01em !important;
+}
+
+body.travel-purpose-body .wt-choice-main article.wt-choice-card h3 {
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+body.travel-purpose-body .wt-choice-main .wt-choice-card__lead {
+  margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.62 !important;
+}
+
+body.travel-purpose-body .wt-choice-main .wt-choice-card__chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin: 2px 0 0 !important;
+}
+
+body.travel-purpose-body .wt-choice-main .wt-choice-card__chips span {
+  min-height: 28px !important;
+  padding: 0 10px !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+body.travel-purpose-body .wt-choice-main .wt-choice-card__line {
+  margin: 2px 0 0 !important;
+  padding-top: 12px !important;
+  font-size: 14px !important;
+  line-height: 1.58 !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-choice-main {
+    gap: 12px !important;
+  }
+
+  body.travel-purpose-body .wt-choice-main > article.wt-choice-card {
+    gap: 9px !important;
+    padding: 18px !important;
+  }
+
+  body.travel-purpose-body .wt-choice-main .wt-choice-card__lead {
+    font-size: 15px !important;
+    line-height: 1.58 !important;
+  }
+
+  body.travel-purpose-body .wt-choice-main .wt-choice-card__line {
+    padding-top: 10px !important;
+    line-height: 1.56 !important;
+  }
+}
+/* End 20260703 Purpose page topbar/choice spacing refinement V10 */
