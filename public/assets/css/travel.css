@@ -25481,3 +25481,205 @@ body.travel-archive-body .eyebrow {
   }
 }
 /* End 20260703 City/archive topbar and archive breadcrumb alignment V4 */
+
+/* 20260703 Logo, guide topbar, and Fukuoka hotel TOC refinement V5
+   - 모든 페이지 Wacky Travel 텍스트 로고를 메인 index와 동일한 15px로 통일
+   - 호텔 가이드/여행 가이드 topbar inner를 목적별 페이지(first-trip) 기준과 동일하게 정렬
+   - /destinations/fukuoka/hotel-guide/ Table of Contents를 미니멀 리스트형 UI로 정리
+*/
+.topbar--travel .brand__text,
+.topbar--editorial .brand__text,
+.brand .brand__text {
+  font-size: 15px !important;
+  line-height: 1 !important;
+}
+
+body.wt-guide-body .topbar--travel .topbar__inner.container {
+  box-sizing: border-box !important;
+  width: min(calc(100% - 32px), var(--container)) !important;
+  max-width: var(--container) !important;
+  min-height: 64px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border-bottom: 1px solid #000000 !important;
+  background: #ffffff !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 58px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page .wt-seo-toc-section#fukuoka-hotel-toc {
+  padding: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head {
+  padding: 24px 24px 18px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head .eyebrow {
+  margin-bottom: 8px !important;
+  color: rgba(0, 0, 0, 0.58) !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head h2 {
+  margin: 0 !important;
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.04em !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head p:last-child {
+  max-width: 760px !important;
+  margin: 10px 0 0 !important;
+  color: rgba(0, 0, 0, 0.62) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc {
+  display: grid !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group,
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured,
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
+  display: grid !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
+  border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__label {
+  display: block !important;
+  margin: 0 !important;
+  padding: 18px 20px 10px !important;
+  color: rgba(0, 0, 0, 0.48) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc a,
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured a {
+  display: block !important;
+  min-height: 0 !important;
+  padding: 15px 20px !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.07) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  transform: none !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured a:first-child {
+  border-top: 0 !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc a:hover,
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc a:focus-visible {
+  background: #f7f7f7 !important;
+  color: #000000 !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured span {
+  display: block !important;
+  margin: 0 0 4px !important;
+  color: rgba(0, 0, 0, 0.46) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.35 !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc a,
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured strong {
+  font-size: 15px !important;
+  font-weight: 650 !important;
+  line-height: 1.55 !important;
+  letter-spacing: -0.03em !important;
+}
+
+body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured strong {
+  display: block !important;
+  color: #000000 !important;
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body main.wt-city-hotel-guide-page .wt-seo-toc-section#fukuoka-hotel-toc {
+    border-radius: 20px !important;
+  }
+
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head {
+    padding: 20px 18px 16px !important;
+  }
+
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
+    border-left: 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__label {
+    padding: 16px 18px 8px !important;
+  }
+
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc a,
+  body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__group--featured a {
+    padding: 14px 18px !important;
+  }
+}
+/* End 20260703 Logo, guide topbar, and Fukuoka hotel TOC refinement V5 */
