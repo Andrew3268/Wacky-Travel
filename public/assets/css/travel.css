@@ -23004,7 +23004,10 @@ body.wt-guide-body .topbar--travel .topbar__inner.container {
   width: min(100% - 40px, 1120px) !important;
   min-height: 64px !important;
   margin: 0 auto !important;
-  padding: 0 !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   border-bottom: 1px solid #000 !important;
 }
 
@@ -26060,3 +26063,51 @@ body.wt-guide-body .wt-seo-toc__group--featured {
   }
 }
 /* End 20260703 Guide TOC/topbar/content unification V7 */
+
+/* 20260703 Guide topbar vertical padding fix V8
+   - guide 페이지 topbar__inner.container에서 padding shorthand가 상하 여백을 덮지 않도록 분리 지정
+   - /destinations/{city}/ 메인 페이지 기준의 topbar 좌우 정렬은 유지
+*/
+body.wt-guide-body .topbar--travel .topbar__inner.container {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: var(--container) !important;
+  min-height: 64px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  border-bottom: 1px solid #000000 !important;
+  background: #ffffff !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body .topbar--travel .topbar__inner.container {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 58px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+/* End 20260703 Guide topbar vertical padding fix V8 */
+
