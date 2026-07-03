@@ -25371,31 +25371,37 @@ body.travel-archive-body a {
 }
 /* End 20260703 Hotel archive minimal premium V1 */
 
-/* 20260703 Mobile heading size normalization V1
+/* 20260703 Mobile heading size normalization V2
    - 모바일에서 메인 index hero를 제외한 h1/h2/h3 태그 크기 통일
+   - h1/h2/h3 line-height를 1.2로 통일
    - 기존 페이지별 !important 제목 규칙보다 뒤에서 적용
 */
 @media (max-width: 767px) {
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h1 {
     font-size: 32px !important;
+    line-height: 1.2 !important;
   }
 
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2 {
     font-size: 24px !important;
+    line-height: 1.2 !important;
   }
 
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3 {
     font-size: 20px !important;
+    line-height: 1.2 !important;
   }
 
   html body.travel-home-body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) .travel-home .wthome-hero .wthome-card__visual h1 {
     font-size: clamp(42px, 13.2vw, 58px) !important;
+    line-height: 1.2 !important;
   }
 }
 
 @media (max-width: 380px) {
   html body.travel-home-body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) .travel-home .wthome-hero .wthome-card__visual h1 {
     font-size: clamp(38px, 12.4vw, 49px) !important;
+    line-height: 1.2 !important;
   }
 }
-/* End 20260703 Mobile heading size normalization V1 */
+/* End 20260703 Mobile heading size normalization V2 */
