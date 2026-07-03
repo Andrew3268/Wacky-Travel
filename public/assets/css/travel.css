@@ -25434,3 +25434,50 @@ body.travel-archive-body .eyebrow {
   font-size: 15px !important;
 }
 /* End 20260703 City FAQ and eyebrow refinement V3 */
+
+/* 20260703 City/archive topbar and archive breadcrumb alignment V4
+   - /destinations/{city}/ index topbar를 목적별 페이지(first-trip) 기준과 동일하게 정렬
+   - /hotel-recommendations/, /hotels/ topbar를 목적별 페이지(first-trip) 기준과 동일하게 정렬
+   - 호텔 아카이브 모바일 breadcrumb를 first-trip과 같은 20px 기준선으로 보정
+*/
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.travel-city-body .topbar--travel .topbar__inner.container,
+  body.travel-archive-body .topbar--travel .topbar__inner.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body .topbar--travel .topbar__inner.container,
+  body.travel-archive-body .topbar--travel .topbar__inner.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body.travel-archive-body .breadcrumbs.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 12px 0 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.travel-archive-body .breadcrumbs.container > ol,
+  body.travel-archive-body .breadcrumbs ol {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+/* End 20260703 City/archive topbar and archive breadcrumb alignment V4 */
