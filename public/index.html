@@ -14,9 +14,16 @@
   <meta property="og:image" content="/assets/images/logo.png" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev" />
+  <link
+    rel="preload"
+    as="image"
+    href="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp"
+    fetchpriority="high"
+  />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260703MainIndexCardBrightnessV14" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260703ScrollWrapperImgPreloadV15" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -108,7 +115,9 @@
       <div id="homeDestinations" class="country-destination-list country-destination-list--home-static destinations-scroll-wrapper" aria-label="인기 도시 10개">
         <div class="scroll-wrapper" role="list">
         <a class="dest-scroll-card" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp" alt="후쿠오카 여행 대표 이미지" width="720" height="960" loading="eager" decoding="async" fetchpriority="high" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Fukuoka</span>
@@ -121,7 +130,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/tokyo/" aria-label="도쿄 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="도쿄 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Tokyo</span>
@@ -134,7 +145,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="오사카 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Osaka</span>
@@ -147,7 +160,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="나트랑 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Nha Trang</span>
@@ -160,7 +175,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="다낭 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Da Nang</span>
@@ -173,7 +190,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/taipei/" aria-label="타이베이 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="타이베이 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Taipei</span>
@@ -186,7 +205,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/sapporo/" aria-label="삿포로 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="삿포로 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Sapporo</span>
@@ -199,7 +220,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/phu-quoc/" aria-label="푸꾸옥 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="푸꾸옥 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Phu Quoc</span>
@@ -212,7 +235,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/ho-chi-minh-city/" aria-label="호치민 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="호치민 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Ho Chi Minh</span>
@@ -225,7 +250,9 @@
           </span>
         </a>
         <a class="dest-scroll-card" href="/destinations/kaohsiung/" aria-label="가오슝 여행지 보기">
-          <span class="dest-card-bg" style="--dest-card-image: url('https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80');" aria-hidden="true"></span>
+          <span class="dest-card-bg" aria-hidden="true">
+            <img class="dest-card-img" src="https://images.unsplash.com/photo-1618083707368-b3823daa2726?auto=format&fit=crop&w=500&q=80" alt="가오슝 여행 대표 이미지" width="720" height="960" loading="lazy" decoding="async" fetchpriority="low" />
+          </span>
           <span class="dest-card-badge">BEST</span>
           <span class="dest-card-info">
             <span class="dest-card-title">Kaohsiung</span>
