@@ -26707,3 +26707,55 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
     font-size: 1.08rem;
   }
 }
+
+
+/* =========================================================
+   20260704 Home index layout refinement V1
+   - Hero description clarified around stay-location decisions
+   - Popular destination heading spacing reduced
+   - "더 보기" link tone softened
+========================================================= */
+body.travel-home-body main.travel-page.travel-home .section-heading.section-heading--split {
+  margin-bottom: 7px !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link {
+  color: rgba(17, 24, 39, 0.46) !important;
+  font-size: clamp(0.86rem, 1.4vw, 0.98rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-label,
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon {
+  color: rgba(17, 24, 39, 0.46) !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon svg {
+  width: 17px !important;
+  height: 17px !important;
+  stroke-width: 1.8 !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link {
+    font-size: 0.86rem !important;
+    gap: 5px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+/* End 20260704 Home index layout refinement V1 */
