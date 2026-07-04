@@ -26467,7 +26467,15 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   word-break: keep-all;
 }
 
-/* Destinations archive tabs V4 */
+/* Destinations archive tabs V5 */
+.destination-tab-sticky {
+  width: 100%;
+  max-width: 100%;
+  margin: 22px 0 18px;
+  padding: 0;
+  background: transparent;
+}
+
 .destination-tab-menu {
   display: flex;
   flex-wrap: nowrap;
@@ -26476,7 +26484,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   gap: 8px;
   width: 100%;
   max-width: 100%;
-  margin: 22px 0 18px;
+  margin: 0;
   padding: 0;
   overflow-x: auto;
   overflow-y: hidden;
@@ -26641,6 +26649,23 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   100% { background-position: -100% 0; }
 }
 
+
+/* Destinations tabs V5: robust sticky + compact spacing */
+.travel-page--destinations-index,
+.travel-page--destinations-index .travel-section--destinations-archive,
+.travel-page--destinations-index .country-destination-list--all {
+  overflow: visible !important;
+}
+
+.travel-page--destinations-index .travel-section:first-child,
+.travel-page--destinations-index .travel-section--destinations-archive {
+  padding-top: 10px !important;
+}
+
+.travel-page--destinations-index .section-heading.section-heading--split {
+  margin-bottom: 18px !important;
+}
+
 @media (max-width: 860px) {
   .destination-tab-menu {
     margin-left: -2px;
@@ -26649,24 +26674,30 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1180px) {
   .travel-destinations-body .topbar--travel {
     position: sticky !important;
     top: 0 !important;
-    z-index: 70 !important;
+    z-index: 90 !important;
   }
 
-  .destination-tab-menu {
+  .travel-page--destinations-index .destination-tab-sticky {
     position: -webkit-sticky !important;
     position: sticky !important;
-    top: var(--destination-tabs-sticky-top, 74px) !important;
-    z-index: 60 !important;
-    margin-top: 18px;
+    top: var(--destination-tabs-sticky-top, 80px) !important;
+    z-index: 80 !important;
+    margin-top: 14px;
     margin-bottom: 18px;
-    padding: 8px 0;
-    background: rgba(255, 255, 255, 0.97);
+    padding: 8px 0 9px;
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+  }
+
+  .travel-page--destinations-index .destination-tab-menu {
+    margin: 0;
+    padding-bottom: 0;
   }
 }
 

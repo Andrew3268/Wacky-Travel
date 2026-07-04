@@ -48,31 +48,31 @@
   };
 
   const destinationSummaries = {
-    osaka: "먹거리·쇼핑·근교 이동을 한 번에 잡기 좋은 도시",
-    tokyo: "동네마다 분위기가 달라 일정 성격에 맞춰 고르기 좋은 도시",
-    fukuoka: "공항 접근성과 맛집 동선이 좋아 첫 일본 여행에 부담이 적은 도시",
-    sapporo: "눈 여행·맥주·온천 동선을 함께 묶기 좋은 북해도 중심 도시",
-    okinawa: "렌터카 해변 여행과 리조트 휴양을 여유롭게 즐기기 좋은 섬",
-    "da-nang": "해변 휴양과 호이안·바나힐 근교 일정을 함께 잡기 좋은 도시",
-    "nha-trang": "바다 전망 숙소와 리조트 휴양을 중심으로 보기 좋은 해변 도시",
-    "ho-chi-minh-city": "도시 관광, 카페, 맛집, 쇼핑을 짧은 일정에 담기 좋은 도시",
-    hanoi: "올드쿼터 감성과 하롱베이 근교 여행을 함께 보기 좋은 도시",
-    "phu-quoc": "리조트 휴양과 테마파크 일정을 나눠 계획하기 좋은 섬",
-    taipei: "야시장, 교통, 근교 여행까지 초행자가 움직이기 편한 도시",
-    taichung: "감성 카페와 근교 자연 코스를 함께 묶기 좋은 대만 중부 도시",
-    tainan: "오래된 골목, 로컬 맛집, 느린 여행을 즐기기 좋은 도시",
-    kaohsiung: "항구 분위기와 야시장, 남부 근교 동선을 잡기 좋은 도시",
-    hualien: "타이루거 협곡과 자연 풍경 여행을 중심으로 보기 좋은 도시",
-    bangkok: "루프톱, 쇼핑몰, 사원, 맛집 일정이 풍부한 태국 대표 도시",
-    pattaya: "방콕 근교에서 바다와 액티비티를 가볍게 즐기기 좋은 도시",
-    phuket: "풀빌라, 해변, 섬 투어를 중심으로 휴양하기 좋은 태국 남부 여행지",
-    "chiang-mai": "카페, 올드타운, 한달살기 감성을 느끼기 좋은 북부 도시",
-    "koh-samui": "고급 리조트와 조용한 해변 휴양을 즐기기 좋은 섬",
-    cebu: "호핑투어와 리조트 휴양을 함께 계획하기 좋은 필리핀 대표 여행지",
-    boracay: "화이트비치 중심으로 쉬운 휴양 일정을 짜기 좋은 섬",
-    bohol: "초콜릿힐, 바다 투어, 조용한 리조트 휴양을 함께 보기 좋은 섬",
-    manila: "도심 쇼핑과 경유·비즈니스 일정을 함께 잡기 좋은 수도권 도시",
-    clark: "골프, 가족 여행, 짧은 휴양 동선에 맞추기 좋은 도시"
+    osaka: "먹거리·쇼핑·근교가 쉬운 도시",
+    tokyo: "취향별 동네 선택이 넓은 도시",
+    fukuoka: "공항·맛집 동선이 편한 도시",
+    sapporo: "눈·맥주·온천을 묶는 도시",
+    okinawa: "해변 드라이브와 휴양의 섬",
+    "da-nang": "해변·호이안·바나힐을 묶는 도시",
+    "nha-trang": "바다 전망 리조트 휴양지",
+    "ho-chi-minh-city": "카페·맛집·쇼핑이 밀집한 도시",
+    hanoi: "올드쿼터와 하롱베이 관문",
+    "phu-quoc": "리조트와 테마파크의 섬",
+    taipei: "야시장·교통·근교가 편한 도시",
+    taichung: "감성 카페와 근교 자연 도시",
+    tainan: "골목과 로컬 맛집의 도시",
+    kaohsiung: "항구 감성과 야시장의 도시",
+    hualien: "타이루거 자연 여행 거점",
+    bangkok: "쇼핑·루프톱·사원의 도시",
+    pattaya: "방콕 근교 바다 액티비티 도시",
+    phuket: "해변·풀빌라·섬투어 휴양지",
+    "chiang-mai": "카페와 올드타운의 북부 도시",
+    "koh-samui": "조용한 고급 리조트 섬",
+    cebu: "호핑투어와 리조트 휴양지",
+    boracay: "화이트비치 중심 휴양 섬",
+    bohol: "초콜릿힐과 바다 투어의 섬",
+    manila: "쇼핑·경유·비즈니스 도시",
+    clark: "골프와 가족 휴양 거점"
   };
 
   const STATIC_DESTINATIONS = [
@@ -251,8 +251,10 @@
   }
 
   function syncDestinationStickyOffset() {
-    const topbarInner = document.querySelector(".topbar--travel .topbar__inner.container") || document.querySelector(".topbar--travel");
-    const topbarHeight = topbarInner ? Math.ceil(topbarInner.getBoundingClientRect().height) : 64;
+    const topbar = document.querySelector(".topbar--travel");
+    const topbarInner = document.querySelector(".topbar--travel .topbar__inner.container");
+    const target = topbar || topbarInner;
+    const topbarHeight = target ? Math.ceil(target.getBoundingClientRect().height) : 70;
     document.documentElement.style.setProperty("--destination-tabs-sticky-top", `${topbarHeight + 10}px`);
   }
 

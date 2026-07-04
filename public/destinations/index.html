@@ -8,7 +8,7 @@
   <link rel="canonical" href="/destinations/" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260704DestinationsTabsV4" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260704DestinationsTabsV5" />
 </head>
 <body class="travel-destinations-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -24,14 +24,16 @@
           <h2>어디로 떠나시나요?</h2>
         </div>
       </div>
-      <nav id="destinationTabs" class="destination-tab-menu" role="tablist" aria-label="여행지 국가 탭">
-        <button class="destination-tab-button is-active" type="button" disabled>인기 도시</button>
-        <button class="destination-tab-button" type="button" disabled>일본</button>
-        <button class="destination-tab-button" type="button" disabled>베트남</button>
-        <button class="destination-tab-button" type="button" disabled>대만</button>
-        <button class="destination-tab-button" type="button" disabled>태국</button>
-        <button class="destination-tab-button" type="button" disabled>필리핀</button>
-      </nav>
+      <div class="destination-tab-sticky">
+        <nav id="destinationTabs" class="destination-tab-menu" role="tablist" aria-label="여행지 국가 탭">
+          <button class="destination-tab-button is-active" type="button" disabled>인기 도시</button>
+          <button class="destination-tab-button" type="button" disabled>일본</button>
+          <button class="destination-tab-button" type="button" disabled>베트남</button>
+          <button class="destination-tab-button" type="button" disabled>대만</button>
+          <button class="destination-tab-button" type="button" disabled>태국</button>
+          <button class="destination-tab-button" type="button" disabled>필리핀</button>
+        </nav>
+      </div>
       <div id="destinationsGrid" class="country-destination-list country-destination-list--all destination-tab-content is-loading" aria-live="polite" aria-busy="true">
         <section class="destination-tab-panel destination-tab-panel--skeleton" aria-hidden="true">
           <div class="destination-city-grid">
@@ -44,6 +46,6 @@
     </section>
   </main>
   <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
-  <script src="/assets/js/destinations.js?v=20260704DestinationsTabsV4" defer></script>
+  <script src="/assets/js/destinations.js?v=20260704DestinationsTabsV5" defer></script>
 </body>
 </html>
