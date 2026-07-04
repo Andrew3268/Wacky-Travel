@@ -8,9 +8,9 @@
   <link rel="canonical" href="/destinations/" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260703ScrollWrapperImgPreloadV15" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260704DestinationsTabsV1" />
 </head>
-<body>
+<body class="travel-destinations-body">
   <header class="topbar topbar--editorial topbar--travel">
     <div class="topbar__inner container">
       <a class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
@@ -22,10 +22,17 @@
         <div>
           <p class="eyebrow">Travel Hub</p>
           <h2>어디로 떠나시나요?</h2>
-          <p>나라별로 모아둔 도시를 천천히 둘러보며, 마음이 가는 여행지의 호텔 추천 글과 여행 정보를 바로 확인해보세요.</p>
         </div>
       </div>
-      <div id="destinationsGrid" class="country-destination-list country-destination-list--all is-loading" aria-live="polite" aria-busy="true">
+      <nav id="destinationTabs" class="destination-tab-menu" role="tablist" aria-label="여행지 국가 탭">
+        <button class="destination-tab-button is-active" type="button" disabled>인기 도시</button>
+        <button class="destination-tab-button" type="button" disabled>일본</button>
+        <button class="destination-tab-button" type="button" disabled>베트남</button>
+        <button class="destination-tab-button" type="button" disabled>대만</button>
+        <button class="destination-tab-button" type="button" disabled>태국</button>
+        <button class="destination-tab-button" type="button" disabled>필리핀</button>
+      </nav>
+      <div id="destinationsGrid" class="country-destination-list country-destination-list--all destination-tab-content is-loading" aria-live="polite" aria-busy="true">
         <section class="country-destination-group country-destination-group--compact country-destination-group--skeleton" aria-hidden="true">
           <div class="country-destination-group__head">
             <div class="country-destination-group__title"><span class="destination-skeleton destination-skeleton--title"></span></div>
@@ -66,6 +73,6 @@
     </section>
   </main>
   <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
-  <script src="/assets/js/destinations.js?v=20260625HualienCitySetV1" defer></script>
+  <script src="/assets/js/destinations.js?v=20260704DestinationsTabsV1" defer></script>
 </body>
 </html>

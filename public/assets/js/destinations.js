@@ -1,6 +1,7 @@
 (function () {
   const grid = document.getElementById("destinationsGrid");
-  if (!grid) return;
+  const tabs = document.getElementById("destinationTabs");
+  if (!grid || !tabs) return;
 
   const countrySlugAliases = {
     "베트남": "vietnam",
@@ -15,31 +16,87 @@
     "필리핀": "philippines"
   };
 
+  const countryTabOrder = [
+    { key: "popular", label: "인기 도시", type: "popular" },
+    { key: "japan", label: "일본", type: "country" },
+    { key: "vietnam", label: "베트남", type: "country" },
+    { key: "taiwan", label: "대만", type: "country" },
+    { key: "thailand", label: "태국", type: "country" },
+    { key: "philippines", label: "필리핀", type: "country" }
+  ];
+
+  const popularDestinationSlugs = [
+    "fukuoka",
+    "tokyo",
+    "osaka",
+    "nha-trang",
+    "da-nang",
+    "taipei",
+    "sapporo",
+    "phu-quoc",
+    "ho-chi-minh-city",
+    "kaohsiung"
+  ];
+
+  const slugAliases = {
+    danang: "da-nang",
+    hochiminh: "ho-chi-minh-city",
+    "ho-chi-minh": "ho-chi-minh-city",
+    phuquoc: "phu-quoc",
+    nhatrang: "nha-trang",
+    taichong: "taichung"
+  };
+
   const STATIC_DESTINATIONS = [
+    { slug: "osaka", name: "오사카", city: "오사카", country: "일본", sort_order: 1, status: "published", is_active: 1 },
+    { slug: "tokyo", name: "도쿄", city: "도쿄", country: "일본", sort_order: 2, status: "published", is_active: 1 },
+    { slug: "fukuoka", name: "후쿠오카", city: "후쿠오카", country: "일본", sort_order: 3, status: "published", is_active: 1 },
+    { slug: "sapporo", name: "삿포로", city: "삿포로", country: "일본", sort_order: 4, status: "published", is_active: 1 },
+    { slug: "okinawa", name: "오키나와", city: "오키나와", country: "일본", sort_order: 5, status: "published", is_active: 1 },
+
     { slug: "da-nang", name: "다낭", city: "다낭", country: "베트남", sort_order: 1, status: "published", is_active: 1 },
     { slug: "nha-trang", name: "나트랑", city: "나트랑", country: "베트남", sort_order: 2, status: "published", is_active: 1 },
     { slug: "ho-chi-minh-city", name: "호치민", city: "호치민", country: "베트남", sort_order: 3, status: "published", is_active: 1 },
     { slug: "hanoi", name: "하노이", city: "하노이", country: "베트남", sort_order: 4, status: "published", is_active: 1 },
     { slug: "phu-quoc", name: "푸꾸옥", city: "푸꾸옥", country: "베트남", sort_order: 5, status: "published", is_active: 1 },
+
     { slug: "taipei", name: "타이베이", city: "타이베이", country: "대만", sort_order: 1, status: "published", is_active: 1 },
     { slug: "taichung", name: "타이중", city: "타이중", country: "대만", sort_order: 2, status: "published", is_active: 1 },
     { slug: "tainan", name: "타이난", city: "타이난", country: "대만", sort_order: 3, status: "published", is_active: 1 },
     { slug: "kaohsiung", name: "가오슝", city: "가오슝", country: "대만", sort_order: 4, status: "published", is_active: 1 },
-    { slug: "hualien", name: "화렌", city: "화렌", country: "대만", sort_order: 5, status: "published", is_active: 1 }
+    { slug: "hualien", name: "화렌", city: "화렌", country: "대만", sort_order: 5, status: "published", is_active: 1 },
+
+    { slug: "bangkok", name: "방콕", city: "방콕", country: "태국", sort_order: 1, status: "published", is_active: 1 },
+    { slug: "pattaya", name: "파타야", city: "파타야", country: "태국", sort_order: 2, status: "published", is_active: 1 },
+    { slug: "phuket", name: "푸켓", city: "푸켓", country: "태국", sort_order: 3, status: "published", is_active: 1 },
+    { slug: "chiang-mai", name: "치앙마이", city: "치앙마이", country: "태국", sort_order: 4, status: "published", is_active: 1 },
+    { slug: "koh-samui", name: "코사무이", city: "코사무이", country: "태국", sort_order: 5, status: "published", is_active: 1 },
+
+    { slug: "cebu", name: "세부", city: "세부", country: "필리핀", sort_order: 1, status: "published", is_active: 1 },
+    { slug: "boracay", name: "보라카이", city: "보라카이", country: "필리핀", sort_order: 2, status: "published", is_active: 1 },
+    { slug: "bohol", name: "보홀", city: "보홀", country: "필리핀", sort_order: 3, status: "published", is_active: 1 },
+    { slug: "manila", name: "마닐라", city: "마닐라", country: "필리핀", sort_order: 4, status: "published", is_active: 1 },
+    { slug: "clark", name: "클락", city: "클락", country: "필리핀", sort_order: 5, status: "published", is_active: 1 }
   ];
 
-  const normalizeText = (value) => String(value || "").trim();
+  const normalizeText = (value) => String(value || "").replace(/\s+/g, " ").trim();
   const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch]));
+
+  const canonicalSlug = (value) => {
+    const raw = normalizeText(value).toLowerCase();
+    return slugAliases[raw] || raw;
+  };
+
   const countryToSlug = (value) => {
     const raw = normalizeText(value);
     if (!raw) return "";
     if (countrySlugAliases[raw]) return countrySlugAliases[raw];
     return raw.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9가-힣]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
   };
-  const getDestinationSlug = (item) => normalizeText(item.slug);
+
+  const getDestinationSlug = (item) => canonicalSlug(item.slug);
   const getDestinationName = (item) => normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.card_title) || normalizeText(item.title) || "여행지";
   const getCountryName = (item) => normalizeText(item.country) || "기타 여행지";
-  const getCountrySlug = (country) => normalizeText(country?.slug) || countryToSlug(country?.name || "");
   const isPublishedDestination = (item) => String(item.status || "published") === "published" && Number(item.is_active ?? 1) === 1;
 
   function compareDestinations(a, b) {
@@ -55,117 +112,127 @@
       const slug = getDestinationSlug(item);
       if (!slug) return;
       const previous = bySlug.get(slug) || {};
-      bySlug.set(slug, { ...previous, ...item });
+      bySlug.set(slug, { ...previous, ...item, slug });
     };
     primaryItems.forEach(mergeItem);
     settingItems.forEach(mergeItem);
     return Array.from(bySlug.values()).filter(isPublishedDestination);
   }
 
-  function buildCountryGroups(destinations = [], countries = []) {
+  function buildCountryGroups(destinations = []) {
     const groupedItems = new Map();
     destinations.forEach((item) => {
       const countryName = getCountryName(item);
-      const key = countryToSlug(countryName) || countryName;
-      if (!groupedItems.has(key)) groupedItems.set(key, { countryName, countrySlug: key, items: [] });
-      groupedItems.get(key).items.push(item);
+      const countrySlug = countryToSlug(countryName) || countryName;
+      if (!groupedItems.has(countrySlug)) groupedItems.set(countrySlug, { countryName, countrySlug, items: [] });
+      groupedItems.get(countrySlug).items.push(item);
     });
 
-    const activeCountries = (countries || [])
-      .filter((country) => Number(country.is_active ?? 1) === 1)
-      .map((country) => ({
-        countryName: normalizeText(country.name) || "기타 여행지",
-        countrySlug: getCountrySlug(country),
-        sortOrder: Number(country.sort_order || 0) || 999
-      }));
+    groupedItems.forEach((group) => {
+      group.items = group.items.slice().sort(compareDestinations);
+    });
 
-    const ordered = [];
-    const used = new Set();
-    activeCountries
-      .sort((a, b) => a.sortOrder - b.sortOrder || a.countryName.localeCompare(b.countryName, "ko"))
-      .forEach((country) => {
-        const key = country.countrySlug || countryToSlug(country.countryName) || country.countryName;
-        const group = groupedItems.get(key);
-        if (!group || !group.items.length) return;
-        ordered.push({ ...group, countryName: country.countryName, countrySlug: key });
-        used.add(key);
-      });
-
-    Array.from(groupedItems.values())
-      .filter((group) => !used.has(group.countrySlug) && group.items.length)
-      .sort((a, b) => a.countryName.localeCompare(b.countryName, "ko"))
-      .forEach((group) => ordered.push(group));
-
-    return ordered.map((group) => ({
-      ...group,
-      items: group.items.slice().sort(compareDestinations)
-    }));
+    return groupedItems;
   }
 
-  function renderDestinationChip(item) {
+  function getHref(item) {
+    return `/destinations/${encodeURIComponent(getDestinationSlug(item))}/`;
+  }
+
+  function renderDestinationCard(item, index) {
     const label = getDestinationName(item);
-    const slug = getDestinationSlug(item);
-    const href = `/destinations/${encodeURIComponent(slug)}/`;
-    return `<div class="destination-chip destination-chip--public">
-      <span class="destination-chip__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
-          <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"></path>
-          <circle cx="12" cy="10" r="2.2"></circle>
-        </svg>
+    const countryName = getCountryName(item);
+    const href = getHref(item);
+    const number = String(index + 1).padStart(2, "0");
+
+    return `<a class="destination-city-card" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
+      <span class="destination-city-card__number">${number}</span>
+      <span class="destination-city-card__main">
+        <strong>${escapeHtml(label)}</strong>
+        <span>${escapeHtml(countryName)} 여행 가이드</span>
       </span>
-      <a class="destination-chip__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-        <span class="destination-chip__name">${escapeHtml(label)}</span>
-      </a>
-      <a class="destination-chip__arrow" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-        <svg viewBox="0 0 24 24" focusable="false" role="img" aria-hidden="true">
-          <path d="M5 12h12"></path>
-          <path d="m13 6 6 6-6 6"></path>
-        </svg>
-      </a>
-    </div>`;
+      <span class="destination-city-card__cta" aria-hidden="true">보기</span>
+    </a>`;
   }
 
-  function renderCountryGroup(group) {
-    const countryName = group.countryName || "기타 여행지";
-    const countrySlug = group.countrySlug || countryToSlug(countryName);
-    return `<section class="country-destination-group country-destination-group--compact" aria-labelledby="country-${escapeHtml(countrySlug)}">
-      <div class="country-destination-group__head">
-        <div class="country-destination-group__title">
-          <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
+  function renderPanel(activeTab, groups, allItems) {
+    const isPopular = activeTab.type === "popular";
+    const items = isPopular
+      ? popularDestinationSlugs.map((slug) => allItems.find((item) => getDestinationSlug(item) === slug)).filter(Boolean)
+      : groups.get(activeTab.key)?.items || [];
+    const fallbackItems = isPopular && !items.length ? allItems.slice().sort(compareDestinations).slice(0, 10) : items;
+    const count = fallbackItems.length;
+    const title = isPopular ? "지금 많이 찾는 도시" : `${activeTab.label} 도시`;
+    const eyebrow = isPopular ? "Popular Cities" : "Country Cities";
+    const desc = isPopular
+      ? "첫 여행, 가족 여행, 가성비 숙소 찾기에서 자주 비교하게 되는 도시를 먼저 모았습니다."
+      : `${activeTab.label} 여행을 준비할 때 숙소 위치와 여행 가이드를 바로 확인하기 좋은 도시 목록입니다.`;
+
+    if (!count) {
+      return `<section class="destination-tab-panel" role="tabpanel" aria-labelledby="destination-tab-${escapeHtml(activeTab.key)}">
+        <div class="empty-card empty-card--compact">등록된 도시가 없습니다.</div>
+      </section>`;
+    }
+
+    return `<section class="destination-tab-panel" role="tabpanel" aria-labelledby="destination-tab-${escapeHtml(activeTab.key)}">
+      <div class="destination-tab-panel__head">
+        <div>
+          <p>${escapeHtml(eyebrow)}</p>
+          <h3>${escapeHtml(title)}</h3>
+          <span>${escapeHtml(desc)}</span>
         </div>
-        <div class="country-destination-group__actions">
-          <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}" aria-label="${escapeHtml(countryName)} 전체 보기"><span aria-hidden="true">→</span></a>
-        </div>
+        <em>${count} Cities</em>
       </div>
-      <div class="destination-chip-list" aria-label="${escapeHtml(countryName)} 도시 목록">
-        ${group.items.map(renderDestinationChip).join("")}
+      <div class="destination-city-grid" aria-label="${escapeHtml(title)} 목록">
+        ${fallbackItems.map(renderDestinationCard).join("")}
       </div>
     </section>`;
   }
 
+  function getAvailableTabs(groups, allItems) {
+    return countryTabOrder.filter((tab) => {
+      if (tab.type === "popular") return allItems.length > 0;
+      return (groups.get(tab.key)?.items || []).length > 0;
+    });
+  }
 
-  function renderLoadingSkeleton(count = 6) {
-    const skeletonGroup = () => `<section class="country-destination-group country-destination-group--compact country-destination-group--skeleton" aria-hidden="true">
-      <div class="country-destination-group__head">
-        <div class="country-destination-group__title"><span class="destination-skeleton destination-skeleton--title"></span></div>
-        <span class="destination-skeleton destination-skeleton--circle"></span>
-      </div>
-      <div class="destination-chip-list">
-        <span class="destination-skeleton destination-skeleton--chip"></span>
-        <span class="destination-skeleton destination-skeleton--chip"></span>
-        <span class="destination-skeleton destination-skeleton--chip"></span>
-        <span class="destination-skeleton destination-skeleton--chip"></span>
-      </div>
-    </section>`;
-    grid.classList.add("is-loading");
-    grid.setAttribute("aria-busy", "true");
-    grid.innerHTML = Array.from({ length: count }, skeletonGroup).join("");
+  function renderTabs(availableTabs, activeKey) {
+    tabs.innerHTML = availableTabs.map((tab) => {
+      const isActive = tab.key === activeKey;
+      return `<button class="destination-tab-button${isActive ? " is-active" : ""}" id="destination-tab-${escapeHtml(tab.key)}" type="button" role="tab" aria-selected="${isActive ? "true" : "false"}" aria-controls="destinationsGrid" data-destination-tab="${escapeHtml(tab.key)}">
+        ${escapeHtml(tab.label)}
+      </button>`;
+    }).join("");
   }
 
   function renderLoadedContent(html) {
     grid.classList.remove("is-loading");
     grid.setAttribute("aria-busy", "false");
     grid.innerHTML = html;
+  }
+
+  function renderLoadingSkeleton(count = 6) {
+    tabs.innerHTML = countryTabOrder.map((tab, index) => `<button class="destination-tab-button destination-tab-button--skeleton${index === 0 ? " is-active" : ""}" type="button" disabled>${escapeHtml(tab.label)}</button>`).join("");
+    grid.classList.add("is-loading");
+    grid.setAttribute("aria-busy", "true");
+    grid.innerHTML = `<section class="destination-tab-panel destination-tab-panel--skeleton" aria-hidden="true">
+      <div class="destination-tab-panel__head">
+        <div>
+          <span class="destination-skeleton destination-skeleton--title"></span>
+          <span class="destination-skeleton destination-skeleton--line"></span>
+        </div>
+        <span class="destination-skeleton destination-skeleton--circle"></span>
+      </div>
+      <div class="destination-city-grid">
+        ${Array.from({ length: count }, (_, index) => `<span class="destination-city-card destination-city-card--skeleton"><span class="destination-city-card__number">${String(index + 1).padStart(2, "0")}</span><span class="destination-skeleton destination-skeleton--chip"></span></span>`).join("")}
+      </div>
+    </section>`;
+  }
+
+  function getInitialTab(availableTabs) {
+    const hash = normalizeText(window.location.hash).replace(/^#/, "");
+    if (hash && availableTabs.some((tab) => tab.key === hash)) return hash;
+    return availableTabs[0]?.key || "popular";
   }
 
   async function fetchJson(url, fallback) {
@@ -191,15 +258,34 @@
         ...(Array.isArray(settingsData.destinations) ? settingsData.destinations : []),
         ...STATIC_DESTINATIONS
       ]
-    );
-    const groups = buildCountryGroups(items, Array.isArray(settingsData.countries) ? settingsData.countries : []);
+    ).sort(compareDestinations);
+    const groups = buildCountryGroups(items);
+    const availableTabs = getAvailableTabs(groups, items);
 
-    if (!groups.length) {
+    if (!availableTabs.length) {
+      tabs.innerHTML = "";
       renderLoadedContent(`<div class="empty-card">등록된 여행지가 없습니다.</div>`);
       return;
     }
 
-    renderLoadedContent(groups.map(renderCountryGroup).join(""));
+    let activeKey = getInitialTab(availableTabs);
+    const findActiveTab = () => availableTabs.find((tab) => tab.key === activeKey) || availableTabs[0];
+
+    const render = () => {
+      const activeTab = findActiveTab();
+      activeKey = activeTab.key;
+      renderTabs(availableTabs, activeKey);
+      renderLoadedContent(renderPanel(activeTab, groups, items));
+    };
+
+    tabs.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-destination-tab]");
+      if (!button) return;
+      activeKey = button.getAttribute("data-destination-tab") || "popular";
+      render();
+    });
+
+    render();
   }
 
   init();
