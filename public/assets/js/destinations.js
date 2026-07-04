@@ -48,31 +48,31 @@
   };
 
   const destinationSummaries = {
-    osaka: "먹거리·쇼핑·근교가 쉬운 도시",
-    tokyo: "취향별 동네 선택이 넓은 도시",
-    fukuoka: "공항·맛집 동선이 편한 도시",
-    sapporo: "눈·맥주·온천을 묶는 도시",
-    okinawa: "해변 드라이브와 휴양의 섬",
-    "da-nang": "해변·호이안·바나힐을 묶는 도시",
-    "nha-trang": "바다 전망 리조트 휴양지",
-    "ho-chi-minh-city": "카페·맛집·쇼핑이 밀집한 도시",
-    hanoi: "올드쿼터와 하롱베이 관문",
-    "phu-quoc": "리조트와 테마파크의 섬",
-    taipei: "야시장·교통·근교가 편한 도시",
-    taichung: "감성 카페와 근교 자연 도시",
-    tainan: "골목과 로컬 맛집의 도시",
-    kaohsiung: "항구 감성과 야시장의 도시",
-    hualien: "타이루거 자연 여행 거점",
-    bangkok: "쇼핑·루프톱·사원의 도시",
-    pattaya: "방콕 근교 바다 액티비티 도시",
-    phuket: "해변·풀빌라·섬투어 휴양지",
-    "chiang-mai": "카페와 올드타운의 북부 도시",
-    "koh-samui": "조용한 고급 리조트 섬",
-    cebu: "호핑투어와 리조트 휴양지",
-    boracay: "화이트비치 중심 휴양 섬",
-    bohol: "초콜릿힐과 바다 투어의 섬",
-    manila: "쇼핑·경유·비즈니스 도시",
-    clark: "골프와 가족 휴양 거점"
+    osaka: "먹고 걷는 즐거움",
+    tokyo: "취향이 쌓이는 거리",
+    fukuoka: "가볍게 떠나는 맛집길",
+    sapporo: "눈과 맥주의 여유",
+    okinawa: "파란 바다 드라이브",
+    "da-nang": "바다와 야경 사이",
+    "nha-trang": "리조트에서 쉬는 날",
+    "ho-chi-minh-city": "카페와 밤거리 산책",
+    hanoi: "오래된 골목의 리듬",
+    "phu-quoc": "리조트에 머무는 쉼",
+    taipei: "야시장 따라 걷는 밤",
+    taichung: "느긋한 카페 산책",
+    tainan: "골목마다 로컬 맛",
+    kaohsiung: "항구에 스미는 노을",
+    hualien: "자연 가까운 하루",
+    bangkok: "화려한 밤과 쇼핑",
+    pattaya: "바다 액티비티 한낮",
+    phuket: "풀빌라에서 쉬는 시간",
+    "chiang-mai": "카페와 사원의 여유",
+    "koh-samui": "조용히 쉬는 바다",
+    cebu: "호핑투어의 설렘",
+    boracay: "화이트비치의 오후",
+    bohol: "초록 언덕과 바다",
+    manila: "쇼핑과 경유의 하루",
+    clark: "가족과 쉬기 좋은 곳"
   };
 
   const STATIC_DESTINATIONS = [
@@ -255,7 +255,7 @@
     const topbarInner = document.querySelector(".topbar--travel .topbar__inner.container");
     const target = topbar || topbarInner;
     const topbarHeight = target ? Math.ceil(target.getBoundingClientRect().height) : 70;
-    document.documentElement.style.setProperty("--destination-tabs-sticky-top", `${topbarHeight + 10}px`);
+    document.documentElement.style.setProperty("--destination-tabs-sticky-top", `${topbarHeight}px`);
   }
 
   syncDestinationStickyOffset();
