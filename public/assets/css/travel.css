@@ -3089,7 +3089,6 @@ body::after {
 @media (max-width: 640px) {
   .hotel-tabs__nav {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 6px !important;
     padding: 6px !important;
   }
@@ -8546,7 +8545,7 @@ main.wt-purpose-page--quiet-stay .container {
   letter-spacing: -0.01em;
   cursor: pointer;
   white-space: nowrap;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  transition: none;
 }
 
 .wt-purpose-page--first-trip .wt-area-tab-button:hover {
@@ -8671,7 +8670,7 @@ main.wt-purpose-page--quiet-stay .container {
 
 .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner span {
   min-height: 38px;
-  padding: 0 15px;
+  padding: 0 20px;
   border-color: #dbeafe;
   background: rgba(255, 255, 255, 0.86);
   color: #334155;
@@ -8858,7 +8857,7 @@ main.wt-purpose-page--quiet-stay .container {
   letter-spacing: -0.01em;
   cursor: pointer;
   white-space: nowrap;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  transition: none;
 }
 
 .wt-purpose-page .wt-area-tab-button:hover {
@@ -9038,7 +9037,7 @@ main.wt-purpose-page--quiet-stay .container {
 
 .wt-purpose-page #hotels .wt-hotel-more-banner span {
   min-height: 38px;
-  padding: 0 15px;
+  padding: 0 20px;
   border-color: #dbeafe;
   background: rgba(255, 255, 255, 0.86);
   color: #334155;
@@ -9354,7 +9353,7 @@ main.wt-purpose-page--quiet-stay .container {
 
 .wt-purpose-page .wt-area-tab-button {
   min-height: 42px;
-  padding: 0 15px;
+  padding: 0 20px;
 }
 
 .wt-purpose-page .wt-area-tab-input:nth-of-type(1):checked ~ .wt-area-tab-list .wt-area-tab-button:nth-child(1),
@@ -13672,7 +13671,6 @@ margin-right: -24px;
   }
 
   .travel-section--destination-hub .destination-chip-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 9px !important;
   }
 
@@ -13731,7 +13729,7 @@ margin-right: -24px;
   align-items: center;
   justify-content: center;
   min-height: 42px;
-  padding: 0 15px;
+  padding: 0 20px;
   border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 999px;
   background: #fff;
@@ -13744,7 +13742,7 @@ margin-right: -24px;
   cursor: pointer;
   white-space: nowrap;
   word-break: keep-all;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  transition: none;
 }
 
 .wt-city-area-tab-button:hover,
@@ -15514,7 +15512,6 @@ main.travel-page .wt-city-guide-related__card p {
 
 .travel-section--destinations-archive .country-destination-list--all {
   display: grid !important;
-  grid-template-columns: 1fr !important;
   gap: clamp(14px, 2vw, 18px) !important;
   align-items: stretch !important;
   width: 100% !important;
@@ -15591,7 +15588,7 @@ main.travel-page .wt-city-guide-related__card p {
   font-size: 0 !important;
   line-height: 1 !important;
   text-decoration: none !important;
-  transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease !important;
+  transition: none !important;
 }
 
 .travel-section--destinations-archive .country-destination-group__link span {
@@ -15604,12 +15601,6 @@ main.travel-page .wt-city-guide-related__card p {
   font-weight: 400 !important;
   line-height: 1 !important;
   transform: translateY(-0.5px) !important;
-}
-
-.travel-section--destinations-archive .country-destination-group__link:hover {
-  background: rgba(23, 76, 120, 0.055) !important;
-  color: var(--travel-brand-deep) !important;
-  transform: translateX(1px) !important;
 }
 
 .travel-section--destinations-archive .destination-chip-list {
@@ -15639,15 +15630,7 @@ main.travel-page .wt-city-guide-related__card p {
   font-weight: 400 !important;
   letter-spacing: -0.03em !important;
   line-height: 1.2 !important;
-  transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease !important;
-}
-
-.travel-section--destinations-archive .destination-chip:hover,
-.travel-section--destinations-archive .destination-chip.destination-chip--public:hover {
-  border: 0 !important;
-  background: var(--archive-hub-chip-hover) !important;
-  color: var(--travel-brand-deep) !important;
-  transform: translateY(-1px) !important;
+  transition: none !important;
 }
 
 .travel-section--destinations-archive .destination-chip__icon,
@@ -15709,18 +15692,6 @@ main.travel-page .wt-city-guide-related__card p {
 @keyframes wtDestinationsSkeleton {
   0% { background-position: 120% 0; }
   100% { background-position: -120% 0; }
-}
-
-@media (min-width: 768px) {
-  .travel-section--destinations-archive .country-destination-list--all {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-
-@media (min-width: 1120px) {
-  .travel-section--destinations-archive .country-destination-list--all {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
 }
 
 @media (max-width: 767px) {
@@ -16368,7 +16339,6 @@ body.wt-location-survey-page--app .wt-question-help {
 
 body.wt-location-survey-page--app .wt-options {
   display: grid;
-  grid-template-columns: 1fr !important;
   gap: 10px;
   width: 100%;
 }
@@ -16892,7 +16862,7 @@ body.wt-location-survey-page--app .wt-hotel-link {
   align-items: center;
   justify-content: center;
   min-height: 40px;
-  padding: 0 15px;
+  padding: 0 20px;
   border-radius: 999px;
   background: #1d1d1f;
   color: #ffffff;
@@ -17983,7 +17953,6 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlig
 body.wt-location-survey-page--app .wt-hotel-card-list,
 body.wt-location-survey-page--app #hotelCardList {
   display: grid !important;
-  grid-template-columns: 1fr !important;
   grid-auto-rows: auto !important;
   align-items: start !important;
   gap: 12px !important;
@@ -20658,16 +20627,13 @@ body.travel-city-body--fukuoka a {
 
 @media (max-width: 1024px) {
   body.travel-city-body--fukuoka .wt-city-snapshot__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
   body.travel-city-body--fukuoka .destination-guide-links--static-fukuoka {
-    grid-template-columns: 1fr !important;
-  }
+    }
 
   body.travel-city-body--fukuoka .wt-city-cta__inner {
-    grid-template-columns: 1fr !important;
-    align-items: start !important;
+      align-items: start !important;
   }
 }
 
@@ -20717,8 +20683,7 @@ body.travel-city-body--fukuoka a {
 
   body.travel-city-body--fukuoka .wt-city-hero__actions {
     display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
+      gap: 10px !important;
     margin-top: 28px !important;
   }
 
@@ -20745,8 +20710,7 @@ body.travel-city-body--fukuoka a {
   }
 
   body.travel-city-body--fukuoka .wt-city-snapshot__grid {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
+      gap: 10px !important;
   }
 
   body.travel-city-body--fukuoka .wt-city-choice-card {
@@ -21258,16 +21222,13 @@ body.travel-city-body a {
 
 @media (max-width: 1024px) {
   body.travel-city-body .wt-city-snapshot__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
   body.travel-city-body .destination-guide-links {
-    grid-template-columns: 1fr !important;
-  }
+    }
 
   body.travel-city-body .wt-city-cta__inner {
-    grid-template-columns: 1fr !important;
-    align-items: start !important;
+      align-items: start !important;
   }
 }
 
@@ -21317,8 +21278,7 @@ body.travel-city-body a {
 
   body.travel-city-body .wt-city-hero__actions {
     display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
+      gap: 10px !important;
     margin-top: 28px !important;
   }
 
@@ -21345,8 +21305,7 @@ body.travel-city-body a {
   }
 
   body.travel-city-body .wt-city-snapshot__grid {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
+      gap: 10px !important;
   }
 
   body.travel-city-body .wt-city-choice-card {
@@ -21476,7 +21435,6 @@ body.travel-city-body .breadcrumbs ol {
 
   body.travel-city-body .wt-city-hero__actions {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 8px !important;
     margin-top: 28px !important;
     width: 100% !important;
@@ -21500,8 +21458,7 @@ body.travel-city-body .breadcrumbs ol {
 
   body.travel-city-body .wt-city-cta__inner {
     display: grid !important;
-    grid-template-columns: 1fr !important;
-    align-items: start !important;
+      align-items: start !important;
   }
 
   body.travel-city-body .wt-city-cta__inner .wt-city-button--primary {
@@ -22090,8 +22047,7 @@ body.travel-purpose-body .wt-city-faq__item summary {
   body.travel-purpose-body .wt-link-grid,
   body.travel-purpose-body .wt-link-grid--purpose,
   body.travel-purpose-body .wt-link-grid--related {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
+      gap: 12px !important;
   }
 
   body.travel-purpose-body .wt-choice-card,
@@ -22106,8 +22062,7 @@ body.travel-purpose-body .wt-city-faq__item summary {
 
   body.travel-purpose-body .wt-cta-band,
   body.travel-purpose-body .wt-purpose-page .wt-cta-band {
-    grid-template-columns: 1fr !important;
-    align-items: stretch !important;
+      align-items: stretch !important;
     padding: 22px !important;
     border-radius: 22px !important;
   }
@@ -22133,8 +22088,7 @@ body.travel-purpose-body .wt-city-faq__item summary {
 
   body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner,
   body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner {
-    grid-template-columns: 1fr !important;
-    align-items: stretch !important;
+      align-items: stretch !important;
   }
 
   body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner span,
@@ -23557,13 +23511,11 @@ body.wt-guide-body .footer.container {
 
 @media (max-width: 980px) {
   body.wt-guide-body .wt-city-guide-snapshot__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
   body.wt-guide-body .wt-city-guide-related,
   body.wt-guide-body .wt-cta-band {
-    grid-template-columns: 1fr !important;
-  }
+    }
 }
 
 @media (max-width: 760px) {
@@ -23597,7 +23549,6 @@ body.wt-guide-body .footer.container {
   body.wt-guide-body .wt-city-guide-hero__actions,
   body.wt-guide-body .wt-hero-actions {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 8px !important;
   }
 
@@ -23617,8 +23568,7 @@ body.wt-guide-body .footer.container {
   body.wt-guide-body .wt-purpose-quick-grid,
   body.wt-guide-body .wt-check-grid,
   body.wt-guide-body .destination-guide-links {
-    grid-template-columns: 1fr !important;
-  }
+    }
 
   body.wt-guide-body .wt-city-guide-section {
     padding: 22px 18px !important;
@@ -25270,7 +25220,6 @@ body.travel-archive-body a {
   }
 
   body.travel-archive-body .travel-card-grid--hotels {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
@@ -25354,8 +25303,7 @@ body.travel-archive-body a {
   }
 
   body.travel-archive-body .travel-card-grid--hotels {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
+      gap: 12px !important;
   }
 
   body.travel-archive-body .hotel-card .travel-card__body {
@@ -25668,8 +25616,7 @@ body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc_
   }
 
   body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
-    grid-template-columns: 1fr !important;
-  }
+    }
 
   body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
     border-left: 0 !important;
@@ -26043,8 +25990,7 @@ body.wt-guide-body .wt-seo-toc__group--featured {
 
   body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns,
   body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
-    grid-template-columns: 1fr !important;
-  }
+    }
 
   body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group,
   body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
@@ -26511,7 +26457,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   word-break: keep-all;
 }
 
-/* Destinations archive tabs V2 */
+/* Destinations archive tabs V3 */
 .destination-tab-menu {
   display: flex;
   flex-wrap: nowrap;
@@ -26543,7 +26489,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   justify-content: center;
   flex: 0 0 auto;
   min-height: 42px;
-  padding: 0 15px;
+  padding: 0 20px;
   border: 1px solid rgba(0, 0, 0, 0.18);
   border-radius: 0;
   background: #ffffff;
@@ -26557,15 +26503,12 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   white-space: nowrap;
   word-break: keep-all;
   cursor: pointer;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  transition: none;
 }
 
-.destination-tab-button:hover,
 .destination-tab-button:focus-visible {
-  border-color: #000000;
-  background: #000000;
-  color: #ffffff;
-  transform: none;
+  outline: 2px solid #111111;
+  outline-offset: 3px;
 }
 
 .destination-tab-button.is-active {
@@ -26589,7 +26532,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 }
 
 .travel-page--destinations-index .country-destination-list--all {
-  display: block;
+  display: block !important;
   width: 100%;
 }
 
@@ -26597,11 +26540,9 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   display: grid;
   gap: clamp(14px, 2vw, 20px);
   width: 100%;
-  padding: clamp(14px, 2.4vw, 24px);
   border: 1px solid rgba(17, 17, 17, 0.10);
   border-radius: 28px;
   background: #ffffff;
-  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.045);
 }
 
 .destination-city-grid {
@@ -26622,14 +26563,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   background: #ffffff;
   color: #111111;
   text-decoration: none;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-}
-
-.destination-city-card:hover {
-  border-color: #111111 !important;
-  background: #ffffff !important;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.075);
-  transform: translateY(-2px);
+  transition: none;
 }
 
 .destination-city-card__thumb {
@@ -26704,14 +26638,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
-  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-.destination-city-card:hover .destination-city-card__cta {
-  border-color: #111111;
-  background: #111111;
-  color: #ffffff;
-  transform: translateX(2px);
+  transition: none;
 }
 
 .destination-tab-panel--skeleton .destination-city-card--skeleton {
@@ -26746,6 +26673,20 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 }
 
+@media (max-width: 767px) {
+  .destination-tab-menu {
+    position: sticky;
+    top: 74px;
+    z-index: 45;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    padding: 8px 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+}
+
 @media (max-width: 560px) {
   .travel-page--destinations-index .travel-section--destinations-archive {
     padding-left: 16px;
@@ -26762,12 +26703,11 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 
   .destination-tab-button {
     min-height: 38px;
-    padding: 0 13px;
+    padding: 0 20px;
     font-size: 12.5px;
   }
 
   .destination-tab-panel {
-    padding: 14px;
     border-radius: 24px;
   }
 
