@@ -47,6 +47,34 @@
     taichong: "taichung"
   };
 
+  const destinationSummaries = {
+    osaka: "먹거리·쇼핑·근교 이동을 한 번에 잡기 좋은 도시",
+    tokyo: "동네마다 분위기가 달라 일정 성격에 맞춰 고르기 좋은 도시",
+    fukuoka: "공항 접근성과 맛집 동선이 좋아 첫 일본 여행에 부담이 적은 도시",
+    sapporo: "눈 여행·맥주·온천 동선을 함께 묶기 좋은 북해도 중심 도시",
+    okinawa: "렌터카 해변 여행과 리조트 휴양을 여유롭게 즐기기 좋은 섬",
+    "da-nang": "해변 휴양과 호이안·바나힐 근교 일정을 함께 잡기 좋은 도시",
+    "nha-trang": "바다 전망 숙소와 리조트 휴양을 중심으로 보기 좋은 해변 도시",
+    "ho-chi-minh-city": "도시 관광, 카페, 맛집, 쇼핑을 짧은 일정에 담기 좋은 도시",
+    hanoi: "올드쿼터 감성과 하롱베이 근교 여행을 함께 보기 좋은 도시",
+    "phu-quoc": "리조트 휴양과 테마파크 일정을 나눠 계획하기 좋은 섬",
+    taipei: "야시장, 교통, 근교 여행까지 초행자가 움직이기 편한 도시",
+    taichung: "감성 카페와 근교 자연 코스를 함께 묶기 좋은 대만 중부 도시",
+    tainan: "오래된 골목, 로컬 맛집, 느린 여행을 즐기기 좋은 도시",
+    kaohsiung: "항구 분위기와 야시장, 남부 근교 동선을 잡기 좋은 도시",
+    hualien: "타이루거 협곡과 자연 풍경 여행을 중심으로 보기 좋은 도시",
+    bangkok: "루프톱, 쇼핑몰, 사원, 맛집 일정이 풍부한 태국 대표 도시",
+    pattaya: "방콕 근교에서 바다와 액티비티를 가볍게 즐기기 좋은 도시",
+    phuket: "풀빌라, 해변, 섬 투어를 중심으로 휴양하기 좋은 태국 남부 여행지",
+    "chiang-mai": "카페, 올드타운, 한달살기 감성을 느끼기 좋은 북부 도시",
+    "koh-samui": "고급 리조트와 조용한 해변 휴양을 즐기기 좋은 섬",
+    cebu: "호핑투어와 리조트 휴양을 함께 계획하기 좋은 필리핀 대표 여행지",
+    boracay: "화이트비치 중심으로 쉬운 휴양 일정을 짜기 좋은 섬",
+    bohol: "초콜릿힐, 바다 투어, 조용한 리조트 휴양을 함께 보기 좋은 섬",
+    manila: "도심 쇼핑과 경유·비즈니스 일정을 함께 잡기 좋은 수도권 도시",
+    clark: "골프, 가족 여행, 짧은 휴양 동선에 맞추기 좋은 도시"
+  };
+
   const STATIC_DESTINATIONS = [
     { slug: "osaka", name: "오사카", city: "오사카", country: "일본", sort_order: 1, status: "published", is_active: 1 },
     { slug: "tokyo", name: "도쿄", city: "도쿄", country: "일본", sort_order: 2, status: "published", is_active: 1 },
@@ -97,6 +125,13 @@
   const getDestinationSlug = (item) => canonicalSlug(item.slug);
   const getDestinationName = (item) => normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.card_title) || normalizeText(item.title) || "여행지";
   const getCountryName = (item) => normalizeText(item.country) || "기타 여행지";
+  const getDestinationSummary = (item) => {
+    const slug = getDestinationSlug(item);
+    return destinationSummaries[slug]
+      || normalizeText(item.short_description)
+      || normalizeText(item.summary)
+      || `${getCountryName(item)}에서 호텔과 여행 동선을 함께 보기 좋은 여행지`;
+  };
   const isPublishedDestination = (item) => String(item.status || "published") === "published" && Number(item.is_active ?? 1) === 1;
 
   function compareDestinations(a, b) {
@@ -141,15 +176,13 @@
 
   function renderDestinationCard(item) {
     const label = getDestinationName(item);
-    const countryName = getCountryName(item);
+    const summary = getDestinationSummary(item);
     const href = getHref(item);
-    const initial = label.charAt(0) || "旅";
 
     return `<a class="destination-city-card" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-      <span class="destination-city-card__thumb" aria-hidden="true"><span>${escapeHtml(initial)}</span></span>
       <span class="destination-city-card__main">
         <strong>${escapeHtml(label)}</strong>
-        <span>${escapeHtml(countryName)} 여행 가이드</span>
+        <span>${escapeHtml(summary)}</span>
       </span>
       <span class="destination-city-card__cta" aria-hidden="true">→</span>
     </a>`;
@@ -212,10 +245,20 @@
     grid.setAttribute("aria-busy", "true");
     grid.innerHTML = `<section class="destination-tab-panel destination-tab-panel--skeleton" aria-hidden="true">
       <div class="destination-city-grid">
-        ${Array.from({ length: count }, () => `<span class="destination-city-card destination-city-card--skeleton"><span class="destination-city-card__thumb"></span><span class="destination-skeleton destination-skeleton--chip"></span><span class="destination-city-card__cta">→</span></span>`).join("")}
+        ${Array.from({ length: count }, () => `<span class="destination-city-card destination-city-card--skeleton"><span class="destination-skeleton destination-skeleton--chip"></span><span class="destination-city-card__cta">→</span></span>`).join("")}
       </div>
     </section>`;
   }
+
+  function syncDestinationStickyOffset() {
+    const topbarInner = document.querySelector(".topbar--travel .topbar__inner.container") || document.querySelector(".topbar--travel");
+    const topbarHeight = topbarInner ? Math.ceil(topbarInner.getBoundingClientRect().height) : 64;
+    document.documentElement.style.setProperty("--destination-tabs-sticky-top", `${topbarHeight + 10}px`);
+  }
+
+  syncDestinationStickyOffset();
+  window.addEventListener("resize", syncDestinationStickyOffset, { passive: true });
+  window.addEventListener("orientationchange", syncDestinationStickyOffset, { passive: true });
 
   function getInitialTab(availableTabs) {
     const hash = normalizeText(window.location.hash).replace(/^#/, "");

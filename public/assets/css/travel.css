@@ -26422,6 +26422,14 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   color: #ffffff !important;
 }
 
+.travel-destinations-body .topbar--travel {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 70 !important;
+  background: #ffffff !important;
+}
+
+
 .travel-page--destinations-index {
   background:
     radial-gradient(circle at 8% 0%, rgba(15, 23, 42, 0.035), transparent 26rem),
@@ -26434,9 +26442,11 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   padding-bottom: clamp(56px, 7vw, 96px);
 }
 
-.travel-page--destinations-index .section-heading--split {
-  max-width: 880px;
+.travel-page--destinations-index .section-heading.section-heading--split {
+  width: 100% !important;
+  max-width: none !important;
   margin-bottom: clamp(22px, 3vw, 34px);
+  box-sizing: border-box;
 }
 
 .travel-page--destinations-index .section-heading .eyebrow {
@@ -26457,7 +26467,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   word-break: keep-all;
 }
 
-/* Destinations archive tabs V3 */
+/* Destinations archive tabs V4 */
 .destination-tab-menu {
   display: flex;
   flex-wrap: nowrap;
@@ -26553,51 +26563,17 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 
 .destination-city-card {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) 40px;
+  grid-template-columns: minmax(0, 1fr) 40px;
   align-items: center;
-  gap: 15px;
-  min-height: 86px;
-  padding: 16px;
+  gap: 14px;
+  min-height: 78px;
+  padding: 16px 14px 16px 18px;
   border: 1px solid rgba(17, 17, 17, 0.10);
   border-radius: 24px;
   background: #ffffff;
   color: #111111;
   text-decoration: none;
   transition: none;
-}
-
-.destination-city-card__thumb {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-  border: 1px solid rgba(17, 17, 17, 0.10);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.95), transparent 30%),
-    linear-gradient(135deg, #f4f4f4 0%, #e9e9e9 100%);
-  color: #111111;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  flex: 0 0 auto;
-}
-
-.destination-city-card__thumb img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.destination-city-card__thumb span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 .destination-city-card__main {
@@ -26642,7 +26618,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 }
 
 .destination-tab-panel--skeleton .destination-city-card--skeleton {
-  min-height: 86px;
+  min-height: 78px;
   pointer-events: none;
 }
 
@@ -26674,14 +26650,21 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 }
 
 @media (max-width: 767px) {
+  .travel-destinations-body .topbar--travel {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 70 !important;
+  }
+
   .destination-tab-menu {
-    position: sticky;
-    top: 74px;
-    z-index: 45;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: var(--destination-tabs-sticky-top, 74px) !important;
+    z-index: 60 !important;
     margin-top: 18px;
     margin-bottom: 18px;
     padding: 8px 0;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
   }
@@ -26712,17 +26695,11 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 
   .destination-city-card {
-    grid-template-columns: 46px minmax(0, 1fr) 36px;
+    grid-template-columns: minmax(0, 1fr) 36px;
     gap: 12px;
-    min-height: 76px;
-    padding: 13px;
+    min-height: 74px;
+    padding: 14px 12px 14px 16px;
     border-radius: 20px;
-  }
-
-  .destination-city-card__thumb {
-    width: 46px;
-    height: 46px;
-    font-size: 0.86rem;
   }
 
   .destination-city-card__cta {
