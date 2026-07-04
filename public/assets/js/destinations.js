@@ -139,19 +139,19 @@
     return `/destinations/${encodeURIComponent(getDestinationSlug(item))}/`;
   }
 
-  function renderDestinationCard(item, index) {
+  function renderDestinationCard(item) {
     const label = getDestinationName(item);
     const countryName = getCountryName(item);
     const href = getHref(item);
-    const number = String(index + 1).padStart(2, "0");
+    const initial = label.charAt(0) || "旅";
 
     return `<a class="destination-city-card" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
-      <span class="destination-city-card__number">${number}</span>
+      <span class="destination-city-card__thumb" aria-hidden="true"><span>${escapeHtml(initial)}</span></span>
       <span class="destination-city-card__main">
         <strong>${escapeHtml(label)}</strong>
         <span>${escapeHtml(countryName)} 여행 가이드</span>
       </span>
-      <span class="destination-city-card__cta" aria-hidden="true">보기</span>
+      <span class="destination-city-card__cta" aria-hidden="true">→</span>
     </a>`;
   }
 
@@ -162,11 +162,7 @@
       : groups.get(activeTab.key)?.items || [];
     const fallbackItems = isPopular && !items.length ? allItems.slice().sort(compareDestinations).slice(0, 10) : items;
     const count = fallbackItems.length;
-    const title = isPopular ? "지금 많이 찾는 도시" : `${activeTab.label} 도시`;
-    const eyebrow = isPopular ? "Popular Cities" : "Country Cities";
-    const desc = isPopular
-      ? "첫 여행, 가족 여행, 가성비 숙소 찾기에서 자주 비교하게 되는 도시를 먼저 모았습니다."
-      : `${activeTab.label} 여행을 준비할 때 숙소 위치와 여행 가이드를 바로 확인하기 좋은 도시 목록입니다.`;
+    const title = isPopular ? "인기 도시" : `${activeTab.label} 도시`;
 
     if (!count) {
       return `<section class="destination-tab-panel" role="tabpanel" aria-labelledby="destination-tab-${escapeHtml(activeTab.key)}">
@@ -175,14 +171,6 @@
     }
 
     return `<section class="destination-tab-panel" role="tabpanel" aria-labelledby="destination-tab-${escapeHtml(activeTab.key)}">
-      <div class="destination-tab-panel__head">
-        <div>
-          <p>${escapeHtml(eyebrow)}</p>
-          <h3>${escapeHtml(title)}</h3>
-          <span>${escapeHtml(desc)}</span>
-        </div>
-        <em>${count} Cities</em>
-      </div>
       <div class="destination-city-grid" aria-label="${escapeHtml(title)} 목록">
         ${fallbackItems.map(renderDestinationCard).join("")}
       </div>
@@ -205,6 +193,13 @@
     }).join("");
   }
 
+  function centerActiveTab(activeKey) {
+    const activeButton = Array.from(tabs.querySelectorAll("[data-destination-tab]")).find((button) => button.getAttribute("data-destination-tab") === activeKey);
+    if (!activeButton || typeof tabs.scrollTo !== "function") return;
+    const targetLeft = activeButton.offsetLeft - (tabs.clientWidth - activeButton.offsetWidth) / 2;
+    tabs.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+  }
+
   function renderLoadedContent(html) {
     grid.classList.remove("is-loading");
     grid.setAttribute("aria-busy", "false");
@@ -216,15 +211,8 @@
     grid.classList.add("is-loading");
     grid.setAttribute("aria-busy", "true");
     grid.innerHTML = `<section class="destination-tab-panel destination-tab-panel--skeleton" aria-hidden="true">
-      <div class="destination-tab-panel__head">
-        <div>
-          <span class="destination-skeleton destination-skeleton--title"></span>
-          <span class="destination-skeleton destination-skeleton--line"></span>
-        </div>
-        <span class="destination-skeleton destination-skeleton--circle"></span>
-      </div>
       <div class="destination-city-grid">
-        ${Array.from({ length: count }, (_, index) => `<span class="destination-city-card destination-city-card--skeleton"><span class="destination-city-card__number">${String(index + 1).padStart(2, "0")}</span><span class="destination-skeleton destination-skeleton--chip"></span></span>`).join("")}
+        ${Array.from({ length: count }, () => `<span class="destination-city-card destination-city-card--skeleton"><span class="destination-city-card__thumb"></span><span class="destination-skeleton destination-skeleton--chip"></span><span class="destination-city-card__cta">→</span></span>`).join("")}
       </div>
     </section>`;
   }
@@ -276,6 +264,7 @@
       activeKey = activeTab.key;
       renderTabs(availableTabs, activeKey);
       renderLoadedContent(renderPanel(activeTab, groups, items));
+      window.requestAnimationFrame(() => centerActiveTab(activeKey));
     };
 
     tabs.addEventListener("click", (event) => {
