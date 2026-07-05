@@ -27103,7 +27103,7 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-actions,
 .wt-purpose-page .wt-hotel-actions {
   margin-top: auto !important;
   padding-top: 18px !important;
-  padding-bottom: 0 !important;
+  padding-bottom: 18px !important;
   border-top: 1px dashed #000 !important;
   border-image: none !important;
   background: transparent !important;
