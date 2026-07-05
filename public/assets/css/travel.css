@@ -27560,3 +27560,119 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
   }
 }
 /* End WACKYTRAVEL_SURVEY_HOTEL_TAB_OVERFLOW_V40 */
+
+/* WACKYTRAVEL_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41
+   - 호텔 추천 탭에서 카드가 화면 왼쪽에 붙어 border/radius가 잘려 보이던 문제 보완
+   - 원인: 479px 이하에서 detailed-info-section padding을 0으로 조정한 뒤, hotelRecommendSection/tab-panel도 좌우 inset 없이 100% 폭 카드와 overflow hidden을 함께 사용함
+   - 호텔 카드의 잔여 객실 확인 버튼을 다시 카드 우측에 고정
+========================================================= */
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel.active {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: visible !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow-x: visible !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card.wt-hotel-card--compact {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow: visible !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card--compact .wt-hotel-card-header {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  column-gap: 16px !important;
+  row-gap: 0 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card--compact .wt-hotel-header-left {
+  min-width: 0 !important;
+  width: auto !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card--compact .wt-hotel-name {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card--compact .wt-hotel-link {
+  justify-self: end !important;
+  align-self: center !important;
+  width: clamp(132px, 22vw, 168px) !important;
+  min-width: 132px !important;
+  max-width: 168px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  margin: 0 !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+  white-space: nowrap !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-location-main,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-tag-list {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 479px) {
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel,
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel.active {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card.wt-hotel-card--compact {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card--compact .wt-hotel-card-header {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card--compact .wt-hotel-link {
+    grid-column: auto !important;
+    width: 124px !important;
+    min-width: 124px !important;
+    max-width: 124px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    align-self: center !important;
+    justify-self: end !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+/* End WACKYTRAVEL_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41 */
