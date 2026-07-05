@@ -26837,3 +26837,13 @@ body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .
   }
 }
 /* End WACKYTRAVEL_SURVEY_APP_WIDTH_FIX_V31 */
+
+/* WACKYTRAVEL_SURVEY_HEADER_ACTIONS_PADDING_V32
+   - 앱 폭 제한 적용 후 상단 버튼이 우측 보더와 겹치는 문제 수정
+   - /hotel-location-survey/ 앱 페이지에만 header-actions 좌우 여백 보완
+========================================================= */
+body.wt-location-survey-page--app .header-actions {
+  box-sizing: border-box !important;
+  padding: 0 20px !important;
+}
+/* End WACKYTRAVEL_SURVEY_HEADER_ACTIONS_PADDING_V32 */
