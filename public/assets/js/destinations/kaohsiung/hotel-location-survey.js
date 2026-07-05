@@ -1125,6 +1125,7 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const resetBtn = document.getElementById("resetBtn");
 const detailBtn = document.getElementById("detailBtn");
+const detailBackBtn = document.getElementById("detailBackBtn");
 const hotelTabBtn = document.getElementById("hotelTabBtn");
 
 const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
@@ -1620,6 +1621,7 @@ function processAnalysis() {
   progress.style.width = "0%";
   document.getElementById("simpleSummaryCard").style.display = "flex";
   document.getElementById("detailedInfoSection").style.display = "none";
+  document.getElementById("resultPage")?.classList.remove("is-detail-open");
   resetTabs(0);
   navigateTo("loadingPage");
 
@@ -1670,6 +1672,7 @@ function processAnalysis() {
 function showDetailedView(tabIndex = 0) {
   document.getElementById("simpleSummaryCard").style.display = "none";
   document.getElementById("detailedInfoSection").style.display = "block";
+  document.getElementById("resultPage")?.classList.add("is-detail-open");
   resetTabs(tabIndex);
   document.getElementById("mainScrollBody").scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -1697,20 +1700,43 @@ function goToHotelTab() {
 }
 
 
-function closeResultView() {
-  const detailSection = document.getElementById("detailedInfoSection");
-  const summaryCard = document.getElementById("simpleSummaryCard");
-  const isDetailOpen = detailSection && window.getComputedStyle(detailSection).display !== "none";
+function getSurveyExitUrl() {
+  const destinationSlug = cityConfig.destinationSlug || "";
+  return destinationSlug ? `/destinations/${destinationSlug}/` : "/destinations/";
+}
 
-  if (isDetailOpen) {
-    if (summaryCard) summaryCard.style.display = "flex";
-    detailSection.style.display = "none";
-    resetTabs(0);
-    document.getElementById("mainScrollBody")?.scrollTo({ top: 0, behavior: "smooth" });
-    return;
+function exitSurveyPage() {
+  const fallbackUrl = getSurveyExitUrl();
+
+  try {
+    const currentPath = window.location.pathname.replace(/\/+$/, "");
+    const referrerUrl = document.referrer ? new URL(document.referrer) : null;
+    const referrerPath = referrerUrl ? referrerUrl.pathname.replace(/\/+$/, "") : "";
+
+    if (referrerPath && referrerPath !== currentPath && window.history.length > 1) {
+      window.history.back();
+      return;
+    }
+  } catch (error) {
+    // referrer parsing can fail for unusual schemes. Use the city page fallback below.
   }
 
-  resetSurvey(true);
+  window.location.href = fallbackUrl;
+}
+
+function closeDetailedView() {
+  const detailSection = document.getElementById("detailedInfoSection");
+  const summaryCard = document.getElementById("simpleSummaryCard");
+
+  if (summaryCard) summaryCard.style.display = "flex";
+  if (detailSection) detailSection.style.display = "none";
+  document.getElementById("resultPage")?.classList.remove("is-detail-open");
+  resetTabs(0);
+  document.getElementById("mainScrollBody")?.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function closeResultView() {
+  exitSurveyPage();
 }
 
 function resetSurvey() {
@@ -1721,6 +1747,7 @@ function resetSurvey() {
   renderQuestion();
   document.getElementById("simpleSummaryCard").style.display = "flex";
   document.getElementById("detailedInfoSection").style.display = "none";
+  document.getElementById("resultPage")?.classList.remove("is-detail-open");
   resetTabs(0);
   navigateTo("introPage");
 }
@@ -1733,6 +1760,7 @@ nextBtn?.addEventListener("click", goNext);
 prevBtn?.addEventListener("click", goPrev);
 resetBtn?.addEventListener("click", resetSurvey);
 detailBtn?.addEventListener("click", () => showDetailedView(0));
+detailBackBtn?.addEventListener("click", closeDetailedView);
 hotelTabBtn?.addEventListener("click", goToHotelTab);
 
 document.querySelectorAll(".tab-btn").forEach((button, index) => {
