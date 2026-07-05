@@ -27085,3 +27085,36 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-ban
   background-image: none !important;
 }
 /* End WACKYTRAVEL_HOTEL_CARD_BODY_CLEANUP_V34 */
+
+/* WACKYTRAVEL_HOTEL_CARD_BOTTOM_SPACE_FIX_V35
+   - 잔여 객실 확인 버튼 아래 남는 하단 빈 공간 제거
+   - 버튼 상단 점선 구분선 복원
+*/
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body,
+.wt-purpose-page #hotels .wt-hotel-card__body,
+.wt-purpose-page .wt-hotel-card__body {
+  padding-bottom: 0 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions,
+.wt-purpose-page #hotels .wt-hotel-actions,
+.wt-purpose-page .wt-hotel-actions {
+  margin-top: auto !important;
+  padding-top: 18px !important;
+  padding-bottom: 0 !important;
+  border-top: 1px dashed #000 !important;
+  border-image: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn,
+.wt-purpose-page #hotels .wt-hotel-actions .wt-btn,
+.wt-purpose-page .wt-hotel-actions .wt-btn {
+  margin-bottom: 0 !important;
+}
+/* End WACKYTRAVEL_HOTEL_CARD_BOTTOM_SPACE_FIX_V35 */
