@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>여행지 모아보기 | Wacky Travel</title>
-  <meta name="description" content="다낭, 오사카, 도쿄, 방콕 등 여행지별 호텔 추천과 여행 정보를 모아보는 페이지입니다." />
+  <meta name="description" content="일본, 베트남, 대만 주요 도시별 숙소 위치와 여행 동선을 비교해볼 수 있는 여행지 모아보기 페이지입니다." />
   <link rel="canonical" href="/destinations/" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260704DestinationsTabsV6" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260705DestinationsStaticV1" />
 </head>
 <body class="travel-destinations-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -26,26 +26,211 @@
       </div>
       <div class="destination-tab-sticky">
         <nav id="destinationTabs" class="destination-tab-menu" role="tablist" aria-label="여행지 국가 탭">
-          <button class="destination-tab-button is-active" type="button" disabled>인기 도시</button>
-          <button class="destination-tab-button" type="button" disabled>일본</button>
-          <button class="destination-tab-button" type="button" disabled>베트남</button>
-          <button class="destination-tab-button" type="button" disabled>대만</button>
-          <button class="destination-tab-button" type="button" disabled>태국</button>
-          <button class="destination-tab-button" type="button" disabled>필리핀</button>
+          <button class="destination-tab-button is-active" id="destination-tab-popular" type="button" role="tab" aria-selected="true" aria-controls="destination-panel-popular" data-destination-tab="popular">인기 도시</button>
+          <button class="destination-tab-button" id="destination-tab-japan" type="button" role="tab" aria-selected="false" aria-controls="destination-panel-japan" data-destination-tab="japan">일본</button>
+          <button class="destination-tab-button" id="destination-tab-vietnam" type="button" role="tab" aria-selected="false" aria-controls="destination-panel-vietnam" data-destination-tab="vietnam">베트남</button>
+          <button class="destination-tab-button" id="destination-tab-taiwan" type="button" role="tab" aria-selected="false" aria-controls="destination-panel-taiwan" data-destination-tab="taiwan">대만</button>
         </nav>
       </div>
-      <div id="destinationsGrid" class="country-destination-list country-destination-list--all destination-tab-content is-loading" aria-live="polite" aria-busy="true">
-        <section class="destination-tab-panel destination-tab-panel--skeleton" aria-hidden="true">
-          <div class="destination-city-grid">
-            <span class="destination-city-card destination-city-card--skeleton"><span class="destination-skeleton destination-skeleton--chip"></span><span class="destination-city-card__cta">→</span></span>
-            <span class="destination-city-card destination-city-card--skeleton"><span class="destination-skeleton destination-skeleton--chip"></span><span class="destination-city-card__cta">→</span></span>
-            <span class="destination-city-card destination-city-card--skeleton"><span class="destination-skeleton destination-skeleton--chip"></span><span class="destination-city-card__cta">→</span></span>
+      <div id="destinationsGrid" class="country-destination-list country-destination-list--all destination-tab-content" aria-live="polite" aria-busy="false">
+        <section class="destination-tab-panel" id="destination-panel-popular" role="tabpanel" aria-labelledby="destination-tab-popular" data-destination-panel="popular">
+          <div class="destination-city-grid" aria-label="인기 도시 목록">
+            <a class="destination-city-card" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>후쿠오카</strong>
+                <span>가볍게 떠나는 맛집길</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/tokyo/" aria-label="도쿄 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>도쿄</strong>
+                <span>취향이 쌓이는 거리</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>오사카</strong>
+                <span>먹고 걷는 즐거움</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>나트랑</strong>
+                <span>리조트에서 쉬는 날</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>다낭</strong>
+                <span>바다와 야경 사이</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/taipei/" aria-label="타이베이 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>타이베이</strong>
+                <span>야시장 따라 걷는 밤</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/sapporo/" aria-label="삿포로 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>삿포로</strong>
+                <span>눈과 맥주의 여유</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/phu-quoc/" aria-label="푸꾸옥 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>푸꾸옥</strong>
+                <span>리조트에 머무는 쉼</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/ho-chi-minh-city/" aria-label="호치민 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>호치민</strong>
+                <span>카페와 밤거리 산책</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/kaohsiung/" aria-label="가오슝 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>가오슝</strong>
+                <span>항구에 스미는 노을</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="destination-tab-panel" id="destination-panel-japan" role="tabpanel" aria-labelledby="destination-tab-japan" data-destination-panel="japan" hidden>
+          <div class="destination-city-grid" aria-label="일본 도시 목록">
+            <a class="destination-city-card" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>오사카</strong>
+                <span>먹고 걷는 즐거움</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/tokyo/" aria-label="도쿄 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>도쿄</strong>
+                <span>취향이 쌓이는 거리</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>후쿠오카</strong>
+                <span>가볍게 떠나는 맛집길</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/sapporo/" aria-label="삿포로 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>삿포로</strong>
+                <span>눈과 맥주의 여유</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/okinawa/" aria-label="오키나와 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>오키나와</strong>
+                <span>파란 바다 드라이브</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="destination-tab-panel" id="destination-panel-vietnam" role="tabpanel" aria-labelledby="destination-tab-vietnam" data-destination-panel="vietnam" hidden>
+          <div class="destination-city-grid" aria-label="베트남 도시 목록">
+            <a class="destination-city-card" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>다낭</strong>
+                <span>바다와 야경 사이</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>나트랑</strong>
+                <span>리조트에서 쉬는 날</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/ho-chi-minh-city/" aria-label="호치민 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>호치민</strong>
+                <span>카페와 밤거리 산책</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/hanoi/" aria-label="하노이 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>하노이</strong>
+                <span>오래된 골목의 리듬</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/phu-quoc/" aria-label="푸꾸옥 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>푸꾸옥</strong>
+                <span>리조트에 머무는 쉼</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="destination-tab-panel" id="destination-panel-taiwan" role="tabpanel" aria-labelledby="destination-tab-taiwan" data-destination-panel="taiwan" hidden>
+          <div class="destination-city-grid" aria-label="대만 도시 목록">
+            <a class="destination-city-card" href="/destinations/taipei/" aria-label="타이베이 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>타이베이</strong>
+                <span>야시장 따라 걷는 밤</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/taichung/" aria-label="타이중 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>타이중</strong>
+                <span>느긋한 카페 산책</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/tainan/" aria-label="타이난 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>타이난</strong>
+                <span>골목마다 로컬 맛</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/kaohsiung/" aria-label="가오슝 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>가오슝</strong>
+                <span>항구에 스미는 노을</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
+            <a class="destination-city-card" href="/destinations/hualien/" aria-label="화렌 여행지 보기">
+              <span class="destination-city-card__main">
+                <strong>화렌</strong>
+                <span>자연 가까운 하루</span>
+              </span>
+              <span class="destination-city-card__cta" aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
       </div>
     </section>
   </main>
   <footer class="footer container"><div class="footer__inner"><div>© 2026 Wacky Travel</div></div></footer>
-  <script src="/assets/js/destinations.js?v=20260704DestinationsTabsV6" defer></script>
+  <script src="/assets/js/destinations.js?v=20260705DestinationsStaticV1" defer></script>
 </body>
 </html>
