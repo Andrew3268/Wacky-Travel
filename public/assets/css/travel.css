@@ -26981,3 +26981,107 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-ban
   }
 }
 /* End WACKYTRAVEL_HOTEL_CARD_CTA_REFINEMENT_V33 */
+
+/* WACKYTRAVEL_HOTEL_CARD_BODY_CLEANUP_V34
+   - 호텔 카드 버튼 아래 불필요한 장식/빗금 배경 제거
+   - 호텔 설명문은 모든 화면에서 3줄 말줄임으로 통일
+   - 더보기 배너 SVG 아이콘의 흰색 배경 제거
+*/
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body,
+.wt-purpose-page #hotels .wt-hotel-card__body,
+.wt-purpose-page .wt-hotel-card__body {
+  background: #fff !important;
+  background-image: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body::before,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__body::after,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body::before,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__body::after,
+.wt-purpose-page #hotels .wt-hotel-card__body::before,
+.wt-purpose-page #hotels .wt-hotel-card__body::after,
+.wt-purpose-page .wt-hotel-card__body::before,
+.wt-purpose-page .wt-hotel-card__body::after,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions::before,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions::after,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions::before,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions::after,
+.wt-purpose-page #hotels .wt-hotel-actions::before,
+.wt-purpose-page #hotels .wt-hotel-actions::after,
+.wt-purpose-page .wt-hotel-actions::before,
+.wt-purpose-page .wt-hotel-actions::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions,
+.wt-purpose-page #hotels .wt-hotel-actions,
+.wt-purpose-page .wt-hotel-actions {
+  border-top: 0 !important;
+  border-image: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn::before,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn::after,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn::before,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn::after,
+.wt-purpose-page #hotels .wt-hotel-actions .wt-btn::before,
+.wt-purpose-page #hotels .wt-hotel-actions .wt-btn::after,
+.wt-purpose-page .wt-hotel-actions .wt-btn::before,
+.wt-purpose-page .wt-hotel-actions .wt-btn::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card p,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card p,
+.wt-purpose-page #hotels .wt-hotel-card p,
+.wt-purpose-page .wt-hotel-card p {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-height: calc(1.58em * 3) !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner__icon,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner__icon,
+.wt-purpose-page #hotels .wt-hotel-more-banner__icon,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner__icon {
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  width: 17px !important;
+  height: 17px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: currentColor !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner__icon *,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner__icon *,
+.wt-purpose-page #hotels .wt-hotel-more-banner__icon *,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner__icon * {
+  fill: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+/* End WACKYTRAVEL_HOTEL_CARD_BODY_CLEANUP_V34 */
