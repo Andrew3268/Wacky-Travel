@@ -27497,3 +27497,66 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
    - 479px 이하 상세 보기 화면에서 detailed-info-section 좌우 padding을 0으로 조정
 ========================================================= */
 /* End WACKYTRAVEL_SURVEY_DETAIL_PADDING_BACK_ICON_V39 */
+
+/* WACKYTRAVEL_SURVEY_HOTEL_TAB_OVERFLOW_V40
+   - 호텔 추천 탭 활성화 시 wt-hotel-card의 width:100% + padding(content-box) 조합으로 생기던 가로 스크롤 방지
+   - 호텔 추천 패널과 카드 내부 요소를 border-box/min-width:0 기준으로 정리
+========================================================= */
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel.active,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection .wt-hotel-grid,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card.wt-hotel-card--compact {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelRecommendSection.tab-panel.active,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList {
+  overflow-x: hidden !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card.wt-hotel-card--compact {
+  overflow: hidden !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card-header,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-header-left,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-name,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-location-main,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-tag-list {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-station,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-airport,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-tag {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+}
+
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-link {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 520px) {
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-card-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section #hotelCardList .wt-hotel-link {
+    width: 100% !important;
+    align-self: stretch !important;
+    margin-left: 0 !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+/* End WACKYTRAVEL_SURVEY_HOTEL_TAB_OVERFLOW_V40 */
