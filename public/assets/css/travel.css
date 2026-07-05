@@ -26848,83 +26848,136 @@ body.wt-location-survey-page--app .header-actions {
 }
 /* End WACKYTRAVEL_SURVEY_HEADER_ACTIONS_PADDING_V32 */
 
-/* WACKYTRAVEL_SURVEY_CONTENT_PADDING_FIX_V33
-   - 시작 후 설문 진행 화면의 질문/선택지/하단 버튼이 앱 보더와 겹치지 않도록 내부 여백 보강
-   - 결과 페이지는 scrollable-body 기준으로 공통 좌우 padding을 적용하고, 하위 섹션의 중복 좌우 padding을 정리
-   - /hotel-location-survey/ 앱 페이지에만 적용
+/* WACKYTRAVEL_HOTEL_CARD_CTA_REFINEMENT_V33
+   - 호텔 카드 상단 메타를 문장형으로 붙여 표시
+   - 잔여 객실 확인 버튼을 60% 폭으로 오른쪽 정렬
+   - 호텔 더보기 배너 버튼 SVG 아이콘 대응
 ========================================================= */
-body.wt-location-survey-page--app #questionPage {
-  box-sizing: border-box !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__topline,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__topline,
+.wt-purpose-page #hotels .wt-hotel-card__topline {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 0 !important;
+  margin: 0 0 13px !important;
 }
 
-body.wt-location-survey-page--app #questionPage .wt-progress,
-body.wt-location-survey-page--app #questionPage .wt-question-scroll,
-body.wt-location-survey-page--app #questionPage .wt-survey-actions,
-body.wt-location-survey-page--app #questionPage .footer-actions,
-body.wt-location-survey-page--app #questionPage .wt-options {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-body.wt-location-survey-page--app #questionPage .wt-option,
-body.wt-location-survey-page--app #questionPage .primary-action-btn,
-body.wt-location-survey-page--app #questionPage .secondary-action-btn {
-  box-sizing: border-box !important;
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__topline .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__stars,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__topline .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__fit,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__stars,
+.wt-purpose-page #hotels .wt-hotel-card__topline .wt-hotel-card__fit,
+.wt-purpose-page #hotels .wt-hotel-card__fit,
+.wt-purpose-page #hotels .wt-hotel-card__stars {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: auto !important;
   min-width: 0 !important;
-  max-width: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #4b5563 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.025em !important;
+  white-space: normal !important;
 }
 
-body.wt-location-survey-page--app #resultPage .scrollable-body {
-  box-sizing: border-box !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__stars,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__stars,
+.wt-purpose-page #hotels .wt-hotel-card__stars {
+  flex: 0 1 auto !important;
+  margin-left: 0 !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
 }
 
-body.wt-location-survey-page--app #resultPage .result-top-bar,
-body.wt-location-survey-page--app #resultPage .simple-summary-card,
-body.wt-location-survey-page--app #resultPage .result-upper-section,
-body.wt-location-survey-page--app #resultPage .tab-menu-container,
-body.wt-location-survey-page--app #resultPage .tab-content-container,
-body.wt-location-survey-page--app #resultPage .result-footer {
-  box-sizing: border-box !important;
-  max-width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card__stars::before,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card__stars::before,
+.wt-purpose-page #hotels .wt-hotel-card__stars::before {
+  content: "·" !important;
+  display: inline-block !important;
+  margin: 0 7px !important;
+  color: #9ca3af !important;
+  font-weight: 700 !important;
 }
 
-body.wt-location-survey-page--app #resultPage .simple-summary-card,
-body.wt-location-survey-page--app #resultPage .detailed-info-section,
-body.wt-location-survey-page--app #resultPage .tab-panel,
-body.wt-location-survey-page--app #resultPage .wt-result-lead--simple,
-body.wt-location-survey-page--app #resultPage .double-btn-group,
-body.wt-location-survey-page--app #resultPage .wt-reason-card,
-body.wt-location-survey-page--app #resultPage .wt-practical-card,
-body.wt-location-survey-page--app #resultPage .wt-decision-box,
-body.wt-location-survey-page--app #resultPage .wt-hotel-card,
-body.wt-location-survey-page--app #resultPage .wt-post-list a {
-  box-sizing: border-box !important;
-  max-width: 100% !important;
+body.travel-purpose-body .wt-hotel-card .wt-hotel-actions,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card .wt-hotel-actions,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions,
+.wt-purpose-page #hotels .wt-hotel-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+  margin-top: 18px !important;
 }
 
-body.wt-location-survey-page--app #resultPage .tab-menu-list {
-  max-width: 100% !important;
+body.travel-purpose-body .wt-hotel-card .wt-hotel-actions .wt-btn,
+body.travel-purpose-body .wt-purpose-page .wt-hotel-card .wt-hotel-actions .wt-btn,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn,
+.wt-purpose-page #hotels .wt-hotel-actions .wt-btn {
+  grid-column: auto !important;
+  flex: 0 0 60% !important;
+  width: 60% !important;
+  max-width: 60% !important;
+  min-width: 0 !important;
+  margin-left: auto !important;
+  text-align: center !important;
 }
 
-@media (max-width: 380px) {
-  body.wt-location-survey-page--app #questionPage {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner,
+.wt-purpose-page #hotels .wt-hotel-more-banner,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner {
+  text-decoration: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+.wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button::after,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button::after,
+.wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button::after,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner__icon,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner__icon,
+.wt-purpose-page #hotels .wt-hotel-more-banner__icon,
+.wt-purpose-page--first-trip #hotels .wt-hotel-more-banner__icon {
+  flex: 0 0 auto !important;
+  width: 17px !important;
+  height: 17px !important;
+  color: currentColor !important;
+}
+
+@media (max-width: 560px) {
+  body.travel-purpose-body .wt-hotel-card .wt-hotel-actions .wt-btn,
+  body.travel-purpose-body .wt-purpose-page .wt-hotel-card .wt-hotel-actions .wt-btn,
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn,
+  .wt-purpose-page #hotels .wt-hotel-actions .wt-btn {
+    flex-basis: 60% !important;
+    width: 60% !important;
+    max-width: 60% !important;
   }
-
-  body.wt-location-survey-page--app #resultPage .scrollable-body {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-  }
 }
-/* End WACKYTRAVEL_SURVEY_CONTENT_PADDING_FIX_V33 */
-
+/* End WACKYTRAVEL_HOTEL_CARD_CTA_REFINEMENT_V33 */
