@@ -26847,3 +26847,84 @@ body.wt-location-survey-page--app .header-actions {
   padding: 0 20px !important;
 }
 /* End WACKYTRAVEL_SURVEY_HEADER_ACTIONS_PADDING_V32 */
+
+/* WACKYTRAVEL_SURVEY_CONTENT_PADDING_FIX_V33
+   - 시작 후 설문 진행 화면의 질문/선택지/하단 버튼이 앱 보더와 겹치지 않도록 내부 여백 보강
+   - 결과 페이지는 scrollable-body 기준으로 공통 좌우 padding을 적용하고, 하위 섹션의 중복 좌우 padding을 정리
+   - /hotel-location-survey/ 앱 페이지에만 적용
+========================================================= */
+body.wt-location-survey-page--app #questionPage {
+  box-sizing: border-box !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+body.wt-location-survey-page--app #questionPage .wt-progress,
+body.wt-location-survey-page--app #questionPage .wt-question-scroll,
+body.wt-location-survey-page--app #questionPage .wt-survey-actions,
+body.wt-location-survey-page--app #questionPage .footer-actions,
+body.wt-location-survey-page--app #questionPage .wt-options {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.wt-location-survey-page--app #questionPage .wt-option,
+body.wt-location-survey-page--app #questionPage .primary-action-btn,
+body.wt-location-survey-page--app #questionPage .secondary-action-btn {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+body.wt-location-survey-page--app #resultPage .scrollable-body {
+  box-sizing: border-box !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+body.wt-location-survey-page--app #resultPage .result-top-bar,
+body.wt-location-survey-page--app #resultPage .simple-summary-card,
+body.wt-location-survey-page--app #resultPage .result-upper-section,
+body.wt-location-survey-page--app #resultPage .tab-menu-container,
+body.wt-location-survey-page--app #resultPage .tab-content-container,
+body.wt-location-survey-page--app #resultPage .result-footer {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+body.wt-location-survey-page--app #resultPage .simple-summary-card,
+body.wt-location-survey-page--app #resultPage .detailed-info-section,
+body.wt-location-survey-page--app #resultPage .tab-panel,
+body.wt-location-survey-page--app #resultPage .wt-result-lead--simple,
+body.wt-location-survey-page--app #resultPage .double-btn-group,
+body.wt-location-survey-page--app #resultPage .wt-reason-card,
+body.wt-location-survey-page--app #resultPage .wt-practical-card,
+body.wt-location-survey-page--app #resultPage .wt-decision-box,
+body.wt-location-survey-page--app #resultPage .wt-hotel-card,
+body.wt-location-survey-page--app #resultPage .wt-post-list a {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+body.wt-location-survey-page--app #resultPage .tab-menu-list {
+  max-width: 100% !important;
+}
+
+@media (max-width: 380px) {
+  body.wt-location-survey-page--app #questionPage {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  body.wt-location-survey-page--app #resultPage .scrollable-body {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+/* End WACKYTRAVEL_SURVEY_CONTENT_PADDING_FIX_V33 */
+
