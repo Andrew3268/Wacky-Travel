@@ -27118,3 +27118,101 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn,
   margin-bottom: 0 !important;
 }
 /* End WACKYTRAVEL_HOTEL_CARD_BOTTOM_SPACE_FIX_V35 */
+
+
+/* WACKYTRAVEL_SURVEY_APP_PADDING_AND_DETAIL_CLOSE_V36
+   - /hotel-location-survey/ 태블릿·랩탑 구간 내부 좌우 패딩 보완
+   - result-badge, wt-section-eyebrow 하단 짧은 장식선 제거
+   - 자세히 보기 화면 닫기 동작과 맞도록 닫기 버튼 레이아웃 안정화
+========================================================= */
+body.wt-location-survey-page--app .result-badge::after,
+body.wt-location-survey-page--app .detailed-info-section .result-badge::after,
+body.wt-location-survey-page--app .result-upper-section .result-badge::after,
+body.wt-location-survey-page--app .wt-section-eyebrow::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+@media (min-width: 768px) {
+  body.wt-location-survey-page--app .wt-location-app,
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    width: min(100%, 608px) !important;
+    max-width: 608px !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+
+  body.wt-location-survey-page--app .wt-app-container {
+    max-width: 544px !important;
+  }
+
+  body.wt-location-survey-page--app .page-view:not(#resultPage) {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .result-top-bar {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .simple-summary-card {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .result-upper-section {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .tab-menu-container {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .tab-content-container {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .result-footer {
+    box-sizing: border-box !important;
+    padding-left: 36px !important;
+    padding-right: 36px !important;
+  }
+
+  body.wt-location-survey-page--app .wt-question-scroll,
+  body.wt-location-survey-page--app .wt-options,
+  body.wt-location-survey-page--app .wt-survey-actions--split {
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body.wt-location-survey-page--app .wt-location-app,
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    width: min(100%, 640px) !important;
+    max-width: 640px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+
+  body.wt-location-survey-page--app .wt-app-container {
+    max-width: 560px !important;
+  }
+}
+/* End WACKYTRAVEL_SURVEY_APP_PADDING_AND_DETAIL_CLOSE_V36 */

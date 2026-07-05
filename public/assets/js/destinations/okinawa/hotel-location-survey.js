@@ -2157,6 +2157,23 @@ async function renderRelatedPosts(area) {
   });
 }
 
+
+function closeResultView() {
+  const detailSection = document.getElementById("detailedInfoSection");
+  const summaryCard = document.getElementById("simpleSummaryCard");
+  const isDetailOpen = detailSection && window.getComputedStyle(detailSection).display !== "none";
+
+  if (isDetailOpen) {
+    if (summaryCard) summaryCard.style.display = "flex";
+    detailSection.style.display = "none";
+    resetTabs(0);
+    document.getElementById("mainScrollBody")?.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  resetSurvey(true);
+}
+
 function resetSurvey(toIntro = true) {
   currentQuestionIndex = 0;
   answers = new Array(cityConfig.questions.length).fill(null);
@@ -2173,7 +2190,7 @@ startSurveyBtn?.addEventListener("click", startSurvey);
 backBtn?.addEventListener("click", goBack);
 questionCloseBtn?.addEventListener("click", () => resetSurvey(true));
 completionCloseBtn?.addEventListener("click", () => resetSurvey(true));
-resultCloseBtn?.addEventListener("click", () => resetSurvey(true));
+resultCloseBtn?.addEventListener("click", closeResultView);
 resultReadyBtn?.addEventListener("click", processAnalysis);
 nextBtn?.addEventListener("click", goNext);
 prevBtn?.addEventListener("click", goPrev);
