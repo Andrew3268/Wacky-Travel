@@ -27476,8 +27476,8 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
 
 @media (max-width: 479px) {
   body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section {
-    padding-left: 22px !important;
-    padding-right: 22px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section .detail-back-bar {
@@ -27492,4 +27492,8 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
     min-height: 40px !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_DETAIL_PADDING_BACK_ICON_V38 */
+
+/* WACKYTRAVEL_SURVEY_DETAIL_MOBILE_EDGE_V39
+   - 479px 이하 상세 보기 화면에서 detailed-info-section 좌우 padding을 0으로 조정
+========================================================= */
+/* End WACKYTRAVEL_SURVEY_DETAIL_PADDING_BACK_ICON_V39 */
