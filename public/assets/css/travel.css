@@ -26759,3 +26759,51 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   }
 }
 /* End 20260704 Home index layout refinement V1 */
+
+/* WACKYTRAVEL_SURVEY_CTA_FINAL_V1
+   - 목적별 상세 페이지 하단 숙소 위치 CTA 문구/버튼 레이아웃 최종 반영
+   - 데스크톱/태블릿: 버튼을 배너 오른쪽이 아닌 본문 아래 왼쪽에 배치
+   - 모바일: 버튼을 CTA 본문 아래 100% 너비로 배치
+========================================================= */
+body.travel-purpose-body .wt-city-kicker {
+  font-size: 15px !important;
+}
+
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: start !important;
+  justify-items: start !important;
+  gap: 20px !important;
+}
+
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > div,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band > div {
+  max-width: 780px !important;
+}
+
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band .wt-city-button,
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band .wt-city-button--primary,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button--primary {
+  justify-self: start !important;
+  align-self: start !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin-top: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band .wt-city-button,
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band .wt-city-button--primary,
+  body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button,
+  body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .wt-city-button--primary {
+    width: 100% !important;
+  }
+}
+
