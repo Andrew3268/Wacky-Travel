@@ -26807,3 +26807,33 @@ body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .
   }
 }
 
+
+/* WACKYTRAVEL_SURVEY_APP_WIDTH_FIX_V31
+   - /hotel-location-survey/ 앱 래퍼가 태블릿·랩탑 구간에서 풀폭으로 늘어나는 문제 수정
+   - 480px 이상 화면에서는 모바일 앱처럼 430px 콘텐츠 폭을 유지
+   - 모바일 479px 이하는 기존 20px 좌우 여백 구조 유지
+========================================================= */
+@media (min-width: 480px) {
+  body.wt-location-survey-page--app .wt-location-app,
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    box-sizing: border-box !important;
+    width: min(100%, 470px) !important;
+    max-width: 470px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.wt-location-survey-page--app .wt-app-container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 430px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border: 1px solid #111111 !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+  }
+}
+/* End WACKYTRAVEL_SURVEY_APP_WIDTH_FIX_V31 */
