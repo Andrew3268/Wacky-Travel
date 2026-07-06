@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260706-post-minimal-travel-ui-v1";
+const POST_RENDER_VERSION = "20260706-post-magazine-layout-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -273,6 +273,16 @@ export async function onRequestGet({ params, env, request }) {
         updatedIso,
         updatedDateText: formatKoreanDate(row.updated_at) || updatedDate
       });
+      const heroKickerItems = [
+        row.category
+          ? `<a href="${escapeHtml(categoryLink)}">${escapeHtml(String(row.category).trim())}</a>`
+          : `<span>Travel Magazine</span>`,
+        updatedDate ? `<span>수정 ${escapeHtml(formatKoreanDate(row.updated_at) || updatedDate)}</span>` : ""
+      ].filter(Boolean);
+      const heroKickerHtml = heroKickerItems.length
+        ? `<div class="post-magazine-kicker">${heroKickerItems.join('<span aria-hidden="true">·</span>')}</div>`
+        : "";
+      const heroSummaryText = String(row.summary || descriptionText || "").trim();
 
       const html = `<!doctype html>
 <html lang="ko">
@@ -306,7 +316,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostMinimalV1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostMagazineV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
@@ -345,9 +355,14 @@ export async function onRequestGet({ params, env, request }) {
     <article class="post-shell post-shell--guide-style" itemscope itemtype="https://schema.org/BlogPosting">
       <div class="post-grid">
         <div class="post-main">
-          <header class="card post-hero post-hero--product">
+          <header class="card post-hero post-hero--product post-magazine-hero">
             ${coverImageHtml}
-            ${heroInfoHtml}
+            <div class="post-magazine-head">
+              ${heroKickerHtml}
+              <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+              ${heroSummaryText ? `<p class="post-magazine-desc">${escapeHtml(heroSummaryText)}</p>` : ""}
+              ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
+            </div>
 
             <meta itemprop="headline" content="${escapeHtml(titleText)}" />
             <meta itemprop="description" content="${escapeHtml(descriptionText)}" />
@@ -359,9 +374,6 @@ export async function onRequestGet({ params, env, request }) {
           </header>
 
           <section class="card post-body" aria-label="본문">
-            <header class="post-body-head">
-              <h1 class="h1 post-title post-body-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-            </header>
             <div class="post-content" itemprop="articleBody">
               ${bodyHtml}
             </div>
@@ -1199,6 +1211,7 @@ function topbar() {
           <circle cx="11" cy="11" r="6.4"></circle>
           <path d="m16 16 4.5 4.5"></path>
         </svg>
+        <span class="topbar-search-button__label">호텔 검색</span>
       </button>
       <div class="topbar__actions topbar__actions--travel">
         <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
