@@ -6867,41 +6867,41 @@ body.post-page-body a {
 }
 
 body.post-page-body .topbar--travel {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  border-bottom: 0 !important;
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(18px);
+  backdrop-filter: saturate(1.12) blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
 
 body.post-page-body .topbar--travel .topbar__inner {
-  min-height: 68px;
-  padding-top: 0;
-  padding-bottom: 0;
-  gap: 18px;
+  min-height: auto;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  gap: 16px;
 }
 
 body.post-page-body .topbar--travel .brand {
-  gap: 10px;
+  gap: 11px;
   color: #111 !important;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.035em;
 }
 
 body.post-page-body .topbar--travel .brand__mark {
-  width: 34px;
-  height: 34px;
-  border: 0 !important;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #111 !important;
+  border-radius: 16px;
   background: #111 !important;
   color: #fff !important;
-  font-size: 12px;
+  font-size: 0.78rem;
   letter-spacing: -0.02em;
 }
 
 body.post-page-body .topbar--travel .brand__text {
   color: #111 !important;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 body.post-page-body .topbar--travel .topbar__actions--travel {
@@ -6911,31 +6911,31 @@ body.post-page-body .topbar--travel .topbar__actions--travel {
 
 body.post-page-body .topbar--travel .topbar__admin,
 body.post-page-body .topbar--travel .topbar__dashboard {
-  min-height: 40px;
+  min-height: 38px;
   padding: 0 14px !important;
   border: 1px solid var(--wt-line) !important;
   border-radius: 999px !important;
   background: #fff !important;
   color: #1f1f1f !important;
-  font-size: 13.5px !important;
-  font-weight: 600 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
 }
 
 body.post-page-body .topbar--travel .topbar__logout {
-  min-height: 40px;
+  min-height: 38px;
   padding: 0 14px !important;
   border: 1px solid #111 !important;
   border-radius: 999px !important;
   background: #111 !important;
   color: #fff !important;
-  font-size: 13.5px !important;
-  font-weight: 600 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
 }
 
 body.post-page-body .topbar-search-button--post {
   width: auto;
-  height: 40px;
-  min-height: 40px;
+  height: 38px;
+  min-height: 38px;
   margin-left: auto;
   gap: 7px;
   padding: 0 14px;
@@ -6943,8 +6943,8 @@ body.post-page-body .topbar-search-button--post {
   border-radius: 999px;
   background: #111;
   color: #fff;
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   letter-spacing: -0.025em;
 }
 
@@ -7323,16 +7323,25 @@ body.post-page-body .post-shell--guide-style .post-h2-text {
 
 body.post-page-body .post-shell--guide-style .post-body .post-content h3 {
   max-width: 780px;
-  margin: 38px 0 14px;
-  padding: 0 0 0 16px;
+  margin: 42px 0 14px;
+  padding: 0;
   border: 0;
-  border-left: 2px solid #111;
   background: transparent;
   color: #111 !important;
   font-size: clamp(20px, 2.2vw, 26px);
   line-height: 1.32;
   letter-spacing: -0.045em;
   font-weight: 600;
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content h3::before {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 5px;
+  margin: 0 0 14px;
+  border-radius: 999px;
+  background: #111;
 }
 
 body.post-page-body .post-shell--guide-style .post-body .post-content h4 {
@@ -7790,7 +7799,9 @@ body.post-page-body .post-search-overlay__quick button {
 
 @media (max-width: 760px) {
   body.post-page-body .topbar--travel .topbar__inner {
-    min-height: 62px;
+    min-height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 
   body.post-page-body .topbar--travel .topbar__admin {
@@ -7876,10 +7887,15 @@ body.post-page-body .post-search-overlay__quick button {
 
   body.post-page-body .post-shell--guide-style .post-body .post-content h3 {
     margin-top: 0;
-    padding: 15px 0 0;
-    border-left: 0;
-    border-top: 0;
+    padding: 0;
+    border: 0;
     font-size: 20px;
+  }
+
+  body.post-page-body .post-shell--guide-style .post-body .post-content h3::before {
+    width: 32px;
+    height: 4px;
+    margin-bottom: 12px;
   }
 
   body.post-page-body .post-shell--guide-style .post-body .post-content blockquote {
