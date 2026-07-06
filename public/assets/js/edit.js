@@ -2937,6 +2937,11 @@ function markdownToHtml(md, options = {}) {
       const headingId = buildHeadingSlug(headingText, slugCounts);
       pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
       if (level === 2) {
+        getInlineImageItems(inlineImages)
+          .filter((item) => item.placement === "after" && item.position === h2Count)
+          .forEach((item) => {
+            pushContentBlock(renderInlineImageFigure(item, item.index));
+          });
         (affiliates.items || []).forEach((item, index) => {
           const target = Math.max(1, parseInt(item?.position || index + 1, 10) || index + 1);
           if (item?.enabled && h2Count === target) {
@@ -2946,11 +2951,6 @@ function markdownToHtml(md, options = {}) {
         activeAffiliateCtaItems = affiliateCta?.enabled
           ? (affiliateCta.items || []).filter((item) => item?.enabled !== false && clampAffiliateCtaPosition(item?.position || 1) === h2Count)
           : [];
-        getInlineImageItems(inlineImages)
-          .filter((item) => item.placement === "after" && item.position === h2Count)
-          .forEach((item) => {
-            pushContentBlock(renderInlineImageFigure(item, item.index));
-          });
       }
       continue;
     }

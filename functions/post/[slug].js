@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260706-post-magazine-layout-v1";
+const POST_RENDER_VERSION = "20260706-inline-image-h2-anchor-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
