@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260706-post-link-breadcrumb-v1";
+const POST_RENDER_VERSION = "20260706-post-typography-align-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -326,7 +326,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostLinkBreadcrumbV1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostTypographyAlignV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
