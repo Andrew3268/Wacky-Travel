@@ -2426,6 +2426,11 @@ body.ww-wrapper {
 .editor-textarea {
   min-height: 340px;
 }
+.editor-summary-markdown {
+  min-height: 150px;
+  line-height: 1.7;
+  resize: vertical;
+}
 .editor-layout {
   display: grid;
   gap: 16px;
@@ -2711,6 +2716,27 @@ body.ww-wrapper {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.8;
+}
+.preview-summary--markdown p,
+.preview-summary--markdown ul,
+.preview-summary--markdown ol,
+.preview-summary--markdown blockquote {
+  margin: 0;
+}
+.preview-summary--markdown p + p,
+.preview-summary--markdown p + ul,
+.preview-summary--markdown p + ol,
+.preview-summary--markdown ul + p,
+.preview-summary--markdown ol + p {
+  margin-top: 10px;
+}
+.preview-summary--markdown ul,
+.preview-summary--markdown ol {
+  padding-left: 20px;
+}
+.preview-summary--markdown strong {
+  color: var(--text);
+  font-weight: 650;
 }
 .preview-cover {
   width: 100%;
@@ -7082,6 +7108,38 @@ body.post-page-body .post-magazine-desc {
   word-break: keep-all;
 }
 
+body.post-page-body .post-magazine-desc p,
+body.post-page-body .post-magazine-desc ul,
+body.post-page-body .post-magazine-desc ol,
+body.post-page-body .post-magazine-desc blockquote {
+  margin: 0;
+}
+
+body.post-page-body .post-magazine-desc p + p,
+body.post-page-body .post-magazine-desc ul + p,
+body.post-page-body .post-magazine-desc p + ul,
+body.post-page-body .post-magazine-desc p + ol {
+  margin-top: 12px;
+}
+
+body.post-page-body .post-magazine-desc strong {
+  color: #111;
+  font-weight: 950;
+}
+
+body.post-page-body .post-magazine-desc a {
+  color: #111 !important;
+  font-weight: 850;
+  text-decoration: underline;
+  text-decoration-color: rgba(17, 17, 17, 0.22);
+  text-underline-offset: 4px;
+}
+
+body.post-page-body .post-magazine-desc ul,
+body.post-page-body .post-magazine-desc ol {
+  padding-left: 22px;
+}
+
 body.post-page-body .post-magazine-head > .post-hero-admin-actions {
   justify-content: flex-start;
   margin-top: 18px;
@@ -7159,7 +7217,6 @@ body.post-page-body .post-shell--guide-style .post-body {
   margin: 0 auto;
   padding: 26px 0 0;
   border: 0 !important;
-  border-top: 1px solid var(--wt-line) !important;
   border-radius: 0;
   background: transparent !important;
   box-shadow: none;

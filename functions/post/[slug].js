@@ -287,6 +287,7 @@ export async function onRequestGet({ params, env, request }) {
         ? `<div class="post-magazine-kicker">${heroKickerItems.join('<span aria-hidden="true">·</span>')}</div>`
         : "";
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
+      const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin: SITE_ORIGIN }) : "";
 
       const html = `<!doctype html>
 <html lang="ko">
@@ -364,7 +365,7 @@ export async function onRequestGet({ params, env, request }) {
             <div class="post-magazine-head">
               ${heroKickerHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-              ${heroSummaryText ? `<p class="post-magazine-desc">${escapeHtml(heroSummaryText)}</p>` : ""}
+              ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
               ${magazineAdminActionsHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
@@ -1075,7 +1076,7 @@ function buildDescription(metaDescription, summary, markdown, title) {
   const cleanMetaDescription = String(metaDescription || "").trim();
   if (cleanMetaDescription) return truncateText(cleanMetaDescription, 155);
 
-  const cleanSummary = String(summary || "").trim();
+  const cleanSummary = stripMarkdown(summary || "");
   if (cleanSummary) return truncateText(cleanSummary, 155);
 
   const plain = stripMarkdown(markdown || "");
