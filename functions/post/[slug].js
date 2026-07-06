@@ -99,7 +99,10 @@ export async function onRequestGet({ params, env, request }) {
         LIMIT 5
       `).bind(slug).all()).results || [];
 
-      const hotelHeroData = await getHotelHeroData(env.TRAVEL_DB, row, slug);
+      const contentType = String(row.content_type || "").trim();
+      const isHotelIntroPost = contentType === "hotel_intro";
+      const isTop5SeriesPost = contentType === "top5_series";
+      const hotelHeroData = isHotelIntroPost ? await getHotelHeroData(env.TRAVEL_DB, row, slug) : null;
 
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
@@ -262,17 +265,18 @@ export async function onRequestGet({ params, env, request }) {
         </figure>
         `
         : "";
-      const heroInfoHtml = renderProductStyleHeroInfo({
-        row,
-        slug,
-        titleText,
-        categoryLink,
-        summaryText: row.summary || descriptionText,
-        hotelHeroData,
-        publishedIso,
-        updatedIso,
-        updatedDateText: formatKoreanDate(row.updated_at) || updatedDate
-      });
+      const heroInfoHtml = isHotelIntroPost ? renderProductStyleHeroInfo({
+          row,
+          slug,
+          titleText,
+          categoryLink,
+          summaryText: row.summary || descriptionText,
+          hotelHeroData,
+          publishedIso,
+          updatedIso,
+          updatedDateText: formatKoreanDate(row.updated_at) || updatedDate
+        }) : "";
+      const magazineAdminActionsHtml = isTop5SeriesPost ? renderPostAdminActions(slug, titleText) : "";
       const heroKickerItems = [
         row.category
           ? `<a href="${escapeHtml(categoryLink)}">${escapeHtml(String(row.category).trim())}</a>`
@@ -361,6 +365,7 @@ export async function onRequestGet({ params, env, request }) {
               ${heroKickerHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${heroSummaryText ? `<p class="post-magazine-desc">${escapeHtml(heroSummaryText)}</p>` : ""}
+              ${magazineAdminActionsHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
@@ -647,14 +652,20 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
 
       ${ctaHtml}
 
-      <div class="post-hero-admin-actions post-admin-mini-actions" aria-label="글 관리" data-admin-only hidden>
-        <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
-        <button id="deletePostBtn" class="post-admin-mini-btn post-admin-mini-btn--danger" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(titleText)}">삭제</button>
-      </div>
+      ${renderPostAdminActions(slug, titleText)}
 
       <meta itemprop="datePublished" content="${escapeHtml(publishedIso || "")}" />
       <meta itemprop="dateModified" content="${escapeHtml(updatedIso || "")}" />
     </div>
+  `;
+}
+
+function renderPostAdminActions(slug = "", titleText = "") {
+  return `
+      <div class="post-hero-admin-actions post-admin-mini-actions" aria-label="글 관리" data-admin-only hidden>
+        <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
+        <button id="deletePostBtn" class="post-admin-mini-btn post-admin-mini-btn--danger" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(titleText)}">삭제</button>
+      </div>
   `;
 }
 
