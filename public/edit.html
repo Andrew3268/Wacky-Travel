@@ -295,39 +295,170 @@
               <textarea class="input" id="faq_md" rows="8" placeholder="Q: 질문&#10;A: 답변"></textarea>
             </label>
 
-            <div class="card editor-option-card">
-              <div class="h2" style="margin-bottom:12px;">본문 이미지</div>
-              <div class="row" style="margin-bottom:10px;">
-                <label class="row"><input type="checkbox" id="enableInlineImage1" /> 이미지 1 사용</label>
-                <label class="row"><input type="checkbox" id="enableInlineImage2" /> 이미지 2 사용</label>
-              </div>
-
-              <div id="inlineImage1Fields" hidden class="grid" style="gap:12px; margin-bottom:16px;">
-                <div class="small">이미지 1</div>
-                <input class="input" id="inlineImage1Id" placeholder="이미지 URL" />
-                <input class="input" id="inlineImage1Alt" placeholder="ALT 텍스트" />
-                <input class="input" id="inlineImage1Caption" placeholder="캡션" />
-                <select class="input" id="inlineImage1Position">
-                  <option value="1">첫번째 H2 아래</option>
-                  <option value="2">두번째 H2 아래</option>
-                  <option value="3">세번째 H2 아래</option>
-                  <option value="4">네번째 H2 아래</option>
-                  <option value="5">다섯번째 H2 아래</option>
-                </select>
-              </div>
-
-              <div id="inlineImage2Fields" hidden class="grid" style="gap:12px;">
-                <div class="small">이미지 2</div>
-                <input class="input" id="inlineImage2Id" placeholder="이미지 URL" />
-                <input class="input" id="inlineImage2Alt" placeholder="ALT 텍스트" />
-                <input class="input" id="inlineImage2Caption" placeholder="캡션" />
-                <select class="input" id="inlineImage2Position">
-                  <option value="1">첫번째 H2 아래</option>
-                  <option value="2">두번째 H2 아래</option>
-                  <option value="3">세번째 H2 아래</option>
-                  <option value="4">네번째 H2 아래</option>
-                  <option value="5">다섯번째 H2 아래</option>
-                </select>
+            <div class="card editor-option-card inline-image-box">
+              <div class="h2">본문 이미지</div>
+              <div class="inline-image-grid">
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage1" /> 이미지 1 사용</label>
+                  <div id="inlineImage1Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage1Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage1Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage1Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage1Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage1Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage2" /> 이미지 2 사용</label>
+                  <div id="inlineImage2Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage2Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage2Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage2Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage2Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage2Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage3" /> 이미지 3 사용</label>
+                  <div id="inlineImage3Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage3Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage3Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage3Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage3Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage3Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage4" /> 이미지 4 사용</label>
+                  <div id="inlineImage4Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage4Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage4Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage4Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage4Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage4Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage5" /> 이미지 5 사용</label>
+                  <div id="inlineImage5Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage5Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage5Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage5Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage5Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage5Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage6" /> 이미지 6 사용</label>
+                  <div id="inlineImage6Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage6Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage6Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage6Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage6Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage6Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card">
+                  <label class="row"><input type="checkbox" id="enableInlineImage7" /> 이미지 7 사용</label>
+                  <div id="inlineImage7Fields" hidden class="inline-image-fields">
+                    <input class="input" id="inlineImage7Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage7Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="inlineImage7Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="inlineImage7Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="inlineImage7Placement">
+                        <option value="after">아래</option>
+                        <option value="before">위</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
               </div>
             </div>
 

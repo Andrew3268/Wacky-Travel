@@ -766,7 +766,8 @@ function bindTravelSettingsManagerEvents() {
 
 const TOC_TOKEN_RE = /^\[\[TOC(?::(h2|h2,h3))?\]\]$/i;
 
-const INLINE_IMAGE_TOKEN_RE = /^\[\[(POST_IMAGE_[12])\s+(.+?)\]\]$/i;
+const INLINE_IMAGE_LIMIT = 7;
+const INLINE_IMAGE_TOKEN_RE = /^\[\[(POST_IMAGE_([1-7]))\s+(.+?)\]\]$/i;
 const AFFILIATE_TOKEN_RE = /^\[\[(POST_AFFILIATE_(?:[1-5]))\s+(.+?)\]\]$/i;
 const AFFILIATE_CTA_TOKEN_RE = /^\[\[POST_AFFILIATE_CTA\s+(.+?)\]\]$/i;
 
@@ -780,16 +781,63 @@ function parseTokenAttributes(raw = "") {
   return attrs;
 }
 
+function defaultInlineImagePosition(index = 1) {
+  if (index === 1) return 3;
+  if (index === 2) return 5;
+  return Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(index || "1", 10) || 1));
+}
+
+function clampInlineImagePosition(value, index = 1) {
+  const fallback = defaultInlineImagePosition(index);
+  return Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(value || String(fallback), 10) || fallback));
+}
+
+function normalizeInlineImagePlacement(value = "after") {
+  return String(value || "").trim().toLowerCase() === "before" ? "before" : "after";
+}
+
+function createInlineImageMeta(index = 1) {
+  return {
+    enabled: false,
+    key: `POST_IMAGE_${index}`,
+    index,
+    url: "",
+    alt: "",
+    caption: "",
+    position: defaultInlineImagePosition(index),
+    placement: "after"
+  };
+}
+
+function getInlineImageItems(meta = {}) {
+  const sourceItems = Array.isArray(meta.items)
+    ? meta.items
+    : Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => meta[`image${offset + 1}`]);
+  return sourceItems
+    .map((item, offset) => ({
+      ...createInlineImageMeta(offset + 1),
+      ...(item || {}),
+      index: item?.index || offset + 1,
+      key: item?.key || `POST_IMAGE_${item?.index || offset + 1}`,
+      position: clampInlineImagePosition(item?.position, item?.index || offset + 1),
+      placement: normalizeInlineImagePlacement(item?.placement)
+    }))
+    .filter((item) => item.enabled && (item.url || item.id));
+}
+
 function parseInlineImageToken(line = "") {
   const match = String(line || "").trim().match(INLINE_IMAGE_TOKEN_RE);
   if (!match) return null;
-  const attrs = parseTokenAttributes(match[2]);
+  const index = Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(match[2] || "1", 10) || 1));
+  const attrs = parseTokenAttributes(match[3]);
   return {
     key: match[1].toUpperCase(),
+    index,
     url: String(attrs.url || attrs.id || "").trim(),
     alt: String(attrs.alt || "").trim(),
     caption: String(attrs.caption || "").trim(),
-    position: Math.max(1, parseInt(attrs.position || "0", 10) || (match[1].toUpperCase() === "POST_IMAGE_1" ? 3 : 5))
+    position: clampInlineImagePosition(attrs.position, index),
+    placement: normalizeInlineImagePlacement(attrs.placement || attrs.place)
   };
 }
 
@@ -803,19 +851,23 @@ function stripInlineImageTokenLines(md = "") {
 }
 
 function parseInlineImageMetaFromMarkdown(md = "") {
-  const result = {
-    image1: { enabled: false, url: "", alt: "", caption: "", position: 3 },
-    image2: { enabled: false, url: "", alt: "", caption: "", position: 5 }
-  };
+  const result = { items: [] };
+  for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
+    const item = createInlineImageMeta(index);
+    result[`image${index}`] = item;
+    result.items.push(item);
+  }
   String(md || "").split("\n").forEach((line) => {
     const token = parseInlineImageToken(line);
     if (!token) return;
-    const target = token.key === "POST_IMAGE_1" ? result.image1 : result.image2;
+    const target = result[`image${token.index}`];
+    if (!target) return;
     target.enabled = !!token.url;
     target.url = token.url;
     target.alt = token.alt;
     target.caption = token.caption;
     target.position = token.position;
+    target.placement = token.placement;
   });
   return result;
 }
@@ -825,61 +877,56 @@ function buildInlineImageToken(key, data) {
   const safeUrl = sanitizeImageUrlValue(data.url || data.id || "").replace(/"/g, "&quot;");
   const safeAlt = String(data.alt || "").trim().replace(/"/g, "&quot;");
   const safeCaption = String(data.caption || "").trim().replace(/"/g, "&quot;");
-  const safePosition = Math.max(1, parseInt(data.position || 0, 10) || (key === "POST_IMAGE_1" ? 3 : 5));
-  return `[[${key} url="${safeUrl}" alt="${safeAlt}" caption="${safeCaption}" position="${safePosition}"]]`;
+  const index = Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(String(key).replace("POST_IMAGE_", ""), 10) || 1));
+  const safePosition = clampInlineImagePosition(data.position, index);
+  const safePlacement = normalizeInlineImagePlacement(data.placement);
+  return `[[${key} url="${safeUrl}" alt="${safeAlt}" caption="${safeCaption}" position="${safePosition}" placement="${safePlacement}"]]`;
 }
 
 function collectInlineImageFormData() {
-  return {
-    image1: {
-      enabled: !!($("enableInlineImage1")?.checked),
-      url: sanitizeImageUrlValue($("inlineImage1Id")?.value || ""),
-      alt: $("inlineImage1Alt")?.value.trim() || "",
-      caption: $("inlineImage1Caption")?.value.trim() || "",
-      position: Math.max(1, parseInt($("inlineImage1Position")?.value || "3", 10) || 3)
-    },
-    image2: {
-      enabled: !!($("enableInlineImage2")?.checked),
-      url: sanitizeImageUrlValue($("inlineImage2Id")?.value || ""),
-      alt: $("inlineImage2Alt")?.value.trim() || "",
-      caption: $("inlineImage2Caption")?.value.trim() || "",
-      position: Math.max(1, parseInt($("inlineImage2Position")?.value || "5", 10) || 5)
-    }
-  };
+  const result = { items: [] };
+  for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
+    const item = {
+      ...createInlineImageMeta(index),
+      enabled: !!($(`enableInlineImage${index}`)?.checked),
+      url: sanitizeImageUrlValue($(`inlineImage${index}Id`)?.value || ""),
+      alt: $(`inlineImage${index}Alt`)?.value.trim() || "",
+      caption: $(`inlineImage${index}Caption`)?.value.trim() || "",
+      position: clampInlineImagePosition($(`inlineImage${index}Position`)?.value, index),
+      placement: normalizeInlineImagePlacement($(`inlineImage${index}Placement`)?.value)
+    };
+    result[`image${index}`] = item;
+    result.items.push(item);
+  }
+  return result;
 }
 
 function applyInlineImageFormData(meta = {}) {
-  const image1 = meta.image1 || {};
-  const image2 = meta.image2 || {};
-  if ($("enableInlineImage1")) $("enableInlineImage1").checked = !!image1.enabled;
-  if ($("inlineImage1Id")) $("inlineImage1Id").value = sanitizeImageUrlValue(image1.url || image1.id || "");
-  if ($("inlineImage1Alt")) $("inlineImage1Alt").value = image1.alt || "";
-  if ($("inlineImage1Caption")) $("inlineImage1Caption").value = image1.caption || "";
-  if ($("inlineImage1Position")) $("inlineImage1Position").value = String(Math.max(1, parseInt(image1.position || 3, 10) || 3));
-  if ($("enableInlineImage2")) $("enableInlineImage2").checked = !!image2.enabled;
-  if ($("inlineImage2Id")) $("inlineImage2Id").value = sanitizeImageUrlValue(image2.url || image2.id || "");
-  if ($("inlineImage2Alt")) $("inlineImage2Alt").value = image2.alt || "";
-  if ($("inlineImage2Caption")) $("inlineImage2Caption").value = image2.caption || "";
-  if ($("inlineImage2Position")) $("inlineImage2Position").value = String(Math.max(1, parseInt(image2.position || 5, 10) || 5));
+  for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
+    const image = meta[`image${index}`] || {};
+    if ($(`enableInlineImage${index}`)) $(`enableInlineImage${index}`).checked = !!image.enabled;
+    if ($(`inlineImage${index}Id`)) $(`inlineImage${index}Id`).value = sanitizeImageUrlValue(image.url || image.id || "");
+    if ($(`inlineImage${index}Alt`)) $(`inlineImage${index}Alt`).value = image.alt || "";
+    if ($(`inlineImage${index}Caption`)) $(`inlineImage${index}Caption`).value = image.caption || "";
+    if ($(`inlineImage${index}Position`)) $(`inlineImage${index}Position`).value = String(clampInlineImagePosition(image.position, index));
+    if ($(`inlineImage${index}Placement`)) $(`inlineImage${index}Placement`).value = normalizeInlineImagePlacement(image.placement);
+  }
   syncInlineImageVisibility();
 }
 
 function syncInlineImageVisibility() {
-  [["enableInlineImage1", "inlineImage1Fields"], ["enableInlineImage2", "inlineImage2Fields"]].forEach(([toggleId, fieldId]) => {
-    const toggle = $(toggleId);
-    const field = $(fieldId);
-    if (!toggle || !field) return;
+  for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
+    const toggle = $(`enableInlineImage${index}`);
+    const field = $(`inlineImage${index}Fields`);
+    if (!toggle || !field) continue;
     field.hidden = !toggle.checked;
-  });
+  }
 }
 
 function buildContentWithInlineImageTokens(md = "") {
   const cleanMd = stripInlineImageTokenLines(md);
   const meta = collectInlineImageFormData();
-  const tokens = [
-    buildInlineImageToken("POST_IMAGE_1", meta.image1),
-    buildInlineImageToken("POST_IMAGE_2", meta.image2)
-  ].filter(Boolean);
+  const tokens = meta.items.map((item) => buildInlineImageToken(item.key, item)).filter(Boolean);
   return [...tokens, cleanMd].filter(Boolean).join("\n\n").trim();
 }
 
@@ -1295,10 +1342,7 @@ function buildContentWithMetaTokens(md = "") {
   const lsiKeywords = parseKeywords($("lsiKeywords")?.value || "");
   const seoToken = buildSeoKeywordsToken({ focus: focusKeyword, longtail: longtailKeywords, lsi: lsiKeywords });
   const lsiToken = buildLsiKeywordsToken(lsiKeywords);
-  const imageTokens = [
-    buildInlineImageToken("POST_IMAGE_1", imageMeta.image1),
-    buildInlineImageToken("POST_IMAGE_2", imageMeta.image2)
-  ].filter(Boolean);
+  const imageTokens = imageMeta.items.map((item) => buildInlineImageToken(item.key, item)).filter(Boolean);
   const affiliateTokens = affiliateMeta.enabled
     ? affiliateMeta.items.map((item, index) => buildAffiliateToken(index + 1, item)).filter(Boolean)
     : [];
@@ -2624,12 +2668,17 @@ function markdownToHtml(md, options = {}) {
       const level = Math.min(6, headingMatch[1].length);
       if (level === 2) {
         maybeInsertAffiliateCtaAtSectionEnd();
+        h2Count += 1;
+        getInlineImageItems(inlineImages)
+          .filter((item) => item.placement === "before" && item.position === h2Count)
+          .forEach((item) => {
+            pushContentBlock(renderInlineImageFigure(item, item.index));
+          });
       }
       const headingText = normalizeArticleHeadingText(level, headingMatch[2].trim());
       const headingId = buildHeadingSlug(headingText, slugCounts);
       pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
       if (level === 2) {
-        h2Count += 1;
         (affiliates.items || []).forEach((item, index) => {
           const target = Math.max(1, parseInt(item?.position || index + 1, 10) || index + 1);
           if (item?.enabled && h2Count === target) {
@@ -2639,14 +2688,11 @@ function markdownToHtml(md, options = {}) {
         activeAffiliateCtaItems = affiliateCta?.enabled
           ? (affiliateCta.items || []).filter((item) => item?.enabled !== false && clampAffiliateCtaPosition(item?.position || 1) === h2Count)
           : [];
-        const image1Target = Math.max(1, parseInt(inlineImages.image1?.position || 3, 10) || 3);
-        const image2Target = Math.max(1, parseInt(inlineImages.image2?.position || 5, 10) || 5);
-        if (h2Count === image1Target && inlineImages.image1?.enabled && (inlineImages.image1?.url || inlineImages.image1?.id)) {
-          pushContentBlock(renderInlineImageFigure(inlineImages.image1, 1));
-        }
-        if (h2Count === image2Target && inlineImages.image2?.enabled && (inlineImages.image2?.url || inlineImages.image2?.id)) {
-          pushContentBlock(renderInlineImageFigure(inlineImages.image2, 2));
-        }
+        getInlineImageItems(inlineImages)
+          .filter((item) => item.placement === "after" && item.position === h2Count)
+          .forEach((item) => {
+            pushContentBlock(renderInlineImageFigure(item, item.index));
+          });
       }
       continue;
     }
@@ -2945,14 +2991,20 @@ function handleRealtimeChange() {
   renderPreview();
 }
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", "inlineImage1Id", "inlineImage1Alt", "inlineImage1Caption", "inlineImage1Position", "inlineImage2Id", "inlineImage2Alt", "inlineImage2Caption", "inlineImage2Position", "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
+const inlineImageFieldIds = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => {
+  const index = offset + 1;
+  return [`inlineImage${index}Id`, `inlineImage${index}Alt`, `inlineImage${index}Caption`, `inlineImage${index}Position`, `inlineImage${index}Placement`];
+}).flat();
+
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);
 });
 
-$("enableInlineImage1")?.addEventListener("change", handleRealtimeChange);
-$("enableInlineImage2")?.addEventListener("change", handleRealtimeChange);
+for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
+  $(`enableInlineImage${index}`)?.addEventListener("change", handleRealtimeChange);
+}
 $("enableAffiliateLinks")?.addEventListener("change", handleRealtimeChange);
 $("enableAffiliateCta")?.addEventListener("change", () => { syncAffiliateCtaVisibility(); handleRealtimeChange(); });
 $("addAffiliateCtaBtn")?.addEventListener("click", addAffiliateCtaEditorRow);
