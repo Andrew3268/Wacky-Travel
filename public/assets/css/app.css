@@ -7264,6 +7264,28 @@ body.post-page-body .post-shell--guide-style .post-body .post-content h2:first-c
   margin-top: 0;
 }
 
+body.post-page-body .post-shell--guide-style .post-body .post-content .post-h2-anchor {
+  max-width: 780px;
+  margin: 84px 0 16px;
+  padding: 34px 0 0;
+  border-top: 1px solid var(--wt-line);
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content .post-h2-anchor:first-child {
+  margin-top: 0;
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content .post-h2-anchor .post-inline-image {
+  margin: 0 0 30px;
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content h2.post-h2--with-before-image {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+}
+
 body.post-page-body .post-shell--guide-style .post-h2-prefix {
   display: inline-flex;
   width: fit-content;
@@ -7822,6 +7844,11 @@ body.post-page-body .post-search-overlay__quick button {
     padding-top: 28px;
     font-size: 24px;
     letter-spacing: -0.048em;
+  }
+
+  body.post-page-body .post-shell--guide-style .post-body .post-content .post-h2-anchor {
+    margin-top: 62px;
+    padding-top: 28px;
   }
 
   body.post-page-body .post-shell--guide-style .post-body .post-content h3 {
