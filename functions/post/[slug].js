@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260706-inline-image-layout-v2";
+const POST_RENDER_VERSION = "20260706-post-link-breadcrumb-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -326,7 +326,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260706InlineImageLayoutV2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostLinkBreadcrumbV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
@@ -1131,12 +1131,14 @@ function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row 
     const destinationSlug = String(hotel.destination_slug || row.destination_slug || "").trim();
     const hotelName = String(hotel.name || titleText || "").trim();
 
-    const items = [{ name: "홈", url: homeUrl }];
+    const items = [{ name: "홈", url: homeUrl, href: "/" }];
 
     if (cityName) {
+      const destinationHref = destinationSlug ? `/destinations/${encodeURIComponent(destinationSlug)}/` : "/";
       items.push({
         name: cityName,
-        url: destinationSlug ? `${origin}/destinations/${encodeURIComponent(destinationSlug)}` : homeUrl
+        url: destinationSlug ? `${origin}/destinations/${encodeURIComponent(destinationSlug)}/` : homeUrl,
+        href: destinationHref
       });
     }
 
@@ -1148,13 +1150,14 @@ function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row 
     return items;
   }
 
-  const fallbackItems = [{ name: "홈", url: homeUrl }];
+  const fallbackItems = [{ name: "홈", url: homeUrl, href: "/" }];
   const category = String(row.category || "").trim();
 
   if (category) {
     fallbackItems.push({
       name: category,
-      url: `${origin}/?category=${encodeURIComponent(category)}`
+      url: `${origin}/?category=${encodeURIComponent(category)}`,
+      href: `/?category=${encodeURIComponent(category)}`
     });
   }
 
@@ -1171,15 +1174,16 @@ function renderBreadcrumbs(items) {
     .map((item, index) => {
       const isLast = index === items.length - 1;
       const content = isLast
-        ? `<span>${escapeHtml(item.name)}</span>`
-        : `<a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a>`;
-      return `<li${isLast ? ' aria-current="page"' : ''}>${content}</li>`;
+        ? `<span aria-current="page">${escapeHtml(item.name)}</span>`
+        : `<a href="${escapeHtml(item.href || item.url || "#")}">${escapeHtml(item.name)}</a>`;
+      const separator = isLast ? "" : `<span class="breadcrumbs__separator" aria-hidden="true">›</span>`;
+      return `<li>${content}${separator}</li>`;
     })
     .join("");
 
   return `
-  <nav class="breadcrumb small breadcrumb--post" aria-label="브레드크럼">
-    <ol class="list-reset">
+  <nav class="breadcrumbs container breadcrumbs--post" aria-label="현재 위치">
+    <ol>
       ${list}
     </ol>
   </nav>`;
