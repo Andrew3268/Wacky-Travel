@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260605-post-guide-style-v3";
+const POST_RENDER_VERSION = "20260706-post-minimal-travel-ui-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -282,7 +282,7 @@ export async function onRequestGet({ params, env, request }) {
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(descriptionText)}" />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-  <meta name="theme-color" content="#2563EB" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
@@ -306,7 +306,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostMinimalV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
@@ -334,9 +334,10 @@ export async function onRequestGet({ params, env, request }) {
   ${jsonld(webPageJsonLd)}
   ${faqJsonLd ? jsonld(faqJsonLd) : ""}
 </head>
-<body>
+<body class="post-page-body">
 
   ${topbar()}
+  ${postSearchOverlay()}
 
   <main id="main-content" class="container post-guide-page">
     ${breadcrumbHtml}
@@ -402,6 +403,56 @@ export async function onRequestGet({ params, env, request }) {
     syncPostSidebarTop();
     window.addEventListener('scroll', requestSidebarSync, { passive: true });
     window.addEventListener('resize', requestSidebarSync);
+
+    const searchOverlay = document.getElementById('postSearchOverlay');
+    const searchOpenBtn = document.getElementById('postSearchOpenBtn');
+    const searchInput = document.getElementById('postFullscreenSearchInput');
+    const searchForm = document.getElementById('postFullscreenSearchForm');
+    const searchCloseTargets = document.querySelectorAll('[data-post-search-close]');
+
+    const openSearch = () => {
+      if (!searchOverlay || !searchOpenBtn) return;
+      searchOverlay.hidden = false;
+      searchOverlay.setAttribute('aria-hidden', 'false');
+      searchOpenBtn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('is-post-search-open');
+      window.requestAnimationFrame(() => searchOverlay.classList.add('is-open'));
+      window.setTimeout(() => searchInput?.focus(), 90);
+    };
+
+    const closeSearch = () => {
+      if (!searchOverlay || !searchOpenBtn) return;
+      searchOverlay.classList.remove('is-open');
+      searchOverlay.setAttribute('aria-hidden', 'true');
+      searchOpenBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('is-post-search-open');
+      window.setTimeout(() => {
+        searchOverlay.hidden = true;
+      }, 180);
+    };
+
+    const submitSearch = (value) => {
+      const query = String(value || searchInput?.value || '').trim();
+      if (!query) {
+        searchInput?.focus();
+        return;
+      }
+      window.location.href = '/search/?q=' + encodeURIComponent(query);
+    };
+
+    searchOpenBtn?.addEventListener('click', openSearch);
+    searchCloseTargets.forEach((target) => target.addEventListener('click', closeSearch));
+    searchForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      submitSearch();
+    });
+    searchOverlay?.addEventListener('click', (event) => {
+      const queryBtn = event.target.closest('[data-post-search-query]');
+      if (queryBtn) submitSearch(queryBtn.dataset.postSearchQuery || '');
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && searchOverlay?.classList.contains('is-open')) closeSearch();
+    });
 
     const deleteBtn = document.getElementById('deletePostBtn');
     if (!deleteBtn) return;
@@ -1143,6 +1194,12 @@ function topbar() {
         <span class="brand__mark">WT</span>
         <span class="brand__text">Wacky Travel</span>
       </a>
+      <button class="topbar-search-button topbar-search-button--post" id="postSearchOpenBtn" type="button" aria-label="검색 열기" aria-controls="postSearchOverlay" aria-expanded="false">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.4"></circle>
+          <path d="m16 16 4.5 4.5"></path>
+        </svg>
+      </button>
       <div class="topbar__actions topbar__actions--travel">
         <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
         <a class="btn btn--ghost topbar__dashboard" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
@@ -1150,6 +1207,45 @@ function topbar() {
       </div>
     </div>
   </header>`;
+}
+
+function postSearchOverlay() {
+  return `
+  <section class="post-search-overlay" id="postSearchOverlay" hidden aria-hidden="true">
+    <div class="post-search-overlay__backdrop" data-post-search-close></div>
+    <div class="post-search-overlay__panel" role="dialog" aria-modal="true" aria-labelledby="postSearchOverlayTitle">
+      <div class="post-search-overlay__bar">
+        <button class="post-search-overlay__close" type="button" data-post-search-close aria-label="검색 닫기">
+          <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+            <path d="M6 6l12 12"></path>
+            <path d="M18 6L6 18"></path>
+          </svg>
+        </button>
+        <form class="post-search-overlay__form" id="postFullscreenSearchForm" action="/search/" method="get" role="search" autocomplete="off">
+          <span class="post-search-overlay__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="11" cy="11" r="6.4"></circle>
+              <path d="m16 16 4.5 4.5"></path>
+            </svg>
+          </span>
+          <input id="postFullscreenSearchInput" type="search" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" aria-label="여행지 또는 호텔 검색어 입력" />
+          <button class="post-search-overlay__submit" type="submit">검색</button>
+        </form>
+      </div>
+
+      <div class="post-search-overlay__content">
+        <p class="post-search-overlay__eyebrow">Search</p>
+        <h2 id="postSearchOverlayTitle">어디로 떠나시나요?</h2>
+        <p class="post-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+        <div class="post-search-overlay__quick" aria-label="추천 검색어">
+          <button type="button" data-post-search-query="오사카 난바 호텔">오사카 난바 호텔</button>
+          <button type="button" data-post-search-query="후쿠오카 하카타 숙소">후쿠오카 하카타 숙소</button>
+          <button type="button" data-post-search-query="다낭 미케비치 호텔">다낭 미케비치 호텔</button>
+          <button type="button" data-post-search-query="타이베이 시먼딩 숙소">타이베이 시먼딩 숙소</button>
+        </div>
+      </div>
+    </div>
+  </section>`;
 }
 
 function footer(siteName, siteDescription) {
