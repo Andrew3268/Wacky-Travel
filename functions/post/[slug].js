@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260706-inline-image-before-h2-border-v1";
+const POST_RENDER_VERSION = "20260706-inline-image-layout-v2";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -288,6 +288,11 @@ export async function onRequestGet({ params, env, request }) {
         : "";
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin: SITE_ORIGIN }) : "";
+      const bodyClassName = [
+        "post-page-body",
+        isTop5SeriesPost ? "post-page-body--top5-series" : "",
+        isHotelIntroPost ? "post-page-body--hotel-intro" : ""
+      ].filter(Boolean).join(" ");
 
       const html = `<!doctype html>
 <html lang="ko">
@@ -321,7 +326,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostMagazineV1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260706InlineImageLayoutV2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
@@ -349,7 +354,7 @@ export async function onRequestGet({ params, env, request }) {
   ${jsonld(webPageJsonLd)}
   ${faqJsonLd ? jsonld(faqJsonLd) : ""}
 </head>
-<body class="post-page-body">
+<body class="${escapeHtml(bodyClassName)}">
 
   ${topbar()}
   ${postSearchOverlay()}
