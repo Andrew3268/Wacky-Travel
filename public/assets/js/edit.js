@@ -2812,6 +2812,16 @@ function renderPreviewAdBox(index) {
   `;
 }
 
+function isHotelReviewSectionLabelHtml(html = "") {
+  const match = String(html || "").trim().match(/^<p>\s*<strong>([\s\S]+?)<\/strong>\s*<\/p>$/i);
+  if (!match) return false;
+  const labelText = match[1]
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/gi, " ")
+    .trim();
+  return /^\d{1,2}[.)]\s+.{1,80}$/.test(labelText);
+}
+
 function markdownToHtml(md, options = {}) {
   const inlineImages = options.inlineImages || parseInlineImageMetaFromMarkdown(md);
   const affiliates = options.affiliates || parseAffiliateMetaFromMarkdown(md);
@@ -2829,6 +2839,7 @@ function markdownToHtml(md, options = {}) {
   let contentBlockCount = 0;
   let adPointer = 0;
   let h2Count = 0;
+  const useHotelSectionLabelAnchor = options.hotelReviewSectionImageAnchor === true;
   let activeAffiliateCtaItems = [];
 
   function maybeInsertAd() {
@@ -2927,11 +2938,20 @@ function markdownToHtml(md, options = {}) {
       if (level === 2) {
         maybeInsertAffiliateCtaAtSectionEnd();
         h2Count += 1;
-        getInlineImageItems(inlineImages)
-          .filter((item) => item.placement === "before" && item.position === h2Count)
-          .forEach((item) => {
+        const beforeInlineItems = getInlineImageItems(inlineImages)
+          .filter((item) => item.placement === "before" && item.position === h2Count);
+        if (beforeInlineItems.length && useHotelSectionLabelAnchor && isHotelReviewSectionLabelHtml(htmlParts[htmlParts.length - 1])) {
+          const sectionLabelHtml = htmlParts.pop();
+          contentBlockCount = Math.max(0, contentBlockCount - 1);
+          beforeInlineItems.forEach((item) => {
             pushContentBlock(renderInlineImageFigure(item, item.index));
           });
+          pushContentBlock(sectionLabelHtml);
+        } else {
+          beforeInlineItems.forEach((item) => {
+            pushContentBlock(renderInlineImageFigure(item, item.index));
+          });
+        }
       }
       const headingText = normalizeArticleHeadingText(level, headingMatch[2].trim());
       const headingId = buildHeadingSlug(headingText, slugCounts);
@@ -3088,7 +3108,7 @@ function renderPreview() {
         ${summary ? `<div class="preview-summary preview-summary--markdown">${markdownToHtml(summary)}</div>` : ""}
         ${tags.length ? `<div class="row">${tags.map((tag) => `<span class="tag-chip">#${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
       </header>
-      <section class="preview-body">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta })}</section>
+      <section class="preview-body">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta, hotelReviewSectionImageAnchor: ($("content_type")?.value || "") === "hotel_intro" })}</section>
       ${faqItems.length ? `
         <section class="preview-faq" aria-label="자주 묻는 질문">
           <h2>자주 묻는 질문</h2>

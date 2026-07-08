@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260708-hotel-review-kicker-layout-v1";
+const POST_RENDER_VERSION = "20260708-hotel-review-inline-image-anchor-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -112,7 +112,7 @@ export async function onRequestGet({ params, env, request }) {
       const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, true);
       const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, true);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
-      const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env);
+      const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, { isRecommendedHotelReviewPost });
       const faqSectionHtml = renderFaqSection(faqItems);
       const relatedPostsHtml = renderRelatedPostsSection(relatedRows, row.category);
       const popularPostsHtml = renderPopularPosts(popularRows);
@@ -334,7 +334,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewKickerLayoutV1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewInlineImageAnchorV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
@@ -898,10 +898,14 @@ function buildInArticleAds(config, count) {
   return ads;
 }
 
-function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0, env = {}) {
+function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0, env = {}, options = {}) {
   const visibleContentMd = stripSeoMetaTokenLines(contentMd || "");
   const inlineImages = parseInlineImages(visibleContentMd || "");
-  const blocks = renderMarkdownBlocks(visibleContentMd || "", { inlineImages, origin: SITE_ORIGIN });
+  const blocks = renderMarkdownBlocks(visibleContentMd || "", {
+    inlineImages,
+    origin: SITE_ORIGIN,
+    hotelReviewSectionImageAnchor: options.isRecommendedHotelReviewPost === true
+  });
   if (!blocks.length) return "";
 
   const tocBlock = blocks.find((block) => block.type === "toc");
