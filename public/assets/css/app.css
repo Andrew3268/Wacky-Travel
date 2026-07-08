@@ -8265,3 +8265,82 @@ body.post-page-body--hotel-review-magazine .post-related {
     font-size: 1.02rem;
   }
 }
+
+/* ==========================================
+   추천 호텔 리뷰 전용 H2/H3 보완
+   - H2 위 경계선이 prefix/strong과 함께 움직이도록 조정
+   - "에디터의 시선: 제목"이 한 줄로 이어지도록 prefix를 inline 처리
+   - H3 여백과 굵기 조정
+========================================== */
+body.post-page-body--hotel-review-magazine .post-body .post-content > * + h2,
+body.post-page-body--hotel-review-magazine .post-body .post-content .post-h2-anchor {
+  margin-top: 50px !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 {
+  display: block !important;
+  margin: 50px 0 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-ink) !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.03em !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h2:first-child {
+  margin-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-prefix,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 > strong:first-child,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-text:first-child {
+  display: inline-block !important;
+  margin: 0 0.28em 0 0 !important;
+  padding: 34px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--hotel-review-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-ink) !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: 700 !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: none !important;
+  vertical-align: baseline !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h2:first-child .post-h2-prefix,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2:first-child > strong:first-child,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2:first-child .post-h2-text:first-child {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-prefix strong,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 > strong:first-child {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-text,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-prefix + .post-h2-text {
+  display: inline !important;
+  color: var(--hotel-review-ink) !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h3 {
+  padding: 10px 0 !important;
+  font-weight: 300 !important;
+}
+
