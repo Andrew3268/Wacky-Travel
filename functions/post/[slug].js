@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260706-post-topbar-h3-v1";
+const POST_RENDER_VERSION = "20260708-hotel-review-body-class-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -100,7 +100,9 @@ export async function onRequestGet({ params, env, request }) {
       `).bind(slug).all()).results || [];
 
       const contentType = String(row.content_type || "").trim();
+      const categoryName = String(row.category || "").trim();
       const isHotelIntroPost = contentType === "hotel_intro";
+      const isRecommendedHotelReviewPost = isHotelIntroPost || categoryName === "추천 호텔 리뷰";
       const isTop5SeriesPost = contentType === "top5_series";
       const hotelHeroData = isHotelIntroPost ? await getHotelHeroData(env.TRAVEL_DB, row, slug) : null;
 
@@ -291,7 +293,9 @@ export async function onRequestGet({ params, env, request }) {
       const bodyClassName = [
         "post-page-body",
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
-        isHotelIntroPost ? "post-page-body--hotel-intro" : ""
+        isHotelIntroPost ? "post-page-body--hotel-intro" : "",
+        isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
+        isRecommendedHotelReviewPost ? "post-page-body--hotel-review-magazine" : ""
       ].filter(Boolean).join(" ");
 
       const html = `<!doctype html>
@@ -326,7 +330,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260706PostTopbarH3V1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewBodyClassV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
