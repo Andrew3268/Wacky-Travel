@@ -8415,3 +8415,22 @@ body.post-page-body--hotel-review-magazine .post-body .post-content h3 {
   padding: 10px 0 !important;
   font-weight: 300 !important;
 }
+
+/* ==========================================
+   추천 호텔 리뷰 전용 상단 키커 배치 보완
+   - post-magazine-kicker는 cover 위에 노출
+   - post-hero-kicker는 기존 magazine kicker 위치에서 노출
+   - 추천 호텔 리뷰 글의 post-shell 상단 여백 축소
+========================================== */
+body.post-page-body--hotel-review-magazine .post-shell.post-shell--guide-style {
+  padding-top: 10px !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-magazine-hero > .post-magazine-kicker {
+  margin: 0 0 16px !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-magazine-head > .post-hero-kicker {
+  justify-content: flex-start !important;
+  margin: 0 0 16px !important;
+}

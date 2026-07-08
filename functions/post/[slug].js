@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260708-hotel-review-section-label-v1";
+const POST_RENDER_VERSION = "20260708-hotel-review-kicker-layout-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -276,7 +276,8 @@ export async function onRequestGet({ params, env, request }) {
           hotelHeroData,
           publishedIso,
           updatedIso,
-          updatedDateText: formatKoreanDate(row.updated_at) || updatedDate
+          updatedDateText: formatKoreanDate(row.updated_at) || updatedDate,
+          showKicker: !isRecommendedHotelReviewPost
         }) : "";
       const magazineAdminActionsHtml = isTop5SeriesPost ? renderPostAdminActions(slug, titleText) : "";
       const heroKickerItems = [
@@ -287,6 +288,9 @@ export async function onRequestGet({ params, env, request }) {
       ].filter(Boolean);
       const heroKickerHtml = heroKickerItems.length
         ? `<div class="post-magazine-kicker">${heroKickerItems.join('<span aria-hidden="true">·</span>')}</div>`
+        : "";
+      const productHeroKickerHtml = isRecommendedHotelReviewPost
+        ? renderProductStyleHeroKicker({ row, hotel: hotelHeroData?.hotel || null })
         : "";
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin: SITE_ORIGIN }) : "";
@@ -330,7 +334,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewSectionLabelV1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewKickerLayoutV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
   <style>
     .post-body,
@@ -368,9 +372,10 @@ export async function onRequestGet({ params, env, request }) {
       <div class="post-grid">
         <div class="post-main">
           <header class="card post-hero post-hero--product post-magazine-hero">
+            ${isRecommendedHotelReviewPost ? heroKickerHtml : ""}
             ${coverImageHtml}
             <div class="post-magazine-head">
-              ${heroKickerHtml}
+              ${isRecommendedHotelReviewPost ? productHeroKickerHtml : heroKickerHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
               ${magazineAdminActionsHtml}
@@ -624,21 +629,11 @@ async function getHotelHeroRow(db, hotelSlug) {
   }
 }
 
-function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categoryLink = "/", summaryText = "", hotelHeroData = null, publishedIso = "", updatedIso = "", updatedDateText = "" }) {
-  const hotel = hotelHeroData?.hotel || null;
-  if (!hotel) return "";
-
-  const links = Array.isArray(hotelHeroData?.links) ? hotelHeroData.links : [];
-  const displayTitle = String(hotel.name || "").trim();
-  const subtitle = String(hotel.name_en || "").trim();
+function renderProductStyleHeroKicker({ row = {}, hotel = null } = {}) {
   const eyebrowItems = buildHeroEyebrowItems(row, hotel);
-  const badges = buildHeroBadges(row, hotel, updatedDateText);
-  const ctaHtml = renderHeroCtas(links);
-  const productSummary = String(summaryText || hotel.summary || "").trim();
+  if (!eyebrowItems.length) return "";
 
   return `
-    <div class="post-hero-product-panel">
-      ${eyebrowItems.length ? `
         <nav class="post-hero-kicker" aria-label="호텔 위치 정보">
           ${eyebrowItems.map((item, index) => {
             const label = escapeHtml(item.label);
@@ -646,7 +641,24 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
             return `${index > 0 ? '<span aria-hidden="true">·</span>' : ''}${body}`;
           }).join("")}
         </nav>
-      ` : ""}
+  `;
+}
+
+function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categoryLink = "/", summaryText = "", hotelHeroData = null, publishedIso = "", updatedIso = "", updatedDateText = "", showKicker = true }) {
+  const hotel = hotelHeroData?.hotel || null;
+  if (!hotel) return "";
+
+  const links = Array.isArray(hotelHeroData?.links) ? hotelHeroData.links : [];
+  const displayTitle = String(hotel.name || "").trim();
+  const subtitle = String(hotel.name_en || "").trim();
+  const heroKickerHtml = showKicker ? renderProductStyleHeroKicker({ row, hotel }) : "";
+  const badges = buildHeroBadges(row, hotel, updatedDateText);
+  const ctaHtml = renderHeroCtas(links);
+  const productSummary = String(summaryText || hotel.summary || "").trim();
+
+  return `
+    <div class="post-hero-product-panel">
+      ${heroKickerHtml}
 
       ${displayTitle ? `<div class="post-hero-product-title" aria-label="호텔명">${escapeHtml(displayTitle)}</div>` : ""}
       ${subtitle ? `<p class="post-hero-subtitle">${escapeHtml(subtitle)}</p>` : ""}
