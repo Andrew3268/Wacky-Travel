@@ -8391,6 +8391,40 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p:first-chil
   border-top: 0 !important;
 }
 
+/* 추천 호텔 리뷰: 섹션 라벨 위에 본문 이미지가 있으면 구분선을 이미지 위로 이동 */
+body.post-page-body--hotel-review-magazine .post-body .post-content figure.post-inline-image:has(+ p:has(> strong:first-child:last-child):has(+ h2)) {
+  margin-top: 50px !important;
+  margin-bottom: 18px !important;
+  padding-top: 34px !important;
+  border-top: 1px solid var(--hotel-review-line) !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content figure.post-inline-image:has(+ p:has(> strong:first-child:last-child):has(+ h2)) + p {
+  margin-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content figure.post-inline-image:has(+ p:has(> strong:first-child:last-child):has(+ h2)) + p > strong {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+/* 작성/수정 미리보기에서도 추천 호텔 리뷰 섹션 이미지 구분선 흐름 확인 */
+.preview-body figure.preview-inline-image:has(+ p:has(> strong:first-child:last-child):has(+ h2)) {
+  margin-top: 50px !important;
+  margin-bottom: 18px !important;
+  padding-top: 34px !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+}
+
+.preview-body figure.preview-inline-image:has(+ p:has(> strong:first-child:last-child):has(+ h2)) + p {
+  margin-top: 0 !important;
+}
+
+.preview-body figure.preview-inline-image:has(+ p:has(> strong:first-child:last-child):has(+ h2)) + p > strong {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
 body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) + h2 {
   margin: 0 0 24px !important;
   padding: 0 !important;
