@@ -8541,3 +8541,64 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p.post-secti
   border-top: 0 !important;
   padding-top: 0 !important;
 }
+
+/* 추천 호텔 리뷰 이미지 라벨 구분선 최종 보정 v4
+   - 이미지가 섹션 라벨 위에 들어간 경우에도 라벨의 타이포그래피/표시 스타일은 유지
+   - border-top과 padding-top만 이미지 쪽으로 이동 */
+body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) > strong,
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-section-label.post-section-label--after-image > strong,
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-section-label.post-section-label--after-image:has(> strong:first-child:last-child):has(+ h2) > strong {
+  display: block !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-soft) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2):not(.post-section-label--after-image) > strong {
+  padding: 34px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-section-label.post-section-label--after-image > strong,
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-section-label.post-section-label--after-image:has(> strong:first-child:last-child):has(+ h2) > strong {
+  padding: 0 !important;
+  border: 0 !important;
+  border-top: 0 !important;
+}
+
+.preview-body p:has(> strong:first-child:last-child):has(+ h2) > strong,
+.preview-body p.preview-section-label.preview-section-label--after-image > strong,
+.preview-body p.preview-section-label.preview-section-label--after-image:has(> strong:first-child:last-child):has(+ h2) > strong {
+  display: block !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-soft, #999999) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.preview-body p:has(> strong:first-child:last-child):has(+ h2):not(.preview-section-label--after-image) > strong {
+  padding: 34px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+}
+
+.preview-body p.preview-section-label.preview-section-label--after-image > strong,
+.preview-body p.preview-section-label.preview-section-label--after-image:has(> strong:first-child:last-child):has(+ h2) > strong {
+  padding: 0 !important;
+  border: 0 !important;
+  border-top: 0 !important;
+}
