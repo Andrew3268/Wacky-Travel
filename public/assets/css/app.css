@@ -8344,3 +8344,74 @@ body.post-page-body--hotel-review-magazine .post-body .post-content h3 {
   font-weight: 300 !important;
 }
 
+
+/* ==========================================
+   추천 호텔 리뷰 전용 섹션 라벨 최종 보완
+   - H2와 H2 내부 strong/span의 위쪽 선 제거
+   - H2 바로 위 <p><strong>01. Greenhouse</strong></p>를 섹션 라벨로 사용
+   - H3 여백/굵기 조정
+========================================== */
+body.post-page-body--hotel-review-magazine .post-body .post-content h2,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 > strong,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-prefix,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-prefix strong,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-text,
+body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-text:first-child {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) {
+  margin: 50px 0 6px !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:first-child:has(> strong:first-child:last-child):has(+ h2) {
+  margin-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) > strong {
+  display: block !important;
+  margin: 0 !important;
+  padding: 34px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--hotel-review-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-soft) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:first-child:has(> strong:first-child:last-child):has(+ h2) > strong {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) + h2 {
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) + h2 .post-h2-text {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: var(--hotel-review-ink) !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content h3 {
+  margin: 36px 0 20px 0 !important;
+  padding: 10px 0 !important;
+  font-weight: 300 !important;
+}
