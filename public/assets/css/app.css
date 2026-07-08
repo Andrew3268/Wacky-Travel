@@ -8468,3 +8468,40 @@ body.post-page-body--hotel-review-magazine .post-magazine-head > .post-hero-kick
   justify-content: flex-start !important;
   margin: 0 0 16px !important;
 }
+
+/* ==========================================
+   추천 호텔 리뷰 이미지/섹션 라벨 구분선 보정 v2
+   - CSS :has() 인접 감지에 의존하지 않고 렌더러가 붙인 명시 클래스 기준으로 처리
+   - 섹션 라벨 위에 이미지가 있으면 strong의 border-top을 제거하고 이미지 위로 이동
+========================================== */
+body.post-page-body--hotel-review-magazine .post-body .post-content figure.post-inline-image.post-inline-image--before-section-label {
+  margin-top: 50px !important;
+  margin-bottom: 18px !important;
+  padding-top: 34px !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-section-label.post-section-label--after-image {
+  margin-top: 0 !important;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-section-label.post-section-label--after-image > strong {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+.preview-body figure.preview-inline-image.preview-inline-image--before-section-label {
+  margin-top: 50px !important;
+  margin-bottom: 18px !important;
+  padding-top: 34px !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+}
+
+.preview-body p.preview-section-label.preview-section-label--after-image {
+  margin-top: 0 !important;
+}
+
+.preview-body p.preview-section-label.preview-section-label--after-image > strong {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}

@@ -930,17 +930,26 @@ function buildContentWithInlineImageTokens(md = "") {
   return [...tokens, cleanMd].filter(Boolean).join("\n\n").trim();
 }
 
-function renderInlineImageFigure(data = {}, index = 1) {
+function renderInlineImageFigure(data = {}, index = 1, extraClass = "") {
   const imageUrl = sanitizeImageUrlValue(data.url || data.id || "");
   if (!imageUrl) return "";
   const alt = String(data.alt || `본문 이미지 ${index}`).trim();
   const caption = String(data.caption || "").trim();
+  const figureClass = ["preview-inline-image", String(extraClass || "").trim()].filter(Boolean).join(" ");
   return `
-    <figure class="preview-inline-image">
+    <figure class="${figureClass}">
       <img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
       ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
     </figure>
   `;
+}
+
+function markPreviewSectionLabelAfterImageHtml(html = "") {
+  const source = String(html || "");
+  if (/^<p\s+class=/i.test(source.trim())) {
+    return source.replace(/^<p\s+class="([^"]*)"/i, '<p class="$1 preview-section-label preview-section-label--after-image"');
+  }
+  return source.replace(/^<p>/i, '<p class="preview-section-label preview-section-label--after-image">');
 }
 
 
@@ -2686,9 +2695,9 @@ function markdownToHtml(md, options = {}) {
           const sectionLabelHtml = htmlParts.pop();
           contentBlockCount = Math.max(0, contentBlockCount - 1);
           beforeInlineItems.forEach((item) => {
-            pushContentBlock(renderInlineImageFigure(item, item.index));
+            pushContentBlock(renderInlineImageFigure(item, item.index, "preview-inline-image--before-section-label"));
           });
-          pushContentBlock(sectionLabelHtml);
+          pushContentBlock(markPreviewSectionLabelAfterImageHtml(sectionLabelHtml));
         } else {
           beforeInlineItems.forEach((item) => {
             pushContentBlock(renderInlineImageFigure(item, item.index));
