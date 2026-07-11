@@ -27938,59 +27938,30 @@ body.travel-archive-body .travel-card-grid--hotels {
 /* End WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1 */
 
 
-/* Hotel promotions home banner: 2026-07-11 V2 */
+/* Hotel promotions home banner: 2026-07-11 V3 — matches the soft promotion section */
 .travel-promo-link-section {
-  margin-top: clamp(48px, 6vw, 82px);
-  margin-bottom: clamp(28px, 4vw, 54px);
+  margin-top: clamp(54px, 7vw, 96px);
+  margin-bottom: clamp(34px, 5vw, 68px);
+  padding: clamp(54px, 7vw, 86px) 0;
+  background: #f6f6f4;
 }
 
 .home-promo-link {
-  position: relative;
-  min-height: 230px;
+  min-height: 220px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 44px;
-  padding: clamp(34px, 5vw, 58px);
-  overflow: hidden;
+  align-items: center;
+  gap: 48px;
+  padding: clamp(34px, 5vw, 54px);
   border: 1px solid #111;
   border-radius: 28px;
-  color: #fff !important;
-  background: #0d0d0d !important;
+  color: #111 !important;
+  background: #fff;
   text-decoration: none !important;
-  isolation: isolate;
-  box-shadow: 0 18px 50px rgba(0,0,0,.08);
-  transition: transform .22s ease, box-shadow .22s ease;
-}
-
-.home-promo-link::before {
-  content: "%";
-  position: absolute;
-  right: clamp(36px, 7vw, 92px);
-  top: 50%;
-  z-index: -1;
-  transform: translateY(-52%);
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,.16);
-  font-size: clamp(126px, 18vw, 220px);
-  line-height: .8;
-  font-weight: 700;
-  letter-spacing: -.09em;
-  pointer-events: none;
-}
-
-.home-promo-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: linear-gradient(115deg, rgba(255,255,255,.055), transparent 46%);
-  pointer-events: none;
+  transition: background .2s ease, transform .2s ease;
 }
 
 .home-promo-link__copy {
-  position: relative;
-  z-index: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -28001,142 +27972,96 @@ body.travel-archive-body .travel-card-grid--hotels {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  color: #666;
   font-size: 11px;
   line-height: 1;
   font-weight: 760;
-  letter-spacing: .18em;
+  letter-spacing: .17em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.56);
 }
 
 .home-promo-link__kicker::before {
-  content: "";
-  width: 26px;
+  width: 25px;
   height: 1px;
   background: currentColor;
+  content: "";
 }
 
 .home-promo-link__heading {
   max-width: 720px;
-  font-size: clamp(31px, 4.2vw, 54px);
-  line-height: 1.04;
+  font-size: clamp(31px, 4.1vw, 52px);
+  line-height: 1.06;
   font-weight: 710;
-  letter-spacing: -.055em;
+  letter-spacing: -.052em;
   word-break: keep-all;
 }
 
 .home-promo-link__summary {
-  max-width: 620px;
+  max-width: 650px;
   margin-top: 17px;
+  color: #666;
   font-size: 15px;
   line-height: 1.72;
-  color: rgba(255,255,255,.62);
   word-break: keep-all;
 }
 
 .home-promo-link__go {
-  position: relative;
-  z-index: 1;
-  min-width: 142px;
-  min-height: 56px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 0 21px;
-  border: 1px solid rgba(255,255,255,.42);
-  border-radius: 999px;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid #111;
+  border-radius: 50%;
   color: #fff;
-  background: rgba(255,255,255,.02);
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-  backdrop-filter: blur(8px);
-  transition: background .22s ease, color .22s ease, border-color .22s ease;
+  background: #111;
+  transition: color .2s ease, background .2s ease, transform .2s ease;
 }
 
+.home-promo-link__go span { display: none; }
 .home-promo-link__go svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: transform .22s ease;
+  transition: transform .2s ease;
 }
 
-.home-promo-link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 24px 64px rgba(0,0,0,.14);
-}
-
+.home-promo-link:hover { background: #fbfbfa; }
 .home-promo-link:hover .home-promo-link__go {
-  border-color: #fff;
   color: #111;
   background: #fff;
-}
-
-.home-promo-link:hover .home-promo-link__go svg {
   transform: translateX(3px);
 }
-
-.home-promo-link:focus-visible {
-  outline: 3px solid rgba(17,17,17,.22);
-  outline-offset: 5px;
-}
+.home-promo-link:hover .home-promo-link__go svg { transform: translateX(2px); }
+.home-promo-link:focus-visible { outline: 3px solid rgba(17,17,17,.2); outline-offset: 5px; }
 
 @media (max-width: 720px) {
   .travel-promo-link-section {
-    margin-top: 46px;
-    margin-bottom: 24px;
+    margin-top: 48px;
+    margin-bottom: 28px;
+    padding: 48px 0;
   }
-
   .home-promo-link {
-    min-height: 286px;
-    grid-template-columns: 1fr;
-    align-items: stretch;
-    gap: 30px;
-    padding: 31px 26px 25px;
-    border-radius: 24px;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) 54px;
+    gap: 20px;
+    padding: 30px 24px;
+    border-radius: 22px;
   }
-
-  .home-promo-link::before {
-    right: 10px;
-    top: 54%;
-    font-size: 150px;
-  }
-
-  .home-promo-link__kicker {
-    margin-bottom: 17px;
-  }
-
-  .home-promo-link__heading {
-    max-width: 290px;
-    font-size: 34px;
-  }
-
-  .home-promo-link__summary {
-    max-width: 290px;
-    margin-top: 14px;
-    font-size: 14px;
-    line-height: 1.65;
-  }
-
-  .home-promo-link__go {
-    width: 100%;
-    min-width: 0;
-    justify-content: space-between;
-    align-self: end;
-    padding-inline: 19px;
-  }
+  .home-promo-link__kicker { margin-bottom: 15px; }
+  .home-promo-link__heading { font-size: 31px; }
+  .home-promo-link__summary { margin-top: 13px; font-size: 14px; line-height: 1.65; }
+  .home-promo-link__go { width: 54px; height: 54px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .home-promo-link,
   .home-promo-link__go,
-  .home-promo-link__go svg {
-    transition: none;
-  }
+  .home-promo-link__go svg { transition: none; }
 }
+
