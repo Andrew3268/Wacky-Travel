@@ -3,7 +3,7 @@ import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } fr
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v23-osaka-guide-links-v16";
+const DESTINATION_RENDER_VERSION = "destination-detail-v24-hotel-card-mono-v1";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -94,7 +94,7 @@ export async function onRequestGet({ params, env, request }) {
   ${renderTravelHead({ title, description, canonical, image: heroImage })}
   ${renderJsonLdScripts(jsonLdItems)}
 </head>
-<body>
+<body class="travel-city-body travel-destination-detail-body">
   ${renderSiteHeader({ active: "destinations" })}
   ${renderBreadcrumbs(breadcrumbItems)}
   <main class="travel-page">
@@ -265,7 +265,7 @@ function renderHotelSection(destination, top5Posts = [], hotelIntroPosts = [], c
   const hasHotelContent = top5Posts.length > 0 || hotelIntroPosts.length > 0;
   if (!hasHotelContent) return "";
 
-  return `<section class="container travel-section">
+  return `<section id="hotel-posts" class="container travel-section wt-city-dynamic-section">
       <div class="section-heading">
         <p class="eyebrow">Hotel Picks</p>
         <h2>와키트래블 추천 호텔</h2>

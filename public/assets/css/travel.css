@@ -27676,3 +27676,263 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
   }
 }
 /* End WACKYTRAVEL_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41 */
+
+/* WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1
+   - 도시 메인 Hotel Picks와 호텔 아카이브 카드 UI를 블랙 & 화이트 미니멀 톤으로 통일
+   - /hotel-recommendations/, /hotels/ 모바일 목록은 1열로 고정
+========================================================= */
+
+/* 도시 메인과 호텔 아카이브에서 사용하는 공통 호텔 카드 표면 */
+body.travel-archive-body .travel-card.hotel-card,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card {
+  position: relative !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: border-color .18s ease, transform .18s ease !important;
+}
+
+body.travel-archive-body .travel-card.hotel-card:hover,
+body.travel-archive-body .travel-card.hotel-card:focus-within,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card:hover,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card:focus-within,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card:hover,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card:focus-within {
+  border-color: #000000 !important;
+  transform: translateY(-2px) !important;
+}
+
+body.travel-archive-body .hotel-card.travel-card--clickable .travel-card__full-link,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card.travel-card--clickable .travel-card__full-link,
+body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clickable .travel-card__full-link {
+  display: flex !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  flex-direction: column !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+
+body.travel-archive-body .hotel-card.travel-card--clickable .travel-card__full-link:focus-visible,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card.travel-card--clickable .travel-card__full-link:focus-visible,
+body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clickable .travel-card__full-link:focus-visible {
+  outline: 2px solid #000000 !important;
+  outline-offset: -4px !important;
+}
+
+body.travel-archive-body .hotel-card.travel-card--clickable .travel-card__media,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card.travel-card--clickable .travel-card__media,
+body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clickable .travel-card__media {
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 10 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border-radius: 0 !important;
+  background: #f3f3f3 !important;
+}
+
+body.travel-archive-body .hotel-card.travel-card--clickable .travel-card__media::after,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card.travel-card--clickable .travel-card__media::after,
+body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clickable .travel-card__media::after {
+  display: none !important;
+  content: none !important;
+}
+
+body.travel-archive-body .hotel-card.travel-card--clickable .travel-card__media img,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card.travel-card--clickable .travel-card__media img,
+body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clickable .travel-card__media img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: grayscale(.12) saturate(.88) contrast(1.04) !important;
+  transform: scale(1) !important;
+  transition: transform .35s ease, filter .35s ease !important;
+}
+
+body.travel-archive-body .travel-card.hotel-card:hover .travel-card__media img,
+body.travel-archive-body .travel-card.hotel-card:focus-within .travel-card__media img,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card:hover .travel-card__media img,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card:focus-within .travel-card__media img,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card:hover .travel-card__media img,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card:focus-within .travel-card__media img {
+  filter: grayscale(0) saturate(.96) contrast(1.04) !important;
+  transform: scale(1.025) !important;
+}
+
+body.travel-archive-body .hotel-card .travel-card__body,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  min-height: 250px !important;
+  padding: 22px !important;
+  background: #ffffff !important;
+}
+
+body.travel-archive-body .hotel-card .travel-card__meta,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__meta,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__meta {
+  margin: 0 0 13px !important;
+  color: rgba(0, 0, 0, 0.52) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.015em !important;
+}
+
+body.travel-archive-body .hotel-card .travel-card__title,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__title,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title {
+  margin: 0 !important;
+  color: #000000 !important;
+  font-size: clamp(21px, 1.7vw, 26px) !important;
+  font-weight: 900 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.055em !important;
+  word-break: keep-all !important;
+  overflow-wrap: anywhere !important;
+}
+
+body.travel-archive-body .hotel-card .travel-card__description,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__description,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__description {
+  margin: 15px 0 0 !important;
+  color: rgba(0, 0, 0, 0.64) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+  letter-spacing: -0.032em !important;
+  word-break: keep-all !important;
+  overflow-wrap: anywhere !important;
+}
+
+body.travel-archive-body .hotel-card .tag-row,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .tag-row,
+body.travel-destination-detail-body #hotel-posts .hotel-card .tag-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 7px !important;
+  margin: 18px 0 0 !important;
+}
+
+body.travel-archive-body .hotel-card .tag-row span,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .tag-row span,
+body.travel-destination-detail-body #hotel-posts .hotel-card .tag-row span {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 28px !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  color: rgba(0, 0, 0, 0.68) !important;
+  box-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
+}
+
+body.travel-archive-body .hotel-card .text-link,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .text-link,
+body.travel-destination-detail-body #hotel-posts .hotel-card .text-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  min-height: 42px !important;
+  margin-top: auto !important;
+  padding: 0 16px !important;
+  border: 1px solid #000000 !important;
+  border-radius: 0 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.025em !important;
+  text-decoration: none !important;
+  pointer-events: none !important;
+}
+
+body.travel-archive-body .travel-card.hotel-card:hover .text-link,
+body.travel-archive-body .travel-card.hotel-card:focus-within .text-link,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card:hover .text-link,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card:focus-within .text-link,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card:hover .text-link,
+body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card:focus-within .text-link {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* 아카이브: 데스크톱 3열, 태블릿 2열, 모바일 1열 */
+body.travel-archive-body .travel-card-grid--hotels {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  body.travel-archive-body .travel-card-grid--hotels {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.travel-archive-body .travel-card-grid--hotels,
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card-grid--hotels,
+  body.travel-destination-detail-body #hotel-posts .travel-card-grid--hotels {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  body.travel-archive-body .hotel-card .travel-card__body,
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body,
+  body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body {
+    min-height: 0 !important;
+    padding: 20px !important;
+  }
+
+  body.travel-archive-body .hotel-card .travel-card__title,
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__title,
+  body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+  }
+
+  body.travel-archive-body .hotel-card .text-link,
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .text-link,
+  body.travel-destination-detail-body #hotel-posts .hotel-card .text-link {
+    width: 100% !important;
+    min-height: 44px !important;
+    margin-top: 20px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.travel-archive-body .travel-card.hotel-card,
+  body.travel-archive-body .hotel-card .travel-card__media img,
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card.hotel-card,
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__media img,
+  body.travel-destination-detail-body #hotel-posts .travel-card.hotel-card,
+  body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__media img {
+    transition: none !important;
+  }
+}
+/* End WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1 */
