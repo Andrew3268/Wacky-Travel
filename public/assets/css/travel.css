@@ -27938,29 +27938,59 @@ body.travel-archive-body .travel-card-grid--hotels {
 /* End WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1 */
 
 
-/* Hotel promotions home banner: 2026-07-11 */
+/* Hotel promotions home banner: 2026-07-11 V2 */
 .travel-promo-link-section {
-  margin-top: clamp(54px, 7vw, 92px);
-  margin-bottom: clamp(16px, 3vw, 36px);
+  margin-top: clamp(48px, 6vw, 82px);
+  margin-bottom: clamp(28px, 4vw, 54px);
 }
 
-main.travel-page .home-promo-link {
-  min-height: 218px;
+.home-promo-link {
+  position: relative;
+  min-height: 230px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
-  gap: 36px;
-  padding: clamp(30px, 5vw, 52px);
+  gap: 44px;
+  padding: clamp(34px, 5vw, 58px);
   overflow: hidden;
   border: 1px solid #111;
-  border-radius: 30px;
+  border-radius: 28px;
   color: #fff !important;
-  background: #111 !important;
-  text-decoration: none;
-  transition: color .22s ease, background .22s ease, transform .22s ease;
+  background: #0d0d0d !important;
+  text-decoration: none !important;
+  isolation: isolate;
+  box-shadow: 0 18px 50px rgba(0,0,0,.08);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.home-promo-link::before {
+  content: "%";
+  position: absolute;
+  right: clamp(36px, 7vw, 92px);
+  top: 50%;
+  z-index: -1;
+  transform: translateY(-52%);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,.16);
+  font-size: clamp(126px, 18vw, 220px);
+  line-height: .8;
+  font-weight: 700;
+  letter-spacing: -.09em;
+  pointer-events: none;
+}
+
+.home-promo-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(115deg, rgba(255,255,255,.055), transparent 46%);
+  pointer-events: none;
 }
 
 .home-promo-link__copy {
+  position: relative;
+  z-index: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -27968,46 +27998,62 @@ main.travel-page .home-promo-link {
 }
 
 .home-promo-link__kicker {
-  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
   font-size: 11px;
   line-height: 1;
-  font-weight: 750;
-  letter-spacing: .17em;
+  font-weight: 760;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  opacity: .62;
+  color: rgba(255,255,255,.56);
+}
+
+.home-promo-link__kicker::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: currentColor;
 }
 
 .home-promo-link__heading {
-  font-size: clamp(29px, 4.4vw, 52px);
-  line-height: 1.08;
-  font-weight: 720;
-  letter-spacing: -.052em;
+  max-width: 720px;
+  font-size: clamp(31px, 4.2vw, 54px);
+  line-height: 1.04;
+  font-weight: 710;
+  letter-spacing: -.055em;
   word-break: keep-all;
 }
 
 .home-promo-link__summary {
-  max-width: 610px;
-  margin-top: 16px;
+  max-width: 620px;
+  margin-top: 17px;
   font-size: 15px;
-  line-height: 1.7;
-  color: rgba(255,255,255,.66);
+  line-height: 1.72;
+  color: rgba(255,255,255,.62);
   word-break: keep-all;
 }
 
 .home-promo-link__go {
-  min-width: 132px;
-  min-height: 54px;
+  position: relative;
+  z-index: 1;
+  min-width: 142px;
+  min-height: 56px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  padding: 0 20px;
-  border: 1px solid rgba(255,255,255,.48);
+  padding: 0 21px;
+  border: 1px solid rgba(255,255,255,.42);
   border-radius: 999px;
+  color: #fff;
+  background: rgba(255,255,255,.02);
   font-size: 13px;
   font-weight: 700;
   white-space: nowrap;
-  transition: border-color .22s ease, background .22s ease, color .22s ease;
+  backdrop-filter: blur(8px);
+  transition: background .22s ease, color .22s ease, border-color .22s ease;
 }
 
 .home-promo-link__go svg {
@@ -28021,20 +28067,15 @@ main.travel-page .home-promo-link {
   transition: transform .22s ease;
 }
 
-main.travel-page .home-promo-link:hover {
-  color: #111 !important;
-  background: #fff !important;
-  transform: translateY(-2px);
-}
-
-.home-promo-link:hover .home-promo-link__summary {
-  color: rgba(17,17,17,.62);
+.home-promo-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 64px rgba(0,0,0,.14);
 }
 
 .home-promo-link:hover .home-promo-link__go {
-  border-color: #111;
-  background: #111;
-  color: #fff;
+  border-color: #fff;
+  color: #111;
+  background: #fff;
 }
 
 .home-promo-link:hover .home-promo-link__go svg {
@@ -28042,41 +28083,53 @@ main.travel-page .home-promo-link:hover {
 }
 
 .home-promo-link:focus-visible {
-  outline: 3px solid rgba(17,17,17,.2);
-  outline-offset: 4px;
+  outline: 3px solid rgba(17,17,17,.22);
+  outline-offset: 5px;
 }
 
 @media (max-width: 720px) {
   .travel-promo-link-section {
-    margin-top: 52px;
-    margin-bottom: 8px;
+    margin-top: 46px;
+    margin-bottom: 24px;
   }
 
-  main.travel-page .home-promo-link {
-    min-height: 250px;
+  .home-promo-link {
+    min-height: 286px;
     grid-template-columns: 1fr;
     align-items: stretch;
-    gap: 32px;
-    padding: 30px 26px 26px;
+    gap: 30px;
+    padding: 31px 26px 25px;
     border-radius: 24px;
   }
 
+  .home-promo-link::before {
+    right: 10px;
+    top: 54%;
+    font-size: 150px;
+  }
+
+  .home-promo-link__kicker {
+    margin-bottom: 17px;
+  }
+
   .home-promo-link__heading {
-    max-width: 270px;
-    font-size: 32px;
+    max-width: 290px;
+    font-size: 34px;
   }
 
   .home-promo-link__summary {
+    max-width: 290px;
     margin-top: 14px;
     font-size: 14px;
+    line-height: 1.65;
   }
 
   .home-promo-link__go {
-    min-width: 0;
     width: 100%;
+    min-width: 0;
     justify-content: space-between;
     align-self: end;
-    padding-inline: 18px;
+    padding-inline: 19px;
   }
 }
 

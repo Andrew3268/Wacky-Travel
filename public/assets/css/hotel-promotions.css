@@ -47,68 +47,6 @@
       margin-inline: auto;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(17, 17, 17, .08);
-      background: rgba(255, 255, 255, .94);
-      backdrop-filter: blur(18px);
-    }
-    .site-header__inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      font-weight: 650;
-      letter-spacing: -.02em;
-    }
-    .brand__mark {
-      width: 36px;
-      height: 36px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: #fff;
-      background: #111;
-      font-size: 12px;
-      letter-spacing: .04em;
-    }
-    .brand__text { font-size: 16px; }
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .header-nav a,
-    .icon-button {
-      min-height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      transition: background .2s ease, color .2s ease;
-    }
-    .header-nav a { padding: 0 14px; font-size: 14px; font-weight: 600; }
-    .header-nav a[aria-current="page"] { color: #fff; background: #111; }
-    .header-nav a:hover { background: #f0f0ee; }
-    .header-nav a[aria-current="page"]:hover { background: #111; }
-    .icon-button {
-      width: 42px;
-      border: 0;
-      color: #111;
-      background: transparent;
-      cursor: pointer;
-    }
-    .icon-button:hover { background: #f0f0ee; }
-    .icon-button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; }
-
     .hero { padding: 82px 0 42px; }
     .hero__grid {
       display: grid;
@@ -584,11 +522,6 @@
 
     @media (max-width: 760px) {
       .container { width: min(100% - 28px, var(--max)); }
-      .site-header__inner { min-height: 64px; }
-      .brand__mark { width: 34px; height: 34px; }
-      .brand__text { display: none; }
-      .header-nav a:not([aria-current="page"]) { display: none; }
-      .header-nav a[aria-current="page"] { min-height: 38px; padding-inline: 13px; font-size: 12px; }
       .hero { padding: 52px 0 30px; }
       .hero h1 { font-size: clamp(42px, 13vw, 62px); }
       .hero__desc { margin-top: 22px; font-size: 16px; }
@@ -657,3 +590,19 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
+
+
+/* Use the same editorial header as the rest of Wacky Travel. */
+body.travel-promotions-body .topbar.topbar--editorial.topbar--travel {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+}
+body.travel-promotions-body .topbar--travel .topbar__inner.container {
+  width: min(var(--max), calc(100% - 40px));
+}
+@media (max-width: 720px) {
+  body.travel-promotions-body .topbar--travel .topbar__inner.container {
+    width: min(var(--max), calc(100% - 32px));
+  }
+}
