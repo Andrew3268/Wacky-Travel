@@ -16,8 +16,8 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260711PromoBannerV2" />
-  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260711ScopedClassesV3" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260711PromoBannerV4" />
+  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260711DummyPlatformsV4" />
 
   <script type="application/ld+json">
   {
@@ -54,8 +54,8 @@
           <p class="wtpromo-hero__desc">아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 모았습니다. 혜택과 주요 일정을 살펴보고 관심 있는 프로모션의 공식 페이지로 바로 이동해보세요.</p>
         </div>
         <div class="wtpromo-hero__summary" aria-label="프로모션 현황">
-          <div class="wtpromo-summary-row"><span>등록된 프로모션</span><strong id="totalPromotionCount">9개</strong></div>
-          <div class="wtpromo-summary-row"><span>진행 중</span><strong id="activePromotionCount">6개</strong></div>
+          <div class="wtpromo-summary-row"><span>등록된 프로모션</span><strong id="totalPromotionCount">21개</strong></div>
+          <div class="wtpromo-summary-row"><span>진행 중</span><strong id="activePromotionCount">18개</strong></div>
           <div class="wtpromo-summary-row"><span>마지막 확인</span><strong id="lastVerifiedDate">2026.07.11</strong></div>
         </div>
       </div>
@@ -67,7 +67,6 @@
           <p class="wtpromo-eyebrow">Editor’s Pick</p>
           <h2 id="featuredTitle">지금 확인할 프로모션</h2>
         </div>
-        <p>놓치기 쉬운 예정·정기 혜택을 먼저 골랐습니다.</p>
       </div>
       <div class="wtpromo-featured-grid" id="featuredGrid">
         <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" aria-label="아시아나 여행 특가 라이브 · 프로모션 링크 준비 중">
@@ -114,13 +113,18 @@
         <div>
           <p class="wtpromo-eyebrow">All Promotions</p>
           <h2 id="allPromotionsTitle" style="margin:0;font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-.045em;">전체 프로모션</h2>
-          <p class="wtpromo-result-summary" id="resultSummary" aria-live="polite">현재 확인 가능한 프로모션 9개</p>
         </div>
       </div>
 
       <div class="wtpromo-platform-tabs" id="platformTabs" role="tablist" aria-label="호텔 플랫폼" style="margin-bottom:22px;">
         <button class="wtpromo-pill wtpromo-is-active" type="button" data-platform="all" role="tab" aria-selected="true">전체</button>
         <button class="wtpromo-pill" type="button" data-platform="trip" role="tab" aria-selected="false">트립닷컴</button>
+        <button class="wtpromo-pill" type="button" data-platform="agoda" role="tab" aria-selected="false">아고다</button>
+        <button class="wtpromo-pill" type="button" data-platform="hotels" role="tab" aria-selected="false">호텔스닷컴</button>
+        <button class="wtpromo-pill" type="button" data-platform="booking" role="tab" aria-selected="false">부킹닷컴</button>
+        <button class="wtpromo-pill" type="button" data-platform="expedia" role="tab" aria-selected="false">익스피디아</button>
+        <button class="wtpromo-pill" type="button" data-platform="yeogi" role="tab" aria-selected="false">여기어때</button>
+        <button class="wtpromo-pill" type="button" data-platform="yanolja" role="tab" aria-selected="false">야놀자</button>
       </div>
 
       <div class="wtpromo-promotion-grid" id="promotionGrid">
@@ -214,6 +218,114 @@
           </div>
           <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
         </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="agoda-001" data-promotion-platform="agoda" data-promotion-status="active" aria-label="해외 호텔 여름 시즌 특가 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Agoda</span></div>
+          <div class="wtpromo-card__content">
+            <h3>해외 호텔 여름 시즌 특가</h3>
+            <p class="wtpromo-card__description">해외 인기 도시 호텔 최대 15% 할인 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="agoda-002" data-promotion-platform="agoda" data-promotion-status="active" aria-label="카드사 제휴 호텔 할인 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Agoda</span></div>
+          <div class="wtpromo-card__content">
+            <h3>카드사 제휴 호텔 할인</h3>
+            <p class="wtpromo-card__description">제휴 카드 결제 시 추가 할인 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="hotels-001" data-promotion-platform="hotels" data-promotion-status="active" aria-label="회원 전용 숙박 리워드 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Hotels.com</span></div>
+          <div class="wtpromo-card__content">
+            <h3>회원 전용 숙박 리워드</h3>
+            <p class="wtpromo-card__description">회원가와 리워드 적립 혜택 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="hotels-002" data-promotion-platform="hotels" data-promotion-status="active" aria-label="주말 호텔 즉시 할인 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Hotels.com</span></div>
+          <div class="wtpromo-card__content">
+            <h3>주말 호텔 즉시 할인</h3>
+            <p class="wtpromo-card__description">주말 예약 대상 호텔 추가 할인 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="booking-001" data-promotion-platform="booking" data-promotion-status="active" aria-label="Genius 회원 호텔 특가 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Booking.com</span></div>
+          <div class="wtpromo-card__content">
+            <h3>Genius 회원 호텔 특가</h3>
+            <p class="wtpromo-card__description">회원 등급별 숙소 할인 혜택 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="booking-002" data-promotion-platform="booking" data-promotion-status="active" aria-label="도시별 인기 숙소 프로모션 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Booking.com</span></div>
+          <div class="wtpromo-card__content">
+            <h3>도시별 인기 숙소 프로모션</h3>
+            <p class="wtpromo-card__description">인기 여행지 숙소 한정 특가 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="expedia-001" data-promotion-platform="expedia" data-promotion-status="active" aria-label="항공+호텔 패키지 특가 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Expedia</span></div>
+          <div class="wtpromo-card__content">
+            <h3>항공+호텔 패키지 특가</h3>
+            <p class="wtpromo-card__description">패키지 예약 시 추가 절약 혜택 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="expedia-002" data-promotion-platform="expedia" data-promotion-status="active" aria-label="앱 전용 호텔 할인 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Expedia</span></div>
+          <div class="wtpromo-card__content">
+            <h3>앱 전용 호텔 할인</h3>
+            <p class="wtpromo-card__description">모바일 앱 예약 전용 가격 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yeogi-001" data-promotion-platform="yeogi" data-promotion-status="active" aria-label="국내 호텔 주말 특가 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">여기어때</span></div>
+          <div class="wtpromo-card__content">
+            <h3>국내 호텔 주말 특가</h3>
+            <p class="wtpromo-card__description">국내 인기 호텔 주말 한정 할인 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yeogi-002" data-promotion-platform="yeogi" data-promotion-status="active" aria-label="숙박 쿠폰 기획전 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">여기어때</span></div>
+          <div class="wtpromo-card__content">
+            <h3>숙박 쿠폰 기획전</h3>
+            <p class="wtpromo-card__description">지역별 숙소 쿠폰 제공 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yanolja-001" data-promotion-platform="yanolja" data-promotion-status="active" aria-label="국내 숙소 타임세일 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">야놀자</span></div>
+          <div class="wtpromo-card__content">
+            <h3>국내 숙소 타임세일</h3>
+            <p class="wtpromo-card__description">정해진 시간에 공개되는 숙소 특가 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+
+        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yanolja-002" data-promotion-platform="yanolja" data-promotion-status="active" aria-label="호텔 예약 쿠폰팩 · 테스트용 더미 프로모션">
+          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">야놀자</span></div>
+          <div class="wtpromo-card__content">
+            <h3>호텔 예약 쿠폰팩</h3>
+            <p class="wtpromo-card__description">호텔 예약 시 사용할 수 있는 쿠폰 · 테스트용 데이터</p>
+          </div>
+          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
       </div>
     </section>
 
@@ -292,7 +404,6 @@
 
   <script>
     (() => {
-      const resultSummary = document.getElementById('resultSummary');
       const cards = Array.from(document.querySelectorAll('#promotionGrid [data-promotion-platform]'));
 
       document.getElementById('platformTabs')?.addEventListener('click', (event) => {
@@ -306,13 +417,10 @@
           tab.setAttribute('aria-selected', active ? 'true' : 'false');
         });
 
-        let visibleCount = 0;
         cards.forEach((card) => {
           const visible = selected === 'all' || card.dataset.promotionPlatform === selected;
           card.hidden = !visible;
-          if (visible) visibleCount += 1;
         });
-        resultSummary.textContent = `현재 확인 가능한 프로모션 ${visibleCount}개`;
       });
 
       document.querySelectorAll('.wtpromo-faq-question').forEach((button) => {

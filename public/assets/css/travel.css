@@ -27939,6 +27939,11 @@ body.travel-archive-body .travel-card-grid--hotels {
 
 
 /* Hotel promotions home banner: 2026-07-11 V3 — matches the soft promotion section */
+.travel-promo-link-section > .container {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 .travel-promo-link-section {
   margin-top: clamp(54px, 7vw, 96px);
   margin-bottom: clamp(34px, 5vw, 68px);

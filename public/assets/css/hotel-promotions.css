@@ -88,7 +88,7 @@ body.wtpromo-page {
     .wtpromo-summary-row {
       display: flex;
       align-items: baseline;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 20px;
       padding-bottom: 17px;
       border-bottom: 1px solid var(--soft-line);
@@ -239,11 +239,6 @@ body.wtpromo-page {
     .wtpromo-promotion-toolbar {
       display: block;
       margin-bottom: 28px;
-    }
-    .wtpromo-result-summary {
-      margin: 14px 0 0;
-      color: var(--sub);
-      font-size: 14px;
     }
     .wtpromo-promotion-grid {
       border-top: 1px solid #111;
