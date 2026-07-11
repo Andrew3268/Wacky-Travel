@@ -27940,6 +27940,9 @@ body.travel-archive-body .travel-card-grid--hotels {
 
 /* Hotel promotions home banner: 2026-07-11 V3 — matches the soft promotion section */
 .travel-promo-link-section > .container {
+  padding: 0 !important;
+  margin: 0 15px;
+  border-radius: 22px;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -27963,7 +27966,6 @@ body.travel-archive-body .travel-card-grid--hotels {
   color: #111 !important;
   background: #fff;
   text-decoration: none !important;
-  transition: background .2s ease, transform .2s ease;
 }
 
 .home-promo-link__copy {
@@ -28021,7 +28023,6 @@ body.travel-archive-body .travel-card-grid--hotels {
   border-radius: 50%;
   color: #fff;
   background: #111;
-  transition: color .2s ease, background .2s ease, transform .2s ease;
 }
 
 .home-promo-link__go span { display: none; }
@@ -28033,16 +28034,8 @@ body.travel-archive-body .travel-card-grid--hotels {
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: transform .2s ease;
 }
 
-.home-promo-link:hover { background: #fbfbfa; }
-.home-promo-link:hover .home-promo-link__go {
-  color: #111;
-  background: #fff;
-  transform: translateX(3px);
-}
-.home-promo-link:hover .home-promo-link__go svg { transform: translateX(2px); }
 .home-promo-link:focus-visible { outline: 3px solid rgba(17,17,17,.2); outline-offset: 5px; }
 
 @media (max-width: 720px) {
