@@ -1,10 +1,11 @@
 const DEFAULT_SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const STATIC_PAGE_LASTMOD = "2026-06-14";
+const STATIC_PAGE_LASTMOD = "2026-07-11";
 
 const STATIC_ROUTES = [
   "/",
   "/about/",
   "/destinations/",
+  "/hotel-promotions/",
   "/search/",
   "/destinations/tainan/",
   "/destinations/tainan/hotel-recommendations/",

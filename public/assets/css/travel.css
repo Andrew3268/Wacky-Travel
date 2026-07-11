@@ -27936,3 +27936,154 @@ body.travel-archive-body .travel-card-grid--hotels {
   }
 }
 /* End WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1 */
+
+
+/* Hotel promotions home banner: 2026-07-11 */
+.travel-promo-link-section {
+  margin-top: clamp(54px, 7vw, 92px);
+  margin-bottom: clamp(16px, 3vw, 36px);
+}
+
+main.travel-page .home-promo-link {
+  min-height: 218px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 36px;
+  padding: clamp(30px, 5vw, 52px);
+  overflow: hidden;
+  border: 1px solid #111;
+  border-radius: 30px;
+  color: #fff !important;
+  background: #111 !important;
+  text-decoration: none;
+  transition: color .22s ease, background .22s ease, transform .22s ease;
+}
+
+.home-promo-link__copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home-promo-link__kicker {
+  margin-bottom: 18px;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  opacity: .62;
+}
+
+.home-promo-link__heading {
+  font-size: clamp(29px, 4.4vw, 52px);
+  line-height: 1.08;
+  font-weight: 720;
+  letter-spacing: -.052em;
+  word-break: keep-all;
+}
+
+.home-promo-link__summary {
+  max-width: 610px;
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,.66);
+  word-break: keep-all;
+}
+
+.home-promo-link__go {
+  min-width: 132px;
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 0 20px;
+  border: 1px solid rgba(255,255,255,.48);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: border-color .22s ease, background .22s ease, color .22s ease;
+}
+
+.home-promo-link__go svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .22s ease;
+}
+
+main.travel-page .home-promo-link:hover {
+  color: #111 !important;
+  background: #fff !important;
+  transform: translateY(-2px);
+}
+
+.home-promo-link:hover .home-promo-link__summary {
+  color: rgba(17,17,17,.62);
+}
+
+.home-promo-link:hover .home-promo-link__go {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+.home-promo-link:hover .home-promo-link__go svg {
+  transform: translateX(3px);
+}
+
+.home-promo-link:focus-visible {
+  outline: 3px solid rgba(17,17,17,.2);
+  outline-offset: 4px;
+}
+
+@media (max-width: 720px) {
+  .travel-promo-link-section {
+    margin-top: 52px;
+    margin-bottom: 8px;
+  }
+
+  main.travel-page .home-promo-link {
+    min-height: 250px;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 32px;
+    padding: 30px 26px 26px;
+    border-radius: 24px;
+  }
+
+  .home-promo-link__heading {
+    max-width: 270px;
+    font-size: 32px;
+  }
+
+  .home-promo-link__summary {
+    margin-top: 14px;
+    font-size: 14px;
+  }
+
+  .home-promo-link__go {
+    min-width: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-self: end;
+    padding-inline: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-promo-link,
+  .home-promo-link__go,
+  .home-promo-link__go svg {
+    transition: none;
+  }
+}

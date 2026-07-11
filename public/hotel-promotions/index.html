@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>호텔 프로모션 모아보기 | Wacky Travel</title>
+  <meta name="description" content="아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 한곳에서 확인하세요." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="/hotel-promotions/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wacky Travel" />
+  <meta property="og:title" content="호텔 프로모션 모아보기 | Wacky Travel" />
+  <meta property="og:description" content="호텔 예약 플랫폼에서 진행하는 프로모션과 주요 일정을 한곳에서 확인하세요." />
+  <meta property="og:url" content="/hotel-promotions/" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260711StaticV1" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "호텔 프로모션 모아보기",
+    "description": "호텔 예약 플랫폼에서 진행하는 프로모션과 주요 일정을 한곳에서 확인하는 페이지입니다.",
+    "url": "/hotel-promotions/",
+    "isPartOf": {"@type": "WebSite", "name": "Wacky Travel", "url": "/"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="brand" href="/" aria-label="Wacky Travel 홈">
+        <span class="brand__mark">WT</span>
+        <span class="brand__text">Wacky Travel</span>
+      </a>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="/destinations/">여행지</a>
+        <a href="/hotel-promotions/" aria-current="page">호텔 할인</a>
+        <button class="icon-button" type="button" aria-label="검색 페이지로 이동" onclick="location.href='/search/'">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.3 4.3"></path></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__grid container">
+        <div>
+          <p class="eyebrow">Hotel Promotion Guide</p>
+          <h1>호텔 프로모션을<br />한곳에서.</h1>
+          <p class="hero__desc">아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 모았습니다. 혜택과 주요 일정을 살펴보고 관심 있는 프로모션의 공식 페이지로 바로 이동해보세요.</p>
+        </div>
+        <div class="hero__summary" aria-label="프로모션 현황">
+          <div class="summary-row"><span>등록된 프로모션</span><strong id="totalPromotionCount">9개</strong></div>
+          <div class="summary-row"><span>진행 중</span><strong id="activePromotionCount">6개</strong></div>
+          <div class="summary-row"><span>마지막 확인</span><strong id="lastVerifiedDate">2026.07.11</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="featuredTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Editor’s Pick</p>
+          <h2 id="featuredTitle">지금 확인할 프로모션</h2>
+        </div>
+        <p>놓치기 쉬운 예정·정기 혜택을 먼저 골랐습니다.</p>
+      </div>
+      <div class="featured-grid" id="featuredGrid">
+        <article class="featured-card featured-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" aria-label="아시아나 여행 특가 라이브 · 프로모션 링크 준비 중">
+          <div class="featured-card__top">
+            <span class="platform-wordmark">Trip.com</span>
+            <span class="status-label">7월 13일 라이브</span>
+          </div>
+          <span class="featured-card__index">01</span>
+          <h3>아시아나 여행 특가 라이브</h3>
+          <div class="featured-card__meta">
+            <span>전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</span>
+            <span class="circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+          </div>
+        </article>
+        <article class="featured-card featured-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip" aria-label="수요일 일본여행 5만원 쿠폰데이 · 프로모션 링크 준비 중">
+          <div class="featured-card__top">
+            <span class="platform-wordmark">Trip.com</span>
+            <span class="status-label">매주 수요일</span>
+          </div>
+          <span class="featured-card__index">02</span>
+          <h3>수요일 일본여행 5만원 쿠폰데이</h3>
+          <div class="featured-card__meta">
+            <span>일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</span>
+            <span class="circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+          </div>
+        </article>
+        <article class="featured-card featured-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip" aria-label="매일 최대 50% 항공·호텔 특가 · 프로모션 링크 준비 중">
+          <div class="featured-card__top">
+            <span class="platform-wordmark">Trip.com</span>
+            <span class="status-label">매일 진행</span>
+          </div>
+          <span class="featured-card__index">03</span>
+          <h3>매일 최대 50% 항공·호텔 특가</h3>
+          <div class="featured-card__meta">
+            <span>항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</span>
+            <span class="circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="allPromotionsTitle">
+      <div class="promotion-toolbar">
+        <div>
+          <p class="eyebrow">All Promotions</p>
+          <h2 id="allPromotionsTitle" style="margin:0;font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-.045em;">전체 프로모션</h2>
+          <p class="result-summary" id="resultSummary" aria-live="polite">현재 확인 가능한 프로모션 9개</p>
+        </div>
+      </div>
+
+      <div class="platform-tabs" id="platformTabs" role="tablist" aria-label="호텔 플랫폼" style="margin-bottom:22px;">
+        <button class="pill is-active" type="button" data-platform="all" role="tab" aria-selected="true">전체</button>
+        <button class="pill" type="button" data-platform="trip" role="tab" aria-selected="false">트립닷컴</button>
+      </div>
+
+      <div class="promotion-grid" id="promotionGrid">
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" data-promotion-status="scheduled" aria-label="아시아나 여행 특가 라이브 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>아시아나 여행 특가 라이브</h3>
+            <p class="promotion-card__description">전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip" data-promotion-status="active" aria-label="수요일 일본여행 5만원 쿠폰데이 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>수요일 일본여행 5만원 쿠폰데이</h3>
+            <p class="promotion-card__description">일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip" data-promotion-status="active" aria-label="매일 최대 50% 항공·호텔 특가 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>매일 최대 50% 항공·호텔 특가</h3>
+            <p class="promotion-card__description">항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-004" data-promotion-platform="trip" data-promotion-status="active" aria-label="수요일 1천원대 특급호텔 오픈런 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>수요일 1천원대 특급호텔 오픈런</h3>
+            <p class="promotion-card__description">특급호텔을 1천원대부터 예약 · 매주 수요일 선착순</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-005" data-promotion-platform="trip" data-promotion-status="needs-review" aria-label="국내외 항공권 최대 50% 특가전 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>국내외 항공권 최대 50% 특가전</h3>
+            <p class="promotion-card__description">국내선과 국제선 할인 항공권을 한곳에 구성</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-006" data-promotion-platform="trip" data-promotion-status="active" aria-label="목요일 대만여행 11만원 할인찬스 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>목요일 대만여행 11만원 할인찬스</h3>
+            <p class="promotion-card__description">대만 항공권과 호텔 예약 시 매주 목요일 추가 할인</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-007" data-promotion-platform="trip" data-promotion-status="needs-review" aria-label="지금 떠나는 전 세계 여행 특가 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>지금 떠나는 전 세계 여행 특가</h3>
+            <p class="promotion-card__description">인기 해외여행지의 항공권과 숙소 특가를 한눈에 확인</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-008" data-promotion-platform="trip" data-promotion-status="active" aria-label="하루 두 번 호텔 4만원 타임딜 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>하루 두 번 호텔 4만원 타임딜</h3>
+            <p class="promotion-card__description">매일 두 차례 공개되는 호텔 한정 할인 · 24시간 판매</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+        <article class="promotion-card promotion-card--disabled" data-promotion-id="trip-009" data-promotion-platform="trip" data-promotion-status="active" aria-label="화·목 중국여행 5만원 할인데이 · 프로모션 링크 준비 중">
+          <div class="promotion-card__identity">
+            <span class="promotion-card__platform">Trip.com</span>
+          </div>
+          <div class="promotion-card__content">
+            <h3>화·목 중국여행 5만원 할인데이</h3>
+            <p class="promotion-card__description">중국 항공권과 호텔에 매주 화요일·목요일 추가 혜택</p>
+          </div>
+          <span class="promotion-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section--soft" aria-labelledby="checkerTitle">
+      <div class="container">
+        <article class="tool-card">
+          <div>
+            <div class="tool-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M7 15h4"></path></svg>
+            </div>
+            <p class="eyebrow">Wacky Travel Tool</p>
+            <h2 id="checkerTitle">내 카드로 받을 수 있는 아고다 할인 찾기</h2>
+            <p>보유한 카드사를 선택하고 할인 전용 링크를 확인하는 간단한 도구입니다. 여러 프로모션 조건을 직접 비교하는 시간을 줄여줍니다.</p>
+          </div>
+          <a class="primary-button" href="/hotel-location-survey/" aria-label="아고다 카드 할인 체커 열기">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="guideTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Before You Go</p>
+          <h2 id="guideTitle">프로모션 확인 전 체크할 점</h2>
+        </div>
+      </div>
+      <div class="guide-grid">
+        <article class="guide-item"><span class="guide-item__number">01</span><h3>예약·이용 기간</h3><p>프로모션을 예약할 수 있는 기간과 실제 숙박·여행이 가능한 기간은 서로 다를 수 있습니다.</p></article>
+        <article class="guide-item"><span class="guide-item__number">02</span><h3>적용 대상</h3><p>특정 국가·도시·호텔·객실 또는 회원에게만 제공되는 혜택인지 먼저 확인하세요.</p></article>
+        <article class="guide-item"><span class="guide-item__number">03</span><h3>참여 방식</h3><p>쿠폰 다운로드, 앱 접속, 전용 링크 이용이나 특정 카드 결제가 필요한 프로모션도 있습니다.</p></article>
+        <article class="guide-item"><span class="guide-item__number">04</span><h3>공개 시간·수량</h3><p>오픈런과 타임딜은 정해진 시간에 열리며 한정 수량이 소진되면 일찍 종료될 수 있습니다.</p></article>
+        <article class="guide-item"><span class="guide-item__number">05</span><h3>최신 운영 조건</h3><p>일정과 혜택은 변경될 수 있으므로 이동한 공식 프로모션 페이지에서 최종 내용을 확인하세요.</p></article>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="faqTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faqTitle">자주 묻는 질문</h2>
+        </div>
+      </div>
+      <div class="faq-list">
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false"><span>프로모션 링크로 들어가면 모든 호텔이 할인되나요?</span><span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-answer" hidden>플랫폼과 카드사에 따라 일부 호텔, 일부 객실, 선결제 상품에만 적용될 수 있습니다. 최종 결제 화면에서 할인 금액이 반영됐는지 확인해야 합니다.</div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false"><span>쿠폰과 카드 할인을 함께 사용할 수 있나요?</span><span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-answer" hidden>중복 적용 여부는 프로모션마다 다릅니다. 이동한 프로모션 페이지와 최종 결제 단계에서 쿠폰·카드 할인 적용 여부를 확인하세요.</div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false"><span>표시된 프로모션은 언제 업데이트되나요?</span><span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-answer" hidden>페이지 상단에 마지막 확인일을 표시합니다. 각 프로모션 카드를 누르면 공식 페이지가 새 탭으로 열리며, 그곳에서 최신 종료일과 적용 조건을 확인할 수 있습니다.</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div>
+        <div class="footer-brand">Wacky Travel</div>
+        <p class="footer-copy">© 2026 Wacky Travel<br />예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
+      </div>
+      <nav class="footer-links" aria-label="하단 메뉴">
+        <a href="/about/">소개</a>
+        <a href="/destinations/">여행지</a>
+        <a href="/search/">검색</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <script>
+    (() => {
+      const resultSummary = document.getElementById('resultSummary');
+      const cards = Array.from(document.querySelectorAll('#promotionGrid [data-promotion-platform]'));
+
+      document.getElementById('platformTabs')?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-platform]');
+        if (!button) return;
+        const selected = button.dataset.platform;
+
+        document.querySelectorAll('#platformTabs [data-platform]').forEach((tab) => {
+          const active = tab === button;
+          tab.classList.toggle('is-active', active);
+          tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const visible = selected === 'all' || card.dataset.promotionPlatform === selected;
+          card.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        resultSummary.textContent = `현재 확인 가능한 프로모션 ${visibleCount}개`;
+      });
+
+      document.querySelectorAll('.faq-question').forEach((button) => {
+        button.addEventListener('click', () => {
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          button.nextElementSibling.hidden = expanded;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
