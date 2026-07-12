@@ -28667,3 +28667,85 @@ body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p {
   body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p { padding-right: 42px !important; }
 }
 /* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V1 */
+
+
+/* WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V2
+   CTA grid placement and collision-proof FAQ +/- icon. */
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > div:first-child {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button,
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button--primary {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: center !important;
+  justify-self: end !important;
+  margin: 0 !important;
+}
+
+/* Disable legacy summary pseudo-icons; use a dedicated element like hotel-promotions. */
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::before,
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::after {
+  display: none !important;
+  content: none !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon {
+  position: relative !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  display: block !important;
+  border: 1px solid #aaa !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon::before,
+body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon::after {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 10px !important;
+  height: 1px !important;
+  display: block !important;
+  content: "" !important;
+  background: #111 !important;
+  border: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  transition: transform .2s ease !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item[open] > summary .wt-purpose-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg) !important;
+}
+
+@media (max-width: 760px) {
+  /* Match the original hotel-promotions mobile treatment. */
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band {
+    grid-template-columns: 1fr !important;
+  }
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > div:first-child {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button,
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button--primary {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+  }
+}
+/* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V2 */
