@@ -14527,13 +14527,13 @@ main.travel-page.wt-purpose-page,
 main.travel-page.wt-city-guide-page,
 main.travel-page.wt-city-hotel-guide-page,
 main.travel-page.wt-city-travel-guide-page,
-main.travel-page :where(.container, .wt-section, .wt-city-section, .wt-page-hero, .wt-city-hero, .wt-city-cta, .wt-section--survey-cta, .wt-cta-band, .wt-area-tabs, .wt-city-area-tabs, .wt-area-tab-panel, .wt-city-area-tab-panel, .wt-hotel-section, .wt-hotel-grid, .wt-content-grid, .wt-city-guide-links, .wt-city-snapshot, .wt-city-route, .wt-city-route__item, .wt-survey-wrap, .wt-survey-card, .wt-result-wrap),
-main.travel-page :where([class*="-card"], [class*="__card"], [class*="panel"], [class*="banner"], [class*="surface"], [class*="box"], [class*="wrap"], [class*="note"], [class*="notice"]) {
+main.travel-page:not(.travel-home) :where(.container, .wt-section, .wt-city-section, .wt-page-hero, .wt-city-hero, .wt-city-cta, .wt-section--survey-cta, .wt-cta-band, .wt-area-tabs, .wt-city-area-tabs, .wt-area-tab-panel, .wt-city-area-tab-panel, .wt-hotel-section, .wt-hotel-grid, .wt-content-grid, .wt-city-guide-links, .wt-city-snapshot, .wt-city-route, .wt-city-route__item, .wt-survey-wrap, .wt-survey-card, .wt-result-wrap),
+main.travel-page:not(.travel-home) :where([class*="-card"], [class*="__card"], [class*="panel"], [class*="banner"], [class*="surface"], [class*="box"], [class*="wrap"], [class*="note"], [class*="notice"]) {
   background: #ffffff !important;
   background-color: #ffffff !important;
 }
 
-main.travel-page :where(
+main.travel-page:not(.travel-home) :where(
   .wt-section,
   .wt-city-section,
   .wt-page-hero,
