@@ -28064,336 +28064,206 @@ body.travel-archive-body .travel-card-grid--hotels {
 }
 
 
-/* WACKYTRAVEL_HOME_REFINEMENT_V1 — 2026-07-12 */
-body.travel-home-body .travel-promo-link-section > .container {
-  width: min(calc(100% - 30px), var(--container)) !important;
-  max-width: var(--container) !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+
+/* Fukuoka purpose pages: hotel-promotions visual alignment (2026-07-12) */
+body.travel-purpose-body--promo-ui {
+  --wt-purpose-promo-line: #d8d8d4;
+  --wt-purpose-promo-sub: #666;
+  --wt-purpose-promo-wash: #f6f6f4;
 }
 
-body.travel-home-body #homeHotels.travel-card-grid--hotels {
-  display: grid !important;
-  grid-auto-flow: column !important;
-  grid-auto-columns: minmax(300px, 31.5%) !important;
-  grid-template-columns: none !important;
-  gap: 14px !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  padding: 2px 0 14px !important;
-  scroll-snap-type: x proximity;
-  overscroll-behavior-inline: contain;
-  scrollbar-width: thin;
-}
-
-body.travel-home-body #homeHotels .travel-card.hotel-card {
-  position: relative !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(0,0,0,.18) !important;
-  border-radius: 0 !important;
-  background: #fff !important;
-  box-shadow: none !important;
-  scroll-snap-align: start;
-  transition: border-color .18s ease, transform .18s ease !important;
-}
-body.travel-home-body #homeHotels .travel-card.hotel-card:hover,
-body.travel-home-body #homeHotels .travel-card.hotel-card:focus-within {
-  border-color: #000 !important;
-  transform: translateY(-2px) !important;
-}
-body.travel-home-body #homeHotels .travel-card__full-link {
-  display: flex !important;
-  height: 100% !important;
-  flex-direction: column !important;
-  color: #000 !important;
-  text-decoration: none !important;
-}
-body.travel-home-body #homeHotels .travel-card__media {
-  display: block !important;
-  width: 100% !important;
-  aspect-ratio: 16 / 10 !important;
-  overflow: hidden !important;
-  border-bottom: 1px solid rgba(0,0,0,.16) !important;
-  background: #f3f3f3 !important;
-}
-body.travel-home-body #homeHotels .travel-card__media img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  filter: grayscale(.12) saturate(.88) contrast(1.04) !important;
-  transition: transform .35s ease, filter .35s ease !important;
-}
-body.travel-home-body #homeHotels .travel-card:hover .travel-card__media img,
-body.travel-home-body #homeHotels .travel-card:focus-within .travel-card__media img {
-  filter: grayscale(0) saturate(.96) contrast(1.04) !important;
-  transform: scale(1.025) !important;
-}
-body.travel-home-body #homeHotels .travel-card__body {
-  display: flex !important;
-  flex: 1 1 auto !important;
-  flex-direction: column !important;
-  min-height: 250px !important;
-  padding: 22px !important;
-  background: #fff !important;
-}
-body.travel-home-body #homeHotels .travel-card__meta {
-  margin: 0 0 13px !important;
-  color: rgba(0,0,0,.52) !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-}
-body.travel-home-body #homeHotels .travel-card__title {
-  color: #000 !important;
-  font-size: clamp(21px,1.7vw,26px) !important;
-  font-weight: 900 !important;
-  line-height: 1.18 !important;
-  letter-spacing: -.055em !important;
-  word-break: keep-all !important;
-}
-body.travel-home-body #homeHotels .travel-card__description {
-  margin-top: 15px !important;
-  color: rgba(0,0,0,.64) !important;
-  font-size: 14px !important;
-  line-height: 1.7 !important;
-  word-break: keep-all !important;
-}
-body.travel-home-body #homeHotels .tag-row {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 7px !important;
-  margin-top: 18px !important;
-}
-body.travel-home-body #homeHotels .tag-row > span {
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 28px !important;
-  padding: 0 10px !important;
-  border: 1px solid rgba(0,0,0,.16) !important;
-  border-radius: 0 !important;
-  background: #fff !important;
-  font-size: 12px !important;
-}
-body.travel-home-body #homeHotels .text-link {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: fit-content !important;
-  min-height: 42px !important;
-  margin-top: auto !important;
-  padding: 0 16px !important;
-  border: 1px solid #000 !important;
-  border-radius: 0 !important;
-  background: #000 !important;
-  color: #fff !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-}
-
-body.travel-home-body #homePosts.travel-list {
-  display: grid !important;
-  gap: 0 !important;
-  border-top: 1px solid #dededb;
-}
-body.travel-home-body .home-latest-card {
-  position: relative;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-bottom: 1px solid #dededb !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-body.travel-home-body .home-latest-card__link {
+/* Reason grids follow the editorial guide-grid layout. */
+body.travel-purpose-body--promo-ui .wt-reason-grid {
   display: grid;
-  grid-template-columns: 120px minmax(0,1fr) 42px;
-  align-items: center;
-  gap: 24px;
-  min-height: 132px;
-  padding: 24px 4px;
-  color: #111 !important;
-  text-decoration: none !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
 }
-body.travel-home-body .home-latest-card__meta {
-  color: #777;
-  font-size: 11px;
-  font-weight: 760;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-body.travel-home-body .home-latest-card__content {
-  display: flex;
+
+body.travel-purpose-body--promo-ui .wt-reason-card {
   min-width: 0;
-  flex-direction: column;
-  gap: 8px;
+  padding: 28px 20px 30px;
+  border: 0;
+  border-right: 1px solid var(--wt-purpose-promo-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
-body.travel-home-body .home-latest-card__content strong {
-  font-size: clamp(20px,2vw,27px);
-  line-height: 1.22;
-  letter-spacing: -.045em;
+
+body.travel-purpose-body--promo-ui .wt-reason-card:last-child {
+  border-right: 0;
+}
+
+body.travel-purpose-body--promo-ui .wt-reason-card > span {
+  display: block;
+  margin: 0 0 22px;
+  color: #8a8a8a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+}
+
+body.travel-purpose-body--promo-ui .wt-reason-card h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.45;
+  letter-spacing: -.025em;
   word-break: keep-all;
 }
-body.travel-home-body .home-latest-card__content > span {
-  color: #666;
-  font-size: 14px;
+
+body.travel-purpose-body--promo-ui .wt-reason-card p {
+  margin: 12px 0 0;
+  color: var(--wt-purpose-promo-sub);
+  font-size: 13px;
   line-height: 1.65;
   word-break: keep-all;
 }
-body.travel-home-body .home-latest-card__arrow {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #111;
-  border-radius: 50%;
-  transition: background .18s ease, color .18s ease;
-}
-body.travel-home-body .home-latest-card__arrow svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-}
-body.travel-home-body .home-latest-card__link:hover .home-latest-card__arrow,
-body.travel-home-body .home-latest-card__link:focus-visible .home-latest-card__arrow {
-  color: #fff;
-  background: #111;
-}
-body.travel-home-body .home-latest-card .post-admin-mini-actions {
-  position: absolute;
-  right: 52px;
-  bottom: 8px;
-  z-index: 2;
+
+/* Survey CTA follows the full-width soft promotion section. */
+body.travel-purpose-body--promo-ui .wt-section--survey-cta,
+body.travel-purpose-body--promo-ui .wt-purpose-page .wt-section--survey-cta {
+  width: 100%;
+  max-width: none;
+  margin: 100px 0 0;
+  padding: 86px 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--wt-purpose-promo-wash);
 }
 
-@media (max-width: 767px) {
-  body.travel-home-body #homeHotels.travel-card-grid--hotels {
-    grid-auto-columns: minmax(278px, 84vw) !important;
-  }
-  body.travel-home-body #homeHotels .travel-card__body {
-    min-height: 0 !important;
-    padding: 20px !important;
-  }
-  body.travel-home-body #homeHotels .text-link {
-    width: 100% !important;
-    margin-top: 20px !important;
-  }
-  body.travel-home-body .home-latest-card__link {
-    grid-template-columns: minmax(0,1fr) 38px;
-    gap: 16px;
-    min-height: 0;
-    padding: 22px 0;
-  }
-  body.travel-home-body .home-latest-card__meta {
-    grid-column: 1 / -1;
-  }
-  body.travel-home-body .home-latest-card__content strong { font-size: 21px; }
-  body.travel-home-body .home-latest-card__content > span { font-size: 13px; }
-}
-/* End WACKYTRAVEL_HOME_REFINEMENT_V1 */
-
-/* WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 — 2026-07-12 */
-body.travel-home-body .travel-promo-link-section > .container {
-  width: min(calc(100% - 32px), var(--container, 1180px)) !important;
-  max-width: var(--container, 1180px) !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
+body.travel-purpose-body--promo-ui .wt-section--survey-cta .container {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-body.travel-home-body .home-mood-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr 1fr;
-  grid-template-rows: repeat(2, 255px);
-  gap: 16px;
+body.travel-purpose-body--promo-ui .wt-section--survey-cta .wt-cta-band {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-body.travel-home-body .home-mood-card {
+/* FAQ follows the promotion page's line-based accordion. */
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) :is(.wt-city-faq__accordion, .wt-faq-list) {
+  display: block;
+  border-top: 1px solid #111;
+}
+
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) :is(.wt-city-faq__item, .wt-faq-list > details) {
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--wt-purpose-promo-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > summary {
   position: relative;
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #d7d2c5;
-  box-shadow: 0 0 0 1px rgba(24, 24, 22, .06);
-  isolation: isolate;
-  transform: translateZ(0);
-}
-body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; }
-body.travel-home-body .home-mood-card__image {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform 500ms cubic-bezier(.2,.7,.2,1);
-}
-body.travel-home-body .home-mood-card::after {
-  content: ""; position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(180deg, rgba(10,10,8,.02) 20%, rgba(10,10,8,.78) 100%);
-}
-body.travel-home-body .home-mood-card:hover .home-mood-card__image,
-body.travel-home-body .home-mood-card:focus-within .home-mood-card__image { transform: scale(1.045); }
-body.travel-home-body .home-mood-card__link {
-  position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 24px; color: #fff !important; text-decoration: none !important;
-}
-body.travel-home-body .home-mood-card--featured .home-mood-card__link { padding: 34px; }
-body.travel-home-body .home-mood-card__meta {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  margin-bottom: 9px; color: rgba(255,255,255,.82); font-size: 12px; font-weight: 700;
-}
-body.travel-home-body .home-mood-card__count {
-  padding: 6px 9px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px;
-  background: rgba(18,18,16,.18); backdrop-filter: blur(8px);
-}
-body.travel-home-body .home-mood-card__title {
-  margin: 0; color: #fff; font-size: clamp(22px,2.2vw,34px); line-height: 1.16;
-  letter-spacing: -.04em; word-break: keep-all;
-}
-body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title { font-size: 22px; }
-body.travel-home-body .home-mood-card__desc {
-  margin: 10px 0 0; max-width: 440px; color: rgba(255,255,255,.82); font-size: 14px;
-  line-height: 1.6; word-break: keep-all;
-}
-body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc {
-  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
-}
-body.travel-home-body .home-mood-card__arrow {
-  position: absolute; right: 22px; top: 22px; width: 38px; height: 38px; display: grid;
-  place-items: center; border-radius: 50%; color: #181816; background: rgba(255,255,255,.9);
-  transform: rotate(-35deg); transition: transform 200ms ease, background 200ms ease;
-}
-body.travel-home-body .home-mood-card:hover .home-mood-card__arrow,
-body.travel-home-body .home-mood-card:focus-within .home-mood-card__arrow { transform: rotate(0); background: #fff; }
-body.travel-home-body .home-mood-card__link:focus-visible { outline: 3px solid rgba(255,255,255,.82); outline-offset: -6px; }
-
-@media (max-width: 900px) {
-  body.travel-home-body .home-mood-grid {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    grid-template-rows: 410px repeat(2,240px);
-  }
-  body.travel-home-body .home-mood-card--featured { grid-column: 1 / -1; grid-row: auto; }
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px;
+  gap: 24px;
+  align-items: center;
+  padding: 0;
+  color: #111;
+  background: transparent;
+  font-size: 17px;
+  font-weight: 640;
+  line-height: 1.5;
+  cursor: pointer;
+  list-style: none;
 }
 
-@media (max-width: 640px) {
-  body.travel-home-body .travel-promo-link-section > .container {
-    width: min(calc(100% - 28px), var(--container, 1180px)) !important;
-  }
-  body.travel-home-body .home-mood-grid {
-    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 2px 14px 12px 2px; margin-right: -14px; scrollbar-width: none;
-    overscroll-behavior-inline: contain;
-  }
-  body.travel-home-body .home-mood-grid::-webkit-scrollbar { display: none; }
-  body.travel-home-body .home-mood-card,
-  body.travel-home-body .home-mood-card--featured {
-    flex: 0 0 82vw; height: 470px; scroll-snap-align: start; border-radius: 24px;
-  }
-  body.travel-home-body .home-mood-card__link,
-  body.travel-home-body .home-mood-card--featured .home-mood-card__link { padding: 25px; }
-  body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title { font-size: 28px; }
-  body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc { display: block; font-size: 14px; }
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > summary::-webkit-details-marker {
+  display: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  body.travel-home-body .home-mood-card__image,
-  body.travel-home-body .home-mood-card__arrow { transition: none !important; }
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > summary::before {
+  grid-column: 2;
+  grid-row: 1;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  content: "";
 }
-/* End WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 */
+
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > summary::after {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border: 0;
+  background:
+    linear-gradient(#111, #111) center / 10px 1px no-repeat,
+    linear-gradient(#111, #111) center / 1px 10px no-repeat;
+  content: "";
+  transform: translateY(-50%);
+  transition: transform .2s ease, background-size .2s ease;
+}
+
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details[open] > summary::after {
+  background-size: 10px 1px, 1px 0;
+}
+
+body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > p {
+  margin: 0;
+  padding: 0 56px 28px 0;
+  color: var(--wt-purpose-promo-sub);
+  font-size: 14px;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+@media (max-width: 980px) {
+  body.travel-purpose-body--promo-ui .wt-reason-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-bottom: 0;
+  }
+
+  body.travel-purpose-body--promo-ui .wt-reason-card {
+    border-bottom: 1px solid var(--wt-purpose-promo-line);
+  }
+
+  body.travel-purpose-body--promo-ui .wt-reason-card:nth-child(2n) {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  body.travel-purpose-body--promo-ui .wt-reason-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.travel-purpose-body--promo-ui .wt-reason-card {
+    padding: 26px 0 28px;
+    border-right: 0;
+  }
+
+  body.travel-purpose-body--promo-ui .wt-reason-card > span {
+    margin-bottom: 25px;
+  }
+
+  body.travel-purpose-body--promo-ui .wt-section--survey-cta,
+  body.travel-purpose-body--promo-ui .wt-purpose-page .wt-section--survey-cta {
+    margin-top: 74px;
+    padding: 66px 0;
+  }
+
+  body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > summary {
+    min-height: 72px;
+    gap: 18px;
+    font-size: 15px;
+  }
+
+  body.travel-purpose-body--promo-ui :is(.wt-purpose-faq, .wt-section--faq) details > p {
+    padding-right: 42px;
+  }
+}
