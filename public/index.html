@@ -14,13 +14,6 @@
   <meta property="og:image" content="/assets/images/logo.png" />
   <meta property="og:locale" content="ko_KR" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="preconnect" href="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev" />
-  <link
-    rel="preload"
-    as="image"
-    href="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp"
-    fetchpriority="high"
-  />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260711PromoTabsCenterV5" />
@@ -482,32 +475,60 @@
       return getFallbackHubDestinationsForCountry(countryName, countrySlug);
     }
 
+    const HOME_MOOD_FALLBACK_IMAGES = [
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85'
+    ];
+
+    function getHomeMoodDestinations() {
+      const seen = new Set();
+      const items = [];
+      getActiveCountriesForHub().forEach((country) => {
+        const countryName = country.name || '기타 여행지';
+        const countrySlug = country.slug || slugifyCountry(countryName);
+        getHomeHubDestinationsForCountry(countryName, countrySlug, { includeFallback: true }).forEach((item) => {
+          const key = String(item.slug || item.name || item.title || '').trim();
+          if (!key || seen.has(key) || items.length >= HOME_DESTINATION_LIMIT) return;
+          seen.add(key);
+          items.push({ ...item, _homeCountryName: countryName });
+        });
+      });
+      return items.slice(0, HOME_DESTINATION_LIMIT);
+    }
+
+    function renderHomeMoodDestinationCard(item, index) {
+      const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
+      const country = normalizeText(item.country) || normalizeText(item._homeCountryName) || 'TRAVEL';
+      const href = `/destinations/${encodeURIComponent(item.slug || '')}/`;
+      const image = normalizeText(item.hero_image) || normalizeText(item.cover_image) || HOME_MOOD_FALLBACK_IMAGES[index % HOME_MOOD_FALLBACK_IMAGES.length];
+      const imageAlt = normalizeText(item.hero_image_alt) || normalizeText(item.cover_image_alt) || `${label} 여행 대표 이미지`;
+      const description = getDestinationPreviewText(item, label);
+      const featuredClass = index === 0 ? ' home-mood-card--featured' : '';
+      const loading = index === 0 ? 'eager' : 'lazy';
+      const priority = index === 0 ? ' fetchpriority="high"' : '';
+      return `<article class="home-mood-card${featuredClass}">
+        <img class="home-mood-card__image" src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="${loading}" decoding="async"${priority} />
+        <a class="home-mood-card__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
+          <span class="home-mood-card__arrow" aria-hidden="true">→</span>
+          <div class="home-mood-card__meta"><span>${escapeHtml(country.toUpperCase())}</span><span class="home-mood-card__count">CITY PICK</span></div>
+          <h3 class="home-mood-card__title">${escapeHtml(label)}</h3>
+          <p class="home-mood-card__desc">${escapeHtml(description)}</p>
+        </a>
+      </article>`;
+    }
+
     function renderDestinations() {
       const container = $('homeDestinations');
-      const countries = getActiveCountriesForHub();
-      const countryGroups = countries
-        .map((country) => {
-          const countryName = country.name || '기타 여행지';
-          const countrySlug = country.slug || slugifyCountry(countryName);
-          const items = getHomeHubDestinationsForCountry(countryName, countrySlug, { includeFallback: true });
-          return { country, countryName, countrySlug, items };
-        })
-        .filter((group) => group.items.length);
-      container.innerHTML = countryGroups.map(({ countryName, countrySlug, items }) => {
-        return `<section class="country-destination-group country-destination-group--compact" aria-labelledby="country-${escapeHtml(countrySlug)}">
-          <div class="country-destination-group__head">
-            <div class="country-destination-group__title">
-              <h3 id="country-${escapeHtml(countrySlug)}">${escapeHtml(countryName)}</h3>
-            </div>
-            <div class="country-destination-group__actions">
-              <a class="country-destination-group__link" href="/countries/${encodeURIComponent(countrySlug)}" aria-label="${escapeHtml(countryName)} 전체 보기"><span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-          <div class="destination-chip-list" aria-label="${escapeHtml(countryName)} 도시 목록">
-            ${items.length ? items.map(renderDestinationCard).join('') : `<div class="empty-card empty-card--compact">여행지 허브에 노출할 ${escapeHtml(countryName)} 도시를 선택해 보세요.</div>`}
-          </div>
-        </section>`;
-      }).join('') || '<div class="empty-card">여행지 허브에 노출할 도시를 선택하세요.</div>';
+      const items = getHomeMoodDestinations();
+      container.className = 'home-mood-grid';
+      container.setAttribute('aria-label', `인기 도시 ${items.length}개`);
+      container.innerHTML = items.length
+        ? items.map(renderHomeMoodDestinationCard).join('')
+        : '<div class="empty-card">여행지 허브에 노출할 도시를 선택하세요.</div>';
     }
 
     function getDestinationPreviewText(item, label) {
