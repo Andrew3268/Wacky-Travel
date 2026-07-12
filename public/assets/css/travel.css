@@ -28808,3 +28808,33 @@ body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band >
   }
 }
 /* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V3 */
+
+/* WACKYTRAVEL_UNSPLASH_DIRECT_FIX_V4_APPLIED */
+body.travel-home-body .home-mood-card {
+  min-height: 255px;
+}
+body.travel-home-body .home-mood-card__image {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  background: #d7d2c5;
+}
+body.travel-home-body .home-mood-card__image.is-image-error {
+  opacity: 0 !important;
+}
+@media (max-width: 900px) {
+  body.travel-home-body .home-mood-card { min-height: 240px; }
+  body.travel-home-body .home-mood-card--featured { min-height: 410px; }
+}
+@media (max-width: 640px) {
+  body.travel-home-body .home-mood-card,
+  body.travel-home-body .home-mood-card--featured { min-height: 470px; }
+}
+
