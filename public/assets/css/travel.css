@@ -28333,7 +28333,7 @@ body.travel-home-body .home-mood-card__title {
 }
 body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title { font-size: 22px; }
 body.travel-home-body .home-mood-card__desc {
-  margin: 10px 0 0; max-width: 440px; color: #fff; font-size: 14px;
+  margin: 10px 0 0; max-width: 440px; color: #fff !important; font-size: 14px;
   line-height: 1.6; word-break: keep-all; font-weight: 700;
 }
 body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc {
