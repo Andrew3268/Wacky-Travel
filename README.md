@@ -139,3 +139,11 @@ D1 database: wacky-travel-db
 - 이 프로젝트의 D1 바인딩은 `TRAVEL_DB`입니다.
 - 이 프로젝트의 데이터베이스 바인딩 이름은 반드시 `TRAVEL_DB`로 유지하세요.
 - `node_modules`는 압축파일과 GitHub에 올리지 않습니다. `npm install`로 다시 설치합니다.
+
+## 2026-07-12 홈 인기 여행지 이미지 로딩 수정
+- Unsplash 직접 URL을 `/img/{base64url}` 동일 출처 프록시 경로로 변경했습니다.
+- `functions/img/[encoded].js`의 허용 호스트에 `images.unsplash.com`을 추가했습니다.
+- 관리자 `hero_image`/`cover_image`의 R2 URL도 홈 카드에서 동일 출처 프록시로 변환합니다.
+- 관리자 이미지가 실패하면 카드별 레퍼런스 이미지로 자동 교체합니다.
+- `travel.css` 쿼리 버전을 갱신해 기존 장기 캐시가 새 카드 CSS를 가리지 않도록 했습니다.
+- 메인 인덱스에는 특정 도시 이미지 preload를 사용하지 않습니다.

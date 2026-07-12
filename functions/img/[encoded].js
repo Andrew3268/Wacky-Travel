@@ -13,7 +13,11 @@ function isAllowedImageSource(url) {
   try {
     const parsed = new URL(url);
     const host = parsed.hostname.toLowerCase();
-    return parsed.protocol === "https:" && (host.endsWith(".r2.dev") || host === "r2.dev");
+    return parsed.protocol === "https:" && (
+      host === "images.unsplash.com" ||
+      host.endsWith(".r2.dev") ||
+      host === "r2.dev"
+    );
   } catch {
     return false;
   }
@@ -66,6 +70,7 @@ export async function onRequestGet({ params, request }) {
   const upstream = await fetch(sourceUrl, {
     headers: {
       accept: request.headers.get("accept") || "image/avif,image/webp,image/*,*/*;q=0.8",
+      "user-agent": "Mozilla/5.0 (compatible; WackyTravelImageProxy/1.0)",
     },
     cf: {
       cacheEverything: true,
