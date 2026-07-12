@@ -28397,3 +28397,273 @@ body.travel-home-body .home-mood-card__link:focus-visible { outline: 3px solid r
   body.travel-home-body .home-mood-card__arrow { transition: none !important; }
 }
 /* End WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 */
+
+/* WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V1
+   Align purpose-page reason grids, survey CTA and FAQ with /hotel-promotions/. */
+body.travel-purpose-body {
+  --wt-purpose-promo-line: #d8d8d4;
+  --wt-purpose-promo-sub: #686866;
+  --wt-purpose-promo-wash: #f6f6f4;
+}
+
+/* Reason cards: same editorial ruled-grid language as .wtpromo-guide-grid. */
+body.travel-purpose-body .wt-reason-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  overflow: visible !important;
+  border-top: 1px solid #111 !important;
+  border-bottom: 1px solid #111 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.travel-purpose-body .wt-reason-grid .wt-reason-card {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 28px 20px 30px !important;
+  border: 0 !important;
+  border-right: 1px solid var(--wt-purpose-promo-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+body.travel-purpose-body .wt-reason-grid .wt-reason-card:last-child {
+  border-right: 0 !important;
+}
+body.travel-purpose-body .wt-reason-grid .wt-reason-card > span:first-child {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 0 38px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #8a8a8a !important;
+  background: transparent !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 15px !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+body.travel-purpose-body .wt-reason-grid .wt-reason-card h3 {
+  margin: 0 !important;
+  color: #111 !important;
+  font-size: 17px !important;
+  line-height: 1.45 !important;
+  letter-spacing: -.025em !important;
+}
+body.travel-purpose-body .wt-reason-grid .wt-reason-card p {
+  margin: 12px 0 0 !important;
+  color: var(--wt-purpose-promo-sub) !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  word-break: keep-all !important;
+}
+
+/* Survey CTA: same soft full-width band and bordered white tool-card treatment. */
+body.travel-purpose-body .wt-section--survey-cta,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 100px 0 0 !important;
+  padding: 86px 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--wt-purpose-promo-wash) !important;
+  box-shadow: none !important;
+}
+body.travel-purpose-body .wt-section--survey-cta > .container {
+  width: min(calc(100% - 40px), 1180px) !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 50px !important;
+  align-items: center !important;
+  min-height: 0 !important;
+  padding: 52px !important;
+  border: 1px solid #111 !important;
+  border-radius: 28px !important;
+  color: #111 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > div {
+  max-width: 670px !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-city-kicker {
+  margin: 0 0 8px !important;
+  color: #6f6f6c !important;
+  font-size: 11px !important;
+  font-weight: 750 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band h2 {
+  max-width: 670px !important;
+  margin: 0 !important;
+  color: #111 !important;
+  font-size: clamp(32px, 4.5vw, 54px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -.055em !important;
+  word-break: keep-all !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band p:not(.wt-city-kicker) {
+  max-width: 620px !important;
+  margin: 18px 0 0 !important;
+  color: var(--wt-purpose-promo-sub) !important;
+  font-size: 15px !important;
+  line-height: 1.75 !important;
+  word-break: keep-all !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-city-button,
+body.travel-purpose-body .wt-section--survey-cta .wt-city-button--primary {
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  justify-self: end !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 1px solid #111 !important;
+  border-radius: 50% !important;
+  color: transparent !important;
+  background: #111 !important;
+  font-size: 0 !important;
+  box-shadow: none !important;
+  transition: background .2s ease, transform .2s ease !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-city-button::before {
+  width: 22px;
+  height: 22px;
+  content: "";
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='white' stroke-width='1.6'%3E%3Cpath d='M4 10h11'/%3E%3Cpath d='m11 6 4 4-4 4'/%3E%3C/svg%3E");
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-city-button:hover {
+  background: #2a2a28 !important;
+  transform: translateX(3px) !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-city-button:focus-visible {
+  outline: 2px solid #111 !important;
+  outline-offset: 4px !important;
+}
+
+/* FAQ: same thin-rule accordion and circular plus icon as .wtpromo-faq-list. */
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__accordion {
+  display: block !important;
+  border-top: 1px solid #111 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--wt-purpose-promo-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary {
+  position: relative !important;
+  min-height: 78px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 28px !important;
+  gap: 24px !important;
+  align-items: center !important;
+  padding: 0 !important;
+  color: #111 !important;
+  background: transparent !important;
+  font-size: 17px !important;
+  font-weight: 640 !important;
+  line-height: 1.45 !important;
+  list-style: none !important;
+  cursor: pointer !important;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::-webkit-details-marker { display: none !important; }
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::before {
+  grid-column: 2;
+  grid-row: 1;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  content: "";
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::after {
+  grid-column: 2;
+  grid-row: 1;
+  place-self: center;
+  width: 10px;
+  height: 10px;
+  content: "";
+  background:
+    linear-gradient(#111, #111) center / 10px 1px no-repeat,
+    linear-gradient(#111, #111) center / 1px 10px no-repeat;
+  transition: transform .2s ease;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item[open] > summary::after {
+  transform: rotate(90deg);
+  background: linear-gradient(#111, #111) center / 10px 1px no-repeat;
+}
+body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p {
+  margin: 0 !important;
+  padding: 0 56px 28px 0 !important;
+  color: var(--wt-purpose-promo-sub) !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+  word-break: keep-all !important;
+}
+
+@media (max-width: 980px) {
+  body.travel-purpose-body .wt-reason-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    border-bottom: 0 !important;
+  }
+  body.travel-purpose-body .wt-reason-grid .wt-reason-card {
+    border-bottom: 1px solid var(--wt-purpose-promo-line) !important;
+  }
+  body.travel-purpose-body .wt-reason-grid .wt-reason-card:nth-child(2n) {
+    border-right: 0 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.travel-purpose-body .wt-reason-grid { grid-template-columns: 1fr !important; }
+  body.travel-purpose-body .wt-reason-grid .wt-reason-card { border-right: 0 !important; }
+  body.travel-purpose-body .wt-reason-grid .wt-reason-card > span:first-child { margin-bottom: 25px !important; }
+
+  body.travel-purpose-body .wt-section--survey-cta,
+  body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta {
+    margin-top: 74px !important;
+    padding: 66px 0 !important;
+  }
+  body.travel-purpose-body .wt-section--survey-cta > .container {
+    width: min(calc(100% - 28px), 1180px) !important;
+  }
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    padding: 32px 24px !important;
+    border-radius: 22px !important;
+  }
+  body.travel-purpose-body .wt-section--survey-cta .wt-city-button,
+  body.travel-purpose-body .wt-section--survey-cta .wt-city-button--primary {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+  }
+  body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary {
+    min-height: 72px !important;
+    font-size: 15px !important;
+  }
+  body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p { padding-right: 42px !important; }
+}
+/* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V1 */
