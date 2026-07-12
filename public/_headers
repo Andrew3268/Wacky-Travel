@@ -14,6 +14,6 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /*
-  Content-Security-Policy: img-src 'self' data: blob: https://images.unsplash.com https://plus.unsplash.com https://*.r2.dev;
+  Content-Security-Policy: img-src 'self' data: blob: https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev https://*.r2.dev;
   Referrer-Policy: no-referrer
 
