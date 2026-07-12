@@ -29025,3 +29025,436 @@ body.travel-city-body .wt-city-choice-card > p {
   }
 }
 /* End 20260712 CITY FAQ + SNAPSHOT PROMO ALIGNMENT V1 */
+
+/* Search page — hotel promotions inspired minimal title-only search */
+body.wtpromo-page.wtsr-page {
+  background: #fff;
+  color: #111;
+}
+
+.wtsr-page .wtsr-hero {
+  padding: clamp(72px, 9vw, 132px) 0 clamp(64px, 8vw, 112px);
+  border-bottom: 1px solid #111;
+  background: #fff;
+}
+
+.wtsr-page .wtsr-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+  gap: clamp(56px, 9vw, 140px);
+  align-items: end;
+}
+
+.wtsr-page .wtsr-hero__copy {
+  min-width: 0;
+}
+
+.wtsr-page .wtsr-hero h1 {
+  margin: 0;
+  max-width: 900px;
+  color: #111;
+  font-size: clamp(52px, 7.4vw, 108px);
+  font-weight: 800;
+  line-height: .91;
+  letter-spacing: -.075em;
+}
+
+.wtsr-page .wtsr-hero h1 span {
+  color: inherit;
+}
+
+.wtsr-page .wtsr-hero__desc {
+  max-width: 660px;
+  margin: 28px 0 0;
+  color: #555;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.wtsr-page .wtsr-form {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.wtsr-page .wtsr-form__label {
+  display: block;
+  margin-bottom: 12px;
+  color: #111;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.wtsr-page .wtsr-form__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 56px;
+  align-items: stretch;
+  border-top: 2px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.wtsr-page .wtsr-form input {
+  width: 100%;
+  min-width: 0;
+  height: 64px;
+  padding: 0 18px 0 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #111;
+  font: inherit;
+  font-size: 17px;
+  box-shadow: none;
+}
+
+.wtsr-page .wtsr-form input::placeholder {
+  color: #999;
+}
+
+.wtsr-page .wtsr-form__button {
+  display: grid;
+  width: 56px;
+  height: 64px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid #111;
+  border-radius: 0;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.wtsr-page .wtsr-form__button:hover {
+  background: #fff;
+  color: #111;
+}
+
+.wtsr-page .wtsr-form__button svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
+.wtsr-page .wtsr-form input:focus-visible,
+.wtsr-page .wtsr-form__button:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+
+.wtsr-page .wtsr-form__hint {
+  margin: 12px 0 0;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.wtsr-page .wtsr-section {
+  padding: clamp(72px, 8vw, 112px) 0 clamp(96px, 11vw, 160px);
+  background: #fff;
+}
+
+.wtsr-page .wtsr-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.wtsr-page .wtsr-summary {
+  display: flex;
+  gap: 28px;
+  align-items: end;
+  justify-content: space-between;
+  margin: 0 0 28px;
+  padding: 0 0 24px;
+  border: 0;
+  border-bottom: 2px solid #111;
+  border-radius: 0;
+  background: transparent;
+}
+
+.wtsr-page .wtsr-summary h2 {
+  margin: 0;
+  color: #111;
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.05em;
+}
+
+.wtsr-page .wtsr-summary p {
+  margin: 10px 0 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.wtsr-page .wtsr-count {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.wtsr-page .wtsr-results {
+  display: block;
+  margin: 0;
+  border-top: 1px solid #111;
+}
+
+.wtsr-page .wtsr-card {
+  display: block;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-bottom: 1px solid #d8d8d8;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+}
+
+.wtsr-page .wtsr-card__link {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 48px;
+  gap: clamp(18px, 3vw, 48px);
+  align-items: center;
+  min-height: 190px;
+  padding: 34px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wtsr-page .wtsr-card__index {
+  align-self: start;
+  padding-top: 4px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.wtsr-page .wtsr-card__body {
+  display: block;
+  min-width: 0;
+  padding: 0;
+}
+
+.wtsr-page .wtsr-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0 0 14px;
+  color: #777;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+.wtsr-page .wtsr-card__meta span {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.wtsr-page .wtsr-card h3 {
+  margin: 0;
+  color: #111;
+  font-size: clamp(25px, 3vw, 42px);
+  font-weight: 760;
+  line-height: 1.2;
+  letter-spacing: -.045em;
+  word-break: keep-all;
+}
+
+.wtsr-page .wtsr-card p {
+  max-width: 780px;
+  margin: 14px 0 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.wtsr-page .wtsr-card__arrow {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid #111;
+  border-radius: 50%;
+  color: #111;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.wtsr-page .wtsr-card__arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wtsr-page .wtsr-card__link:hover .wtsr-card__arrow {
+  transform: translateX(3px);
+  background: #111;
+  color: #fff;
+}
+
+.wtsr-page .wtsr-card mark,
+.wtsr-page .wtsr-summary mark {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: .09em;
+  text-underline-offset: .12em;
+}
+
+.wtsr-page .wtsr-empty,
+.wtsr-page .wtsr-loading,
+.wtsr-page .wtsr-error {
+  min-height: 260px;
+  padding: 72px 0;
+  border: 0;
+  border-bottom: 1px solid #111;
+  border-radius: 0;
+  background: transparent;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.wtsr-page .wtsr-empty strong,
+.wtsr-page .wtsr-error strong {
+  display: block;
+  margin-bottom: 12px;
+  color: #111;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -.04em;
+}
+
+.wtsr-page .wtsr-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
+}
+
+.wtsr-page .wtsr-more__button {
+  min-width: 180px;
+  height: 52px;
+  padding: 0 28px;
+  border: 1px solid #111;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wtsr-page .wtsr-more__button:hover {
+  background: #fff;
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .wtsr-page .wtsr-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 54px;
+    align-items: start;
+  }
+
+  .wtsr-page .wtsr-form {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 640px) {
+  .wtsr-page .wtsr-hero {
+    padding: 58px 0 64px;
+  }
+
+  .wtsr-page .wtsr-hero h1 {
+    font-size: clamp(44px, 14vw, 66px);
+    line-height: .94;
+  }
+
+  .wtsr-page .wtsr-hero__desc {
+    margin-top: 22px;
+  }
+
+  .wtsr-page .wtsr-form__row {
+    grid-template-columns: minmax(0, 1fr) 52px;
+  }
+
+  .wtsr-page .wtsr-form input,
+  .wtsr-page .wtsr-form__button {
+    height: 58px;
+  }
+
+  .wtsr-page .wtsr-form__button {
+    width: 52px;
+  }
+
+  .wtsr-page .wtsr-section {
+    padding: 62px 0 96px;
+  }
+
+  .wtsr-page .wtsr-summary {
+    display: block;
+  }
+
+  .wtsr-page .wtsr-count {
+    display: block;
+    margin-top: 18px;
+  }
+
+  .wtsr-page .wtsr-card__link {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 14px;
+    min-height: 0;
+    padding: 28px 0;
+  }
+
+  .wtsr-page .wtsr-card__arrow {
+    grid-column: 2;
+    width: 38px;
+    height: 38px;
+    margin-top: 20px;
+  }
+
+  .wtsr-page .wtsr-card h3 {
+    font-size: 25px;
+  }
+
+  .wtsr-page .wtsr-card p {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+}

@@ -76,48 +76,16 @@ function normalizedStatusSql(alias = "p") {
   END`;
 }
 
-function pushSearchConditions({ parts, binds, term, postColumns, hotelColumns, canJoinHotels }) {
-  const postSearchColumns = [
-    "slug",
-    "title",
-    "summary",
-    "meta_description",
-    "category",
-    "content_md",
-    "focus_keyword",
-    "search_intent",
-    "destination_slug",
-    "hotel_slug",
-    "longtail_keywords_json",
-    "tags_json"
-  ].filter((column) => hasColumn(postColumns, column));
+function pushSearchConditions({ parts, binds, term, postColumns }) {
+  if (!hasColumn(postColumns, "title")) return;
 
-  for (const column of postSearchColumns) {
-    parts.push(`${textSql("p", column)} LIKE ?`);
-    binds.push(likeValue(term));
-  }
+  parts.push(`${textSql("p", "title")} LIKE ?`);
+  binds.push(likeValue(term));
 
   const compactTerm = compactText(term);
   if (compactTerm.length >= 2) {
-    for (const column of ["slug", "title", "summary", "meta_description", "content_md", "focus_keyword", "hotel_slug"].filter((column) => hasColumn(postColumns, column))) {
-      parts.push(`${compactSql("p", column)} LIKE ?`);
-      binds.push(compactLikeValue(term));
-    }
-  }
-
-  if (canJoinHotels) {
-    const hotelSearchColumns = ["slug", "name", "name_en", "area", "address", "summary", "meta_description", "badges_json"].filter((column) => hasColumn(hotelColumns, column));
-    for (const column of hotelSearchColumns) {
-      parts.push(`${textSql("h", column)} LIKE ?`);
-      binds.push(likeValue(term));
-    }
-
-    if (compactTerm.length >= 2) {
-      for (const column of ["slug", "name", "name_en", "area", "address"].filter((column) => hasColumn(hotelColumns, column))) {
-        parts.push(`${compactSql("h", column)} LIKE ?`);
-        binds.push(compactLikeValue(term));
-      }
-    }
+    parts.push(`${compactSql("p", "title")} LIKE ?`);
+    binds.push(compactLikeValue(term));
   }
 }
 
@@ -151,56 +119,23 @@ function safeArray(value) {
   }
 }
 
-function buildSearchBlob(row = {}) {
-  return [
-    row.slug,
-    row.title,
-    row.summary,
-    row.meta_description,
-    row.category,
-    row.focus_keyword,
-    row.search_intent,
-    row.destination_slug,
-    row.hotel_slug,
-    row.hotel_name,
-    row.hotel_name_en,
-    row.hotel_area,
-    row._search_content,
-    ...safeArray(row.tags_json),
-    ...safeArray(row.longtail_keywords_json)
-  ].map((item) => String(item || "").trim()).filter(Boolean).join(" ");
-}
-
 function getSearchScore(row = {}, query = "") {
   const full = normalizeText(query);
   const compactFull = compactText(query);
   const title = normalizeText(row.title);
-  const hotelName = normalizeText(row.hotel_name);
-  const focusKeyword = normalizeText(row.focus_keyword);
-  const summary = normalizeText(row.summary || row.meta_description);
-  const slug = normalizeText(row.slug);
-  const source = normalizeText(buildSearchBlob(row));
-  const compactSource = compactText(source);
+  const compactTitle = compactText(row.title);
   const terms = getSearchTerms(query);
 
   let score = 0;
-  if (full && title.includes(full)) score += 140;
-  if (full && hotelName.includes(full)) score += 135;
-  if (compactFull && compactText(title).includes(compactFull)) score += 130;
-  if (compactFull && compactText(hotelName).includes(compactFull)) score += 125;
-  if (full && focusKeyword.includes(full)) score += 105;
-  if (full && slug.includes(full)) score += 95;
-  if (full && summary.includes(full)) score += 75;
+  if (full && title === full) score += 300;
+  if (full && title.startsWith(full)) score += 220;
+  if (full && title.includes(full)) score += 180;
+  if (compactFull && compactTitle.includes(compactFull)) score += 150;
 
   for (const term of terms) {
     const compactTerm = compactText(term);
-    if (!term) continue;
-    if (title.includes(term)) score += 24;
-    if (hotelName.includes(term)) score += 22;
-    if (focusKeyword.includes(term)) score += 16;
-    if (summary.includes(term)) score += 10;
-    if (source.includes(term)) score += 4;
-    if (compactTerm && compactSource.includes(compactTerm)) score += 3;
+    if (term && title.includes(term)) score += 24;
+    if (compactTerm && compactTitle.includes(compactTerm)) score += 12;
   }
 
   return score;
@@ -277,7 +212,7 @@ export async function onRequestGet({ env, request }) {
     binds.push(safeStatus);
   }
 
-  const searchWhere = buildSearchWhere(query, { postColumns, hotelColumns, canJoinHotels });
+  const searchWhere = buildSearchWhere(query, { postColumns });
   if (searchWhere.sql) {
     where.push(searchWhere.sql);
     binds.push(...searchWhere.binds);

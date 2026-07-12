@@ -37,32 +37,12 @@ const $ = (id) => document.getElementById(id);
       return normalizeSearchBlob(value).replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, '');
     }
 
-    function buildClientSearchText(item = {}) {
-      const tags = [...safeArray(item.tags_json), ...safeArray(item.longtail_keywords_json)].join(' ');
-      return [
-        item.slug,
-        item.title,
-        item.summary,
-        item.meta_description,
-        item.category,
-        item.focus_keyword,
-        item.search_intent,
-        item.destination_slug,
-        item.hotel_slug,
-        item.hotel_name,
-        item.hotel_name_en,
-        item.hotel_area,
-        item.content_type,
-        tags
-      ].map(normalizeText).filter(Boolean).join(' ');
-    }
-
     function itemMatchesQuery(item = {}, query = '') {
-      const source = normalizeSearchBlob(buildClientSearchText(item));
-      const compactSource = compactSearchBlob(source);
+      const title = normalizeSearchBlob(item.title);
+      const compactTitle = compactSearchBlob(item.title);
       const terms = getHighlightTerms(query).map((term) => normalizeSearchBlob(term)).filter(Boolean);
       if (!terms.length) return false;
-      return terms.some((term) => source.includes(term) || compactSource.includes(compactSearchBlob(term)));
+      return terms.some((term) => title.includes(term) || compactTitle.includes(compactSearchBlob(term)));
     }
 
     async function loadFallbackSearch(query = '') {
@@ -128,24 +108,24 @@ const $ = (id) => document.getElementById(id);
         .slice(0, 5);
     }
 
-    function renderCard(item = {}) {
+    function renderCard(item = {}, index = 0) {
       const slug = String(item.slug || '').trim();
       const href = `/post/${encodeURIComponent(slug)}`;
       const title = item.title || '여행 글';
-      const metaItems = [labelPostType(item.content_type), item.category, item.hotel_name].map(normalizeText).filter(Boolean).slice(0, 3);
-      const tags = getTags(item);
-      const cover = normalizeText(item.cover_image);
-      const alt = normalizeText(item.cover_image_alt) || title;
+      const type = labelPostType(item.content_type);
+      const category = normalizeText(item.category);
+      const excerpt = getExcerpt(item);
+      const number = String(index + 1).padStart(2, '0');
       return `<article class="wtsr-card">
-        <a class="wtsr-card__media" href="${href}" aria-label="${escapeHtml(title)} 읽기">
-          ${cover ? `<img src="${escapeHtml(cover)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />` : '<div class="wtsr-card__placeholder" aria-hidden="true">🏨</div>'}
+        <a class="wtsr-card__link" href="${href}" aria-label="${escapeHtml(title)} 읽기">
+          <span class="wtsr-card__index">${number}</span>
+          <div class="wtsr-card__body">
+            <div class="wtsr-card__meta"><span>${escapeHtml(type)}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div>
+            <h3>${highlightText(title, state.query)}</h3>
+            <p>${escapeHtml(excerpt)}</p>
+          </div>
+          <span class="wtsr-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
         </a>
-        <div class="wtsr-card__body">
-          ${metaItems.length ? `<div class="wtsr-card__meta">${metaItems.map((meta) => `<span>${highlightText(meta, state.query)}</span>`).join('')}</div>` : ''}
-          <h3><a href="${href}">${highlightText(title, state.query)}</a></h3>
-          <p>${highlightText(getExcerpt(item), state.query)}</p>
-          ${tags.length ? `<div class="wtsr-card__tags">${tags.map((tag) => `<span>${highlightText(tag, state.query)}</span>`).join('')}</div>` : ''}
-        </div>
       </article>`;
     }
 
@@ -159,7 +139,7 @@ const $ = (id) => document.getElementById(id);
       $('wtsrTitleKeyword').innerHTML = highlightText(query || '검색어', query);
       $('wtsrSummaryTitle').innerHTML = query ? `“${highlightText(query, query)}” 관련 콘텐츠` : '검색어를 입력해 주세요';
       $('wtsrSummaryText').textContent = query
-        ? '제목, 요약, 카테고리, 태그, 본문 내용에서 검색어와 관련된 콘텐츠를 찾습니다.'
+        ? '글 제목에 검색어가 포함된 콘텐츠만 보여드립니다.'
         : '홈 화면이나 이 페이지 검색창에서 원하는 도시, 호텔명, 여행지를 입력하면 관련 콘텐츠를 보여드립니다.';
       $('wtsrCount').hidden = !query;
       $('wtsrCount').textContent = `${Number(total || 0).toLocaleString('ko-KR')}개 결과`;
@@ -210,7 +190,7 @@ const $ = (id) => document.getElementById(id);
             $('wtsrMoreBtn').hidden = true;
             return;
           }
-          setEmpty('검색 결과가 없습니다', '검색어를 조금 짧게 입력하거나 도시명, 호텔명 중심으로 다시 검색해 보세요.');
+          setEmpty('검색 결과가 없습니다', '제목에 들어갈 만한 도시명이나 호텔명으로 다시 검색해 보세요.');
         } else {
           const html = items.map(renderCard).join('');
           $('wtsrResults').innerHTML = append ? $('wtsrResults').innerHTML + html : html;
@@ -226,7 +206,7 @@ const $ = (id) => document.getElementById(id);
           setSummary(fallbackItems.length);
           $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
         } else {
-          $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>검색어를 조금 짧게 입력하거나 도시명, 호텔명 중심으로 다시 검색해 보세요.</div>';
+          $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>제목에 들어갈 만한 도시명이나 호텔명으로 다시 검색해 보세요.</div>';
         }
         $('wtsrMoreBtn').hidden = true;
       } finally {
