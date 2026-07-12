@@ -28749,3 +28749,62 @@ body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item[open] > summary .wt-
   }
 }
 /* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V2 */
+
+/* WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V3
+   Full-bleed soft background, white inner card, exact circular CTA button. */
+body.travel-purpose-body .wt-section--survey-cta,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta {
+  position: relative !important;
+  isolation: isolate !important;
+  background: #f6f6f4 !important;
+  box-shadow: 0 0 0 100vmax #f6f6f4 !important;
+  clip-path: inset(0 -100vmax) !important;
+}
+body.travel-purpose-body .wt-section--survey-cta > .container,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta > .container {
+  position: relative !important;
+  z-index: 1 !important;
+  background: transparent !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
+}
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button,
+body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button--primary,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band > .wt-city-button,
+body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band > .wt-city-button--primary {
+  width: 60px !important;
+  height: 60px !important;
+  min-width: 60px !important;
+  max-width: 60px !important;
+  min-height: 60px !important;
+  max-height: 60px !important;
+  flex: 0 0 60px !important;
+  aspect-ratio: 1 / 1 !important;
+  box-sizing: border-box !important;
+  align-self: center !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  line-height: 0 !important;
+}
+
+@media (max-width: 760px) {
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button,
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button--primary,
+  body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band > .wt-city-button,
+  body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band > .wt-city-button--primary {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    flex-basis: 56px !important;
+  }
+}
+/* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V3 */
