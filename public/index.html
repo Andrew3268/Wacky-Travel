@@ -17,7 +17,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260712BackgroundRemovalV5" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260712MoodCardPolishV6" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -107,7 +107,7 @@
           <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no1.avif" alt="후쿠오카 여행 대표 이미지" width="1400" height="1000" loading="eager" decoding="async" fetchpriority="high" />
           <a class="home-mood-card__link" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
             <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>JAPAN</span><span class="home-mood-card__count">CITY PICK</span></div>
+            <div class="home-mood-card__meta"><span>JAPAN</span></div>
             <h3 class="home-mood-card__title">후쿠오카</h3>
             <p class="home-mood-card__desc">하카타와 텐진을 중심으로 맛집과 쇼핑, 호텔을 편하게 연결해 보세요.</p>
           </a>
@@ -116,7 +116,7 @@
           <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no2.avif" alt="도쿄 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
           <a class="home-mood-card__link" href="/destinations/tokyo/" aria-label="도쿄 여행지 보기">
             <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>JAPAN</span><span class="home-mood-card__count">CITY PICK</span></div>
+            <div class="home-mood-card__meta"><span>JAPAN</span></div>
             <h3 class="home-mood-card__title">도쿄</h3>
             <p class="home-mood-card__desc">전통적인 거리와 모던한 도심이 공존하는 여행.</p>
           </a>
@@ -125,7 +125,7 @@
           <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no3.avif" alt="오사카 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
           <a class="home-mood-card__link" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
             <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>JAPAN</span><span class="home-mood-card__count">CITY PICK</span></div>
+            <div class="home-mood-card__meta"><span>JAPAN</span></div>
             <h3 class="home-mood-card__title">오사카</h3>
             <p class="home-mood-card__desc">먹거리와 쇼핑, 근교 이동이 편한 활기찬 도시 여행.</p>
           </a>
@@ -134,7 +134,7 @@
           <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no4.avif" alt="나트랑 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
           <a class="home-mood-card__link" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
             <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>VIETNAM</span><span class="home-mood-card__count">CITY PICK</span></div>
+            <div class="home-mood-card__meta"><span>VIETNAM</span></div>
             <h3 class="home-mood-card__title">나트랑</h3>
             <p class="home-mood-card__desc">리조트와 바다에서 느긋하게 보내는 휴양 여행.</p>
           </a>
@@ -143,7 +143,7 @@
           <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no5.avif" alt="다낭 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
           <a class="home-mood-card__link" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
             <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>VIETNAM</span><span class="home-mood-card__count">CITY PICK</span></div>
+            <div class="home-mood-card__meta"><span>VIETNAM</span></div>
             <h3 class="home-mood-card__title">다낭</h3>
             <p class="home-mood-card__desc">미케비치와 도심을 함께 즐기기 좋은 균형 잡힌 여행.</p>
           </a>
@@ -507,7 +507,7 @@
         <img class="home-mood-card__image" src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="${loading}" decoding="async"${priority} onerror="this.onerror=null;this.classList.add('is-image-error');" />
         <a class="home-mood-card__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
           <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-          <div class="home-mood-card__meta"><span>${escapeHtml(country.toUpperCase())}</span><span class="home-mood-card__count">CITY PICK</span></div>
+          <div class="home-mood-card__meta"><span>${escapeHtml(country.toUpperCase())}</span></div>
           <h3 class="home-mood-card__title">${escapeHtml(label)}</h3>
           <p class="home-mood-card__desc">${escapeHtml(description)}</p>
         </a>
