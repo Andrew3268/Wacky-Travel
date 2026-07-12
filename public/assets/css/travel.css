@@ -14522,18 +14522,7 @@ main.travel-page {
   background-color: #ffffff !important;
 }
 
-main.travel-page.wt-city-page,
-main.travel-page.wt-purpose-page,
-main.travel-page.wt-city-guide-page,
-main.travel-page.wt-city-hotel-guide-page,
-main.travel-page.wt-city-travel-guide-page,
-main.travel-page :where(.container, .wt-section, .wt-city-section, .wt-page-hero, .wt-city-hero, .wt-city-cta, .wt-section--survey-cta, .wt-cta-band, .wt-area-tabs, .wt-city-area-tabs, .wt-area-tab-panel, .wt-city-area-tab-panel, .wt-hotel-section, .wt-hotel-grid, .wt-content-grid, .wt-city-guide-links, .wt-city-snapshot, .wt-city-route, .wt-city-route__item, .wt-survey-wrap, .wt-survey-card, .wt-result-wrap),
-main.travel-page :where([class*="-card"], [class*="__card"], [class*="panel"], [class*="banner"], [class*="surface"], [class*="box"], [class*="wrap"], [class*="note"], [class*="notice"]) {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-}
-
-main.travel-page :where(
+main.travel-page:not(.travel-home) :where(
   .wt-section,
   .wt-city-section,
   .wt-page-hero,
@@ -28207,20 +28196,13 @@ body.travel-home-body .home-latest-card {
 }
 body.travel-home-body .home-latest-card__link {
   display: grid;
-  grid-template-columns: 120px minmax(0,1fr) 42px;
+  grid-template-columns: minmax(0, 1fr) 42px;
   align-items: center;
   gap: 24px;
   min-height: 132px;
   padding: 24px 4px;
   color: #111 !important;
   text-decoration: none !important;
-}
-body.travel-home-body .home-latest-card__meta {
-  color: #777;
-  font-size: 11px;
-  font-weight: 760;
-  letter-spacing: .08em;
-  text-transform: uppercase;
 }
 body.travel-home-body .home-latest-card__content {
   display: flex;
@@ -28286,10 +28268,7 @@ body.travel-home-body .home-latest-card .post-admin-mini-actions {
     min-height: 0;
     padding: 22px 0;
   }
-  body.travel-home-body .home-latest-card__meta {
-    grid-column: 1 / -1;
-  }
-  body.travel-home-body .home-latest-card__content strong { font-size: 21px; }
+    body.travel-home-body .home-latest-card__content strong { font-size: 21px; }
   body.travel-home-body .home-latest-card__content > span { font-size: 13px; }
 }
 /* End WACKYTRAVEL_HOME_REFINEMENT_V1 */
@@ -28322,14 +28301,12 @@ body.travel-home-body .home-mood-card {
 body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; }
 body.travel-home-body .home-mood-card__image {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform 500ms cubic-bezier(.2,.7,.2,1);
+  transition: none;
 }
 body.travel-home-body .home-mood-card::after {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background: linear-gradient(180deg, rgba(10,10,8,.02) 20%, rgba(10,10,8,.78) 100%);
 }
-body.travel-home-body .home-mood-card:hover .home-mood-card__image,
-body.travel-home-body .home-mood-card:focus-within .home-mood-card__image { transform: scale(1.045); }
 body.travel-home-body .home-mood-card__link {
   position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
   justify-content: flex-end; padding: 24px; color: #fff !important; text-decoration: none !important;
@@ -28339,29 +28316,24 @@ body.travel-home-body .home-mood-card__meta {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   margin-bottom: 9px; color: rgba(255,255,255,.82); font-size: 12px; font-weight: 700;
 }
-body.travel-home-body .home-mood-card__count {
-  padding: 6px 9px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px;
-  background: rgba(18,18,16,.18); backdrop-filter: blur(8px);
-}
+body.travel-home-body .home-mood-card__count { display: none !important; }
 body.travel-home-body .home-mood-card__title {
   margin: 0; color: #fff; font-size: clamp(22px,2.2vw,34px); line-height: 1.16;
-  letter-spacing: -.04em; word-break: keep-all;
+  letter-spacing: -.04em; word-break: keep-all; font-weight: 900;
 }
 body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title { font-size: 22px; }
 body.travel-home-body .home-mood-card__desc {
-  margin: 10px 0 0; max-width: 440px; color: rgba(255,255,255,.82); font-size: 14px;
-  line-height: 1.6; word-break: keep-all;
+  margin: 10px 0 0; max-width: 440px; color: #fff !important; font-size: 14px;
+  line-height: 1.6; word-break: keep-all; font-weight: 700;
 }
 body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc {
   display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
 }
 body.travel-home-body .home-mood-card__arrow {
   position: absolute; right: 22px; top: 22px; width: 38px; height: 38px; display: grid;
-  place-items: center; border-radius: 50%; color: #181816; background: rgba(255,255,255,.9);
-  transform: rotate(-35deg); transition: transform 200ms ease, background 200ms ease;
+  place-items: center; border-radius: 50%; color: #181816; background: rgba(255,255,255,.5);
+  transform: rotate(-35deg); transition: none;
 }
-body.travel-home-body .home-mood-card:hover .home-mood-card__arrow,
-body.travel-home-body .home-mood-card:focus-within .home-mood-card__arrow { transform: rotate(0); background: #fff; }
 body.travel-home-body .home-mood-card__link:focus-visible { outline: 3px solid rgba(255,255,255,.82); outline-offset: -6px; }
 
 @media (max-width: 900px) {
@@ -28809,137 +28781,32 @@ body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band >
 }
 /* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V3 */
 
-
-/* WACKYTRAVEL_ALL_CITY_PURPOSE_AND_FAQ_V1
-   Extend the hotel-promotions-style reason grid and FAQ accordion to every city. */
-
-/* Purpose-page reason grids are intentionally global to every travel-purpose-body. */
-body.travel-purpose-body .wt-reason-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 0 !important;
-  overflow: visible !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #111 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
+/* WACKYTRAVEL_UNSPLASH_DIRECT_FIX_V4_APPLIED */
+body.travel-home-body .home-mood-card {
+  min-height: 255px;
 }
-
-/* Shared FAQ treatment for both purpose pages and city landing pages. */
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__accordion,
-body.travel-city-body .wt-city-faq .wt-city-faq__accordion {
+body.travel-home-body .home-mood-card__image {
   display: block !important;
-  border-top: 1px solid #111 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item,
-body.travel-city-body .wt-city-faq .wt-city-faq__item {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-bottom: 1px solid #d8d8d4 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary,
-body.travel-city-body .wt-city-faq .wt-city-faq__item > summary {
-  position: relative !important;
-  min-height: 78px !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  gap: 24px !important;
-  align-items: center !important;
-  padding: 0 !important;
-  color: #111 !important;
-  background: transparent !important;
-  font-size: 17px !important;
-  font-weight: 640 !important;
-  line-height: 1.45 !important;
-  list-style: none !important;
-  cursor: pointer !important;
-}
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::-webkit-details-marker,
-body.travel-city-body .wt-city-faq .wt-city-faq__item > summary::-webkit-details-marker {
-  display: none !important;
-}
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::before,
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary::after,
-body.travel-city-body .wt-city-faq .wt-city-faq__item > summary::before,
-body.travel-city-body .wt-city-faq .wt-city-faq__item > summary::after {
-  display: none !important;
-  content: none !important;
-}
-body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon,
-body.travel-city-body .wt-city-faq .wt-purpose-faq-icon {
-  position: relative !important;
-  grid-column: 2 !important;
-  grid-row: 1 !important;
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  display: block !important;
-  border: 1px solid #aaa !important;
-  border-radius: 50% !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon::before,
-body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon::after,
-body.travel-city-body .wt-city-faq .wt-purpose-faq-icon::before,
-body.travel-city-body .wt-city-faq .wt-purpose-faq-icon::after {
+  visibility: visible !important;
+  opacity: 1 !important;
   position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 10px !important;
-  height: 1px !important;
-  display: block !important;
-  content: "" !important;
-  background: #111 !important;
-  border: 0 !important;
-  transform: translate(-50%, -50%) !important;
-  transition: transform .2s ease !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  background: #d7d2c5;
 }
-body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon::after,
-body.travel-city-body .wt-city-faq .wt-purpose-faq-icon::after {
-  transform: translate(-50%, -50%) rotate(90deg) !important;
+body.travel-home-body .home-mood-card__image.is-image-error {
+  opacity: 0 !important;
 }
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item[open] > summary .wt-purpose-faq-icon::after,
-body.travel-city-body .wt-city-faq .wt-city-faq__item[open] > summary .wt-purpose-faq-icon::after {
-  transform: translate(-50%, -50%) rotate(0deg) !important;
+@media (max-width: 900px) {
+  body.travel-home-body .home-mood-card { min-height: 240px; }
+  body.travel-home-body .home-mood-card--featured { min-height: 410px; }
 }
-body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p,
-body.travel-city-body .wt-city-faq .wt-city-faq__item > p {
-  margin: 0 !important;
-  padding: 0 56px 28px 0 !important;
-  color: #686866 !important;
-  font-size: 14px !important;
-  line-height: 1.8 !important;
-  word-break: keep-all !important;
+@media (max-width: 640px) {
+  body.travel-home-body .home-mood-card,
+  body.travel-home-body .home-mood-card--featured { min-height: 470px; }
 }
 
-@media (max-width: 980px) {
-  body.travel-purpose-body .wt-reason-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    border-bottom: 0 !important;
-  }
-}
-@media (max-width: 760px) {
-  body.travel-purpose-body .wt-reason-grid {
-    grid-template-columns: 1fr !important;
-  }
-  body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > summary,
-  body.travel-city-body .wt-city-faq .wt-city-faq__item > summary {
-    min-height: 72px !important;
-    gap: 18px !important;
-    font-size: 15px !important;
-  }
-  body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p,
-  body.travel-city-body .wt-city-faq .wt-city-faq__item > p {
-    padding-right: 42px !important;
-  }
-}
-/* End WACKYTRAVEL_ALL_CITY_PURPOSE_AND_FAQ_V1 */
