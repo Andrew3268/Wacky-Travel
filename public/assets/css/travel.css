@@ -28293,3 +28293,107 @@ body.travel-home-body .home-latest-card .post-admin-mini-actions {
   body.travel-home-body .home-latest-card__content > span { font-size: 13px; }
 }
 /* End WACKYTRAVEL_HOME_REFINEMENT_V1 */
+
+/* WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 — 2026-07-12 */
+body.travel-home-body .travel-promo-link-section > .container {
+  width: min(calc(100% - 32px), var(--container, 1180px)) !important;
+  max-width: var(--container, 1180px) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+body.travel-home-body .home-mood-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  grid-template-rows: repeat(2, 255px);
+  gap: 16px;
+}
+
+body.travel-home-body .home-mood-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #d7d2c5;
+  box-shadow: 0 0 0 1px rgba(24, 24, 22, .06);
+  isolation: isolate;
+  transform: translateZ(0);
+}
+body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; }
+body.travel-home-body .home-mood-card__image {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 500ms cubic-bezier(.2,.7,.2,1);
+}
+body.travel-home-body .home-mood-card::after {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, rgba(10,10,8,.02) 20%, rgba(10,10,8,.78) 100%);
+}
+body.travel-home-body .home-mood-card:hover .home-mood-card__image,
+body.travel-home-body .home-mood-card:focus-within .home-mood-card__image { transform: scale(1.045); }
+body.travel-home-body .home-mood-card__link {
+  position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 24px; color: #fff !important; text-decoration: none !important;
+}
+body.travel-home-body .home-mood-card--featured .home-mood-card__link { padding: 34px; }
+body.travel-home-body .home-mood-card__meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: 9px; color: rgba(255,255,255,.82); font-size: 12px; font-weight: 700;
+}
+body.travel-home-body .home-mood-card__count {
+  padding: 6px 9px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px;
+  background: rgba(18,18,16,.18); backdrop-filter: blur(8px);
+}
+body.travel-home-body .home-mood-card__title {
+  margin: 0; color: #fff; font-size: clamp(22px,2.2vw,34px); line-height: 1.16;
+  letter-spacing: -.04em; word-break: keep-all;
+}
+body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title { font-size: 22px; }
+body.travel-home-body .home-mood-card__desc {
+  margin: 10px 0 0; max-width: 440px; color: rgba(255,255,255,.82); font-size: 14px;
+  line-height: 1.6; word-break: keep-all;
+}
+body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc {
+  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+}
+body.travel-home-body .home-mood-card__arrow {
+  position: absolute; right: 22px; top: 22px; width: 38px; height: 38px; display: grid;
+  place-items: center; border-radius: 50%; color: #181816; background: rgba(255,255,255,.9);
+  transform: rotate(-35deg); transition: transform 200ms ease, background 200ms ease;
+}
+body.travel-home-body .home-mood-card:hover .home-mood-card__arrow,
+body.travel-home-body .home-mood-card:focus-within .home-mood-card__arrow { transform: rotate(0); background: #fff; }
+body.travel-home-body .home-mood-card__link:focus-visible { outline: 3px solid rgba(255,255,255,.82); outline-offset: -6px; }
+
+@media (max-width: 900px) {
+  body.travel-home-body .home-mood-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-rows: 410px repeat(2,240px);
+  }
+  body.travel-home-body .home-mood-card--featured { grid-column: 1 / -1; grid-row: auto; }
+}
+
+@media (max-width: 640px) {
+  body.travel-home-body .travel-promo-link-section > .container {
+    width: min(calc(100% - 28px), var(--container, 1180px)) !important;
+  }
+  body.travel-home-body .home-mood-grid {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 2px 14px 12px 2px; margin-right: -14px; scrollbar-width: none;
+    overscroll-behavior-inline: contain;
+  }
+  body.travel-home-body .home-mood-grid::-webkit-scrollbar { display: none; }
+  body.travel-home-body .home-mood-card,
+  body.travel-home-body .home-mood-card--featured {
+    flex: 0 0 82vw; height: 470px; scroll-snap-align: start; border-radius: 24px;
+  }
+  body.travel-home-body .home-mood-card__link,
+  body.travel-home-body .home-mood-card--featured .home-mood-card__link { padding: 25px; }
+  body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title { font-size: 28px; }
+  body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc { display: block; font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.travel-home-body .home-mood-card__image,
+  body.travel-home-body .home-mood-card__arrow { transition: none !important; }
+}
+/* End WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 */
