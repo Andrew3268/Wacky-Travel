@@ -1326,3 +1326,67 @@ b {
   font-weight: 500;
 }
 
+
+/* Unified Wacky Travel footer — matched to /hotel-promotions/ */
+.wtpromo-footer {
+  margin-top: 110px;
+  border-top: 1px solid #111;
+  background: #fff;
+}
+.wtpromo-footer .wtpromo-container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+.wtpromo-footer__inner {
+  min-height: 150px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 30px 0;
+}
+.wtpromo-footer-brand {
+  color: #111;
+  font-size: 15px;
+  font-weight: 680;
+  line-height: 1.35;
+}
+.wtpromo-footer-copy {
+  margin: 8px 0 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.wtpromo-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 18px;
+  color: #555;
+  font-size: 12px;
+}
+.wtpromo-footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+.wtpromo-footer-links a:hover,
+.wtpromo-footer-links a:focus-visible {
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 768px) {
+  .wtpromo-footer { margin-top: 82px; }
+  .wtpromo-footer .wtpromo-container {
+    width: min(100% - 28px, 1180px);
+  }
+  .wtpromo-footer__inner {
+    min-height: 0;
+    display: block;
+    padding: 30px 0 34px;
+  }
+  .wtpromo-footer-links {
+    justify-content: flex-start;
+    margin-top: 25px;
+  }
+}
