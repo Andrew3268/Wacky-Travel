@@ -28810,3 +28810,218 @@ body.travel-home-body .home-mood-card__image.is-image-error {
   body.travel-home-body .home-mood-card--featured { min-height: 470px; }
 }
 
+
+/* 20260712 CITY FAQ + SNAPSHOT PROMO ALIGNMENT V1
+   - 도시 메인 FAQ를 목적별 페이지의 프로모션형 FAQ와 통일
+   - 목적별 페이지 섹션 상단 보더 제거
+   - 도시 Quick Choice를 프로모션 featured 카드형 가로 스크롤로 변경
+*/
+body.travel-purpose-body .wt-section,
+body.travel-purpose-body .wt-purpose-page .wt-section,
+body.travel-purpose-body .wt-section--soft,
+body.travel-purpose-body .wt-section--compact,
+body.travel-purpose-body .wt-section--practical,
+body.travel-purpose-body .wt-section--faq {
+  border-top: 0 !important;
+}
+
+body.travel-city-body .wt-city-faq {
+  padding-top: clamp(58px, 7vw, 82px) !important;
+  padding-bottom: clamp(58px, 7vw, 82px) !important;
+}
+body.travel-city-body .wt-city-faq__accordion {
+  display: block !important;
+  border-top: 1px solid #111 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.travel-city-body .wt-city-faq__item {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid #deded9 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body.travel-city-body .wt-city-faq__item > summary {
+  position: relative !important;
+  min-height: 78px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 24px !important;
+  align-items: center !important;
+  padding: 0 !important;
+  color: #111 !important;
+  background: transparent !important;
+  font-size: 17px !important;
+  font-weight: 640 !important;
+  line-height: 1.45 !important;
+  list-style: none !important;
+  cursor: pointer !important;
+}
+body.travel-city-body .wt-city-faq__item > summary::-webkit-details-marker {
+  display: none !important;
+}
+body.travel-city-body .wt-city-faq__item > summary::before,
+body.travel-city-body .wt-city-faq__item > summary::after {
+  display: none !important;
+  content: none !important;
+}
+body.travel-city-body .wt-city-faq__item > p {
+  margin: 0 !important;
+  padding: 0 56px 28px 0 !important;
+  color: #777 !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+  word-break: keep-all !important;
+}
+body.travel-city-body .wt-city-faq .wt-purpose-faq-icon {
+  position: relative !important;
+  width: 28px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
+  display: block !important;
+  border: 1px solid #aaa !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+}
+body.travel-city-body .wt-city-faq .wt-purpose-faq-icon::before,
+body.travel-city-body .wt-city-faq .wt-purpose-faq-icon::after {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 10px !important;
+  height: 1px !important;
+  content: "" !important;
+  background: #111 !important;
+  transform: translate(-50%, -50%) !important;
+  transition: transform .2s ease !important;
+}
+body.travel-city-body .wt-city-faq .wt-purpose-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+}
+body.travel-city-body .wt-city-faq__item[open] > summary .wt-purpose-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg) !important;
+}
+
+body.travel-city-body .wt-city-snapshot {
+  overflow: visible !important;
+}
+body.travel-city-body .wt-city-snapshot__grid {
+  display: grid !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: clamp(270px, 31vw, 360px) !important;
+  grid-template-columns: none !important;
+  gap: 0 !important;
+  margin-right: calc((100vw - 100%) / -2) !important;
+  padding: 0 max(18px, calc((100vw - min(1180px, calc(100vw - 40px))) / 2)) 10px 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  overscroll-behavior-inline: contain !important;
+  scroll-snap-type: x proximity !important;
+  scrollbar-width: thin !important;
+  -webkit-overflow-scrolling: touch !important;
+  border-top: 1px solid #111 !important;
+  border-bottom: 1px solid #111 !important;
+}
+body.travel-city-body .wt-city-choice-card {
+  position: relative !important;
+  min-height: 340px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  padding: 30px !important;
+  border: 0 !important;
+  border-right: 1px solid #deded9 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  color: #111 !important;
+  box-shadow: none !important;
+  scroll-snap-align: start !important;
+  transition: background .2s ease !important;
+}
+body.travel-city-body .wt-city-choice-card:hover {
+  background: #f8f8f6 !important;
+}
+body.travel-city-body .wt-city-choice-card::after {
+  top: auto !important;
+  right: 30px !important;
+  bottom: 30px !important;
+  width: 38px !important;
+  height: 38px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 1px solid #111 !important;
+  border-radius: 50% !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  content: "" !important;
+  background: center / 16px 16px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23111' stroke-width='1.6'%3E%3Cpath d='M4 10h11'/%3E%3Cpath d='m11 6 4 4-4 4'/%3E%3C/svg%3E") !important;
+  transition: background-color .2s ease, transform .2s ease !important;
+}
+body.travel-city-body .wt-city-choice-card:hover::after {
+  background-color: #f1f1ee !important;
+  transform: translateX(3px) !important;
+}
+body.travel-city-body .wt-city-choice-card > span {
+  display: block !important;
+  margin: 0 0 40px !important;
+  color: #777 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 14px !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+}
+body.travel-city-body .wt-city-choice-card > strong {
+  display: block !important;
+  margin: 0 !important;
+  padding-right: 0 !important;
+  color: #111 !important;
+  font-size: clamp(24px, 2.5vw, 30px) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.045em !important;
+  line-height: 1.28 !important;
+  word-break: keep-all !important;
+}
+body.travel-city-body .wt-city-choice-card > p {
+  margin: auto 52px 0 0 !important;
+  padding-top: 38px !important;
+  color: #777 !important;
+  font-size: 13px !important;
+  line-height: 1.7 !important;
+  word-break: keep-all !important;
+}
+
+@media (max-width: 760px) {
+  body.travel-city-body .wt-city-faq__item > summary {
+    min-height: 72px !important;
+    gap: 18px !important;
+    font-size: 15px !important;
+  }
+  body.travel-city-body .wt-city-faq__item > p {
+    padding-right: 42px !important;
+  }
+  body.travel-city-body .wt-city-snapshot__grid {
+    grid-auto-columns: min(82vw, 310px) !important;
+    margin-right: calc((100vw - 100%) / -1) !important;
+    padding-right: 18px !important;
+    border-bottom: 0 !important;
+  }
+  body.travel-city-body .wt-city-choice-card {
+    min-height: 320px !important;
+    padding: 24px !important;
+    border-bottom: 1px solid #111 !important;
+  }
+  body.travel-city-body .wt-city-choice-card::after {
+    right: 24px !important;
+    bottom: 24px !important;
+  }
+  body.travel-city-body .wt-city-choice-card > strong {
+    font-size: 25px !important;
+  }
+}
+/* End 20260712 CITY FAQ + SNAPSHOT PROMO ALIGNMENT V1 */
