@@ -28196,20 +28196,13 @@ body.travel-home-body .home-latest-card {
 }
 body.travel-home-body .home-latest-card__link {
   display: grid;
-  grid-template-columns: 120px minmax(0,1fr) 42px;
+  grid-template-columns: minmax(0, 1fr) 42px;
   align-items: center;
   gap: 24px;
   min-height: 132px;
   padding: 24px 4px;
   color: #111 !important;
   text-decoration: none !important;
-}
-body.travel-home-body .home-latest-card__meta {
-  color: #777;
-  font-size: 11px;
-  font-weight: 760;
-  letter-spacing: .08em;
-  text-transform: uppercase;
 }
 body.travel-home-body .home-latest-card__content {
   display: flex;
@@ -28275,10 +28268,7 @@ body.travel-home-body .home-latest-card .post-admin-mini-actions {
     min-height: 0;
     padding: 22px 0;
   }
-  body.travel-home-body .home-latest-card__meta {
-    grid-column: 1 / -1;
-  }
-  body.travel-home-body .home-latest-card__content strong { font-size: 21px; }
+    body.travel-home-body .home-latest-card__content strong { font-size: 21px; }
   body.travel-home-body .home-latest-card__content > span { font-size: 13px; }
 }
 /* End WACKYTRAVEL_HOME_REFINEMENT_V1 */
