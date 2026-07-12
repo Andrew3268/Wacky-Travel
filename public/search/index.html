@@ -17,9 +17,9 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260618HeroBreadcrumbRefineV19" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260712SearchMinimalTitleOnlyV1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260712SearchReworkV2" />
 </head>
-<body class="wtpromo-page wtsr-page">
+<body class="wtsr-page">
   <header class="topbar topbar--editorial topbar--travel">
     <div class="topbar__inner container">
       <a class="brand" href="/" aria-label="Wacky Travel 홈"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
@@ -28,11 +28,11 @@
 
   <main id="main">
     <section class="wtsr-hero" aria-labelledby="wtsrTitle">
-      <div class="wtsr-hero__grid wtpromo-container">
+      <div class="wtsr-hero__inner wtsr-container">
         <div class="wtsr-hero__copy">
-          <p class="wtpromo-eyebrow">Title Search</p>
-          <h1 id="wtsrTitle"><span id="wtsrTitleKeyword">여행 콘텐츠를</span><br />제목으로 찾기.</h1>
-          <p class="wtsr-hero__desc">도시명이나 호텔명을 입력하면 글 제목에 검색어가 포함된 콘텐츠만 간결하게 보여드립니다.</p>
+          <p class="wtsr-eyebrow">SEARCH</p>
+          <h1 id="wtsrTitle">여행 콘텐츠<br />검색</h1>
+          <p class="wtsr-hero__desc">도시명이나 호텔명을 입력하면 제목에 해당 검색어가 포함된 글만 보여드립니다.</p>
         </div>
 
         <form class="wtsr-form" id="wtsrForm" action="/search/" method="get" role="search" autocomplete="off">
@@ -48,12 +48,13 @@
       </div>
     </section>
 
-    <section class="wtsr-section wtpromo-container" aria-labelledby="wtsrSummaryTitle">
+    <section class="wtsr-section wtsr-container" aria-labelledby="wtsrSummaryTitle">
       <div class="wtsr-shell">
         <div class="wtsr-summary" id="wtsrSummary">
-          <div>
+          <div class="wtsr-summary__copy">
+            <p class="wtsr-summary__eyebrow">SEARCH RESULTS</p>
             <h2 id="wtsrSummaryTitle">검색어를 입력해 주세요</h2>
-            <p id="wtsrSummaryText">홈 화면이나 이 페이지 검색창에서 원하는 도시, 호텔명, 여행지를 입력하면 관련 콘텐츠를 보여드립니다.</p>
+            <p id="wtsrSummaryText">원하는 도시명이나 호텔명을 검색해 보세요.</p>
           </div>
           <span class="wtsr-count" id="wtsrCount" hidden>0개 결과</span>
         </div>
@@ -78,6 +79,6 @@
   </div>
 </footer>
 
-  <script src="/assets/js/search-results.js?v=20260712TitleOnlyV1" defer></script>
+  <script src="/assets/js/search-results.js?v=20260712TitleOnlyV2" defer></script>
 </body>
 </html>

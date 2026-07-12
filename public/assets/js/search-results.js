@@ -136,11 +136,10 @@ const $ = (id) => document.getElementById(id);
 
     function setSummary(total = 0) {
       const query = state.query;
-      $('wtsrTitleKeyword').innerHTML = highlightText(query || '검색어', query);
       $('wtsrSummaryTitle').innerHTML = query ? `“${highlightText(query, query)}” 관련 콘텐츠` : '검색어를 입력해 주세요';
       $('wtsrSummaryText').textContent = query
         ? '글 제목에 검색어가 포함된 콘텐츠만 보여드립니다.'
-        : '홈 화면이나 이 페이지 검색창에서 원하는 도시, 호텔명, 여행지를 입력하면 관련 콘텐츠를 보여드립니다.';
+        : '원하는 도시명이나 호텔명을 검색해 보세요.';
       $('wtsrCount').hidden = !query;
       $('wtsrCount').textContent = `${Number(total || 0).toLocaleString('ko-KR')}개 결과`;
     }
