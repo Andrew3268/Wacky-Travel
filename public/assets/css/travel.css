@@ -30089,3 +30089,125 @@ body.travel-purpose-body .wt-firsttrip-guide:focus-visible .wt-firsttrip-guide__
   }
 }
 /* End FUKUOKA_PURPOSE_MINIMAL_LINK_SECTIONS_V2 */
+
+/* FUKUOKA_PURPOSE_MOBILE_SPACING_BANNER_FAQ_REFINEMENT_V3 */
+body.travel-purpose-body .wt-purpose-faq .wt-purpose-faq-icon {
+  border-radius: 0 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 28px !important;
+  min-height: 112px !important;
+  margin-top: 28px !important;
+  padding: 24px 26px !important;
+  overflow: hidden !important;
+  border: 1px solid #d9d9d5 !important;
+  border-radius: 0 !important;
+  background: #f6f6f4 !important;
+  box-shadow: none !important;
+  color: #111 !important;
+  text-decoration: none !important;
+  transition: border-color .2s ease, background-color .2s ease !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner::before,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner::before,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner::after,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner strong,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner strong {
+  display: block !important;
+  max-width: 680px !important;
+  margin: 0 !important;
+  color: #111 !important;
+  font-size: clamp(18px, 2vw, 23px) !important;
+  font-weight: 750 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -.035em !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: auto !important;
+  min-width: 190px !important;
+  max-width: 100% !important;
+  min-height: 48px !important;
+  margin: 0 !important;
+  padding: 13px 18px !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  background: #111 !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -.02em !important;
+  white-space: nowrap !important;
+  transition: background-color .2s ease, color .2s ease !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner:hover,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner:hover,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner:focus-visible,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner:focus-visible {
+  border-color: #111 !important;
+  background: #fff !important;
+}
+
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner:hover .wt-hotel-more-banner__button,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner:hover .wt-hotel-more-banner__button,
+body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner:focus-visible .wt-hotel-more-banner__button,
+body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner:focus-visible .wt-hotel-more-banner__button {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices {
+    padding: 0 20px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner,
+  body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    min-height: 0 !important;
+    padding: 22px 20px 20px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner strong,
+  body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner strong {
+    max-width: none !important;
+    font-size: 19px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+  body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button {
+    order: 2 !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 50px !important;
+    margin-top: 2px !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+/* End FUKUOKA_PURPOSE_MOBILE_SPACING_BANNER_FAQ_REFINEMENT_V3 */
