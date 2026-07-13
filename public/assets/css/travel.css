@@ -30314,3 +30314,24 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-section-
   }
 }
 /* End FUKUOKA_PURPOSE_HOTEL_HEAD_CTA_V4 */
+
+/* ALL_CITY_PURPOSE_OTHER_CHOICES_FULL_BLEED_V5 */
+body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices {
+  box-sizing: border-box !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  padding: 0 20px !important;
+  background: #f6f6f4 !important;
+  border-top-color: #e8e8e4 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices > .container {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: var(--container, 1180px) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+/* End ALL_CITY_PURPOSE_OTHER_CHOICES_FULL_BLEED_V5 */
