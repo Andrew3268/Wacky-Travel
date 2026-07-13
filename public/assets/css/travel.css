@@ -30060,3 +30060,32 @@ body.travel-purpose-body .wt-firsttrip-guide:focus-visible {
   }
 }
 /* End FUKUOKA_FIRST_TRIP_MINIMAL_LINK_SECTIONS_V1 */
+
+
+/* FUKUOKA_PURPOSE_MINIMAL_LINK_SECTIONS_V2 */
+body.travel-purpose-body .wt-firsttrip-guide:hover .wt-firsttrip-guide__arrow,
+body.travel-purpose-body .wt-firsttrip-guide:focus-visible .wt-firsttrip-guide__arrow {
+  transform: translateX(4px);
+}
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-firsttrip-other-choices {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    background: #f6f6f4 !important;
+  }
+  body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+  body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+  .wt-purpose-page #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button,
+  .wt-purpose-page--first-trip #hotels .wt-hotel-more-banner .wt-hotel-more-banner__button {
+    width: fit-content !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    align-self: flex-start !important;
+    justify-content: center !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+/* End FUKUOKA_PURPOSE_MINIMAL_LINK_SECTIONS_V2 */
