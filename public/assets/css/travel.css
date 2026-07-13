@@ -30471,3 +30471,27 @@ body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-firsttrip-befo
   }
 }
 
+
+/* Fukuoka first-trip: force-remove checklist right border on mobile */
+@media (max-width: 720px) {
+  body.travel-purpose-body
+  .wt-purpose-page--fukuoka-first-trip
+  .wt-firsttrip-before-booking
+  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
+  > .wt-check-item,
+  body.travel-purpose-body
+  .wt-purpose-page--fukuoka-first-trip
+  .wt-firsttrip-before-booking
+  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
+  > .wt-check-item:nth-child(odd),
+  body.travel-purpose-body
+  .wt-purpose-page--fukuoka-first-trip
+  .wt-firsttrip-before-booking
+  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
+  > .wt-check-item:nth-child(even) {
+    border-right: none !important;
+    border-right-width: 0 !important;
+    border-right-style: none !important;
+    border-inline-end: none !important;
+  }
+}
