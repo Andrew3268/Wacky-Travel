@@ -30471,15 +30471,3 @@ body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-firsttrip-befo
   }
 }
 
-/* Fukuoka first-trip: mobile Before Booking border cleanup V2 */
-@media (max-width: 720px) {
-  body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item {
-    border-right: none !important;
-    border-right-width: 0 !important;
-    border-right-style: none !important;
-  }
-}
-/* End FUKUOKA_FIRST_TRIP_MOBILE_CHECK_BORDER_V2 */
