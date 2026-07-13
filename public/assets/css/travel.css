@@ -30471,65 +30471,15 @@ body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-firsttrip-befo
   }
 }
 
-/* Fukuoka first-trip: featured Hakata area choice */
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata {
-  overflow: hidden !important;
-  background: #111 !important;
-  color: #fff !important;
-  border-color: #111 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata::before {
-  color: #8d8d8d !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata::after {
-  color: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata .wt-choice-card__label {
-  color: #a9a9a9 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata h3 {
-  color: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata .wt-choice-card__lead {
-  color: #d0d0d0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata .wt-choice-card__chips span {
-  color: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata .wt-choice-card__chips span + span::before {
-  color: #666 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata .wt-choice-card__line {
-  border-top-color: #353535 !important;
-  color: #a9a9a9 !important;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata:hover {
-    background: #252525 !important;
-  }
-
-  body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata:hover::after {
-    transform: translateX(4px) !important;
+/* Fukuoka first-trip: mobile Before Booking border cleanup V2 */
+@media (max-width: 720px) {
+  body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip
+  .wt-firsttrip-before-booking
+  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
+  > .wt-check-item {
+    border-right: none !important;
+    border-right-width: 0 !important;
+    border-right-style: none !important;
   }
 }
-
-@media (max-width: 760px) {
-  body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata {
-    margin: 0 -20px !important;
-    padding: 26px 20px 28px !important;
-  }
-
-  body.travel-purpose-body .wt-purpose-page--fukuoka-first-trip .wt-first-area-choice .wt-choice-card--hakata::after {
-    right: 20px !important;
-  }
-}
-/* End FUKUOKA_FIRST_TRIP_AREA_CHOICE_FEATURED_V1 */
+/* End FUKUOKA_FIRST_TRIP_MOBILE_CHECK_BORDER_V2 */
