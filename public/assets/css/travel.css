@@ -30640,3 +30640,158 @@ body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item{pos
 body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-child(odd){border-right:1px solid #d7d7d2!important}
 body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-last-child(-n+2){border-bottom:0!important}
 @media(max-width:760px){body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-area-choice-simple{margin-top:28px!important}body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main{grid-template-columns:1fr!important}body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main>article.wt-choice-card{padding:26px 0 25px!important}body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main>article.wt-choice-card+article.wt-choice-card{border-left:0!important;border-top:1px solid #d7d7d2!important}body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-grid{grid-template-columns:1fr!important}body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item,body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-child(odd),body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-child(even){border-right:0!important;border-inline-end:0!important}body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-last-child(2){border-bottom:1px solid #d7d7d2!important}body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:last-child{border-bottom:0!important}}
+
+/* FUKUOKA_BEFORE_BOOKING_EXACT_UNIFY_V1
+   Match value/near/family/quiet Before Booking items to first-trip exactly. */
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
+  counter-reset: firsttrip-booking-check !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  margin-top: 0 !important;
+  border-top: 1px solid #111 !important;
+  border-bottom: 1px solid #111 !important;
+  background: transparent !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item {
+  counter-increment: firsttrip-booking-check !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  grid-template-areas: none !important;
+  align-content: start !important;
+  column-gap: 20px !important;
+  row-gap: 0 !important;
+  min-height: 190px !important;
+  margin: 0 !important;
+  padding: 28px 30px 30px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: background-color .22s ease, color .22s ease !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(odd) {
+  border-right: 1px solid #d8d8d3 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(-n+2) {
+  border-bottom: 1px solid #d8d8d3 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-last-child(-n+2) {
+  border-bottom: 0 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item::before {
+  content: counter(firsttrip-booking-check, decimal-leading-zero) !important;
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+  grid-area: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border: 1px solid #111 !important;
+  border-radius: 0 !important;
+  color: #111 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: .08em !important;
+  transition: border-color .22s ease, color .22s ease !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > strong {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  grid-area: auto !important;
+  display: block !important;
+  width: auto !important;
+  margin: 1px 0 12px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #111 !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  letter-spacing: -.04em !important;
+  word-break: keep-all !important;
+}
+
+body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > .wt-check-item__lead {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  grid-area: auto !important;
+  display: block !important;
+  margin: 0 !important;
+  color: #626262 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.72 !important;
+  letter-spacing: -.025em !important;
+  word-break: keep-all !important;
+  transition: color .22s ease !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:hover {
+    background: #111 !important;
+  }
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:hover::before {
+    border-color: #fff !important;
+    color: #fff !important;
+  }
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:hover > strong {
+    color: #fff !important;
+  }
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:hover > .wt-check-item__lead {
+    color: #cfcfcf !important;
+  }
+}
+
+@media (max-width: 720px) {
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item,
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(odd),
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(even),
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-last-child(-n+2) {
+    grid-template-columns: 42px minmax(0, 1fr) !important;
+    column-gap: 16px !important;
+    min-height: 0 !important;
+    padding: 22px 0 24px !important;
+    border-right: 0 !important;
+    border-right-width: 0 !important;
+    border-right-style: none !important;
+    border-inline-end: 0 !important;
+    border-bottom: 1px solid #d8d8d3 !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:last-child {
+    border-bottom: 0 !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item::before {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > strong {
+    margin-bottom: 9px !important;
+    font-size: 16px !important;
+  }
+
+  body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > .wt-check-item__lead {
+    font-size: 13px !important;
+    line-height: 1.68 !important;
+  }
+}
+/* End FUKUOKA_BEFORE_BOOKING_EXACT_UNIFY_V1 */
