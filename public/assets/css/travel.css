@@ -29844,3 +29844,219 @@ body.wtsr-page {
   }
 }
 /* END SEARCH PAGE REWORK V2 */
+
+/* FUKUOKA_FIRST_TRIP_MINIMAL_LINK_SECTIONS_V1 */
+body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices {
+  background: #f6f6f4 !important;
+  border-top-color: #e8e8e4 !important;
+}
+
+body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices .wt-section-head,
+body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-related-guides .wt-section-head {
+  margin-bottom: 32px !important;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice-list,
+body.travel-purpose-body .wt-firsttrip-guide-list {
+  border-top: 1px solid #cfcfcb;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 18px;
+  min-height: 112px;
+  padding: 24px 10px 24px 0;
+  border-bottom: 1px solid #d9d9d5;
+  color: #111;
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease, padding .2s ease;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice__number {
+  color: #8a8a86;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  font-variant-numeric: tabular-nums;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice__content {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice__content strong {
+  color: inherit;
+  font-size: clamp(19px, 2vw, 23px);
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -.035em;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice__content > span {
+  color: #686866;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: -.02em;
+  transition: color .2s ease;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice__arrow {
+  justify-self: end;
+  color: inherit;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice:hover,
+body.travel-purpose-body .wt-firsttrip-choice:focus-visible {
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #111;
+  color: #fff;
+  outline: none;
+}
+
+body.travel-purpose-body .wt-firsttrip-choice:hover .wt-firsttrip-choice__number,
+body.travel-purpose-body .wt-firsttrip-choice:focus-visible .wt-firsttrip-choice__number,
+body.travel-purpose-body .wt-firsttrip-choice:hover .wt-firsttrip-choice__content > span,
+body.travel-purpose-body .wt-firsttrip-choice:focus-visible .wt-firsttrip-choice__content > span {
+  color: #bdbdbd;
+}
+
+body.travel-purpose-body .wt-firsttrip-related-guides {
+  background: #fff !important;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  align-items: start;
+  gap: 24px;
+  padding: 34px 0;
+  border-bottom: 1px solid #dedede;
+  color: #111;
+  text-decoration: none;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide__content {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide__content strong {
+  width: fit-content;
+  color: #111;
+  font-size: clamp(21px, 2.25vw, 28px);
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -.04em;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size .2s ease;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide__content > span {
+  max-width: 690px;
+  color: #666;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: -.022em;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide__content em {
+  margin-top: 7px;
+  color: #111;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide__arrow {
+  justify-self: end;
+  color: #111;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide:hover .wt-firsttrip-guide__content strong,
+body.travel-purpose-body .wt-firsttrip-guide:focus-visible .wt-firsttrip-guide__content strong {
+  background-size: 100% 1px;
+}
+
+body.travel-purpose-body .wt-firsttrip-guide:hover .wt-firsttrip-guide__arrow,
+body.travel-purpose-body .wt-firsttrip-guide:focus-visible .wt-firsttrip-guide__arrow {
+  transform: translate(3px, -3px);
+}
+
+body.travel-purpose-body .wt-firsttrip-guide:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 6px;
+}
+
+@media (max-width: 767px) {
+  body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices .wt-section-head,
+  body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-related-guides .wt-section-head {
+    margin-bottom: 26px !important;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-choice {
+    grid-template-columns: 34px minmax(0, 1fr) 28px;
+    gap: 12px;
+    min-height: 102px;
+    padding: 21px 4px 21px 0;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-choice:hover,
+  body.travel-purpose-body .wt-firsttrip-choice:focus-visible {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-choice__content strong {
+    font-size: 18px;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-choice__content > span {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 13px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-choice__arrow {
+    font-size: 20px;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-guide {
+    grid-template-columns: minmax(0, 1fr) 32px;
+    gap: 14px;
+    padding: 27px 0;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-guide__content strong {
+    font-size: 21px;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-guide__content > span {
+    font-size: 14px;
+  }
+
+  body.travel-purpose-body .wt-firsttrip-guide__arrow {
+    font-size: 21px;
+  }
+}
+/* End FUKUOKA_FIRST_TRIP_MINIMAL_LINK_SECTIONS_V1 */
