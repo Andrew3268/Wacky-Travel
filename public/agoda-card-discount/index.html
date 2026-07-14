@@ -613,6 +613,128 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   .wt-agoda-open{width:42px;height:42px}
 }
 
+
+/* 전용 링크 확인 화면 */
+.wt-agoda-shell.wt-agoda-is-loading .wt-agoda-topbar,
+.wt-agoda-shell.wt-agoda-is-loading .wt-agoda-progress{display:none}
+#stepLoading{padding:0 24px}
+.wt-agoda-loading-main{
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:48px 0;
+  text-align:center;
+}
+.wt-agoda-loading-visual{
+  position:relative;
+  width:132px;
+  height:132px;
+  margin-bottom:38px;
+  display:grid;
+  place-items:center;
+}
+.wt-agoda-loading-ring{
+  position:absolute;
+  inset:0;
+  border:1px solid #e2e2dd;
+  border-radius:50%;
+}
+.wt-agoda-loading-ring::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border:2px solid transparent;
+  border-top-color:#111;
+  border-right-color:#111;
+  border-radius:50%;
+  animation:wtAgodaLoadingSpin 1.15s cubic-bezier(.55,.15,.45,.85) infinite;
+}
+.wt-agoda-loading-ring::after{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:1px solid #eeeeea;
+  border-radius:50%;
+  animation:wtAgodaLoadingPulse 1.6s ease-in-out infinite;
+}
+.wt-agoda-loading-icon{
+  position:relative;
+  z-index:1;
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#333;
+  color:#fff;
+  box-shadow:0 14px 30px rgba(0,0,0,.14);
+  animation:wtAgodaLoadingFloat 1.8s ease-in-out infinite;
+}
+.wt-agoda-loading-icon svg{width:25px;height:25px}
+.wt-agoda-loading-kicker{
+  margin:0 0 12px;
+  color:#8a8a84;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.wt-agoda-loading-title{
+  margin:0;
+  font-size:30px;
+  font-weight:760;
+  line-height:1.25;
+  letter-spacing:-.05em;
+}
+.wt-agoda-loading-desc{
+  min-height:26px;
+  margin:14px 0 0;
+  color:var(--wt-agoda-muted);
+  font-size:14px;
+  line-height:1.7;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.wt-agoda-loading-desc.wt-agoda-is-changing{opacity:0;transform:translateY(4px)}
+.wt-agoda-loading-dots{display:inline-flex;gap:5px;margin-top:28px}
+.wt-agoda-loading-dots span{
+  width:5px;height:5px;border-radius:50%;background:#b9b9b3;
+  animation:wtAgodaDot 1.15s ease-in-out infinite;
+}
+.wt-agoda-loading-dots span:nth-child(2){animation-delay:.14s}
+.wt-agoda-loading-dots span:nth-child(3){animation-delay:.28s}
+.wt-agoda-loading-error{
+  display:none;
+  width:min(100%,420px);
+  margin-top:28px;
+  padding-top:22px;
+  border-top:1px solid var(--wt-agoda-line);
+}
+.wt-agoda-loading-error.wt-agoda-is-visible{display:block}
+.wt-agoda-loading-error p{margin:0 0 16px;color:var(--wt-agoda-danger);font-size:13px;line-height:1.65}
+.wt-agoda-loading-retry{
+  min-height:48px;
+  padding:0 22px;
+  border:1px solid #111;
+  background:#111;
+  color:#fff;
+  font-size:13px;
+  font-weight:750;
+}
+@keyframes wtAgodaLoadingSpin{to{transform:rotate(360deg)}}
+@keyframes wtAgodaLoadingPulse{0%,100%{transform:scale(.96);opacity:.55}50%{transform:scale(1.04);opacity:1}}
+@keyframes wtAgodaLoadingFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes wtAgodaDot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+@media (max-width:640px){
+  #stepLoading{min-height:100svh;padding-left:20px;padding-right:20px}
+  .wt-agoda-loading-main{min-height:100svh;padding:40px 0 calc(40px + env(safe-area-inset-bottom))}
+  .wt-agoda-loading-visual{width:118px;height:118px;margin-bottom:34px}
+  .wt-agoda-loading-title{font-size:27px}
+}
+@media (prefers-reduced-motion:reduce){
+  .wt-agoda-loading-ring::before,.wt-agoda-loading-ring::after,.wt-agoda-loading-icon,.wt-agoda-loading-dots span{animation-duration:2.8s}
+}
+
 .wt-agoda-link-status{display:none;width:100%;max-width:520px;margin:14px auto 0;padding:14px 16px;border-radius:14px;background:#f2f2ef;color:#222;text-align:left;font-size:13px;line-height:1.5}
 .wt-agoda-link-status.wt-agoda-is-visible{display:flex;align-items:center;gap:10px}
 .wt-agoda-link-status-spinner{width:16px;height:16px;border:2px solid #c8c8c3;border-top-color:#222;border-radius:50%;animation:wtAgodaSpin .7s linear infinite;flex:0 0 auto}
@@ -653,11 +775,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
           </label>
           <div class="wt-agoda-error" id="urlError" role="alert"></div>
         </form>
-        <div class="wt-agoda-link-status" id="linkStatus" role="status" aria-live="polite">
-          <span class="wt-agoda-link-status-spinner" aria-hidden="true"></span>
-          <span id="linkStatusText">앱 공유 링크를 호텔 홈페이지 주소로 변환하고 있습니다.</span>
-        </div>
-
         <p class="wt-agoda-pc-note"><strong>아고다 홈페이지 URL과 앱에서 공유한 /sp/ 링크를 모두 사용할 수 있습니다.</strong></p>
         <div class="wt-agoda-quick-actions">
           <a class="wt-agoda-agoda-link" href="https://www.agoda.com/ko-kr/" target="_blank" rel="noopener noreferrer">
@@ -673,6 +790,30 @@ body.wt-agoda-is-modal-open{overflow:hidden}
 
       <div class="wt-agoda-footer">
         <button class="wt-agoda-btn wt-agoda-btn--primary" id="goCardsBtn" type="submit" form="urlForm">할인 혜택 찾기</button>
+      </div>
+    </section>
+
+
+    <section class="wt-agoda-page" id="stepLoading" aria-labelledby="loadingTitle" aria-live="polite">
+      <div class="wt-agoda-loading-main">
+        <div class="wt-agoda-loading-visual" aria-hidden="true">
+          <span class="wt-agoda-loading-ring"></span>
+          <span class="wt-agoda-loading-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="5" width="17" height="14" rx="2.5"></rect>
+              <path d="M3.5 9.5h17"></path>
+              <path d="M7 15h4"></path>
+            </svg>
+          </span>
+        </div>
+        <p class="wt-agoda-loading-kicker">CHECKING LINK</p>
+        <h1 class="wt-agoda-loading-title" id="loadingTitle">호텔 링크를<br>확인하고 있어요</h1>
+        <p class="wt-agoda-loading-desc" id="loadingMessage">입력한 주소를 안전하게 확인하는 중입니다.</p>
+        <div class="wt-agoda-loading-dots" id="loadingDots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="wt-agoda-loading-error" id="loadingError">
+          <p id="loadingErrorText"></p>
+          <button class="wt-agoda-loading-retry" type="button" id="loadingBackBtn">링크 다시 입력하기</button>
+        </div>
       </div>
     </section>
 
@@ -746,6 +887,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <button class="wt-agoda-modal-confirm" type="button" id="confirmGuideBtn">확인했어요</button>
   </div>
 </div>
-<script src="app.js?v=20260714-3"></script>
+<script src="app.js?v=20260714-loading1"></script>
 </body>
 </html>

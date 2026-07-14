@@ -84,6 +84,7 @@ const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
 const pages = {
   url: $("#stepUrl"),
+  loading: $("#stepLoading"),
   cards: $("#stepCards"),
   results: $("#stepResults")
 };
@@ -98,8 +99,11 @@ const selectedCount = $("#selectedCount");
 const goResultsBtn = $("#goResultsBtn");
 const resultList = $("#resultList");
 const shell = $(".wt-agoda-shell");
-const linkStatus = $("#linkStatus");
-const linkStatusText = $("#linkStatusText");
+const loadingMessage = $("#loadingMessage");
+const loadingError = $("#loadingError");
+const loadingErrorText = $("#loadingErrorText");
+const loadingDots = $("#loadingDots");
+const loadingBackBtn = $("#loadingBackBtn");
 
 function cleanExtractedUrl(value){
   return String(value || "")
@@ -150,12 +154,14 @@ urlInput.addEventListener("paste", (event) => {
 function showPage(name){
   state.page = name;
   shell.classList.toggle("wt-agoda-is-intro", name === "url");
+  shell.classList.toggle("wt-agoda-is-loading", name === "loading");
   shell.classList.toggle("wt-agoda-is-results", name === "results");
   Object.values(pages).forEach((page) => page.classList.remove("wt-agoda-is-active"));
   pages[name].classList.add("wt-agoda-is-active");
 
   const meta = {
     url: { width: "0%", label: "", canGoBack: false },
+    loading: { width: "0%", label: "", canGoBack: false },
     cards: { width: "50%", label: "1 / 2", canGoBack: true },
     results: { width: "100%", label: "2 / 2", canGoBack: true }
   }[name];
@@ -272,18 +278,28 @@ async function resolveAgodaShareLink(url){
 function setUrlSubmitLoading(isLoading){
   const button = $("#goCardsBtn");
   button.disabled = isLoading;
-  button.textContent = isLoading ? "호텔 링크 확인 중..." : "할인 혜택 찾기";
 }
 
-function setLinkStatus(message = "", type = "loading"){
-  if(!message){
-    linkStatus.classList.remove("wt-agoda-is-visible", "wt-agoda-is-success");
-    linkStatusText.textContent = "";
-    return;
-  }
-  linkStatusText.textContent = message;
-  linkStatus.classList.add("wt-agoda-is-visible");
-  linkStatus.classList.toggle("wt-agoda-is-success", type === "success");
+function resetLoadingScreen(){
+  loadingError.classList.remove("wt-agoda-is-visible");
+  loadingErrorText.textContent = "";
+  loadingDots.hidden = false;
+  loadingMessage.classList.remove("wt-agoda-is-changing");
+  loadingMessage.textContent = "입력한 주소를 안전하게 확인하는 중입니다.";
+}
+
+async function updateLoadingMessage(message){
+  loadingMessage.classList.add("wt-agoda-is-changing");
+  await wait(140);
+  loadingMessage.textContent = message;
+  loadingMessage.classList.remove("wt-agoda-is-changing");
+}
+
+function showLoadingError(message){
+  loadingDots.hidden = true;
+  loadingMessage.textContent = "링크를 확인하지 못했어요.";
+  loadingErrorText.textContent = message;
+  loadingError.classList.add("wt-agoda-is-visible");
 }
 
 function wait(ms){
@@ -373,33 +389,41 @@ $("#urlForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   urlError.textContent = "";
   setUrlSubmitLoading(true);
-  setLinkStatus();
+  resetLoadingScreen();
 
   try{
     const extractedInput = extractAgodaUrl(urlInput.value) || urlInput.value.trim();
     urlInput.value = extractedInput;
     const inputUrl = validateAgodaUrl(extractedInput);
+
+    showPage("loading");
+    const startedAt = Date.now();
+
     if(isAgodaShareLink(inputUrl)){
-      const startedAt = Date.now();
-      setLinkStatus("앱 공유 링크를 호텔 홈페이지 주소로 변환하고 있습니다.");
+      await updateLoadingMessage("앱 공유 링크를 호텔 페이지 주소로 바꾸고 있어요.");
       const resolvedUrl = await resolveAgodaShareLink(inputUrl);
       if(isAgodaShareLink(resolvedUrl)){
         throw new Error("앱 공유 링크가 호텔 페이지 주소로 변환되지 않았습니다.");
       }
       state.baseUrl = resolvedUrl;
-      const elapsed = Date.now() - startedAt;
-      if(elapsed < 900) await wait(900 - elapsed);
-      setLinkStatus("호텔 주소 변환이 완료되었습니다. 결제수단 선택 화면으로 이동합니다.", "success");
-      await wait(500);
+      await updateLoadingMessage("카드 할인 혜택을 준비하고 있어요.");
     }else{
       state.baseUrl = normalizeHotelPageUrl(inputUrl);
+      await updateLoadingMessage("카드 할인 혜택을 준비하고 있어요.");
     }
+
+    const elapsed = Date.now() - startedAt;
+    if(elapsed < 1250) await wait(1250 - elapsed);
+    await updateLoadingMessage("준비가 완료됐어요. 결제수단을 선택해주세요.");
+    await wait(420);
     showPage("cards");
-    setLinkStatus();
   }catch(error){
-    setLinkStatus();
-    urlError.textContent = error.message;
-    urlInput.focus();
+    if(state.page === "loading"){
+      showLoadingError(error.message);
+    }else{
+      urlError.textContent = error.message;
+      urlInput.focus();
+    }
   }finally{
     setUrlSubmitLoading(false);
   }
@@ -426,6 +450,10 @@ $("#goResultsBtn").addEventListener("click", () => {
 });
 
 globalBackBtn.addEventListener("click", () => {
+  if(state.page === "loading"){
+    showPage("url");
+    return;
+  }
   if(state.page === "results"){
     showPage("cards");
     return;
@@ -442,8 +470,15 @@ $("#restartBtn").addEventListener("click", () => {
   urlError.textContent = "";
   syncSelectionUI();
   resultList.innerHTML = "";
+  resetLoadingScreen();
   showPage("url");
   setTimeout(() => urlInput.focus(), 50);
+});
+
+loadingBackBtn.addEventListener("click", () => {
+  resetLoadingScreen();
+  showPage("url");
+  setTimeout(() => urlInput.focus(), 80);
 });
 
 renderCards();
