@@ -3,6 +3,7 @@ const cards = [
   { name: "카카오페이", cid: "1845109", category: "pay", badge: "기본 7% ~ 10%", desc: "기간별 전용 쿠폰 등록 또는 결제 수단 선택 시 즉시 할인" },
   { name: "네이버페이", cid: "1963008", category: "pay", badge: "전용 할인", desc: "네이버페이 전용 아고다 할인 페이지로 연결" },
   { name: "페이코", cid: "1845157", category: "pay", badge: "전용 할인", desc: "페이코 전용 아고다 할인 페이지로 연결" },
+  { name: "삼성페이", cid: "1844104", category: "pay", badge: "전용 할인", desc: "삼성페이 전용 아고다 할인 페이지로 연결" },
   { name: "현대카드", cid: "1641446", category: "card", badge: "기본 7% ~ 10%", desc: "국내/외 전 지역 상시 7% · 특정 시즌 및 국가 프로모션 시 10%" },
   { name: "신한카드", cid: "1949723", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 분기별 특정 프로모션 시 최대 10%" },
   { name: "KB국민카드", cid: "1563295", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 국카몰 및 전용 이벤트 페이지 경유 시 10%" },
@@ -434,11 +435,7 @@ $("#goResultsBtn").addEventListener("click", () => {
 });
 
 introBackBtn.addEventListener("click", () => {
-  if(window.history.length > 1){
-    window.history.back();
-  }else{
-    window.location.href = "/hotel-promotions/";
-  }
+  window.history.back();
 });
 
 globalBackBtn.addEventListener("click", () => {

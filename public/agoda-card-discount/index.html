@@ -21,7 +21,7 @@ body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
   color:var(--wt-agoda-ink);
-  background:var(--wt-agoda-bg);
+  background:#fff;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   word-break:keep-all;
@@ -38,15 +38,16 @@ a{color:inherit;text-decoration:none}
   align-items:stretch;
   justify-content:center;
   padding:0;
-  background:var(--wt-agoda-bg);
+  background:#fff;
 }
 .wt-agoda-shell{
   width:100%;
   min-height:100dvh;
-  max-width:760px;
+  max-width:500px;
   display:flex;
   flex-direction:column;
   background:var(--wt-agoda-surface);
+  border:1px solid var(--wt-agoda-line);
 }
 .wt-agoda-topbar{
   min-height:72px;
@@ -131,7 +132,7 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-hero-icon{
   width:50px;
   height:50px;
-  margin:0 auto 24px;
+  margin:0 0 24px;
   display:grid;
   place-items:center;
   border:0;
@@ -142,7 +143,7 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-hero-icon svg{width:25px;height:25px}
 .wt-agoda-title{
   margin:0;
-  text-align:center;
+  text-align:left;
   color:var(--wt-agoda-ink);
   font-size:34px;
   font-weight:760;
@@ -153,8 +154,8 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-title--left{text-align:left;font-size:34px}
 .wt-agoda-desc{
   max-width:390px;
-  margin:14px auto 0;
-  text-align:center;
+  margin:14px 0 0;
+  text-align:left;
   color:var(--wt-agoda-muted);
   font-size:15px;
   line-height:1.75;
@@ -583,7 +584,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   bottom:0 !important;
   top:auto !important;
   z-index:9999;
-  width:min(100%,760px);
+  width:min(100%,500px);
   transform:translateX(-50%) !important;
   padding:12px 24px calc(12px + env(safe-area-inset-bottom));
   background:#fff;
@@ -601,7 +602,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   bottom:0 !important;
   top:auto !important;
   z-index:9999;
-  width:min(100%,760px);
+  width:min(100%,500px);
   transform:translateX(-50%) !important;
   grid-template-columns:1fr;
   padding:12px 24px calc(12px + env(safe-area-inset-bottom));
@@ -612,12 +613,25 @@ body.wt-agoda-is-modal-open{overflow:hidden}
 
 @media (min-width:820px){
   .wt-agoda-app{padding:40px 24px}
-  .wt-agoda-shell{min-height:760px;max-height:calc(100dvh - 80px);border:1px solid var(--wt-agoda-line)}
+  .wt-agoda-shell{min-height:760px;max-height:calc(100dvh - 80px)}
   .wt-agoda-page{padding-left:48px;padding-right:48px;padding-bottom:32px}
   .wt-agoda-topbar{padding-left:48px;padding-right:48px}
 }
 @media (max-width:1024px){
   #stepCards .wt-agoda-main--scroll{padding-bottom:32px}
+}
+@media (min-width:641px) and (max-width:1024px){
+  html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+  .wt-agoda-app{min-height:100svh;height:auto;align-items:flex-start;padding:24px 16px}
+  .wt-agoda-shell{min-height:calc(100svh - 48px);height:auto;max-height:none;overflow:visible}
+  .wt-agoda-page{flex:0 0 auto;min-height:calc(100svh - 122px);overflow:visible}
+  .wt-agoda-page.wt-agoda-is-active{display:flex}
+  .wt-agoda-main{flex:0 0 auto;min-height:auto}
+  .wt-agoda-main--center{flex:1 0 auto}
+  .wt-agoda-main--scroll{overflow:visible;overscroll-behavior:auto}
+  .wt-agoda-shell:not(.wt-agoda-is-intro):not(.wt-agoda-is-loading):not(.wt-agoda-is-results) #stepCards{
+    padding-bottom:calc(112px + env(safe-area-inset-bottom));
+  }
 }
 @media (max-width:640px){
   html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
