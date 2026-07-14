@@ -151,7 +151,7 @@ urlInput.addEventListener("paste", (event) => {
   urlInput.dispatchEvent(new Event("input", { bubbles: true }));
 });
 
-function showPage(name){
+function applyPageState(name){
   state.page = name;
   shell.classList.toggle("wt-agoda-is-intro", name === "url");
   shell.classList.toggle("wt-agoda-is-loading", name === "loading");
@@ -173,6 +173,18 @@ function showPage(name){
   const activeScroll = pages[name].querySelector(".wt-agoda-main--scroll");
   if(activeScroll) activeScroll.scrollTop = 0;
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}
+
+function showPage(name){
+  if(state.page === name) return;
+
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  if(!reduceMotion && typeof document.startViewTransition === "function"){
+    document.startViewTransition(() => applyPageState(name));
+    return;
+  }
+
+  applyPageState(name);
 }
 
 function validateAgodaUrl(value){

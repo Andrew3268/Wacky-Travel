@@ -94,12 +94,23 @@ a{color:inherit;text-decoration:none}
   min-height:0;
   padding:0 24px 24px;
   flex-direction:column;
-  animation:wtFade .25s ease both;
 }
-.wt-agoda-page.wt-agoda-is-active{display:flex}
-@keyframes wtFade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-@keyframes wtFadeOnly{from{opacity:0}to{opacity:1}}
-#stepCards.wt-agoda-page{animation:wtFadeOnly .25s ease both}
+.wt-agoda-page.wt-agoda-is-active{
+  display:flex;
+  animation:wtAgodaPageIn .48s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes wtAgodaPageIn{
+  0%{opacity:0;transform:translate3d(0,18px,0) scale(.992);filter:blur(3px)}
+  55%{filter:blur(0)}
+  100%{opacity:1;transform:none;filter:blur(0)}
+}
+::view-transition-old(root){animation:wtAgodaViewOut .34s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(root){animation:wtAgodaViewIn .46s cubic-bezier(.22,1,.36,1) both}
+@keyframes wtAgodaViewOut{to{opacity:0;transform:translate3d(-10px,0,0) scale(.995)}}
+@keyframes wtAgodaViewIn{from{opacity:0;transform:translate3d(14px,0,0) scale(.995)}}
+@media (prefers-reduced-motion:reduce){
+  .wt-agoda-page.wt-agoda-is-active,::view-transition-old(root),::view-transition-new(root){animation:none!important}
+}
 .wt-agoda-main{
   flex:1 1 auto;
   min-height:0;
@@ -117,9 +128,9 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-main--scroll::-webkit-scrollbar{display:none}
 
 .wt-agoda-hero-icon{
-  width:56px;
-  height:56px;
-  margin:0 auto 28px;
+  width:50px;
+  height:50px;
+  margin:0 auto 24px;
   display:grid;
   place-items:center;
   border:0;
@@ -132,7 +143,7 @@ a{color:inherit;text-decoration:none}
   margin:0;
   text-align:center;
   color:var(--wt-agoda-ink);
-  font-size:36px;
+  font-size:34px;
   font-weight:760;
   line-height:1.18;
   letter-spacing:-.055em;
@@ -141,7 +152,7 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-title--left{text-align:left;font-size:34px}
 .wt-agoda-desc{
   max-width:390px;
-  margin:18px auto 0;
+  margin:14px auto 0;
   text-align:center;
   color:var(--wt-agoda-muted);
   font-size:15px;
@@ -153,38 +164,31 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-quick-actions{
   width:100%;
   max-width:520px;
-  margin:30px auto 0;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 132px;
-  gap:8px;
-}
-.wt-agoda-agoda-link,.wt-agoda-guide-button{
-  min-height:52px;
-  padding:0 17px;
+  margin:18px auto 0;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  border:1px solid var(--wt-agoda-line);
-  border-radius:0;
-  background:#fff;
-  color:var(--wt-agoda-ink);
-  font-size:13px;
-  font-weight:750;
-  letter-spacing:-.02em;
-  transition:border-color .16s ease,background .16s ease;
+  justify-content:center;
+  gap:22px;
 }
-.wt-agoda-guide-button{justify-content:center}
-.wt-agoda-agoda-link:hover,.wt-agoda-guide-button:hover{border-color:var(--wt-agoda-ink);background:var(--wt-agoda-soft)}
-.wt-agoda-agoda-link svg{width:17px;height:17px;flex:0 0 auto}
-.wt-agoda-pc-note{
-  max-width:520px;
-  margin:12px auto 0;
+.wt-agoda-agoda-link,.wt-agoda-guide-button{
+  min-height:32px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:0;
+  border-bottom:1px solid transparent;
+  border-radius:0;
+  background:transparent;
   color:var(--wt-agoda-muted);
   font-size:12px;
-  line-height:1.6;
+  font-weight:750;
+  letter-spacing:-.02em;
+  transition:color .18s ease,border-color .18s ease;
 }
-.wt-agoda-pc-note strong{color:var(--wt-agoda-ink)}
+.wt-agoda-agoda-link:hover,.wt-agoda-guide-button:hover{color:var(--wt-agoda-ink);border-color:var(--wt-agoda-ink)}
+.wt-agoda-agoda-link svg{width:14px;height:14px;flex:0 0 auto}
 
 .wt-agoda-modal{
   position:fixed;
@@ -332,7 +336,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   .wt-agoda-guide-item{grid-template-columns:44px minmax(0,1fr);gap:12px;padding:18px 0}
   .wt-agoda-guide-num{font-size:20px}
 }
-.wt-agoda-form{width:100%;max-width:520px;margin:24px auto 0}
+.wt-agoda-form{width:100%;max-width:520px;margin:34px auto 0}
 .wt-agoda-input-wrap{
   display:block;
   padding:0 0 12px;
@@ -429,7 +433,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
 }
 .wt-agoda-option:nth-child(2n){border-right:0}
 .wt-agoda-option:hover{background:#fafaf8}
-.wt-agoda-option.wt-agoda-is-selected{background:var(--wt-agoda-ink);color:#fff}
+.wt-agoda-option.wt-agoda-is-selected{background:#fff;color:var(--wt-agoda-ink)}
 .wt-agoda-check{
   flex:0 0 auto;
   width:22px;
@@ -441,11 +445,11 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   color:transparent;
   background:#fff;
 }
-.wt-agoda-option.wt-agoda-is-selected .wt-agoda-check{border-color:#fff;background:#fff;color:var(--wt-agoda-ink)}
+.wt-agoda-option.wt-agoda-is-selected .wt-agoda-check{border-color:var(--wt-agoda-ink);background:var(--wt-agoda-ink);color:#fff}
 .wt-agoda-card-text{min-width:0;display:grid;gap:3px}
 .wt-agoda-card-name{color:inherit;font-size:15px;font-weight:750;letter-spacing:-.03em}
 .wt-agoda-card-desc{color:#8a8a84;font-size:12px;line-height:1.45}
-.wt-agoda-option.wt-agoda-is-selected .wt-agoda-card-desc{color:#cfcfca}
+.wt-agoda-option.wt-agoda-is-selected .wt-agoda-card-desc{color:#8a8a84}
 
 .wt-agoda-result-list{display:grid;gap:0;margin-top:36px}
 .wt-agoda-result-card{
@@ -569,28 +573,8 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     box-shadow:0 -8px 24px rgba(0,0,0,.04);
   }
   .wt-agoda-title{font-size:31px}
-  .wt-agoda-quick-actions{
-    grid-template-columns:minmax(0,1fr) auto;
-    gap:8px;
-    margin-top:24px;
-  }
-  .wt-agoda-agoda-link{
-    min-height:50px;
-    border-color:var(--wt-agoda-ink);
-    background:var(--wt-agoda-ink);
-    color:#fff;
-  }
-  .wt-agoda-agoda-link:hover{background:#2a2a2a;color:#fff}
-  .wt-agoda-guide-button{
-    min-width:96px;
-    min-height:50px;
-    padding:0 14px;
-    justify-content:center;
-    background:var(--wt-agoda-soft);
-    border-color:transparent;
-  }
-  .wt-agoda-guide-button:hover{border-color:transparent;background:#e8e8e4}
-  .wt-agoda-pc-note{margin-top:10px;font-size:11.5px;line-height:1.55}
+  .wt-agoda-quick-actions{gap:20px;margin-top:16px}
+  .wt-agoda-agoda-link,.wt-agoda-guide-button{min-height:34px;font-size:12px}
   .wt-agoda-modal{padding:16px;align-items:flex-end}
   .wt-agoda-modal-panel{width:100%;max-height:calc(100dvh - 32px);padding:24px 20px calc(24px + env(safe-area-inset-bottom))}
   .wt-agoda-modal-title{font-size:23px}
@@ -775,7 +759,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
           </label>
           <div class="wt-agoda-error" id="urlError" role="alert"></div>
         </form>
-        <p class="wt-agoda-pc-note"><strong>아고다 홈페이지 URL과 앱에서 공유한 /sp/ 링크를 모두 사용할 수 있습니다.</strong></p>
         <div class="wt-agoda-quick-actions">
           <a class="wt-agoda-agoda-link" href="https://www.agoda.com/ko-kr/" target="_blank" rel="noopener noreferrer">
             <span>아고다에서 호텔 찾기</span>
@@ -887,6 +870,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <button class="wt-agoda-modal-confirm" type="button" id="confirmGuideBtn">확인했어요</button>
   </div>
 </div>
-<script src="app.js?v=20260714-loading2"></script>
+<script src="app.js?v=20260714-uiux3"></script>
 </body>
 </html>
