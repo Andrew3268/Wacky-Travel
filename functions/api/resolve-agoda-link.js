@@ -22,6 +22,29 @@ function isRedirectHostAllowed(hostname = "") {
   return isAgodaHost(host) || host === "onelink.me" || host.endsWith(".onelink.me");
 }
 
+const TRACKING_PARAMS = new Set([
+  "cid", "site_id", "siteid", "af_siteid", "af_sub1", "af_sub2", "af_sub3",
+  "af_sub4", "af_sub5", "af_dp", "af_web_dp", "af_ios_url", "af_android_url",
+  "af_force_deeplink", "deep_link_value", "pid", "c", "tag", "searchrequestid",
+  "flightsearchcriteria", "gclid", "fbclid", "msclkid"
+]);
+
+function cleanHotelUrl(value) {
+  const url = value instanceof URL ? new URL(value.toString()) : new URL(value);
+  for (const key of Array.from(url.searchParams.keys())) {
+    const normalizedKey = key.toLowerCase();
+    if (
+      TRACKING_PARAMS.has(normalizedKey) ||
+      normalizedKey.startsWith("utm_") ||
+      normalizedKey.startsWith("af_")
+    ) {
+      url.searchParams.delete(key);
+    }
+  }
+  url.hash = "";
+  return url;
+}
+
 function normalizeAgodaUrl(value) {
   if (typeof value !== "string" || !value.trim() || value.length > MAX_URL_LENGTH) {
     throw new Error("올바른 아고다 링크를 입력해주세요.");
@@ -162,7 +185,8 @@ export async function onRequestPost({ request }) {
       throw new Error("호텔 페이지 주소로 변환하지 못했습니다.");
     }
 
-    return json({ resolvedUrl: resolved.toString(), converted: true });
+    const cleaned = cleanHotelUrl(resolved);
+    return json({ resolvedUrl: cleaned.toString(), converted: true });
   } catch (error) {
     const message = error?.name === "AbortError"
       ? "링크 확인 시간이 초과되었습니다. 잠시 후 다시 시도해주세요."

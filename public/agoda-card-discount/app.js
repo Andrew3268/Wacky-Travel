@@ -154,6 +154,54 @@ function isAgodaShareLink(url){
   return /^\/sp\/[^/]+/i.test(url.pathname);
 }
 
+const AGODA_TRACKING_PARAMS = new Set([
+  "cid",
+  "site_id",
+  "siteid",
+  "af_siteid",
+  "af_sub1",
+  "af_sub2",
+  "af_sub3",
+  "af_sub4",
+  "af_sub5",
+  "af_dp",
+  "af_web_dp",
+  "af_ios_url",
+  "af_android_url",
+  "af_force_deeplink",
+  "deep_link_value",
+  "pid",
+  "c",
+  "tag",
+  "searchrequestid",
+  "flightsearchcriteria",
+  "gclid",
+  "fbclid",
+  "msclkid"
+]);
+
+function normalizeHotelPageUrl(value){
+  const url = validateAgodaUrl(value instanceof URL ? value.toString() : value);
+
+  if(isAgodaShareLink(url)){
+    throw new Error("앱 공유 링크가 호텔 홈페이지 주소로 변환되지 않았습니다.");
+  }
+
+  for(const key of Array.from(url.searchParams.keys())){
+    const normalizedKey = key.toLowerCase();
+    if(
+      AGODA_TRACKING_PARAMS.has(normalizedKey) ||
+      normalizedKey.startsWith("utm_") ||
+      normalizedKey.startsWith("af_")
+    ){
+      url.searchParams.delete(key);
+    }
+  }
+
+  url.hash = "";
+  return url;
+}
+
 async function resolveAgodaShareLink(url){
   const response = await fetch("/api/resolve-agoda-link", {
     method: "POST",
@@ -172,7 +220,7 @@ async function resolveAgodaShareLink(url){
     throw new Error(data.error || "앱 공유 링크를 호텔 페이지 주소로 변환하지 못했습니다.");
   }
 
-  return validateAgodaUrl(data.resolvedUrl);
+  return normalizeHotelPageUrl(data.resolvedUrl);
 }
 
 function setUrlSubmitLoading(isLoading){
@@ -204,9 +252,7 @@ function makeRequestId(){
 }
 
 function buildLink(card){
-  const url = new URL(state.baseUrl.toString());
-  ["cid", "searchrequestid", "af_web_dp", "af_dp", "deep_link_value", "pid", "c"].forEach((key) => url.searchParams.delete(key));
-  url.hash = "";
+  const url = normalizeHotelPageUrl(state.baseUrl);
   url.searchParams.set("cid", card.cid);
   url.searchParams.set("searchrequestid", makeRequestId());
   return url.toString();
@@ -298,7 +344,7 @@ $("#urlForm").addEventListener("submit", async (event) => {
       setLinkStatus("호텔 주소 변환이 완료되었습니다. 결제수단 선택 화면으로 이동합니다.", "success");
       await wait(500);
     }else{
-      state.baseUrl = inputUrl;
+      state.baseUrl = normalizeHotelPageUrl(inputUrl);
     }
     showPage("cards");
     setLinkStatus();
