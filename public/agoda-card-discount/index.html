@@ -192,7 +192,7 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-intro-back:hover{background:var(--wt-agoda-soft)}
 .wt-agoda-guide-button{
   min-height:38px;
-  padding:0 4px;
+  padding:0 20px 0 4px;
   border:0;
   border-bottom:1px solid transparent;
   background:transparent;
@@ -376,7 +376,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   .wt-agoda-guide-item{grid-template-columns:44px minmax(0,1fr);gap:12px;padding:18px 0}
   .wt-agoda-guide-num{font-size:20px}
 }
-.wt-agoda-form{width:100%;max-width:520px;margin:34px auto 0}
+.wt-agoda-form{width:100%;max-width:520px;margin:50px auto 0}
 .wt-agoda-input-wrap{
   display:block;
   padding:0 0 12px;
@@ -971,7 +971,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <div class="wt-agoda-modal-head">
       <div>
         <p class="wt-agoda-modal-eyebrow">HOW TO USE</p>
-        <h2 class="wt-agoda-modal-title" id="guideModalTitle">아고다 카드할인 찾기<br>사용 방법</h2>
+        <h2 class="wt-agoda-modal-title" id="guideModalTitle">아고다 결제 할인 찾기<br>사용 방법</h2>
       </div>
       <button class="wt-agoda-modal-close" type="button" id="closeGuideBtn" aria-label="사용 방법 닫기">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -986,16 +986,12 @@ body.wt-agoda-is-modal-open{overflow:hidden}
         <span class="wt-agoda-guide-num">01</span>
         <div class="wt-agoda-guide-copy">
           <strong>아고다 홈페이지에 접속합니다.</strong>
-          <span>아래 버튼을 눌러 아고다 홈페이지를 열어주세요.</span>
-          <a class="wt-agoda-guide-link" href="https://www.agoda.com/ko-kr/" target="_blank" rel="noopener noreferrer">
-            <span>아고다에서 호텔 찾기</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
-          </a>
+          <span>홈페이지 또는 앱에서 예약할 호텔을 찾아주세요.</span>
         </div>
       </li>
       <li class="wt-agoda-guide-item"><span class="wt-agoda-guide-num">02</span><div class="wt-agoda-guide-copy"><strong>예약할 호텔 페이지로 이동합니다.</strong><span>검색 결과에서 예약할 호텔을 선택해 해당 호텔 페이지를 열어주세요.</span></div></li>
       <li class="wt-agoda-guide-item"><span class="wt-agoda-guide-num">03</span><div class="wt-agoda-guide-copy"><strong>주소창의 호텔 페이지 URL을 복사합니다.</strong><span>홈페이지 주소 또는 앱에서 공유한 https://www.agoda.com/sp/... 링크를 복사하세요.</span></div></li>
-      <li class="wt-agoda-guide-item"><span class="wt-agoda-guide-num">04</span><div class="wt-agoda-guide-copy"><strong>복사한 주소를 붙여넣고 할인 혜택을 확인합니다.</strong><span>첫 화면 입력창에 주소를 붙여넣고 사용할 결제수단을 선택하면 전용 할인 링크가 만들어집니다.</span></div></li>
+      <li class="wt-agoda-guide-item"><span class="wt-agoda-guide-num">04</span><div class="wt-agoda-guide-copy"><strong>복사한 주소를 붙여넣고 결제수단별 할인을 확인합니다.</strong><span>첫 화면 입력창에 주소를 붙여넣고 카드·간편결제·통신사를 선택하면 결제수단별 할인 링크가 만들어집니다.</span></div></li>
     </ol>
     <p class="wt-agoda-modal-foot">앱에서 공유한 /sp/ 링크는 자동으로 호텔 홈페이지 주소로 변환됩니다. 검색 결과 페이지가 아닌 개별 호텔 링크를 입력해주세요.</p>
     <button class="wt-agoda-modal-confirm" type="button" id="confirmGuideBtn">확인했어요</button>
