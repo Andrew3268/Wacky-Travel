@@ -101,6 +101,52 @@ const shell = $(".wt-agoda-shell");
 const linkStatus = $("#linkStatus");
 const linkStatusText = $("#linkStatusText");
 
+function cleanExtractedUrl(value){
+  return String(value || "")
+    .trim()
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .replace(/[),.;!?]+$/g, "");
+}
+
+function extractAgodaUrl(value){
+  const text = String(value || "").replace(/&amp;/gi, "&");
+  const match = text.match(/https?:\/\/(?:[^\s<>"']*\.)?agoda\.com\/[^\s<>"']*/i);
+  return match ? cleanExtractedUrl(match[0]) : "";
+}
+
+function extractAgodaUrlFromClipboard(clipboardData){
+  if(!clipboardData) return "";
+
+  const candidates = [];
+  const uriList = clipboardData.getData("text/uri-list");
+  const plainText = clipboardData.getData("text/plain");
+  const htmlText = clipboardData.getData("text/html");
+
+  if(uriList) candidates.push(uriList);
+  if(plainText) candidates.push(plainText);
+  if(htmlText){
+    candidates.push(htmlText);
+    try{
+      const doc = new DOMParser().parseFromString(htmlText, "text/html");
+      doc.querySelectorAll("a[href]").forEach((anchor) => candidates.push(anchor.href));
+    }catch(_){
+      // HTML 클립보드 파싱에 실패해도 일반 텍스트 후보를 계속 확인합니다.
+    }
+  }
+
+  return candidates.map(extractAgodaUrl).find(Boolean) || "";
+}
+
+urlInput.addEventListener("paste", (event) => {
+  const extractedUrl = extractAgodaUrlFromClipboard(event.clipboardData || window.clipboardData);
+  if(!extractedUrl) return;
+
+  event.preventDefault();
+  urlInput.value = extractedUrl;
+  urlError.textContent = "";
+  urlInput.dispatchEvent(new Event("input", { bubbles: true }));
+});
+
 function showPage(name){
   state.page = name;
   shell.classList.toggle("wt-agoda-is-intro", name === "url");
@@ -330,7 +376,9 @@ $("#urlForm").addEventListener("submit", async (event) => {
   setLinkStatus();
 
   try{
-    const inputUrl = validateAgodaUrl(urlInput.value);
+    const extractedInput = extractAgodaUrl(urlInput.value) || urlInput.value.trim();
+    urlInput.value = extractedInput;
+    const inputUrl = validateAgodaUrl(extractedInput);
     if(isAgodaShareLink(inputUrl)){
       const startedAt = Date.now();
       setLinkStatus("앱 공유 링크를 호텔 홈페이지 주소로 변환하고 있습니다.");
