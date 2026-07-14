@@ -147,3 +147,12 @@ D1 database: wacky-travel-db
 - 관리자 이미지가 실패하면 카드별 레퍼런스 이미지로 자동 교체합니다.
 - `travel.css` 쿼리 버전을 갱신해 기존 장기 캐시가 새 카드 CSS를 가리지 않도록 했습니다.
 - 메인 인덱스에는 특정 도시 이미지 preload를 사용하지 않습니다.
+
+## Agoda 카드 할인 찾기 통합
+
+- 페이지: `/agoda-card-discount/`
+- 딥링크 변환 API: `POST /api/resolve-agoda-link`
+- 지원 입력: 일반 Agoda 호텔 URL, `https://www.agoda.com/sp/...` 앱 공유 링크
+- `/sp/` 링크는 Cloudflare Pages Function이 리디렉션을 추적해 일반 호텔 URL로 변환합니다.
+- 페이지 전용 CSS 클래스는 `wt-agoda-` 접두어를 사용해 기존 스타일과 충돌하지 않도록 분리했습니다.
+- `/hotel-promotions/`의 Agoda 카드 할인 항목에서 새 페이지로 연결됩니다.
