@@ -89,6 +89,7 @@ a{color:inherit;text-decoration:none}
 .wt-agoda-shell.wt-agoda-is-intro .wt-agoda-topbar,
 .wt-agoda-shell.wt-agoda-is-intro .wt-agoda-progress{display:none}
 .wt-agoda-page{
+  position:relative;
   display:none;
   flex:1 1 auto;
   min-height:0;
@@ -161,34 +162,72 @@ a{color:inherit;text-decoration:none}
 }
 .wt-agoda-desc--left{max-width:520px;margin-left:0;text-align:left}
 
-.wt-agoda-quick-actions{
-  width:100%;
-  max-width:520px;
-  margin:18px auto 0;
+.wt-agoda-intro-nav{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:5;
+  min-height:72px;
+  padding:16px 24px;
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:22px;
+  justify-content:space-between;
+  pointer-events:none;
 }
-.wt-agoda-agoda-link,.wt-agoda-guide-button{
-  min-height:32px;
+.wt-agoda-intro-back,.wt-agoda-guide-button{pointer-events:auto}
+.wt-agoda-intro-back{
+  width:40px;
+  height:40px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:var(--wt-agoda-ink);
+  display:grid;
+  place-items:center;
+  transition:background .18s ease;
+}
+.wt-agoda-intro-back:hover{background:var(--wt-agoda-soft)}
+.wt-agoda-guide-button{
+  min-height:38px;
+  padding:0 4px;
+  border:0;
+  border-bottom:1px solid transparent;
+  background:transparent;
+  color:var(--wt-agoda-ink);
+  font-size:12px;
+  font-weight:760;
+  letter-spacing:-.02em;
+  transition:border-color .18s ease,opacity .18s ease;
+}
+.wt-agoda-guide-button:hover{border-color:var(--wt-agoda-ink)}
+.wt-agoda-input-label-row{
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.wt-agoda-input-label-row .wt-agoda-input-label{margin-bottom:0}
+.wt-agoda-hotel-link{
+  flex:0 0 auto;
+  min-height:30px;
   padding:0;
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:7px;
+  gap:6px;
   border:0;
   border-bottom:1px solid transparent;
-  border-radius:0;
   background:transparent;
-  color:var(--wt-agoda-muted);
-  font-size:12px;
-  font-weight:750;
+  color:var(--wt-agoda-ink);
+  font-size:11px;
+  font-weight:760;
   letter-spacing:-.02em;
-  transition:color .18s ease,border-color .18s ease;
+  transition:border-color .18s ease;
 }
-.wt-agoda-agoda-link:hover,.wt-agoda-guide-button:hover{color:var(--wt-agoda-ink);border-color:var(--wt-agoda-ink)}
-.wt-agoda-agoda-link svg{width:14px;height:14px;flex:0 0 auto}
+.wt-agoda-hotel-link:hover{border-color:var(--wt-agoda-ink)}
+.wt-agoda-hotel-link svg{width:13px;height:13px;flex:0 0 auto}
 
 .wt-agoda-modal{
   position:fixed;
@@ -523,6 +562,26 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   box-shadow:0 -8px 24px rgba(0,0,0,.04);
 }
 
+
+.wt-agoda-shell:not(.wt-agoda-is-intro):not(.wt-agoda-is-loading):not(.wt-agoda-is-results) #stepCards{
+  padding-bottom:calc(104px + env(safe-area-inset-bottom));
+}
+.wt-agoda-shell:not(.wt-agoda-is-intro):not(.wt-agoda-is-loading):not(.wt-agoda-is-results) .wt-agoda-footer--split{
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:0 !important;
+  top:auto !important;
+  z-index:9999;
+  width:min(100%,760px);
+  transform:translateX(-50%) !important;
+  grid-template-columns:1fr;
+  padding:12px 24px calc(12px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--wt-agoda-line);
+  background:#fff;
+  box-shadow:0 -8px 24px rgba(0,0,0,.04);
+}
+
 @media (min-width:820px){
   .wt-agoda-app{padding:40px 24px}
   .wt-agoda-shell{min-height:760px;max-height:calc(100dvh - 80px);border:1px solid var(--wt-agoda-line)}
@@ -530,22 +589,7 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   .wt-agoda-topbar{padding-left:48px;padding-right:48px}
 }
 @media (max-width:1024px){
-  #stepCards{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
   #stepCards .wt-agoda-main--scroll{padding-bottom:32px}
-  .wt-agoda-footer--split{
-    position:fixed !important;
-    left:50% !important;
-    right:auto !important;
-    bottom:0 !important;
-    top:auto !important;
-    z-index:9999;
-    width:min(100%,760px);
-    transform:translateX(-50%) !important;
-    grid-template-columns:1fr;
-    padding:12px 24px calc(12px + env(safe-area-inset-bottom));
-    border-top:1px solid var(--wt-agoda-line);
-    box-shadow:0 -8px 24px rgba(0,0,0,.04);
-  }
 }
 @media (max-width:640px){
   html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
@@ -573,8 +617,8 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     box-shadow:0 -8px 24px rgba(0,0,0,.04);
   }
   .wt-agoda-title{font-size:31px}
-  .wt-agoda-quick-actions{gap:20px;margin-top:16px}
-  .wt-agoda-agoda-link,.wt-agoda-guide-button{min-height:34px;font-size:12px}
+  .wt-agoda-intro-nav{padding:12px 16px}
+  .wt-agoda-guide-button{min-height:40px;font-size:12px}
   .wt-agoda-modal{padding:16px;align-items:flex-end}
   .wt-agoda-modal-panel{width:100%;max-height:calc(100dvh - 32px);padding:24px 20px calc(24px + env(safe-area-inset-bottom))}
   .wt-agoda-modal-title{font-size:23px}
@@ -741,6 +785,12 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <div class="wt-agoda-progress" aria-hidden="true"><div class="wt-agoda-progress-fill" id="progressFill"></div></div>
 
     <section class="wt-agoda-page wt-agoda-is-active" id="stepUrl" aria-labelledby="titleUrl">
+      <div class="wt-agoda-intro-nav">
+        <button class="wt-agoda-intro-back" type="button" id="introBackBtn" aria-label="이전 페이지로 이동">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="wt-agoda-guide-button" type="button" id="openGuideBtn" aria-haspopup="dialog">사용 방법</button>
+      </div>
       <div class="wt-agoda-main wt-agoda-main--center">
         <div class="wt-agoda-hero-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -753,22 +803,19 @@ body.wt-agoda-is-modal-open{overflow:hidden}
         <p class="wt-agoda-desc">호텔 링크 하나로 카드·간편결제별 할인 페이지를 한 번에 확인하세요.</p>
 
         <form class="wt-agoda-form" id="urlForm" novalidate>
-          <label class="wt-agoda-input-wrap">
-            <span class="wt-agoda-input-label">아고다 호텔 URL</span>
+          <div class="wt-agoda-input-wrap">
+            <span class="wt-agoda-input-label-row">
+              <label class="wt-agoda-input-label" for="urlInput">아고다 호텔 URL</label>
+              <a class="wt-agoda-hotel-link" href="https://www.agoda.com/ko-kr/" target="_blank" rel="noopener noreferrer">
+                <span>호텔 찾기</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+              </a>
+            </span>
             <input class="wt-agoda-url-input" id="urlInput" type="text" inputmode="url" autocomplete="off" placeholder="https://www.agoda.com/..." />
-          </label>
+          </div>
           <div class="wt-agoda-error" id="urlError" role="alert"></div>
         </form>
-        <div class="wt-agoda-quick-actions">
-          <a class="wt-agoda-agoda-link" href="https://www.agoda.com/ko-kr/" target="_blank" rel="noopener noreferrer">
-            <span>아고다에서 호텔 찾기</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7"/>
-              <path d="M9 7h8v8"/>
-            </svg>
-          </a>
-          <button class="wt-agoda-guide-button" type="button" id="openGuideBtn" aria-haspopup="dialog">사용 방법</button>
-        </div>
+
       </div>
 
       <div class="wt-agoda-footer">
@@ -870,6 +917,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <button class="wt-agoda-modal-confirm" type="button" id="confirmGuideBtn">확인했어요</button>
   </div>
 </div>
-<script src="app.js?v=20260714-uiux3"></script>
+<script src="app.js?v=20260714-nav4"></script>
 </body>
 </html>

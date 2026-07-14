@@ -104,6 +104,7 @@ const loadingError = $("#loadingError");
 const loadingErrorText = $("#loadingErrorText");
 const loadingDots = $("#loadingDots");
 const loadingBackBtn = $("#loadingBackBtn");
+const introBackBtn = $("#introBackBtn");
 
 function cleanExtractedUrl(value){
   return String(value || "")
@@ -459,6 +460,14 @@ $("#clearAllBtn").addEventListener("click", clearAll);
 $("#goResultsBtn").addEventListener("click", () => {
   renderResults(getSelectedCards());
   showPage("results");
+});
+
+introBackBtn.addEventListener("click", () => {
+  if(window.history.length > 1){
+    window.history.back();
+  }else{
+    window.location.href = "/hotel-promotions/";
+  }
 });
 
 globalBackBtn.addEventListener("click", () => {
