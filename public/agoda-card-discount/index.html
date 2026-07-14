@@ -612,6 +612,13 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   .wt-agoda-result-card{grid-template-columns:minmax(0,1fr) 44px;gap:12px;padding:18px 16px}
   .wt-agoda-open{width:42px;height:42px}
 }
+
+.wt-agoda-link-status{display:none;width:100%;max-width:520px;margin:14px auto 0;padding:14px 16px;border-radius:14px;background:#f2f2ef;color:#222;text-align:left;font-size:13px;line-height:1.5}
+.wt-agoda-link-status.wt-agoda-is-visible{display:flex;align-items:center;gap:10px}
+.wt-agoda-link-status-spinner{width:16px;height:16px;border:2px solid #c8c8c3;border-top-color:#222;border-radius:50%;animation:wtAgodaSpin .7s linear infinite;flex:0 0 auto}
+.wt-agoda-link-status.wt-agoda-is-success .wt-agoda-link-status-spinner{display:none}
+.wt-agoda-link-status.wt-agoda-is-success{background:#efefec}
+@keyframes wtAgodaSpin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -646,6 +653,10 @@ body.wt-agoda-is-modal-open{overflow:hidden}
           </label>
           <div class="wt-agoda-error" id="urlError" role="alert"></div>
         </form>
+        <div class="wt-agoda-link-status" id="linkStatus" role="status" aria-live="polite">
+          <span class="wt-agoda-link-status-spinner" aria-hidden="true"></span>
+          <span id="linkStatusText">앱 공유 링크를 호텔 홈페이지 주소로 변환하고 있습니다.</span>
+        </div>
 
         <p class="wt-agoda-pc-note"><strong>아고다 홈페이지 URL과 앱에서 공유한 /sp/ 링크를 모두 사용할 수 있습니다.</strong></p>
         <div class="wt-agoda-quick-actions">
@@ -735,6 +746,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <button class="wt-agoda-modal-confirm" type="button" id="confirmGuideBtn">확인했어요</button>
   </div>
 </div>
-<script src="app.js"></script>
+<script src="app.js?v=20260714-2"></script>
 </body>
 </html>

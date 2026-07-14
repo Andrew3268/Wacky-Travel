@@ -98,6 +98,8 @@ const selectedCount = $("#selectedCount");
 const goResultsBtn = $("#goResultsBtn");
 const resultList = $("#resultList");
 const shell = $(".wt-agoda-shell");
+const linkStatus = $("#linkStatus");
+const linkStatusText = $("#linkStatusText");
 
 function showPage(name){
   state.page = name;
@@ -179,6 +181,21 @@ function setUrlSubmitLoading(isLoading){
   button.textContent = isLoading ? "호텔 링크 확인 중..." : "할인 혜택 찾기";
 }
 
+function setLinkStatus(message = "", type = "loading"){
+  if(!message){
+    linkStatus.classList.remove("wt-agoda-is-visible", "wt-agoda-is-success");
+    linkStatusText.textContent = "";
+    return;
+  }
+  linkStatusText.textContent = message;
+  linkStatus.classList.add("wt-agoda-is-visible");
+  linkStatus.classList.toggle("wt-agoda-is-success", type === "success");
+}
+
+function wait(ms){
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function makeRequestId(){
   if(window.crypto && crypto.randomUUID){
     return crypto.randomUUID();
@@ -188,6 +205,8 @@ function makeRequestId(){
 
 function buildLink(card){
   const url = new URL(state.baseUrl.toString());
+  ["cid", "searchrequestid", "af_web_dp", "af_dp", "deep_link_value", "pid", "c"].forEach((key) => url.searchParams.delete(key));
+  url.hash = "";
   url.searchParams.set("cid", card.cid);
   url.searchParams.set("searchrequestid", makeRequestId());
   return url.toString();
@@ -262,14 +281,29 @@ $("#urlForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   urlError.textContent = "";
   setUrlSubmitLoading(true);
+  setLinkStatus();
 
   try{
     const inputUrl = validateAgodaUrl(urlInput.value);
-    state.baseUrl = isAgodaShareLink(inputUrl)
-      ? await resolveAgodaShareLink(inputUrl)
-      : inputUrl;
+    if(isAgodaShareLink(inputUrl)){
+      const startedAt = Date.now();
+      setLinkStatus("앱 공유 링크를 호텔 홈페이지 주소로 변환하고 있습니다.");
+      const resolvedUrl = await resolveAgodaShareLink(inputUrl);
+      if(isAgodaShareLink(resolvedUrl)){
+        throw new Error("앱 공유 링크가 호텔 페이지 주소로 변환되지 않았습니다.");
+      }
+      state.baseUrl = resolvedUrl;
+      const elapsed = Date.now() - startedAt;
+      if(elapsed < 900) await wait(900 - elapsed);
+      setLinkStatus("호텔 주소 변환이 완료되었습니다. 결제수단 선택 화면으로 이동합니다.", "success");
+      await wait(500);
+    }else{
+      state.baseUrl = inputUrl;
+    }
     showPage("cards");
+    setLinkStatus();
   }catch(error){
+    setLinkStatus();
     urlError.textContent = error.message;
     urlInput.focus();
   }finally{

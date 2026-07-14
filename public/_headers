@@ -17,3 +17,9 @@
   Content-Security-Policy: img-src 'self' data: blob: https:;
   Referrer-Policy: no-referrer
 
+
+/agoda-card-discount/app.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/agoda-card-discount/*
+  Cache-Control: public, max-age=0, must-revalidate
