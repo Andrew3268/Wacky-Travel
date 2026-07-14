@@ -485,9 +485,30 @@ const openGuideBtn = $("#openGuideBtn");
 const closeGuideBtn = $("#closeGuideBtn");
 const confirmGuideBtn = $("#confirmGuideBtn");
 let guideLastFocused = null;
+const guideTabs = Array.from(document.querySelectorAll("[data-guide-tab]"));
+const guidePanels = Array.from(document.querySelectorAll("[data-guide-panel]"));
+
+function setGuideTab(name){
+  guideTabs.forEach((tab) => {
+    const active = tab.dataset.guideTab === name;
+    tab.classList.toggle("wt-agoda-is-active", active);
+    tab.setAttribute("aria-selected", active ? "true" : "false");
+    tab.tabIndex = active ? 0 : -1;
+  });
+  guidePanels.forEach((panel) => {
+    const active = panel.dataset.guidePanel === name;
+    panel.classList.toggle("wt-agoda-is-active", active);
+    panel.hidden = !active;
+  });
+}
+
+guideTabs.forEach((tab) => {
+  tab.addEventListener("click", () => setGuideTab(tab.dataset.guideTab));
+});
 
 function openGuideModal(){
   guideLastFocused = document.activeElement;
+  setGuideTab("pc");
   guideModal.classList.add("wt-agoda-is-open");
   guideModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("wt-agoda-is-modal-open");
