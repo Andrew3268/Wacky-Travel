@@ -361,6 +361,9 @@ body.wtpromo-page {
 
     .wtpromo-tool-card {
       display: grid;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
       grid-template-columns: 1fr auto;
       gap: 50px;
       align-items: center;
