@@ -220,7 +220,7 @@ a{color:inherit;text-decoration:none}
   border:0;
   border-bottom:1px solid transparent;
   background:transparent;
-  color:var(--wt-agoda-ink);
+  color:#737373;
   font-size:11px;
   font-weight:760;
   letter-spacing:-.02em;
@@ -434,12 +434,40 @@ body.wt-agoda-is-modal-open{overflow:hidden}
 .wt-agoda-btn--line:hover{background:var(--wt-agoda-soft)}
 .wt-agoda-btn:disabled{border-color:#d7d7d2;background:#e8e8e4;color:#aaa;cursor:not-allowed}
 
+
+.wt-agoda-payment-tabs{
+  display:flex;
+  gap:6px;
+  margin:34px 0 0;
+  padding:4px;
+  border-radius:999px;
+  background:var(--wt-agoda-soft);
+}
+.wt-agoda-payment-tab{
+  flex:1 1 0;
+  min-height:42px;
+  padding:0 14px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:var(--wt-agoda-muted);
+  font-size:13px;
+  font-weight:760;
+  letter-spacing:-.025em;
+  transition:background .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.wt-agoda-payment-tab:hover{color:var(--wt-agoda-ink)}
+.wt-agoda-payment-tab.wt-agoda-is-active{
+  background:#fff;
+  color:var(--wt-agoda-ink);
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
 .wt-agoda-options-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin:42px 0 14px;
+  margin:18px 0 14px;
 }
 .wt-agoda-count{color:var(--wt-agoda-ink);font-size:13px;font-weight:700}
 .wt-agoda-small-actions{display:flex;gap:14px;align-items:center}
@@ -631,6 +659,42 @@ body.wt-agoda-is-modal-open{overflow:hidden}
   .wt-agoda-btn--line{order:2}
   .wt-agoda-btn--primary{order:1}
 }
+
+.wt-agoda-option.wt-agoda-is-unavailable .wt-agoda-card-desc{color:#9a9a95}
+.wt-agoda-result-card.wt-agoda-is-unavailable .wt-agoda-result-sub{color:#8a8a84}
+.wt-agoda-result-unavailable{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  color:#9a9a95;
+}
+.wt-agoda-result-unavailable svg{width:18px;height:18px}
+
+@media (max-width:640px){
+  #stepCards.wt-agoda-is-active{
+    animation:wtAgodaCardsFadeIn .34s ease both !important;
+    transform:none !important;
+    filter:none !important;
+  }
+  @keyframes wtAgodaCardsFadeIn{from{opacity:0}to{opacity:1}}
+  .wt-agoda-shell:not(.wt-agoda-is-intro):not(.wt-agoda-is-loading):not(.wt-agoda-is-results) .wt-agoda-footer--split{
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    width:100% !important;
+    transform:none !important;
+    margin:0 !important;
+    padding:12px 20px calc(12px + env(safe-area-inset-bottom)) !important;
+    z-index:12000 !important;
+  }
+  .wt-agoda-shell:not(.wt-agoda-is-intro):not(.wt-agoda-is-loading):not(.wt-agoda-is-results) #stepCards{
+    padding-bottom:calc(116px + env(safe-area-inset-bottom)) !important;
+  }
+  .wt-agoda-payment-tabs{position:sticky;top:0;z-index:3;margin-top:28px}
+}
+
 @media (max-width:390px){
   .wt-agoda-topbar{padding-left:16px;padding-right:16px}
   .wt-agoda-page{padding-left:20px;padding-right:20px}
@@ -852,6 +916,12 @@ body.wt-agoda-is-modal-open{overflow:hidden}
         <h1 class="wt-agoda-title wt-agoda-title--left" id="titleCards">사용할 결제수단을<br>선택해주세요</h1>
         <p class="wt-agoda-desc wt-agoda-desc--left">보유한 카드와 간편결제를 선택하면 해당 할인 페이지로 바로 연결해드립니다.</p>
 
+        <div class="wt-agoda-payment-tabs" role="tablist" aria-label="결제수단 분류">
+          <button class="wt-agoda-payment-tab wt-agoda-is-active" type="button" role="tab" aria-selected="true" data-category="pay">페이</button>
+          <button class="wt-agoda-payment-tab" type="button" role="tab" aria-selected="false" data-category="card">카드</button>
+          <button class="wt-agoda-payment-tab" type="button" role="tab" aria-selected="false" data-category="telecom">통신사</button>
+        </div>
+
         <div class="wt-agoda-options-head">
           <span class="wt-agoda-count" id="selectedCount">0개 선택</span>
           <div class="wt-agoda-small-actions">
@@ -917,6 +987,6 @@ body.wt-agoda-is-modal-open{overflow:hidden}
     <button class="wt-agoda-modal-confirm" type="button" id="confirmGuideBtn">확인했어요</button>
   </div>
 </div>
-<script src="app.js?v=20260714-nav4"></script>
+<script src="app.js?v=20260714-tabs1"></script>
 </body>
 </html>

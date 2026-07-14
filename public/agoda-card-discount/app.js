@@ -1,82 +1,27 @@
 const cards = [
-  {
-    name: "토스페이",
-    cid: "1917334",
-    badge: "기본 11%",
-    desc: "전용 페이지 결제 시 자동 적용 · 최대 $100 할인 · 투숙 8/31까지"
-  },
-  {
-    name: "카카오페이",
-    cid: "1845109",
-    badge: "기본 7% ~ 10%",
-    desc: "기간별 전용 쿠폰 등록 또는 결제 수단 선택 시 즉시 할인"
-  },
-  {
-    name: "현대카드",
-    cid: "1641446",
-    badge: "기본 7% ~ 10%",
-    desc: "국내/외 전 지역 상시 7% · 특정 시즌 및 국가 프로모션 시 10%"
-  },
-  {
-    name: "신한카드",
-    cid: "1949723",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · 분기별 특정 프로모션 시 최대 10%"
-  },
-  {
-    name: "KB국민카드",
-    cid: "1563295",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · 국카몰 및 전용 이벤트 페이지 경유 시 10%"
-  },
-  {
-    name: "하나카드",
-    cid: "1960466",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · 하나머니 또는 트래블로그 연계 프로모션 시 우대"
-  },
-  {
-    name: "우리카드",
-    cid: "1654104",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · 우리원뱅크 이벤트 연계 시 최대 10%"
-  },
-  {
-    name: "NH농협카드",
-    cid: "1827579",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · 채움 브랜드 프로모션 시 10% 적용"
-  },
-  {
-    name: "삼성카드",
-    cid: "1801736",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · LINK 혜택 및 전용 페이지 할인"
-  },
-  {
-    name: "마스터카드",
-    cid: "1889572",
-    badge: "기본 8% ~ 16%",
-    desc: "등급별 차등 · 일반 8%(최대 $25) · 월드/플래티늄 12%(최대 $45) · 월드엘리트 16%(최대 $60)"
-  },
-  {
-    name: "비자카드",
-    cid: "1889319",
-    badge: "기본 7% ~ 33%",
-    desc: "상시 7% 즉시 할인 · USD 결제 권장 · 인피니트 등급은 참여 호텔 3박 시 1박 무료 혜택 가능"
-  },
-  {
-    name: "유니온페이",
-    cid: "1937708",
-    badge: "기본 7% ~ 10%",
-    desc: "전 세계 호텔 상시 7% · 카드 번호 앞자리 인증 시 적용"
-  }
+  { name: "토스페이", cid: "1917334", category: "pay", badge: "기본 11%", desc: "전용 페이지 결제 시 자동 적용 · 최대 $100 할인 · 투숙 8/31까지" },
+  { name: "카카오페이", cid: "1845109", category: "pay", badge: "기본 7% ~ 10%", desc: "기간별 전용 쿠폰 등록 또는 결제 수단 선택 시 즉시 할인" },
+  { name: "네이버페이", cid: "1963008", category: "pay", badge: "전용 할인", desc: "네이버페이 전용 아고다 할인 페이지로 연결" },
+  { name: "페이코", cid: "1845157", category: "pay", badge: "전용 할인", desc: "페이코 전용 아고다 할인 페이지로 연결" },
+  { name: "현대카드", cid: "1641446", category: "card", badge: "기본 7% ~ 10%", desc: "국내/외 전 지역 상시 7% · 특정 시즌 및 국가 프로모션 시 10%" },
+  { name: "신한카드", cid: "1949723", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 분기별 특정 프로모션 시 최대 10%" },
+  { name: "KB국민카드", cid: "1563295", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 국카몰 및 전용 이벤트 페이지 경유 시 10%" },
+  { name: "하나카드", cid: "1960466", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 하나머니 또는 트래블로그 연계 프로모션 시 우대" },
+  { name: "우리카드", cid: "1654104", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 우리원뱅크 이벤트 연계 시 최대 10%" },
+  { name: "NH농협카드", cid: "1827579", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 채움 브랜드 프로모션 시 10% 적용" },
+  { name: "삼성카드", cid: "1801736", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · LINK 혜택 및 전용 페이지 할인" },
+  { name: "마스터카드", cid: "1889572", category: "card", badge: "기본 8% ~ 16%", desc: "등급별 차등 · 일반 8%(최대 $25) · 월드/플래티늄 12%(최대 $45) · 월드엘리트 16%(최대 $60)" },
+  { name: "비자카드", cid: "1889319", category: "card", badge: "기본 7% ~ 33%", desc: "상시 7% 즉시 할인 · USD 결제 권장 · 인피니트 등급은 참여 호텔 3박 시 1박 무료 혜택 가능" },
+  { name: "유니온페이", cid: "1937708", category: "card", badge: "기본 7% ~ 10%", desc: "전 세계 호텔 상시 7% · 카드 번호 앞자리 인증 시 적용" },
+  { name: "KT 멤버십", cid: "1897115", category: "telecom", badge: "멤버십 전용", desc: "KT 멤버십 전용 아고다 할인 페이지로 연결" },
+  { name: "KT M모바일 (알뜰폰)", cid: "-1", category: "telecom", badge: "전용 혜택", desc: "전용 CID가 확인되지 않아 현재 링크 생성이 지원되지 않습니다.", unavailable: true }
 ];
 
 const state = {
   baseUrl: null,
   selected: new Set(),
-  page: "url"
+  page: "url",
+  activeCategory: "pay"
 };
 
 const $ = (selector) => document.querySelector(selector);
@@ -105,6 +50,7 @@ const loadingErrorText = $("#loadingErrorText");
 const loadingDots = $("#loadingDots");
 const loadingBackBtn = $("#loadingBackBtn");
 const introBackBtn = $("#introBackBtn");
+const paymentTabs = $$(".wt-agoda-payment-tab");
 
 function cleanExtractedUrl(value){
   return String(value || "")
@@ -327,15 +273,22 @@ function makeRequestId(){
 }
 
 function buildLink(card){
+  if(card.unavailable || card.cid === "-1") return "";
   const url = normalizeHotelPageUrl(state.baseUrl);
   url.searchParams.set("cid", card.cid);
   url.searchParams.set("searchrequestid", makeRequestId());
   return url.toString();
 }
 
+function getVisibleCardEntries(){
+  return cards
+    .map((card, index) => ({ card, index }))
+    .filter(({ card }) => card.category === state.activeCategory);
+}
+
 function renderCards(){
-  cardsArea.innerHTML = cards.map((card, index) => `
-    <button class="wt-agoda-option" type="button" data-index="${index}" aria-pressed="false">
+  cardsArea.innerHTML = getVisibleCardEntries().map(({ card, index }) => `
+    <button class="wt-agoda-option${card.unavailable ? " wt-agoda-is-unavailable" : ""}" type="button" data-index="${index}" aria-pressed="false">
       <span class="wt-agoda-check" aria-hidden="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
       </span>
@@ -345,7 +298,9 @@ function renderCards(){
       </span>
     </button>
   `).join("");
+  syncSelectionUI();
 }
+
 
 function syncSelectionUI(){
   $$(".wt-agoda-option").forEach((option) => {
@@ -355,12 +310,13 @@ function syncSelectionUI(){
     option.setAttribute("aria-pressed", String(isSelected));
   });
   const count = state.selected.size;
-  selectedCount.textContent = `${count}개 선택`;
+  const activeCount = getVisibleCardEntries().filter(({ index }) => state.selected.has(index)).length;
+  selectedCount.textContent = count === activeCount ? `${count}개 선택` : `${count}개 선택 · 현재 탭 ${activeCount}개`;
   goResultsBtn.disabled = count === 0;
 }
 
 function selectAll(){
-  state.selected = new Set(cards.map((_, index) => index));
+  getVisibleCardEntries().forEach(({ index }) => state.selected.add(index));
   syncSelectionUI();
 }
 
@@ -378,8 +334,15 @@ function getSelectedCards(){
 function renderResults(selectedCards){
   resultList.innerHTML = selectedCards.map((card) => {
     const discountLink = buildLink(card);
+    const action = discountLink
+      ? `<a class="wt-agoda-open" href="${discountLink}" target="_blank" rel="noopener" aria-label="${card.name} 할인된 가격 확인">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+        </a>`
+      : `<span class="wt-agoda-result-unavailable" aria-label="현재 링크 생성 미지원" title="현재 링크 생성 미지원">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+        </span>`;
     return `
-      <article class="wt-agoda-result-card">
+      <article class="wt-agoda-result-card${card.unavailable ? " wt-agoda-is-unavailable" : ""}">
         <div class="wt-agoda-result-info">
           <div class="wt-agoda-result-title-row">
             <div class="wt-agoda-result-name">${card.name}</div>
@@ -387,16 +350,12 @@ function renderResults(selectedCards){
           </div>
           <div class="wt-agoda-result-sub">${card.desc}</div>
         </div>
-        <a class="wt-agoda-open" href="${discountLink}" target="_blank" rel="noopener" aria-label="${card.name} 할인된 가격 확인">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M7 17 17 7"/>
-            <path d="M9 7h8v8"/>
-          </svg>
-        </a>
+        ${action}
       </article>
     `;
   }).join("");
 }
+
 
 $("#urlForm").addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -454,6 +413,18 @@ cardsArea.addEventListener("click", (event) => {
   syncSelectionUI();
 });
 
+paymentTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    state.activeCategory = tab.dataset.category;
+    paymentTabs.forEach((item) => {
+      const active = item === tab;
+      item.classList.toggle("wt-agoda-is-active", active);
+      item.setAttribute("aria-selected", String(active));
+    });
+    renderCards();
+  });
+});
+
 $("#selectAllBtn").addEventListener("click", selectAll);
 $("#clearAllBtn").addEventListener("click", clearAll);
 
@@ -487,6 +458,13 @@ globalBackBtn.addEventListener("click", () => {
 $("#restartBtn").addEventListener("click", () => {
   state.baseUrl = null;
   state.selected.clear();
+  state.activeCategory = "pay";
+  paymentTabs.forEach((tab) => {
+    const active = tab.dataset.category === "pay";
+    tab.classList.toggle("wt-agoda-is-active", active);
+    tab.setAttribute("aria-selected", String(active));
+  });
+  renderCards();
   urlInput.value = "";
   urlError.textContent = "";
   syncSelectionUI();
