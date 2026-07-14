@@ -31390,3 +31390,48 @@ body.travel-city-body .wt-city-start-guides .wt-firsttrip-guide:focus-visible {
   }
 }
 /* END FUKUOKA_CITY_START_GUIDES_V1 */
+
+/* WACKYTRAVEL_CITY_HERO_CTA_MOBILE_V3 */
+body.travel-city-body .wt-city-start-guides .wt-section-kicker {
+  font-size: 15px !important;
+}
+
+body.travel-city-body .wt-city-hero__actions .wt-city-button,
+body.travel-city-body .wt-city-hero__actions .wt-city-button--primary,
+body.travel-city-body .wt-city-hero__actions .wt-city-button--ghost {
+  background: #fff !important;
+  color: #000 !important;
+  border-color: rgba(0, 0, 0, 0.22) !important;
+}
+
+body.travel-city-body .wt-city-hero__actions .wt-city-button:hover,
+body.travel-city-body .wt-city-hero__actions .wt-city-button--primary:hover,
+body.travel-city-body .wt-city-hero__actions .wt-city-button--ghost:hover {
+  background: #f5f5f3 !important;
+  color: #000 !important;
+  border-color: rgba(0, 0, 0, 0.48) !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body .wt-city-cta__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 24px !important;
+  }
+
+  body.travel-city-body .wt-city-cta__inner > div {
+    width: 100% !important;
+  }
+
+  body.travel-city-body .wt-city-cta__inner .wt-city-button.wt-city-button--primary {
+    position: static !important;
+    order: 2 !important;
+    align-self: stretch !important;
+    justify-self: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
+/* End WACKYTRAVEL_CITY_HERO_CTA_MOBILE_V3 */
