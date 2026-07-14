@@ -413,9 +413,9 @@ $("#urlForm").addEventListener("submit", async (event) => {
     }
 
     const elapsed = Date.now() - startedAt;
-    if(elapsed < 1250) await wait(1250 - elapsed);
+    if(elapsed < 1800) await wait(1800 - elapsed);
     await updateLoadingMessage("준비가 완료됐어요. 결제수단을 선택해주세요.");
-    await wait(420);
+    await wait(1100);
     showPage("cards");
   }catch(error){
     if(state.page === "loading"){
