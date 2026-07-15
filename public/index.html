@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260712CityFaqSnapshotPromoV1" />
+  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260715HomeFeaturedPromoV1" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -152,21 +153,56 @@
       </div>
     </section>
 
-    <section class="travel-promo-link-section" aria-label="호텔 프로모션 바로가기">
-      <div class="container">
-      <a class="home-promo-link" href="/hotel-promotions/" aria-label="호텔 프로모션 모아보기 페이지로 이동">
-        <span class="home-promo-link__copy">
-          <span class="home-promo-link__kicker">Hotel Promotions</span>
-          <strong class="home-promo-link__heading">지금 확인할 호텔 프로모션</strong>
-          <span class="home-promo-link__summary">호텔 예약 플랫폼의 프로모션과 주요 일정을 한곳에서 살펴보세요.</span>
-        </span>
-        <span class="home-promo-link__go" aria-hidden="true">
-          <span>전체 보기</span>
-          <svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h13"></path><path d="m14 7 5 5-5 5"></path></svg>
-        </span>
-      </a>
+    <section class="wtpromo-section wtpromo-container wtpromo-home-featured" aria-labelledby="featuredTitle">
+      <div class="wtpromo-section-heading wtpromo-section-heading--linked">
+        <div>
+          <p class="wtpromo-eyebrow">Editor’s Pick</p>
+          <h2 id="featuredTitle">지금 확인할 프로모션</h2>
+        </div>
+        <a class="wtpromo-heading-link" href="/hotel-promotions/" aria-label="전체 호텔 프로모션 보기">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13"></path><path d="m14 7 5 5-5 5"></path></svg>
+        </a>
+      </div>
+      <div class="wtpromo-featured-grid" id="featuredGrid">
+        <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" aria-label="아시아나 여행 특가 라이브 · 프로모션 링크 준비 중">
+          <div class="wtpromo-featured-card__top">
+            <span class="wtpromo-platform-wordmark">Trip.com</span>
+            <span class="wtpromo-status-label">7월 13일 라이브</span>
+          </div>
+          <span class="wtpromo-featured-card__index">01</span>
+          <h3>아시아나 여행 특가 라이브</h3>
+          <div class="wtpromo-featured-card__meta">
+            <span>전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</span>
+            <span class="wtpromo-circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+          </div>
+        </article>
+        <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip" aria-label="수요일 일본여행 5만원 쿠폰데이 · 프로모션 링크 준비 중">
+          <div class="wtpromo-featured-card__top">
+            <span class="wtpromo-platform-wordmark">Trip.com</span>
+            <span class="wtpromo-status-label">매주 수요일</span>
+          </div>
+          <span class="wtpromo-featured-card__index">02</span>
+          <h3>수요일 일본여행 5만원 쿠폰데이</h3>
+          <div class="wtpromo-featured-card__meta">
+            <span>일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</span>
+            <span class="wtpromo-circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+          </div>
+        </article>
+        <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip" aria-label="매일 최대 50% 항공·호텔 특가 · 프로모션 링크 준비 중">
+          <div class="wtpromo-featured-card__top">
+            <span class="wtpromo-platform-wordmark">Trip.com</span>
+            <span class="wtpromo-status-label">매일 진행</span>
+          </div>
+          <span class="wtpromo-featured-card__index">03</span>
+          <h3>매일 최대 50% 항공·호텔 특가</h3>
+          <div class="wtpromo-featured-card__meta">
+            <span>항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</span>
+            <span class="wtpromo-circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+          </div>
+        </article>
       </div>
     </section>
+
 
     <section id="homeHotelPostsSection" class="container travel-section travel-section--tinted" hidden>
       <div class="section-heading section-heading--split">
