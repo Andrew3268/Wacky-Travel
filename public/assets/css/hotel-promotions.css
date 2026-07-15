@@ -429,6 +429,42 @@ body.wtpromo-page {
       stroke-width: 1.6;
     }
 
+    .wtpromo-home-tool-section {
+      padding: 0 0 clamp(72px, 9vw, 120px);
+      background: #fff;
+    }
+    .wtpromo-tool-card--home {
+      padding: 34px 38px;
+      border-radius: 22px;
+      background: #f6f6f4;
+    }
+    .wtpromo-tool-card--home__content {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      min-width: 0;
+    }
+    .wtpromo-tool-card--home .wtpromo-tool-card__icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      margin: 0;
+    }
+    .wtpromo-tool-card--home h2 {
+      font-size: clamp(25px, 3vw, 36px);
+      letter-spacing: -.045em;
+    }
+    .wtpromo-tool-card--home p:not(.wtpromo-eyebrow) {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .wtpromo-tool-card--home .wtpromo-primary-button {
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
+    }
+
     .wtpromo-guide-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -633,5 +669,53 @@ body.wtpromo-page .topbar--travel .topbar__inner.container {
 @media (max-width: 720px) {
   body.wtpromo-page .topbar--travel .topbar__inner.container {
     width: min(var(--max), calc(100% - 32px));
+  }
+}
+
+
+@media (max-width: 720px) {
+  .wtpromo-home-tool-section {
+    padding-bottom: 72px;
+  }
+  .wtpromo-tool-card--home {
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    padding: 25px 22px;
+  }
+  .wtpromo-tool-card--home__content {
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .wtpromo-tool-card--home .wtpromo-tool-card__icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  .wtpromo-tool-card--home h2 {
+    font-size: 23px;
+  }
+  .wtpromo-tool-card--home p:not(.wtpromo-eyebrow) {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  .wtpromo-tool-card--home .wtpromo-primary-button {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+  }
+}
+
+@media (max-width: 520px) {
+  .wtpromo-tool-card--home {
+    grid-template-columns: 1fr;
+  }
+  .wtpromo-tool-card--home__content {
+    display: block;
+  }
+  .wtpromo-tool-card--home .wtpromo-tool-card__icon {
+    margin-bottom: 18px;
+  }
+  .wtpromo-tool-card--home .wtpromo-primary-button {
+    justify-self: start;
   }
 }
