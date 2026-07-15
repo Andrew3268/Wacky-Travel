@@ -738,3 +738,23 @@ body.wtpromo-page .topbar--travel .topbar__inner.container {
     justify-self: start;
   }
 }
+
+/* Home promotion layout alignment and mobile section rhythm */
+body.travel-home-body .wtpromo-home-featured,
+body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container {
+  --max: var(--container, 1200px);
+  max-width: var(--container, 1200px);
+}
+
+body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container {
+  width: min(100%, var(--container, 1200px));
+}
+
+@media (max-width: 760px) {
+  body.travel-home-body .wtpromo-home-featured {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding: 90px 18px;
+  }
+}

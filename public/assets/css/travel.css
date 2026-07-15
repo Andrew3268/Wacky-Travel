@@ -31435,3 +31435,11 @@ body.travel-city-body .wt-city-hero__actions .wt-city-button--ghost:hover {
   }
 }
 /* End WACKYTRAVEL_CITY_HERO_CTA_MOBILE_V3 */
+
+/* Home mobile section spacing */
+@media (max-width: 760px) {
+  body.travel-home-body .container.travel-section.travel-section--tinted {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+}
