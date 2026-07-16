@@ -116,6 +116,7 @@
 
     document.querySelectorAll('[data-admin-only]').forEach((el) => {
       el.hidden = !isAdmin;
+      el.setAttribute('aria-hidden', isAdmin ? 'false' : 'true');
     });
 
     document.querySelectorAll('[data-admin-logout]').forEach((el) => {
