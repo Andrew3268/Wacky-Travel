@@ -31660,3 +31660,64 @@ body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-ho
   }
 }
 /* END WACKYTRAVEL_EDITOR_PICK_LINK_PARITY_V5 */
+
+/* 20260716 Post header exact unification with main index */
+body.post-page-body .topbar.topbar--editorial.topbar--travel {
+  border-bottom: 0 !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.post-page-body .topbar--travel .topbar__inner.container {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: var(--container) !important;
+  min-height: 64px !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+  border-bottom: 0 !important;
+  background: #ffffff !important;
+  gap: initial !important;
+}
+
+body.post-page-body .topbar--travel .brand {
+  gap: initial !important;
+  color: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+body.post-page-body .topbar--travel .brand__mark {
+  width: 36px !important;
+  height: 36px !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+  font-size: 0.75rem !important;
+}
+
+body.post-page-body .topbar--travel .brand__text {
+  color: #111111 !important;
+  font-size: inherit !important;
+  font-weight: 600 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.post-page-body .topbar--travel .topbar__inner.container {
+    padding-left: clamp(48px, 7vw, 76px) !important;
+    padding-right: clamp(48px, 7vw, 76px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.post-page-body .topbar--travel .topbar__inner.container {
+    max-width: none !important;
+    min-height: 58px !important;
+    margin: 0 !important;
+    padding: 0 16px !important;
+  }
+}
+/* End 20260716 Post header exact unification with main index */
