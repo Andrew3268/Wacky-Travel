@@ -122,7 +122,7 @@
           </div>
           <div class="double-btn-group">
             <button class="primary-action-btn" id="detailBtn" type="button">자세히 보기</button>
-            <button class="secondary-action-btn" id="hotelTabBtn" type="button">호텔 찾아보기</button>
+            <button aria-hidden="true" class="secondary-action-btn" data-admin-only="" hidden="" id="hotelTabBtn" type="button">호텔 찾아보기</button>
           </div>
         </div>
 
@@ -142,7 +142,7 @@
             <div class="tab-menu-list">
               <button class="tab-btn active" type="button" data-tab="0">추천 이유</button>
               <button class="tab-btn" type="button" data-tab="1">호텔 위치 체크</button>
-              <button class="tab-btn" type="button" data-tab="2">호텔 추천</button>
+              <button aria-hidden="true" class="tab-btn" data-admin-only="" data-tab="2" hidden="" type="button">호텔 추천</button>
               <button class="tab-btn" type="button" data-tab="3">함께 볼 글</button>
             </div>
           </div>
@@ -176,7 +176,7 @@
               </div>
             </article>
 
-            <article class="tab-panel" id="hotelRecommendSection">
+            <article aria-hidden="true" class="tab-panel" data-admin-only="" hidden="" id="hotelRecommendSection">
               <p class="wt-section-eyebrow">호텔 추천 5곳</p>
               <h3 class="panel-title" id="hotelSectionTitle"></h3>
               <p class="wt-section-desc" id="hotelSectionDesc"></p>
@@ -200,5 +200,6 @@
   </div>
 </main>
 <script defer src="/assets/js/destinations/tokyo/hotel-location-survey.js?v=20260705SurveyDetailBackV38"></script>
+<script src="/assets/js/admin-ui.js"></script>
 </body>
 </html>
