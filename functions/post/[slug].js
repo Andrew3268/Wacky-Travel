@@ -334,8 +334,8 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260716PostLayoutUnifiedV1" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -407,8 +407,9 @@ export async function onRequestGet({ params, env, request }) {
       </div>
     </article>
 
-    ${footer(siteName, siteDescription)}
   </main>
+
+  ${footer(siteName)}
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -1221,7 +1222,7 @@ function renderNotFound(slug) {
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260606v18" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260606v18" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
 </head>
 <body>
   <main class="container">
@@ -1245,18 +1246,12 @@ function topbar() {
         <span class="brand__mark">WT</span>
         <span class="brand__text">Wacky Travel</span>
       </a>
-      <button class="topbar-search-button topbar-search-button--post" id="postSearchOpenBtn" type="button" aria-label="검색 열기" aria-controls="postSearchOverlay" aria-expanded="false">
+      <button class="topbar-search-button" id="postSearchOpenBtn" type="button" aria-label="검색 열기" aria-controls="postSearchOverlay" aria-expanded="false">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
           <circle cx="11" cy="11" r="6.4"></circle>
           <path d="m16 16 4.5 4.5"></path>
         </svg>
-        <span class="topbar-search-button__label">호텔 검색</span>
       </button>
-      <div class="topbar__actions topbar__actions--travel">
-        <a class="btn btn--ghost topbar__admin" href="/admin/">관리</a>
-        <a class="btn btn--ghost topbar__dashboard" href="/admin/dashboard.html" data-admin-link hidden>대시보드</a>
-        <button class="topbar__logout" type="button" data-admin-logout hidden>로그아웃</button>
-      </div>
     </div>
   </header>`;
 }
@@ -1300,11 +1295,19 @@ function postSearchOverlay() {
   </section>`;
 }
 
-function footer(siteName, siteDescription) {
-  return `<footer class="footer container">
-    <div class="footer__inner">
-      <div>© 2026 ${escapeHtml(siteName)}</div>
-      <div>${escapeHtml(siteDescription)}</div>
+function footer(siteName) {
+  return `<footer class="wtpromo-footer">
+    <div class="wtpromo-footer__inner wtpromo-container">
+      <div>
+        <div class="wtpromo-footer-brand">${escapeHtml(siteName)}</div>
+        <p class="wtpromo-footer-copy">© 2026 ${escapeHtml(siteName)}<br />예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
+      </div>
+      <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
+        <a href="/about/">소개</a>
+        <a href="/destinations/">여행지</a>
+        <a href="/hotel-promotions/">호텔 프로모션</a>
+        <a href="/search/">검색</a>
+      </nav>
     </div>
   </footer>`;
 }
