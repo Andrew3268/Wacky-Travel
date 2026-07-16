@@ -7987,7 +7987,7 @@ body.post-page-body--hotel-review-magazine {
 }
 
 body.post-page-body--hotel-review-magazine .post-guide-page {
-  max-width: 760px;
+  max-width: none;
   padding: 30px 24px 96px;
   background: #ffffff !important;
 }
@@ -8029,19 +8029,19 @@ body.post-page-body--hotel-review-magazine .post-shell--guide-style .post-hero {
 
 body.post-page-body--hotel-review-magazine .post-shell--guide-style .post-hero--product .post-cover-wrap,
 body.post-page-body--hotel-review-magazine .post-cover-wrap {
-  max-height: 400px;
-  aspect-ratio: auto;
-  margin: 0 0 50px;
-  border: 0 !important;
-  border-radius: 0 !important;
+  position: relative;
+  width: 100%;
+  margin: 0 auto 30px;
   overflow: hidden;
-  background: #ffffff !important;
+  border: 1px solid var(--wt-line);
+  border-radius: 30px;
+  background: #f2f2f2;
+  aspect-ratio: 16 / 9;
 }
 
 body.post-page-body--hotel-review-magazine .post-cover,
 body.post-page-body--hotel-review-magazine .post-cover-wrap img {
   width: 100%;
-  max-height: 400px;
   object-fit: cover;
   border-radius: 0 !important;
 }

@@ -334,7 +334,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260716PostHeaderUnifiedV2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260716HotelReviewLayoutV4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260716PostHeaderSpacingV3" />
   <style>
@@ -509,7 +509,7 @@ export async function onRequestGet({ params, env, request }) {
   });
 </script>
   ${adsenseRuntimeScript}
-  <script src="/assets/js/admin-ui.js" defer></script>
+  <script src="/assets/js/admin-ui.js?v=20260716PostLogoutRemovedV1" defer></script>
 </body>
 </html>`;
 

@@ -17,6 +17,11 @@
 
   function syncTravelLogoutButtons(isAdmin) {
     document.querySelectorAll('.topbar--travel .topbar__inner').forEach((header) => {
+      if (document.body && document.body.classList.contains('post-page-body')) {
+        const existingLogout = header.querySelector('[data-admin-logout]');
+        if (existingLogout) existingLogout.remove();
+        return;
+      }
       let actions = header.querySelector('.topbar__actions--travel');
       if (!actions) {
         actions = document.createElement('div');
