@@ -17,8 +17,8 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260716HomeLayoutRefinementV3" />
-  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260716HomePromoAlignmentV5" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260716HomeHeadingLinksV4" />
+  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260716HomeHeadingLinksV6" />
 </head>
 <body class="travel-home-body">
   <header class="topbar topbar--editorial topbar--travel">
@@ -159,8 +159,13 @@
           <p class="wtpromo-eyebrow">Editor’s Pick</p>
           <h2 id="featuredTitle">지금 확인할 프로모션</h2>
         </div>
-        <a class="wtpromo-heading-link" href="/hotel-promotions/" aria-label="전체 호텔 프로모션 보기">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13"></path><path d="m14 7 5 5-5 5"></path></svg>
+        <a class="text-link destinations-view-all-link wtpromo-heading-link" href="/hotel-promotions/" aria-label="전체 호텔 프로모션 보기">
+          <span class="destinations-view-all-label">더 보기</span>
+          <span class="destinations-view-all-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" focusable="false">
+              <path d="M7.5 4.5 12.5 10l-5 5.5"></path>
+            </svg>
+          </span>
         </a>
       </div>
       <div class="wtpromo-featured-grid" id="featuredGrid">
@@ -229,7 +234,6 @@
           <p class="eyebrow">Hotel Picks</p>
           <h2>여행 스타일별 호텔 추천</h2>
         </div>
-        <a class="text-link" href="/destinations/">도시별 호텔 추천 보기</a>
       </div>
       <div id="homeHotels" class="travel-card-grid travel-card-grid--hotels"></div>
     </section>
