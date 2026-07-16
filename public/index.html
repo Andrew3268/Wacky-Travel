@@ -1,379 +1,362 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="referrer" content="no-referrer" />
-  <title>Wacky Travel | 여행지·호텔 추천 블로그</title>
-  <meta name="description" content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." />
-  <link rel="canonical" href="/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Wacky Travel" />
-  <meta property="og:title" content="Wacky Travel | 여행지·호텔 추천 블로그" />
-  <meta property="og:description" content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." />
-  <meta property="og:url" content="/" />
-  <meta property="og:image" content="/assets/images/logo.png" />
-  <meta property="og:locale" content="ko_KR" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260716EditorPickHeadingV1" />
-  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260716EditorPickHeadingV1" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="no-referrer" name="referrer"/>
+<title>Wacky Travel | 여행지·호텔 추천 블로그</title>
+<meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." name="description"/>
+<link href="/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Wacky Travel" property="og:site_name"/>
+<meta content="Wacky Travel | 여행지·호텔 추천 블로그" property="og:title"/>
+<meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." property="og:description"/>
+<meta content="/" property="og:url"/>
+<meta content="/assets/images/logo.png" property="og:image"/>
+<meta content="ko_KR" property="og:locale"/>
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/assets/css/app.css?v=20260708HotelReviewImageBorderV4" rel="stylesheet"/>
+<link href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260716EditorPickLinkUnifiedV2" rel="stylesheet"/>
+<link href="/assets/css/hotel-promotions.css?v=20260716EditorPickLinkUnifiedV2" rel="stylesheet"/>
 </head>
 <body class="travel-home-body">
-  <header class="topbar topbar--editorial topbar--travel">
-    <div class="topbar__inner container">
-      <a class="brand" href="/" aria-label="Wacky Travel 홈"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
-      <button class="topbar-search-button" id="homeSearchOpenBtn" type="button" aria-label="검색 열기" aria-controls="homeSearchOverlay" aria-expanded="false">
-        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-          <circle cx="11" cy="11" r="6.4"></circle>
-          <path d="m16 16 4.5 4.5"></path>
-        </svg>
-      </button>
-    </div>
-  </header>
-
-  <section class="home-search-overlay" id="homeSearchOverlay" hidden aria-hidden="true">
-    <div class="home-search-overlay__backdrop" data-home-search-close></div>
-    <div class="home-search-overlay__panel" role="dialog" aria-modal="true" aria-labelledby="homeSearchOverlayTitle">
-      <div class="home-search-overlay__bar">
-        <button class="home-search-overlay__close" type="button" data-home-search-close aria-label="검색 닫기">
-          <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-            <path d="M6 6l12 12"></path>
-            <path d="M18 6L6 18"></path>
-          </svg>
-        </button>
-        <form class="home-search-overlay__form" id="homeFullscreenSearchForm" action="/search/" method="get" role="search" autocomplete="off">
-          <span class="home-search-overlay__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false">
-              <circle cx="11" cy="11" r="6.4"></circle>
-              <path d="m16 16 4.5 4.5"></path>
-            </svg>
-          </span>
-          <input id="homeFullscreenSearchInput" type="search" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" aria-label="여행지 또는 호텔 검색어 입력" />
-          <button class="home-search-overlay__submit" type="submit">검색</button>
-        </form>
-      </div>
-
-      <div class="home-search-overlay__content">
-        <p class="home-search-overlay__eyebrow">Search</p>
-        <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
-        <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
-        <div class="home-search-overlay__quick" aria-label="추천 검색어">
-          <button type="button" data-home-search-query="오사카 난바 호텔">오사카 난바 호텔</button>
-          <button type="button" data-home-search-query="후쿠오카 하카타 숙소">후쿠오카 하카타 숙소</button>
-          <button type="button" data-home-search-query="다낭 미케비치 호텔">다낭 미케비치 호텔</button>
-          <button type="button" data-home-search-query="타이베이 시먼딩 숙소">타이베이 시먼딩 숙소</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <main class="travel-page travel-home">
-    <section class="wthome-hero" aria-labelledby="wthomeHeroTitle">
-      <div class="wthome-hero__inner">
-        <div class="wthome-card">
-          <div class="wthome-card__visual">
-            <div class="wthome-card__visual-content">
-              <h1 id="wthomeHeroTitle">
-                숙소 위치가 여행의<br />
+<header class="topbar topbar--editorial topbar--travel">
+<div class="topbar__inner container">
+<a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+<button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="6.4"></circle>
+<path d="m16 16 4.5 4.5"></path>
+</svg>
+</button>
+</div>
+</header>
+<section aria-hidden="true" class="home-search-overlay" hidden="" id="homeSearchOverlay">
+<div class="home-search-overlay__backdrop" data-home-search-close=""></div>
+<div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
+<div class="home-search-overlay__bar">
+<button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close="" type="button">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 6l12 12"></path>
+<path d="M18 6L6 18"></path>
+</svg>
+</button>
+<form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
+<span aria-hidden="true" class="home-search-overlay__icon">
+<svg focusable="false" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="6.4"></circle>
+<path d="m16 16 4.5 4.5"></path>
+</svg>
+</span>
+<input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search"/>
+<button class="home-search-overlay__submit" type="submit">검색</button>
+</form>
+</div>
+<div class="home-search-overlay__content">
+<p class="home-search-overlay__eyebrow">Search</p>
+<h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+<p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+<div aria-label="추천 검색어" class="home-search-overlay__quick">
+<button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+<button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+<button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+<button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+</div>
+</div>
+</div>
+</section>
+<main class="travel-page travel-home">
+<section aria-labelledby="wthomeHeroTitle" class="wthome-hero">
+<div class="wthome-hero__inner">
+<div class="wthome-card">
+<div class="wthome-card__visual">
+<div class="wthome-card__visual-content">
+<h1 id="wthomeHeroTitle">
+                숙소 위치가 여행의<br/>
                 만족도를 바꿉니다
               </h1>
-              <p class="wthome-hero__desc">
+<p class="wthome-hero__desc">
                 어디에 숙소를 잡아야 할지 고민된다면, 여행지별 추천 지역을 비교해보세요. 일정과 동선에 맞는 최적의 숙소 위치를 찾아볼 수 있습니다.
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container travel-section travel-section--destination-hub">
-      <div class="section-heading section-heading--split">
-        <div>
-          <p class="eyebrow">Popular Destinations</p>
-          <h2>인기 여행지</h2>
-        </div>
-        <a class="text-link destinations-view-all-link" href="/destinations/" aria-label="여행지 더 보기">
-          <span class="destinations-view-all-label">더 보기</span>
-          <span class="destinations-view-all-icon" aria-hidden="true">
-            <svg viewBox="0 0 20 20" focusable="false">
-              <path d="M7.5 4.5 12.5 10l-5 5.5"></path>
-            </svg>
-          </span>
-        </a>
-      </div>
-      <div id="homeDestinations" class="home-mood-grid" aria-label="인기 도시 5개">
-        <article class="home-mood-card home-mood-card--featured">
-          <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no1.avif" alt="후쿠오카 여행 대표 이미지" width="1400" height="1000" loading="eager" decoding="async" fetchpriority="high" />
-          <a class="home-mood-card__link" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
-            <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>JAPAN</span></div>
-            <h3 class="home-mood-card__title">후쿠오카</h3>
-            <p class="home-mood-card__desc">하카타와 텐진을 중심으로 맛집과 쇼핑, 호텔을 편하게 연결해 보세요.</p>
-          </a>
-        </article>
-        <article class="home-mood-card">
-          <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no2.avif" alt="도쿄 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
-          <a class="home-mood-card__link" href="/destinations/tokyo/" aria-label="도쿄 여행지 보기">
-            <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>JAPAN</span></div>
-            <h3 class="home-mood-card__title">도쿄</h3>
-            <p class="home-mood-card__desc">전통적인 거리와 모던한 도심이 공존하는 여행.</p>
-          </a>
-        </article>
-        <article class="home-mood-card">
-          <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no3.avif" alt="오사카 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
-          <a class="home-mood-card__link" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
-            <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>JAPAN</span></div>
-            <h3 class="home-mood-card__title">오사카</h3>
-            <p class="home-mood-card__desc">먹거리와 쇼핑, 근교 이동이 편한 활기찬 도시 여행.</p>
-          </a>
-        </article>
-        <article class="home-mood-card">
-          <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no4.avif" alt="나트랑 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
-          <a class="home-mood-card__link" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
-            <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>VIETNAM</span></div>
-            <h3 class="home-mood-card__title">나트랑</h3>
-            <p class="home-mood-card__desc">리조트와 바다에서 느긋하게 보내는 휴양 여행.</p>
-          </a>
-        </article>
-        <article class="home-mood-card">
-          <img class="home-mood-card__image" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no5.avif" alt="다낭 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
-          <a class="home-mood-card__link" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
-            <span class="home-mood-card__arrow" aria-hidden="true">→</span>
-            <div class="home-mood-card__meta"><span>VIETNAM</span></div>
-            <h3 class="home-mood-card__title">다낭</h3>
-            <p class="home-mood-card__desc">미케비치와 도심을 함께 즐기기 좋은 균형 잡힌 여행.</p>
-          </a>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="wtpromo-section wtpromo-container wtpromo-home-featured" aria-labelledby="featuredTitle">
-      <div class="section-heading section-heading--split">
-        <div>
-          <p class="eyebrow">Editor’s Pick</p>
-          <h2 id="featuredTitle">지금 확인할 프로모션</h2>
-        </div>
-        <a class="text-link destinations-view-all-link" href="/hotel-promotions/" aria-label="전체 호텔 프로모션 보기">
-          <span class="destinations-view-all-label">더 보기</span>
-          <span class="destinations-view-all-icon" aria-hidden="true">
-            <svg viewBox="0 0 20 20" focusable="false">
-              <path d="M7.5 4.5 12.5 10l-5 5.5"></path>
-            </svg>
-          </span>
-        </a>
-      </div>
-      <div class="wtpromo-featured-grid" id="featuredGrid">
-        <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" aria-label="아시아나 여행 특가 라이브 · 프로모션 링크 준비 중">
-          <div class="wtpromo-featured-card__top">
-            <span class="wtpromo-platform-wordmark">Trip.com</span>
-            <span class="wtpromo-status-label">7월 13일 라이브</span>
-          </div>
-          <span class="wtpromo-featured-card__index">01</span>
-          <h3>아시아나 여행 특가 라이브</h3>
-          <div class="wtpromo-featured-card__meta">
-            <span>전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</span>
-            <span class="wtpromo-circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
-          </div>
-        </article>
-        <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip" aria-label="수요일 일본여행 5만원 쿠폰데이 · 프로모션 링크 준비 중">
-          <div class="wtpromo-featured-card__top">
-            <span class="wtpromo-platform-wordmark">Trip.com</span>
-            <span class="wtpromo-status-label">매주 수요일</span>
-          </div>
-          <span class="wtpromo-featured-card__index">02</span>
-          <h3>수요일 일본여행 5만원 쿠폰데이</h3>
-          <div class="wtpromo-featured-card__meta">
-            <span>일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</span>
-            <span class="wtpromo-circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
-          </div>
-        </article>
-        <article class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip" aria-label="매일 최대 50% 항공·호텔 특가 · 프로모션 링크 준비 중">
-          <div class="wtpromo-featured-card__top">
-            <span class="wtpromo-platform-wordmark">Trip.com</span>
-            <span class="wtpromo-status-label">매일 진행</span>
-          </div>
-          <span class="wtpromo-featured-card__index">03</span>
-          <h3>매일 최대 50% 항공·호텔 특가</h3>
-          <div class="wtpromo-featured-card__meta">
-            <span>항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</span>
-            <span class="wtpromo-circle-arrow"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="wtpromo-home-tool-section" aria-labelledby="homeDiscountToolTitle">
-      <div class="wtpromo-container">
-        <a class="wtpromo-tool-card wtpromo-tool-card--home" href="/agoda-card-discount/" aria-labelledby="homeDiscountToolTitle">
-          <div class="wtpromo-tool-card--home__content">
-            <div class="wtpromo-tool-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M7 15h4"></path></svg>
-            </div>
-            <div>
-              <p class="wtpromo-eyebrow">Wacky Travel Tool</p>
-              <h2 id="homeDiscountToolTitle">아고다 결제 할인 찾기</h2>
-              <p>호텔 링크를 입력하고 카드·간편결제·통신사별 할인 페이지를 빠르게 확인해보세요.</p>
-            </div>
-          </div>
-          <span class="wtpromo-primary-button" aria-hidden="true">
-            <svg viewBox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg>
-          </span>
-        </a>
-      </div>
-    </section>
-
-    <section id="homeHotelPostsSection" class="container travel-section travel-section--tinted" hidden>
-      <div class="section-heading section-heading--split">
-        <div>
-          <p class="eyebrow">Hotel Picks</p>
-          <h2>여행 스타일별 호텔 추천</h2>
-        </div>
-      </div>
-      <div id="homeHotels" class="travel-card-grid travel-card-grid--hotels"></div>
-    </section>
-
-    <section id="homePostsSection" class="container travel-section" hidden>
-      <div class="section-heading section-heading--split">
-        <div>
-          <p class="eyebrow">Latest Guides</p>
-          <h2>최신 여행 글</h2>
-          <p>여행 준비 팁, 호텔 선택 기준, 도시별 이동 정보를 최신순으로 정리합니다.</p>
-        </div>
-      </div>
-      <div id="homePosts" class="travel-list"></div>
-    </section>
-  </main>
-
-  <div class="modal-backdrop" id="destinationManagerBackdrop" hidden></div>
-  <aside class="modal-sheet modal-sheet--destination-manager" id="destinationManagerModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="destinationManagerTitle">
-    <form id="destinationManagerForm">
-      <div class="modal-sheet__header">
-        <div>
-          <div class="small seo-eyebrow">도시 페이지 관리</div>
-          <h2 class="h2" id="destinationManagerTitle">도시 추가</h2>
-          <p class="small">도시 상세 페이지, 나라별 카드 문구, SEO 정보를 함께 관리합니다.</p>
-        </div>
-        <button class="btn" id="closeDestinationManagerBtn" type="button">닫기</button>
-      </div>
-      <div class="sep"></div>
-      <div class="modal-sheet__body destination-manager">
-        <input type="hidden" id="destinationMode" value="create" />
-        <input type="hidden" id="destinationCurrentSlug" value="" />
-
-        <section class="destination-manager__section">
-          <h3>기본 정보</h3>
-          <div class="grid grid--3 destination-manager__grid">
-            <label class="form-field"><span>나라</span><select class="input" id="dmCountry" required></select></label>
-            <label class="form-field"><span>도시명</span><input class="input" id="dmName" placeholder="예: 나트랑" required /></label>
-            <label class="form-field"><span>slug</span><input class="input" id="dmSlug" placeholder="예: nha-trang" required /></label>
-          </div>
-          <div class="grid grid--3 destination-manager__grid">
-            <label class="form-field"><span>실제 도시명</span><input class="input" id="dmCity" placeholder="예: 나트랑" /></label>
-            <label class="form-field"><span>상태</span><select class="input" id="dmStatus"><option value="published">공개</option><option value="draft">비공개</option></select></label>
-            <label class="form-field"><span>노출 순서</span><input class="input" id="dmSortOrder" type="number" min="0" placeholder="숫자가 낮을수록 먼저 노출" /></label>
-          </div>
-        </section>
-
-        <section class="destination-manager__section">
-          <h3>도시 상세 페이지 정보</h3>
-          <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>대표 이미지 URL</span><input class="input" id="dmHeroImage" placeholder="https://..." /></label>
-            <label class="form-field"><span>대표 이미지 alt</span><input class="input" id="dmHeroImageAlt" placeholder="예: 나트랑 여행 대표 이미지" /></label>
-          </div>
-          <label class="form-field"><span>도시 소개 문구</span><textarea class="input textarea" id="dmHeroSummary" rows="3" placeholder="도시 상세 페이지 상단에 표시될 소개 문장"></textarea></label>
-          <div class="grid grid--2 destination-manager__grid">
-            <label class="form-field"><span>상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지" /></label>
-            <label class="form-field"><span>페이지 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드" /></label>
-          </div>
-        </section>
-
-        <section class="destination-manager__section">
-          <h3>나라별 카드 전용 문구</h3>
-          <p class="small">/countries/나라 페이지의 도시 카드에 표시될 제목과 설명입니다. 비워두면 도시명과 도시 소개 문구가 대신 표시됩니다.</p>
-          <label class="form-field"><span>카드 전용 제목</span><input class="input" id="dmCardTitle" placeholder="예: 바다와 리조트 중심의 여유로운 휴양지" /></label>
-          <label class="form-field"><span>카드 전용 설명</span><textarea class="input textarea" id="dmCardDescription" rows="3" placeholder="예: 해변 근처 숙소를 찾거나 짧은 휴양 일정을 계획하는 분께 어울리는 도시입니다."></textarea></label>
-        </section>
-
-        <section class="destination-manager__section">
-          <h3>여행 정보와 SEO</h3>
-          <div class="grid grid--3 destination-manager__grid">
-            <label class="form-field"><span>추천 시기</span><input class="input" id="dmBestSeason" placeholder="예: 1월~8월" /></label>
-            <label class="form-field"><span>공항 정보</span><input class="input" id="dmAirportInfo" placeholder="예: 깜란국제공항" /></label>
-            <label class="form-field"><span>동선 요약</span><input class="input" id="dmTransportSummary" placeholder="예: 공항에서 시내 약 40분" /></label>
-          </div>
-          <label class="form-field"><span>SEO 메타 설명</span><textarea class="input textarea" id="dmMetaDescription" rows="2" placeholder="검색 결과에 표시될 수 있는 설명"></textarea></label>
-        </section>
-
-      </div>
-      <div class="destination-manager__actions" aria-label="도시 관리 작업 버튼">
-        <button class="btn btn--danger" id="deleteDestinationBtn" type="button" hidden>삭제(비공개)</button>
-        <div class="destination-manager__actions-right">
-          <span class="small" id="destinationManagerStatus"></span>
-          <button class="btn" id="cancelDestinationManagerBtn" type="button">취소하기</button>
-          <button class="btn btn--brand" id="destinationSubmitBtn" type="submit">저장하기</button>
-        </div>
-      </div>
-    </form>
-  </aside>
-
-  <div class="modal-backdrop" id="homeDestinationManagerBackdrop" hidden></div>
-  <aside class="modal-sheet modal-sheet--destination-manager modal-sheet--home-destination-manager" id="homeDestinationManagerModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="homeDestinationManagerTitle">
-    <form id="homeDestinationManagerForm" novalidate>
-      <div class="modal-sheet__header">
-        <div>
-          <div class="small seo-eyebrow">여행지 허브 관리</div>
-          <h2 class="h2" id="homeDestinationManagerTitle">인기 도시 관리</h2>
-          <p class="small">선택한 나라의 index 여행지 허브 노출 도시와 출력 순서를 관리합니다.</p>
-        </div>
-        <button class="btn" id="closeHomeDestinationManagerBtn" type="button">닫기</button>
-      </div>
-      <div class="sep"></div>
-      <div class="modal-sheet__body destination-manager">
-        <input type="hidden" id="homeDestinationCountrySlug" value="" />
-        <input type="hidden" id="homeDestinationCountryName" value="" />
-        <section class="destination-manager__section destination-manager__home-section">
-          <div class="destination-manager__section-head">
-            <div>
-              <h3 id="homeDestinationCountryHeading">인기 도시 노출 선택</h3>
-              <p class="small">이 나라의 여행지 허브에는 최대 5개 도시만 노출됩니다. 선택된 도시는 아래 ↑ ↓ 버튼으로 순서를 조정할 수 있습니다.</p>
-            </div>
-            <span class="home-destination-count small" id="homeDestinationCount">0/5 선택</span>
-          </div>
-          <div class="home-destination-checklist" id="homeDestinationChecklist" aria-label="여행지 허브 노출 도시 선택"></div>
-        </section>
-      </div>
-      <div class="destination-manager__actions" aria-label="인기 도시 관리 작업 버튼">
-        <span class="small" id="homeDestinationManagerStatus"></span>
-        <div class="destination-manager__actions-right">
-          <button class="btn" id="cancelHomeDestinationManagerBtn" type="button">취소하기</button>
-          <button class="btn btn--brand" id="homeDestinationSubmitBtn" type="submit">저장하기</button>
-        </div>
-      </div>
-    </form>
-  </aside>
-
-  <footer class="wtpromo-footer">
-  <div class="wtpromo-footer__inner wtpromo-container">
-    <div>
-      <div class="wtpromo-footer-brand">Wacky Travel</div>
-      <p class="wtpromo-footer-copy">© 2026 Wacky Travel<br>예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
-    </div>
-    <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
-      <a href="/about/">소개</a>
-      <a href="/destinations/">여행지</a>
-      <a href="/search/">검색</a>
-    </nav>
-  </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="container travel-section travel-section--destination-hub">
+<div class="section-heading section-heading--split">
+<div>
+<p class="eyebrow">Popular Destinations</p>
+<h2>인기 여행지</h2>
+</div>
+<a aria-label="여행지 더 보기" class="text-link destinations-view-all-link" href="/destinations/">
+<span class="destinations-view-all-label">더 보기</span>
+<span aria-hidden="true" class="destinations-view-all-icon">
+<svg focusable="false" viewbox="0 0 20 20">
+<path d="M7.5 4.5 12.5 10l-5 5.5"></path>
+</svg>
+</span>
+</a>
+</div>
+<div aria-label="인기 도시 5개" class="home-mood-grid" id="homeDestinations">
+<article class="home-mood-card home-mood-card--featured">
+<img alt="후쿠오카 여행 대표 이미지" class="home-mood-card__image" decoding="async" fetchpriority="high" height="1000" loading="eager" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no1.avif" width="1400"/>
+<a aria-label="후쿠오카 여행지 보기" class="home-mood-card__link" href="/destinations/fukuoka/">
+<span aria-hidden="true" class="home-mood-card__arrow">→</span>
+<div class="home-mood-card__meta"><span>JAPAN</span></div>
+<h3 class="home-mood-card__title">후쿠오카</h3>
+<p class="home-mood-card__desc">하카타와 텐진을 중심으로 맛집과 쇼핑, 호텔을 편하게 연결해 보세요.</p>
+</a>
+</article>
+<article class="home-mood-card">
+<img alt="도쿄 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no2.avif" width="1000"/>
+<a aria-label="도쿄 여행지 보기" class="home-mood-card__link" href="/destinations/tokyo/">
+<span aria-hidden="true" class="home-mood-card__arrow">→</span>
+<div class="home-mood-card__meta"><span>JAPAN</span></div>
+<h3 class="home-mood-card__title">도쿄</h3>
+<p class="home-mood-card__desc">전통적인 거리와 모던한 도심이 공존하는 여행.</p>
+</a>
+</article>
+<article class="home-mood-card">
+<img alt="오사카 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no3.avif" width="1000"/>
+<a aria-label="오사카 여행지 보기" class="home-mood-card__link" href="/destinations/osaka/">
+<span aria-hidden="true" class="home-mood-card__arrow">→</span>
+<div class="home-mood-card__meta"><span>JAPAN</span></div>
+<h3 class="home-mood-card__title">오사카</h3>
+<p class="home-mood-card__desc">먹거리와 쇼핑, 근교 이동이 편한 활기찬 도시 여행.</p>
+</a>
+</article>
+<article class="home-mood-card">
+<img alt="나트랑 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no4.avif" width="1000"/>
+<a aria-label="나트랑 여행지 보기" class="home-mood-card__link" href="/destinations/nha-trang/">
+<span aria-hidden="true" class="home-mood-card__arrow">→</span>
+<div class="home-mood-card__meta"><span>VIETNAM</span></div>
+<h3 class="home-mood-card__title">나트랑</h3>
+<p class="home-mood-card__desc">리조트와 바다에서 느긋하게 보내는 휴양 여행.</p>
+</a>
+</article>
+<article class="home-mood-card">
+<img alt="다낭 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no5.avif" width="1000"/>
+<a aria-label="다낭 여행지 보기" class="home-mood-card__link" href="/destinations/da-nang/">
+<span aria-hidden="true" class="home-mood-card__arrow">→</span>
+<div class="home-mood-card__meta"><span>VIETNAM</span></div>
+<h3 class="home-mood-card__title">다낭</h3>
+<p class="home-mood-card__desc">미케비치와 도심을 함께 즐기기 좋은 균형 잡힌 여행.</p>
+</a>
+</article>
+</div>
+</section>
+<section aria-labelledby="featuredTitle" class="wtpromo-section wtpromo-container wtpromo-home-featured">
+<div class="section-heading section-heading--split">
+<div>
+<p class="eyebrow">Editor’s Pick</p>
+<h2 id="featuredTitle">지금 확인할 프로모션</h2>
+</div>
+<a aria-label="전체 호텔 프로모션 보기" class="text-link destinations-view-all-link" href="/hotel-promotions/">
+<span class="destinations-view-all-label">더 보기</span>
+<span aria-hidden="true" class="destinations-view-all-icon">
+<svg focusable="false" viewbox="0 0 20 20">
+<path d="M7.5 4.5 12.5 10l-5 5.5"></path>
+</svg>
+</span>
+</a>
+</div>
+<div class="wtpromo-featured-grid" id="featuredGrid">
+<article aria-label="아시아나 여행 특가 라이브 · 프로모션 링크 준비 중" class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip">
+<div class="wtpromo-featured-card__top">
+<span class="wtpromo-platform-wordmark">Trip.com</span>
+<span class="wtpromo-status-label">7월 13일 라이브</span>
+</div>
+<span class="wtpromo-featured-card__index">01</span>
+<h3>아시아나 여행 특가 라이브</h3>
+<div class="wtpromo-featured-card__meta">
+<span>전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</span>
+<span class="wtpromo-circle-arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+</div>
+</article>
+<article aria-label="수요일 일본여행 5만원 쿠폰데이 · 프로모션 링크 준비 중" class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip">
+<div class="wtpromo-featured-card__top">
+<span class="wtpromo-platform-wordmark">Trip.com</span>
+<span class="wtpromo-status-label">매주 수요일</span>
+</div>
+<span class="wtpromo-featured-card__index">02</span>
+<h3>수요일 일본여행 5만원 쿠폰데이</h3>
+<div class="wtpromo-featured-card__meta">
+<span>일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</span>
+<span class="wtpromo-circle-arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+</div>
+</article>
+<article aria-label="매일 최대 50% 항공·호텔 특가 · 프로모션 링크 준비 중" class="wtpromo-featured-card wtpromo-featured-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip">
+<div class="wtpromo-featured-card__top">
+<span class="wtpromo-platform-wordmark">Trip.com</span>
+<span class="wtpromo-status-label">매일 진행</span>
+</div>
+<span class="wtpromo-featured-card__index">03</span>
+<h3>매일 최대 50% 항공·호텔 특가</h3>
+<div class="wtpromo-featured-card__meta">
+<span>항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</span>
+<span class="wtpromo-circle-arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg></span>
+</div>
+</article>
+</div>
+</section>
+<section aria-labelledby="homeDiscountToolTitle" class="wtpromo-home-tool-section">
+<div class="wtpromo-container">
+<a aria-labelledby="homeDiscountToolTitle" class="wtpromo-tool-card wtpromo-tool-card--home" href="/agoda-card-discount/">
+<div class="wtpromo-tool-card--home__content">
+<div aria-hidden="true" class="wtpromo-tool-card__icon">
+<svg viewbox="0 0 24 24"><rect height="14" rx="2.5" width="17" x="3.5" y="5"></rect><path d="M3.5 9.5h17"></path><path d="M7 15h4"></path></svg>
+</div>
+<div>
+<p class="wtpromo-eyebrow">Wacky Travel Tool</p>
+<h2 id="homeDiscountToolTitle">아고다 결제 할인 찾기</h2>
+<p>호텔 링크를 입력하고 카드·간편결제·통신사별 할인 페이지를 빠르게 확인해보세요.</p>
+</div>
+</div>
+<span aria-hidden="true" class="wtpromo-primary-button">
+<svg viewbox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg>
+</span>
+</a>
+</div>
+</section>
+<section class="container travel-section travel-section--tinted" hidden="" id="homeHotelPostsSection">
+<div class="section-heading section-heading--split">
+<div>
+<p class="eyebrow">Hotel Picks</p>
+<h2>여행 스타일별 호텔 추천</h2>
+</div>
+</div>
+<div class="travel-card-grid travel-card-grid--hotels" id="homeHotels"></div>
+</section>
+<section class="container travel-section" hidden="" id="homePostsSection">
+<div class="section-heading section-heading--split">
+<div>
+<p class="eyebrow">Latest Guides</p>
+<h2>최신 여행 글</h2>
+<p>여행 준비 팁, 호텔 선택 기준, 도시별 이동 정보를 최신순으로 정리합니다.</p>
+</div>
+</div>
+<div class="travel-list" id="homePosts"></div>
+</section>
+</main>
+<div class="modal-backdrop" hidden="" id="destinationManagerBackdrop"></div>
+<aside aria-hidden="true" aria-labelledby="destinationManagerTitle" aria-modal="true" class="modal-sheet modal-sheet--destination-manager" hidden="" id="destinationManagerModal" role="dialog">
+<form id="destinationManagerForm">
+<div class="modal-sheet__header">
+<div>
+<div class="small seo-eyebrow">도시 페이지 관리</div>
+<h2 class="h2" id="destinationManagerTitle">도시 추가</h2>
+<p class="small">도시 상세 페이지, 나라별 카드 문구, SEO 정보를 함께 관리합니다.</p>
+</div>
+<button class="btn" id="closeDestinationManagerBtn" type="button">닫기</button>
+</div>
+<div class="sep"></div>
+<div class="modal-sheet__body destination-manager">
+<input id="destinationMode" type="hidden" value="create"/>
+<input id="destinationCurrentSlug" type="hidden" value=""/>
+<section class="destination-manager__section">
+<h3>기본 정보</h3>
+<div class="grid grid--3 destination-manager__grid">
+<label class="form-field"><span>나라</span><select class="input" id="dmCountry" required=""></select></label>
+<label class="form-field"><span>도시명</span><input class="input" id="dmName" placeholder="예: 나트랑" required=""/></label>
+<label class="form-field"><span>slug</span><input class="input" id="dmSlug" placeholder="예: nha-trang" required=""/></label>
+</div>
+<div class="grid grid--3 destination-manager__grid">
+<label class="form-field"><span>실제 도시명</span><input class="input" id="dmCity" placeholder="예: 나트랑"/></label>
+<label class="form-field"><span>상태</span><select class="input" id="dmStatus"><option value="published">공개</option><option value="draft">비공개</option></select></label>
+<label class="form-field"><span>노출 순서</span><input class="input" id="dmSortOrder" min="0" placeholder="숫자가 낮을수록 먼저 노출" type="number"/></label>
+</div>
+</section>
+<section class="destination-manager__section">
+<h3>도시 상세 페이지 정보</h3>
+<div class="grid grid--2 destination-manager__grid">
+<label class="form-field"><span>대표 이미지 URL</span><input class="input" id="dmHeroImage" placeholder="https://..."/></label>
+<label class="form-field"><span>대표 이미지 alt</span><input class="input" id="dmHeroImageAlt" placeholder="예: 나트랑 여행 대표 이미지"/></label>
+</div>
+<label class="form-field"><span>도시 소개 문구</span><textarea class="input textarea" id="dmHeroSummary" placeholder="도시 상세 페이지 상단에 표시될 소개 문장" rows="3"></textarea></label>
+<div class="grid grid--2 destination-manager__grid">
+<label class="form-field"><span>상단 라벨</span><input class="input" id="dmHeroEyebrow" placeholder="예: 베트남 해변 여행지"/></label>
+<label class="form-field"><span>페이지 제목</span><input class="input" id="dmHeroTitle" placeholder="예: 나트랑 여행 가이드"/></label>
+</div>
+</section>
+<section class="destination-manager__section">
+<h3>나라별 카드 전용 문구</h3>
+<p class="small">/countries/나라 페이지의 도시 카드에 표시될 제목과 설명입니다. 비워두면 도시명과 도시 소개 문구가 대신 표시됩니다.</p>
+<label class="form-field"><span>카드 전용 제목</span><input class="input" id="dmCardTitle" placeholder="예: 바다와 리조트 중심의 여유로운 휴양지"/></label>
+<label class="form-field"><span>카드 전용 설명</span><textarea class="input textarea" id="dmCardDescription" placeholder="예: 해변 근처 숙소를 찾거나 짧은 휴양 일정을 계획하는 분께 어울리는 도시입니다." rows="3"></textarea></label>
+</section>
+<section class="destination-manager__section">
+<h3>여행 정보와 SEO</h3>
+<div class="grid grid--3 destination-manager__grid">
+<label class="form-field"><span>추천 시기</span><input class="input" id="dmBestSeason" placeholder="예: 1월~8월"/></label>
+<label class="form-field"><span>공항 정보</span><input class="input" id="dmAirportInfo" placeholder="예: 깜란국제공항"/></label>
+<label class="form-field"><span>동선 요약</span><input class="input" id="dmTransportSummary" placeholder="예: 공항에서 시내 약 40분"/></label>
+</div>
+<label class="form-field"><span>SEO 메타 설명</span><textarea class="input textarea" id="dmMetaDescription" placeholder="검색 결과에 표시될 수 있는 설명" rows="2"></textarea></label>
+</section>
+</div>
+<div aria-label="도시 관리 작업 버튼" class="destination-manager__actions">
+<button class="btn btn--danger" hidden="" id="deleteDestinationBtn" type="button">삭제(비공개)</button>
+<div class="destination-manager__actions-right">
+<span class="small" id="destinationManagerStatus"></span>
+<button class="btn" id="cancelDestinationManagerBtn" type="button">취소하기</button>
+<button class="btn btn--brand" id="destinationSubmitBtn" type="submit">저장하기</button>
+</div>
+</div>
+</form>
+</aside>
+<div class="modal-backdrop" hidden="" id="homeDestinationManagerBackdrop"></div>
+<aside aria-hidden="true" aria-labelledby="homeDestinationManagerTitle" aria-modal="true" class="modal-sheet modal-sheet--destination-manager modal-sheet--home-destination-manager" hidden="" id="homeDestinationManagerModal" role="dialog">
+<form id="homeDestinationManagerForm" novalidate="">
+<div class="modal-sheet__header">
+<div>
+<div class="small seo-eyebrow">여행지 허브 관리</div>
+<h2 class="h2" id="homeDestinationManagerTitle">인기 도시 관리</h2>
+<p class="small">선택한 나라의 index 여행지 허브 노출 도시와 출력 순서를 관리합니다.</p>
+</div>
+<button class="btn" id="closeHomeDestinationManagerBtn" type="button">닫기</button>
+</div>
+<div class="sep"></div>
+<div class="modal-sheet__body destination-manager">
+<input id="homeDestinationCountrySlug" type="hidden" value=""/>
+<input id="homeDestinationCountryName" type="hidden" value=""/>
+<section class="destination-manager__section destination-manager__home-section">
+<div class="destination-manager__section-head">
+<div>
+<h3 id="homeDestinationCountryHeading">인기 도시 노출 선택</h3>
+<p class="small">이 나라의 여행지 허브에는 최대 5개 도시만 노출됩니다. 선택된 도시는 아래 ↑ ↓ 버튼으로 순서를 조정할 수 있습니다.</p>
+</div>
+<span class="home-destination-count small" id="homeDestinationCount">0/5 선택</span>
+</div>
+<div aria-label="여행지 허브 노출 도시 선택" class="home-destination-checklist" id="homeDestinationChecklist"></div>
+</section>
+</div>
+<div aria-label="인기 도시 관리 작업 버튼" class="destination-manager__actions">
+<span class="small" id="homeDestinationManagerStatus"></span>
+<div class="destination-manager__actions-right">
+<button class="btn" id="cancelHomeDestinationManagerBtn" type="button">취소하기</button>
+<button class="btn btn--brand" id="homeDestinationSubmitBtn" type="submit">저장하기</button>
+</div>
+</div>
+</form>
+</aside>
+<footer class="wtpromo-footer">
+<div class="wtpromo-footer__inner wtpromo-container">
+<div>
+<div class="wtpromo-footer-brand">Wacky Travel</div>
+<p class="wtpromo-footer-copy">© 2026 Wacky Travel<br/>예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
+</div>
+<nav aria-label="하단 메뉴" class="wtpromo-footer-links">
+<a href="/about/">소개</a>
+<a href="/destinations/">여행지</a>
+<a href="/search/">검색</a>
+</nav>
+</div>
 </footer>
-
-  <script src="/assets/js/post-admin-actions.js?v=20260516admin1" defer></script>
-  <script>
+<script defer="" src="/assets/js/post-admin-actions.js?v=20260516admin1"></script>
+<script>
     const $ = (id) => document.getElementById(id);
     const escapeHtml = (value) => String(value || "").replace(/[&<>'"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[ch]));
     const safeArray = (value) => { try { const parsed = JSON.parse(value || "[]"); return Array.isArray(parsed) ? parsed : []; } catch { return []; } };
