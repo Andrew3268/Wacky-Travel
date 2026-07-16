@@ -31728,3 +31728,8 @@ body.post-page-body .topbar--travel .topbar__inner.container {
   padding: 18px 16px !important;
 }
 /* End 20260716 Post header spacing and divider final override */
+
+/* Admin-only survey controls must remain hidden until authentication is confirmed. */
+body.wt-location-survey-page--app [data-admin-only][hidden] {
+  display: none !important;
+}
