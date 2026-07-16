@@ -8242,7 +8242,7 @@ body.post-page-body--hotel-review-magazine .post-related {
 @media (max-width: 768px) {
   body.post-page-body--hotel-review-magazine .post-guide-page {
     max-width: none;
-    padding: 30px 20px 88px;
+    padding: 30px 0 88px;
   }
 
   body.post-page-body--hotel-review-magazine .post-body .post-content,
