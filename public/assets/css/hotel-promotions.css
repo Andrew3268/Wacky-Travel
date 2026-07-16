@@ -758,3 +758,23 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container {
     padding: 90px 18px;
   }
 }
+
+/* WACKYTRAVEL_HOME_PROMO_ALIGNMENT_V5 */
+body.travel-home-body .wtpromo-home-featured,
+body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container {
+  width: 100% !important;
+  max-width: var(--container, 1200px) !important;
+  margin-inline: auto !important;
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  body.travel-home-body .wtpromo-home-featured {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+  }
+}
+/* END WACKYTRAVEL_HOME_PROMO_ALIGNMENT_V5 */

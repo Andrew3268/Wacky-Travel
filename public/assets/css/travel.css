@@ -31443,3 +31443,26 @@ body.travel-city-body .wt-city-hero__actions .wt-city-button--ghost:hover {
     padding-bottom: 90px;
   }
 }
+
+/* WACKYTRAVEL_HOME_LAYOUT_REFINEMENT_V3 */
+body.travel-home-body main.travel-page.travel-home .section-heading.section-heading--split {
+  border-bottom: 3px solid #000 !important;
+  padding-bottom: 20px !important;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 640px) {
+  body.travel-home-body .home-mood-card,
+  body.travel-home-body .home-mood-card--featured {
+    height: 300px !important;
+    min-height: 300px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.travel-home-body .container.travel-section.travel-section--tinted {
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+  }
+}
+/* END WACKYTRAVEL_HOME_LAYOUT_REFINEMENT_V3 */
