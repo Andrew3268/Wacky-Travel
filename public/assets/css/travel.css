@@ -10233,8 +10233,7 @@ body.wt-guide-body .hotel-guide-toc-floating {
   main.travel-page.wt-city-hotel-guide-page .container,
   main.travel-page.wt-city-travel-guide-page .container {
     box-sizing: border-box;
-    padding-left: clamp(48px, 7vw, 76px) !important;
-    padding-right: clamp(48px, 7vw, 76px) !important;
+    padding: 18px 16px !important;
   }
 
   main.travel-page.wt-city-page,
@@ -24814,7 +24813,7 @@ body.travel-archive-body .topbar--travel {
   position: sticky !important;
   top: 0 !important;
   z-index: 50 !important;
-  border-bottom: 0 !important;
+  border-bottom: 1px solid #000 !important;
   background: #ffffff !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
@@ -31676,7 +31675,7 @@ body.post-page-body .topbar--travel .topbar__inner.container {
   max-width: var(--container) !important;
   min-height: 64px !important;
   margin: 0 auto !important;
-  padding: 0 16px !important;
+  padding: 18px 16px !important;
   border-bottom: 0 !important;
   background: #ffffff !important;
   gap: initial !important;
@@ -31717,7 +31716,17 @@ body.post-page-body .topbar--travel .brand__text {
     max-width: none !important;
     min-height: 58px !important;
     margin: 0 !important;
-    padding: 0 16px !important;
+    padding: 18px 16px !important;
   }
 }
 /* End 20260716 Post header exact unification with main index */
+
+/* 20260716 Post header spacing and divider final override */
+body.post-page-body .topbar.topbar--editorial.topbar--travel {
+  border-bottom: 1px solid #000 !important;
+}
+
+body.post-page-body .topbar--travel .topbar__inner.container {
+  padding: 18px 16px !important;
+}
+/* End 20260716 Post header spacing and divider final override */
