@@ -31555,3 +31555,108 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .wtpromo-section-heading .text-link.destinations-view-all-link {
   min-height: 10px !important;
 }
+
+/* WACKYTRAVEL_EDITOR_PICK_LINK_PARITY_V5
+   Editor's Pick heading/link follows the Popular Destinations heading exactly,
+   including typography, chevron icon, and mobile right-side alignment.
+========================================================= */
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading.section-heading--split {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading.section-heading--split > div {
+  min-width: 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading .eyebrow {
+  margin-bottom: 10px !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading h2 {
+  margin: 0 !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading .text-link.destinations-view-all-link {
+  flex: 0 0 auto !important;
+  align-self: flex-end !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  min-height: 10px !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: rgba(17, 24, 39, 0.46) !important;
+  font-size: clamp(0.86rem, 1.4vw, 0.98rem) !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading .text-link.destinations-view-all-link::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .destinations-view-all-label,
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .destinations-view-all-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: rgba(17, 24, 39, 0.46) !important;
+  background: transparent !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .destinations-view-all-icon {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  transform: none !important;
+}
+
+body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .destinations-view-all-icon svg {
+  display: block !important;
+  width: 17px !important;
+  height: 17px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+@media (max-width: 767px) {
+  body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading.section-heading--split {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading .text-link.destinations-view-all-link {
+    align-self: flex-end !important;
+    gap: 5px !important;
+    margin: 0 0 0 auto !important;
+    font-size: 0.86rem !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .destinations-view-all-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .destinations-view-all-icon svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+/* END WACKYTRAVEL_EDITOR_PICK_LINK_PARITY_V5 */
