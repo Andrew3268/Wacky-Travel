@@ -778,3 +778,53 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container {
   }
 }
 /* END WACKYTRAVEL_HOME_PROMO_ALIGNMENT_V5 */
+
+
+/* Home index promotion copy and mobile tool-card alignment */
+@media (max-width: 720px) {
+  body.travel-home-body .wtpromo-tool-card--home {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  body.travel-home-body .wtpromo-tool-card--home__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  body.travel-home-body .wtpromo-tool-card--home .wtpromo-tool-card__icon {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  body.travel-home-body .wtpromo-tool-card--home .wtpromo-primary-button {
+    align-self: end;
+    justify-self: end;
+    margin: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  body.travel-home-body .wtpromo-tool-card--home {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  body.travel-home-body .wtpromo-tool-card--home__content {
+    display: flex;
+  }
+
+  body.travel-home-body .wtpromo-tool-card--home .wtpromo-tool-card__icon {
+    margin: 0;
+  }
+
+  body.travel-home-body .wtpromo-tool-card--home .wtpromo-primary-button {
+    align-self: end;
+    justify-self: end;
+  }
+}
