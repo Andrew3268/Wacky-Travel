@@ -31963,6 +31963,7 @@ main.travel-page .breadcrumbs.container,
   body.post-page-body--hotel-review-magazine .breadcrumbs.container.breadcrumbs--post {
     width: 880px !important;
     max-width: 880px !important;
+    padding-left: 0 !important;
     margin-right: auto !important;
     margin-left: auto !important;
     margin-bottom: 0 !important;
