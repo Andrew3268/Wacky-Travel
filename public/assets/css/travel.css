@@ -28302,12 +28302,12 @@ body.travel-home-body .home-mood-card {
   min-width: 0;
   overflow: hidden;
   border-radius: 20px;
-  background: #fff;
+  background: #d7d2c5;
   box-shadow: 0 0 0 1px rgba(24, 24, 22, .06);
   isolation: isolate;
   transform: translateZ(0);
 }
-body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; background: #fff; }
+body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; }
 body.travel-home-body .home-mood-card__image {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   transition: none;
@@ -28315,14 +28315,6 @@ body.travel-home-body .home-mood-card__image {
 body.travel-home-body .home-mood-card::after {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background: linear-gradient(180deg, rgba(10,10,8,.02) 20%, rgba(10,10,8,.78) 100%);
-  opacity: 0;
-  pointer-events: none;
-}
-body.travel-home-body .home-mood-card.is-image-loaded::after {
-  opacity: 1;
-}
-body.travel-home-body .home-mood-card.is-image-error::after {
-  opacity: 0;
 }
 body.travel-home-body .home-mood-card__link {
   position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
@@ -28813,8 +28805,7 @@ body.travel-home-body .home-mood-card__image {
   height: 100% !important;
   max-width: none !important;
   object-fit: cover !important;
-  box-sizing: border-box !important;
-  background: #fff !important;
+  background: #d7d2c5;
 }
 body.travel-home-body .home-mood-card__image.is-image-error {
   opacity: 0 !important;
@@ -31932,20 +31923,3 @@ main.travel-page .breadcrumbs.container,
   }
 }
 /* END 20260720 PURPOSE PAGE TABLET GRID UNIFICATION V3 */
-
-/* WACKYTRAVEL_HOME_MOOD_IMAGE_PADDING_WHITE_FIX_V5 */
-body.travel-home-body .home-mood-card {
-  --home-mood-image-padding: 20px;
-  background: #fff !important;
-}
-
-body.travel-home-body .home-mood-card__image {
-  padding: var(--home-mood-image-padding) !important;
-  background: #fff !important;
-}
-
-/* Keep the dark readability gradient only over the actual image content,
-   not over the white padding around the image. */
-body.travel-home-body .home-mood-card::after {
-  inset: var(--home-mood-image-padding) !important;
-}
