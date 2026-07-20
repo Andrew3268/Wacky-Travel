@@ -31909,3 +31909,17 @@ main.travel-page .breadcrumbs.container,
   }
 }
 /* END 20260720 HOME + CITY TABLET SECTION GRID UNIFICATION V2 */
+
+/* 20260720 PURPOSE PAGE TABLET GRID UNIFICATION V3
+   768px~1180px: all purpose-page breadcrumbs, topbar and main containers share one horizontal inset.
+*/
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.travel-purpose-body .breadcrumbs.container,
+  body.travel-purpose-body .topbar--travel .topbar__inner.container,
+  body.travel-purpose-body main.travel-page.wt-purpose-page .container {
+    box-sizing: border-box !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+}
+/* END 20260720 PURPOSE PAGE TABLET GRID UNIFICATION V3 */
