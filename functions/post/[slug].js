@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260720-hotel-availability-cta-v1";
+const POST_RENDER_VERSION = "20260720-hotel-availability-cta-v2";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -332,9 +332,9 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v2" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -376,7 +376,6 @@ export async function onRequestGet({ params, env, request }) {
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${magazineAdminActionsHtml}
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
-              ${hotelAvailabilityCtaHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
@@ -396,6 +395,7 @@ export async function onRequestGet({ params, env, request }) {
             ${faqSectionHtml}
             ${relatedPostsHtml}
           </section>
+          ${hotelAvailabilityCtaHtml}
         </div>
 
         <aside class="card post-side" aria-label="추가 콘텐츠">
@@ -1230,7 +1230,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
 </head>
 <body>

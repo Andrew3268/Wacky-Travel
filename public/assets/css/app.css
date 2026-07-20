@@ -8670,6 +8670,8 @@ body.post-page-body--hotel-review-magazine .post-shell--guide-style {
 
 /* Recommended hotel review: room availability CTA */
 body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--inline {
+  display: flex;
+  justify-content: flex-end;
   margin-top: clamp(22px, 2.4vw, 30px);
 }
 
