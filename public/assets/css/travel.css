@@ -31923,3 +31923,48 @@ main.travel-page .breadcrumbs.container,
   }
 }
 /* END 20260720 PURPOSE PAGE TABLET GRID UNIFICATION V3 */
+
+/* =========================================================
+   2026-07-20 Global mobile breadcrumb visibility
+   - 모든 페이지의 모바일 화면에서는 브레드크럼을 렌더 트리에서 제외합니다.
+   - /post 브레드크럼은 태블릿 이상에서 화면 폭별 여백을 적용합니다.
+========================================================= */
+@media (max-width: 767px) {
+  .breadcrumbs,
+  .breadcrumbs.container,
+  .breadcrumb,
+  .breadcrumb.container,
+  [aria-label="breadcrumb"],
+  [aria-label="Breadcrumb"] {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  body.post-page-body .breadcrumbs.container.breadcrumbs--post,
+  body.post-page-body--hotel-review-magazine .breadcrumbs.container.breadcrumbs--post {
+    box-sizing: border-box !important;
+    padding-left: 5px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body.post-page-body .breadcrumbs.container.breadcrumbs--post,
+  body.post-page-body--hotel-review-magazine .breadcrumbs.container.breadcrumbs--post {
+    box-sizing: border-box !important;
+    padding-left: 40px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  body.post-page-body .breadcrumbs.container.breadcrumbs--post,
+  body.post-page-body--hotel-review-magazine .breadcrumbs.container.breadcrumbs--post {
+    width: 880px !important;
+    max-width: 880px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    margin-bottom: 0 !important;
+  }
+}

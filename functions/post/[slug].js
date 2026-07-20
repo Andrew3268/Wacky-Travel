@@ -324,7 +324,7 @@ export async function onRequestGet({ params, env, request }) {
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260720-post-align-1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260716PostHeaderSpacingV3" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720BreadcrumbResponsiveV1" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
