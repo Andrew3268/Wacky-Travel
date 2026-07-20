@@ -267,7 +267,7 @@ export async function onRequestGet({ params, env, request }) {
         </figure>
         `
         : "";
-      const heroInfoHtml = isHotelIntroPost ? renderProductStyleHeroInfo({
+      const heroInfoHtml = isHotelIntroPost && !isRecommendedHotelReviewPost ? renderProductStyleHeroInfo({
           row,
           slug,
           titleText,
@@ -277,7 +277,7 @@ export async function onRequestGet({ params, env, request }) {
           publishedIso,
           updatedIso,
           updatedDateText: formatKoreanDate(row.updated_at) || updatedDate,
-          showKicker: !isRecommendedHotelReviewPost
+          showKicker: true
         }) : "";
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
@@ -322,7 +322,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260720PostMagazineCleanupV1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260720PostMagazineMarkupCleanupV2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260716PostHeaderSpacingV3" />
   <style>
@@ -366,7 +366,7 @@ export async function onRequestGet({ params, env, request }) {
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${magazineAdminActionsHtml}
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
-              ${!isRecommendedHotelReviewPost && heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
+              ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
             <meta itemprop="headline" content="${escapeHtml(titleText)}" />
