@@ -8597,3 +8597,17 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p.post-secti
   border: 0 !important;
   border-top: 0 !important;
 }
+
+/* 2026-07-20 post magazine cleanup */
+body.post-page-body .post-magazine-kicker,
+body.post-page-body .post-magazine-head > .post-hero-kicker,
+body.post-page-body--recommended-hotel-review .post-magazine-hotel-panel {
+  display: none !important;
+}
+
+body.post-page-body .post-magazine-head > .post-hero-admin-actions.post-admin-mini-actions {
+  position: static !important;
+  order: initial !important;
+  justify-content: flex-start !important;
+  margin: 16px 0 0 !important;
+}

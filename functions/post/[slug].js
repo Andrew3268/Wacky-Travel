@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260708-hotel-review-image-border-v4";
+const POST_RENDER_VERSION = "20260720-post-magazine-cleanup-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -279,19 +279,7 @@ export async function onRequestGet({ params, env, request }) {
           updatedDateText: formatKoreanDate(row.updated_at) || updatedDate,
           showKicker: !isRecommendedHotelReviewPost
         }) : "";
-      const magazineAdminActionsHtml = isTop5SeriesPost ? renderPostAdminActions(slug, titleText) : "";
-      const heroKickerItems = [
-        row.category
-          ? `<a href="${escapeHtml(categoryLink)}">${escapeHtml(String(row.category).trim())}</a>`
-          : `<span>Travel Magazine</span>`,
-        updatedDate ? `<span>수정 ${escapeHtml(formatKoreanDate(row.updated_at) || updatedDate)}</span>` : ""
-      ].filter(Boolean);
-      const heroKickerHtml = heroKickerItems.length
-        ? `<div class="post-magazine-kicker">${heroKickerItems.join('<span aria-hidden="true">·</span>')}</div>`
-        : "";
-      const productHeroKickerHtml = isRecommendedHotelReviewPost
-        ? renderProductStyleHeroKicker({ row, hotel: hotelHeroData?.hotel || null })
-        : "";
+      const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin: SITE_ORIGIN }) : "";
       const bodyClassName = [
@@ -334,7 +322,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260716HotelReviewLayoutV4" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260720PostMagazineCleanupV1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260716PostHeaderSpacingV3" />
   <style>
@@ -373,12 +361,12 @@ export async function onRequestGet({ params, env, request }) {
       <div class="post-grid">
         <div class="post-main">
           <header class="card post-hero post-hero--product post-magazine-hero">
-            ${isRecommendedHotelReviewPost ? heroKickerHtml : ""}
             ${coverImageHtml}
             <div class="post-magazine-head">
-                            <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+              <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${magazineAdminActionsHtml}
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
+              ${!isRecommendedHotelReviewPost && heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
             <meta itemprop="headline" content="${escapeHtml(titleText)}" />
@@ -671,8 +659,6 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
       ` : ""}
 
       ${ctaHtml}
-
-      ${renderPostAdminActions(slug, titleText)}
 
       <meta itemprop="datePublished" content="${escapeHtml(publishedIso || "")}" />
       <meta itemprop="dateModified" content="${escapeHtml(updatedIso || "")}" />
