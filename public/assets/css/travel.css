@@ -31803,3 +31803,45 @@ main.travel-page .breadcrumbs.container,
     width: calc(100% - 32px) !important;
   }
 }
+
+/* 20260720 Tablet horizontal grid alignment V1
+   - 768px~1180px 구간에서 모든 공통 컨테이너, 상단바, breadcrumb를 같은 좌우 기준선으로 통일
+*/
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub,
+  .topbar--travel .topbar__inner.container,
+  body.travel-home-body .topbar--travel .topbar__inner.container,
+  body.travel-city-body .topbar--travel .topbar__inner.container,
+  body.travel-purpose-body .topbar--travel .topbar__inner.container,
+  body.wt-guide-body .topbar--travel .topbar__inner.container,
+  body.travel-archive-body .topbar--travel .topbar__inner.container,
+  body.post-page-body .topbar--travel .topbar__inner.container,
+  main.travel-page > .container,
+  main.travel-page .travel-section.container,
+  main.travel-page .wt-section > .container,
+  main.travel-page .wt-page-hero.container,
+  main.travel-page .wt-page-hero__inner.container,
+  main.travel-page .wt-city-hero.container,
+  main.travel-page .wt-city-hero__inner.container,
+  main.travel-page .wt-purpose-hero.container,
+  main.travel-page .wt-purpose-hero__inner.container,
+  main.travel-page > .breadcrumbs.container,
+  main.travel-page .breadcrumbs.container,
+  body.post-page-body .breadcrumbs.container,
+  .breadcrumbs.container {
+    box-sizing: border-box !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+
+  main.travel-page > .breadcrumbs.container,
+  main.travel-page .breadcrumbs.container,
+  body.post-page-body .breadcrumbs.container,
+  .breadcrumbs.container {
+    width: min(100%, var(--container)) !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+/* End 20260720 Tablet horizontal grid alignment V1 */
