@@ -31845,3 +31845,67 @@ main.travel-page .breadcrumbs.container,
   }
 }
 /* End 20260720 Tablet horizontal grid alignment V1 */
+
+/* 20260720 HOME + CITY TABLET SECTION GRID UNIFICATION V2
+   768px~1180px: 메인과 모든 도시 메인 페이지의 섹션/헤더/breadcrumb 기준선을 동일하게 유지
+*/
+@media (min-width: 768px) and (max-width: 1180px) {
+  /* Main index: every visible section uses one horizontal inset. */
+  body.travel-home-body main.travel-page.travel-home > section.container,
+  body.travel-home-body main.travel-page.travel-home > section.wtpromo-container,
+  body.travel-home-body main.travel-page.travel-home > .container.travel-section,
+  body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-container,
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero > .wthome-hero__inner,
+  body.travel-home-body main.travel-page.travel-home > .wtpromo-home-tool-section > .wtpromo-container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+
+  /* City main pages: direct container sections and nested section containers share the same grid. */
+  body.travel-city-body main.travel-page.wt-city-page > section.container,
+  body.travel-city-body main.travel-page.wt-city-page > .wt-city-hero.container,
+  body.travel-city-body main.travel-page.wt-city-page > .wt-city-snapshot.container,
+  body.travel-city-body main.travel-page.wt-city-page > .wt-city-section.container,
+  body.travel-city-body main.travel-page.wt-city-page > .wt-city-cta.container,
+  body.travel-city-body main.travel-page.wt-city-page > .travel-section.container,
+  body.travel-city-body main.travel-page.wt-city-page > .wt-city-faq.container,
+  body.travel-city-body main.travel-page.wt-city-page > section:not(.container) > .container,
+  body.travel-city-body main.travel-page.wt-city-page > .wt-section > .container,
+  body.travel-city-body main.travel-page.wt-city-page > .travel-content-section > .container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+
+  /* City breadcrumbs must align exactly with all city sections. */
+  body.travel-city-body .breadcrumbs.container,
+  body.travel-city-body main.travel-page > .breadcrumbs.container,
+  body.travel-city-body main.travel-page .breadcrumbs.container {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: var(--container) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+
+  /* Keep the travel topbar on the same tablet grid. */
+  .topbar--travel .topbar__inner.container,
+  body.travel-home-body .topbar--travel .topbar__inner.container,
+  body.travel-city-body .topbar--travel .topbar__inner.container {
+    box-sizing: border-box !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+}
+/* END 20260720 HOME + CITY TABLET SECTION GRID UNIFICATION V2 */
