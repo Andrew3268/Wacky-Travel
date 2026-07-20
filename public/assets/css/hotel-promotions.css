@@ -59,7 +59,7 @@ body.wtpromo-page {
       color: #545454;
       font-size: 12px;
       line-height: 1;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: .16em;
       text-transform: uppercase;
     }
@@ -69,7 +69,7 @@ body.wtpromo-page {
       font-size: clamp(43px, 6.5vw, 78px);
       line-height: 1.02;
       letter-spacing: -.065em;
-      font-weight: 720;
+      font-weight: 600;
     }
     .wtpromo-hero__desc {
       max-width: 670px;
@@ -95,7 +95,7 @@ body.wtpromo-page {
     }
     .wtpromo-summary-row:last-child { padding-bottom: 0; border-bottom: 0; }
     .wtpromo-summary-row span { color: var(--sub); font-size: 13px; }
-    .wtpromo-summary-row strong { font-size: 17px; font-weight: 680; }
+    .wtpromo-summary-row strong { font-size: 17px; font-weight: 600; }
 
     .wtpromo-platform-tabs {
       display: flex;
@@ -117,7 +117,7 @@ body.wtpromo-page {
       color: #444;
       background: #fff;
       font-size: 12px;
-      font-weight: 650;
+      font-weight: 600;
       cursor: pointer;
       transition: border-color .2s ease, color .2s ease, background .2s ease;
     }
@@ -179,7 +179,7 @@ body.wtpromo-page {
     .wtpromo-platform-wordmark {
       color: #111;
       font-size: 13px;
-      font-weight: 750;
+      font-weight: 600;
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -189,7 +189,7 @@ body.wtpromo-page {
       gap: 7px;
       color: #555;
       font-size: 11px;
-      font-weight: 650;
+      font-weight: 600;
     }
     .wtpromo-status-label::before {
       width: 6px;
@@ -269,7 +269,7 @@ body.wtpromo-page {
       color: #777;
       font-size: 11px;
       line-height: 1.4;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: .025em;
       text-overflow: ellipsis;
       text-transform: uppercase;
@@ -283,7 +283,7 @@ body.wtpromo-page {
       font-size: clamp(24px, 2.8vw, 34px);
       line-height: 1.25;
       letter-spacing: -.043em;
-      font-weight: 710;
+      font-weight: 600;
       word-break: keep-all;
     }
     .wtpromo-card__description {
@@ -506,7 +506,7 @@ body.wtpromo-page {
       background: transparent;
       text-align: left;
       font-size: 17px;
-      font-weight: 640;
+      font-weight: 600;
       cursor: pointer;
     }
     .wtpromo-faq-icon {
@@ -541,7 +541,7 @@ body.wtpromo-page {
       gap: 28px;
       padding: 30px 0;
     }
-    .wtpromo-footer-brand { font-size: 15px; font-weight: 680; }
+    .wtpromo-footer-brand { font-size: 15px; font-weight: 600; }
     .wtpromo-footer-copy { margin: 8px 0 0; color: #777; font-size: 12px; line-height: 1.65; }
     .wtpromo-footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 18px; color: #555; font-size: 12px; }
     .wtpromo-footer-links a:hover { color: #111; text-decoration: underline; }
