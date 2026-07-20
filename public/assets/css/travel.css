@@ -31932,3 +31932,20 @@ main.travel-page .breadcrumbs.container,
   }
 }
 /* END 20260720 PURPOSE PAGE TABLET GRID UNIFICATION V3 */
+
+/* WACKYTRAVEL_HOME_MOOD_IMAGE_PADDING_WHITE_FIX_V5 */
+body.travel-home-body .home-mood-card {
+  --home-mood-image-padding: 20px;
+  background: #fff !important;
+}
+
+body.travel-home-body .home-mood-card__image {
+  padding: var(--home-mood-image-padding) !important;
+  background: #fff !important;
+}
+
+/* Keep the dark readability gradient only over the actual image content,
+   not over the white padding around the image. */
+body.travel-home-body .home-mood-card::after {
+  inset: var(--home-mood-image-padding) !important;
+}
