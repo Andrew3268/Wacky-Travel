@@ -28307,7 +28307,7 @@ body.travel-home-body .home-mood-card {
   isolation: isolate;
   transform: translateZ(0);
 }
-body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; }
+body.travel-home-body .home-mood-card--featured { grid-row: 1 / span 2; border-radius: 28px; background: #fff; }
 body.travel-home-body .home-mood-card__image {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   transition: none;
