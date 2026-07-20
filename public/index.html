@@ -102,7 +102,7 @@
 </div>
 <div aria-label="인기 도시 5개" class="home-mood-grid" id="homeDestinations">
 <article class="home-mood-card home-mood-card--featured">
-<img alt="후쿠오카 여행 대표 이미지" class="home-mood-card__image" decoding="async" fetchpriority="high" height="1000" loading="eager" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no1.avif" width="1400"/>
+<img alt="후쿠오카 여행 대표 이미지" class="home-mood-card__image" decoding="async" fetchpriority="high" height="1000" loading="eager" onerror="this.parentElement.classList.add('is-image-error');this.classList.add('is-image-error');" onload="this.parentElement.classList.add('is-image-loaded');" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no1.avif" width="1400"/>
 <a aria-label="후쿠오카 여행지 보기" class="home-mood-card__link" href="/destinations/fukuoka/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>JAPAN</span></div>
@@ -111,7 +111,7 @@
 </a>
 </article>
 <article class="home-mood-card">
-<img alt="도쿄 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no2.avif" width="1000"/>
+<img alt="도쿄 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" onerror="this.parentElement.classList.add('is-image-error');this.classList.add('is-image-error');" onload="this.parentElement.classList.add('is-image-loaded');" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no2.avif" width="1000"/>
 <a aria-label="도쿄 여행지 보기" class="home-mood-card__link" href="/destinations/tokyo/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>JAPAN</span></div>
@@ -120,7 +120,7 @@
 </a>
 </article>
 <article class="home-mood-card">
-<img alt="오사카 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no3.avif" width="1000"/>
+<img alt="오사카 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" onerror="this.parentElement.classList.add('is-image-error');this.classList.add('is-image-error');" onload="this.parentElement.classList.add('is-image-loaded');" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no3.avif" width="1000"/>
 <a aria-label="오사카 여행지 보기" class="home-mood-card__link" href="/destinations/osaka/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>JAPAN</span></div>
@@ -129,7 +129,7 @@
 </a>
 </article>
 <article class="home-mood-card">
-<img alt="나트랑 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no4.avif" width="1000"/>
+<img alt="나트랑 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" onerror="this.parentElement.classList.add('is-image-error');this.classList.add('is-image-error');" onload="this.parentElement.classList.add('is-image-loaded');" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no4.avif" width="1000"/>
 <a aria-label="나트랑 여행지 보기" class="home-mood-card__link" href="/destinations/nha-trang/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>VIETNAM</span></div>
@@ -138,7 +138,7 @@
 </a>
 </article>
 <article class="home-mood-card">
-<img alt="다낭 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no5.avif" width="1000"/>
+<img alt="다낭 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" onerror="this.parentElement.classList.add('is-image-error');this.classList.add('is-image-error');" onload="this.parentElement.classList.add('is-image-loaded');" src="https://pub-23165e7419ce4394a0051d5c381039e3.r2.dev/no5.avif" width="1000"/>
 <a aria-label="다낭 여행지 보기" class="home-mood-card__link" href="/destinations/da-nang/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>VIETNAM</span></div>
@@ -554,7 +554,7 @@
       const loading = index === 0 ? 'eager' : 'lazy';
       const priority = index === 0 ? ' fetchpriority="high"' : '';
       return `<article class="home-mood-card${featuredClass}">
-        <img class="home-mood-card__image" src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="${loading}" decoding="async"${priority} onerror="this.onerror=null;this.classList.add('is-image-error');" />
+        <img class="home-mood-card__image" src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="${loading}" decoding="async"${priority} onload="this.parentElement.classList.add('is-image-loaded');" onerror="this.onerror=null;this.parentElement.classList.add('is-image-error');this.classList.add('is-image-error');" />
         <a class="home-mood-card__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
           <span class="home-mood-card__arrow" aria-hidden="true">→</span>
           <div class="home-mood-card__meta"><span>${escapeHtml(country.toUpperCase())}</span></div>

@@ -28302,7 +28302,7 @@ body.travel-home-body .home-mood-card {
   min-width: 0;
   overflow: hidden;
   border-radius: 20px;
-  background: #d7d2c5;
+  background: #fff;
   box-shadow: 0 0 0 1px rgba(24, 24, 22, .06);
   isolation: isolate;
   transform: translateZ(0);
@@ -28315,6 +28315,14 @@ body.travel-home-body .home-mood-card__image {
 body.travel-home-body .home-mood-card::after {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background: linear-gradient(180deg, rgba(10,10,8,.02) 20%, rgba(10,10,8,.78) 100%);
+  opacity: 0;
+  pointer-events: none;
+}
+body.travel-home-body .home-mood-card.is-image-loaded::after {
+  opacity: 1;
+}
+body.travel-home-body .home-mood-card.is-image-error::after {
+  opacity: 0;
 }
 body.travel-home-body .home-mood-card__link {
   position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column;
@@ -28804,8 +28812,8 @@ body.travel-home-body .home-mood-card__image {
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
-  box-sizing: border-box !important;
   object-fit: cover !important;
+  box-sizing: border-box !important;
   background: #fff !important;
 }
 body.travel-home-body .home-mood-card__image.is-image-error {
