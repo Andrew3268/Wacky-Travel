@@ -376,11 +376,9 @@ export async function onRequestGet({ params, env, request }) {
             ${isRecommendedHotelReviewPost ? heroKickerHtml : ""}
             ${coverImageHtml}
             <div class="post-magazine-head">
-              ${isRecommendedHotelReviewPost ? productHeroKickerHtml : heroKickerHtml}
-              <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-              ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
+                            <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${magazineAdminActionsHtml}
-              ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
+              ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
             </div>
 
             <meta itemprop="headline" content="${escapeHtml(titleText)}" />
