@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260720-post-magazine-cleanup-v1";
+const POST_RENDER_VERSION = "20260720-hotel-availability-cta-v1";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -282,6 +282,16 @@ export async function onRequestGet({ params, env, request }) {
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin: SITE_ORIGIN }) : "";
+      const hotelPriceLink = isRecommendedHotelReviewPost
+        ? String(hotelHeroData?.links?.find((item) => String(item?.provider || "") === "hero_price")?.affiliate_url || "").trim()
+        : "";
+      const safeHotelPriceLink = /^https?:\/\//i.test(hotelPriceLink) ? hotelPriceLink : "";
+      const hotelAvailabilityCtaHtml = safeHotelPriceLink
+        ? `<div class="post-hotel-availability-cta post-hotel-availability-cta--inline"><a class="post-hotel-availability-btn" href="${escapeHtml(safeHotelPriceLink)}" target="_blank" rel="sponsored noopener noreferrer">잔여 객실 확인</a></div>`
+        : "";
+      const mobileHotelAvailabilityCtaHtml = safeHotelPriceLink
+        ? `<div class="post-hotel-availability-cta post-hotel-availability-cta--mobile" data-mobile-hotel-cta aria-hidden="true"><a class="post-hotel-availability-btn" href="${escapeHtml(safeHotelPriceLink)}" target="_blank" rel="sponsored noopener noreferrer">잔여 객실 확인</a></div>`
+        : "";
       const bodyClassName = [
         "post-page-body",
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
@@ -322,9 +332,9 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-post-tune-1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-post-tune-1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v1" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -366,6 +376,7 @@ export async function onRequestGet({ params, env, request }) {
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${magazineAdminActionsHtml}
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
+              ${hotelAvailabilityCtaHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
@@ -397,9 +408,22 @@ export async function onRequestGet({ params, env, request }) {
   </main>
 
   ${footer(siteName)}
+  ${mobileHotelAvailabilityCtaHtml}
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const mobileHotelCta = document.querySelector('[data-mobile-hotel-cta]');
+    if (mobileHotelCta) {
+      const mobileQuery = window.matchMedia('(max-width: 767px)');
+      const syncMobileHotelCta = () => {
+        const shouldShow = mobileQuery.matches && window.scrollY >= Math.max(320, window.innerHeight * 0.45);
+        mobileHotelCta.classList.toggle('is-visible', shouldShow);
+        mobileHotelCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      };
+      syncMobileHotelCta();
+      window.addEventListener('scroll', syncMobileHotelCta, { passive: true });
+      window.addEventListener('resize', syncMobileHotelCta);
+    }
     const postSide = document.querySelector('.post-shell--guide-style .post-side');
     const topbar = document.querySelector('.topbar');
     let sidebarTicking = false;
@@ -1206,7 +1230,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-post-tune-1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
 </head>
 <body>

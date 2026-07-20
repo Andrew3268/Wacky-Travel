@@ -8666,3 +8666,75 @@ body.post-page-body--hotel-review-magazine .post-shell--guide-style {
     padding-bottom: 72px;
   }
 }
+
+
+/* Recommended hotel review: room availability CTA */
+body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--inline {
+  margin-top: clamp(22px, 2.4vw, 30px);
+}
+
+body.post-page-body--hotel-review-magazine .post-hotel-availability-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 13px 24px;
+  border: 1px solid #111;
+  border-radius: 0;
+  background: #111;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+body.post-page-body--hotel-review-magazine .post-hotel-availability-btn:hover {
+  background: #fff;
+  color: #111;
+}
+
+.post-hotel-availability-cta--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body.post-page-body--hotel-review-magazine {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--inline {
+    display: none;
+  }
+
+  body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--mobile {
+    position: fixed;
+    z-index: 1000;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(0, 0, 0, .12);
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, .08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100%);
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+  }
+
+  body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--mobile.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--mobile .post-hotel-availability-btn {
+    width: 100%;
+    min-height: 52px;
+  }
+}
