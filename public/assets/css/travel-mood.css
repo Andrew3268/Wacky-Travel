@@ -549,3 +549,131 @@ body.travel-mood-body {
   .wtm-survey__inner { padding: 42px 24px; }
   .wtm-survey__action .wtm-button { width: 100%; }
 }
+
+/* 20260721 Ocean Rest common city spacing/header alignment V4 */
+body.travel-mood-body .topbar--travel {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+body.travel-mood-body .topbar--travel .topbar__inner.container {
+  min-height: 64px !important;
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid #000 !important;
+  background: #fff !important;
+}
+
+body.travel-mood-body .brand,
+body.travel-mood-body .brand__text,
+body.travel-mood-body .brand__mark {
+  color: #000 !important;
+}
+
+body.travel-mood-body .brand__mark {
+  width: 40px !important;
+  height: 40px !important;
+  border: 1px solid #000 !important;
+  border-radius: 16px !important;
+  background: #000 !important;
+  color: #fff !important;
+  font-size: .78rem !important;
+}
+
+body.travel-mood-body .brand__text {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -.035em !important;
+}
+
+body.travel-mood-body .topbar-search-button,
+body.travel-mood-body .topbar-search-button:hover,
+body.travel-mood-body .topbar-search-button:focus-visible {
+  width: 42px !important;
+  height: 42px !important;
+  flex-basis: 42px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #000 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+body.travel-mood-body .topbar-search-button svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 1.8 !important;
+}
+
+body.travel-mood-body .wtm-container {
+  width: 100%;
+  max-width: var(--container, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+body.travel-mood-body .breadcrumbs.container {
+  margin-top: 18px !important;
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 1181px) {
+  body.travel-mood-body .breadcrumbs.container {
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  body.travel-mood-body .topbar--travel .topbar__inner.container,
+  body.travel-mood-body .wtm-container,
+  body.travel-mood-body .breadcrumbs.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: clamp(32px, 5vw, 56px) !important;
+    padding-right: clamp(32px, 5vw, 56px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.travel-mood-body .topbar--travel .topbar__inner.container {
+    min-height: 58px !important;
+    padding: 9px 16px !important;
+  }
+
+  body.travel-mood-body .breadcrumbs.container {
+    margin-top: 14px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.travel-mood-body .wtm-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  body.travel-mood-body .brand__mark {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  body.travel-mood-body .brand__text {
+    font-size: 15px !important;
+  }
+
+  body.travel-mood-body .topbar-search-button,
+  body.travel-mood-body .topbar-search-button:hover,
+  body.travel-mood-body .topbar-search-button:focus-visible {
+    width: 40px !important;
+    height: 40px !important;
+    flex-basis: 40px !important;
+  }
+}
