@@ -52,6 +52,8 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_slug TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_name TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_description TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -296,6 +298,8 @@ export async function onRequestGet({ env, request }) {
       recommendation_category_slug,
       recommendation_category_name,
       recommendation_category_description,
+      mood_tags_json,
+      situation_tags_json,
       hotel_slug,
       (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
       affiliate_enabled,
@@ -431,6 +435,8 @@ export async function onRequestPost({ env, request }) {
   const recommendationCategorySlug = String(body.recommendation_category_slug || "").trim();
   const recommendationCategoryName = String(body.recommendation_category_name || "").trim();
   const recommendationCategoryDescription = String(body.recommendation_category_description || "").trim();
+  const moodTags = Array.isArray(body.mood_tags) ? [...new Set(body.mood_tags.map(slugifyValue).filter(Boolean))] : [];
+  const situationTags = Array.isArray(body.situation_tags) ? [...new Set(body.situation_tags.map(slugifyValue).filter(Boolean))] : [];
   let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const searchIntent = String(body.search_intent || "").trim();
@@ -469,13 +475,15 @@ export async function onRequestPost({ env, request }) {
       recommendation_category_slug,
       recommendation_category_name,
       recommendation_category_description,
+      mood_tags_json,
+      situation_tags_json,
       hotel_slug,
       affiliate_enabled,
       search_intent,
       status,
       published_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -497,6 +505,8 @@ export async function onRequestPost({ env, request }) {
       recommendation_category_slug = excluded.recommendation_category_slug,
       recommendation_category_name = excluded.recommendation_category_name,
       recommendation_category_description = excluded.recommendation_category_description,
+      mood_tags_json = excluded.mood_tags_json,
+      situation_tags_json = excluded.situation_tags_json,
       hotel_slug = excluded.hotel_slug,
       affiliate_enabled = excluded.affiliate_enabled,
       search_intent = excluded.search_intent,
@@ -525,6 +535,8 @@ export async function onRequestPost({ env, request }) {
     recommendationCategorySlug,
     recommendationCategoryName,
     recommendationCategoryDescription,
+    JSON.stringify(moodTags),
+    JSON.stringify(situationTags),
     hotelSlug,
     affiliateEnabled,
     searchIntent,

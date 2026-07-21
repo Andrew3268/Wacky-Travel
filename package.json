@@ -13,7 +13,8 @@
     "d1:migrate:regions": "wrangler d1 execute wacky-travel-db --file=./db/migrations/006_regions.sql",
     "d1:migrate:guest-rating": "wrangler d1 execute wacky-travel-db --file=./db/migrations/007_hotel_guest_rating.sql",
     "d1:migrate:recommendation-categories": "wrangler d1 execute wacky-travel-db --file=./db/migrations/008_recommendation_categories.sql",
-    "d1:migrate:recommendation-categories-global": "wrangler d1 execute wacky-travel-db --file=./db/migrations/009_global_recommendation_categories.sql"
+    "d1:migrate:recommendation-categories-global": "wrangler d1 execute wacky-travel-db --file=./db/migrations/009_global_recommendation_categories.sql",
+    "d1:migrate:hotel-curation": "wrangler d1 execute wacky-travel-db --file=./db/migrations/010_hotel_curation_items.sql"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"

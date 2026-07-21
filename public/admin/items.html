@@ -217,6 +217,31 @@
 <div class="category-manager__list" id="travelRecommendationCategoryList"></div>
 </article>
 
+<article class="card admin-items-panel" id="curationItems">
+  <div class="section-heading section-heading--split">
+    <div><div class="small">호텔 리뷰 연결 항목</div><h2 class="h2">Travel by Mood · Stay by Situation</h2><p class="small">추천 호텔 리뷰 작성 화면의 복수 선택 드롭다운에 표시되는 항목을 관리합니다.</p></div>
+  </div>
+  <div class="grid grid--2 admin-curation-manager">
+    <section>
+      <h3 class="h3">Travel by Mood</h3>
+      <div class="category-manager__create-row admin-items-create-row--3">
+        <input class="input" id="newMoodName" placeholder="예: 바다를 보며 쉬는 여행">
+        <input class="input" id="newMoodSlug" placeholder="예: ocean-rest">
+        <button class="btn btn--primary" id="addMoodItem" type="button">추가</button>
+      </div>
+      <div class="category-manager__list" id="moodItemList"></div>
+    </section>
+    <section>
+      <h3 class="h3">Stay by Situation</h3>
+      <div class="category-manager__create-row admin-items-create-row--3">
+        <input class="input" id="newSituationName" placeholder="예: 늦은 밤 도착해도 이동이 편한 호텔">
+        <input class="input" id="newSituationSlug" placeholder="예: late-arrival">
+        <button class="btn btn--primary" id="addSituationItem" type="button">추가</button>
+      </div>
+      <div class="category-manager__list" id="situationItemList"></div>
+    </section>
+  </div>
+</article>
 </section>
 </main>
 <footer class="wtpromo-footer">
@@ -236,5 +261,6 @@
 <script defer="" src="/assets/js/admin-ui.js"></script>
 <script defer="" src="/assets/js/nav.js"></script>
 <script defer="" src="/assets/js/admin-items.js?v=20260620AdminItemsPostsV1"></script>
+<script defer src="/assets/js/admin-curation-items.js?v=20260721CurationV1"></script>
 </body>
 </html>

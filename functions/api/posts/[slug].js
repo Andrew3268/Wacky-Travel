@@ -189,6 +189,8 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_slug TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_name TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_description TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -392,6 +394,8 @@ export async function onRequestGet({ env, params, request }) {
       recommendation_category_slug,
       recommendation_category_name,
       recommendation_category_description,
+      mood_tags_json,
+      situation_tags_json,
       hotel_slug,
       affiliate_enabled,
       search_intent,
@@ -407,6 +411,8 @@ export async function onRequestGet({ env, params, request }) {
   }
 
   row.hotel_hero = await getHotelHeroData(env.TRAVEL_DB, row.hotel_slug);
+  row.mood_tags = parseJsonArray(row.mood_tags_json);
+  row.situation_tags = parseJsonArray(row.situation_tags_json);
   const markdownKeywords = extractSeoKeywordsFromMarkdown(row.content_md || "");
   const hotelNames = [row.hotel_hero?.name, row.hotel_hero?.name_en].filter(Boolean);
   const dbLongtail = normalizeKeywordArray(parseJsonArray(row.longtail_keywords_json));
@@ -465,6 +471,8 @@ export async function onRequestPut({ env, params, request }) {
   const recommendationCategorySlug = String(body.recommendation_category_slug || "").trim();
   const recommendationCategoryName = String(body.recommendation_category_name || "").trim();
   const recommendationCategoryDescription = String(body.recommendation_category_description || "").trim();
+  const moodTags = Array.isArray(body.mood_tags) ? [...new Set(body.mood_tags.map(slugifyValue).filter(Boolean))] : [];
+  const situationTags = Array.isArray(body.situation_tags) ? [...new Set(body.situation_tags.map(slugifyValue).filter(Boolean))] : [];
   let hotelSlug = body.hotel_slug === undefined ? null : String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const searchIntent = String(body.search_intent || "").trim();
@@ -561,6 +569,8 @@ export async function onRequestPut({ env, params, request }) {
       recommendation_category_slug = ?,
       recommendation_category_name = ?,
       recommendation_category_description = ?,
+      mood_tags_json = ?,
+      situation_tags_json = ?,
       hotel_slug = ?,
       affiliate_enabled = ?,
       search_intent = ?,
@@ -589,6 +599,8 @@ export async function onRequestPut({ env, params, request }) {
     recommendationCategorySlug,
     recommendationCategoryName,
     recommendationCategoryDescription,
+    JSON.stringify(moodTags),
+    JSON.stringify(situationTags),
     hotelSlug,
     affiliateEnabled,
     searchIntent,

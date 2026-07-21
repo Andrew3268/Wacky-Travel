@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS posts (
   recommendation_category_slug TEXT DEFAULT '',
   recommendation_category_name TEXT DEFAULT '',
   recommendation_category_description TEXT DEFAULT '',
+  mood_tags_json TEXT DEFAULT '[]',
+  situation_tags_json TEXT DEFAULT '[]',
   hotel_slug TEXT DEFAULT '',
   affiliate_enabled INTEGER DEFAULT 0,
   search_intent TEXT DEFAULT '',
@@ -260,3 +262,6 @@ VALUES
   ('thailand', '태국', 3, 1, datetime('now'), datetime('now'));
 CREATE INDEX IF NOT EXISTS idx_destinations_country ON destinations(country, status, name ASC);
 CREATE INDEX IF NOT EXISTS idx_destinations_sort_order ON destinations(sort_order ASC, name ASC);
+
+CREATE TABLE IF NOT EXISTS curation_items (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL, slug TEXT NOT NULL, name TEXT NOT NULL, sort_order INTEGER DEFAULT 0, is_active INTEGER DEFAULT 1, created_at TEXT DEFAULT '', updated_at TEXT DEFAULT '', UNIQUE(type, slug));
+CREATE INDEX IF NOT EXISTS idx_curation_items_type_order ON curation_items(type,is_active,sort_order);
