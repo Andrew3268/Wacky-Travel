@@ -26,50 +26,13 @@ body.travel-mood-body {
 }
 
 .wtm-hero {
-  padding: 30px 0 96px;
-}
-
-.wtm-hero__frame {
-  position: relative;
-  min-height: clamp(560px, 72vw, 760px);
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  background: #0a0a0a;
-  border: 1px solid #0a0a0a;
-}
-
-.wtm-hero__frame::before,
-.wtm-hero__frame::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.wtm-hero__frame::before {
-  inset: 0;
-  background:
-    radial-gradient(circle at 72% 22%, rgba(255,255,255,.92) 0 4%, rgba(255,255,255,.16) 4.4%, transparent 18%),
-    linear-gradient(180deg, transparent 0 42%, rgba(255,255,255,.06) 42% 43%, transparent 43% 100%),
-    linear-gradient(180deg, #161616 0 45%, #2a2a2a 45% 46%, #0c0c0c 46% 100%);
-}
-
-.wtm-hero__frame::after {
-  left: -8%;
-  right: -8%;
-  bottom: -12%;
-  height: 54%;
-  opacity: .75;
-  background: repeating-radial-gradient(ellipse at 50% 0, transparent 0 15px, rgba(255,255,255,.15) 16px 17px, transparent 18px 34px);
-  transform: rotate(-2deg);
+  padding: clamp(22px, 4vw, 44px) 0 clamp(58px, 8vw, 96px);
+  background: #fff;
 }
 
 .wtm-hero__content {
-  position: relative;
-  z-index: 2;
-  max-width: 850px;
-  padding: clamp(30px, 6vw, 76px);
-  color: #fff;
+  max-width: 760px;
+  color: var(--wtm-ink);
 }
 
 .wtm-kicker {
@@ -91,20 +54,23 @@ body.travel-mood-body {
 }
 
 .wtm-hero h1 {
+  max-width: 825px;
   margin: 0;
-  max-width: 820px;
-  font-size: clamp(48px, 8vw, 102px);
-  line-height: .98;
-  letter-spacing: -.07em;
+  color: var(--wtm-ink);
+  font-size: clamp(2.35rem, 5.2vw, 3.55rem);
+  line-height: 1.15;
+  letter-spacing: -.055em;
   font-weight: 700;
+  word-break: keep-all;
 }
 
 .wtm-hero__lead {
-  max-width: 670px;
-  margin: 28px 0 0;
-  color: rgba(255,255,255,.76);
-  font-size: clamp(17px, 1.8vw, 21px);
-  line-height: 1.75;
+  max-width: 700px;
+  margin: 22px 0 0;
+  color: var(--wtm-muted);
+  font-size: clamp(1rem, 1.45vw, 1.1rem);
+  line-height: 1.8;
+  word-break: keep-all;
 }
 
 .wtm-actions {
@@ -265,7 +231,7 @@ body.travel-mood-body {
 
 .wtm-tabs-wrap {
   position: sticky;
-  top: 68px;
+  top: 0;
   z-index: 20;
   background: rgba(255,255,255,.97);
   border-top: 1px solid var(--wtm-line);
@@ -539,10 +505,11 @@ body.travel-mood-body {
 
 @media (max-width: 700px) {
   .wtm-container { width: calc(100% - 36px); }
-  .wtm-hero { padding: 18px 0 72px; }
-  .wtm-hero__frame { min-height: 620px; }
-  .wtm-hero__content { padding: 30px 22px; }
-  .wtm-hero h1 { font-size: clamp(45px, 14vw, 62px); }
+  .wtm-hero { padding: 22px 0 48px; }
+  .wtm-hero h1 { font-size: clamp(2.05rem, 9.5vw, 2.8rem); }
+  .wtm-hero__lead { margin-top: 18px; font-size: 15px; line-height: 1.72; }
+  .wtm-actions { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 24px; }
+  .wtm-actions .wtm-button { width: 100%; }
   .wtm-section { padding: 78px 0; }
   .wtm-heading { gap: 18px; margin-bottom: 34px; }
   .wtm-editor-grid {
@@ -558,7 +525,7 @@ body.travel-mood-body {
     min-height: 470px;
     scroll-snap-align: start;
   }
-  .wtm-tabs-wrap { top: 62px; }
+  .wtm-tabs-wrap { top: 0; }
   .wtm-tabs { gap: 24px; }
   .wtm-hotel-grid { grid-template-columns: 1fr; gap: 46px; }
   .wtm-guide { grid-template-columns: 1fr; }
