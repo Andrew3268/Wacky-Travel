@@ -31969,3 +31969,29 @@ main.travel-page .breadcrumbs.container,
     margin-bottom: 0 !important;
   }
 }
+
+
+/* Survey entry copy on the destinations page */
+.travel-page--destinations-index .destination-survey-intro {
+  margin: 12px 0 0;
+  max-width: 560px;
+  color: rgba(0, 0, 0, 0.66);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.travel-page--destinations-index .destination-survey-intro[hidden] {
+  display: none;
+}
+
+body.is-survey-destination-selection .travel-section--destinations-archive .section-heading .eyebrow {
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 767px) {
+  .travel-page--destinations-index .destination-survey-intro {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}

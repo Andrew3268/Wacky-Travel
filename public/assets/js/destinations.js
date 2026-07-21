@@ -15,10 +15,12 @@
 
     document.body.classList.add("is-survey-destination-selection");
 
-    const eyebrow = document.querySelector(".travel-section--destinations-archive .section-heading .eyebrow");
-    const heading = document.querySelector(".travel-section--destinations-archive .section-heading h2");
-    if (eyebrow) eyebrow.textContent = "Hotel Location Survey";
-    if (heading) heading.textContent = "여행할 도시를 선택해주세요";
+    const eyebrow = document.getElementById("destinationPageEyebrow");
+    const heading = document.getElementById("destinationPageTitle");
+    const intro = document.getElementById("destinationSurveyIntro");
+    if (eyebrow) eyebrow.textContent = "📍 HOTEL LOCATION SURVEY";
+    if (heading) heading.textContent = "어떤 도시로 여행하시나요?";
+    if (intro) intro.hidden = false;
 
     document.querySelectorAll("a.destination-city-card[href]").forEach((card) => {
       const cityUrl = new URL(card.getAttribute("href"), window.location.origin);
