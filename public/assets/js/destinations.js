@@ -7,6 +7,29 @@
   const tabPanels = Array.from(grid.querySelectorAll("[data-destination-panel]"));
   if (!tabButtons.length || !tabPanels.length) return;
 
+  const searchParams = new URLSearchParams(window.location.search);
+  const isSurveyEntry = searchParams.get("survey") === "1";
+
+  function applySurveyEntryMode() {
+    if (!isSurveyEntry) return;
+
+    document.body.classList.add("is-survey-destination-selection");
+
+    const eyebrow = document.querySelector(".travel-section--destinations-archive .section-heading .eyebrow");
+    const heading = document.querySelector(".travel-section--destinations-archive .section-heading h2");
+    if (eyebrow) eyebrow.textContent = "Hotel Location Survey";
+    if (heading) heading.textContent = "여행할 도시를 선택해주세요";
+
+    document.querySelectorAll("a.destination-city-card[href]").forEach((card) => {
+      const cityUrl = new URL(card.getAttribute("href"), window.location.origin);
+      const cityPath = cityUrl.pathname.replace(/\/$/, "");
+      card.setAttribute("href", `${cityPath}/hotel-location-survey/`);
+
+      const cityName = normalizeText(card.querySelector("strong")?.textContent);
+      if (cityName) card.setAttribute("aria-label", `${cityName} 숙소 위치 찾기 시작`);
+    });
+  }
+
   function normalizeText(value) {
     return String(value || "").replace(/\s+/g, " ").trim();
   }
@@ -95,6 +118,7 @@
   window.addEventListener("resize", syncDestinationStickyOffset, { passive: true });
   window.addEventListener("orientationchange", syncDestinationStickyOffset, { passive: true });
 
+  applySurveyEntryMode();
   syncDestinationStickyOffset();
   activateTab(getInitialTab());
 })();
