@@ -314,6 +314,7 @@ export async function onRequestGet({ env, request }) {
       situation_tags_json,
       hotel_slug,
       (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
+      (SELECT h.name_en FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name_en,
       affiliate_enabled,
       search_intent,
       status,

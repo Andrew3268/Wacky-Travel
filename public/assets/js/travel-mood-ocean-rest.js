@@ -53,7 +53,9 @@
       moodTags,
       tags,
       destination_slug: String(item.destination_slug || '').trim(),
-      title: String(item.title || item.hotel_name || '추천 호텔 리뷰').trim(),
+      title: String(item.title || '추천 호텔 리뷰').trim(),
+      hotel_name: String(item.hotel_name || item.title || '추천 호텔 리뷰').trim(),
+      hotel_name_en: String(item.hotel_name_en || '').trim(),
       summary: String(item.summary || item.meta_description || '바다를 가까이 두고 머물기 좋은 호텔입니다.').trim(),
       cover_image: String(item.cover_image || '').trim(),
       region_name: String(item.region_name || '').trim()
@@ -70,7 +72,8 @@
       ${image}
       <div class="wtm-feature__body">
         <span class="wtm-feature__number">${String(index + 1).padStart(2, '0')}</span>
-        <h3>${escapeHtml(item.title)}</h3>
+        <h3>${escapeHtml(item.hotel_name)}</h3>
+        ${item.hotel_name_en ? `<p class="wtm-hotel-name-en">${escapeHtml(item.hotel_name_en)}</p>` : ''}
         <p>${escapeHtml(item.summary)}</p>
         <div class="wtm-meta">${tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
       </div>
@@ -86,7 +89,8 @@
     return `<article class="wtm-hotel-card" data-city="${escapeHtml(item.destination_slug || 'other')}">
       <a class="wtm-hotel-card__visual" href="${postUrl(item.slug)}" aria-label="${escapeHtml(item.title)} 리뷰 보기">${image}</a>
       <p class="wtm-hotel-card__location">${escapeHtml(location || 'Travel by Mood')}</p>
-      <h3><a href="${postUrl(item.slug)}">${escapeHtml(item.title)}</a></h3>
+      <h3><a href="${postUrl(item.slug)}">${escapeHtml(item.hotel_name)}</a></h3>
+      ${item.hotel_name_en ? `<p class="wtm-hotel-name-en">${escapeHtml(item.hotel_name_en)}</p>` : ''}
       <p class="wtm-hotel-card__reason">${escapeHtml(item.summary)}</p>
       <div class="wtm-hotel-card__tags">${tags.slice(0, 3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
       <p class="wtm-hotel-card__check"><strong>에디터 노트</strong> 객실 전망과 실제 해변 동선은 객실 유형과 호텔 위치에 따라 달라질 수 있습니다.</p>
