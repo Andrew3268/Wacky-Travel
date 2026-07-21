@@ -204,6 +204,8 @@ export async function onRequestGet({ env, request }) {
   const status = String(url.searchParams.get("status") || "published").trim().toLowerCase();
   const category = String(url.searchParams.get("category") || "").trim();
   const tag = String(url.searchParams.get("tag") || "").trim();
+  const moodTag = String(url.searchParams.get("mood_tag") || "").trim();
+  const situationTag = String(url.searchParams.get("situation_tag") || "").trim();
   const contentTypeParam = String(url.searchParams.get("content_type") || url.searchParams.get("content_types") || "").trim();
   const contentTypes = [...new Set(contentTypeParam.split(/[,.，、|]/).map((item) => normalizeContentType(item)).filter(Boolean))].slice(0, 10);
   const query = String(url.searchParams.get("q") || "").trim().toLowerCase();
@@ -235,6 +237,16 @@ export async function onRequestGet({ env, request }) {
   if (tag) {
     where.push("EXISTS (SELECT 1 FROM json_each(COALESCE(tags_json, '[]')) WHERE TRIM(json_each.value) = ?)");
     binds.push(tag);
+  }
+
+  if (moodTag) {
+    where.push("EXISTS (SELECT 1 FROM json_each(COALESCE(mood_tags_json, '[]')) WHERE TRIM(json_each.value) = ?)");
+    binds.push(moodTag);
+  }
+
+  if (situationTag) {
+    where.push("EXISTS (SELECT 1 FROM json_each(COALESCE(situation_tags_json, '[]')) WHERE TRIM(json_each.value) = ?)");
+    binds.push(situationTag);
   }
 
   if (contentTypes.length) {
@@ -370,6 +382,8 @@ export async function onRequestGet({ env, request }) {
       status: safeStatus,
       category,
       tag,
+      mood_tag: moodTag,
+      situation_tag: situationTag,
       content_type: contentTypes.join(","),
       q: query
     },
