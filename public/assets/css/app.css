@@ -8743,3 +8743,82 @@ body.post-page-body--hotel-review-magazine .post-hotel-availability-btn:hover {
     min-height: 52px;
   }
 }
+
+
+/* Admin hotel curation manager layout 20260721 */
+.admin-curation-manager {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 32px !important;
+}
+
+.admin-curation-manager > section {
+  min-width: 0;
+}
+
+.admin-curation-manager > section + section {
+  padding-top: 28px;
+  border-top: 1px solid rgba(16, 42, 69, 0.12);
+}
+
+.admin-curation-manager .category-manager__create-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.admin-curation-manager .category-manager__create-row .admin-curation-name-input {
+  flex: 0 1 50%;
+  width: 50%;
+  min-width: 0;
+}
+
+.admin-curation-manager .category-manager__create-row input:not(.admin-curation-name-input) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.admin-curation-item-fields {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.admin-curation-item-fields .admin-curation-name-input {
+  flex: 0 1 50%;
+  width: 50%;
+  min-width: 0;
+}
+
+.admin-curation-item-fields .admin-curation-slug-input {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.admin-curation-item-fields .admin-curation-order-input {
+  flex: 0 0 92px;
+  width: 92px;
+}
+
+.admin-curation-item-fields .admin-curation-active-input {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .admin-curation-manager .category-manager__create-row,
+  .admin-curation-item-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-curation-manager .category-manager__create-row .admin-curation-name-input,
+  .admin-curation-item-fields .admin-curation-name-input,
+  .admin-curation-item-fields .admin-curation-order-input {
+    width: 100%;
+  }
+}

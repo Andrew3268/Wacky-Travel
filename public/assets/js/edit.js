@@ -3174,6 +3174,31 @@ function setPreviewDevice(device) {
   });
 }
 
+// Hotel curation taxonomy (Travel by Mood / Stay by Situation)
+let hotelCurationItems = [];
+function getMultiSelectValues(id){ return Array.from($(id)?.selectedOptions || []).map(o=>o.value).filter(Boolean); }
+function setMultiSelectValues(id, values=[]){ const selected=new Set(Array.isArray(values)?values:[]); Array.from($(id)?.options||[]).forEach(o=>{o.selected=selected.has(o.value);}); }
+function renderHotelCurationOptions(selectedMood=[], selectedSituation=[]){
+  const render=(id,type,selected)=>{const el=$(id);if(!el)return;const active=hotelCurationItems.filter(x=>x.type===type&&Number(x.is_active??1)!==0).sort((a,b)=>(Number(a.sort_order||0)-Number(b.sort_order||0))||String(a.name).localeCompare(String(b.name),'ko'));el.innerHTML=active.map(x=>`<option value="${escapeHtml(x.slug)}">${escapeHtml(x.name)}</option>`).join('');setMultiSelectValues(id,selected);};
+  render('travelMoodSlugs','mood',selectedMood); render('staySituationSlugs','situation',selectedSituation);
+}
+async function loadHotelCurationItems(selectedMood=[], selectedSituation=[]){try{const r=await fetch(`/api/curation-items?ts=${Date.now()}`,{credentials:'same-origin',cache:'no-store'});const j=await r.json().catch(()=>({}));hotelCurationItems=Array.isArray(j.items)?j.items:[];renderHotelCurationOptions(selectedMood,selectedSituation);}catch(e){console.warn('큐레이션 항목을 불러오지 못했습니다.',e);}}
+function syncHotelCurationCardVisibility(){
+  const show=isHotelIntroContentSelected();
+  document.querySelectorAll('.editor-hotel-curation-card').forEach(card=>{
+    card.hidden=!show;
+    card.setAttribute('aria-hidden',show?'false':'true');
+  });
+}
+function initHotelCurationEditor(){
+  loadHotelCurationItems();
+  syncHotelCurationCardVisibility();
+  $('content_type')?.addEventListener('change',syncHotelCurationCardVisibility);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initHotelCurationEditor,{once:true});
+else initHotelCurationEditor();
+
+
 async function load() {
   const slug = qs("slug");
   const statusEl = $("saveStatus");
@@ -3406,16 +3431,3 @@ if ($("title") && $("content_md")) {
 } else {
   console.warn("edit.html 에디터 폼 요소가 누락되어 초기화를 건너뜁니다.");
 }
-
-
-// Hotel curation taxonomy (Travel by Mood / Stay by Situation)
-let hotelCurationItems = [];
-function getMultiSelectValues(id){ return Array.from($(id)?.selectedOptions || []).map(o=>o.value).filter(Boolean); }
-function setMultiSelectValues(id, values=[]){ const selected=new Set(Array.isArray(values)?values:[]); Array.from($(id)?.options||[]).forEach(o=>{o.selected=selected.has(o.value);}); }
-function renderHotelCurationOptions(selectedMood=[], selectedSituation=[]){
-  const render=(id,type,selected)=>{const el=$(id);if(!el)return;const active=hotelCurationItems.filter(x=>x.type===type&&Number(x.is_active??1)!==0).sort((a,b)=>(Number(a.sort_order||0)-Number(b.sort_order||0))||String(a.name).localeCompare(String(b.name),'ko'));el.innerHTML=active.map(x=>`<option value="${escapeHtml(x.slug)}">${escapeHtml(x.name)}</option>`).join('');setMultiSelectValues(id,selected);};
-  render('travelMoodSlugs','mood',selectedMood); render('staySituationSlugs','situation',selectedSituation);
-}
-async function loadHotelCurationItems(selectedMood=[], selectedSituation=[]){try{const r=await fetch(`/api/curation-items?ts=${Date.now()}`,{credentials:'same-origin',cache:'no-store'});const j=await r.json().catch(()=>({}));hotelCurationItems=Array.isArray(j.items)?j.items:[];renderHotelCurationOptions(selectedMood,selectedSituation);}catch(e){console.warn('큐레이션 항목을 불러오지 못했습니다.',e);}}
-function syncHotelCurationCardVisibility(){const show=isHotelIntroContentSelected();document.querySelectorAll('.editor-hotel-curation-card').forEach(card=>{card.hidden=!show;card.setAttribute('aria-hidden',show?'false':'true');});}
-document.addEventListener('DOMContentLoaded',()=>{loadHotelCurationItems();syncHotelCurationCardVisibility();$('content_type')?.addEventListener('change',syncHotelCurationCardVisibility);});

@@ -11,7 +11,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <meta content="#2563EB" name="theme-color"/>
-<link href="/assets/css/app.css?v=20260720-post-tune-1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260721AdminCurationLayoutV2" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" rel="stylesheet"/>
 </head>
 <body>
@@ -84,6 +84,11 @@
 <div class="dashboard-stat__label">추천 카테고리</div>
 <strong class="dashboard-stat__value" id="itemRecommendationCategoryCount">-</strong>
 <span class="dashboard-stat__hint">관리하기</span>
+</a>
+<a aria-label="호텔 큐레이션 항목 관리 섹션으로 이동" class="dashboard-stat admin-items-overview__stat" data-admin-items-scroll-target="curationItems" href="#curationItems">
+<div class="dashboard-stat__label">호텔 큐레이션</div>
+<strong class="dashboard-stat__value" id="itemCurationCount">-</strong>
+<span class="dashboard-stat__hint">바로가기</span>
 </a>
 </div>
 
@@ -225,7 +230,7 @@
     <section>
       <h3 class="h3">Travel by Mood</h3>
       <div class="category-manager__create-row admin-items-create-row--3">
-        <input class="input" id="newMoodName" placeholder="예: 바다를 보며 쉬는 여행">
+        <input class="input admin-curation-name-input" id="newMoodName" placeholder="예: 바다를 보며 쉬는 여행">
         <input class="input" id="newMoodSlug" placeholder="예: ocean-rest">
         <button class="btn btn--primary" id="addMoodItem" type="button">추가</button>
       </div>
@@ -234,7 +239,7 @@
     <section>
       <h3 class="h3">Stay by Situation</h3>
       <div class="category-manager__create-row admin-items-create-row--3">
-        <input class="input" id="newSituationName" placeholder="예: 늦은 밤 도착해도 이동이 편한 호텔">
+        <input class="input admin-curation-name-input" id="newSituationName" placeholder="예: 늦은 밤 도착해도 이동이 편한 호텔">
         <input class="input" id="newSituationSlug" placeholder="예: late-arrival">
         <button class="btn btn--primary" id="addSituationItem" type="button">추가</button>
       </div>
@@ -261,6 +266,6 @@
 <script defer="" src="/assets/js/admin-ui.js"></script>
 <script defer="" src="/assets/js/nav.js"></script>
 <script defer="" src="/assets/js/admin-items.js?v=20260620AdminItemsPostsV1"></script>
-<script defer src="/assets/js/admin-curation-items.js?v=20260721CurationV1"></script>
+<script defer src="/assets/js/admin-curation-items.js?v=20260721CurationLayoutV2"></script>
 </body>
 </html>
