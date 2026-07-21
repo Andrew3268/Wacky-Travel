@@ -19,8 +19,53 @@
 <link href="/assets/css/travel.css?v=20260720-post-tune-1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"가오슝","item":"/destinations/kaohsiung/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"가오슝","alternateName":"Kaohsiung","description":"가오슝 숙소 위치, 호텔 추천, 여행 일정, 항구 산책, 야시장, 치진·시즈완 동선을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/kaohsiung/","touristType":["자유여행을 준비하는 분","커플 여행을 준비하는 분","가족 여행을 준비하는 분","호텔 비교를 원하는 분"],"containedInPlace":{"@type":"Country","name":"대만"}}</script>
+  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
 </head><body class="travel-city-body travel-city-body--kaohsiung">
-<header class="topbar topbar--editorial topbar--travel"><div class="topbar__inner container"><a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a></div></header>
+<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
+  <div class="topbar__inner container">
+    <a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+    <button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.4"></circle>
+        <path d="m16 16 4.5 4.5"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+<section aria-hidden="true" class="home-search-overlay" data-site-search-overlay="main" hidden id="homeSearchOverlay">
+  <div class="home-search-overlay__backdrop" data-home-search-close></div>
+  <div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
+    <div class="home-search-overlay__bar">
+      <button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close type="button">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M6 6l12 12"></path>
+          <path d="M18 6L6 18"></path>
+        </svg>
+      </button>
+      <form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
+        <span aria-hidden="true" class="home-search-overlay__icon">
+          <svg focusable="false" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.4"></circle>
+            <path d="m16 16 4.5 4.5"></path>
+          </svg>
+        </span>
+        <input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search" />
+        <button class="home-search-overlay__submit" type="submit">검색</button>
+      </form>
+    </div>
+    <div class="home-search-overlay__content">
+      <p class="home-search-overlay__eyebrow">Search</p>
+      <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+      <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+      <div aria-label="추천 검색어" class="home-search-overlay__quick">
+        <button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+        <button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+        <button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+        <button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+      </div>
+    </div>
+  </div>
+</section>
 <nav aria-label="현재 위치" class="breadcrumbs container"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">가오슝</span></li></ol></nav>
 <main class="travel-page wt-city-page wt-city-page--kaohsiung"><section aria-labelledby="kaohsiungCityTitle" class="wt-city-hero container"><div class="wt-city-hero__content"><p class="wt-city-kicker">가오슝 숙소 위치 가이드</p><h1 id="kaohsiungCityTitle">가오슝 숙소,<br/>어디에 잡으면 편할까요?</h1><p class="wt-city-hero__lead">가오슝은 MRT와 경전철, 택시, 페리를 섞어 움직이는 항구 도시입니다. 처음이라면 미려도·류허야시장, 쇼핑과 가성비는 중앙공원·신주에장, 호텔 컨디션은 산둬상권·85타워, 감성 산책은 옌청푸·보얼예술특구를 먼저 비교하면 선택이 쉬워집니다.</p><div aria-label="가오슝 페이지 바로가기" class="wt-city-hero__actions"><a class="wt-city-button wt-city-button--primary" href="#area-guide">숙소 구역 가이드</a><a class="wt-city-button" href="#hotel-posts">추천 호텔</a></div></div></section>
 <section aria-labelledby="kaohsiungSnapshotTitle" class="wt-city-snapshot container" id="choices"><div class="section-heading wt-city-snapshot__heading"><p class="wt-city-kicker">Quick Choice</p><h2 id="kaohsiungSnapshotTitle">미려도·산둬상권·옌청푸·쭤잉 중 일정에 맞는 숙소를 골라보세요</h2><p>내 일정과 가장 가까운 유형을 고르면 어떤 구역을 먼저 보면 좋을지 빠르게 감이 잡힙니다.</p></div><div class="wt-city-snapshot__grid"><a class="wt-city-choice-card" href="/destinations/kaohsiung/first-trip/"><span>처음 가는 가오슝</span><strong>미려도 또는 중앙공원·산둬상권</strong><p>MRT 환승과 야시장은 미려도, 쇼핑과 도심 산책은 중앙공원·산둬상권을 비교하기 좋습니다.</p></a><a class="wt-city-choice-card" href="/destinations/kaohsiung/value-hotel/"><span>숙박비도 중요해요</span><strong>미려도·중앙공원 또는 옌청푸·보얼예술특구</strong><p>MRT 환승과 쇼핑은 미려도·중앙공원, 항구 산책과 예술특구는 옌청푸·보얼예술특구가 좋습니다.</p></a><a class="wt-city-choice-card" href="/destinations/kaohsiung/near-trip/"><span>타이난·타이중까지 볼 예정</span><strong>쭤잉·가오슝역 또는 옌청푸·시즈완</strong><p>HSR·기차와 남부 이동은 쭤잉·가오슝역, 항구·치진·예술지구 일정은 옌청푸·시즈완이 좋습니다.</p></a><a class="wt-city-choice-card" href="/destinations/kaohsiung/family-trip/"><span>부모님·아이와 함께해요</span><strong>미려도·중앙공원 또는 산둬상권·85타워</strong><p>짧은 가족 일정은 미려도·중앙공원, 대형 호텔과 쇼핑·식사 편의는 산둬상권·85타워가 잘 맞습니다.</p></a><a class="wt-city-choice-card" href="/destinations/kaohsiung/quiet-stay/"><span>조용한 항구 분위기가 좋아요</span><strong>옌청푸·보얼예술특구 또는 시즈완·아이허</strong><p>항구 감성과 전시는 옌청푸·보얼예술특구, 강변·바다 산책은 시즈완·아이허가 잘 맞습니다.</p></a></div></section>
@@ -66,4 +111,5 @@
 <a href="/search/">검색</a>
 </nav>
 </div>
-</footer><script defer="" src="/assets/js/area-tabs-scroll.js?v=20260624KaohsiungCitySetV1"></script><script defer="" src="/assets/js/posts.js?v=20260624KaohsiungCitySetV1"></script></body></html>
+</footer><script defer="" src="/assets/js/area-tabs-scroll.js?v=20260624KaohsiungCitySetV1"></script><script defer="" src="/assets/js/posts.js?v=20260624KaohsiungCitySetV1"></script>  <script defer src="/assets/js/site-header.js?v=20260721-main-header-unified-v1"></script>
+</body></html>

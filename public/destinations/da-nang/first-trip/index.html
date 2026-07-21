@@ -20,9 +20,54 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"다낭","item":"/destinations/da-nang"},{"@type":"ListItem","position":4,"name":"첫 다낭 여행 숙소 위치 추천","item":"/destinations/da-nang/first-trip/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"첫 다낭 여행 숙소 위치 추천","itemListElement":[{"@type":"ListItem","position":1,"name":"미케비치·푸억미"},{"@type":"ListItem","position":2,"name":"논느억·오행산 리조트권"},{"@type":"ListItem","position":3,"name":"다낭 시내·한시장"},{"@type":"ListItem","position":4,"name":"한강 동쪽·용다리"},{"@type":"ListItem","position":5,"name":"다낭 북부·공항·기차역 주변"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"다낭 처음이면 미케비치와 한강 중 어디가 좋나요?","acceptedAnswer":{"@type":"Answer","text":"바다 산책과 해변 분위기, 식당·마사지 동선을 함께 원한다면 미케비치가 편합니다. 한시장, 용다리, 야경 중심의 시내 이동이 많다면 한강 동쪽이나 시내권도 좋은 선택입니다."}},{"@type":"Question","name":"호이안도 갈 예정이면 어느 지역 숙소가 편한가요?","acceptedAnswer":{"@type":"Answer","text":"호이안까지 하루 일정으로 다녀올 계획이라면 미케비치와 한강 모두 무난합니다. 호이안 비중이 크다면 다낭 2박, 호이안 1박처럼 나누는 방법도 좋습니다."}},{"@type":"Question","name":"미케비치 숙소는 시내 이동이 불편하지 않나요?","acceptedAnswer":{"@type":"Answer","text":"택시를 이용하면 한시장이나 용다리까지 이동이 어렵지 않습니다. 다만 매일 시내를 자주 오갈 계획이라면 한강 동쪽이나 시내권을 함께 비교해보세요."}},{"@type":"Question","name":"부모님과 다낭 여행이면 어느 지역이 편한가요?","acceptedAnswer":{"@type":"Answer","text":"이동을 줄이고 식당과 해변을 함께 보려면 미케비치·푸억미가 편합니다. 야경과 시장 이동을 중시한다면 한강 동쪽 숙소도 괜찮지만 택시 동선을 확인하는 것이 좋습니다."}},{"@type":"Question","name":"다낭 3박 4일이면 숙소를 나누는 게 좋나요?","acceptedAnswer":{"@type":"Answer","text":"일정이 다낭 중심이면 한 지역에 묵어도 충분합니다. 호이안 숙박이나 리조트 휴식을 따로 넣고 싶다면 다낭 해변 2박, 호이안 또는 리조트 1박처럼 나누는 것도 좋습니다."}}]}</script>
+  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
 </head>
 <body class="travel-purpose-body">
-<header class="topbar topbar--editorial topbar--travel"><div class="topbar__inner container"><a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a></div></header>
+<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
+  <div class="topbar__inner container">
+    <a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+    <button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.4"></circle>
+        <path d="m16 16 4.5 4.5"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+<section aria-hidden="true" class="home-search-overlay" data-site-search-overlay="main" hidden id="homeSearchOverlay">
+  <div class="home-search-overlay__backdrop" data-home-search-close></div>
+  <div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
+    <div class="home-search-overlay__bar">
+      <button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close type="button">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M6 6l12 12"></path>
+          <path d="M18 6L6 18"></path>
+        </svg>
+      </button>
+      <form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
+        <span aria-hidden="true" class="home-search-overlay__icon">
+          <svg focusable="false" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.4"></circle>
+            <path d="m16 16 4.5 4.5"></path>
+          </svg>
+        </span>
+        <input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search" />
+        <button class="home-search-overlay__submit" type="submit">검색</button>
+      </form>
+    </div>
+    <div class="home-search-overlay__content">
+      <p class="home-search-overlay__eyebrow">Search</p>
+      <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+      <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+      <div aria-label="추천 검색어" class="home-search-overlay__quick">
+        <button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+        <button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+        <button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+        <button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+      </div>
+    </div>
+  </div>
+</section>
 <nav aria-label="현재 위치" class="breadcrumbs container"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/da-nang/">다낭</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">첫 다낭 여행 숙소 위치 추천</span></li></ol></nav>
 <main class="travel-page wt-purpose-page wt-purpose-page--first-trip wt-purpose-page--fukuoka-unified">
 <section class="wt-page-hero"><div class="container"><div class="wt-page-hero__content"><div class="wt-eyebrow">처음 가는 다낭 숙소 가이드</div><h1>다낭 첫 여행 숙소는 미케비치와 한강 동선부터 나눠보세요</h1><p>첫 다낭 여행은 바다를 중심으로 보낼지, 한시장·용다리·야경을 자주 볼지에 따라 숙소 위치가 달라집니다. 해변 산책과 식당을 가까이 두고 싶다면 미케비치·푸억미, 시내 관광과 야경 동선이 중요하다면 한강 동쪽·용다리부터 비교하면 쉽습니다.</p><div class="wt-hero-actions"><a class="wt-btn" href="#area-compare">미케비치·한강 비교하기</a><a class="wt-btn" href="#hotels">숙소 더 보기</a><a class="wt-btn" href="/destinations/da-nang/">다낭 메인</a></div></div></div></section><section aria-labelledby="firstAreaTitle" class="wt-section wt-first-area-choice" id="area-compare">
@@ -89,4 +134,5 @@
 <a href="/search/">검색</a>
 </nav>
 </div>
-</footer><script src="/assets/js/admin-ui.js"></script></body></html>
+</footer><script src="/assets/js/admin-ui.js"></script>  <script defer src="/assets/js/site-header.js?v=20260721-main-header-unified-v1"></script>
+</body></html>

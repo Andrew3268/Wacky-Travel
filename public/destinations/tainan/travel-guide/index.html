@@ -20,13 +20,54 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"타이난","item":"/destinations/tainan/"},{"@type":"ListItem","position":4,"name":"타이난 여행 가이드 2026","item":"/destinations/tainan/travel-guide/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"타이난 여행 가이드 2026: 교통·먹거리·안핑·야시장 실전 팁","description":"타이난 자유여행을 준비할 때 필요한 교통, 여행 시기, 준비물, 짐 보관, 구도심 산책, 먹거리, 안핑, 야시장, 돌발 상황 대처법을 정리했습니다.","inLanguage":"ko-KR","author":{"@type":"Organization","name":"Wacky Travel"},"publisher":{"@type":"Organization","name":"Wacky Travel"},"mainEntityOfPage":"/destinations/tainan/travel-guide/","dateModified":"2026-06-23"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"타이난 여행 가이드 목차","itemListElement":[{"@type":"ListItem","position":1,"name":"타이난 여행 핵심 포인트","item":"/destinations/tainan/travel-guide/#1-타이난-여행-먼저-이것만-기억하세요"},{"@type":"ListItem","position":2,"name":"타이난 여행 시기 추천","item":"/destinations/tainan/travel-guide/#2-타이난-여행-시기-추천더위와-비를-함께-보세요"},{"@type":"ListItem","position":3,"name":"타이난 여행 준비물","item":"/destinations/tainan/travel-guide/#3-타이난-여행-준비물현금교통카드보조배터리가-생각보다-중요합니다"},{"@type":"ListItem","position":4,"name":"타이난 교통 가이드","item":"/destinations/tainan/travel-guide/#4-타이난-교통-가이드고속철도역과-시내역을-구분하세요"},{"@type":"ListItem","position":5,"name":"타이난 짐 보관 팁","item":"/destinations/tainan/travel-guide/#5-타이난-짐-보관-팁첫날과-마지막-날이-편해야-합니다"},{"@type":"ListItem","position":6,"name":"타이난 먹거리 가이드","item":"/destinations/tainan/travel-guide/#6-타이난-먹거리-가이드식사-동선이-일정의-중심입니다"},{"@type":"ListItem","position":7,"name":"타이난 구도심 산책","item":"/destinations/tainan/travel-guide/#7-타이난-구도심-산책역사-명소는-천천히-묶어야-좋습니다"},{"@type":"ListItem","position":8,"name":"타이난 야시장 가이드","item":"/destinations/tainan/travel-guide/#8-타이난-야시장과-밤-동선운영일과-복귀-경로를-먼저-보세요"},{"@type":"ListItem","position":9,"name":"타이난 안핑 실전 공략","item":"/destinations/tainan/travel-guide/#9-타이난-안핑근교-일정-공략반나절-이상-비우면-만족도가-올라갑니다"},{"@type":"ListItem","position":10,"name":"타이난 돌발 상황 대처법","item":"/destinations/tainan/travel-guide/#10-타이난-돌발-상황-대처법여권분실병원택시를-미리-정리하세요"},{"@type":"ListItem","position":11,"name":"타이난 여행 마무리","item":"/destinations/tainan/travel-guide/#11-타이난-여행-마무리많이-찍기보다-잘-나누는-도시입니다"}]}</script>
+  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
 </head>
 <body class="wt-guide-body">
-<header class="topbar topbar--editorial topbar--travel">
-<div class="topbar__inner container">
-<a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
-</div>
+<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
+  <div class="topbar__inner container">
+    <a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+    <button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.4"></circle>
+        <path d="m16 16 4.5 4.5"></path>
+      </svg>
+    </button>
+  </div>
 </header>
+<section aria-hidden="true" class="home-search-overlay" data-site-search-overlay="main" hidden id="homeSearchOverlay">
+  <div class="home-search-overlay__backdrop" data-home-search-close></div>
+  <div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
+    <div class="home-search-overlay__bar">
+      <button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close type="button">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M6 6l12 12"></path>
+          <path d="M18 6L6 18"></path>
+        </svg>
+      </button>
+      <form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
+        <span aria-hidden="true" class="home-search-overlay__icon">
+          <svg focusable="false" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.4"></circle>
+            <path d="m16 16 4.5 4.5"></path>
+          </svg>
+        </span>
+        <input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search" />
+        <button class="home-search-overlay__submit" type="submit">검색</button>
+      </form>
+    </div>
+    <div class="home-search-overlay__content">
+      <p class="home-search-overlay__eyebrow">Search</p>
+      <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+      <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+      <div aria-label="추천 검색어" class="home-search-overlay__quick">
+        <button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+        <button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+        <button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+        <button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+      </div>
+    </div>
+  </div>
+</section>
 <nav aria-label="현재 위치" class="breadcrumbs container">
 <ol>
 <li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li>
@@ -448,5 +489,6 @@
   updateButton();
 })();
 </script>
+  <script defer src="/assets/js/site-header.js?v=20260721-main-header-unified-v1"></script>
 </body>
 </html>

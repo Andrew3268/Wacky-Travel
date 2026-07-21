@@ -18,13 +18,54 @@
 <link href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" rel="stylesheet"/>
 <link href="/assets/css/travel.css?v=20260720-post-tune-1" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"하노이","item":"/destinations/hanoi"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"하노이","alternateName":"Hanoi","description":"하노이 숙소 위치, 호텔 추천, 여행 동선, 공항 접근성, 근교 여행 기준을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/hanoi","containedInPlace":{"@type":"Country","name":"베트남"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"하노이 숙소 선택 중요 동선","itemListElement":[{"@type":"ListItem","position":1,"name":"하노이 숙소 위치 추천 서베이","url":"/destinations/hanoi/hotel-location-survey/"},{"@type":"ListItem","position":2,"name":"하노이 여행 스타일별 호텔 추천","url":"/destinations/hanoi/hotel-recommendations/"},{"@type":"ListItem","position":3,"name":"하노이 추천 호텔 리뷰","url":"/destinations/hanoi/hotels/"},{"@type":"ListItem","position":4,"name":"처음 가는 하노이 숙소 추천","url":"/destinations/hanoi/first-trip/"},{"@type":"ListItem","position":5,"name":"하노이 가성비 숙소 추천","url":"/destinations/hanoi/value-hotel/"},{"@type":"ListItem","position":6,"name":"하노이 근교 여행 숙소 추천","url":"/destinations/hanoi/near-trip/"},{"@type":"ListItem","position":7,"name":"하노이 호텔 위치 고르는 법","url":"/destinations/hanoi/hotel-guide/"},{"@type":"ListItem","position":8,"name":"하노이 여행 가이드","url":"/destinations/hanoi/travel-guide/"}]}</script>
+  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
 </head>
 <body class="travel-city-body travel-city-body--hanoi" data-destination-slug="hanoi">
-<header class="topbar topbar--editorial topbar--travel">
-<div class="topbar__inner container">
-<a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
-</div>
+<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
+  <div class="topbar__inner container">
+    <a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+    <button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.4"></circle>
+        <path d="m16 16 4.5 4.5"></path>
+      </svg>
+    </button>
+  </div>
 </header>
+<section aria-hidden="true" class="home-search-overlay" data-site-search-overlay="main" hidden id="homeSearchOverlay">
+  <div class="home-search-overlay__backdrop" data-home-search-close></div>
+  <div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
+    <div class="home-search-overlay__bar">
+      <button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close type="button">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+          <path d="M6 6l12 12"></path>
+          <path d="M18 6L6 18"></path>
+        </svg>
+      </button>
+      <form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
+        <span aria-hidden="true" class="home-search-overlay__icon">
+          <svg focusable="false" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6.4"></circle>
+            <path d="m16 16 4.5 4.5"></path>
+          </svg>
+        </span>
+        <input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search" />
+        <button class="home-search-overlay__submit" type="submit">검색</button>
+      </form>
+    </div>
+    <div class="home-search-overlay__content">
+      <p class="home-search-overlay__eyebrow">Search</p>
+      <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+      <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+      <div aria-label="추천 검색어" class="home-search-overlay__quick">
+        <button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+        <button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+        <button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+        <button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+      </div>
+    </div>
+  </div>
+</section>
 <nav aria-label="현재 위치" class="breadcrumbs container"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><a href="/destinations/">여행지</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">하노이</span></li></ol></nav>
 <main class="travel-page wt-city-page wt-city-page--hanoi">
 <section aria-labelledby="hanoiCityTitle" class="wt-city-hero container"><div class="wt-city-hero__content"><p class="wt-city-kicker">하노이 숙소 위치 가이드</p><h1 id="hanoiCityTitle">하노이 여행은 숙소 위치에 따라 여행 피로가 크게 달라집니다</h1><p class="wt-city-hero__lead">하노이는 호안끼엠·올드쿼터, 프렌치쿼터, 서호, 바딘, 동다, 미딩처럼 구역별 성격이 뚜렷합니다. 처음이라면 호안끼엠·올드쿼터를 기준으로 잡고, 조용함·가성비·가족 여행·근교 투어 여부에 맞춰 대안을 좁히면 호텔 선택이 훨씬 쉬워집니다.</p><div aria-label="하노이 페이지 바로가기" class="wt-city-hero__actions"><a class="wt-city-button wt-city-button--primary" href="#area-guide">숙소 구역 가이드</a><a class="wt-city-button" href="#hotel-posts">추천 호텔</a></div></div></section>
@@ -73,5 +114,6 @@
 </nav>
 </div>
 </footer><script defer="" src="/assets/js/posts.js?v=20260622HotelHeroButtonGuardV1"></script><script defer="" src="/assets/js/area-tabs-scroll.js?v=20260618MinimalBalanceV111"></script>
+  <script defer src="/assets/js/site-header.js?v=20260721-main-header-unified-v1"></script>
 </body>
 </html>

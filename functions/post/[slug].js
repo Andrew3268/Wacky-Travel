@@ -335,6 +335,7 @@ export async function onRequestGet({ params, env, request }) {
   <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v2" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -1232,8 +1233,11 @@ function renderNotFound(slug) {
   <meta name="theme-color" content="#2563EB" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" />
 </head>
 <body>
+  ${topbar()}
+  ${homeSearchOverlay()}
   <main class="container">
     <section class="card">
       <h1 class="h1">글을 찾을 수 없습니다</h1>
@@ -1244,12 +1248,13 @@ function renderNotFound(slug) {
       </div>
     </section>
   </main>
+  <script defer src="/assets/js/site-header.js?v=20260721-main-header-unified-v1"></script>
 </body>
 </html>`;
 }
 
 function topbar() {
-  return `<header class="topbar topbar--editorial topbar--travel">
+  return `<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
     <div class="topbar__inner container">
       <a class="brand" href="/" aria-label="Wacky Travel 홈">
         <span class="brand__mark">WT</span>
@@ -1267,7 +1272,7 @@ function topbar() {
 
 function homeSearchOverlay() {
   return `
-  <section class="home-search-overlay" id="homeSearchOverlay" hidden aria-hidden="true">
+  <section class="home-search-overlay" id="homeSearchOverlay" data-site-search-overlay="main" hidden aria-hidden="true">
     <div class="home-search-overlay__backdrop" data-home-search-close></div>
     <div class="home-search-overlay__panel" role="dialog" aria-modal="true" aria-labelledby="homeSearchOverlayTitle">
       <div class="home-search-overlay__bar">
