@@ -24545,7 +24545,7 @@ body.travel-archive-body a {
 */
 @media (max-width: 767px) {
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h1 {
-    font-size: 32px !important;
+    font-size: 25px !important;
     line-height: 1.2 !important;
   }
 

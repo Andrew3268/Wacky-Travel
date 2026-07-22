@@ -7849,7 +7849,7 @@ body.post-page-body--hotel-review-magazine .post-magazine-desc p {
   color: #555555 !important;
   font-size: 1.1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 2;
 }
 
 body.post-page-body--hotel-review-magazine .post-magazine-hotel-panel {
@@ -8686,4 +8686,30 @@ body.post-page-body .post-body .post-content p.post-hotel-section-label.post-sec
 body.post-page-body .breadcrumbs--post,
 body.post-page-body .breadcrumb--post {
   padding-top: 0 !important;
+}
+
+
+/* 20260722 Hotel review magazine shared typography and mobile cover V4
+   - 추천 호텔 리뷰 + 여행 스타일별 호텔 추천 공통 적용
+*/
+body.post-page-body--hotel-review-magazine .post-magazine-desc,
+body.post-page-body--hotel-review-magazine .post-magazine-desc p {
+  line-height: 2 !important;
+}
+
+@media (max-width: 767px) {
+  body.post-page-body--hotel-review-magazine .post-shell--guide-style .post-hero--product .post-cover-wrap,
+  body.post-page-body--hotel-review-magazine .post-cover-wrap {
+    height: 350px !important;
+    min-height: 350px !important;
+    aspect-ratio: auto !important;
+  }
+
+  body.post-page-body--hotel-review-magazine .post-cover,
+  body.post-page-body--hotel-review-magazine .post-cover-wrap img {
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+  }
 }
