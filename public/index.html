@@ -223,25 +223,7 @@
 </a>
 </div>
 </section>
-<section class="container travel-section travel-section--tinted" hidden="" id="homeHotelPostsSection">
-<div class="section-heading section-heading--split">
-<div>
-<p class="eyebrow">Hotel Picks</p>
-<h2>여행 스타일별 호텔 추천</h2>
-</div>
-</div>
-<div class="travel-card-grid travel-card-grid--hotels" id="homeHotels"></div>
-</section>
-<section class="container travel-section" hidden="" id="homePostsSection">
-<div class="section-heading section-heading--split">
-<div>
-<p class="eyebrow">Latest Guides</p>
-<h2>최신 여행 글</h2>
-<p>여행 준비 팁, 호텔 선택 기준, 도시별 이동 정보를 최신순으로 정리합니다.</p>
-</div>
-</div>
-<div class="travel-list" id="homePosts"></div>
-</section>
+
 </main>
 <div class="modal-backdrop" hidden="" id="destinationManagerBackdrop"></div>
 <aside aria-hidden="true" aria-labelledby="destinationManagerTitle" aria-modal="true" class="modal-sheet modal-sheet--destination-manager" hidden="" id="destinationManagerModal" role="dialog">
@@ -365,14 +347,11 @@
     const normalizeText = (value) => String(value || "").replace(/\s+/g, " ").trim();
     const slugify = (value) => normalizeText(value).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9가-힣_-]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
     const HOME_DESTINATION_LIMIT = 5;
-    const HOME_HOTEL_LIMIT = 6;
 
     const state = {
       isAdmin: false,
       countries: [],
       destinations: [],
-      hotelPosts: [],
-      posts: []
     };
 
     const countrySlugAliases = { 베트남: 'vietnam', 일본: 'japan', 태국: 'thailand', 대한민국: 'korea', 한국: 'korea', 대만: 'taiwan', 싱가포르: 'singapore', 말레이시아: 'malaysia', 인도네시아: 'indonesia', 필리핀: 'philippines', 홍콩: 'hong-kong', 마카오: 'macau', 중국: 'china', 미국: 'usa', 프랑스: 'france', 이탈리아: 'italy', 스페인: 'spain' };
@@ -423,17 +402,13 @@
     }
 
     async function loadHome() {
-      const [destRes, settingsRes, hotelRes, postRes, adminRes] = await Promise.all([
+      const [destRes, settingsRes, adminRes] = await Promise.all([
         fetch('/api/destinations?limit=100', { cache: 'no-store' }).catch(() => null),
         fetch(`/api/travel-settings?ts=${Date.now()}`, { cache: 'no-store' }).catch(() => null),
-        fetch(`/api/posts?per_page=${HOME_HOTEL_LIMIT}&content_type=top5_series&sort=published&ts=${Date.now()}`, { cache: 'no-store' }).catch(() => null),
-        fetch('/api/posts?per_page=6').catch(() => null),
         fetch('/api/admin/session', { credentials: 'same-origin' }).catch(() => null)
       ]);
       const destData = destRes ? await destRes.json().catch(() => ({ items: [] })) : { items: [] };
       const settingsData = settingsRes ? await settingsRes.json().catch(() => ({ countries: [], destinations: [] })) : { countries: [], destinations: [] };
-      const hotelPostData = hotelRes ? await hotelRes.json().catch(() => ({ items: [] })) : { items: [] };
-      const postData = postRes ? await postRes.json().catch(() => ({ items: [] })) : { items: [] };
       const adminData = adminRes ? await adminRes.json().catch(() => ({ authenticated: false })) : { authenticated: false };
 
       state.isAdmin = Boolean(adminData.authenticated);
@@ -442,11 +417,6 @@
         Array.isArray(destData.items) ? destData.items : [],
         Array.isArray(settingsData.destinations) ? settingsData.destinations : []
       );
-      state.hotelPosts = Array.isArray(hotelPostData.items) ? hotelPostData.items : [];
-      state.posts = Array.isArray(postData.items) ? postData.items : [];
-
-      renderHotels();
-      renderPosts();
     }
 
     async function reloadDestinations() {
@@ -598,104 +568,6 @@
       const label = normalizeText(item.city) || normalizeText(item.name) || normalizeText(item.title) || '여행지';
       const href = `/destinations/${encodeURIComponent(item.slug || '')}/`;
       return `<a class="destination-chip destination-chip--editable" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">${escapeHtml(label)}</a>`;
-    }
-
-    function isTop5HotelSeriesPost(item = {}) {
-      return String(item.content_type || '').trim() === 'top5_series';
-    }
-
-    function getPostTimeValue(item = {}) {
-      const raw = item.published_at || item.updated_at || '';
-      const time = new Date(raw).getTime();
-      return Number.isFinite(time) ? time : 0;
-    }
-
-    function getHomeHotelPosts() {
-      return state.hotelPosts
-        .filter(isTop5HotelSeriesPost)
-        .sort((a, b) => getPostTimeValue(b) - getPostTimeValue(a))
-        .slice(0, HOME_HOTEL_LIMIT);
-    }
-
-    function toggleVisibilityByItems(elementId, items = []) {
-      const element = $(elementId);
-      if (!element) return;
-      element.hidden = !Array.isArray(items) || items.length === 0;
-    }
-
-    function renderHotels() {
-      const items = getHomeHotelPosts();
-      toggleVisibilityByItems('homeHotelPostsSection', items);
-      const container = $('homeHotels');
-      if (!container) return;
-      if (!items.length) {
-        container.innerHTML = '';
-        return;
-      }
-      container.innerHTML = items.map((item) => {
-        const slug = String(item.slug || '');
-        const href = `/post/${encodeURIComponent(slug)}`;
-        const tags = safeArray(item.tags_json).slice(0, 3);
-        const meta = [labelHotelPostType(item.content_type), item.category].filter(Boolean).join(' · ');
-        const title = getHotelCardTitle(item);
-        return `<article class="travel-card hotel-card travel-card--clickable">
-          <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(title)} 읽기">
-            ${item.cover_image ? `<span class="travel-card__media"><img src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || title)}" loading="lazy" decoding="async" /></span>` : ''}
-            <span class="travel-card__body"><span class="travel-card__meta">${escapeHtml(meta)}</span><span class="travel-card__title">${escapeHtml(title)}</span><span class="travel-card__description">${escapeHtml(item.summary || '도시별 호텔을 한 번에 비교할 수 있는 추천 시리즈입니다.')}</span>${tags.length ? `<span class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</span>` : ''}<span class="text-link">호텔 추천 보기</span></span>
-          </a>
-        </article>`;
-      }).join('');
-    }
-
-    function getHotelCardTitle(item = {}) {
-      if (String(item.content_type || '').trim() === 'hotel_intro') {
-        return item.hotel_name || extractHotelNameFromTitle(item.title) || item.title || '추천 호텔 리뷰';
-      }
-      return item.title || '호텔 추천 글';
-    }
-
-    function extractHotelNameFromTitle(title = '') {
-      const clean = String(title || '').replace(/^#+\s*/, '').trim();
-      if (!clean) return '';
-      const firstClause = clean.split(/[,.，、|｜?？!！]/)[0].trim();
-      return firstClause
-        .replace(/\s*(추천|후기|리뷰|가격|위치|예약|조식|가성비|숙소|호텔 선택|체크포인트).*$/i, '')
-        .trim() || firstClause;
-    }
-
-    function labelHotelPostType(value) {
-      const type = String(value || '').trim();
-      if (type === 'top5_series') return '여행 스타일별 호텔 추천';
-      if (type === 'hotel_intro') return '추천 호텔 리뷰';
-      return type || '호텔 글';
-    }
-
-    function renderPosts() {
-      const items = Array.isArray(state.posts) ? state.posts : [];
-      toggleVisibilityByItems('homePostsSection', items);
-      toggleVisibilityByItems('homePostsNavLink', items);
-      const container = $('homePosts');
-      if (!container) return;
-      if (!items.length) {
-        container.innerHTML = '';
-        return;
-      }
-      container.innerHTML = items.map((post) => {
-        const slug = String(post.slug || '');
-        return `
-          <article class="travel-list__item home-latest-card">
-            <a class="home-latest-card__link" href="/post/${encodeURIComponent(slug)}" aria-label="${escapeHtml(post.title)} 읽기">
-              <span class="home-latest-card__content">
-                <strong>${escapeHtml(post.title)}</strong>
-                <span>${escapeHtml(post.summary)}</span>
-              </span>
-              <span class="home-latest-card__arrow" aria-hidden="true">
-                <svg viewBox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg>
-              </span>
-            </a>
-          </article>
-        `;
-      }).join('');
     }
 
     function getHomeManagerCountry() {
@@ -1063,10 +935,7 @@
     }
 
     bindDestinationManager();
-    loadHome().catch(() => {
-      renderHotels();
-      renderPosts();
-    });
+    loadHome().catch(() => {});
   </script>
   <script defer src="/assets/js/site-header.js?v=20260722-site-search-complete-v3"></script>
 </body>
