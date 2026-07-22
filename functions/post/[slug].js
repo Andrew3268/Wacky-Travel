@@ -482,6 +482,7 @@ export async function onRequestGet({ params, env, request }) {
   });
 </script>
   ${adsenseRuntimeScript}
+  <script defer src="/assets/js/site-header.js?v=20260722-site-search-complete-v3"></script>
   <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
 </body>
 </html>`;
@@ -1220,7 +1221,7 @@ function renderNotFound(slug) {
       </div>
     </section>
   </main>
-  <script defer src="/assets/js/site-header.js?v=20260721-main-header-clean-v2"></script>
+  <script defer src="/assets/js/site-header.js?v=20260722-site-search-complete-v3"></script>
 </body>
 </html>`;
 }
