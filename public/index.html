@@ -16,11 +16,11 @@
 <meta content="/assets/images/logo.png" property="og:image"/>
 <meta content="ko_KR" property="og:locale"/>
 <link href="/favicon.ico" rel="icon" sizes="any"/>
-<link href="/assets/css/app.css?v=20260720-post-tune-1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260720-post-tune-1" rel="stylesheet"/>
-<link href="/assets/css/hotel-promotions.css?v=20260720-post-tune-1" rel="stylesheet"/>
-  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
+<link href="/assets/css/travel.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
+<link href="/assets/css/hotel-promotions.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
+  <link href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" rel="stylesheet" />
 </head>
 <body class="travel-home-body">
 <header class="topbar topbar--editorial topbar--travel" data-site-header="main">
@@ -1023,72 +1023,6 @@
       }
     }
 
-    function bindHomeSearchOverlay() {
-      const overlay = $('homeSearchOverlay');
-      const openBtn = $('homeSearchOpenBtn');
-      const form = $('homeFullscreenSearchForm');
-      const input = $('homeFullscreenSearchInput');
-      if (!overlay || !openBtn || !form || !input) return;
-
-      let closeTimer = null;
-
-      function submitSearch(queryValue) {
-        const query = normalizeText(queryValue);
-        if (!query) {
-          input.focus();
-          return;
-        }
-        window.location.href = `/search/?q=${encodeURIComponent(query)}`;
-      }
-
-      function openSearch() {
-        if (closeTimer) {
-          clearTimeout(closeTimer);
-          closeTimer = null;
-        }
-        overlay.hidden = false;
-        overlay.setAttribute('aria-hidden', 'false');
-        openBtn.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('home-search-is-open');
-        requestAnimationFrame(() => {
-          overlay.classList.add('is-open');
-          window.setTimeout(() => {
-            input.focus();
-            input.select();
-          }, 80);
-        });
-      }
-
-      function closeSearch() {
-        overlay.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        openBtn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('home-search-is-open');
-        closeTimer = window.setTimeout(() => {
-          if (!overlay.classList.contains('is-open')) overlay.hidden = true;
-        }, 260);
-      }
-
-      openBtn.addEventListener('click', openSearch);
-      overlay.addEventListener('click', (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        if (target.closest('[data-home-search-close]')) {
-          closeSearch();
-          return;
-        }
-        const queryBtn = target.closest('[data-home-search-query]');
-        if (queryBtn) submitSearch(queryBtn.dataset.homeSearchQuery || '');
-      });
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        submitSearch(input.value);
-      });
-      window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeSearch();
-      });
-    }
-
     function bindDestinationManager() {
       $('homeDestinations').addEventListener('click', (event) => {
         const addBtn = event.target.closest('[data-add-destination-country]');
@@ -1128,7 +1062,6 @@
       });
     }
 
-    bindHomeSearchOverlay();
     bindDestinationManager();
     loadHome().catch(() => {
       renderHotels();

@@ -335,7 +335,7 @@ export async function onRequestGet({ params, env, request }) {
   <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v2" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -447,56 +447,6 @@ export async function onRequestGet({ params, env, request }) {
     window.addEventListener('scroll', requestSidebarSync, { passive: true });
     window.addEventListener('resize', requestSidebarSync);
 
-    const searchOverlay = document.getElementById('homeSearchOverlay');
-    const searchOpenBtn = document.getElementById('homeSearchOpenBtn');
-    const searchInput = document.getElementById('homeFullscreenSearchInput');
-    const searchForm = document.getElementById('homeFullscreenSearchForm');
-    const searchCloseTargets = document.querySelectorAll('[data-home-search-close]');
-
-    const openSearch = () => {
-      if (!searchOverlay || !searchOpenBtn) return;
-      searchOverlay.hidden = false;
-      searchOverlay.setAttribute('aria-hidden', 'false');
-      searchOpenBtn.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('home-search-is-open');
-      window.requestAnimationFrame(() => searchOverlay.classList.add('is-open'));
-      window.setTimeout(() => searchInput?.focus(), 90);
-    };
-
-    const closeSearch = () => {
-      if (!searchOverlay || !searchOpenBtn) return;
-      searchOverlay.classList.remove('is-open');
-      searchOverlay.setAttribute('aria-hidden', 'true');
-      searchOpenBtn.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('home-search-is-open');
-      window.setTimeout(() => {
-        searchOverlay.hidden = true;
-      }, 180);
-    };
-
-    const submitSearch = (value) => {
-      const query = String(value || searchInput?.value || '').trim();
-      if (!query) {
-        searchInput?.focus();
-        return;
-      }
-      window.location.href = '/search/?q=' + encodeURIComponent(query);
-    };
-
-    searchOpenBtn?.addEventListener('click', openSearch);
-    searchCloseTargets.forEach((target) => target.addEventListener('click', closeSearch));
-    searchForm?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      submitSearch();
-    });
-    searchOverlay?.addEventListener('click', (event) => {
-      const queryBtn = event.target.closest('[data-home-search-query]');
-      if (queryBtn) submitSearch(queryBtn.dataset.homeSearchQuery || '');
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && searchOverlay?.classList.contains('is-open')) closeSearch();
-    });
-
     const deleteBtn = document.getElementById('deletePostBtn');
     if (!deleteBtn) return;
     deleteBtn.addEventListener('click', async () => {
@@ -520,7 +470,7 @@ export async function onRequestGet({ params, env, request }) {
   });
 </script>
   ${adsenseRuntimeScript}
-  <script src="/assets/js/admin-ui.js?v=20260716PostLogoutRemovedV1" defer></script>
+  <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
 </body>
 </html>`;
 
@@ -1233,7 +1183,7 @@ function renderNotFound(slug) {
   <meta name="theme-color" content="#2563EB" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260720-hotel-availability-cta-v3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
 </head>
 <body>
   ${topbar()}
@@ -1248,7 +1198,7 @@ function renderNotFound(slug) {
       </div>
     </section>
   </main>
-  <script defer src="/assets/js/site-header.js?v=20260721-main-header-unified-v1"></script>
+  <script defer src="/assets/js/site-header.js?v=20260721-main-header-clean-v2"></script>
 </body>
 </html>`;
 }

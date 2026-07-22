@@ -15,10 +15,10 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260721-ocean-rest-1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-post-tune-1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260721HeaderCleanupV2" />
   <link rel="stylesheet" href="/assets/css/travel-mood.css?v=20260721-ocean-rest-4" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"Travel by Mood","item":"/travel-by-mood/"},{"@type":"ListItem","position":3,"name":"바다를 보며 쉬는 여행","item":"/travel-by-mood/ocean-rest/"}]}</script>
-  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
+  <link href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" rel="stylesheet" />
 </head>
 <body class="travel-mood-body">
   <header class="topbar topbar--editorial topbar--travel" data-site-header="main">
@@ -174,42 +174,6 @@
     <div class="wtm-container">Wacky Travel · Travel by Mood · Ocean Rest Collection</div>
   </footer>
 
-  <script>
-    (() => {
-      const overlay = document.getElementById('homeSearchOverlay');
-      const openBtn = document.getElementById('homeSearchOpenBtn');
-      const form = document.getElementById('homeFullscreenSearchForm');
-      const input = document.getElementById('homeFullscreenSearchInput');
-      if (!overlay || !openBtn || !form || !input) return;
-      const openSearch = () => {
-        overlay.hidden = false;
-        overlay.setAttribute('aria-hidden', 'false');
-        openBtn.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('home-search-is-open');
-        requestAnimationFrame(() => { overlay.classList.add('is-open'); input.focus(); });
-      };
-      const closeSearch = () => {
-        overlay.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        openBtn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('home-search-is-open');
-        window.setTimeout(() => { overlay.hidden = true; openBtn.focus(); }, 180);
-      };
-      const submitSearch = (query) => {
-        const value = String(query || '').trim();
-        if (!value) { input.focus(); return; }
-        window.location.href = `/search/?q=${encodeURIComponent(value)}`;
-      };
-      openBtn.addEventListener('click', openSearch);
-      overlay.addEventListener('click', (event) => {
-        if (event.target.closest('[data-home-search-close]')) closeSearch();
-        const quick = event.target.closest('[data-home-search-query]');
-        if (quick) submitSearch(quick.dataset.homeSearchQuery || '');
-      });
-      form.addEventListener('submit', (event) => { event.preventDefault(); submitSearch(input.value); });
-      window.addEventListener('keydown', (event) => { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeSearch(); });
-    })();
-  </script>
   <script src="/assets/js/travel-mood-ocean-rest.js?v=20260721-ocean-rest-3" defer></script>
 </body>
 </html>

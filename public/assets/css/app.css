@@ -279,17 +279,7 @@ select:focus {
 /* =========================================================
    4. Header & Navigation
 ========================================================= */
-.nav__logout {
-  border: 0;
-  background: #111827;
-  color: #fff;
-  border-radius: 999px;
-  padding: 8px 12px;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-}
+
 .topbar--editorial {
   position: sticky;
   top: 0;
@@ -299,70 +289,15 @@ select:focus {
   border-bottom: 1px solid rgba(15,23,42,.06);
 }
 
-.topbar--travel {
-  border-bottom: 1px solid rgba(16, 42, 69, 0.08);
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: saturate(1.12) blur(18px);
-}
-.topbar--travel .topbar__inner {
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
-.topbar--travel .brand {
-  gap: 11px;
-  color: #102A45;
-}
-.topbar--travel .brand__mark {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(37, 99, 235, 0.16);
-  border-radius: 16px;
-  background: linear-gradient(135deg, #F8FBFF 0%, #DBEAFE 100%);
-  color: #174C78;
-  font-size: 0.78rem;
-  letter-spacing: -0.02em;
-}
-.topbar--travel .brand__text {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.035em;
-}
-.topbar--travel .topbar__actions--travel {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  flex: 0 0 auto;
-}
-.topbar--travel .topbar__admin,
-.topbar--travel .topbar__dashboard,
-.topbar--travel .topbar__logout {
-  min-height: 38px;
-  border-radius: 999px !important;
-  padding: 0 14px !important;
-  border: 1px solid rgba(16, 42, 69, 0.10) !important;
-  background: #fff !important;
-  color: #102A45 !important;
-  font: inherit;
-  font-size: 13px !important;
-  font-weight: 500!important;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.topbar--travel .topbar__logout {
-  background: #102A45 !important;
-  color: #fff !important;
-  border-color: #102A45 !important;
-}
-.topbar--travel .topbar__admin:hover,
-.topbar--travel .topbar__dashboard:hover,
-.topbar--travel .topbar__logout:hover {
-  transform: translateY(-1px);
-}
+
+
+
+
+
+
+
+
+
 .topbar-categories__list {
   display: flex;
   flex-wrap: wrap;
@@ -3570,10 +3505,7 @@ body.ww-wrapper {
     font-size: 10px;
     padding: 3px 7px;
   }
-  .nav__logout {
-    width: 100%;
-    justify-content: center;
-  }
+  
   .posts-home-hero {
     padding: 26px 20px;
     border-radius: 24px;
@@ -4465,14 +4397,11 @@ main,
 }
 
 .btn--brand,
-.topbar--travel .topbar__admin,
-.topbar--travel .topbar__dashboard,
-.topbar--travel .topbar__logout,
 .preview-affiliate-card__button,
 .post-affiliate-card__button,
 .preview-affiliate-cta__button,
 .post-affiliate-cta__button,
-.post-hero-cta {
+.post-hero-cta{
   background: linear-gradient(135deg, #174C78 0%, #2563EB 100%) !important;
   border-color: rgba(37, 99, 235, 0.28) !important;
   color: #ffffff !important;
@@ -4508,21 +4437,15 @@ select:focus {
   border-color: rgba(37, 99, 235, 0.16) !important;
 }
 
-.topbar--travel .brand,
-.topbar--travel .brand__text,
 .post-hero-title,
 .post-hero-eyebrow,
 .ww-hero-title,
 .ww-topic-title,
-.ww-big-btn {
+.ww-big-btn{
   color: #102A45 !important;
 }
 
-.topbar--travel .brand__mark {
-  background: linear-gradient(135deg, #174C78 0%, #2563EB 70%, #7DD3FC 100%) !important;
-  color: #ffffff !important;
-  border-color: rgba(37, 99, 235, 0.18) !important;
-}
+
 
 .nav__icon-btn:hover,
 .nav__icon-btn:focus-visible,
@@ -4595,71 +4518,23 @@ body.post-page-body.is-post-search-open {
   overflow: hidden;
 }
 
-body.post-page-body .topbar--travel {
-  border-bottom: 1px solid var(--post-minimal-line);
-  background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: saturate(1.05) blur(18px);
-}
 
-body.post-page-body .topbar--travel .brand,
-body.post-page-body .topbar--travel .brand__text {
-  color: var(--post-minimal-ink) !important;
-}
 
-body.post-page-body .topbar--travel .brand__mark {
-  border: 1px solid var(--post-minimal-line-strong) !important;
-  background: #fff !important;
-  color: var(--post-minimal-ink) !important;
-}
 
-body.post-page-body .topbar--travel .topbar__actions--travel {
-  margin-left: 0;
-}
 
-body.post-page-body .topbar--travel .topbar__admin,
-body.post-page-body .topbar--travel .topbar__dashboard {
-  border: 1px solid var(--post-minimal-line-strong) !important;
-  background: #fff !important;
-  color: var(--post-minimal-ink) !important;
-}
 
-body.post-page-body .topbar--travel .topbar__logout {
-  border-color: var(--post-minimal-ink) !important;
-  background: var(--post-minimal-ink) !important;
-  color: #fff !important;
-}
 
-body.post-page-body .topbar-search-button--post {
-  appearance: none;
-  margin-left: auto;
-  width: 42px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--post-minimal-line-strong);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--post-minimal-ink);
-  cursor: pointer;
-  transition: transform .18s ease, background .18s ease, border-color .18s ease;
-}
 
-body.post-page-body .topbar-search-button--post svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-}
 
-body.post-page-body .topbar-search-button--post:hover,
-body.post-page-body .topbar-search-button--post:focus-visible {
-  transform: translateY(-1px);
-  border-color: var(--post-minimal-ink);
-  outline: none;
-}
+
+
+
+
+
+
+
+
+
 
 .post-search-overlay[hidden] {
   display: none !important;
@@ -5076,29 +4951,13 @@ body.post-page-body .post-affiliate-card::before {
 }
 
 @media (max-width: 720px) {
-  body.post-page-body .topbar--travel .topbar__inner {
-    gap: 8px;
-  }
+  
 
-  body.post-page-body .topbar--travel .brand__text {
-    max-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  
 
-  body.post-page-body .topbar-search-button--post {
-    width: 40px;
-    height: 40px;
-  }
+  
 
-  body.post-page-body .topbar--travel .topbar__admin,
-  body.post-page-body .topbar--travel .topbar__dashboard,
-  body.post-page-body .topbar--travel .topbar__logout {
-    min-height: 36px;
-    padding-inline: 11px !important;
-    font-size: 12px !important;
-  }
+  
 
   .post-search-overlay__panel {
     padding: 14px;
@@ -6481,9 +6340,7 @@ button {
 }
 
 /* Travel topbar flat override */
-.topbar.topbar--editorial.topbar--travel {
-  border-bottom: 0 !important;
-}
+
 /* End travel topbar flat override */
 
 /* WACKYTRAVEL_GLOBAL_TYPOGRAPHY_REFINEMENT_V17 */
@@ -6866,100 +6723,27 @@ body.post-page-body a {
   color: inherit;
 }
 
-body.post-page-body .topbar--travel {
-  border-bottom: 0 !important;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: saturate(1.12) blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
 
-body.post-page-body .topbar--travel .topbar__inner {
-  min-height: auto;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  gap: 16px;
-}
 
-body.post-page-body .topbar--travel .brand {
-  gap: 11px;
-  color: #111 !important;
-  font-weight: 500;
-  letter-spacing: -0.035em;
-}
 
-body.post-page-body .topbar--travel .brand__mark {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #111 !important;
-  border-radius: 16px;
-  background: #111 !important;
-  color: #fff !important;
-  font-size: 0.78rem;
-  letter-spacing: -0.02em;
-}
 
-body.post-page-body .topbar--travel .brand__text {
-  color: #111 !important;
-  font-size: 1rem;
-  font-weight: 500;
-}
 
-body.post-page-body .topbar--travel .topbar__actions--travel {
-  margin-left: 0;
-  gap: 9px;
-}
 
-body.post-page-body .topbar--travel .topbar__admin,
-body.post-page-body .topbar--travel .topbar__dashboard {
-  min-height: 38px;
-  padding: 0 14px !important;
-  border: 1px solid var(--wt-line) !important;
-  border-radius: 999px !important;
-  background: #fff !important;
-  color: #1f1f1f !important;
-  font-size: 13px !important;
-  font-weight: 500!important;
-}
 
-body.post-page-body .topbar--travel .topbar__logout {
-  min-height: 38px;
-  padding: 0 14px !important;
-  border: 1px solid #111 !important;
-  border-radius: 999px !important;
-  background: #111 !important;
-  color: #fff !important;
-  font-size: 13px !important;
-  font-weight: 500!important;
-}
 
-body.post-page-body .topbar-search-button--post {
-  width: auto;
-  height: 38px;
-  min-height: 38px;
-  margin-left: auto;
-  gap: 7px;
-  padding: 0 14px;
-  border: 1px solid #111;
-  border-radius: 999px;
-  background: #111;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-}
 
-body.post-page-body .topbar-search-button--post svg {
-  width: 16px;
-  height: 16px;
-  stroke-width: 2;
-}
 
-body.post-page-body .topbar-search-button--post:hover,
-body.post-page-body .topbar-search-button--post:focus-visible {
-  border-color: #111;
-  background: #111;
-  color: #fff;
-}
+
+
+
+
+
+
+
+
+
+
+
 
 body.post-page-body .post-guide-page {
   width: min(var(--wt-container), calc(100% - 40px));
@@ -7798,24 +7582,13 @@ body.post-page-body .post-search-overlay__quick button {
 }
 
 @media (max-width: 760px) {
-  body.post-page-body .topbar--travel .topbar__inner {
-    min-height: auto;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
+  
 
-  body.post-page-body .topbar--travel .topbar__admin {
-    display: none;
-  }
+  
 
-  body.post-page-body .topbar-search-button--post {
-    min-width: 0;
-    padding: 0 13px;
-  }
+  
 
-  body.post-page-body .topbar-search-button--post svg {
-    display: none;
-  }
+  
 
   body.post-page-body .breadcrumb--post,
   body.post-page-body .breadcrumbs--post {

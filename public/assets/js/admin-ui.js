@@ -5,104 +5,15 @@
 
   window.__adminSessionPromise = statePromise;
 
-  function bindLogout(button) {
-    if (!button || button.dataset.logoutBound === 'true') return;
-    button.dataset.logoutBound = 'true';
-    button.addEventListener('click', async () => {
-      await fetch('/api/admin/logout', { method: 'POST', credentials: 'same-origin' }).catch(() => null);
-      location.href = '/';
-    });
-  }
-
-
-  function syncTravelLogoutButtons(isAdmin) {
-    document.querySelectorAll('.topbar--travel .topbar__inner').forEach((header) => {
-      if (document.body && document.body.classList.contains('post-page-body')) {
-        const existingLogout = header.querySelector('[data-admin-logout]');
-        if (existingLogout) existingLogout.remove();
-        return;
-      }
-      let actions = header.querySelector('.topbar__actions--travel');
-      if (!actions) {
-        actions = document.createElement('div');
-        actions.className = 'topbar__actions topbar__actions--travel';
-        header.appendChild(actions);
-      }
-
-      let logoutBtn = actions.querySelector('[data-admin-logout]');
-      if (!logoutBtn) {
-        logoutBtn = document.createElement('button');
-        logoutBtn.type = 'button';
-        logoutBtn.className = 'topbar__logout';
-        logoutBtn.dataset.adminLogout = 'true';
-        logoutBtn.textContent = '로그아웃';
-        actions.appendChild(logoutBtn);
-      }
-
-      bindLogout(logoutBtn);
-      logoutBtn.hidden = !isAdmin;
-    });
-  }
-
-  function syncLogoutButtons(isAdmin) {
-    const desktopNavs = document.querySelectorAll('.nav--utility.nav--right');
-    desktopNavs.forEach((nav) => {
-      const dashboardLink = nav.querySelector('[data-admin-link]');
-      let logoutBtn = nav.querySelector('.js-topbar-logout');
-
-      if (isAdmin) {
-        if (!logoutBtn) {
-          logoutBtn = document.createElement('button');
-          logoutBtn.type = 'button';
-          logoutBtn.className = 'nav__icon-btn nav__logout js-topbar-logout';
-          logoutBtn.setAttribute('aria-label', '로그아웃');
-          logoutBtn.innerHTML = '<svg class="nav__icon-svg nav__icon-svg--logout" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"></path><path d="M10 17l5-5-5-5"></path><path d="M15 12H4"></path></svg>';
-        }
-        bindLogout(logoutBtn);
-        logoutBtn.hidden = false;
-
-        if (dashboardLink && dashboardLink.parentNode === nav) {
-          dashboardLink.insertAdjacentElement('afterend', logoutBtn);
-        } else if (!nav.contains(logoutBtn)) {
-          nav.appendChild(logoutBtn);
-        }
-      } else if (logoutBtn) {
-        logoutBtn.remove();
-      }
-    });
-
-    const mobileSections = document.querySelectorAll('[data-mobile-admin-section]');
-    mobileSections.forEach((section) => {
-      const dashboardLink = section.querySelector('[data-admin-link]');
-      let logoutBtn = section.querySelector('.js-mobile-logout');
-
-      if (isAdmin) {
-        section.hidden = false;
-        if (!logoutBtn) {
-          logoutBtn = document.createElement('button');
-          logoutBtn.type = 'button';
-          logoutBtn.className = 'mobile-site-menu__text-link mobile-site-menu__text-link--button js-mobile-logout';
-          logoutBtn.setAttribute('aria-label', '로그아웃');
-          logoutBtn.textContent = '로그아웃';
-        }
-        bindLogout(logoutBtn);
-        logoutBtn.hidden = false;
-
-        if (dashboardLink && dashboardLink.parentNode === section) {
-          dashboardLink.insertAdjacentElement('afterend', logoutBtn);
-        } else if (!section.contains(logoutBtn)) {
-          section.appendChild(logoutBtn);
-        }
-      } else {
-        section.hidden = true;
-        if (logoutBtn) logoutBtn.remove();
-      }
-    });
+  function removeLegacyLogoutControls() {
+    document.querySelectorAll('[data-admin-logout], .js-topbar-logout, .js-mobile-logout, .topbar__logout, .nav__logout').forEach((el) => el.remove());
   }
 
   function applyAdminUi(state) {
     const isAdmin = Boolean(state && state.authenticated);
     document.documentElement.dataset.adminAuthenticated = isAdmin ? 'true' : 'false';
+
+    removeLegacyLogoutControls();
 
     document.querySelectorAll('[data-admin-link]').forEach((el) => {
       if (isAdmin) {
@@ -117,11 +28,6 @@
     document.querySelectorAll('[data-admin-only]').forEach((el) => {
       el.hidden = !isAdmin;
       el.setAttribute('aria-hidden', isAdmin ? 'false' : 'true');
-    });
-
-    document.querySelectorAll('[data-admin-logout]').forEach((el) => {
-      bindLogout(el);
-      el.hidden = !isAdmin;
     });
 
     document.querySelectorAll('[data-dashboard-link]').forEach((el) => {
@@ -167,8 +73,7 @@
       }
     });
 
-    syncLogoutButtons(isAdmin);
-    syncTravelLogoutButtons(isAdmin);
+    removeLegacyLogoutControls();
   }
 
   statePromise.then(applyAdminUi);

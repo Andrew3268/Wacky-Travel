@@ -672,18 +672,10 @@ body.wtpromo-page {
 
 
 /* Use the same editorial header as the rest of Wacky Travel. */
-body.wtpromo-page .topbar.topbar--editorial.topbar--travel {
-  position: sticky;
-  top: 0;
-  z-index: 80;
-}
-body.wtpromo-page .topbar--travel .topbar__inner.container {
-  width: min(var(--max), calc(100% - 40px));
-}
+
+
 @media (max-width: 720px) {
-  body.wtpromo-page .topbar--travel .topbar__inner.container {
-    width: min(var(--max), calc(100% - 32px));
-  }
+  
 }
 
 

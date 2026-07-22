@@ -57,7 +57,7 @@
   menu.addEventListener('click', (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;
-    const link = target.closest('[data-path], [data-admin-link], .js-mobile-logout');
+    const link = target.closest('[data-path], [data-admin-link]');
     if (link) closeMenu();
   });
 

@@ -14,10 +14,10 @@
   <meta property="og:description" content="호텔 예약 플랫폼에서 진행하는 프로모션과 주요 일정을 한곳에서 확인하세요." />
   <meta property="og:url" content="/hotel-promotions/" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260720-post-tune-1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260721HeaderCleanupV2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260618HeroBreadcrumbRefineV19" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-post-tune-1" />
-  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260720-post-tune-1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260721HeaderCleanupV2" />
+  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260721HeaderCleanupV2" />
 
   <script type="application/ld+json">
   {
@@ -29,7 +29,7 @@
     "isPartOf": {"@type": "WebSite", "name": "Wacky Travel", "url": "/"}
   }
   </script>
-  <link href="/assets/css/site-header.css?v=20260721-main-header-unified-v1" rel="stylesheet" />
+  <link href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" rel="stylesheet" />
 </head>
 <body class="wtpromo-page">
   <a class="wtpromo-skip-link" href="#main">본문으로 바로가기</a>
@@ -391,59 +391,8 @@
     </div>
   </footer>
 
-
   <script>
     (() => {
-      const openBtn = document.getElementById('homeSearchOpenBtn');
-      const overlay = document.getElementById('homeSearchOverlay');
-      const form = document.getElementById('homeFullscreenSearchForm');
-      const input = document.getElementById('homeFullscreenSearchInput');
-      let closeTimer = 0;
-
-      function submitSearch(value) {
-        const query = String(value || '').trim();
-        if (!query) { input?.focus(); return; }
-        window.location.href = `/search/?q=${encodeURIComponent(query)}`;
-      }
-
-      function openSearch() {
-        if (!overlay || !openBtn) return;
-        window.clearTimeout(closeTimer);
-        overlay.hidden = false;
-        requestAnimationFrame(() => overlay.classList.add('is-open'));
-        overlay.setAttribute('aria-hidden', 'false');
-        openBtn.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('home-search-is-open');
-        window.setTimeout(() => input?.focus(), 80);
-      }
-
-      function closeSearch() {
-        if (!overlay || !openBtn) return;
-        overlay.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        openBtn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('home-search-is-open');
-        closeTimer = window.setTimeout(() => {
-          if (!overlay.classList.contains('is-open')) overlay.hidden = true;
-        }, 260);
-      }
-
-      openBtn?.addEventListener('click', openSearch);
-      overlay?.addEventListener('click', (event) => {
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        if (target.closest('[data-home-search-close]')) { closeSearch(); return; }
-        const queryBtn = target.closest('[data-home-search-query]');
-        if (queryBtn) submitSearch(queryBtn.dataset.homeSearchQuery || '');
-      });
-      form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        submitSearch(input?.value);
-      });
-      window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && overlay?.classList.contains('is-open')) closeSearch();
-      });
-
       const cards = Array.from(document.querySelectorAll('#promotionGrid [data-promotion-platform]'));
 
       document.getElementById('platformTabs')?.addEventListener('click', (event) => {
@@ -478,5 +427,6 @@
       });
     })();
   </script>
+
 </body>
 </html>
