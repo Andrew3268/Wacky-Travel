@@ -18,7 +18,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260722-home-destination-skeleton-v1" rel="stylesheet"/>
 <link href="/assets/css/hotel-promotions.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
   <link href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" rel="stylesheet" />
 </head>
@@ -106,17 +106,17 @@
 </a>
 </div>
 <div aria-label="인기 도시 5개" class="home-mood-grid" id="homeDestinations">
-<article class="home-mood-card home-mood-card--featured">
-<img alt="후쿠오카 여행 대표 이미지" class="home-mood-card__image" decoding="async" fetchpriority="high" height="1000" loading="eager" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp" width="1400"/>
+<article class="home-mood-card home-mood-card--featured is-loading">
+<img alt="후쿠오카 여행 대표 이미지" class="home-mood-card__image" decoding="async" fetchpriority="high" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" height="1000" loading="eager" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp" width="1400"/>
 <a aria-label="후쿠오카 여행지 보기" class="home-mood-card__link" href="/destinations/fukuoka/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>JAPAN</span></div>
 <h3 class="home-mood-card__title">후쿠오카</h3>
-<p class="home-mood-card__desc">하카타와 텐진을 중심으로 맛집과 쇼핑, 호텔을 편하게 연결해 보세요.</p>
+<p class="home-mood-card__desc">하카타와 텐진을 중심으로 맛집과 쇼핑을 편하게 즐기는 도심 여행.</p>
 </a>
 </article>
-<article class="home-mood-card">
-<img alt="타이베이 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/taipei_index.webp" width="1000"/>
+<article class="home-mood-card is-loading">
+<img alt="타이베이 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/taipei_index.webp" width="1000"/>
 <a aria-label="타이베이 여행지 보기" class="home-mood-card__link" href="/destinations/taipei/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>TAIWAN</span></div>
@@ -124,8 +124,8 @@
 <p class="home-mood-card__desc">야시장과 골목, 편리한 교통을 따라 즐기는 도시 여행.</p>
 </a>
 </article>
-<article class="home-mood-card">
-<img alt="오사카 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/osaka_index.webp" width="1000"/>
+<article class="home-mood-card is-loading">
+<img alt="오사카 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/osaka_index.webp" width="1000"/>
 <a aria-label="오사카 여행지 보기" class="home-mood-card__link" href="/destinations/osaka/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>JAPAN</span></div>
@@ -133,8 +133,8 @@
 <p class="home-mood-card__desc">먹거리와 쇼핑, 근교 이동이 편한 활기찬 도시 여행.</p>
 </a>
 </article>
-<article class="home-mood-card">
-<img alt="나트랑 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/nharang_index.webp" width="1000"/>
+<article class="home-mood-card is-loading">
+<img alt="나트랑 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/nharang_index.webp" width="1000"/>
 <a aria-label="나트랑 여행지 보기" class="home-mood-card__link" href="/destinations/nha-trang/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>VIETNAM</span></div>
@@ -142,8 +142,8 @@
 <p class="home-mood-card__desc">리조트와 바다에서 느긋하게 보내는 휴양 여행.</p>
 </a>
 </article>
-<article class="home-mood-card">
-<img alt="다낭 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/danang_index.webp" width="1000"/>
+<article class="home-mood-card is-loading">
+<img alt="다낭 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/danang_index.webp" width="1000"/>
 <a aria-label="다낭 여행지 보기" class="home-mood-card__link" href="/destinations/da-nang/">
 <span aria-hidden="true" class="home-mood-card__arrow">→</span>
 <div class="home-mood-card__meta"><span>VIETNAM</span></div>
@@ -157,7 +157,7 @@
 <div class="section-heading section-heading--split">
 <div>
 <p class="eyebrow">Promotion Spotlight</p>
-<h2 id="featuredTitle">지금 확인할 프로모션</h2>
+<h2 id="featuredTitle">호텔 예약 전 확인할 혜택</h2>
 </div>
 <a aria-label="전체 호텔 프로모션 보기" class="text-link destinations-view-all-link" href="/hotel-promotions/">
 <span class="destinations-view-all-label">더 보기</span>
@@ -529,8 +529,8 @@
       const featuredClass = index === 0 ? ' home-mood-card--featured' : '';
       const loading = index === 0 ? 'eager' : 'lazy';
       const priority = index === 0 ? ' fetchpriority="high"' : '';
-      return `<article class="home-mood-card${featuredClass}">
-        <img class="home-mood-card__image" src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="${loading}" decoding="async"${priority} onerror="this.onerror=null;this.classList.add('is-image-error');" />
+      return `<article class="home-mood-card${featuredClass} is-loading">
+        <img class="home-mood-card__image" src="${escapeHtml(image)}" alt="${escapeHtml(imageAlt)}" loading="${loading}" decoding="async"${priority} onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded');" onerror="this.onerror=null;this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error');" />
         <a class="home-mood-card__link" href="${href}" aria-label="${escapeHtml(label)} 여행지 보기">
           <span class="home-mood-card__arrow" aria-hidden="true">→</span>
           <div class="home-mood-card__meta"><span>${escapeHtml(country.toUpperCase())}</span></div>
@@ -551,6 +551,9 @@
     }
 
     function getDestinationPreviewText(item, label) {
+      if (String(item.slug || '').trim() === 'fukuoka' || label === '후쿠오카') {
+        return '하카타와 텐진을 중심으로 맛집과 쇼핑을 편하게 즐기는 도심 여행.';
+      }
       const raw = normalizeText(item.card_description)
         || normalizeText(item.hero_summary)
         || normalizeText(item.meta_description)

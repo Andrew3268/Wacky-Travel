@@ -30987,3 +30987,55 @@ body.is-survey-destination-selection .travel-section--destinations-archive .sect
     line-height: 1.65;
   }
 }
+
+/* WACKYTRAVEL_HOME_DESTINATION_IMAGE_SKELETON_V1
+   Popular Destinations 이미지가 로드되기 전 카드 비율을 유지하면서
+   흰색/쿨그레이 기반의 스켈레톤 시머를 표시합니다. */
+body.travel-home-body .home-mood-card.is-loading {
+  background: #f2f2f0 !important;
+}
+
+body.travel-home-body .home-mood-card.is-loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    #eeeeeb 8%,
+    #f7f7f5 18%,
+    #eeeeeb 33%
+  );
+  background-size: 220% 100%;
+  animation: wtHomeDestinationSkeleton 1.35s ease-in-out infinite;
+}
+
+body.travel-home-body .home-mood-card.is-loading .home-mood-card__image {
+  opacity: 0 !important;
+}
+
+body.travel-home-body .home-mood-card.is-loading::after {
+  opacity: 0 !important;
+}
+
+body.travel-home-body .home-mood-card .home-mood-card__image {
+  opacity: 1;
+  transition: opacity .24s ease;
+}
+
+body.travel-home-body .home-mood-card.is-loading .home-mood-card__link {
+  visibility: hidden;
+}
+
+@keyframes wtHomeDestinationSkeleton {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.travel-home-body .home-mood-card.is-loading::before {
+    animation: none;
+  }
+}
+/* End WACKYTRAVEL_HOME_DESTINATION_IMAGE_SKELETON_V1 */
