@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260722-unified-hotel-section-heading-v1";
+const POST_RENDER_VERSION = "20260722-hotel-section-image-order-v2";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -335,7 +335,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-unified-hotel-section-heading-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-section-image-order-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
@@ -868,7 +868,7 @@ function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0,
   const blocks = renderMarkdownBlocks(visibleContentMd || "", {
     inlineImages,
     origin: SITE_ORIGIN,
-    hotelReviewSectionImageAnchor: options.isRecommendedHotelReviewPost === true,
+    hotelReviewSectionImageAnchor: options.useUnifiedHotelSectionHeading === true,
     hotelSectionHeadingClasses: options.useUnifiedHotelSectionHeading === true
   });
   if (!blocks.length) return "";
@@ -1185,7 +1185,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-unified-hotel-section-heading-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-section-image-order-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
 </head>

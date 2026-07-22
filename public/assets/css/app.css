@@ -8658,3 +8658,25 @@ body.post-page-body .post-body .post-content p.post-hotel-section-label.post-sec
   padding-top: 0 !important;
   border-top: 0 !important;
 }
+
+/* ==========================================
+   호텔 추천 콘텐츠 공통: 섹션 이미지와 호텔명 헤더 순서
+   - 구분선은 이미지 위
+   - 이미지 아래에 영문 호텔명 라벨과 한글 H2 표시
+========================================== */
+body.post-page-body .post-body .post-content figure.post-inline-image.post-inline-image--before-section-label {
+  margin-top: 50px !important;
+  margin-bottom: 18px !important;
+  padding-top: 34px !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+}
+
+body.post-page-body .post-body .post-content figure.post-inline-image.post-inline-image--before-section-label + p.post-hotel-section-label {
+  margin-top: 0 !important;
+}
+
+body.post-page-body .post-body .post-content p.post-hotel-section-label.post-section-label--after-image > strong.post-hotel-section-label__text {
+  padding-top: 0 !important;
+  border: 0 !important;
+  border-top: 0 !important;
+}
