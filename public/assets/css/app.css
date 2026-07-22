@@ -8595,3 +8595,66 @@ body.post-page-body--hotel-review-magazine .post-hotel-availability-btn:hover {
     width: 100%;
   }
 }
+
+
+/* ==========================================
+   호텔 추천 콘텐츠 공통 호텔명 헤더
+   - 추천 호텔 리뷰 / 여행 스타일별 호텔 추천에서 동일 클래스 구조 사용
+========================================== */
+body.post-page-body .post-body .post-content p.post-hotel-section-label {
+  margin: 50px 0 6px !important;
+}
+
+body.post-page-body .post-body .post-content p.post-hotel-section-label:first-child {
+  margin-top: 0 !important;
+}
+
+body.post-page-body .post-body .post-content p.post-hotel-section-label > strong.post-hotel-section-label__text {
+  display: block !important;
+  margin: 0 !important;
+  padding: 34px 0 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--hotel-review-line, #e5e5e5) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-soft, #999999) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: none !important;
+}
+
+body.post-page-body .post-body .post-content p.post-hotel-section-label:first-child > strong.post-hotel-section-label__text {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+body.post-page-body .post-body .post-content p.post-hotel-section-label + h2.post-hotel-section-title {
+  display: block !important;
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--hotel-review-ink, #111111) !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.03em !important;
+}
+
+body.post-page-body .post-body .post-content h2.post-hotel-section-title .post-h2-text {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+body.post-page-body .post-body .post-content p.post-hotel-section-label.post-section-label--after-image > strong.post-hotel-section-label__text {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
