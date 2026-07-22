@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 
 const SITE_ORIGIN = "https://wacky-travel.pages.dev";
-const POST_RENDER_VERSION = "20260722-hotel-section-image-order-v2";
+const POST_RENDER_VERSION = "20260722-top5-hero-breadcrumb-v3";
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -105,6 +105,14 @@ export async function onRequestGet({ params, env, request }) {
       const isRecommendedHotelReviewPost = isHotelIntroPost || categoryName === "추천 호텔 리뷰";
       const isTop5SeriesPost = contentType === "top5_series";
       const hotelHeroData = isHotelIntroPost ? await getHotelHeroData(env.TRAVEL_DB, row, slug) : null;
+      const destinationData = row.destination_slug
+        ? await env.TRAVEL_DB.prepare(`
+            SELECT slug, name, city
+            FROM destinations
+            WHERE slug = ?
+            LIMIT 1
+          `).bind(String(row.destination_slug).trim()).first()
+        : null;
 
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
@@ -162,7 +170,8 @@ export async function onRequestGet({ params, env, request }) {
         canonical,
         row,
         titleText,
-        hotelHeroData
+        hotelHeroData,
+        destinationData
       });
 
       const breadcrumbHtml = renderBreadcrumbs(breadcrumbItems);
@@ -300,7 +309,7 @@ export async function onRequestGet({ params, env, request }) {
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
         isHotelIntroPost ? "post-page-body--hotel-intro" : "",
         isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
-        isRecommendedHotelReviewPost ? "post-page-body--hotel-review-magazine" : ""
+        (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : ""
       ].filter(Boolean).join(" ");
 
       const html = `<!doctype html>
@@ -335,7 +344,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-section-image-order-v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-top5-hero-breadcrumb-v3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260720-hotel-availability-cta-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
@@ -1104,7 +1113,7 @@ function formatDate(value) {
   return d.toISOString().slice(0, 10);
 }
 
-function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row = {}, titleText = "", hotelHeroData = null } = {}) {
+function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row = {}, titleText = "", hotelHeroData = null, destinationData = null } = {}) {
   const homeUrl = `${origin}/`;
   const postUrl = canonical ? canonical.toString() : homeUrl;
   const hotel = hotelHeroData?.hotel || null;
@@ -1134,9 +1143,18 @@ function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row 
   }
 
   const fallbackItems = [{ name: "홈", url: homeUrl, href: "/" }];
+  const destinationSlug = String(destinationData?.slug || row.destination_slug || "").trim();
+  const destinationName = String(destinationData?.city || destinationData?.name || "").trim();
   const category = String(row.category || "").trim();
 
-  if (category) {
+  if (destinationSlug && destinationName) {
+    const destinationHref = `/destinations/${encodeURIComponent(destinationSlug)}/`;
+    fallbackItems.push({
+      name: destinationName,
+      url: `${origin}${destinationHref}`,
+      href: destinationHref
+    });
+  } else if (category) {
     fallbackItems.push({
       name: category,
       url: `${origin}/?category=${encodeURIComponent(category)}`,
@@ -1185,7 +1203,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-section-image-order-v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260722-top5-hero-breadcrumb-v3" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
 </head>

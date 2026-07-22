@@ -8680,3 +8680,10 @@ body.post-page-body .post-body .post-content p.post-hotel-section-label.post-sec
   border: 0 !important;
   border-top: 0 !important;
 }
+
+
+/* Post breadcrumb top spacing: all post types */
+body.post-page-body .breadcrumbs--post,
+body.post-page-body .breadcrumb--post {
+  padding-top: 0 !important;
+}
