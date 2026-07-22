@@ -1291,6 +1291,7 @@ function footer(siteName) {
       </div>
       <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
         <a href="/about/">소개</a>
+<a href="/privacy-policy/">개인정보 처리방침</a>
         <a href="/destinations/">여행지</a>
         <a href="/hotel-promotions/">호텔 프로모션</a>
         <a href="/search/">검색</a>

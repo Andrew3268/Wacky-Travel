@@ -4,6 +4,7 @@ const STATIC_PAGE_LASTMOD = "2026-07-11";
 const STATIC_ROUTES = [
   "/",
   "/about/",
+  "/privacy-policy/",
   "/destinations/",
   "/hotel-promotions/",
   "/search/",
