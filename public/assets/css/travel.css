@@ -31067,6 +31067,22 @@ body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container {
   margin-top: 18px !important;
 }
 
+/* Match the city landing-page horizontal grid on tablet screens. */
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.wt-guide-body.wt-city-travel-guide-page .breadcrumbs.container,
+  body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container,
+  body.wt-guide-body.wt-city-travel-guide-page main.travel-page .container,
+  body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container,
+  body.wt-guide-body.wt-city-travel-guide-page .footer.container,
+  body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-left: clamp(32px, 5vw, 56px);
+    padding-right: clamp(32px, 5vw, 56px);
+  }
+}
+
 /* A single hero treatment for both guide types and all cities. */
 body.wt-guide-body.wt-city-travel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero),
 body.wt-guide-body.wt-city-hotel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero) {
