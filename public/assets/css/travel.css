@@ -23286,45 +23286,6 @@ body.wt-location-survey-page--app .result-footer {
 
 /* WACKYTRAVEL_GUIDE_AND_SURVEY_SPACING_V27 */
 /* Guide pages: reduce excessive horizontal padding on tablet/mobile so content sections do not look squeezed. */
-@media (min-width: 768px) and (max-width: 1180px) {
-  body.wt-guide-body .breadcrumbs.container,
-body.wt-guide-body main.travel-page .container,
-body.wt-guide-body .wt-city-guide-hero.container,
-body.wt-guide-body .wt-city-guide-snapshot.container,
-body.wt-guide-body .wt-city-guide-survey-panel.container,
-body.wt-guide-body .wt-city-guide-layout.container,
-body.wt-guide-body .wt-city-guide-related.container,
-body.wt-guide-body .footer.container{
-    box-sizing: border-box !important;
-    width: calc(100% - 32px);
-    max-width: 1120px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  body.wt-guide-body .wt-city-guide-article {
-    max-width: 960px !important;
-  }
-
-  body.wt-guide-body .wt-city-guide-section {
-    padding-left: clamp(22px, 3vw, 32px) !important;
-    padding-right: clamp(22px, 3vw, 32px) !important;
-  }
-
-  body.wt-guide-body .wt-city-guide-snapshot__grid article,
-  body.wt-guide-body .wt-seo-toc__group,
-  body.wt-guide-body .wt-seo-toc__group--featured a,
-  body.wt-guide-body .wt-area-tabs,
-  body.wt-guide-body .wt-city-area-tabs,
-  body.wt-guide-body .wt-city-guide-related,
-  body.wt-guide-body .wt-cta-band {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-}
-
 @media (max-width: 767px) {
   body.wt-guide-body .breadcrumbs.container,
 body.wt-guide-body main.travel-page .container,
@@ -23448,51 +23409,6 @@ body.wt-location-survey-page--app #resultPage .wt-result-lead--simple {
    Hotel / travel guide pages: make mobile and tablet layouts use more of the screen width.
    This override is intentionally scoped to wt-guide-body so city index, purpose pages, and survey loading screens stay untouched.
 ========================================================= */
-@media (min-width: 768px) and (max-width: 1180px) {
-  body.wt-guide-body .breadcrumbs.container,
-body.wt-guide-body main.travel-page .container,
-body.wt-guide-body main.travel-page.wt-city-guide-page .container,
-body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .container,
-body.wt-guide-body main.travel-page.wt-city-travel-guide-page .container,
-body.wt-guide-body .wt-city-guide-hero.container,
-body.wt-guide-body .wt-city-guide-snapshot.container,
-body.wt-guide-body .wt-city-guide-survey-panel.container,
-body.wt-guide-body .wt-city-guide-layout.container,
-body.wt-guide-body .wt-city-guide-related.container,
-body.wt-guide-body .footer.container{
-    box-sizing: border-box ;
-    width: 100% ;
-    max-width: 1120px ;
-    margin-left: auto ;
-    margin-right: auto ;
-    padding-left: 16px ;
-    padding-right: 16px ;
-  }
-
-  body.wt-guide-body .wt-city-guide-article {
-    width: 100% ;
-    max-width: 100% ;
-    margin-left: 0 ;
-    margin-right: 0 ;
-  }
-
-  body.wt-guide-body .wt-city-guide-section {
-    padding: 24px 20px !important;
-  }
-
-  body.wt-guide-body .wt-city-guide-snapshot__grid article,
-  body.wt-guide-body .wt-seo-toc__group,
-  body.wt-guide-body .wt-seo-toc__group--featured a,
-  body.wt-guide-body .wt-area-tabs,
-  body.wt-guide-body .wt-city-area-tabs,
-  body.wt-guide-body .wt-city-guide-survey-panel__link,
-  body.wt-guide-body .wt-city-guide-related,
-  body.wt-guide-body .wt-cta-band {
-    padding-left: 18px ;
-    padding-right: 18px ;
-  }
-}
-
 @media (max-width: 767px) {
   body.wt-guide-body .breadcrumbs.container,
 body.wt-guide-body main.travel-page .container,
@@ -31034,7 +30950,7 @@ body.travel-home-body .home-mood-card.is-loading .home-mood-card__link {
 }
 /* End WACKYTRAVEL_HOME_DESTINATION_IMAGE_SKELETON_V1 */
 
-/* WACKYTRAVEL_ALL_CITY_GUIDES_UNIFIED_BW_V27
+/* WACKYTRAVEL_ALL_CITY_GUIDES_UNIFIED_BW_V31
    - every /travel-guide/ and /hotel-guide/ shares one layout grid
    - horizontal spacing matches /destinations/{city}/ pages
    - one black-and-white minimal component system across all cities
@@ -31067,7 +30983,7 @@ body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container {
   margin-top: 18px !important;
 }
 
-/* Match the city landing-page horizontal grid on tablet screens. */
+/* Match the breadcrumbs/container horizontal grid on tablet screens. */
 @media (min-width: 768px) and (max-width: 1180px) {
   body.wt-guide-body.wt-city-travel-guide-page .breadcrumbs.container,
   body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container,
@@ -31078,8 +30994,8 @@ body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container {
     width: 100%;
     max-width: var(--container);
     margin-inline: auto;
-    padding-left: clamp(32px, 5vw, 56px);
-    padding-right: clamp(32px, 5vw, 56px);
+    padding-left: clamp(48px, 7vw, 76px);
+    padding-right: clamp(48px, 7vw, 76px);
   }
 }
 
@@ -31221,7 +31137,7 @@ body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-button--primary, 
     padding: 34px 0 !important;
   }
 }
-/* End WACKYTRAVEL_ALL_CITY_GUIDES_UNIFIED_BW_V27 */
+/* End WACKYTRAVEL_ALL_CITY_GUIDES_UNIFIED_BW_V31 */
 
 /* WACKYTRAVEL_GUIDE_COMPONENTS_BW_REFINEMENT_V28
    Removes the article child width cap and aligns the survey / related components
