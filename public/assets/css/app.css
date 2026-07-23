@@ -8353,7 +8353,7 @@ body.post-page-body--hotel-review-magazine .post-guide-page{
 body.post-page-body .post-magazine-hero,
 body.post-page-body .post-shell--guide-style .post-hero{
   box-sizing: border-box;
-  width: min(var(--post-reading-width), 100%);
+  width: 100%;
   max-width: none;
   margin-inline: auto;
 }

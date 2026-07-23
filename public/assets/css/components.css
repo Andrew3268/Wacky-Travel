@@ -1522,8 +1522,8 @@ body.post-page-body .breadcrumbs.container.breadcrumbs--post-page .breadcrumbs__
   body.post-page-body .breadcrumbs.container.breadcrumbs--post-page {
     width: 100%;
     max-width: var(--container);
-    padding-left: clamp(32px, 5vw, 56px);
-    padding-right: clamp(32px, 5vw, 56px);
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
