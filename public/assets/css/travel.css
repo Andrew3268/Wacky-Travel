@@ -15442,7 +15442,7 @@ main.travel-page .wt-city-guide-related__card p {
 
 .travel-section--destinations-archive .destination-chip-list {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px !important;
   min-width: 0 !important;
 }
@@ -19909,7 +19909,7 @@ body.travel-city-body--fukuoka .destination-guide-links {
 
 body.travel-city-body--fukuoka .destination-guide-links--static-fukuoka {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 body.travel-city-body--fukuoka .destination-guide-link {
@@ -20478,7 +20478,7 @@ body.travel-city-body .destination-guide-links {
 
 body.travel-city-body .destination-guide-links {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 body.travel-city-body .destination-guide-link {
@@ -24696,7 +24696,7 @@ body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc_
 }
 
 body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
@@ -24934,7 +24934,7 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 }
 
 body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 0 !important;
   border-top: 0 !important;
 }
@@ -25096,7 +25096,8 @@ body.wt-guide-body .wt-seo-toc__group--featured {
 
   body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns,
   body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns {
-    }
+    grid-template-columns: 1fr;
+  }
 
   body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group,
   body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__columns .wt-seo-toc__group + .wt-seo-toc__group {
@@ -26943,7 +26944,7 @@ body.travel-archive-body .travel-card-grid--hotels {
 
 @media (min-width: 768px) and (max-width: 1100px) {
   body.travel-archive-body .travel-card-grid--hotels {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -27661,7 +27662,7 @@ body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p {
 
 @media (max-width: 980px) {
   body.travel-purpose-body .wt-reason-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     border-bottom: 0 !important;
   }
   body.travel-purpose-body .wt-reason-grid .wt-reason-card {
@@ -29392,7 +29393,7 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices > .contain
 body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-grid {
   counter-reset: firsttrip-booking-check;
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 !important;
   border-top: 1px solid #111 !important;
   border-bottom: 1px solid #111 !important;
@@ -29698,7 +29699,7 @@ body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth
 body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
   counter-reset: firsttrip-booking-check !important;
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 !important;
   margin-top: 0 !important;
   border-top: 1px solid #111 !important;
@@ -29862,7 +29863,7 @@ body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice
 }
 body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 !important;
   overflow: hidden !important;
   background: #fff !important;
@@ -30036,7 +30037,7 @@ body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice
 body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-grid {
   counter-reset: firsttrip-booking-check;
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 !important;
   border-top: 1px solid #111 !important;
   border-bottom: 1px solid #111 !important;
@@ -31371,7 +31372,7 @@ body.wt-guide-body main.travel-page .wt-city-guide-related.container > div:first
 body.wt-guide-body main.travel-page .wt-city-guide-related__links,
 body.wt-guide-body main.travel-page .wt-city-guide-related__grid {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch !important;
   gap: 12px !important;
   margin: 0 !important;
@@ -31677,3 +31678,61 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
     transition: none;
   }
 }
+
+
+/* 20260723 Mobile guide TOC progressive disclosure */
+.wt-seo-toc-toggle {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .wt-seo-toc__item--mobile-hidden,
+  .wt-seo-toc__group--mobile-empty {
+    display: none;
+  }
+
+  .wt-seo-toc-toggle {
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 14px 18px;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    background: #fff;
+    color: #111;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+
+  .wt-seo-toc-toggle::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 160ms ease;
+  }
+
+  .wt-seo-toc-toggle[aria-expanded='true']::after {
+    transform: translateY(2px) rotate(225deg);
+  }
+
+  .wt-seo-toc-toggle:hover,
+  .wt-seo-toc-toggle:focus-visible {
+    background: #f6f6f4;
+  }
+}
+/* End mobile guide TOC progressive disclosure */
