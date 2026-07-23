@@ -345,7 +345,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-shared-mobile-style-v4" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostHeaderUnifiedV2" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260723BreadcrumbCanonicalV1" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260722-mobile-h1-25-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
   <style>
@@ -1184,7 +1184,7 @@ function renderBreadcrumbs(items) {
     .join("");
 
   return `
-  <nav class="breadcrumbs container breadcrumbs--post" aria-label="현재 위치">
+  <nav class="breadcrumbs container" aria-label="현재 위치">
     <ol>
       ${list}
     </ol>
@@ -1205,7 +1205,7 @@ function renderNotFound(slug) {
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-shared-mobile-style-v4" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260716PostLayoutUnifiedV1" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260723BreadcrumbCanonicalV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
 </head>
 <body>

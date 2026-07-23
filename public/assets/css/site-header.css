@@ -3,11 +3,11 @@
    Source of truth: public/index.html
 ========================================================= */
 
-body.home-search-is-open {
+body.home-search-is-open{
   overflow: hidden;
 }
 
-html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel {
+html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel{
   position: sticky;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@ html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel {
   font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 
-html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .topbar__inner.container {
+html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .topbar__inner.container{
   position: relative;
   width: 100%;
   max-width: var(--container, 1200px);
@@ -45,7 +45,7 @@ html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .top
   box-sizing: border-box;
 }
 
-html body [data-site-header="main"] .brand {
+html body [data-site-header="main"] .brand{
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -66,11 +66,11 @@ html body [data-site-header="main"] .brand {
   white-space: nowrap;
 }
 
-html body [data-site-header="main"] .brand__mark {
+html body [data-site-header="main"] .brand__mark{
   display: none;
 }
 
-html body [data-site-header="main"] .brand__text {
+html body [data-site-header="main"] .brand__text{
   display: inline;
   margin: 0;
   padding: 0;
@@ -84,7 +84,7 @@ html body [data-site-header="main"] .brand__text {
 
 html body [data-site-header="main"] .topbar-search-button,
 html body [data-site-header="main"] .topbar-search-button:hover,
-html body [data-site-header="main"] .topbar-search-button:focus-visible {
+html body [data-site-header="main"] .topbar-search-button:focus-visible{
   width: 42px;
   height: 42px;
   min-width: 42px;
@@ -108,19 +108,19 @@ html body [data-site-header="main"] .topbar-search-button:focus-visible {
   -webkit-tap-highlight-color: transparent;
 }
 
-html body [data-site-header="main"] .topbar-search-button {
+html body [data-site-header="main"] .topbar-search-button{
   transition: transform .18s ease, background-color .18s ease, color .18s ease;
 }
 
 html body [data-site-header="main"] .topbar-search-button:hover,
-html body [data-site-header="main"] .topbar-search-button:focus-visible {
+html body [data-site-header="main"] .topbar-search-button:focus-visible{
   background: #000000;
   color: #ffffff;
   transform: translateY(-1px);
   outline: none;
 }
 
-html body [data-site-header="main"] .topbar-search-button svg {
+html body [data-site-header="main"] .topbar-search-button svg{
   width: 19px;
   height: 19px;
   display: block;
@@ -133,7 +133,7 @@ html body [data-site-header="main"] .topbar-search-button svg {
 }
 
 /* Fullscreen search: same structure and visual rules as the main index. */
-html body .home-search-overlay[data-site-search-overlay="main"] {
+html body .home-search-overlay[data-site-search-overlay="main"]{
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -146,18 +146,18 @@ html body .home-search-overlay[data-site-search-overlay="main"] {
   transition: opacity .24s ease, visibility 0s linear .24s;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"].is-open {
+html body .home-search-overlay[data-site-search-overlay="main"].is-open{
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transition: opacity .24s ease, visibility 0s;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"][hidden] {
+html body .home-search-overlay[data-site-search-overlay="main"][hidden]{
   display: none;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__backdrop {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__backdrop{
   position: absolute;
   inset: 0;
   background: #ffffff;
@@ -165,7 +165,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   -webkit-backdrop-filter: none;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__panel {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__panel{
   position: relative;
   z-index: 1;
   width: 100%;
@@ -184,11 +184,11 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"].is-open .home-search-overlay__panel {
+html body .home-search-overlay[data-site-search-overlay="main"].is-open .home-search-overlay__panel{
   transform: translateY(0);
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__bar {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__bar{
   width: min(1080px, 100%);
   margin: 0 auto;
   display: grid;
@@ -197,7 +197,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   gap: 16px;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close{
   width: 46px;
   height: 46px;
   min-width: 46px;
@@ -215,7 +215,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
 }
 
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close svg,
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__icon svg {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__icon svg{
   width: 20px;
   height: 20px;
   display: block;
@@ -226,7 +226,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   stroke-linejoin: round;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form{
   min-height: 58px;
   margin: 0;
   padding: 0 0 0 18px;
@@ -240,7 +240,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   box-shadow: none;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__icon {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__icon{
   width: 22px;
   height: 22px;
   display: inline-flex;
@@ -249,7 +249,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   color: #000000;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input{
   width: 100%;
   min-width: 0;
   height: 56px;
@@ -270,12 +270,12 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   appearance: none;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input::placeholder {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input::placeholder{
   color: rgba(0, 0, 0, .44);
   opacity: 1;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit{
   width: 86px;
   height: 58px;
   margin: -1px -1px -1px 0;
@@ -295,20 +295,20 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close:hover,
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close:focus-visible,
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit:hover,
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit:focus-visible {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit:focus-visible{
   transform: none;
   outline: none;
   box-shadow: none;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content{
   width: min(1080px, 100%);
   margin: clamp(72px, 11vh, 128px) auto 0;
   padding: 0;
   text-align: left;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__eyebrow {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__eyebrow{
   margin: 0 0 18px;
   color: #000000;
   font-size: 13px;
@@ -318,7 +318,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   text-transform: none;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content h2 {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content h2{
   max-width: 760px;
   margin: 0;
   color: #000000;
@@ -329,7 +329,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   text-align: left;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__desc {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__desc{
   max-width: 620px;
   margin: 22px 0 0;
   color: rgba(0, 0, 0, .62);
@@ -338,7 +338,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   letter-spacing: -.035em;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick{
   width: min(680px, 100%);
   margin: 34px 0 0;
   padding: 0;
@@ -348,7 +348,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   gap: 10px;
 }
 
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button{
   min-height: 40px;
   margin: 0;
   padding: 0 16px;
@@ -365,7 +365,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
 }
 
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button:hover,
-html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button:focus-visible {
+html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button:focus-visible{
   border-color: #000000;
   background: #000000;
   color: #ffffff;
@@ -373,7 +373,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
 }
 
 @media (max-width: 767px) {
-  html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .topbar__inner.container {
+  html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .topbar__inner.container{
     width: 100%;
     max-width: none;
     min-height: 70px;
@@ -382,79 +382,79 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   }
 
   html body [data-site-header="main"] .brand,
-  html body [data-site-header="main"] .brand__text {
+html body [data-site-header="main"] .brand__text{
     font-size: 15px;
     letter-spacing: -.035em;
   }
 
   html body [data-site-header="main"] .topbar-search-button,
-  html body [data-site-header="main"] .topbar-search-button:hover,
-  html body [data-site-header="main"] .topbar-search-button:focus-visible {
+html body [data-site-header="main"] .topbar-search-button:hover,
+html body [data-site-header="main"] .topbar-search-button:focus-visible{
     border-radius: 0;
     transform: none;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__panel {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__panel{
     padding: max(18px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__bar {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__bar{
     grid-template-columns: 42px minmax(0, 1fr);
     gap: 10px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close{
     width: 42px;
     height: 42px;
     min-width: 42px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form{
     min-height: 52px;
     padding-left: 13px;
     grid-template-columns: 19px minmax(0, 1fr) 64px;
     gap: 8px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input{
     height: 50px;
     font-size: 16px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__submit{
     width: 64px;
     height: 52px;
     font-size: 13px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content{
     margin-top: 64px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__eyebrow {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__eyebrow{
     margin-bottom: 14px;
     font-size: 12px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content h2 {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content h2{
     max-width: 330px;
     font-size: clamp(36px, 11vw, 44px);
     line-height: 1.1;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__desc {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__desc{
     max-width: 330px;
     margin-top: 18px;
     font-size: 14px;
     line-height: 1.68;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick{
     margin-top: 28px;
     gap: 8px;
   }
 
-  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__quick button{
     min-height: 36px;
     padding: 0 13px;
     font-size: 12px;
