@@ -346,7 +346,7 @@ export async function onRequestGet({ params, env, request }) {
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260722-hotel-shared-mobile-style-v4" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723BreadcrumbCanonicalV1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260722-mobile-h1-25-v3" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260723-tablet-padding-cleanup" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260721-main-header-clean-v2" />
   <style>
     .post-body,
