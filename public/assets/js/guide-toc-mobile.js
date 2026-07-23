@@ -2,14 +2,14 @@
   'use strict';
 
   const MOBILE_QUERY = window.matchMedia('(max-width: 767px)');
-  const INITIAL_VISIBLE_ITEMS = 5;
 
   document.querySelectorAll('.wt-seo-toc-section[data-guide-toc]').forEach(function (section, sectionIndex) {
     const nav = section.querySelector('.wt-seo-toc');
     if (!nav) return;
 
     const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
-    if (links.length <= INITIAL_VISIBLE_ITEMS) return;
+    const initialVisibleItems = Math.ceil(links.length / 2);
+    if (initialVisibleItems >= links.length) return;
 
     const toggle = document.createElement('button');
     const navId = nav.id || 'wtSeoTocNav' + (sectionIndex + 1);
@@ -36,7 +36,7 @@
     function render() {
       const collapsedOnMobile = MOBILE_QUERY.matches && !expanded;
       links.forEach(function (link, index) {
-        link.classList.toggle('wt-seo-toc__item--mobile-hidden', collapsedOnMobile && index >= INITIAL_VISIBLE_ITEMS);
+        link.classList.toggle('wt-seo-toc__item--mobile-hidden', collapsedOnMobile && index >= initialVisibleItems);
       });
       updateGroups();
       toggle.hidden = !MOBILE_QUERY.matches;
