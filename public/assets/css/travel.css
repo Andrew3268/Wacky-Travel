@@ -5162,7 +5162,7 @@ body::after {
 }
 
 .wt-city-guide-subheading {
-  margin: 30px 0 12px;
+  margin: 50px 0 12px;
   color: #173b61;
   font-size: clamp(1.14rem, 2vw, 1.42rem);
   line-height: 1.36;
@@ -5217,7 +5217,7 @@ body::after {
 
 .wt-city-guide-list li {
   position: relative;
-  margin: 8px 0;
+  margin: 0;
   padding-left: 22px;
   color: #4e6074;
   line-height: 1.75;
@@ -5434,11 +5434,12 @@ body::after {
 }
 
 .wt-city-guide-survey-panel {
-  margin-top: clamp(24px, 4vw, 42px);
+  margin-top: 0;
 }
 
 .wt-city-guide-survey-panel__link {
   display: flex;
+  margin: 0;
   align-items: center;
   justify-content: space-between;
   gap: clamp(18px, 4vw, 42px);
@@ -13208,7 +13209,6 @@ margin-right: -24px;
   }
 
   .travel-home .wthome-search {
-    margin-top: 30px !important;
   }
 
   .travel-home .wthome-hero__hint {
@@ -18559,7 +18559,6 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list {
   .travel-home .wthome-hero__actions {
     width: 100% !important;
     gap: 10px !important;
-    margin-top: 30px !important;
   }
 
   .travel-home .wthome-hero__button {
@@ -18930,7 +18929,6 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__actions {
     width: 100% !important;
-    margin-top: 30px !important;
     gap: 10px !important;
   }
 
@@ -25204,7 +25202,7 @@ body.wt-guide-body .breadcrumbs.container + main.travel-page.wt-city-guide-page 
 body.wt-guide-body main.travel-page.wt-city-guide-page > .wt-city-guide-hero.container:first-child,
 body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .wt-city-guide-hero.container:first-child,
 body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .wt-city-guide-hero.container:first-child {
-  padding-top: 15px !important;
+  padding-top: 30px;
   padding-bottom: clamp(56px, 7vw, 92px) !important;
   background: #ffffff !important;
 }
@@ -25303,7 +25301,7 @@ body.wt-guide-body .wt-city-guide-hero__inner .wt-hero-actions {
   body.wt-guide-body main.travel-page.wt-city-guide-page > .wt-city-guide-hero.container:first-child,
   body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .wt-city-guide-hero.container:first-child,
   body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .wt-city-guide-hero.container:first-child {
-    padding-top: 15px !important;
+    padding-top: 30px;
     padding-bottom: 52px !important;
   }
 
@@ -31078,7 +31076,7 @@ body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container {
 /* A single hero treatment for both guide types and all cities. */
 body.wt-guide-body.wt-city-travel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero),
 body.wt-guide-body.wt-city-hotel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero) {
-  padding-top: clamp(44px, 7vw, 88px) !important;
+  padding-top: 30px !important;
   padding-bottom: clamp(38px, 6vw, 72px) !important;
   border-bottom: 1px solid var(--wt-guide-line) !important;
   background: #fff !important;
@@ -31213,7 +31211,7 @@ body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-button--primary, 
 
   body.wt-guide-body.wt-city-travel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero),
   body.wt-guide-body.wt-city-hotel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero) {
-    padding-top: 38px !important;
+    padding-top: 30px;
     padding-bottom: 34px !important;
   }
 
@@ -31245,7 +31243,6 @@ body.wt-guide-body.wt-city-hotel-guide-page .wt-city-guide-survey-panel__link {
   align-items: center !important;
   gap: clamp(22px, 4vw, 54px) !important;
   width: 100% !important;
-  margin: clamp(36px, 5vw, 66px) 0 0 !important;
   padding: clamp(26px, 3.7vw, 46px) !important;
   border: 1px solid #111 !important;
   border-radius: 0 !important;
@@ -31471,7 +31468,6 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
   body.wt-guide-body.wt-city-hotel-guide-page .wt-city-guide-survey-panel__link {
     grid-template-columns: 1fr !important;
     gap: 22px !important;
-    margin-top: 30px !important;
     padding: 24px 20px !important;
   }
 
@@ -31500,3 +31496,5 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
   }
 }
 /* End WACKYTRAVEL_GUIDE_COMPONENTS_BW_REFINEMENT_V28 */
+
+
