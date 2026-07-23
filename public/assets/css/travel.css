@@ -31607,6 +31607,7 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
 .wt-toc-floating-panel__nav {
   display: grid;
   max-height: calc(min(620px, 100vh - 120px) - 76px);
+  padding-bottom: 12px;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -31632,6 +31633,11 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
   background: #111;
   color: #fff;
   outline: none;
+}
+
+.wt-toc-floating-panel__nav a:hover *,
+.wt-toc-floating-panel__nav a:focus-visible * {
+  color: inherit;
 }
 
 @media (min-width: 761px) {
@@ -31666,7 +31672,7 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
 
   .wt-toc-floating-panel__nav {
     max-height: calc(min(78vh, 680px) - 72px);
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
   }
 
   .wt-toc-floating-panel__nav a {
