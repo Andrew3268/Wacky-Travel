@@ -31179,19 +31179,6 @@ body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-button--primary, 
   box-shadow: none !important;
 }
 
-@media (min-width: 768px) and (max-width: 1180px) {
-  body.wt-guide-body.wt-city-travel-guide-page .breadcrumbs.container,
-  body.wt-guide-body.wt-city-hotel-guide-page .breadcrumbs.container,
-  body.wt-guide-body.wt-city-travel-guide-page main.travel-page .container,
-  body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container,
-  body.wt-guide-body.wt-city-travel-guide-page .footer.container,
-  body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
-    width: 100%;
-    max-width: var(--container);
-    padding-inline: clamp(32px, 5vw, 56px);
-  }
-}
-
 @media (max-width: 767px) {
   body.wt-guide-body.wt-city-travel-guide-page main.travel-page .container,
   body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container,
