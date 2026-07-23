@@ -1452,3 +1452,84 @@ b{
   }
 }
 
+/* =========================================================
+   POST BREADCRUMBS — isolated from post layout rules
+   Uses the same visual metrics as the canonical breadcrumbs.
+========================================================= */
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page {
+  box-sizing: border-box;
+  width: min(calc(100% - 32px), var(--container));
+  max-width: var(--container);
+  margin: 18px auto 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.52);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page > ol {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page a,
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page span[aria-current="page"],
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page .breadcrumbs__separator {
+  color: rgba(0, 0, 0, 0.52);
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page a {
+  padding: 0;
+  text-decoration: none;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page a:hover {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page span[aria-current="page"] {
+  overflow: hidden;
+  max-width: min(62vw, 680px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.post-page-body .breadcrumbs.container.breadcrumbs--post-page .breadcrumbs__separator {
+  display: inline-block;
+  margin: 0 8px;
+}
+
+@media (min-width: 768px) and (max-width: 1180px) {
+  body.post-page-body .breadcrumbs.container.breadcrumbs--post-page {
+    width: 100%;
+    max-width: var(--container);
+    padding-left: clamp(32px, 5vw, 56px);
+    padding-right: clamp(32px, 5vw, 56px);
+  }
+}
+
+@media (max-width: 767px) {
+  body.post-page-body .breadcrumbs.container.breadcrumbs--post-page {
+    display: none;
+  }
+}
+
