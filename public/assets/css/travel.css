@@ -22665,11 +22665,6 @@ body.wt-guide-body .destination-guide-link::after {
   color: #000 !important;
 }
 
-body.wt-guide-body .wt-city-guide-reference,
-body.wt-guide-body a:not(.brand):not(.wt-btn):not(.wt-city-guide-button):not(.wt-city-button):not(.wt-city-guide-survey-panel__link):not(.destination-guide-link):not(.wt-hotel-link) {
-  color: #000 !important;
-}
-
 body.wt-guide-body .wt-city-guide-reference {
   border: 1px solid #000 !important;
   border-radius: 0 !important;
@@ -31648,10 +31643,6 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
 }
 
 @media (max-width: 760px) {
-  body.wt-toc-panel-open {
-    overflow: hidden;
-  }
-
   .wt-toc-floating-panel {
     right: 0;
     bottom: 0;

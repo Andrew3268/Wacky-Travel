@@ -12,8 +12,6 @@
   const panelId = 'wtFloatingTocPanel';
   const titleId = 'wtFloatingTocTitle';
   let lastFocusedElement = null;
-  let lockedScrollY = 0;
-  let bodyScrollLock = null;
 
   const backdrop = document.createElement('div');
   backdrop.className = 'wt-toc-floating-backdrop';
@@ -63,41 +61,6 @@
     return window.matchMedia('(max-width: 760px)').matches;
   }
 
-  function lockMobileScroll() {
-    if (!isMobileViewport() || bodyScrollLock) return;
-
-    lockedScrollY = window.scrollY || window.pageYOffset || 0;
-    bodyScrollLock = {
-      position: document.body.style.position,
-      top: document.body.style.top,
-      left: document.body.style.left,
-      right: document.body.style.right,
-      width: document.body.style.width,
-      overflow: document.body.style.overflow
-    };
-
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${lockedScrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function unlockMobileScroll() {
-    if (!bodyScrollLock) return;
-
-    const previous = bodyScrollLock;
-    bodyScrollLock = null;
-    document.body.style.position = previous.position;
-    document.body.style.top = previous.top;
-    document.body.style.left = previous.left;
-    document.body.style.right = previous.right;
-    document.body.style.width = previous.width;
-    document.body.style.overflow = previous.overflow;
-    window.scrollTo(0, lockedScrollY);
-  }
-
   function getThreshold() {
     const extraOffset = Math.min(280, Math.max(160, window.innerHeight * 0.22));
     return toc.offsetTop + toc.offsetHeight + extraOffset;
@@ -113,7 +76,6 @@
 
   function openPanel() {
     lastFocusedElement = document.activeElement;
-    lockMobileScroll();
     panel.hidden = false;
     backdrop.hidden = false;
     requestAnimationFrame(function () {
@@ -122,7 +84,6 @@
     });
     button.classList.add('is-open');
     button.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('wt-toc-panel-open');
     if (!isMobileViewport()) {
       closeButton.focus({ preventScroll: true });
     }
@@ -134,9 +95,6 @@
     backdrop.classList.remove('is-open');
     button.classList.remove('is-open');
     button.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('wt-toc-panel-open');
-    unlockMobileScroll();
-
     window.setTimeout(function () {
       panel.hidden = true;
       backdrop.hidden = true;
