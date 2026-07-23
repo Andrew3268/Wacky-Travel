@@ -6782,7 +6782,7 @@ body.post-page-body .post-shell--guide-style .post-side{
 
 body.post-page-body .post-magazine-hero,
 body.post-page-body .post-shell--guide-style .post-hero{
-  width: min(880px, 100%);
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   overflow: visible;
@@ -6812,7 +6812,7 @@ body.post-page-body .post-shell--guide-style .post-hero--product .post-cover{
 }
 
 body.post-page-body .post-magazine-head{
-  width: min(880px, 100%);
+  width: 100%;
   margin: 0 auto 64px;
   padding-bottom: 0;
   text-align: left;
@@ -6959,6 +6959,7 @@ body.post-page-body .post-hero-info-pill{
 
 body.post-page-body .post-magazine-hotel-panel .post-hero-cta,
 body.post-page-body .post-hero-cta{
+  min-width: 178px;
   min-height: 48px;
   padding: 0 19px;
   border: 1px solid #111 !important;
@@ -6971,7 +6972,7 @@ body.post-page-body .post-hero-cta{
 }
 
 body.post-page-body .post-shell--guide-style .post-body{
-  width: min(880px, 100%);
+  width: 100%;
   margin: 0 auto;
   padding: 26px 0 0;
   border: 0 !important;
@@ -7206,6 +7207,7 @@ body.post-page-body .post-toc__title{
 }
 
 body.post-page-body .post-toc__summary-meta::after{
+  min-width: 48px;
   background: #111;
   color: #fff;
 }
@@ -7246,6 +7248,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content .table-wra
 body.post-page-body .post-shell--guide-style .post-body table,
 body.post-page-body .post-shell--guide-style .post-body .post-content table{
   width: 100%;
+  min-width: 760px;
   border-collapse: collapse;
   border-spacing: 0;
   background: #fff;
@@ -7583,6 +7586,7 @@ body.post-page-body .post-affiliate-cta__button,
 body.post-page-body .post-related__more-btn,
 body.post-page-body .btn.post-related__more-btn{
     width: 100%;
+    min-width: 0;
   }
 
   body.post-page-body .post-shell--guide-style .post-body{
@@ -7920,6 +7924,7 @@ body.post-page-body--hotel-review-magazine .post-body .post-content .table-wrap{
 body.post-page-body--hotel-review-magazine .post-body table,
 body.post-page-body--hotel-review-magazine .post-body .post-content table{
   width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 0.9rem;
@@ -8380,7 +8385,7 @@ body.post-page-body--hotel-review-magazine .post-guide-page{
 body.post-page-body--hotel-review-magazine .post-hotel-availability-cta--inline{
   display: flex;
   justify-content: flex-end;
-  width: min(880px, 100%);
+  width: 100%;
   margin: clamp(22px, 2.4vw, 30px) auto 0;
   padding: 0;
   box-sizing: border-box;

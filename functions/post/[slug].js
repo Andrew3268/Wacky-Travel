@@ -344,7 +344,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-container-fix" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260723-tablet-padding-cleanup" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
@@ -1204,7 +1204,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-container-fix" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
 </head>

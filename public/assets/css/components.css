@@ -1482,6 +1482,7 @@ body.post-page-body .breadcrumbs.container.breadcrumbs--post-page > ol {
 body.post-page-body .breadcrumbs.container.breadcrumbs--post-page li {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
   margin: 0;
   padding: 0;
 }
