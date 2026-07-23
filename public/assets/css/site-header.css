@@ -46,7 +46,6 @@ html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .top
 }
 
 html body [data-site-header="main"] .brand{
-  min-width: 0;
   margin: 0;
   padding: 0;
   display: inline-flex;
@@ -87,7 +86,6 @@ html body [data-site-header="main"] .topbar-search-button:hover,
 html body [data-site-header="main"] .topbar-search-button:focus-visible{
   width: 42px;
   height: 42px;
-  min-width: 42px;
   min-height: 42px;
   flex: 0 0 42px;
   margin: 0 0 0 auto;
@@ -200,7 +198,6 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close{
   width: 46px;
   height: 46px;
-  min-width: 46px;
   margin: 0;
   padding: 0;
   display: inline-flex;
@@ -251,7 +248,6 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
 
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input{
   width: 100%;
-  min-width: 0;
   height: 56px;
   margin: 0;
   padding: 0;
@@ -406,7 +402,7 @@ html body [data-site-header="main"] .topbar-search-button:focus-visible{
   html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close{
     width: 42px;
     height: 42px;
-    min-width: 42px;
+
   }
 
   html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form{
@@ -459,4 +455,15 @@ html body [data-site-header="main"] .topbar-search-button:focus-visible{
     padding: 0 13px;
     font-size: 12px;
   }
+}
+
+/* Keep header minimum widths on non-post pages only. /post/ intentionally has no min-width. */
+html body:not(.post-page-body) [data-site-header="main"] .brand { min-width: 0; }
+html body:not(.post-page-body) [data-site-header="main"] .topbar-search-button,
+html body:not(.post-page-body) [data-site-header="main"] .topbar-search-button:hover,
+html body:not(.post-page-body) [data-site-header="main"] .topbar-search-button:focus-visible { min-width: 42px; }
+html body:not(.post-page-body) .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close { min-width: 46px; }
+html body:not(.post-page-body) .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__form input { min-width: 0; }
+@media (max-width: 767px) {
+  html body:not(.post-page-body) .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__close { min-width: 42px; }
 }

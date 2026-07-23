@@ -6959,7 +6959,6 @@ body.post-page-body .post-hero-info-pill{
 
 body.post-page-body .post-magazine-hotel-panel .post-hero-cta,
 body.post-page-body .post-hero-cta{
-  min-width: 178px;
   min-height: 48px;
   padding: 0 19px;
   border: 1px solid #111 !important;
@@ -7207,7 +7206,6 @@ body.post-page-body .post-toc__title{
 }
 
 body.post-page-body .post-toc__summary-meta::after{
-  min-width: 48px;
   background: #111;
   color: #fff;
 }
@@ -7248,7 +7246,6 @@ body.post-page-body .post-shell--guide-style .post-body .post-content .table-wra
 body.post-page-body .post-shell--guide-style .post-body table,
 body.post-page-body .post-shell--guide-style .post-body .post-content table{
   width: 100%;
-  min-width: 760px;
   border-collapse: collapse;
   border-spacing: 0;
   background: #fff;
@@ -7586,7 +7583,6 @@ body.post-page-body .post-affiliate-cta__button,
 body.post-page-body .post-related__more-btn,
 body.post-page-body .btn.post-related__more-btn{
     width: 100%;
-    min-width: 0;
   }
 
   body.post-page-body .post-shell--guide-style .post-body{
@@ -7924,7 +7920,6 @@ body.post-page-body--hotel-review-magazine .post-body .post-content .table-wrap{
 body.post-page-body--hotel-review-magazine .post-body table,
 body.post-page-body--hotel-review-magazine .post-body .post-content table{
   width: 100%;
-  min-width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 0.9rem;
