@@ -3,6 +3,11 @@ const $ = (id) => document.getElementById(id);
     const normalizeText = (value) => String(value || '').replace(/\s+/g, ' ').trim();
     const escapeRegExp = (value) => String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const state = { query: '', page: 1, totalPages: 1, isLoading: false };
+    const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
+
+    function isBlockedSingleKeyword(value = '') {
+      return blockedSingleKeywords.has(normalizeText(value).toLowerCase());
+    }
 
     function safeArray(value) {
       if (Array.isArray(value)) return value;
@@ -161,6 +166,11 @@ const $ = (id) => document.getElementById(id);
         setEmpty('검색어를 입력해 주세요', '예: 오사카 난바 호텔, 후쿠오카 하카타 숙소, 다낭 미케비치 호텔');
         return;
       }
+      if (isBlockedSingleKeyword(query)) {
+        setSummary(0);
+        setEmpty('검색어가 너무 넓습니다', '도시, 지역 또는 여행 조건을 함께 입력해 주세요. 예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
+        return;
+      }
       if (state.isLoading) return;
       state.isLoading = true;
       setLoading(append);
@@ -174,6 +184,11 @@ const $ = (id) => document.getElementById(id);
         const res = await fetch(url.toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' });
         if (!res.ok) throw new Error('search_failed');
         const data = await res.json().catch(() => ({}));
+        if (data.blocked) {
+          setSummary(0);
+          setEmpty('검색어가 너무 넓습니다', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.');
+          return;
+        }
         const items = Array.isArray(data.items) ? data.items : [];
         const pagination = data.pagination || {};
         const total = Number(pagination.total || items.length || 0);

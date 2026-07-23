@@ -75,6 +75,15 @@
     title: true,
     content: false
   };
+  const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
+
+  function normalizeQuery(value = '') {
+    return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  function isBlockedSingleKeyword(value = '') {
+    return blockedSingleKeywords.has(normalizeQuery(value));
+  }
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -148,6 +157,11 @@
     }
 
     clearBtn.hidden = false;
+    if (isBlockedSingleKeyword(query)) {
+      requestSeq += 1;
+      setEmpty('검색어가 너무 넓습니다. 도시, 지역 또는 여행 조건을 함께 입력해 주세요. 예: 다낭 호텔');
+      return;
+    }
     setLoading();
     const currentSeq = ++requestSeq;
 
@@ -162,6 +176,10 @@
       if (!res.ok) throw new Error('search_failed');
       const data = await res.json().catch(() => ({}));
       if (currentSeq !== requestSeq) return;
+      if (data?.blocked) {
+        setEmpty(data.message || '검색어가 너무 넓습니다. 도시, 지역 또는 여행 조건을 함께 입력해 주세요.');
+        return;
+      }
       const items = Array.isArray(data?.items) ? data.items : [];
       if (!items.length) {
         setEmpty(`“${query}”에 대한 검색 결과가 없습니다.`);

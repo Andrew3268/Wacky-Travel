@@ -17,6 +17,12 @@ function compactText(value = "") {
   return normalizeText(value).replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, "");
 }
 
+const BLOCKED_SINGLE_SEARCH_KEYWORDS = new Set(["호텔", "숙소", "여행", "추천"]);
+
+function isBlockedSingleSearchKeyword(value = "") {
+  return BLOCKED_SINGLE_SEARCH_KEYWORDS.has(normalizeText(value));
+}
+
 function getSearchTerms(value = "") {
   const full = normalizeText(value);
   const compactFull = compactText(full);
@@ -161,6 +167,18 @@ export async function onRequestGet({ env, request }) {
     return okJson({
       items: [],
       filters: { q: "", status: "published" },
+      pagination: { page, per_page: perPage, total: 0, total_pages: 1, has_more: false, next_page: null }
+    }, { headers: { "cache-control": "no-store" } });
+  }
+
+  if (isBlockedSingleSearchKeyword(query)) {
+    return okJson({
+      items: [],
+      blocked: true,
+      blocked_reason: "broad_single_keyword",
+      message: "검색어가 너무 넓습니다. 도시, 지역 또는 여행 조건을 함께 입력해 주세요.",
+      examples: ["다낭 호텔", "하카타역 숙소", "공항 근처 호텔"],
+      filters: { q: query, status: "published" },
       pagination: { page, per_page: perPage, total: 0, total_pages: 1, has_more: false, next_page: null }
     }, { headers: { "cache-control": "no-store" } });
   }

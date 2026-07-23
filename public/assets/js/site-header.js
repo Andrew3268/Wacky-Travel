@@ -8,6 +8,8 @@
 
     openBtn.dataset.siteHeaderBound = 'true';
     let closeTimer = 0;
+    const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
+    const normalizeQuery = (value) => String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
 
     const submitSearch = (value) => {
       const query = String(value || '').trim();
@@ -15,6 +17,13 @@
         input.focus();
         return;
       }
+      if (blockedSingleKeywords.has(normalizeQuery(query))) {
+        input.setCustomValidity('검색어가 너무 넓습니다. 도시, 지역 또는 여행 조건을 함께 입력해 주세요. 예: 다낭 호텔');
+        input.reportValidity();
+        input.focus();
+        return;
+      }
+      input.setCustomValidity('');
       window.location.href = `/search/?q=${encodeURIComponent(query)}`;
     };
 
@@ -59,6 +68,7 @@
       event.preventDefault();
       submitSearch(input.value);
     });
+    input.addEventListener('input', () => input.setCustomValidity(''));
     window.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeSearch();
     });

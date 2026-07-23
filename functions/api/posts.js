@@ -198,6 +198,16 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", regionSl
   return hotelSlug;
 }
 
+const BLOCKED_SINGLE_SEARCH_KEYWORDS = new Set(["호텔", "숙소", "여행", "추천"]);
+
+function normalizePublicSearchQuery(value = "") {
+  return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function isBlockedSingleSearchKeyword(value = "") {
+  return BLOCKED_SINGLE_SEARCH_KEYWORDS.has(normalizePublicSearchQuery(value));
+}
+
 export async function onRequestGet({ env, request }) {
   await ensurePostRegionColumns(env.TRAVEL_DB);
   const url = new URL(request.url);
@@ -215,6 +225,17 @@ export async function onRequestGet({ env, request }) {
   const page = clampInt(url.searchParams.get("page"), 1, 1, 9999);
   const perPage = clampInt(url.searchParams.get("per_page"), 8, 1, 24);
   const offset = (page - 1) * perPage;
+
+  if (query && isBlockedSingleSearchKeyword(query)) {
+    return okJson({
+      items: [],
+      blocked: true,
+      blocked_reason: "broad_single_keyword",
+      message: "검색어가 너무 넓습니다. 도시, 지역 또는 여행 조건을 함께 입력해 주세요.",
+      examples: ["다낭 호텔", "하카타역 숙소", "공항 근처 호텔"],
+      pagination: { page, per_page: perPage, total: 0, total_pages: 1, has_more: false, next_page: null }
+    }, { headers: { "cache-control": "no-store" } });
+  }
 
   const admin = await getAdminSession(env, request);
   const allowedStatuses = new Set(["published", "draft", "all"]);
