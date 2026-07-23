@@ -378,7 +378,7 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
     max-width: none;
     min-height: 70px;
     margin: 0;
-    padding: 14px 0;
+    padding: 14px 16px;
   }
 
   html body [data-site-header="main"] .brand,

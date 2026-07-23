@@ -8336,7 +8336,7 @@ body.post-page-body .post-magazine-head > .post-hero-admin-actions.post-admin-mi
 ========================================================= */
 body.post-page-body{
   --post-reading-width: 880px;
-  --post-page-gutter: 20px;
+  --post-page-gutter: 0px;
   --post-page-top-space: clamp(20px, 2.4vw, 32px);
   --post-breadcrumb-hero-gap: clamp(24px, 3vw, 38px);
 }
