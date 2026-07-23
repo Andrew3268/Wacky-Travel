@@ -9742,7 +9742,7 @@ body.wt-guide-body .hotel-guide-toc-floating{
 
 /* WACKYTRAVEL_TABLET_CONTAINER_PADDING_V1 */
 @media (min-width: 768px) and (max-width: 1180px) {
-  .container,
+  .container:not(.breadcrumbs--post-page),
 main.travel-page .container{
     box-sizing: border-box;
     padding-left: clamp(32px, 5vw, 56px) !important;
