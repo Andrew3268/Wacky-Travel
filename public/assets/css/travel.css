@@ -31498,3 +31498,185 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card::after {
 /* End WACKYTRAVEL_GUIDE_COMPONENTS_BW_REFINEMENT_V28 */
 
 
+
+/* V30: floating guide TOC opens in place instead of scrolling to the page-top TOC */
+.wt-toc-floating-button.is-open {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.wt-toc-floating-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 88;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.wt-toc-floating-backdrop.is-open {
+  opacity: 1;
+}
+
+.wt-toc-floating-panel {
+  position: fixed;
+  right: max(20px, calc((100vw - 1180px) / 2 + 20px));
+  bottom: 78px;
+  z-index: 89;
+  width: min(420px, calc(100vw - 40px));
+  max-height: min(620px, calc(100vh - 120px));
+  overflow: hidden;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.wt-toc-floating-panel.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.wt-toc-floating-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-bottom: 1px solid #111;
+}
+
+.wt-toc-floating-panel__eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  color: #666;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.wt-toc-floating-panel__title {
+  margin: 0;
+  color: #111;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+
+.wt-toc-floating-panel__close {
+  position: relative;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+}
+
+.wt-toc-floating-panel__close span::before,
+.wt-toc-floating-panel__close span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 1px;
+  background: currentColor;
+}
+
+.wt-toc-floating-panel__close span::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.wt-toc-floating-panel__close span::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.wt-toc-floating-panel__close:hover,
+.wt-toc-floating-panel__close:focus-visible {
+  background: #111;
+  color: #fff;
+}
+
+.wt-toc-floating-panel__nav {
+  display: grid;
+  max-height: calc(min(620px, 100vh - 120px) - 76px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.wt-toc-floating-panel__nav a {
+  display: block;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.wt-toc-floating-panel__nav a:last-child {
+  border-bottom: 0;
+}
+
+.wt-toc-floating-panel__nav a:hover,
+.wt-toc-floating-panel__nav a:focus-visible {
+  background: #111;
+  color: #fff;
+  outline: none;
+}
+
+@media (min-width: 761px) {
+  .wt-toc-floating-backdrop {
+    background: transparent;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 760px) {
+  body.wt-toc-panel-open {
+    overflow: hidden;
+  }
+
+  .wt-toc-floating-panel {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: min(78vh, 680px);
+    border-width: 1px 0 0;
+    transform: translateY(100%);
+  }
+
+  .wt-toc-floating-panel.is-open {
+    transform: translateY(0);
+  }
+
+  .wt-toc-floating-panel__head {
+    padding: 18px 20px;
+  }
+
+  .wt-toc-floating-panel__nav {
+    max-height: calc(min(78vh, 680px) - 72px);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .wt-toc-floating-panel__nav a {
+    padding: 16px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wt-toc-floating-panel,
+  .wt-toc-floating-backdrop {
+    transition: none;
+  }
+}

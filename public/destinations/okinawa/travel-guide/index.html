@@ -16,7 +16,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260721HeaderCleanupV2" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260712UnifiedPromoFooterV1" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260723GuideSpacingRefactorV30" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260723-guide-toc-panel-v30" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오키나와","item":"/destinations/okinawa"},{"@type":"ListItem","position":4,"name":"오키나와 여행 가이드","item":"/destinations/okinawa/travel-guide/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"오키나와 여행 가이드｜렌터카·해변·북부 드라이브까지 한 번에 정리","description":"오키나와 여행 시기, 준비물, 나하공항과 유이레일, 렌터카, 숙소 위치, 2박 3일·3박 4일 동선, 해변·수족관·남부 드라이브, 맛집·쇼핑, 일본어 표현, 돌발상황을 정리한 실전 여행 가이드입니다.","inLanguage":"ko-KR","author":{"@type":"Organization","name":"Wacky Travel"},"publisher":{"@type":"Organization","name":"Wacky Travel"},"mainEntityOfPage":"/destinations/okinawa/travel-guide/","dateModified":"2026-06-14","keywords":["오키나와 여행 가이드","오키나와 렌터카","오키나와 유이레일","오키나와 3박4일","오키나와 자유여행","오키나와 여행 시기"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"오키나와 여행 가이드 목차","itemListElement":[{"@type":"ListItem","position":1,"name":"오키나와 여행 중요 포인트","item":"/destinations/okinawa/travel-guide/#okinawa-travel-core"},{"@type":"ListItem","position":2,"name":"오키나와 추천 여행 시기","item":"/destinations/okinawa/travel-guide/#okinawa-travel-season"},{"@type":"ListItem","position":3,"name":"오키나와 여행 준비물","item":"/destinations/okinawa/travel-guide/#okinawa-travel-prep"},{"@type":"ListItem","position":4,"name":"나하공항과 유이레일","item":"/destinations/okinawa/travel-guide/#okinawa-travel-airport-yuirail"},{"@type":"ListItem","position":5,"name":"렌터카와 운전 동선","item":"/destinations/okinawa/travel-guide/#okinawa-travel-rentalcar"},{"@type":"ListItem","position":6,"name":"숙소 위치와 일정 연결","item":"/destinations/okinawa/travel-guide/#okinawa-travel-hotel-area"},{"@type":"ListItem","position":7,"name":"2박 3일·3박 4일 일정 흐름","item":"/destinations/okinawa/travel-guide/#okinawa-travel-itinerary"},{"@type":"ListItem","position":8,"name":"나하·차탄·온나손·북부 동선","item":"/destinations/okinawa/travel-guide/#okinawa-travel-route"},{"@type":"ListItem","position":9,"name":"해변·수족관·남부 드라이브","item":"/destinations/okinawa/travel-guide/#okinawa-travel-sightseeing"},{"@type":"ListItem","position":10,"name":"맛집·쇼핑","item":"/destinations/okinawa/travel-guide/#okinawa-travel-food-shopping"},{"@type":"ListItem","position":11,"name":"비·태풍 대체 일정","item":"/destinations/okinawa/travel-guide/#okinawa-travel-weather"},{"@type":"ListItem","position":12,"name":"일본어 표현과 발음","item":"/destinations/okinawa/travel-guide/#okinawa-travel-japanese"},{"@type":"ListItem","position":13,"name":"돌발상황 대처법","item":"/destinations/okinawa/travel-guide/#okinawa-travel-trouble"}]}</script>
@@ -172,28 +172,8 @@
 </section>
 </article></div>
 <section aria-labelledby="relatedGuideTitle" class="wt-city-guide-related container"><div><p class="eyebrow">Next Step</p><h2 id="relatedGuideTitle">여행 동선을 잡았다면 숙소 위치도 함께 좁혀보세요</h2><p>오키나와는 숙소 위치와 렌터카 동선이 함께 맞아야 편합니다. 여행 흐름을 정했다면 호텔 위치 가이드에서 나하·차탄·온나손·북부를 비교해보세요.</p></div><div class="wt-city-guide-related__links"><a href="/destinations/okinawa/hotel-guide/">오키나와 호텔 위치 가이드</a><a href="/destinations/okinawa/">오키나와 메인으로</a></div></section>
-<button aria-label="목차 섹션으로 이동" class="wt-toc-floating-button" data-toc-floating="" type="button"><span aria-hidden="true" class="wt-toc-floating-icon"><span></span><span></span><span></span></span></button>
-<script>
-(function () {
-  const toc = document.querySelector('[data-guide-toc]');
-  const button = document.querySelector('[data-toc-floating]');
-  if (!toc || !button) return;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function getThreshold() {
-    const extraOffset = Math.min(280, Math.max(160, window.innerHeight * 0.22));
-    return toc.offsetTop + toc.offsetHeight + extraOffset;
-  }
-  function updateButton() {
-    button.classList.toggle('is-visible', window.scrollY > getThreshold());
-  }
-  button.addEventListener('click', function () {
-    toc.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-  });
-  window.addEventListener('scroll', updateButton, { passive: true });
-  window.addEventListener('resize', updateButton);
-  updateButton();
-})();
-</script>
+<button aria-label="목차 메뉴 열기" class="wt-toc-floating-button" data-toc-floating="" type="button"><span aria-hidden="true" class="wt-toc-floating-icon"><span></span><span></span><span></span></span></button>
+<script defer src="/assets/js/guide-toc-floating.js?v=20260723-floating-toc-panel-v1"></script>
 </main>
 <footer class="wtpromo-footer">
   <div class="wtpromo-footer__inner wtpromo-container">
