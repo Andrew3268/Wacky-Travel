@@ -17,7 +17,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260724-search-mobile-gutter-v9" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260724-search-popular-keywords-v10" />
   <link href="/assets/css/site-header.css?v=20260724-search-refine-v5" rel="stylesheet" />
 </head>
 <body class="wtsr-page">
@@ -41,16 +41,35 @@
     </div>
   </header>
 
-  <section class="wtsr-landing" id="wtsrLanding" aria-labelledby="wtsrLandingTitle">
+  <section class="wtsr-landing" id="wtsrLanding" aria-label="인기 검색어">
     <div class="home-search-overlay__content wtsr-landing__content">
-      <h1 id="wtsrLandingTitle">어디로 떠나시나요?</h1>
-      <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
-      <div aria-label="추천 검색어" class="home-search-overlay__quick">
-        <button data-wtsr-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
-        <button data-wtsr-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
-        <button data-wtsr-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
-        <button data-wtsr-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
-      </div>
+      <section class="wtsr-popular-section" aria-labelledby="wtsrPopularStayTitle">
+        <h2 id="wtsrPopularStayTitle">인기 숙소</h2>
+        <div class="wtsr-popular-keywords" aria-label="인기 숙소 검색어">
+          <button data-wtsr-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+          <button data-wtsr-query="후쿠오카 하카타역 숙소" type="button">후쿠오카 하카타역 숙소</button>
+          <button data-wtsr-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+          <button data-wtsr-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+          <button data-wtsr-query="도쿄 신주쿠 호텔" type="button">도쿄 신주쿠 호텔</button>
+          <button data-wtsr-query="삿포로 온천 호텔" type="button">삿포로 온천 호텔</button>
+          <button data-wtsr-query="나트랑 오션뷰 호텔" type="button">나트랑 오션뷰 호텔</button>
+          <button data-wtsr-query="공항 근처 호텔" type="button">공항 근처 호텔</button>
+        </div>
+      </section>
+
+      <section class="wtsr-popular-section" aria-labelledby="wtsrPopularDestinationTitle">
+        <h2 id="wtsrPopularDestinationTitle">인기 여행지</h2>
+        <div class="wtsr-popular-keywords" aria-label="인기 여행지 검색어">
+          <button data-wtsr-query="다낭" type="button">다낭</button>
+          <button data-wtsr-query="후쿠오카" type="button">후쿠오카</button>
+          <button data-wtsr-query="오사카" type="button">오사카</button>
+          <button data-wtsr-query="도쿄" type="button">도쿄</button>
+          <button data-wtsr-query="타이베이" type="button">타이베이</button>
+          <button data-wtsr-query="삿포로" type="button">삿포로</button>
+          <button data-wtsr-query="나트랑" type="button">나트랑</button>
+          <button data-wtsr-query="가오슝" type="button">가오슝</button>
+        </div>
+      </section>
     </div>
   </section>
 
@@ -69,6 +88,6 @@
       <nav class="wtpromo-footer-links" aria-label="하단 메뉴"><a href="/about/">소개</a><a href="/privacy-policy/">개인정보 처리방침</a><a href="/destinations/">여행지</a><a href="/search/">검색</a></nav>
     </div>
   </footer>
-  <script src="/assets/js/search-results.js?v=20260724-search-mobile-gutter-v9" defer></script>
+  <script src="/assets/js/search-results.js?v=20260724-search-popular-keywords-v10" defer></script>
 </body>
 </html>
