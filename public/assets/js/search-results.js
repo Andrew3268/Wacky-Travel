@@ -6,7 +6,7 @@ const $ = (id) => document.getElementById(id);
     const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
 
     const landing = $('wtsrLanding');
-    const resultsView = $('wtsrResultsView');
+    const resultsView = $('main');
 
     function setView(hasQuery) {
       if (landing) landing.hidden = hasQuery;
@@ -265,15 +265,14 @@ const $ = (id) => document.getElementById(id);
       const hasQuery = Boolean(state.query);
       setView(hasQuery);
       $('wtsrInput').value = state.query;
-      if ($('wtsrLandingInput')) $('wtsrLandingInput').value = '';
       syncClearButton();
       document.title = hasQuery ? `${state.query} 검색 결과 | Wacky Travel` : '검색 | Wacky Travel';
       if (replaceUrl) {
         const nextUrl = hasQuery ? `/search/?q=${encodeURIComponent(state.query)}` : '/search/';
-        window.history.pushState({}, '', nextUrl);
+        window.history.replaceState({}, '', nextUrl);
       }
       if (hasQuery) loadSearch({ page: 1, append: false });
-      else window.requestAnimationFrame(() => $('wtsrLandingInput')?.focus({ preventScroll: true }));
+      else focusSearchInput();
     }
 
     const backButton = $('wtsrBackBtn');
@@ -281,22 +280,9 @@ const $ = (id) => document.getElementById(id);
       backButton.addEventListener('click', goBack);
     }
 
-    const landingBackButton = $('wtsrLandingBackBtn');
-    if (landingBackButton) landingBackButton.addEventListener('click', goBack);
-
-    const landingForm = $('wtsrLandingForm');
-    const landingInput = $('wtsrLandingInput');
-    if (landingForm && landingInput) {
-      landingForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const query = normalizeText(landingInput.value);
-        if (!query) { landingInput.focus(); return; }
-        startSearch(query, { replaceUrl: true });
-      });
-      document.querySelectorAll('[data-wtsr-query]').forEach((button) => {
-        button.addEventListener('click', () => startSearch(button.dataset.wtsrQuery || '', { replaceUrl: true }));
-      });
-    }
+    document.querySelectorAll('[data-wtsr-query]').forEach((button) => {
+      button.addEventListener('click', () => startSearch(button.dataset.wtsrQuery || '', { replaceUrl: true }));
+    });
 
     const searchInput = $('wtsrInput');
     const clearButton = $('wtsrClearBtn');

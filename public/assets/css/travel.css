@@ -31487,3 +31487,21 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
  .wtsr-page .wtsr-search-header__form{grid-template-columns:minmax(0,1fr) 34px 60px}
  .wtsr-page .wtsr-search-header__submit{width:60px;min-width:60px;height:38px;margin-left:4px;padding:0 10px;font-size:13px}
 }
+
+/* SEARCH FLOW V4 — persistent search header + landing content only */
+.wtsr-page .wtsr-landing{
+  min-height:calc(100vh - 210px);
+  padding:0 clamp(20px,5vw,56px) 72px;
+  box-sizing:border-box;
+}
+.wtsr-page .wtsr-landing__content{
+  width:min(1080px,100%);
+  margin:clamp(72px,11vh,128px) auto 0;
+}
+@media(max-width:640px){
+  .wtsr-page .wtsr-landing{
+    min-height:calc(100vh - 180px);
+    padding:0 16px 48px;
+  }
+  .wtsr-page .wtsr-landing__content{margin-top:64px}
+}
