@@ -31592,3 +31592,125 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
     margin-top:28px;
   }
 }
+
+/* SEARCH PAGE REFINEMENT V8 — one-line excerpt, balanced rhythm, fixed submit position */
+.wtsr-page .wtsr-search-header__form{
+  position:relative;
+  grid-template-columns:minmax(0,1fr) 72px;
+  column-gap:8px;
+}
+
+.wtsr-page .wtsr-search-header__form input{
+  grid-column:1;
+  padding-right:48px;
+}
+
+.wtsr-page .wtsr-search-header__clear{
+  position:absolute;
+  top:50%;
+  right:80px;
+  z-index:2;
+  transform:translateY(-50%);
+}
+
+.wtsr-page .wtsr-search-header__clear[hidden]{
+  display:grid;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.wtsr-page .wtsr-search-header__submit{
+  grid-column:2;
+  width:72px;
+  min-width:72px;
+  margin-left:0;
+  justify-self:end;
+}
+
+.wtsr-page .wtsr-section{
+  padding-top:28px!important;
+  padding-bottom:64px;
+}
+
+.wtsr-page .wtsr-shell{
+  width:100%;
+}
+
+.wtsr-page .wtsr-results{
+  display:grid;
+  gap:0;
+}
+
+.wtsr-page .wtsr-card{
+  margin:0;
+}
+
+.wtsr-page .wtsr-card__link{
+  padding:22px 0 23px;
+}
+
+.wtsr-page .wtsr-card__meta{
+  margin-bottom:7px;
+}
+
+.wtsr-page .wtsr-card h3{
+  margin:0;
+}
+
+.wtsr-page .wtsr-card p{
+  display:block;
+  max-width:100%;
+  margin:8px 0 0;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  -webkit-line-clamp:unset;
+  line-clamp:unset;
+}
+
+.wtsr-page .wtsr-more{
+  margin-top:28px;
+}
+
+@media (max-width:640px){
+  .wtsr-page .wtsr-search-header__form{
+    grid-template-columns:minmax(0,1fr) 60px;
+    column-gap:4px;
+  }
+
+  .wtsr-page .wtsr-search-header__form input{
+    padding-right:37px;
+  }
+
+  .wtsr-page .wtsr-search-header__clear{
+    right:64px;
+  }
+
+  .wtsr-page .wtsr-search-header__submit{
+    grid-column:2;
+    width:60px;
+    min-width:60px;
+    margin-left:0;
+  }
+
+  .wtsr-page .wtsr-section{
+    padding-top:18px!important;
+    padding-bottom:48px;
+  }
+
+  .wtsr-page .wtsr-card__link{
+    padding:18px 0 19px;
+  }
+
+  .wtsr-page .wtsr-card__meta{
+    margin-bottom:6px;
+  }
+
+  .wtsr-page .wtsr-card p{
+    margin-top:7px;
+  }
+
+  .wtsr-page .wtsr-more{
+    margin-top:22px;
+  }
+}
