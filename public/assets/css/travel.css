@@ -31988,3 +31988,21 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
   color:#777;
   font-size:14px;
 }
+
+/* WACKYTRAVEL_CITY_H1_HOME_H2_V16
+   Desktop city hero heading and home section heading normalization. */
+@media (min-width: 1024px) {
+  body.travel-city-body .wt-city-hero h1,
+  body.travel-purpose-body .wt-city-hero h1,
+  body.travel-archive-body .wt-city-hero h1,
+  body[class*="travel-city-body"] .wt-city-hero h1 {
+    font-size: 56px !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+  }
+}
+
+body.travel-home-body main.travel-page.travel-home h2 {
+  color: #333 !important;
+}
+/* END WACKYTRAVEL_CITY_H1_HOME_H2_V16 */
