@@ -31561,3 +31561,34 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
     display:none!important;
   }
 }
+
+
+/* SEARCH PAGE POLISH V7 — stable controls, compact landing, card readability */
+.wtsr-page .wtsr-search-header__clear[hidden]{
+  display:grid;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.wtsr-page .wtsr-card p{
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  line-clamp:2;
+  text-overflow:ellipsis;
+}
+
+.wtsr-page .wtsr-landing__content{
+  margin-top:clamp(34px,5vw,56px);
+}
+
+@media (max-width:640px){
+  .wtsr-page .wtsr-card h3{
+    font-size:17px;
+  }
+
+  .wtsr-page .wtsr-landing__content{
+    margin-top:28px;
+  }
+}
