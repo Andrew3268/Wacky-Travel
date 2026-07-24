@@ -31505,3 +31505,26 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
   }
   .wtsr-page .wtsr-landing__content{margin-top:64px}
 }
+
+
+/* SEARCH RESULT REFINEMENT V5 */
+.wtsr-page .wtsr-search-header__back{
+  width:24px;
+  height:24px;
+}
+
+@media (max-width:640px){
+  .wtsr-page .wtsr-search-header__back{
+    width:24px;
+    height:24px;
+  }
+
+  .wtsr-page .wtsr-search-header__clear{
+    width:25px;
+    height:25px;
+  }
+
+  .wtsr-page .wtsr-card__arrow{
+    display:none!important;
+  }
+}

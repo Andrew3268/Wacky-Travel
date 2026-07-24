@@ -150,10 +150,8 @@ const $ = (id) => document.getElementById(id);
       const type = labelPostType(item.content_type);
       const category = normalizeText(item.category);
       const excerpt = getExcerpt(item);
-      const number = String(index + 1).padStart(2, '0');
       return `<article class="wtsr-card">
         <a class="wtsr-card__link" href="${href}" aria-label="${escapeHtml(title)} 읽기">
-          <span class="wtsr-card__index">${number}</span>
           <div class="wtsr-card__body">
             <div class="wtsr-card__meta"><span>${escapeHtml(type)}</span>${category ? `<span>${escapeHtml(category)}</span>` : ''}</div>
             <h3>${highlightText(title, state.query)}</h3>
@@ -169,16 +167,6 @@ const $ = (id) => document.getElementById(id);
       $('wtsrMoreBtn').hidden = true;
     }
 
-    function setSummary(total = 0) {
-      const query = state.query;
-      $('wtsrSummaryTitle').innerHTML = query ? `“${highlightText(query, query)}” 관련 콘텐츠` : '검색어를 입력해 주세요';
-      $('wtsrSummaryText').textContent = query
-        ? '글 제목에 검색어가 포함된 콘텐츠만 보여드립니다.'
-        : '원하는 도시명이나 호텔명을 검색해 보세요.';
-      $('wtsrCount').hidden = !query;
-      $('wtsrCount').textContent = `${Number(total || 0).toLocaleString('ko-KR')}개 결과`;
-    }
-
     function setLoading(append = false) {
       if (append) {
         $('wtsrMoreBtn').textContent = '불러오는 중...';
@@ -191,14 +179,12 @@ const $ = (id) => document.getElementById(id);
 
     async function loadSearch({ page = 1, append = false } = {}) {
       const query = state.query;
-      setSummary(0);
       if (!query) {
         setEmpty('검색어를 입력해 주세요', '예: 오사카 난바 호텔, 후쿠오카 하카타 숙소, 다낭 미케비치 호텔');
         return;
       }
       if (isBlockedSingleKeyword(query)) {
-        setSummary(0);
-        setEmpty('검색어가 너무 넓습니다', '도시, 지역 또는 여행 조건을 함께 입력해 주세요. 예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
+          setEmpty('검색어가 너무 넓습니다', '도시, 지역 또는 여행 조건을 함께 입력해 주세요. 예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
         return;
       }
       if (state.isLoading) return;
@@ -215,8 +201,7 @@ const $ = (id) => document.getElementById(id);
         if (!res.ok) throw new Error('search_failed');
         const data = await res.json().catch(() => ({}));
         if (data.blocked) {
-          setSummary(0);
-          setEmpty('검색어가 너무 넓습니다', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.');
+              setEmpty('검색어가 너무 넓습니다', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.');
           return;
         }
         const items = Array.isArray(data.items) ? data.items : [];
@@ -224,12 +209,10 @@ const $ = (id) => document.getElementById(id);
         const total = Number(pagination.total || items.length || 0);
         state.page = Number(pagination.page || page) || page;
         state.totalPages = Number(pagination.total_pages || 1) || 1;
-        setSummary(total);
 
         if (!items.length && !append) {
           const fallbackItems = await loadFallbackSearch(query).catch(() => []);
           if (fallbackItems.length) {
-            setSummary(fallbackItems.length);
             $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
             $('wtsrMoreBtn').hidden = true;
             return;
@@ -247,7 +230,6 @@ const $ = (id) => document.getElementById(id);
       } catch (_) {
         const fallbackItems = !append ? await loadFallbackSearch(query).catch(() => []) : [];
         if (fallbackItems.length) {
-          setSummary(fallbackItems.length);
           $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
         } else {
           $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>제목에 들어갈 만한 도시명이나 호텔명으로 다시 검색해 보세요.</div>';
