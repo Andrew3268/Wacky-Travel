@@ -233,11 +233,23 @@ const $ = (id) => document.getElementById(id);
       state.page = 1;
       state.totalPages = 1;
       $('wtsrInput').value = state.query;
+      document.title = state.query ? `${state.query} 검색 결과 | Wacky Travel` : '검색 결과 | Wacky Travel';
       if (replaceUrl) {
         const nextUrl = state.query ? `/search/?q=${encodeURIComponent(state.query)}` : '/search/';
         window.history.pushState({}, '', nextUrl);
       }
       loadSearch({ page: 1, append: false });
+    }
+
+    const backButton = $('wtsrBackBtn');
+    if (backButton) {
+      backButton.addEventListener('click', () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = '/';
+        }
+      });
     }
 
     $('wtsrForm').addEventListener('submit', (event) => {
