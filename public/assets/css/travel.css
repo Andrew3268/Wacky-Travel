@@ -24189,7 +24189,7 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
     line-height: 1.2 !important;
   }
 
-  html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2{
+  html body:not(.wtsr-page):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2{
     font-size: 24px !important;
     line-height: 1.2 !important;
   }
