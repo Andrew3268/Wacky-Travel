@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>검색 결과 | Wacky Travel</title>
+  <title>검색 | Wacky Travel</title>
   <meta name="description" content="와키트래블 여행지, 호텔 추천, 이동 정보 콘텐츠를 검색합니다." />
   <meta name="robots" content="noindex,follow" />
   <link rel="canonical" href="/search/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wacky Travel" />
-  <meta property="og:title" content="검색 결과 | Wacky Travel" />
+  <meta property="og:title" content="검색 | Wacky Travel" />
   <meta property="og:description" content="와키트래블 여행지, 호텔 추천, 이동 정보 콘텐츠를 검색합니다." />
   <meta property="og:url" content="/search/" />
   <meta property="og:image" content="/assets/images/logo.png" />
@@ -17,63 +17,75 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260724-search-header-v2" />
-  <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260724-search-flow-v3" />
+  <link href="/assets/css/site-header.css?v=20260724-search-flow-v3" rel="stylesheet" />
 </head>
 <body class="wtsr-page">
-  <header class="wtsr-search-header" data-search-header>
-    <div class="wtsr-search-header__inner wtsr-container">
-      <button class="wtsr-search-header__back" id="wtsrBackBtn" type="button" aria-label="이전 페이지로 돌아가기">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M15 5 8 12l7 7"></path>
-        </svg>
-      </button>
-
-      <form class="wtsr-search-header__form" id="wtsrForm" action="/search/" method="get" role="search" autocomplete="off">
-        <input id="wtsrInput" type="search" name="q" placeholder="도시, 호텔명, 숙소 위치 검색" aria-label="검색어 입력" />
-        <button class="wtsr-search-header__clear" id="wtsrClearBtn" type="button" aria-label="검색어 지우기" hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="m7 7 10 10M17 7 7 17"></path>
-          </svg>
+  <section class="wtsr-landing" id="wtsrLanding" aria-labelledby="wtsrLandingTitle">
+    <div class="wtsr-landing__panel">
+      <div class="wtsr-landing__bar">
+        <button class="wtsr-landing__back" id="wtsrLandingBackBtn" type="button" aria-label="이전 페이지로 돌아가기">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"></path></svg>
         </button>
-        <button class="wtsr-search-header__submit" type="submit">검색</button>
-      </form>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="wtsr-section wtsr-container" aria-labelledby="wtsrSummaryTitle">
-      <div class="wtsr-shell">
-        <div class="wtsr-summary" id="wtsrSummary">
-          <div class="wtsr-summary__copy">
-            <p class="wtsr-summary__eyebrow">SEARCH RESULTS</p>
-            <h2 id="wtsrSummaryTitle">검색어를 입력해 주세요</h2>
-            <p id="wtsrSummaryText">원하는 도시명이나 호텔명을 검색해 보세요.</p>
-          </div>
-          <span class="wtsr-count" id="wtsrCount" hidden>0개 결과</span>
-        </div>
-
-        <div class="wtsr-results" id="wtsrResults" aria-live="polite"></div>
-        <div class="wtsr-more"><button class="wtsr-more__button" id="wtsrMoreBtn" type="button" hidden>더 보기</button></div>
+        <form action="/search/" autocomplete="off" class="wtsr-landing__form" id="wtsrLandingForm" method="get" role="search">
+          <input aria-label="여행지 또는 호텔 검색어 입력" id="wtsrLandingInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search" />
+          <button class="wtsr-landing__submit" type="submit">검색</button>
+        </form>
       </div>
-    </section>
-  </main>
+      <div class="home-search-overlay__content wtsr-landing__content">
+        <p class="home-search-overlay__eyebrow">Search</p>
+        <h1 id="wtsrLandingTitle">어디로 떠나시나요?</h1>
+        <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+        <div aria-label="추천 검색어" class="home-search-overlay__quick">
+          <button data-wtsr-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+          <button data-wtsr-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+          <button data-wtsr-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+          <button data-wtsr-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wtsr-results-view" id="wtsrResultsView" hidden>
+    <header class="wtsr-search-header" data-search-header>
+      <div class="wtsr-search-header__inner wtsr-container">
+        <button class="wtsr-search-header__back" id="wtsrBackBtn" type="button" aria-label="이전 페이지로 돌아가기">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5 8 12l7 7"></path></svg>
+        </button>
+        <form class="wtsr-search-header__form" id="wtsrForm" action="/search/" method="get" role="search" autocomplete="off">
+          <input id="wtsrInput" type="search" name="q" placeholder="도시, 호텔명, 숙소 위치 검색" aria-label="검색어 입력" />
+          <button class="wtsr-search-header__clear" id="wtsrClearBtn" type="button" aria-label="검색어 지우기" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 7 10 10M17 7 7 17"></path></svg>
+          </button>
+          <button class="wtsr-search-header__submit" type="submit">검색</button>
+        </form>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="wtsr-section wtsr-container" aria-labelledby="wtsrSummaryTitle">
+        <div class="wtsr-shell">
+          <div class="wtsr-summary" id="wtsrSummary">
+            <div class="wtsr-summary__copy">
+              <p class="wtsr-summary__eyebrow">SEARCH RESULTS</p>
+              <h2 id="wtsrSummaryTitle">검색 결과</h2>
+              <p id="wtsrSummaryText"></p>
+            </div>
+            <span class="wtsr-count" id="wtsrCount" hidden>0개 결과</span>
+          </div>
+          <div class="wtsr-results" id="wtsrResults" aria-live="polite"></div>
+          <div class="wtsr-more"><button class="wtsr-more__button" id="wtsrMoreBtn" type="button" hidden>더 보기</button></div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer class="wtpromo-footer">
-  <div class="wtpromo-footer__inner wtpromo-container">
-    <div>
-      <div class="wtpromo-footer-brand">Wacky Travel</div>
-      <p class="wtpromo-footer-copy">© 2026 Wacky Travel<br>예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
+    <div class="wtpromo-footer__inner wtpromo-container">
+      <div><div class="wtpromo-footer-brand">Wacky Travel</div><p class="wtpromo-footer-copy">© 2026 Wacky Travel<br>예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p></div>
+      <nav class="wtpromo-footer-links" aria-label="하단 메뉴"><a href="/about/">소개</a><a href="/privacy-policy/">개인정보 처리방침</a><a href="/destinations/">여행지</a><a href="/search/">검색</a></nav>
     </div>
-    <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
-      <a href="/about/">소개</a>
-<a href="/privacy-policy/">개인정보 처리방침</a>
-      <a href="/destinations/">여행지</a>
-      <a href="/search/">검색</a>
-    </nav>
-  </div>
-</footer>
-
-  <script src="/assets/js/search-results.js?v=20260724-search-header-v2" defer></script>
+  </footer>
+  <script src="/assets/js/search-results.js?v=20260724-search-flow-v3" defer></script>
 </body>
 </html>

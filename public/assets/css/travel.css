@@ -31448,3 +31448,42 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
     font-size: 12px;
   }
 }
+
+/* SEARCH FLOW V3 — landing search page + results state */
+.wtsr-page .wtsr-landing[hidden],
+.wtsr-page .wtsr-results-view[hidden]{display:none!important}
+.wtsr-page .wtsr-landing{min-height:calc(100vh - 210px);background:#fff;color:#000}
+.wtsr-page .wtsr-landing__panel{width:100%;min-height:calc(100vh - 210px);padding:max(28px,env(safe-area-inset-top)) clamp(20px,5vw,56px) 72px;box-sizing:border-box}
+.wtsr-page .wtsr-landing__bar{width:min(1080px,100%);margin:0 auto;display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;align-items:center}
+.wtsr-page .wtsr-landing__back{display:grid;width:46px;height:46px;padding:0;place-items:center;border:1px solid #000;background:#fff;color:#000;cursor:pointer}
+.wtsr-page .wtsr-landing__back svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.wtsr-page .wtsr-landing__form{display:grid;grid-template-columns:minmax(0,1fr) 86px;align-items:center;min-width:0;min-height:58px;border:1px solid #000;background:#fff}
+.wtsr-page .wtsr-landing__form input{width:100%;min-width:0;height:56px;padding:0 18px;border:0;outline:0;background:transparent;color:#000;font:inherit;font-size:16px;font-weight:500;letter-spacing:-.035em;-webkit-appearance:none;appearance:none}
+.wtsr-page .wtsr-landing__form input::-webkit-search-cancel-button,.wtsr-page .wtsr-landing__form input::-webkit-search-decoration{display:none;-webkit-appearance:none}
+.wtsr-page .wtsr-landing__submit{width:86px;height:58px;margin:-1px -1px -1px 0;padding:0;border:0;background:#000;color:#fff;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer}
+.wtsr-page .wtsr-landing__content{width:min(1080px,100%);margin:clamp(72px,11vh,128px) auto 0;text-align:left}
+.wtsr-page .wtsr-landing__content h1{max-width:760px;margin:0;color:#000;font-size:clamp(42px,5.2vw,64px);line-height:1.08;letter-spacing:-.06em;font-weight:600}
+.wtsr-page .wtsr-landing__content .home-search-overlay__eyebrow{margin:0 0 18px;color:#000;font-size:13px;font-weight:600;line-height:1.2}
+.wtsr-page .wtsr-landing__content .home-search-overlay__desc{max-width:620px;margin:22px 0 0;color:rgba(0,0,0,.62);font-size:16px;line-height:1.72;letter-spacing:-.035em}
+.wtsr-page .wtsr-landing__content .home-search-overlay__quick{width:min(680px,100%);margin:34px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.wtsr-page .wtsr-landing__content .home-search-overlay__quick button{min-height:40px;padding:0 16px;border:1px solid #000;background:#fff;color:#000;font-size:13px;font-weight:600;cursor:pointer}
+.wtsr-page .wtsr-landing__content .home-search-overlay__quick button:hover,.wtsr-page .wtsr-landing__content .home-search-overlay__quick button:focus-visible{background:#000;color:#fff}
+.wtsr-page .wtsr-search-header__form{grid-template-columns:minmax(0,1fr) 40px 72px}
+.wtsr-page .wtsr-search-header__submit{display:inline-flex;align-items:center;justify-content:center;width:72px;min-width:72px;height:40px;margin-left:8px;padding:0 16px;border:0;border-radius:0;background:#000;color:#fff;font-size:14px;font-weight:650;line-height:1;white-space:nowrap;word-break:keep-all;flex-shrink:0}
+.wtsr-page .wtsr-search-header__submit:hover{background:#222;color:#fff}
+@media(max-width:640px){
+ .wtsr-page .wtsr-landing__panel{min-height:calc(100vh - 180px);padding:max(18px,env(safe-area-inset-top)) 16px 48px}
+ .wtsr-page .wtsr-landing__bar{grid-template-columns:42px minmax(0,1fr);gap:10px}
+ .wtsr-page .wtsr-landing__back{width:42px;height:42px}
+ .wtsr-page .wtsr-landing__form{grid-template-columns:minmax(0,1fr) 64px;min-height:52px}
+ .wtsr-page .wtsr-landing__form input{height:50px;padding:0 13px;font-size:16px}
+ .wtsr-page .wtsr-landing__submit{width:64px;height:52px;font-size:13px}
+ .wtsr-page .wtsr-landing__content{margin-top:64px}
+ .wtsr-page .wtsr-landing__content h1{max-width:330px;font-size:clamp(36px,11vw,44px);line-height:1.1}
+ .wtsr-page .wtsr-landing__content .home-search-overlay__eyebrow{margin-bottom:14px;font-size:12px}
+ .wtsr-page .wtsr-landing__content .home-search-overlay__desc{max-width:330px;margin-top:18px;font-size:14px;line-height:1.68}
+ .wtsr-page .wtsr-landing__content .home-search-overlay__quick{margin-top:28px;gap:8px}
+ .wtsr-page .wtsr-landing__content .home-search-overlay__quick button{min-height:36px;padding:0 13px;font-size:12px}
+ .wtsr-page .wtsr-search-header__form{grid-template-columns:minmax(0,1fr) 34px 60px}
+ .wtsr-page .wtsr-search-header__submit{width:60px;min-width:60px;height:38px;margin-left:4px;padding:0 10px;font-size:13px}
+}

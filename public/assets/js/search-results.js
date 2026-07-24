@@ -5,6 +5,20 @@ const $ = (id) => document.getElementById(id);
     const state = { query: '', page: 1, totalPages: 1, isLoading: false };
     const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
 
+    const landing = $('wtsrLanding');
+    const resultsView = $('wtsrResultsView');
+
+    function setView(hasQuery) {
+      if (landing) landing.hidden = hasQuery;
+      if (resultsView) resultsView.hidden = !hasQuery;
+      document.body.classList.toggle('wtsr-page--results', hasQuery);
+    }
+
+    function goBack() {
+      if (window.history.length > 1) window.history.back();
+      else window.location.href = '/';
+    }
+
     function syncClearButton() {
       const clearButton = $('wtsrClearBtn');
       if (!clearButton) return;
@@ -248,25 +262,39 @@ const $ = (id) => document.getElementById(id);
       state.query = normalizeText(query);
       state.page = 1;
       state.totalPages = 1;
+      const hasQuery = Boolean(state.query);
+      setView(hasQuery);
       $('wtsrInput').value = state.query;
+      if ($('wtsrLandingInput')) $('wtsrLandingInput').value = '';
       syncClearButton();
-      document.title = state.query ? `${state.query} 검색 결과 | Wacky Travel` : '검색 결과 | Wacky Travel';
+      document.title = hasQuery ? `${state.query} 검색 결과 | Wacky Travel` : '검색 | Wacky Travel';
       if (replaceUrl) {
-        const nextUrl = state.query ? `/search/?q=${encodeURIComponent(state.query)}` : '/search/';
+        const nextUrl = hasQuery ? `/search/?q=${encodeURIComponent(state.query)}` : '/search/';
         window.history.pushState({}, '', nextUrl);
       }
-      loadSearch({ page: 1, append: false });
-      if (!state.query) focusSearchInput();
+      if (hasQuery) loadSearch({ page: 1, append: false });
+      else window.requestAnimationFrame(() => $('wtsrLandingInput')?.focus({ preventScroll: true }));
     }
 
     const backButton = $('wtsrBackBtn');
     if (backButton) {
-      backButton.addEventListener('click', () => {
-        if (window.history.length > 1) {
-          window.history.back();
-        } else {
-          window.location.href = '/';
-        }
+      backButton.addEventListener('click', goBack);
+    }
+
+    const landingBackButton = $('wtsrLandingBackBtn');
+    if (landingBackButton) landingBackButton.addEventListener('click', goBack);
+
+    const landingForm = $('wtsrLandingForm');
+    const landingInput = $('wtsrLandingInput');
+    if (landingForm && landingInput) {
+      landingForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = normalizeText(landingInput.value);
+        if (!query) { landingInput.focus(); return; }
+        startSearch(query, { replaceUrl: true });
+      });
+      document.querySelectorAll('[data-wtsr-query]').forEach((button) => {
+        button.addEventListener('click', () => startSearch(button.dataset.wtsrQuery || '', { replaceUrl: true }));
       });
     }
 
