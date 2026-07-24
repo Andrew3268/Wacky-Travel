@@ -31528,3 +31528,36 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
     display:none!important;
   }
 }
+
+/* SEARCH RESULT CARD LAYOUT FIX V6 — index-free card structure */
+.wtsr-page .wtsr-card__link{
+  width:100%;
+  grid-template-columns:minmax(0,1fr) 42px;
+  gap:24px;
+}
+
+.wtsr-page .wtsr-card__body{
+  grid-column:1;
+  min-width:0;
+}
+
+.wtsr-page .wtsr-card__arrow{
+  grid-column:2;
+  justify-self:end;
+}
+
+@media (max-width:640px){
+  .wtsr-page .wtsr-card__link{
+    display:block;
+    width:100%;
+    padding:24px 0 26px;
+  }
+
+  .wtsr-page .wtsr-card__body{
+    width:100%;
+  }
+
+  .wtsr-page .wtsr-card__arrow{
+    display:none!important;
+  }
+}
