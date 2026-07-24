@@ -106,14 +106,18 @@ body.wtpromo-page a{ -webkit-tap-highlight-color: transparent; }
       gap: 7px;
     }
     .wtpromo-verified-date svg{
-      width: 17px;
-      height: 17px;
+      width: 20px;
+      height: 20px;
       flex: 0 0 auto;
+      padding: 3px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
       fill: none;
       stroke: currentColor;
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-width: 1.8;
+      box-sizing: border-box;
     }
 
     .wtpromo-platform-tabs{
@@ -265,7 +269,7 @@ body.wtpromo-page a{ -webkit-tap-highlight-color: transparent; }
     .wtpromo-card{
       min-width: 0;
       display: grid;
-      grid-template-columns: 128px minmax(0, 1fr) 64px;
+      grid-template-columns: 90px minmax(0, 1fr) 64px;
       gap: 34px;
       align-items: center;
       padding: 30px 0;
@@ -391,18 +395,8 @@ body.wtpromo-page a{ -webkit-tap-highlight-color: transparent; }
     }
     .wtpromo-card:hover h3{ text-decoration: underline; text-underline-offset: 5px; }
     .wtpromo-card--disabled{
-      cursor: default;
+      cursor: pointer;
     }
-    .wtpromo-card--disabled .wtpromo-card__arrow{
-      border-color: #d1d1d1;
-      color: #aaa;
-    }
-    .wtpromo-card--disabled:hover .wtpromo-card__arrow{
-      color: #aaa;
-      background: transparent;
-      transform: none;
-    }
-    .wtpromo-card--disabled:hover h3{ text-decoration: none; }
     .wtpromo-featured-card--disabled{
       cursor: default;
     }

@@ -1,25 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>호텔 프로모션 모아보기 | Wacky Travel</title>
-  <meta name="description" content="아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 한곳에서 확인하세요." />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="canonical" href="/hotel-promotions/" />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Wacky Travel" />
-  <meta property="og:title" content="호텔 프로모션 모아보기 | Wacky Travel" />
-  <meta property="og:description" content="호텔 예약 플랫폼에서 진행하는 프로모션과 주요 일정을 한곳에서 확인하세요." />
-  <meta property="og:url" content="/hotel-promotions/" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260723-post-breadcrumb-padfix" />
-  <link rel="stylesheet" href="/assets/css/hotel-promotions.css?v=20260724-promo-v14" />
-
-  <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>호텔 프로모션 모아보기 | Wacky Travel</title>
+<meta content="아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 한곳에서 확인하세요." name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<link href="/hotel-promotions/" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="website" property="og:type"/>
+<meta content="Wacky Travel" property="og:site_name"/>
+<meta content="호텔 프로모션 모아보기 | Wacky Travel" property="og:title"/>
+<meta content="호텔 예약 플랫폼에서 진행하는 프로모션과 주요 일정을 한곳에서 확인하세요." property="og:description"/>
+<meta content="/hotel-promotions/" property="og:url"/>
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/assets/css/app.css?v=20260723-post-width-100" rel="stylesheet"/>
+<link href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260723-post-breadcrumb-padfix" rel="stylesheet"/>
+<link href="/assets/css/hotel-promotions.css?v=20260724-promo-v15" rel="stylesheet"/>
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -29,373 +29,347 @@
     "isPartOf": {"@type": "WebSite", "name": "Wacky Travel", "url": "/"}
   }
   </script>
-  <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet" />
+<link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet"/>
 </head>
 <body class="wtpromo-page">
-  <a class="wtpromo-skip-link" href="#main">본문으로 바로가기</a>
-
-  <header class="topbar topbar--editorial topbar--travel" data-site-header="main">
-  <div class="topbar__inner container">
-    <a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
-    <button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
-      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="6.4"></circle>
-        <path d="m16 16 4.5 4.5"></path>
-      </svg>
-    </button>
-  </div>
+<a class="wtpromo-skip-link" href="#main">본문으로 바로가기</a>
+<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
+<div class="topbar__inner container">
+<a aria-label="Wacky Travel 홈" class="brand" href="/"><span class="brand__mark">WT</span><span class="brand__text">Wacky Travel</span></a>
+<button aria-controls="homeSearchOverlay" aria-expanded="false" aria-label="검색 열기" class="topbar-search-button" id="homeSearchOpenBtn" type="button">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="6.4"></circle>
+<path d="m16 16 4.5 4.5"></path>
+</svg>
+</button>
+</div>
 </header>
-<section aria-hidden="true" class="home-search-overlay" data-site-search-overlay="main" hidden id="homeSearchOverlay">
-  <div class="home-search-overlay__backdrop" data-home-search-close></div>
-  <div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
-    <div class="home-search-overlay__bar">
-      <button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close type="button">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-          <path d="M6 6l12 12"></path>
-          <path d="M18 6L6 18"></path>
-        </svg>
-      </button>
-      <form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
-        <span aria-hidden="true" class="home-search-overlay__icon">
-          <svg focusable="false" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="6.4"></circle>
-            <path d="m16 16 4.5 4.5"></path>
-          </svg>
-        </span>
-        <input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search" />
-        <button class="home-search-overlay__submit" type="submit">검색</button>
-      </form>
-    </div>
-    <div class="home-search-overlay__content">
-      <p class="home-search-overlay__eyebrow">Search</p>
-      <h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
-      <p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
-      <div aria-label="추천 검색어" class="home-search-overlay__quick">
-        <button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
-        <button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
-        <button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
-        <button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
-      </div>
-    </div>
-  </div>
+<section aria-hidden="true" class="home-search-overlay" data-site-search-overlay="main" hidden="" id="homeSearchOverlay">
+<div class="home-search-overlay__backdrop" data-home-search-close=""></div>
+<div aria-labelledby="homeSearchOverlayTitle" aria-modal="true" class="home-search-overlay__panel" role="dialog">
+<div class="home-search-overlay__bar">
+<button aria-label="검색 닫기" class="home-search-overlay__close" data-home-search-close="" type="button">
+<svg aria-hidden="true" focusable="false" viewbox="0 0 24 24">
+<path d="M6 6l12 12"></path>
+<path d="M18 6L6 18"></path>
+</svg>
+</button>
+<form action="/search/" autocomplete="off" class="home-search-overlay__form" id="homeFullscreenSearchForm" method="get" role="search">
+<span aria-hidden="true" class="home-search-overlay__icon">
+<svg focusable="false" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="6.4"></circle>
+<path d="m16 16 4.5 4.5"></path>
+</svg>
+</span>
+<input aria-label="여행지 또는 호텔 검색어 입력" id="homeFullscreenSearchInput" name="q" placeholder="도시, 호텔명, 숙소 위치를 검색해보세요" type="search"/>
+<button class="home-search-overlay__submit" type="submit">검색</button>
+</form>
+</div>
+<div class="home-search-overlay__content">
+<p class="home-search-overlay__eyebrow">Search</p>
+<h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2>
+<p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p>
+<div aria-label="추천 검색어" class="home-search-overlay__quick">
+<button data-home-search-query="오사카 난바 호텔" type="button">오사카 난바 호텔</button>
+<button data-home-search-query="후쿠오카 하카타 숙소" type="button">후쿠오카 하카타 숙소</button>
+<button data-home-search-query="다낭 미케비치 호텔" type="button">다낭 미케비치 호텔</button>
+<button data-home-search-query="타이베이 시먼딩 숙소" type="button">타이베이 시먼딩 숙소</button>
+</div>
+</div>
+</div>
 </section>
+<main id="main">
+<section class="wtpromo-hero">
+<div class="wtpromo-hero__grid wtpromo-container">
+<div>
+<p class="wtpromo-eyebrow">Hotel Promotion Guide</p>
+<h1>호텔 프로모션을<br/>한곳에서.</h1>
+<p class="wtpromo-hero__desc">아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 모았습니다. 혜택과 주요 일정을 살펴보고 관심 있는 프로모션의 공식 페이지로 바로 이동해보세요.</p>
+</div>
+<div aria-label="프로모션 현황" class="wtpromo-hero__summary">
+<div class="wtpromo-summary-row"><span>진행 중인 프로모션</span><strong id="totalPromotionCount">21개</strong></div>
+<div class="wtpromo-summary-row"><span>마지막 확인</span><strong class="wtpromo-verified-date"><span id="lastVerifiedDate"></span><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m4.5 10.2 3.3 3.3 7.7-7.7"></path></svg></strong></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="allPromotionsTitle" class="wtpromo-section wtpromo-container">
+<div class="wtpromo-promotion-toolbar">
+<div>
+<p class="wtpromo-eyebrow">All Promotions</p>
+<h2 id="allPromotionsTitle" style="margin:0;font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-.045em;">전체 프로모션</h2>
+</div>
+</div>
+<div aria-label="호텔 플랫폼" class="wtpromo-platform-tabs" id="platformTabs" role="tablist" style="margin-bottom:22px;">
+<button aria-selected="true" class="wtpromo-pill wtpromo-is-active" data-platform="agoda" role="tab" type="button">아고다</button>
+<button aria-selected="false" class="wtpromo-pill" data-platform="trip" role="tab" type="button">트립닷컴</button>
+<button aria-selected="false" class="wtpromo-pill" data-platform="hotels" role="tab" type="button">호텔스닷컴</button>
+<button aria-selected="false" class="wtpromo-pill" data-platform="booking" role="tab" type="button">부킹닷컴</button>
+<button aria-selected="false" class="wtpromo-pill" data-platform="expedia" role="tab" type="button">익스피디아</button>
+<button aria-selected="false" class="wtpromo-pill" data-platform="yeogi" role="tab" type="button">여기어때</button>
+<button aria-selected="false" class="wtpromo-pill" data-platform="yanolja" role="tab" type="button">야놀자</button>
+</div>
+<div class="wtpromo-promotion-grid" id="promotionGrid">
+<a aria-label="아시아나 여행 특가 라이브" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" data-promotion-status="scheduled" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>아시아나 여행 특가 라이브</h3>
+<p class="wtpromo-card__description">전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="수요일 일본여행 5만원 쿠폰데이" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>수요일 일본여행 5만원 쿠폰데이</h3>
+<p class="wtpromo-card__description">일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="매일 최대 50% 항공·호텔 특가" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>매일 최대 50% 항공·호텔 특가</h3>
+<p class="wtpromo-card__description">항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="수요일 1천원대 특급호텔 오픈런" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-004" data-promotion-platform="trip" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>수요일 1천원대 특급호텔 오픈런</h3>
+<p class="wtpromo-card__description">특급호텔을 1천원대부터 예약 · 매주 수요일 선착순</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="국내외 항공권 최대 50% 특가전" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-005" data-promotion-platform="trip" data-promotion-status="needs-review" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>국내외 항공권 최대 50% 특가전</h3>
+<p class="wtpromo-card__description">국내선과 국제선 할인 항공권을 한곳에 구성</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="목요일 대만여행 11만원 할인찬스" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-006" data-promotion-platform="trip" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>목요일 대만여행 11만원 할인찬스</h3>
+<p class="wtpromo-card__description">대만 항공권과 호텔 예약 시 매주 목요일 추가 할인</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="지금 떠나는 전 세계 여행 특가" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-007" data-promotion-platform="trip" data-promotion-status="needs-review" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>지금 떠나는 전 세계 여행 특가</h3>
+<p class="wtpromo-card__description">인기 해외여행지의 항공권과 숙소 특가를 한눈에 확인</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="하루 두 번 호텔 4만원 타임딜" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-008" data-promotion-platform="trip" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>하루 두 번 호텔 4만원 타임딜</h3>
+<p class="wtpromo-card__description">매일 두 차례 공개되는 호텔 한정 할인 · 24시간 판매</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="화·목 중국여행 5만원 할인데이" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-009" data-promotion-platform="trip" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity">
+<span class="wtpromo-card__platform">Trip.com</span>
+</div>
+<div class="wtpromo-card__content">
+<h3>화·목 중국여행 5만원 할인데이</h3>
+<p class="wtpromo-card__description">중국 항공권과 호텔에 매주 화요일·목요일 추가 혜택</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="해외 호텔 여름 시즌 특가 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="agoda-001" data-promotion-platform="agoda" data-promotion-status="active" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Agoda</span></div>
+<div class="wtpromo-card__content">
+<h3>해외 호텔 여름 시즌 특가</h3>
+<p class="wtpromo-card__description">해외 인기 도시 호텔 최대 15% 할인 · 테스트용 데이터</p>
+<div class="wtpromo-code" data-promo-code="WACKY15">
+<span class="wtpromo-code__label">프로모션 코드</span>
+<code class="wtpromo-code__value">WACKY15</code>
+<button aria-label="프로모션 코드 WACKY15 복사" class="wtpromo-code__copy" type="button">복사</button>
+</div>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="아고다 카드 할인 찾기 페이지로 이동" class="wtpromo-card" data-promotion-id="agoda-002" data-promotion-platform="agoda" data-promotion-status="active" href="/agoda-card-discount/">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Agoda</span></div>
+<div class="wtpromo-card__content">
+<h3>아고다 카드 할인 찾기</h3>
+<p class="wtpromo-card__description">호텔 링크를 입력하고 카드·간편결제별 할인 페이지 확인</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="회원 전용 숙박 리워드 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="hotels-001" data-promotion-platform="hotels" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Hotels.com</span></div>
+<div class="wtpromo-card__content">
+<h3>회원 전용 숙박 리워드</h3>
+<p class="wtpromo-card__description">회원가와 리워드 적립 혜택 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="주말 호텔 즉시 할인 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="hotels-002" data-promotion-platform="hotels" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Hotels.com</span></div>
+<div class="wtpromo-card__content">
+<h3>주말 호텔 즉시 할인</h3>
+<p class="wtpromo-card__description">주말 예약 대상 호텔 추가 할인 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="Genius 회원 호텔 특가 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="booking-001" data-promotion-platform="booking" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Booking.com</span></div>
+<div class="wtpromo-card__content">
+<h3>Genius 회원 호텔 특가</h3>
+<p class="wtpromo-card__description">회원 등급별 숙소 할인 혜택 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="도시별 인기 숙소 프로모션 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="booking-002" data-promotion-platform="booking" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Booking.com</span></div>
+<div class="wtpromo-card__content">
+<h3>도시별 인기 숙소 프로모션</h3>
+<p class="wtpromo-card__description">인기 여행지 숙소 한정 특가 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="항공+호텔 패키지 특가 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="expedia-001" data-promotion-platform="expedia" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Expedia</span></div>
+<div class="wtpromo-card__content">
+<h3>항공+호텔 패키지 특가</h3>
+<p class="wtpromo-card__description">패키지 예약 시 추가 절약 혜택 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="앱 전용 호텔 할인 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="expedia-002" data-promotion-platform="expedia" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Expedia</span></div>
+<div class="wtpromo-card__content">
+<h3>앱 전용 호텔 할인</h3>
+<p class="wtpromo-card__description">모바일 앱 예약 전용 가격 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="국내 호텔 주말 특가 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yeogi-001" data-promotion-platform="yeogi" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">여기어때</span></div>
+<div class="wtpromo-card__content">
+<h3>국내 호텔 주말 특가</h3>
+<p class="wtpromo-card__description">국내 인기 호텔 주말 한정 할인 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="숙박 쿠폰 기획전 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yeogi-002" data-promotion-platform="yeogi" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">여기어때</span></div>
+<div class="wtpromo-card__content">
+<h3>숙박 쿠폰 기획전</h3>
+<p class="wtpromo-card__description">지역별 숙소 쿠폰 제공 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="국내 숙소 타임세일 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yanolja-001" data-promotion-platform="yanolja" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">야놀자</span></div>
+<div class="wtpromo-card__content">
+<h3>국내 숙소 타임세일</h3>
+<p class="wtpromo-card__description">정해진 시간에 공개되는 숙소 특가 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+<a aria-label="호텔 예약 쿠폰팩 · 테스트용 더미 프로모션" class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yanolja-002" data-promotion-platform="yanolja" data-promotion-status="active" hidden="" href="#n">
+<div class="wtpromo-card__identity"><span class="wtpromo-card__platform">야놀자</span></div>
+<div class="wtpromo-card__content">
+<h3>호텔 예약 쿠폰팩</h3>
+<p class="wtpromo-card__description">호텔 예약 시 사용할 수 있는 쿠폰 · 테스트용 데이터</p>
+</div>
+<span aria-hidden="true" class="wtpromo-card__arrow"><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7 4 6 6-6 6"></path></svg></span>
+</a>
+</div>
+</section>
+<section aria-labelledby="checkerTitle" class="wtpromo-section--soft">
+<div class="wtpromo-container">
+<a aria-labelledby="checkerTitle" class="wtpromo-tool-card" href="/agoda-card-discount/">
+<div>
 
-  
-
-  <main id="main">
-    <section class="wtpromo-hero">
-      <div class="wtpromo-hero__grid wtpromo-container">
-        <div>
-          <p class="wtpromo-eyebrow">Hotel Promotion Guide</p>
-          <h1>호텔 프로모션을<br />한곳에서.</h1>
-          <p class="wtpromo-hero__desc">아고다, 호텔스닷컴, 트립닷컴 등 호텔 예약 플랫폼에서 진행하는 프로모션을 모았습니다. 혜택과 주요 일정을 살펴보고 관심 있는 프로모션의 공식 페이지로 바로 이동해보세요.</p>
-        </div>
-        <div class="wtpromo-hero__summary" aria-label="프로모션 현황">
-          <div class="wtpromo-summary-row"><span>등록된 프로모션</span><strong id="totalPromotionCount">21개</strong></div>
-          <div class="wtpromo-summary-row"><span>마지막 확인</span><strong class="wtpromo-verified-date"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4.5 10.2 3.3 3.3 7.7-7.7"></path></svg><span id="lastVerifiedDate"></span></strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="wtpromo-section wtpromo-container" aria-labelledby="allPromotionsTitle">
-      <div class="wtpromo-promotion-toolbar">
-        <div>
-          <p class="wtpromo-eyebrow">All Promotions</p>
-          <h2 id="allPromotionsTitle" style="margin:0;font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-.045em;">전체 프로모션</h2>
-        </div>
-      </div>
-
-      <div class="wtpromo-platform-tabs" id="platformTabs" role="tablist" aria-label="호텔 플랫폼" style="margin-bottom:22px;">
-        <button class="wtpromo-pill wtpromo-is-active" type="button" data-platform="agoda" role="tab" aria-selected="true">아고다</button>
-        <button class="wtpromo-pill" type="button" data-platform="trip" role="tab" aria-selected="false">트립닷컴</button>
-        <button class="wtpromo-pill" type="button" data-platform="hotels" role="tab" aria-selected="false">호텔스닷컴</button>
-        <button class="wtpromo-pill" type="button" data-platform="booking" role="tab" aria-selected="false">부킹닷컴</button>
-        <button class="wtpromo-pill" type="button" data-platform="expedia" role="tab" aria-selected="false">익스피디아</button>
-        <button class="wtpromo-pill" type="button" data-platform="yeogi" role="tab" aria-selected="false">여기어때</button>
-        <button class="wtpromo-pill" type="button" data-platform="yanolja" role="tab" aria-selected="false">야놀자</button>
-      </div>
-
-      <div class="wtpromo-promotion-grid" id="promotionGrid">
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-001" data-promotion-platform="trip" data-promotion-status="scheduled" aria-label="아시아나 여행 특가 라이브" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>아시아나 여행 특가 라이브</h3>
-            <p class="wtpromo-card__description">전 세계 항공·여행상품 특별 혜택 · 7월 13일 오전 11시</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-002" data-promotion-platform="trip" data-promotion-status="active" aria-label="수요일 일본여행 5만원 쿠폰데이" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>수요일 일본여행 5만원 쿠폰데이</h3>
-            <p class="wtpromo-card__description">일본 항공권·호텔 최대 5만원 할인 · 매주 수요일</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-003" data-promotion-platform="trip" data-promotion-status="active" aria-label="매일 최대 50% 항공·호텔 특가" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>매일 최대 50% 항공·호텔 특가</h3>
-            <p class="wtpromo-card__description">항공권과 호텔을 최대 50% 할인 · 행사 기간 매일 진행</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-004" data-promotion-platform="trip" data-promotion-status="active" aria-label="수요일 1천원대 특급호텔 오픈런" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>수요일 1천원대 특급호텔 오픈런</h3>
-            <p class="wtpromo-card__description">특급호텔을 1천원대부터 예약 · 매주 수요일 선착순</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-005" data-promotion-platform="trip" data-promotion-status="needs-review" aria-label="국내외 항공권 최대 50% 특가전" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>국내외 항공권 최대 50% 특가전</h3>
-            <p class="wtpromo-card__description">국내선과 국제선 할인 항공권을 한곳에 구성</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-006" data-promotion-platform="trip" data-promotion-status="active" aria-label="목요일 대만여행 11만원 할인찬스" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>목요일 대만여행 11만원 할인찬스</h3>
-            <p class="wtpromo-card__description">대만 항공권과 호텔 예약 시 매주 목요일 추가 할인</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-007" data-promotion-platform="trip" data-promotion-status="needs-review" aria-label="지금 떠나는 전 세계 여행 특가" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>지금 떠나는 전 세계 여행 특가</h3>
-            <p class="wtpromo-card__description">인기 해외여행지의 항공권과 숙소 특가를 한눈에 확인</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-008" data-promotion-platform="trip" data-promotion-status="active" aria-label="하루 두 번 호텔 4만원 타임딜" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>하루 두 번 호텔 4만원 타임딜</h3>
-            <p class="wtpromo-card__description">매일 두 차례 공개되는 호텔 한정 할인 · 24시간 판매</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="trip-009" data-promotion-platform="trip" data-promotion-status="active" aria-label="화·목 중국여행 5만원 할인데이" hidden>
-          <div class="wtpromo-card__identity">
-            <span class="wtpromo-card__platform">Trip.com</span>
-          </div>
-          <div class="wtpromo-card__content">
-            <h3>화·목 중국여행 5만원 할인데이</h3>
-            <p class="wtpromo-card__description">중국 항공권과 호텔에 매주 화요일·목요일 추가 혜택</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="agoda-001" data-promotion-platform="agoda" data-promotion-status="active" aria-label="해외 호텔 여름 시즌 특가 · 테스트용 더미 프로모션">
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Agoda</span></div>
-          <div class="wtpromo-card__content">
-            <h3>해외 호텔 여름 시즌 특가</h3>
-            <p class="wtpromo-card__description">해외 인기 도시 호텔 최대 15% 할인 · 테스트용 데이터</p>
-            <div class="wtpromo-code" data-promo-code="WACKY15">
-              <span class="wtpromo-code__label">프로모션 코드</span>
-              <code class="wtpromo-code__value">WACKY15</code>
-              <button class="wtpromo-code__copy" type="button" aria-label="프로모션 코드 WACKY15 복사">복사</button>
-            </div>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <a class="wtpromo-card" href="/agoda-card-discount/" data-promotion-id="agoda-002" data-promotion-platform="agoda" data-promotion-status="active" aria-label="아고다 카드 할인 찾기 페이지로 이동">
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Agoda</span></div>
-          <div class="wtpromo-card__content">
-            <h3>아고다 카드 할인 찾기</h3>
-            <p class="wtpromo-card__description">호텔 링크를 입력하고 카드·간편결제별 할인 페이지 확인</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </a>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="hotels-001" data-promotion-platform="hotels" data-promotion-status="active" aria-label="회원 전용 숙박 리워드 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Hotels.com</span></div>
-          <div class="wtpromo-card__content">
-            <h3>회원 전용 숙박 리워드</h3>
-            <p class="wtpromo-card__description">회원가와 리워드 적립 혜택 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="hotels-002" data-promotion-platform="hotels" data-promotion-status="active" aria-label="주말 호텔 즉시 할인 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Hotels.com</span></div>
-          <div class="wtpromo-card__content">
-            <h3>주말 호텔 즉시 할인</h3>
-            <p class="wtpromo-card__description">주말 예약 대상 호텔 추가 할인 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="booking-001" data-promotion-platform="booking" data-promotion-status="active" aria-label="Genius 회원 호텔 특가 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Booking.com</span></div>
-          <div class="wtpromo-card__content">
-            <h3>Genius 회원 호텔 특가</h3>
-            <p class="wtpromo-card__description">회원 등급별 숙소 할인 혜택 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="booking-002" data-promotion-platform="booking" data-promotion-status="active" aria-label="도시별 인기 숙소 프로모션 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Booking.com</span></div>
-          <div class="wtpromo-card__content">
-            <h3>도시별 인기 숙소 프로모션</h3>
-            <p class="wtpromo-card__description">인기 여행지 숙소 한정 특가 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="expedia-001" data-promotion-platform="expedia" data-promotion-status="active" aria-label="항공+호텔 패키지 특가 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Expedia</span></div>
-          <div class="wtpromo-card__content">
-            <h3>항공+호텔 패키지 특가</h3>
-            <p class="wtpromo-card__description">패키지 예약 시 추가 절약 혜택 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="expedia-002" data-promotion-platform="expedia" data-promotion-status="active" aria-label="앱 전용 호텔 할인 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">Expedia</span></div>
-          <div class="wtpromo-card__content">
-            <h3>앱 전용 호텔 할인</h3>
-            <p class="wtpromo-card__description">모바일 앱 예약 전용 가격 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yeogi-001" data-promotion-platform="yeogi" data-promotion-status="active" aria-label="국내 호텔 주말 특가 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">여기어때</span></div>
-          <div class="wtpromo-card__content">
-            <h3>국내 호텔 주말 특가</h3>
-            <p class="wtpromo-card__description">국내 인기 호텔 주말 한정 할인 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yeogi-002" data-promotion-platform="yeogi" data-promotion-status="active" aria-label="숙박 쿠폰 기획전 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">여기어때</span></div>
-          <div class="wtpromo-card__content">
-            <h3>숙박 쿠폰 기획전</h3>
-            <p class="wtpromo-card__description">지역별 숙소 쿠폰 제공 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yanolja-001" data-promotion-platform="yanolja" data-promotion-status="active" aria-label="국내 숙소 타임세일 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">야놀자</span></div>
-          <div class="wtpromo-card__content">
-            <h3>국내 숙소 타임세일</h3>
-            <p class="wtpromo-card__description">정해진 시간에 공개되는 숙소 특가 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-
-        <article class="wtpromo-card wtpromo-card--disabled" data-promotion-id="yanolja-002" data-promotion-platform="yanolja" data-promotion-status="active" aria-label="호텔 예약 쿠폰팩 · 테스트용 더미 프로모션" hidden>
-          <div class="wtpromo-card__identity"><span class="wtpromo-card__platform">야놀자</span></div>
-          <div class="wtpromo-card__content">
-            <h3>호텔 예약 쿠폰팩</h3>
-            <p class="wtpromo-card__description">호텔 예약 시 사용할 수 있는 쿠폰 · 테스트용 데이터</p>
-          </div>
-          <span class="wtpromo-card__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6"></path></svg></span>
-        </article>
-      </div>
-    </section>
-
-    <section class="wtpromo-section--soft" aria-labelledby="checkerTitle">
-      <div class="wtpromo-container">
-        <a class="wtpromo-tool-card" href="/agoda-card-discount/" aria-labelledby="checkerTitle">
-          <div>
-            <div class="wtpromo-tool-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5"></rect><path d="M3.5 9.5h17"></path><path d="M7 15h4"></path></svg>
-            </div>
-            <p class="wtpromo-eyebrow">Wacky Travel Tool</p>
-            <h2 id="checkerTitle">아고다 결제 할인 찾기</h2>
-            <p>호텔 링크 하나로 카드·간편결제·통신사 등 결제수단별 할인을 한 번에 확인하는 도구입니다.</p>
-          </div>
-          <span class="wtpromo-primary-button" aria-hidden="true">
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg>
-          </span>
-        </a>
-      </div>
-    </section>
-
-    <section class="wtpromo-section wtpromo-container" aria-labelledby="guideTitle">
-      <div class="wtpromo-section-heading">
-        <div>
-          <p class="wtpromo-eyebrow">Before You Go</p>
-          <h2 id="guideTitle">프로모션 확인 전 체크할 점</h2>
-        </div>
-      </div>
-      <div class="wtpromo-guide-grid">
-        <article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">01</span><h3>예약·이용 기간</h3><p>프로모션을 예약할 수 있는 기간과 실제 숙박·여행이 가능한 기간은 서로 다를 수 있습니다.</p></article>
-        <article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">02</span><h3>적용 대상</h3><p>특정 국가·도시·호텔·객실 또는 회원에게만 제공되는 혜택인지 먼저 확인하세요.</p></article>
-        <article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">03</span><h3>참여 방식</h3><p>쿠폰 다운로드, 앱 접속, 전용 링크 이용이나 특정 카드 결제가 필요한 프로모션도 있습니다.</p></article>
-        <article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">04</span><h3>공개 시간·수량</h3><p>오픈런과 타임딜은 정해진 시간에 열리며 한정 수량이 소진되면 일찍 종료될 수 있습니다.</p></article>
-        <article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">05</span><h3>최신 운영 조건</h3><p>일정과 혜택은 변경될 수 있으므로 이동한 공식 프로모션 페이지에서 최종 내용을 확인하세요.</p></article>
-      </div>
-    </section>
-
-    <section class="wtpromo-section wtpromo-container" aria-labelledby="faqTitle">
-      <div class="wtpromo-section-heading">
-        <div>
-          <p class="wtpromo-eyebrow">FAQ</p>
-          <h2 id="faqTitle">자주 묻는 질문</h2>
-        </div>
-      </div>
-      <div class="wtpromo-faq-list">
-        <article class="wtpromo-faq-item">
-          <button class="wtpromo-faq-question" type="button" aria-expanded="false"><span>프로모션 링크로 들어가면 모든 호텔이 할인되나요?</span><span class="wtpromo-faq-icon" aria-hidden="true"></span></button>
-          <div class="wtpromo-faq-answer" hidden>플랫폼과 카드사에 따라 일부 호텔, 일부 객실, 선결제 상품에만 적용될 수 있습니다. 최종 결제 화면에서 할인 금액이 반영됐는지 확인해야 합니다.</div>
-        </article>
-        <article class="wtpromo-faq-item">
-          <button class="wtpromo-faq-question" type="button" aria-expanded="false"><span>쿠폰과 카드 할인을 함께 사용할 수 있나요?</span><span class="wtpromo-faq-icon" aria-hidden="true"></span></button>
-          <div class="wtpromo-faq-answer" hidden>중복 적용 여부는 프로모션마다 다릅니다. 이동한 프로모션 페이지와 최종 결제 단계에서 쿠폰·카드 할인 적용 여부를 확인하세요.</div>
-        </article>
-        <article class="wtpromo-faq-item">
-          <button class="wtpromo-faq-question" type="button" aria-expanded="false"><span>표시된 프로모션은 언제 업데이트되나요?</span><span class="wtpromo-faq-icon" aria-hidden="true"></span></button>
-          <div class="wtpromo-faq-answer" hidden>페이지 상단에 마지막 확인일을 표시합니다. 각 프로모션 카드를 누르면 공식 페이지가 새 탭으로 열리며, 그곳에서 최신 종료일과 적용 조건을 확인할 수 있습니다.</div>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer class="wtpromo-footer">
-    <div class="wtpromo-footer__inner wtpromo-container">
-      <div>
-        <div class="wtpromo-footer-brand">Wacky Travel</div>
-        <p class="wtpromo-footer-copy">© 2026 Wacky Travel<br />예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
-      </div>
-      <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
-        <a href="/about/">소개</a>
+<p class="wtpromo-eyebrow">Wacky Travel Tool</p>
+<h2 id="checkerTitle">아고다 결제 할인 찾기</h2>
+<p>호텔 링크 하나로 카드·간편결제·통신사 등 결제수단별 할인을 한 번에 확인하는 도구입니다.</p>
+</div>
+<span aria-hidden="true" class="wtpromo-primary-button">
+<svg aria-hidden="true" viewbox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg>
+</span>
+</a>
+</div>
+</section>
+<section aria-labelledby="guideTitle" class="wtpromo-section wtpromo-container">
+<div class="wtpromo-section-heading">
+<div>
+<p class="wtpromo-eyebrow">Before You Go</p>
+<h2 id="guideTitle">프로모션 확인 전 체크할 점</h2>
+</div>
+</div>
+<div class="wtpromo-guide-grid">
+<article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">01</span><h3>예약·이용 기간</h3><p>프로모션을 예약할 수 있는 기간과 실제 숙박·여행이 가능한 기간은 서로 다를 수 있습니다.</p></article>
+<article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">02</span><h3>적용 대상</h3><p>특정 국가·도시·호텔·객실 또는 회원에게만 제공되는 혜택인지 먼저 확인하세요.</p></article>
+<article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">03</span><h3>참여 방식</h3><p>쿠폰 다운로드, 앱 접속, 전용 링크 이용이나 특정 카드 결제가 필요한 프로모션도 있습니다.</p></article>
+<article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">04</span><h3>공개 시간·수량</h3><p>오픈런과 타임딜은 정해진 시간에 열리며 한정 수량이 소진되면 일찍 종료될 수 있습니다.</p></article>
+<article class="wtpromo-guide-item"><span class="wtpromo-guide-item__number">05</span><h3>최신 운영 조건</h3><p>일정과 혜택은 변경될 수 있으므로 이동한 공식 프로모션 페이지에서 최종 내용을 확인하세요.</p></article>
+</div>
+</section>
+<section aria-labelledby="faqTitle" class="wtpromo-section wtpromo-container">
+<div class="wtpromo-section-heading">
+<div>
+<p class="wtpromo-eyebrow">FAQ</p>
+<h2 id="faqTitle">자주 묻는 질문</h2>
+</div>
+</div>
+<div class="wtpromo-faq-list">
+<article class="wtpromo-faq-item">
+<button aria-expanded="false" class="wtpromo-faq-question" type="button"><span>프로모션 링크로 들어가면 모든 호텔이 할인되나요?</span><span aria-hidden="true" class="wtpromo-faq-icon"></span></button>
+<div class="wtpromo-faq-answer" hidden="">플랫폼과 카드사에 따라 일부 호텔, 일부 객실, 선결제 상품에만 적용될 수 있습니다. 최종 결제 화면에서 할인 금액이 반영됐는지 확인해야 합니다.</div>
+</article>
+<article class="wtpromo-faq-item">
+<button aria-expanded="false" class="wtpromo-faq-question" type="button"><span>쿠폰과 카드 할인을 함께 사용할 수 있나요?</span><span aria-hidden="true" class="wtpromo-faq-icon"></span></button>
+<div class="wtpromo-faq-answer" hidden="">중복 적용 여부는 프로모션마다 다릅니다. 이동한 프로모션 페이지와 최종 결제 단계에서 쿠폰·카드 할인 적용 여부를 확인하세요.</div>
+</article>
+<article class="wtpromo-faq-item">
+<button aria-expanded="false" class="wtpromo-faq-question" type="button"><span>표시된 프로모션은 언제 업데이트되나요?</span><span aria-hidden="true" class="wtpromo-faq-icon"></span></button>
+<div class="wtpromo-faq-answer" hidden="">페이지 상단에 마지막 확인일을 표시합니다. 각 프로모션 카드를 누르면 공식 페이지가 새 탭으로 열리며, 그곳에서 최신 종료일과 적용 조건을 확인할 수 있습니다.</div>
+</article>
+</div>
+</section>
+</main>
+<footer class="wtpromo-footer">
+<div class="wtpromo-footer__inner wtpromo-container">
+<div>
+<div class="wtpromo-footer-brand">Wacky Travel</div>
+<p class="wtpromo-footer-copy">© 2026 Wacky Travel<br/>예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
+</div>
+<nav aria-label="하단 메뉴" class="wtpromo-footer-links">
+<a href="/about/">소개</a>
 <a href="/privacy-policy/">개인정보 처리방침</a>
-        <a href="/destinations/">여행지</a>
-        <a href="/search/">검색</a>
-      </nav>
-    </div>
-  </footer>
-
-  <script>
+<a href="/destinations/">여행지</a>
+<a href="/search/">검색</a>
+</nav>
+</div>
+</footer>
+<script>
     (() => {
       const cards = Array.from(document.querySelectorAll('#promotionGrid [data-promotion-platform]'));
       const tabs = Array.from(document.querySelectorAll('#platformTabs [data-platform]'));
@@ -453,7 +427,9 @@
       };
 
       document.querySelectorAll('.wtpromo-code__copy').forEach((button) => {
-        button.addEventListener('click', async () => {
+        button.addEventListener('click', async (event) => {
+          event.preventDefault();
+          event.stopPropagation();
           const codeWrap = button.closest('[data-promo-code]');
           const code = codeWrap?.dataset.promoCode || '';
           if (!code) return;
@@ -481,7 +457,6 @@
       });
     })();
   </script>
-
-  <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
+<script defer="" src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
 </body>
 </html>
