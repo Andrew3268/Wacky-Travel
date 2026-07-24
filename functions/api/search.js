@@ -17,21 +17,19 @@ function compactText(value = "") {
   return normalizeText(value).replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, "");
 }
 
-const BLOCKED_SINGLE_SEARCH_KEYWORDS = new Set(["호텔", "숙소", "여행", "추천"]);
-
-function isBlockedSingleSearchKeyword(value = "") {
-  return BLOCKED_SINGLE_SEARCH_KEYWORDS.has(normalizeText(value));
-}
+const BROAD_SEARCH_KEYWORDS = new Set(["호텔", "숙소", "여행", "추천"]);
 
 function getSearchTerms(value = "") {
-  const full = normalizeText(value);
-  const compactFull = compactText(full);
-  const parts = full
-    .split(/[\s,，、|/·・]+/)
-    .map((term) => normalizeText(term))
-    .filter((term) => term.length >= 2);
+  return [...new Set(
+    normalizeText(value)
+      .split(/[\s,，、|/·・]+/)
+      .map((term) => normalizeText(term))
+      .filter((term) => term.length >= 2 && !BROAD_SEARCH_KEYWORDS.has(term))
+  )].slice(0, 12);
+}
 
-  return [...new Set([full, compactFull, ...parts].filter(Boolean))].slice(0, 12);
+function isTooBroadSearchQuery(value = "") {
+  return getSearchTerms(value).length === 0;
 }
 
 function likeValue(value = "") {
@@ -107,7 +105,7 @@ function buildSearchWhere(query, options) {
   }).filter(Boolean);
 
   return {
-    sql: groups.length ? `(${groups.join(" OR ")})` : "",
+    sql: groups.length ? `(${groups.join(" AND ")})` : "",
     binds
   };
 }
@@ -126,17 +124,17 @@ function safeArray(value) {
 }
 
 function getSearchScore(row = {}, query = "") {
-  const full = normalizeText(query);
-  const compactFull = compactText(query);
   const title = normalizeText(row.title);
   const compactTitle = compactText(row.title);
   const terms = getSearchTerms(query);
+  const meaningfulFull = terms.join(" ");
+  const compactMeaningfulFull = compactText(meaningfulFull);
 
   let score = 0;
-  if (full && title === full) score += 300;
-  if (full && title.startsWith(full)) score += 220;
-  if (full && title.includes(full)) score += 180;
-  if (compactFull && compactTitle.includes(compactFull)) score += 150;
+  if (meaningfulFull && title === meaningfulFull) score += 300;
+  if (meaningfulFull && title.startsWith(meaningfulFull)) score += 220;
+  if (meaningfulFull && title.includes(meaningfulFull)) score += 180;
+  if (compactMeaningfulFull && compactTitle.includes(compactMeaningfulFull)) score += 150;
 
   for (const term of terms) {
     const compactTerm = compactText(term);
@@ -171,12 +169,12 @@ export async function onRequestGet({ env, request }) {
     }, { headers: { "cache-control": "no-store" } });
   }
 
-  if (isBlockedSingleSearchKeyword(query)) {
+  if (isTooBroadSearchQuery(query)) {
     return okJson({
       items: [],
       blocked: true,
       blocked_reason: "broad_single_keyword",
-      message: "검색어가 너무 넓습니다. 도시, 지역 또는 여행 조건을 함께 입력해 주세요.",
+      message: "도시, 지역 또는 여행 조건을 함께 입력해 주세요.",
       examples: ["다낭 호텔", "하카타역 숙소", "공항 근처 호텔"],
       filters: { q: query, status: "published" },
       pagination: { page, per_page: perPage, total: 0, total_pages: 1, has_more: false, next_page: null }

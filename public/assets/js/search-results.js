@@ -3,7 +3,7 @@ const $ = (id) => document.getElementById(id);
     const normalizeText = (value) => String(value || '').replace(/\s+/g, ' ').trim();
     const escapeRegExp = (value) => String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const state = { query: '', page: 1, totalPages: 1, isLoading: false };
-    const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
+    const broadSearchKeywords = new Set(['호텔', '숙소', '여행', '추천']);
 
     const landing = $('wtsrLanding');
     const resultsView = $('main');
@@ -35,8 +35,16 @@ const $ = (id) => document.getElementById(id);
       });
     }
 
-    function isBlockedSingleKeyword(value = '') {
-      return blockedSingleKeywords.has(normalizeText(value).toLowerCase());
+    function getMeaningfulSearchTerms(value = '') {
+      return normalizeText(value)
+        .toLowerCase()
+        .split(/[\s,，、|/·・]+/)
+        .map(normalizeText)
+        .filter((term) => term.length >= 2 && !broadSearchKeywords.has(term));
+    }
+
+    function isTooBroadQuery(value = '') {
+      return getMeaningfulSearchTerms(value).length === 0;
     }
 
     function safeArray(value) {
@@ -75,9 +83,9 @@ const $ = (id) => document.getElementById(id);
     function itemMatchesQuery(item = {}, query = '') {
       const title = normalizeSearchBlob(item.title);
       const compactTitle = compactSearchBlob(item.title);
-      const terms = getHighlightTerms(query).map((term) => normalizeSearchBlob(term)).filter(Boolean);
+      const terms = getMeaningfulSearchTerms(query);
       if (!terms.length) return false;
-      return terms.some((term) => title.includes(term) || compactTitle.includes(compactSearchBlob(term)));
+      return terms.every((term) => title.includes(term) || compactTitle.includes(compactSearchBlob(term)));
     }
 
     async function loadFallbackSearch(query = '') {
@@ -162,8 +170,8 @@ const $ = (id) => document.getElementById(id);
       </article>`;
     }
 
-    function setEmpty(messageTitle, messageText = '') {
-      $('wtsrResults').innerHTML = `<div class="wtsr-empty"><strong>${escapeHtml(messageTitle)}</strong>${escapeHtml(messageText)}</div>`;
+    function setEmpty(messageTitle, messageText = '', exampleText = '') {
+      $('wtsrResults').innerHTML = `<div class="wtsr-empty"><strong>${escapeHtml(messageTitle)}</strong>${messageText ? `<span class="wtsr-empty__message">${escapeHtml(messageText)}</span>` : ''}${exampleText ? `<span class="wtsr-empty__example">${escapeHtml(exampleText)}</span>` : ''}</div>`;
       $('wtsrMoreBtn').hidden = true;
     }
 
@@ -183,8 +191,8 @@ const $ = (id) => document.getElementById(id);
         setEmpty('검색어를 입력해 주세요', '예: 오사카 난바 호텔, 후쿠오카 하카타 숙소, 다낭 미케비치 호텔');
         return;
       }
-      if (isBlockedSingleKeyword(query)) {
-          setEmpty('검색어가 너무 넓습니다', '도시, 지역 또는 여행 조건을 함께 입력해 주세요. 예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
+      if (isTooBroadQuery(query)) {
+        setEmpty('조금 더 구체적으로 검색해 주세요', '도시, 지역 또는 여행 조건을 함께 입력해 주세요.', '예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
         return;
       }
       if (state.isLoading) return;
@@ -201,7 +209,7 @@ const $ = (id) => document.getElementById(id);
         if (!res.ok) throw new Error('search_failed');
         const data = await res.json().catch(() => ({}));
         if (data.blocked) {
-              setEmpty('검색어가 너무 넓습니다', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.');
+              setEmpty('조금 더 구체적으로 검색해 주세요', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.', '예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
           return;
         }
         const items = Array.isArray(data.items) ? data.items : [];

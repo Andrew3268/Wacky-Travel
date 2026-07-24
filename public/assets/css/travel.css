@@ -31956,3 +31956,35 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
     font-size:13px;
   }
 }
+
+
+/* SEARCH UX REFINEMENT V13 */
+.wtsr-page .wtsr-search-header__submit,
+.wtsr-page .wtsr-search-header__submit:hover,
+.wtsr-page .wtsr-search-header__submit:focus-visible{
+  border-radius:0;
+}
+
+.wtsr-page .wtsr-empty,
+.wtsr-page .wtsr-loading,
+.wtsr-page .wtsr-error{
+  padding:0;
+  border-bottom:0;
+}
+
+.wtsr-page .wtsr-empty{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+}
+
+.wtsr-page .wtsr-empty__message,
+.wtsr-page .wtsr-empty__example{
+  display:block;
+}
+
+.wtsr-page .wtsr-empty__example{
+  color:#777;
+  font-size:14px;
+}
