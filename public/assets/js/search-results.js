@@ -5,6 +5,22 @@ const $ = (id) => document.getElementById(id);
     const state = { query: '', page: 1, totalPages: 1, isLoading: false };
     const blockedSingleKeywords = new Set(['호텔', '숙소', '여행', '추천']);
 
+    function syncClearButton() {
+      const clearButton = $('wtsrClearBtn');
+      if (!clearButton) return;
+      clearButton.hidden = !normalizeText($('wtsrInput').value);
+    }
+
+    function focusSearchInput() {
+      window.requestAnimationFrame(() => {
+        const input = $('wtsrInput');
+        if (!input) return;
+        input.focus({ preventScroll: true });
+        const end = input.value.length;
+        input.setSelectionRange(end, end);
+      });
+    }
+
     function isBlockedSingleKeyword(value = '') {
       return blockedSingleKeywords.has(normalizeText(value).toLowerCase());
     }
@@ -233,12 +249,14 @@ const $ = (id) => document.getElementById(id);
       state.page = 1;
       state.totalPages = 1;
       $('wtsrInput').value = state.query;
+      syncClearButton();
       document.title = state.query ? `${state.query} 검색 결과 | Wacky Travel` : '검색 결과 | Wacky Travel';
       if (replaceUrl) {
         const nextUrl = state.query ? `/search/?q=${encodeURIComponent(state.query)}` : '/search/';
         window.history.pushState({}, '', nextUrl);
       }
       loadSearch({ page: 1, append: false });
+      if (!state.query) focusSearchInput();
     }
 
     const backButton = $('wtsrBackBtn');
@@ -249,6 +267,20 @@ const $ = (id) => document.getElementById(id);
         } else {
           window.location.href = '/';
         }
+      });
+    }
+
+    const searchInput = $('wtsrInput');
+    const clearButton = $('wtsrClearBtn');
+
+    searchInput.addEventListener('input', syncClearButton);
+
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        searchInput.value = '';
+        syncClearButton();
+        startSearch('', { replaceUrl: true });
+        focusSearchInput();
       });
     }
 

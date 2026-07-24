@@ -17,7 +17,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260724-search-header-v1" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260724-search-header-v2" />
   <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet" />
 </head>
 <body class="wtsr-page">
@@ -30,14 +30,13 @@
       </button>
 
       <form class="wtsr-search-header__form" id="wtsrForm" action="/search/" method="get" role="search" autocomplete="off">
-        <span class="wtsr-search-header__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <circle cx="10.5" cy="10.5" r="6.5"></circle>
-            <path d="m15.5 15.5 5 5"></path>
-          </svg>
-        </span>
         <input id="wtsrInput" type="search" name="q" placeholder="도시, 호텔명, 숙소 위치 검색" aria-label="검색어 입력" />
-        <button class="wtsr-search-header__submit" type="submit" aria-label="검색하기">검색</button>
+        <button class="wtsr-search-header__clear" id="wtsrClearBtn" type="button" aria-label="검색어 지우기" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m7 7 10 10M17 7 7 17"></path>
+          </svg>
+        </button>
+        <button class="wtsr-search-header__submit" type="submit">검색</button>
       </form>
     </div>
   </header>
@@ -75,6 +74,6 @@
   </div>
 </footer>
 
-  <script src="/assets/js/search-results.js?v=20260724-search-header-v1" defer></script>
+  <script src="/assets/js/search-results.js?v=20260724-search-header-v2" defer></script>
 </body>
 </html>

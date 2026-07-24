@@ -31224,13 +31224,13 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 }
 /* End mobile guide TOC progressive disclosure */
 
-/* SEARCH RESULTS HEADER V1 — result-first search experience */
+/* SEARCH RESULTS HEADER V2 — quiet, borderless search interface */
 .wtsr-page .wtsr-search-header{
   position: sticky;
   top: 0;
   z-index: 80;
   width: 100%;
-  border-bottom: 1px solid #d9d9d4;
+  border-bottom: 1px solid #ecece8;
   background: rgba(255,255,255,.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -31239,7 +31239,7 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 .wtsr-page .wtsr-search-header__inner{
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr);
-  gap: 14px;
+  gap: 12px;
   align-items: center;
   min-height: 76px;
   padding-block: 12px;
@@ -31259,7 +31259,7 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 }
 
 .wtsr-page .wtsr-search-header__back:hover{
-  background: #f1f1ee;
+  background: #f5f5f2;
 }
 
 .wtsr-page .wtsr-search-header__back svg{
@@ -31274,81 +31274,93 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 
 .wtsr-page .wtsr-search-header__form{
   display: grid;
-  grid-template-columns: 42px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) 40px auto;
   align-items: center;
   min-width: 0;
   height: 50px;
-  overflow: hidden;
-  border: 1px solid #d5d5d0;
-  border-radius: 999px;
-  background: #f5f5f2;
-  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
-}
-
-.wtsr-page .wtsr-search-header__form:focus-within{
-  border-color: #111;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(17,17,17,.08);
-}
-
-.wtsr-page .wtsr-search-header__icon{
-  display: grid;
-  place-items: center;
-  color: #686864;
-}
-
-.wtsr-page .wtsr-search-header__icon svg{
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-linecap: round;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .wtsr-page .wtsr-search-header__form input{
   width: 100%;
   min-width: 0;
-  height: 48px;
-  padding: 0 10px 0 0;
+  height: 50px;
+  padding: 0 10px 0 2px;
   border: 0;
   outline: 0;
   background: transparent;
   color: #111;
   font: inherit;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 550;
   line-height: 1;
   box-shadow: none;
+  caret-color: #111;
 }
 
 .wtsr-page .wtsr-search-header__form input::placeholder{
-  color: #8b8b86;
+  color: #9a9a95;
   font-weight: 400;
 }
 
-.wtsr-page .wtsr-search-header__form input::-webkit-search-cancel-button{
+.wtsr-page .wtsr-search-header__form input::-webkit-search-cancel-button,
+.wtsr-page .wtsr-search-header__form input::-webkit-search-decoration{
+  display: none;
+  -webkit-appearance: none;
+}
+
+.wtsr-page .wtsr-search-header__clear{
+  display: grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f1ee;
+  color: #555550;
   cursor: pointer;
 }
 
+.wtsr-page .wtsr-search-header__clear[hidden]{
+  display: none;
+}
+
+.wtsr-page .wtsr-search-header__clear:hover{
+  background: #e8e8e3;
+  color: #111;
+}
+
+.wtsr-page .wtsr-search-header__clear svg{
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
 .wtsr-page .wtsr-search-header__submit{
-  height: 36px;
-  margin-right: 7px;
-  padding: 0 17px;
+  height: 38px;
+  margin-left: 8px;
+  padding: 0 4px 0 10px;
   border: 0;
-  border-radius: 999px;
-  background: #111;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 0;
+  background: transparent;
+  color: #111;
+  font-size: 14px;
+  font-weight: 650;
   cursor: pointer;
 }
 
 .wtsr-page .wtsr-search-header__submit:hover{
-  background: #333;
+  color: #666661;
 }
 
 .wtsr-page .wtsr-search-header__back:focus-visible,
+.wtsr-page .wtsr-search-header__clear:focus-visible,
 .wtsr-page .wtsr-search-header__submit:focus-visible{
   outline: 2px solid #111;
   outline-offset: 2px;
@@ -31380,9 +31392,9 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 
   .wtsr-page .wtsr-search-header__inner{
     grid-template-columns: 40px minmax(0, 1fr);
-    gap: 8px;
-    min-height: 66px;
-    padding-block: 8px;
+    gap: 6px;
+    min-height: 64px;
+    padding-block: 7px;
   }
 
   .wtsr-page .wtsr-search-header__back{
@@ -31391,20 +31403,26 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
   }
 
   .wtsr-page .wtsr-search-header__form{
-    grid-template-columns: 38px minmax(0, 1fr) auto;
-    height: 46px;
+    grid-template-columns: minmax(0, 1fr) 36px auto;
+    height: 48px;
   }
 
   .wtsr-page .wtsr-search-header__form input{
-    height: 44px;
-    font-size: 15px;
+    height: 48px;
+    padding-left: 0;
+    font-size: 16px;
+  }
+
+  .wtsr-page .wtsr-search-header__clear{
+    width: 32px;
+    height: 32px;
   }
 
   .wtsr-page .wtsr-search-header__submit{
-    height: 34px;
-    margin-right: 6px;
-    padding-inline: 13px;
-    font-size: 12px;
+    height: 36px;
+    margin-left: 4px;
+    padding-left: 8px;
+    font-size: 13px;
   }
 
   .wtsr-page .wtsr-section{
