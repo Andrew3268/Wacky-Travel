@@ -14,7 +14,7 @@
 
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 
-<link href="/assets/css/app.css?v=20260725-h1-lineheight-12-v1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260725-h1-direct-v2" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" rel="stylesheet"/>
 <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet"/>
 <style>
@@ -22,7 +22,7 @@
     .about-shell { width:100%; max-width:1200px; margin:0 auto; padding:0; }
 .about-hero { padding:84px 0 88px; border-bottom:1px solid #111; }
     .about-kicker { margin:0 0 24px; font-size:13px; line-height:1; letter-spacing:.16em; text-transform:uppercase; }
-    .about-title { max-width:880px; margin:0; font-size:clamp(42px, 7vw, 78px); line-height:1.07; letter-spacing:-.055em; font-weight:600; }
+    .about-title { max-width:880px; margin:0; font-size:clamp(42px, 7vw, 78px); line-height:1.2; letter-spacing:-.055em; font-weight:600; }
     .about-lead { max-width:680px; margin:32px 0 0 auto; font-size:18px; line-height:1.9; color:#4b4b4b; }
     .about-section { display:grid; grid-template-columns:minmax(160px, .7fr) minmax(0, 2fr); gap:64px; padding:72px 0; border-bottom:1px solid #d8d8d8; }
     .about-section-label { margin:4px 0 0; font-size:13px; letter-spacing:.12em; text-transform:uppercase; }
@@ -47,7 +47,7 @@
     @media (max-width:767px) {
       .about-shell { width:100%; padding-left:18px; padding-right:18px; }
       .about-hero { padding:48px 0 56px; }
-      .about-title { font-size:38px; }
+      .about-title { font-size:38px; line-height:1.2;}
       .about-lead { margin-top:24px; font-size:16px; }
       .about-section { display:block; padding:48px 0; }
       .about-section-label { margin-bottom:26px; }
@@ -85,10 +85,10 @@
     <div class="home-search-overlay__content"><p class="home-search-overlay__eyebrow">Search</p><h2 id="homeSearchOverlayTitle">어디로 떠나시나요?</h2><p class="home-search-overlay__desc">도시명, 호텔명, 숙소 위치 키워드를 입력하면 관련 가이드를 바로 찾을 수 있습니다.</p></div>
   </div>
 </section>
+<nav class="breadcrumbs container" aria-label="현재 위치"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">소개</span></li></ol></nav>
 <main>
   <div class="about-shell">
-    <nav class="breadcrumbs container" aria-label="현재 위치"><ol><li><a href="/">홈</a><span aria-hidden="true" class="breadcrumbs__separator">›</span></li><li><span aria-current="page">소개</span></li></ol></nav>
-    <header class="about-hero">
+<header class="about-hero">
       <p class="about-kicker">About Wacky Travel</p>
       <h1 class="about-title">여행에 맞는 숙소를 고르는 기준.</h1>
       <p class="about-lead">Wacky Travel은 유명한 호텔을 나열하기보다, 여행 목적과 동선에 맞는 숙소 위치와 선택 기준을 정리합니다. 더 싼 숙소가 아니라, 여행이 끝난 뒤 후회가 적은 선택을 돕는 것이 목표입니다.</p>
