@@ -53,15 +53,15 @@ const cityConfig = {
       "links": [
         {
           "title": "삿포로역 근처 호텔 추천 TOP5",
-          "url": "/post/sapporo-station-hotels"
+          "url": "/post/sapporo-station-hotels/"
         },
         {
           "title": "삿포로 첫 여행 호텔 추천 TOP5",
-          "url": "/post/sapporo-first-trip-hotels"
+          "url": "/post/sapporo-first-trip-hotels/"
         },
         {
           "title": "오타루 당일치기 숙소 위치 추천",
-          "url": "/post/sapporo-otaru-day-trip-hotels"
+          "url": "/post/sapporo-otaru-day-trip-hotels/"
         }
       ],
       "hotels": [
@@ -173,15 +173,15 @@ const cityConfig = {
       "links": [
         {
           "title": "오도리공원 근처 호텔 추천 TOP5",
-          "url": "/post/sapporo-odori-hotels"
+          "url": "/post/sapporo-odori-hotels/"
         },
         {
           "title": "타누키코지 근처 호텔 추천 TOP5",
-          "url": "/post/sapporo-tanukikoji-hotels"
+          "url": "/post/sapporo-tanukikoji-hotels/"
         },
         {
           "title": "삿포로 눈축제 숙소 위치 추천",
-          "url": "/post/sapporo-snow-festival-hotels"
+          "url": "/post/sapporo-snow-festival-hotels/"
         }
       ],
       "hotels": [
@@ -293,15 +293,15 @@ const cityConfig = {
       "links": [
         {
           "title": "스스키노 근처 호텔 추천 TOP5",
-          "url": "/post/sapporo-susukino-hotels"
+          "url": "/post/sapporo-susukino-hotels/"
         },
         {
           "title": "삿포로 맛집 여행 호텔 추천 TOP5",
-          "url": "/post/sapporo-food-trip-hotels"
+          "url": "/post/sapporo-food-trip-hotels/"
         },
         {
           "title": "삿포로 커플 여행 호텔 추천 TOP5",
-          "url": "/post/sapporo-couple-hotels"
+          "url": "/post/sapporo-couple-hotels/"
         }
       ],
       "hotels": [
@@ -413,15 +413,15 @@ const cityConfig = {
       "links": [
         {
           "title": "나카지마공원 근처 호텔 추천 TOP5",
-          "url": "/post/sapporo-nakajima-park-hotels"
+          "url": "/post/sapporo-nakajima-park-hotels/"
         },
         {
           "title": "삿포로 조용한 호텔 추천 TOP5",
-          "url": "/post/sapporo-quiet-hotels"
+          "url": "/post/sapporo-quiet-hotels/"
         },
         {
           "title": "삿포로 부모님과 가기 좋은 호텔 추천 TOP5",
-          "url": "/post/sapporo-parents-hotels"
+          "url": "/post/sapporo-parents-hotels/"
         }
       ],
       "hotels": [
@@ -533,15 +533,15 @@ const cityConfig = {
       "links": [
         {
           "title": "삿포로 조용한 동네 숙소 추천",
-          "url": "/post/sapporo-calm-neighborhood-hotels"
+          "url": "/post/sapporo-calm-neighborhood-hotels/"
         },
         {
           "title": "마루야마 근처 호텔 추천",
-          "url": "/post/sapporo-maruyama-hotels"
+          "url": "/post/sapporo-maruyama-hotels/"
         },
         {
           "title": "삿포로 카페 여행 숙소 추천",
-          "url": "/post/sapporo-cafe-trip-hotels"
+          "url": "/post/sapporo-cafe-trip-hotels/"
         }
       ],
       "hotels": [
@@ -653,15 +653,15 @@ const cityConfig = {
       "links": [
         {
           "title": "조잔케이 온천 호텔 추천 TOP5",
-          "url": "/post/jozankei-onsen-hotels"
+          "url": "/post/jozankei-onsen-hotels/"
         },
         {
           "title": "삿포로 온천 여행 숙소 추천",
-          "url": "/post/sapporo-onsen-hotels"
+          "url": "/post/sapporo-onsen-hotels/"
         },
         {
           "title": "부모님과 삿포로 온천 여행 숙소 추천",
-          "url": "/post/sapporo-parents-onsen-hotels"
+          "url": "/post/sapporo-parents-onsen-hotels/"
         }
       ],
       "hotels": [
@@ -1532,7 +1532,7 @@ async function renderRelatedPostsLegacy(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 
@@ -2124,7 +2124,7 @@ async function renderRelatedPosts(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 

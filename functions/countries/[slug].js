@@ -1,4 +1,5 @@
 import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
+import { getSiteOrigin } from "../../lib/seo/site-url.js";
 import { buildBreadcrumbJsonLd } from "../../lib/travel/seo-jsonld.js";
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType, normalizeText } from "../../lib/travel/travel-settings.js";
@@ -28,7 +29,7 @@ export async function onRequestGet({ params, env, request }) {
   if (!countrySlug) return okHtml("Not Found", { status: 404 });
 
   const requestUrl = new URL(request.url);
-  const origin = requestUrl.origin;
+  const origin = getSiteOrigin(env, request);
 
   await ensureTravelSettingsTables(env.TRAVEL_DB);
   const [destinationVersionRow, postVersionRow] = await Promise.all([
@@ -36,7 +37,7 @@ export async function onRequestGet({ params, env, request }) {
     env.TRAVEL_DB.prepare(`SELECT COALESCE(MAX(updated_at), '') AS version FROM posts`).first()
   ]);
   const cacheVersion = encodeURIComponent([destinationVersionRow?.version, postVersionRow?.version].filter(Boolean).join("|") || "initial");
-  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}?v=country-hub-v9-topbar-cleanup-v15-${cacheVersion}`;
+  const cacheKeyUrl = `${origin}/countries/${encodeURIComponent(countrySlug)}/?v=country-hub-v9-topbar-cleanup-v15-${cacheVersion}`;
 
   return edgeCache({
     request,
@@ -79,7 +80,7 @@ export async function onRequestGet({ params, env, request }) {
 
       const posts = postRows.results || [];
       const latestUpdatedAt = [...destinations.map((item) => item.updated_at), ...posts.map((item) => item.updated_at)].filter(Boolean).sort().pop() || "";
-      const canonical = `${origin}/countries/${encodeURIComponent(countryToSlug(countryName))}`;
+      const canonical = `${origin}/countries/${encodeURIComponent(countryToSlug(countryName))}/`;
       const title = `${countryName} 여행 허브 | Wacky Travel`;
       const description = `${countryName} 주요 도시별 여행 콘텐츠를 글 종류별로 한 페이지에서 확인하세요.`;
       const breadcrumbItems = [
@@ -313,7 +314,7 @@ function renderCountryPostSection(countryName, section, items = [], contentTypes
 
 function renderPostItem(post) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}`;
+  const href = `/post/${encodeURIComponent(slug)}/`;
   const meta = [post.destination_city || post.destination_name, formatDate(post.updated_at)].filter(Boolean).join(" · ");
   return `<article class="travel-list__item">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">

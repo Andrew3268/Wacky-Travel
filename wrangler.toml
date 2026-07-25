@@ -7,8 +7,13 @@ binding = "TRAVEL_DB"
 database_name = "wacky-travel-db"
 database_id = "a172c735-910b-44c9-86a1-ee691ebf7ca4"
 
+[vars]
+# 사용자 지정 도메인을 연결하면 이 값만 실제 운영 주소로 변경하세요.
+SITE_ORIGIN = "https://wacky-travel.pages.dev"
+# 사용자 지정 도메인으로 308 통일할 때 true로 변경하세요.
+ENFORCE_SITE_ORIGIN = "false"
+
 # 운영 전 실제 값으로 교체하세요!
-# [vars]
 # ADSENSE_CLIENT = "ca-pub-xxxxxxxxxxxxxxxx"
 # ADSENSE_SLOT_SIDEBAR = "1234567890"
 # ADSENSE_SLOT_INARTICLE_1 = "1234567890"

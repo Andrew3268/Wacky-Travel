@@ -43,7 +43,7 @@
   };
 
   const cityName = (slug = '') => destinationNames[slug] || String(slug || '').replaceAll('-', ' ');
-  const postUrl = (slug = '') => `/post/${encodeURIComponent(slug)}`;
+  const postUrl = (slug = '') => `/post/${encodeURIComponent(slug)}/`;
 
   function normalizePost(item) {
     const moodTags = parseArray(item.mood_tags || item.mood_tags_json);

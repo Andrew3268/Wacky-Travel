@@ -996,7 +996,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

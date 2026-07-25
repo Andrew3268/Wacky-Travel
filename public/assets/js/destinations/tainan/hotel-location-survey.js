@@ -54,7 +54,7 @@ const cityConfig = {
       "links": [
         {
           "title": "타이난역·중서구 호텔 추천 TOP5",
-          "url": "/post/tainan-station-west-central-hotels"
+          "url": "/post/tainan-station-west-central-hotels/"
         },
         {
           "title": "타이난 숙소 위치 가이드",
@@ -174,7 +174,7 @@ const cityConfig = {
       "links": [
         {
           "title": "하이안로·신농제 호텔 추천 TOP5",
-          "url": "/post/haian-shennong-hotels"
+          "url": "/post/haian-shennong-hotels/"
         },
         {
           "title": "타이난 숙소 위치 가이드",
@@ -294,7 +294,7 @@ const cityConfig = {
       "links": [
         {
           "title": "공자묘·하야시백화점 호텔 추천 TOP5",
-          "url": "/post/confucius-hayashi-hotels"
+          "url": "/post/confucius-hayashi-hotels/"
         },
         {
           "title": "타이난 숙소 위치 가이드",
@@ -414,7 +414,7 @@ const cityConfig = {
       "links": [
         {
           "title": "안핑·운하 호텔 추천 TOP5",
-          "url": "/post/anping-canal-hotels"
+          "url": "/post/anping-canal-hotels/"
         },
         {
           "title": "타이난 숙소 위치 가이드",
@@ -533,7 +533,7 @@ const cityConfig = {
       "links": [
         {
           "title": "국화거리·보안로 호텔 추천 TOP5",
-          "url": "/post/guohua-baoan-hotels"
+          "url": "/post/guohua-baoan-hotels/"
         },
         {
           "title": "타이난 숙소 위치 가이드",
@@ -654,7 +654,7 @@ const cityConfig = {
       "links": [
         {
           "title": "화원야시장(북구) 호텔 추천 TOP5",
-          "url": "/post/flower-night-market-north-hotels"
+          "url": "/post/flower-night-market-north-hotels/"
         },
         {
           "title": "타이난 숙소 위치 가이드",
@@ -1542,7 +1542,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

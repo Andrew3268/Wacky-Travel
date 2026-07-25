@@ -3078,7 +3078,7 @@ function renderPreview() {
     hotelHero.price_level
   ].filter(Boolean).join(" · ");
   const slug = $("slugPreview").value.trim();
-  const snippetUrl = slug ? `https://wacky-travel.pages.dev/post/${slug}` : 'https://wacky-travel.pages.dev/post/slug-example';
+  const snippetUrl = slug ? `${window.location.origin}/post/${encodeURIComponent(slug)}/` : `${window.location.origin}/post/slug-example/`;
 
   previewEl.innerHTML = `
     <article class="preview-article">
@@ -3258,7 +3258,7 @@ async function load() {
   let tags = [];
   try { tags = JSON.parse(item.tags_json || "[]"); } catch {}
   $("tags").value = Array.isArray(tags) ? tags.join(", ") : "";
-  if ($("viewBtn")) $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}`;
+  if ($("viewBtn")) $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}/`;
 
   await loadTravelSettings(loadedDestinationSlug, loadedContentType, loadedRegionSlug, loadedRecommendationCategorySlug);
   updateSlugPreview();
@@ -3361,7 +3361,7 @@ async function save() {
   }
 
   statusEl.textContent = "발행 완료! 공개 페이지로 이동합니다…";
-  location.href = `/post/${encodeURIComponent(slug)}?v=${Date.now()}`;
+  location.href = `/post/${encodeURIComponent(slug)}/?v=${Date.now()}`;
 }
 
 function handleRealtimeChange() {

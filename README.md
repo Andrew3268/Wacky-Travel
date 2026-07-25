@@ -156,3 +156,45 @@ D1 database: wacky-travel-db
 - `/sp/` 링크는 Cloudflare Pages Function이 리디렉션을 추적해 일반 호텔 URL로 변환합니다.
 - 페이지 전용 CSS 클래스는 `wt-agoda-` 접두어를 사용해 기존 스타일과 충돌하지 않도록 분리했습니다.
 - `/hotel-promotions/`의 Agoda 카드 할인 항목에서 새 페이지로 연결됩니다.
+
+## 기술 SEO 운영 설정
+
+이 버전은 공개 HTML, 동적 게시물, 도시 허브가 동일한 URL 정책을 사용하도록 구성되어 있습니다.
+
+- 공개 페이지 URL: 후행 슬래시(`/`)로 통일
+- canonical·Open Graph·JSON-LD: `SITE_ORIGIN` 기준 절대 URL로 응답
+- 사이트맵: 실제 색인 가능 정적 HTML과 D1의 발행 글·도시를 합쳐 자동 생성
+- 검색·관리자·API·오류 페이지: `noindex` 및 캐시 제한
+- 호텔 목록 페이지: 최초 HTML에 발행 글 링크를 서버 렌더링
+- 정적 자산: 장기 캐시, HTML: 재검증 캐시
+- 보안 헤더: CSP, HSTS, MIME 스니핑 차단, 프레임 제한, Referrer Policy 적용
+
+사용자 지정 도메인을 연결할 때 `wrangler.toml`의 값을 실제 주소로 변경합니다.
+
+```toml
+[vars]
+SITE_ORIGIN = "https://www.example.com"
+ENFORCE_SITE_ORIGIN = "true"
+```
+
+`ENFORCE_SITE_ORIGIN = "true"`이면 다른 호스트로 들어온 공개 페이지 요청을 `SITE_ORIGIN`으로 308 리디렉션합니다. 도메인 연결 전에는 `false`로 유지합니다.
+
+배포 전 검증:
+
+```bash
+npm run check
+```
+
+Cloudflare Pages의 권장 빌드 설정:
+
+```text
+Build command: npm run check
+Build output directory: public
+```
+
+배포 후 확인 주소:
+
+```text
+https://운영도메인/robots.txt
+https://운영도메인/sitemap.xml
+```

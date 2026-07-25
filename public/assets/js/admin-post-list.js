@@ -137,7 +137,7 @@
     bodyEl.innerHTML = visibleItems.map((item) => {
       const title = item.title || item.slug || '제목 없음';
       const slug = String(item.slug || '').trim();
-      const postUrl = slug ? `/post/${encodeURIComponent(slug)}` : '#';
+      const postUrl = slug ? `/post/${encodeURIComponent(slug)}/` : '#';
       const editUrl = slug ? `/edit.html?slug=${encodeURIComponent(slug)}` : '#';
       return `
         <tr>

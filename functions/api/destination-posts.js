@@ -87,7 +87,7 @@ function noStoreHeaders() {
   return { "cache-control": "no-store" };
 }
 
-function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommendationCategorySlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
+export function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommendationCategorySlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
   const destinationSlug = String(destination.slug || "").trim();
   const slugAliases = getDestinationSlugAliases(destinationSlug);
   const terms = getDestinationSearchTerms(destination);
@@ -210,7 +210,7 @@ function getDestinationSearchTerms(destination = {}) {
   ].map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter((value) => value.length >= 2))];
 }
 
-function getHotelPostGroup(post = {}) {
+export function getHotelPostGroup(post = {}) {
   const rawType = String(post.content_type || "").trim();
   const type = normalizePostContentType(rawType);
 
@@ -347,7 +347,7 @@ function safeTags(value = "") {
 
 function renderTravelPostItem(post = {}) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}`;
+  const href = `/post/${encodeURIComponent(slug)}/`;
   const meta = formatDate(post.updated_at);
   return `<article class="travel-list__item">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">
@@ -373,9 +373,9 @@ function renderPostAdminActions(post, { hidden = true } = {}) {
   </div>`;
 }
 
-function renderHotelPostCard(post, contentTypes = []) {
+export function renderHotelPostCard(post, contentTypes = []) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}`;
+  const href = `/post/${encodeURIComponent(slug)}/`;
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);

@@ -153,7 +153,7 @@ const $ = (id) => document.getElementById(id);
 
     function renderCard(item = {}, index = 0) {
       const slug = String(item.slug || '').trim();
-      const href = `/post/${encodeURIComponent(slug)}`;
+      const href = `/post/${encodeURIComponent(slug)}/`;
       const title = item.title || '여행 글';
       const type = labelPostType(item.content_type);
       const category = normalizeText(item.category);

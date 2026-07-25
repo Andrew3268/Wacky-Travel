@@ -52,11 +52,11 @@ const cityConfig = {
       "links": [
         {
           "title": "타이베이 타이베이역 호텔 추천 TOP5",
-          "url": "/post/taipei-taipei-main-station-hotels"
+          "url": "/post/taipei-taipei-main-station-hotels/"
         },
         {
           "title": "타이베이 타이베이역 숙소 위치 가이드",
-          "url": "/post/taipei-taipei-main-station-hotel-location"
+          "url": "/post/taipei-taipei-main-station-hotel-location/"
         }
       ],
       "hotels": [
@@ -70,7 +70,7 @@ const cityConfig = {
             "역 바로 앞 기준형",
             "타이베이 숙소"
           ],
-          "url": "/post/caesar-park-hotel-taipei"
+          "url": "/post/caesar-park-hotel-taipei/"
         },
         {
           "name": "팔레 드 쉰 호텔",
@@ -82,7 +82,7 @@ const cityConfig = {
             "역세권 고급형",
             "타이베이 숙소"
           ],
-          "url": "/post/palais-de-chine-hotel"
+          "url": "/post/palais-de-chine-hotel/"
         },
         {
           "name": "시티즌M 타이베이 노스 게이트",
@@ -94,7 +94,7 @@ const cityConfig = {
             "공항철도 접근형",
             "타이베이 숙소"
           ],
-          "url": "/post/citizenm-taipei-north-gate"
+          "url": "/post/citizenm-taipei-north-gate/"
         },
         {
           "name": "코스모스 호텔 타이베이",
@@ -106,7 +106,7 @@ const cityConfig = {
             "실용 역세권",
             "타이베이 숙소"
           ],
-          "url": "/post/cosmos-hotel-taipei"
+          "url": "/post/cosmos-hotel-taipei/"
         },
         {
           "name": "호텔 레저넌스 타이베이",
@@ -118,7 +118,7 @@ const cityConfig = {
             "깔끔한 도심형",
             "타이베이 숙소"
           ],
-          "url": "/post/hotel-resonance-taipei-tapestry-collection-by-hilton"
+          "url": "/post/hotel-resonance-taipei-tapestry-collection-by-hilton/"
         }
       ]
     },
@@ -170,11 +170,11 @@ const cityConfig = {
       "links": [
         {
           "title": "타이베이 시먼딩 호텔 추천 TOP5",
-          "url": "/post/taipei-ximending-hotels"
+          "url": "/post/taipei-ximending-hotels/"
         },
         {
           "title": "타이베이 시먼딩 숙소 위치 가이드",
-          "url": "/post/taipei-ximending-hotel-location"
+          "url": "/post/taipei-ximending-hotel-location/"
         }
       ],
       "hotels": [
@@ -188,7 +188,7 @@ const cityConfig = {
             "시먼 중심형",
             "타이베이 숙소"
           ],
-          "url": "/post/solaria-nishitetsu-hotel-taipei-ximen"
+          "url": "/post/solaria-nishitetsu-hotel-taipei-ximen/"
         },
         {
           "name": "저스트 슬립 타이베이 시먼딩",
@@ -200,7 +200,7 @@ const cityConfig = {
             "실속 중심형",
             "타이베이 숙소"
           ],
-          "url": "/post/just-sleep-taipei-ximending"
+          "url": "/post/just-sleep-taipei-ximending/"
         },
         {
           "name": "암바 타이베이 시먼딩",
@@ -212,7 +212,7 @@ const cityConfig = {
             "감각적 도심형",
             "타이베이 숙소"
           ],
-          "url": "/post/amba-taipei-ximending"
+          "url": "/post/amba-taipei-ximending/"
         },
         {
           "name": "로드어스 호텔 중화",
@@ -224,7 +224,7 @@ const cityConfig = {
             "가성비 후보",
             "타이베이 숙소"
           ],
-          "url": "/post/roaders-hotel-zhonghua"
+          "url": "/post/roaders-hotel-zhonghua/"
         },
         {
           "name": "웨스트게이트 호텔",
@@ -236,7 +236,7 @@ const cityConfig = {
             "시먼역 접근형",
             "타이베이 숙소"
           ],
-          "url": "/post/westgate-hotel"
+          "url": "/post/westgate-hotel/"
         }
       ]
     },
@@ -288,11 +288,11 @@ const cityConfig = {
       "links": [
         {
           "title": "타이베이 중산 호텔 추천 TOP5",
-          "url": "/post/taipei-zhongshan-hotels"
+          "url": "/post/taipei-zhongshan-hotels/"
         },
         {
           "title": "타이베이 중산 숙소 위치 가이드",
-          "url": "/post/taipei-zhongshan-hotel-location"
+          "url": "/post/taipei-zhongshan-hotel-location/"
         }
       ],
       "hotels": [
@@ -306,7 +306,7 @@ const cityConfig = {
             "중산 안정형",
             "타이베이 숙소"
           ],
-          "url": "/post/hotel-royal-nikko-taipei"
+          "url": "/post/hotel-royal-nikko-taipei/"
         },
         {
           "name": "더 오쿠라 프레스티지 타이베이",
@@ -318,7 +318,7 @@ const cityConfig = {
             "중산 고급형",
             "타이베이 숙소"
           ],
-          "url": "/post/the-okura-prestige-taipei"
+          "url": "/post/the-okura-prestige-taipei/"
         },
         {
           "name": "호텔 코지 민셩 타이베이",
@@ -330,7 +330,7 @@ const cityConfig = {
             "차분한 실속형",
             "타이베이 숙소"
           ],
-          "url": "/post/hotel-cozzi-minsheng-taipei"
+          "url": "/post/hotel-cozzi-minsheng-taipei/"
         },
         {
           "name": "그린 월드 그랜드 난징",
@@ -342,7 +342,7 @@ const cityConfig = {
             "가성비 도심형",
             "타이베이 숙소"
           ],
-          "url": "/post/green-world-grand-nanjing"
+          "url": "/post/green-world-grand-nanjing/"
         },
         {
           "name": "더 탱고 호텔 타이베이 난시",
@@ -354,7 +354,7 @@ const cityConfig = {
             "중산역 접근형",
             "타이베이 숙소"
           ],
-          "url": "/post/the-tango-hotel-taipei-nanshi"
+          "url": "/post/the-tango-hotel-taipei-nanshi/"
         }
       ]
     },
@@ -406,11 +406,11 @@ const cityConfig = {
       "links": [
         {
           "title": "타이베이 다안 호텔 추천 TOP5",
-          "url": "/post/taipei-daan-yongkang-hotels"
+          "url": "/post/taipei-daan-yongkang-hotels/"
         },
         {
           "title": "타이베이 다안 숙소 위치 가이드",
-          "url": "/post/taipei-daan-yongkang-hotel-location"
+          "url": "/post/taipei-daan-yongkang-hotel-location/"
         }
       ],
       "hotels": [
@@ -424,7 +424,7 @@ const cityConfig = {
             "감성 도심형",
             "타이베이 숙소"
           ],
-          "url": "/post/kimpton-da-an-taipei"
+          "url": "/post/kimpton-da-an-taipei/"
         },
         {
           "name": "댄디 호텔 다안 파크 브랜치",
@@ -436,7 +436,7 @@ const cityConfig = {
             "공원 산책형",
             "타이베이 숙소"
           ],
-          "url": "/post/dandy-hotel-daan-park-branch"
+          "url": "/post/dandy-hotel-daan-park-branch/"
         },
         {
           "name": "매디슨 타이베이 호텔",
@@ -448,7 +448,7 @@ const cityConfig = {
             "차분한 고급형",
             "타이베이 숙소"
           ],
-          "url": "/post/madison-taipei-hotel"
+          "url": "/post/madison-taipei-hotel/"
         },
         {
           "name": "파크 타이베이 호텔",
@@ -460,7 +460,7 @@ const cityConfig = {
             "MRT 접근형",
             "타이베이 숙소"
           ],
-          "url": "/post/park-taipei-hotel"
+          "url": "/post/park-taipei-hotel/"
         },
         {
           "name": "체즈 누 호텔 타이베이",
@@ -472,7 +472,7 @@ const cityConfig = {
             "부티크 후보",
             "타이베이 숙소"
           ],
-          "url": "/post/chez-nous-hotel-taipei"
+          "url": "/post/chez-nous-hotel-taipei/"
         }
       ]
     },
@@ -524,11 +524,11 @@ const cityConfig = {
       "links": [
         {
           "title": "타이베이 신이 호텔 추천 TOP5",
-          "url": "/post/taipei-xinyi-taipei101-hotels"
+          "url": "/post/taipei-xinyi-taipei101-hotels/"
         },
         {
           "title": "타이베이 신이 숙소 위치 가이드",
-          "url": "/post/taipei-xinyi-taipei101-hotel-location"
+          "url": "/post/taipei-xinyi-taipei101-hotel-location/"
         }
       ],
       "hotels": [
@@ -542,7 +542,7 @@ const cityConfig = {
             "101 인접형",
             "타이베이 숙소"
           ],
-          "url": "/post/grand-hyatt-taipei"
+          "url": "/post/grand-hyatt-taipei/"
         },
         {
           "name": "W 타이베이",
@@ -554,7 +554,7 @@ const cityConfig = {
             "도심 야경형",
             "타이베이 숙소"
           ],
-          "url": "/post/w-taipei"
+          "url": "/post/w-taipei/"
         },
         {
           "name": "험블 하우스 타이베이",
@@ -566,7 +566,7 @@ const cityConfig = {
             "쇼핑몰 접근형",
             "타이베이 숙소"
           ],
-          "url": "/post/humble-house-taipei-curio-collection-by-hilton"
+          "url": "/post/humble-house-taipei-curio-collection-by-hilton/"
         },
         {
           "name": "에슬라이트 호텔",
@@ -578,7 +578,7 @@ const cityConfig = {
             "감성 도심형",
             "타이베이 숙소"
           ],
-          "url": "/post/eslite-hotel"
+          "url": "/post/eslite-hotel/"
         },
         {
           "name": "홈 호텔 신이",
@@ -590,7 +590,7 @@ const cityConfig = {
             "실용 신이형",
             "타이베이 숙소"
           ],
-          "url": "/post/home-hotel-xinyi"
+          "url": "/post/home-hotel-xinyi/"
         }
       ]
     },
@@ -642,11 +642,11 @@ const cityConfig = {
       "links": [
         {
           "title": "타이베이 베이터우 호텔 추천 TOP5",
-          "url": "/post/taipei-beitou-shilin-hotels"
+          "url": "/post/taipei-beitou-shilin-hotels/"
         },
         {
           "title": "타이베이 베이터우 숙소 위치 가이드",
-          "url": "/post/taipei-beitou-shilin-hotel-location"
+          "url": "/post/taipei-beitou-shilin-hotel-location/"
         }
       ],
       "hotels": [
@@ -660,7 +660,7 @@ const cityConfig = {
             "온천 휴식형",
             "타이베이 숙소"
           ],
-          "url": "/post/grand-view-resort-beitou"
+          "url": "/post/grand-view-resort-beitou/"
         },
         {
           "name": "알로프트 타이베이 베이터우",
@@ -672,7 +672,7 @@ const cityConfig = {
             "가족 실용형",
             "타이베이 숙소"
           ],
-          "url": "/post/aloft-taipei-beitou"
+          "url": "/post/aloft-taipei-beitou/"
         },
         {
           "name": "래디움 카가야 인터내셔널 호텔",
@@ -684,7 +684,7 @@ const cityConfig = {
             "온천 료칸형",
             "타이베이 숙소"
           ],
-          "url": "/post/radium-kagaya-taipei"
+          "url": "/post/radium-kagaya-taipei/"
         },
         {
           "name": "더 그랜드 호텔",
@@ -696,7 +696,7 @@ const cityConfig = {
             "랜드마크형",
             "타이베이 숙소"
           ],
-          "url": "/post/the-grand-hotel-taipei"
+          "url": "/post/the-grand-hotel-taipei/"
         },
         {
           "name": "댄디 호텔 톈무 브랜치",
@@ -708,7 +708,7 @@ const cityConfig = {
             "북쪽 차분형",
             "타이베이 숙소"
           ],
-          "url": "/post/dandy-hotel-tianmu-branch"
+          "url": "/post/dandy-hotel-tianmu-branch/"
         }
       ]
     }
@@ -1544,7 +1544,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

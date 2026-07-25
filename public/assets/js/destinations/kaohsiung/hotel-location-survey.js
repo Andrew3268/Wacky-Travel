@@ -55,7 +55,7 @@ const cityConfig = {
       "links": [
         {
           "title": "미려도·류허야시장 호텔 추천 TOP5",
-          "url": "/post/formosa-liuhe-hotels"
+          "url": "/post/formosa-liuhe-hotels/"
         },
         {
           "title": "가오슝 숙소 위치 가이드",
@@ -176,7 +176,7 @@ const cityConfig = {
       "links": [
         {
           "title": "중앙공원·신주에장 호텔 추천 TOP5",
-          "url": "/post/central-park-xinjuejiang-hotels"
+          "url": "/post/central-park-xinjuejiang-hotels/"
         },
         {
           "title": "가오슝 숙소 위치 가이드",
@@ -297,7 +297,7 @@ const cityConfig = {
       "links": [
         {
           "title": "산둬상권·85타워 호텔 추천 TOP5",
-          "url": "/post/sanduo-85tower-hotels"
+          "url": "/post/sanduo-85tower-hotels/"
         },
         {
           "title": "가오슝 숙소 위치 가이드",
@@ -418,7 +418,7 @@ const cityConfig = {
       "links": [
         {
           "title": "옌청푸·보얼예술특구 호텔 추천 TOP5",
-          "url": "/post/yanchengpu-pier2-hotels"
+          "url": "/post/yanchengpu-pier2-hotels/"
         },
         {
           "title": "가오슝 숙소 위치 가이드",
@@ -539,7 +539,7 @@ const cityConfig = {
       "links": [
         {
           "title": "쭤잉·한신아레나 호텔 추천 TOP5",
-          "url": "/post/zuoying-arena-hotels"
+          "url": "/post/zuoying-arena-hotels/"
         },
         {
           "title": "가오슝 숙소 위치 가이드",
@@ -661,7 +661,7 @@ const cityConfig = {
       "links": [
         {
           "title": "시즈완·치진 호텔 추천 TOP5",
-          "url": "/post/xiziwan-cijin-hotels"
+          "url": "/post/xiziwan-cijin-hotels/"
         },
         {
           "title": "가오슝 숙소 위치 가이드",
@@ -1544,7 +1544,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

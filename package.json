@@ -14,7 +14,12 @@
     "d1:migrate:guest-rating": "wrangler d1 execute wacky-travel-db --file=./db/migrations/007_hotel_guest_rating.sql",
     "d1:migrate:recommendation-categories": "wrangler d1 execute wacky-travel-db --file=./db/migrations/008_recommendation_categories.sql",
     "d1:migrate:recommendation-categories-global": "wrangler d1 execute wacky-travel-db --file=./db/migrations/009_global_recommendation_categories.sql",
-    "d1:migrate:hotel-curation": "wrangler d1 execute wacky-travel-db --file=./db/migrations/010_hotel_curation_items.sql"
+    "d1:migrate:hotel-curation": "wrangler d1 execute wacky-travel-db --file=./db/migrations/010_hotel_curation_items.sql",
+    "seo:routes": "node ./tools/generate-static-routes.mjs",
+    "seo:audit": "node ./tools/seo-audit.mjs",
+    "check:syntax": "node ./tools/syntax-check.mjs",
+    "check": "npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:syntax",
+    "predeploy": "npm run check"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"

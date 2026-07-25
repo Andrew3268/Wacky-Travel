@@ -1,8 +1,7 @@
 import { escapeHtml, jsonld, okHtml, edgeCache } from "../_utils.js";
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
-
-const SITE_ORIGIN = "https://wacky-travel.pages.dev";
+import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 const POST_RENDER_VERSION = "20260722-top5-hero-breadcrumb-v3";
 
 
@@ -30,7 +29,8 @@ export async function onRequestGet({ params, env, request }) {
   `).bind(slug).run();
 
   const updatedAt = String(meta.updated_at || "");
-  const cacheKeyUrl = `${SITE_ORIGIN}/post/${encodeURIComponent(slug)}?v=${encodeURIComponent(updatedAt)}&r=${POST_RENDER_VERSION}`;
+  const origin = getSiteOrigin(env, request);
+  const cacheKeyUrl = `${origin}/post/${encodeURIComponent(slug)}/?v=${encodeURIComponent(updatedAt)}&r=${POST_RENDER_VERSION}`;
 
   return edgeCache({
     request,
@@ -72,8 +72,7 @@ export async function onRequestGet({ params, env, request }) {
       }
 
 
-      const origin = SITE_ORIGIN;
-      const canonical = new URL(`/post/${encodeURIComponent(slug)}`, SITE_ORIGIN);
+      const canonical = new URL(`/post/${encodeURIComponent(slug)}/`, origin);
 
       const siteName = "Wacky Travel";
       const siteDescription = "여행지 정보, 호텔 선택 기준, 예약 전 체크포인트를 정리하는 여행 블로그";
@@ -122,9 +121,10 @@ export async function onRequestGet({ params, env, request }) {
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
       const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
-        useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost
+        useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
+        origin
       });
-      const faqSectionHtml = renderFaqSection(faqItems);
+      const faqSectionHtml = renderFaqSection(faqItems, origin);
       const relatedPostsHtml = renderRelatedPostsSection(relatedRows, row.category);
       const popularPostsHtml = renderPopularPosts(popularRows);
       const sidebarAdHtml = shouldShowSidebarAd ? renderSidebarAd(adConfig) : "";
@@ -255,7 +255,7 @@ export async function onRequestGet({ params, env, request }) {
             fallbackWidth: 960,
             fit: "cover",
             quality: 82
-          }, SITE_ORIGIN)
+          }, origin)
         : null;
       const coverImagePreload = coverImage
         ? `<link rel="preload" as="image" href="${escapeHtml(coverImage.src)}"${coverImage.srcset ? ` imagesrcset="${escapeHtml(coverImage.srcset)}"` : ""}${coverImage.sizes ? ` imagesizes="${escapeHtml(coverImage.sizes)}"` : ""} fetchpriority="high" />`
@@ -293,7 +293,7 @@ export async function onRequestGet({ params, env, request }) {
         }) : "";
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
-      const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin: SITE_ORIGIN }) : "";
+      const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
       const hotelPriceLink = isRecommendedHotelReviewPost
         ? String(hotelHeroData?.links?.find((item) => String(item?.provider || "") === "hero_price")?.affiliate_url || "").trim()
         : "";
@@ -877,7 +877,7 @@ function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0,
   const inlineImages = parseInlineImages(visibleContentMd || "");
   const blocks = renderMarkdownBlocks(visibleContentMd || "", {
     inlineImages,
-    origin: SITE_ORIGIN,
+    origin: options.origin || DEFAULT_SITE_ORIGIN,
     hotelReviewSectionImageAnchor: options.useUnifiedHotelSectionHeading === true,
     hotelSectionHeadingClasses: options.useUnifiedHotelSectionHeading === true
   });
@@ -977,7 +977,7 @@ function renderPopularPosts(items) {
       <ul class="post-side__popular-list">
         ${items.map((item, index) => `
           <li>
-            <a class="post-side__popular-link" href="/post/${encodeURIComponent(String(item.slug || ""))}">
+            <a class="post-side__popular-link" href="/post/${encodeURIComponent(String(item.slug || ""))}/">
               <span class="post-side__popular-rank">${index + 1}</span>
               <span class="post-side__popular-text">${escapeHtml(String(item.title || "제목 없음"))}</span>
             </a>
@@ -1023,7 +1023,7 @@ function parseFaqMarkdown(raw) {
   return items.slice(0, 8);
 }
 
-function renderFaqSection(items) {
+function renderFaqSection(items, origin = DEFAULT_SITE_ORIGIN) {
   if (!items.length) return "";
   return `
     <section class="post-faq post-section-divider post-section-divider--faq" aria-labelledby="post-faq-title">
@@ -1032,7 +1032,7 @@ function renderFaqSection(items) {
         ${items.map((item) => `
           <article class="card">
             <h3 class="h3 post-faq__question">Q. ${escapeHtml(item.question)}</h3>
-            <div class="post-faq__answer">${renderMarkdown(item.answerMd || "", { origin: SITE_ORIGIN })}</div>
+            <div class="post-faq__answer">${renderMarkdown(item.answerMd || "", { origin })}</div>
           </article>
         `).join("")}
       </div>
@@ -1059,7 +1059,7 @@ function renderRelatedPostsSection(items, category) {
         <ul class="list-reset post-related__list">
           ${items.map((item, index) => `
             <li>
-              <a href="/post/${encodeURIComponent(String(item.slug || ""))}" class="post-related-link">
+              <a href="/post/${encodeURIComponent(String(item.slug || ""))}/" class="post-related-link">
                 <span>${escapeHtml(String(item.title || "(제목 없음)"))}</span>
               </a>
             </li>
@@ -1114,7 +1114,7 @@ function formatDate(value) {
   return d.toISOString().slice(0, 10);
 }
 
-function buildPostBreadcrumbItems({ origin = SITE_ORIGIN, canonical = null, row = {}, titleText = "", hotelHeroData = null, destinationData = null } = {}) {
+function buildPostBreadcrumbItems({ origin = DEFAULT_SITE_ORIGIN, canonical = null, row = {}, titleText = "", hotelHeroData = null, destinationData = null } = {}) {
   const homeUrl = `${origin}/`;
   const postUrl = canonical ? canonical.toString() : homeUrl;
   const hotel = hotelHeroData?.hotel || null;

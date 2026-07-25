@@ -848,7 +848,7 @@ function buildPostsHeroNav(categories = []) {
       postsPopularEl.innerHTML = popular.length
         ? popular.map((item, index) => `
             <li>
-              <a class="post-side__popular-link" href="/post/${encodeURIComponent(String(item.slug || ''))}">
+              <a class="post-side__popular-link" href="/post/${encodeURIComponent(String(item.slug || ''))}/">
                 <span class="post-side__popular-rank">${index + 1}</span>
                 <span class="post-side__popular-text">${escapeHtml(String(item.title || '제목 없음'))}</span>
               </a>
@@ -875,7 +875,7 @@ function buildPostsHeroNav(categories = []) {
       const statusBadge = itemStatus === 'draft'
         ? '<span class="badge badge--draft">초안</span>'
         : '<span class="badge">발행</span>';
-      const postHref = itemStatus === 'published' ? `/post/${encodeURIComponent(slug)}` : `/edit.html?slug=${encodeURIComponent(slug)}`;
+      const postHref = itemStatus === 'published' ? `/post/${encodeURIComponent(slug)}/` : `/edit.html?slug=${encodeURIComponent(slug)}`;
       const shouldPrioritizeImage = !append && index === 0 && Number(pageNumber) === 1;
       const imageLoadingAttrs = shouldPrioritizeImage
         ? 'loading="eager" fetchpriority="high" decoding="async" width="640" height="360"'
@@ -898,7 +898,7 @@ function buildPostsHeroNav(categories = []) {
             <div class="post-card__title">${title}</div>
             <div class="post-card__summary">${summary}</div>
             <div class="row post-admin-actions post-admin-actions--wrap">
-              ${itemStatus === 'published' ? `<a class="post-card__readmore" href="/post/${encodeURIComponent(slug)}"><span class="post-card__readmore-text">Read more</span><svg class="post-card__readmore-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h11"></path><path d="M13 7l5 5-5 5"></path></svg></a>` : ''}
+              ${itemStatus === 'published' ? `<a class="post-card__readmore" href="/post/${encodeURIComponent(slug)}/"><span class="post-card__readmore-text">Read more</span><svg class="post-card__readmore-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h11"></path><path d="M13 7l5 5-5 5"></path></svg></a>` : ''}
               ${isAdmin ? `<span class="post-admin-actions__controls"><a class="btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a><button class="btn btn--danger js-delete-post" type="button" data-slug="${encodeURIComponent(slug)}" data-title="${escapeHtml(rawTitle)}">삭제</button></span>` : ''}
             </div>
           </div>

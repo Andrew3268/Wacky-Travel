@@ -36,11 +36,11 @@ const cityConfig = {
       "links": [
         {
           "title": "푸꾸옥 즈엉동 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-duong-dong-long-beach-hotels"
+          "url": "/post/phu-quoc-duong-dong-long-beach-hotels/"
         },
         {
           "title": "푸꾸옥 즈엉동 숙소 위치 가이드",
-          "url": "/post/phu-quoc-duong-dong-long-beach-stay-guide"
+          "url": "/post/phu-quoc-duong-dong-long-beach-stay-guide/"
         }
       ],
       "hotels": [
@@ -54,7 +54,7 @@ const cityConfig = {
             "중심",
             "첫 여행"
           ],
-          "url": "/post/seashells-phu-quoc-hotel-and-spa"
+          "url": "/post/seashells-phu-quoc-hotel-and-spa/"
         },
         {
           "name": "L'Azure Resort and Spa",
@@ -66,7 +66,7 @@ const cityConfig = {
             "휴식",
             "커플"
           ],
-          "url": "/post/l-azure-resort-and-spa"
+          "url": "/post/l-azure-resort-and-spa/"
         },
         {
           "name": "Saigon Phu Quoc Resort & Spa",
@@ -78,7 +78,7 @@ const cityConfig = {
             "리조트",
             "가족"
           ],
-          "url": "/post/saigon-phu-quoc-resort-and-spa"
+          "url": "/post/saigon-phu-quoc-resort-and-spa/"
         },
         {
           "name": "Cassia Cottage",
@@ -90,7 +90,7 @@ const cityConfig = {
             "커플",
             "해변"
           ],
-          "url": "/post/cassia-cottage"
+          "url": "/post/cassia-cottage/"
         },
         {
           "name": "La Veranda Resort Phu Quoc - MGallery",
@@ -102,7 +102,7 @@ const cityConfig = {
             "커플",
             "조용함"
           ],
-          "url": "/post/la-veranda-resort-phu-quoc-mgallery"
+          "url": "/post/la-veranda-resort-phu-quoc-mgallery/"
         }
       ]
     },
@@ -139,11 +139,11 @@ const cityConfig = {
       "links": [
         {
           "title": "푸꾸옥 롱비치 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-long-beach-duong-to-hotels"
+          "url": "/post/phu-quoc-long-beach-duong-to-hotels/"
         },
         {
           "title": "푸꾸옥 롱비치 숙소 위치 가이드",
-          "url": "/post/phu-quoc-long-beach-duong-to-stay-guide"
+          "url": "/post/phu-quoc-long-beach-duong-to-stay-guide/"
         }
       ],
       "hotels": [
@@ -157,7 +157,7 @@ const cityConfig = {
             "가족",
             "일몰"
           ],
-          "url": "/post/intercontinental-phu-quoc-long-beach-resort"
+          "url": "/post/intercontinental-phu-quoc-long-beach-resort/"
         },
         {
           "name": "Regent Phu Quoc",
@@ -169,7 +169,7 @@ const cityConfig = {
             "휴식",
             "기념일"
           ],
-          "url": "/post/regent-phu-quoc"
+          "url": "/post/regent-phu-quoc/"
         },
         {
           "name": "Novotel Phu Quoc Resort",
@@ -181,7 +181,7 @@ const cityConfig = {
             "공항",
             "리조트"
           ],
-          "url": "/post/novotel-phu-quoc-resort"
+          "url": "/post/novotel-phu-quoc-resort/"
         },
         {
           "name": "Dusit Princess Moonrise Beach Resort",
@@ -193,7 +193,7 @@ const cityConfig = {
             "커플",
             "가성비"
           ],
-          "url": "/post/dusit-princess-moonrise-beach-resort"
+          "url": "/post/dusit-princess-moonrise-beach-resort/"
         },
         {
           "name": "Salinda Resort Phu Quoc Island",
@@ -205,7 +205,7 @@ const cityConfig = {
             "커플",
             "공항"
           ],
-          "url": "/post/salinda-resort-phu-quoc-island"
+          "url": "/post/salinda-resort-phu-quoc-island/"
         }
       ]
     },
@@ -242,11 +242,11 @@ const cityConfig = {
       "links": [
         {
           "title": "푸꾸옥 옹랑 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-ong-lang-cua-can-hotels"
+          "url": "/post/phu-quoc-ong-lang-cua-can-hotels/"
         },
         {
           "title": "푸꾸옥 옹랑 숙소 위치 가이드",
-          "url": "/post/phu-quoc-ong-lang-cua-can-stay-guide"
+          "url": "/post/phu-quoc-ong-lang-cua-can-stay-guide/"
         }
       ],
       "hotels": [
@@ -260,7 +260,7 @@ const cityConfig = {
             "자연",
             "커플"
           ],
-          "url": "/post/mango-bay-resort"
+          "url": "/post/mango-bay-resort/"
         },
         {
           "name": "Phu Quoc Eco Beach Resort",
@@ -272,7 +272,7 @@ const cityConfig = {
             "가성비",
             "휴식"
           ],
-          "url": "/post/phu-quoc-eco-beach-resort"
+          "url": "/post/phu-quoc-eco-beach-resort/"
         },
         {
           "name": "Chen Sea Resort & Spa Phu Quoc",
@@ -284,7 +284,7 @@ const cityConfig = {
             "리조트",
             "커플"
           ],
-          "url": "/post/chen-sea-resort-and-spa-phu-quoc"
+          "url": "/post/chen-sea-resort-and-spa-phu-quoc/"
         },
         {
           "name": "Mövenpick Resort Waverly Phu Quoc",
@@ -296,7 +296,7 @@ const cityConfig = {
             "휴식",
             "리조트"
           ],
-          "url": "/post/m-venpick-resort-waverly-phu-quoc"
+          "url": "/post/m-venpick-resort-waverly-phu-quoc/"
         },
         {
           "name": "Green Bay Phu Quoc Resort & Spa",
@@ -308,7 +308,7 @@ const cityConfig = {
             "조용함",
             "휴식"
           ],
-          "url": "/post/green-bay-phu-quoc-resort-and-spa"
+          "url": "/post/green-bay-phu-quoc-resort-and-spa/"
         }
       ]
     },
@@ -345,11 +345,11 @@ const cityConfig = {
       "links": [
         {
           "title": "푸꾸옥 바이다이 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-ganh-dau-bai-dai-hotels"
+          "url": "/post/phu-quoc-ganh-dau-bai-dai-hotels/"
         },
         {
           "title": "푸꾸옥 바이다이 숙소 위치 가이드",
-          "url": "/post/phu-quoc-ganh-dau-bai-dai-stay-guide"
+          "url": "/post/phu-quoc-ganh-dau-bai-dai-stay-guide/"
         }
       ],
       "hotels": [
@@ -363,7 +363,7 @@ const cityConfig = {
             "테마파크",
             "북부"
           ],
-          "url": "/post/wyndham-grand-phu-quoc"
+          "url": "/post/wyndham-grand-phu-quoc/"
         },
         {
           "name": "Crowne Plaza Phu Quoc Starbay",
@@ -375,7 +375,7 @@ const cityConfig = {
             "리조트",
             "북부"
           ],
-          "url": "/post/crowne-plaza-phu-quoc-starbay"
+          "url": "/post/crowne-plaza-phu-quoc-starbay/"
         },
         {
           "name": "Sheraton Phu Quoc Long Beach Resort",
@@ -387,7 +387,7 @@ const cityConfig = {
             "가족",
             "리조트"
           ],
-          "url": "/post/sheraton-phu-quoc-long-beach-resort"
+          "url": "/post/sheraton-phu-quoc-long-beach-resort/"
         },
         {
           "name": "Vinpearl Resort & Spa Phu Quoc",
@@ -399,7 +399,7 @@ const cityConfig = {
             "사파리",
             "가족"
           ],
-          "url": "/post/vinpearl-resort-and-spa-phu-quoc"
+          "url": "/post/vinpearl-resort-and-spa-phu-quoc/"
         },
         {
           "name": "Radisson Blu Resort Phu Quoc",
@@ -411,7 +411,7 @@ const cityConfig = {
             "가족",
             "리조트"
           ],
-          "url": "/post/radisson-blu-resort-phu-quoc"
+          "url": "/post/radisson-blu-resort-phu-quoc/"
         }
       ]
     },
@@ -448,11 +448,11 @@ const cityConfig = {
       "links": [
         {
           "title": "푸꾸옥 바이켐 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-bai-khem-an-thoi-hotels"
+          "url": "/post/phu-quoc-bai-khem-an-thoi-hotels/"
         },
         {
           "title": "푸꾸옥 바이켐 숙소 위치 가이드",
-          "url": "/post/phu-quoc-bai-khem-an-thoi-stay-guide"
+          "url": "/post/phu-quoc-bai-khem-an-thoi-stay-guide/"
         }
       ],
       "hotels": [
@@ -466,7 +466,7 @@ const cityConfig = {
             "기념일",
             "바이켐"
           ],
-          "url": "/post/jw-marriott-phu-quoc-emerald-bay-resort-and-spa"
+          "url": "/post/jw-marriott-phu-quoc-emerald-bay-resort-and-spa/"
         },
         {
           "name": "New World Phu Quoc Resort",
@@ -478,7 +478,7 @@ const cityConfig = {
             "가족",
             "바이켐"
           ],
-          "url": "/post/new-world-phu-quoc-resort"
+          "url": "/post/new-world-phu-quoc-resort/"
         },
         {
           "name": "Premier Residences Phu Quoc Emerald Bay",
@@ -490,7 +490,7 @@ const cityConfig = {
             "가족",
             "남부"
           ],
-          "url": "/post/premier-residences-phu-quoc-emerald-bay"
+          "url": "/post/premier-residences-phu-quoc-emerald-bay/"
         },
         {
           "name": "La Festa Phu Quoc, Curio Collection by Hilton",
@@ -502,7 +502,7 @@ const cityConfig = {
             "커플",
             "남부"
           ],
-          "url": "/post/la-festa-phu-quoc-curio-collection-by-hilton"
+          "url": "/post/la-festa-phu-quoc-curio-collection-by-hilton/"
         },
         {
           "name": "Premier Village Phu Quoc Resort",
@@ -514,7 +514,7 @@ const cityConfig = {
             "휴식",
             "남부"
           ],
-          "url": "/post/premier-village-phu-quoc-resort"
+          "url": "/post/premier-village-phu-quoc-resort/"
         }
       ]
     },
@@ -551,11 +551,11 @@ const cityConfig = {
       "links": [
         {
           "title": "푸꾸옥 사오비치 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-bai-sao-ham-ninh-hotels"
+          "url": "/post/phu-quoc-bai-sao-ham-ninh-hotels/"
         },
         {
           "title": "푸꾸옥 사오비치 숙소 위치 가이드",
-          "url": "/post/phu-quoc-bai-sao-ham-ninh-stay-guide"
+          "url": "/post/phu-quoc-bai-sao-ham-ninh-stay-guide/"
         }
       ],
       "hotels": [
@@ -569,7 +569,7 @@ const cityConfig = {
             "바이켐",
             "남부"
           ],
-          "url": "/post/jm-boutique-hotel"
+          "url": "/post/jm-boutique-hotel/"
         },
         {
           "name": "Premier Residences Phu Quoc Emerald Bay",
@@ -581,7 +581,7 @@ const cityConfig = {
             "가족",
             "남부"
           ],
-          "url": "/post/premier-residences-phu-quoc-emerald-bay"
+          "url": "/post/premier-residences-phu-quoc-emerald-bay/"
         },
         {
           "name": "New World Phu Quoc Resort",
@@ -593,7 +593,7 @@ const cityConfig = {
             "가족",
             "바이켐"
           ],
-          "url": "/post/new-world-phu-quoc-resort"
+          "url": "/post/new-world-phu-quoc-resort/"
         },
         {
           "name": "JW Marriott Phu Quoc Emerald Bay Resort & Spa",
@@ -605,7 +605,7 @@ const cityConfig = {
             "기념일",
             "바이켐"
           ],
-          "url": "/post/jw-marriott-phu-quoc-emerald-bay-resort-and-spa"
+          "url": "/post/jw-marriott-phu-quoc-emerald-bay-resort-and-spa/"
         },
         {
           "name": "La Festa Phu Quoc, Curio Collection by Hilton",
@@ -617,7 +617,7 @@ const cityConfig = {
             "커플",
             "남부"
           ],
-          "url": "/post/la-festa-phu-quoc-curio-collection-by-hilton"
+          "url": "/post/la-festa-phu-quoc-curio-collection-by-hilton/"
         }
       ]
     }
@@ -1433,7 +1433,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

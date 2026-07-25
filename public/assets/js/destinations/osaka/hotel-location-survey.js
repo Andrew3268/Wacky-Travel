@@ -37,12 +37,12 @@ const cityConfig = {
           compareCaution: "번화가에 가까울수록 소음, 객실 크기, 가격을 꼼꼼히 봐야 합니다.",
           mismatchNote: "이번 답변에서 조용함, 가족형 여유, 근교 이동을 더 중요하게 봤다면 난바는 1순위가 아닐 수 있습니다.",
           links: [
-            { title: "난바 근처 호텔 추천 TOP5", url: "/post/osaka-namba-hotels" },
-            { title: "도톤보리 근처 호텔 추천 TOP5", url: "/post/dotonbori-hotels" }
+            { title: "난바 근처 호텔 추천 TOP5", url: "/post/osaka-namba-hotels/" },
+            { title: "도톤보리 근처 호텔 추천 TOP5", url: "/post/dotonbori-hotels/" }
           ,
-            { title: "오사카 난바 가성비 호텔 추천 TOP5", url: "/post/osaka-namba-value-hotels" },
-            { title: "오사카 첫 여행 호텔 추천 TOP5", url: "/post/osaka-first-trip-hotels" },
-            { title: "오사카 도톤보리 도보권 호텔 추천 TOP5", url: "/post/osaka-dotonbori-walk-hotels" }],
+            { title: "오사카 난바 가성비 호텔 추천 TOP5", url: "/post/osaka-namba-value-hotels/" },
+            { title: "오사카 첫 여행 호텔 추천 TOP5", url: "/post/osaka-first-trip-hotels/" },
+            { title: "오사카 도톤보리 도보권 호텔 추천 TOP5", url: "/post/osaka-dotonbori-walk-hotels/" }],
           hotels: [
             {
               name: "호텔 몬토레 그라스미아 오사카",
@@ -50,7 +50,7 @@ const cityConfig = {
               location: "난바 권역",
               reason: "난바 중심 동선과 공항 이동을 함께 고려할 때 비교 후보로 넣기 좋은 숙소입니다.",
               meta: ["첫 여행", "공항 이동", "쇼핑 동선"],
-              url: "/post/hotel-monterey-grasmere-osaka"
+              url: "/post/hotel-monterey-grasmere-osaka/"
             },
             {
               name: "크로스 호텔 오사카",
@@ -58,7 +58,7 @@ const cityConfig = {
               location: "도톤보리·신사이바시 사이",
               reason: "맛집, 쇼핑, 저녁 거리 중심으로 짧게 움직이고 싶은 여행자에게 어울리는 위치입니다.",
               meta: ["맛집", "저녁 거리", "커플·친구"],
-              url: "/post/cross-hotel-osaka"
+              url: "/post/cross-hotel-osaka/"
             },
             {
               name: "소테츠 그랜드 프레사 오사카 난바",
@@ -66,7 +66,7 @@ const cityConfig = {
               location: "닛폰바시·난바 권역",
               reason: "난바 접근성과 가격 균형을 같이 중요하게 보는 여행자에게 비교하기 좋은 후보입니다.",
               meta: ["가성비", "역세권", "대표 동선"],
-              url: "/post/sotetsu-grand-fresa-osaka-namba"
+              url: "/post/sotetsu-grand-fresa-osaka-namba/"
             }
           ,
             {
@@ -75,7 +75,7 @@ const cityConfig = {
               location: "닛폰바시·난바 권역",
               reason: "난바 접근성과 휴식 요소를 같이 중요하게 보는 여행자에게 비교해볼 만한 점이 있는 후보입니다.",
               meta: ["온천", "난바 접근", "휴식"],
-              url: "/post/onyado-nono-namba"
+              url: "/post/onyado-nono-namba/"
             },
             {
               name: "호텔 그레이스리 오사카 난바",
@@ -83,7 +83,7 @@ const cityConfig = {
               location: "JR 난바·난바 권역",
               reason: "난바 생활권 안에서 깔끔한 객실과 이동 편의성을 함께 고려할 때 보기 좋습니다.",
               meta: ["깔끔한 숙소", "역세권", "짧은 일정"],
-              url: "/post/hotel-gracery-osaka-namba"
+              url: "/post/hotel-gracery-osaka-namba/"
             }]
         },
         shinsaibashi: {
@@ -116,12 +116,12 @@ const cityConfig = {
           compareCaution: "도톤보리 바로 앞 분위기를 기대하면 다소 거리가 느껴질 수 있습니다.",
           mismatchNote: "이번 답변에서 저녁 거리, 공항 이동, USJ 접근성을 강하게 선택했다면 신사이바시는 보조 후보에 가깝습니다.",
           links: [
-            { title: "신사이바시 근처 호텔 추천 TOP5", url: "/post/osaka-shinsaibashi-hotels" },
-            { title: "혼마치 근처 호텔 추천 TOP5", url: "/post/osaka-honmachi-hotels" }
+            { title: "신사이바시 근처 호텔 추천 TOP5", url: "/post/osaka-shinsaibashi-hotels/" },
+            { title: "혼마치 근처 호텔 추천 TOP5", url: "/post/osaka-honmachi-hotels/" }
           ,
-            { title: "오사카 쇼핑하기 좋은 호텔 추천 TOP5", url: "/post/osaka-shopping-hotels" },
-            { title: "오사카 혼마치 가성비 호텔 추천 TOP5", url: "/post/osaka-honmachi-value-hotels" },
-            { title: "오사카 커플 여행 호텔 추천 TOP5", url: "/post/osaka-couple-hotels" }],
+            { title: "오사카 쇼핑하기 좋은 호텔 추천 TOP5", url: "/post/osaka-shopping-hotels/" },
+            { title: "오사카 혼마치 가성비 호텔 추천 TOP5", url: "/post/osaka-honmachi-value-hotels/" },
+            { title: "오사카 커플 여행 호텔 추천 TOP5", url: "/post/osaka-couple-hotels/" }],
           hotels: [
             {
               name: "호텔 더 플래그 신사이바시",
@@ -129,7 +129,7 @@ const cityConfig = {
               location: "신사이바시 권역",
               reason: "신사이바시 쇼핑 동선과 난바 접근성을 둘 다 챙기고 싶은 여행자에게 잘 맞는 후보입니다.",
               meta: ["쇼핑", "커플", "도보 동선"],
-              url: "/post/hotel-the-flag-shinsaibashi"
+              url: "/post/hotel-the-flag-shinsaibashi/"
             },
             {
               name: "베셀 인 신사이바시",
@@ -137,7 +137,7 @@ const cityConfig = {
               location: "신사이바시·나가호리바시 권역",
               reason: "번화가 접근성은 유지하면서 비교적 차분한 숙박을 원하는 경우 함께 볼 만합니다.",
               meta: ["차분한 도심", "실속", "쇼핑"],
-              url: "/post/vessel-inn-shinsaibashi"
+              url: "/post/vessel-inn-shinsaibashi/"
             },
             {
               name: "오사카 엑셀 호텔 도큐",
@@ -145,7 +145,7 @@ const cityConfig = {
               location: "혼마치 권역",
               reason: "난바와 우메다 사이에서 이동 균형을 잡고 싶은 일정에 어울리는 후보입니다.",
               meta: ["이동 균형", "깔끔한 도심", "비즈니스형"],
-              url: "/post/osaka-excel-hotel-tokyu"
+              url: "/post/osaka-excel-hotel-tokyu/"
             }
           ,
             {
@@ -154,7 +154,7 @@ const cityConfig = {
               location: "신사이바시·난바 사이",
               reason: "쇼핑과 도톤보리 접근을 같이 중요하게 보은 일정에서 비교하기 좋은 후보입니다.",
               meta: ["쇼핑", "도보 동선", "친구·커플"],
-              url: "/post/karaksa-hotel-osaka-namba"
+              url: "/post/karaksa-hotel-osaka-namba/"
             },
             {
               name: "호텔 닛코 오사카",
@@ -162,7 +162,7 @@ const cityConfig = {
               location: "신사이바시 중심",
               reason: "신사이바시역 접근성을 중요하게 보는 여행자에게 안정적인 비교 후보가 됩니다.",
               meta: ["신사이바시역", "쇼핑", "안정형"],
-              url: "/post/hotel-nikko-osaka"
+              url: "/post/hotel-nikko-osaka/"
             }]
         },
         umeda: {
@@ -195,12 +195,12 @@ const cityConfig = {
           compareCaution: "난바 중심 일정이면 매번 이동이 필요할 수 있습니다.",
           mismatchNote: "이번 답변에서 맛집, 저녁 거리, 첫 여행 대표 동선을 더 많이 골랐다면 우메다는 2순위 대안으로 보는 편이 좋습니다.",
           links: [
-            { title: "우메다 근처 호텔 추천 TOP5", url: "/post/osaka-umeda-hotels" },
-            { title: "오사카역 근처 호텔 추천 TOP5", url: "/post/osaka-station-hotels" }
+            { title: "우메다 근처 호텔 추천 TOP5", url: "/post/osaka-umeda-hotels/" },
+            { title: "오사카역 근처 호텔 추천 TOP5", url: "/post/osaka-station-hotels/" }
           ,
-            { title: "오사카 교통 편한 호텔 추천 TOP5", url: "/post/osaka-transport-hotels" },
-            { title: "오사카 근교 여행하기 좋은 호텔 추천 TOP5", url: "/post/osaka-day-trip-hotels" },
-            { title: "오사카 부모님과 가기 좋은 호텔 추천 TOP5", url: "/post/osaka-parents-hotels" }],
+            { title: "오사카 교통 편한 호텔 추천 TOP5", url: "/post/osaka-transport-hotels/" },
+            { title: "오사카 근교 여행하기 좋은 호텔 추천 TOP5", url: "/post/osaka-day-trip-hotels/" },
+            { title: "오사카 부모님과 가기 좋은 호텔 추천 TOP5", url: "/post/osaka-parents-hotels/" }],
           hotels: [
             {
               name: "호텔 한큐 레스파이어 오사카",
@@ -208,7 +208,7 @@ const cityConfig = {
               location: "우메다 권역",
               reason: "근교 이동과 쇼핑몰 접근성을 함께 보는 여행자에게 비교해볼 만한 점이 높은 위치입니다.",
               meta: ["근교 이동", "쇼핑몰", "부모님 동반"],
-              url: "/post/hotel-hankyu-respire-osaka"
+              url: "/post/hotel-hankyu-respire-osaka/"
             },
             {
               name: "호텔 그란비아 오사카",
@@ -216,7 +216,7 @@ const cityConfig = {
               location: "오사카역 권역",
               reason: "JR 이동을 자주 이용하거나 교토·고베 등 근교 일정을 넣을 때 보기 좋은 후보입니다.",
               meta: ["JR 이동", "근교 여행", "역세권"],
-              url: "/post/hotel-granvia-osaka"
+              url: "/post/hotel-granvia-osaka/"
             },
             {
               name: "호텔 인터게이트 오사카 우메다",
@@ -224,7 +224,7 @@ const cityConfig = {
               location: "우메다 권역",
               reason: "깔끔한 도심 분위기와 우메다 생활권을 선호하는 여행자에게 어울립니다.",
               meta: ["깔끔한 도심", "쇼핑", "교통"],
-              url: "/post/hotel-intergate-osaka-umeda"
+              url: "/post/hotel-intergate-osaka-umeda/"
             }
           ,
             {
@@ -233,7 +233,7 @@ const cityConfig = {
               location: "우메다 권역",
               reason: "오사카역 생활권과 깔끔한 도심 숙박을 같이 중요하게 볼 때 비교하기 좋습니다.",
               meta: ["오사카역", "깔끔한 도심", "실속"],
-              url: "/post/hotel-vischio-osaka"
+              url: "/post/hotel-vischio-osaka/"
             },
             {
               name: "호텔 뉴 한큐 오사카",
@@ -241,7 +241,7 @@ const cityConfig = {
               location: "우메다역 권역",
               reason: "공항버스와 우메다 교통 동선을 함께 고려하는 여행자에게 후보에 넣어볼 만합니다.",
               meta: ["교통", "우메다역", "공항 이동"],
-              url: "/post/hotel-new-hankyu-osaka"
+              url: "/post/hotel-new-hankyu-osaka/"
             }]
         },
         tennoji: {
@@ -274,12 +274,12 @@ const cityConfig = {
           compareCaution: "대표 번화가 중심 일정이면 난바보다 동선이 길어질 수 있습니다.",
           mismatchNote: "이번 답변에서 짧은 일정, 저녁 거리, 첫 여행 대표 코스를 많이 골랐다면 덴노지는 우선순위가 낮을 수 있습니다.",
           links: [
-            { title: "덴노지 근처 호텔 추천 TOP5", url: "/post/osaka-tennoji-hotels" },
-            { title: "아베노 근처 호텔 추천 TOP5", url: "/post/osaka-abeno-hotels" }
+            { title: "덴노지 근처 호텔 추천 TOP5", url: "/post/osaka-tennoji-hotels/" },
+            { title: "아베노 근처 호텔 추천 TOP5", url: "/post/osaka-abeno-hotels/" }
           ,
-            { title: "오사카 가성비 호텔 추천 TOP5", url: "/post/osaka-value-hotels" },
-            { title: "오사카 덴노지 가성비 호텔 추천 TOP5", url: "/post/osaka-tennoji-value-hotels" },
-            { title: "오사카 아베노 호텔 추천 TOP5", url: "/post/osaka-abeno-hotels-top5" }],
+            { title: "오사카 가성비 호텔 추천 TOP5", url: "/post/osaka-value-hotels/" },
+            { title: "오사카 덴노지 가성비 호텔 추천 TOP5", url: "/post/osaka-tennoji-value-hotels/" },
+            { title: "오사카 아베노 호텔 추천 TOP5", url: "/post/osaka-abeno-hotels-top5/" }],
           hotels: [
             {
               name: "미야코 시티 오사카 덴노지",
@@ -287,7 +287,7 @@ const cityConfig = {
               location: "덴노지 권역",
               reason: "남쪽 관광지와 덴노지역 교통을 함께 보는 일정에 비교하기 좋은 숙소입니다.",
               meta: ["덴노지역", "남쪽 동선", "실속"],
-              url: "/post/miyako-city-osaka-tennoji"
+              url: "/post/miyako-city-osaka-tennoji/"
             },
             {
               name: "비아 인 아베노 덴노지",
@@ -295,7 +295,7 @@ const cityConfig = {
               location: "아베노·덴노지 권역",
               reason: "숙소비 부담을 줄이면서 역세권과 주변 편의성을 같이 중요하게 볼 때 적합합니다.",
               meta: ["가성비", "아베노하루카스", "역세권"],
-              url: "/post/via-inn-abeno-tennoji"
+              url: "/post/via-inn-abeno-tennoji/"
             },
             {
               name: "호텔 트러스티 오사카 아베노",
@@ -303,7 +303,7 @@ const cityConfig = {
               location: "아베노 권역",
               reason: "아베노·덴노지 생활권에서 조용함과 접근성의 균형을 보고 싶은 여행자에게 어울립니다.",
               meta: ["아베노", "가격 균형", "차분함"],
-              url: "/post/hotel-trusty-osaka-abeno"
+              url: "/post/hotel-trusty-osaka-abeno/"
             }
           ,
             {
@@ -312,7 +312,7 @@ const cityConfig = {
               location: "덴노지 권역",
               reason: "덴노지 중심에서 편의성과 독특한 숙소 주변 분위기를 같이 중요하게 보은 경우 비교할 만합니다.",
               meta: ["덴노지", "가성비", "개성형"],
-              url: "/post/hotel-bali-tower-osaka-tennoji"
+              url: "/post/hotel-bali-tower-osaka-tennoji/"
             },
             {
               name: "덴노지 라군 호텔",
@@ -320,7 +320,7 @@ const cityConfig = {
               location: "덴노지 권역",
               reason: "숙소비를 낮추면서 남쪽 동선 접근성을 우선 확인하고 싶을 때 보조 후보가 됩니다.",
               meta: ["저예산", "남쪽 동선", "실속"],
-              url: "/post/tennoji-lagoon-hotel"
+              url: "/post/tennoji-lagoon-hotel/"
             }]
         },
         universal: {
@@ -353,12 +353,12 @@ const cityConfig = {
           compareCaution: "시내 관광과 쇼핑 일정이 많으면 매번 이동해야 합니다.",
           mismatchNote: "이번 답변에서 USJ 비중이 낮고 시내 관광을 더 많이 선택했다면 유니버설 시티는 특수 목적형 후보입니다.",
           links: [
-            { title: "유니버설 시티 호텔 추천 TOP5", url: "/post/osaka-universal-city-hotels" },
-            { title: "USJ 근처 호텔 추천", url: "/post/usj-nearby-hotels" }
+            { title: "유니버설 시티 호텔 추천 TOP5", url: "/post/osaka-universal-city-hotels/" },
+            { title: "USJ 근처 호텔 추천", url: "/post/usj-nearby-hotels/" }
           ,
-            { title: "USJ 가족 호텔 추천 TOP5", url: "/post/usj-family-hotels" },
-            { title: "유니버설 시티 가성비 호텔 추천 TOP5", url: "/post/universal-city-value-hotels" },
-            { title: "오사카 아이와 가기 좋은 호텔 추천 TOP5", url: "/post/osaka-kids-hotels" }],
+            { title: "USJ 가족 호텔 추천 TOP5", url: "/post/usj-family-hotels/" },
+            { title: "유니버설 시티 가성비 호텔 추천 TOP5", url: "/post/universal-city-value-hotels/" },
+            { title: "오사카 아이와 가기 좋은 호텔 추천 TOP5", url: "/post/osaka-kids-hotels/" }],
           hotels: [
             {
               name: "더 파크 프론트 호텔 앳 유니버설 스튜디오 재팬",
@@ -366,7 +366,7 @@ const cityConfig = {
               location: "유니버설 시티 권역",
               reason: "USJ 입장과 퇴장 동선을 최대한 줄이고 싶은 가족 여행자에게 강한 후보입니다.",
               meta: ["USJ", "가족", "테마파크"],
-              url: "/post/the-park-front-hotel-usj"
+              url: "/post/the-park-front-hotel-usj/"
             },
             {
               name: "호텔 유니버설 포트",
@@ -374,7 +374,7 @@ const cityConfig = {
               location: "유니버설 시티 권역",
               reason: "아이와 함께 테마파크 일정을 중심으로 잡을 때 비교하기 좋은 호텔입니다.",
               meta: ["아이 동반", "USJ", "편한 동선"],
-              url: "/post/hotel-universal-port"
+              url: "/post/hotel-universal-port/"
             },
             {
               name: "리버 호텔 오사카",
@@ -382,7 +382,7 @@ const cityConfig = {
               location: "유니버설 시티·혼마치",
               reason: "USJ 접근성과 조금 더 여유로운 숙소 주변 분위기를 같이 중요하게 볼 때 후보에 넣어볼 만합니다.",
               meta: ["USJ", "여유", "가족여행"],
-              url: "/post/liber-hotel-osaka"
+              url: "/post/liber-hotel-osaka/"
             }
           ,
             {
@@ -391,7 +391,7 @@ const cityConfig = {
               location: "유니버설 시티 권역",
               reason: "USJ 접근성과 유니버설 시티역 동선을 함께 보는 가족 여행에 적합한 후보입니다.",
               meta: ["USJ", "역세권", "가족"],
-              url: "/post/oriental-hotel-universal-city"
+              url: "/post/oriental-hotel-universal-city/"
             },
             {
               name: "더 싱귤라리 호텔 & 스카이스파 앳 유니버설 스튜디오 재팬",
@@ -399,7 +399,7 @@ const cityConfig = {
               location: "유니버설 시티 권역",
               reason: "테마파크 일정 후 휴식 요소까지 고려하는 여행자에게 비교해볼 만한 점이 있습니다.",
               meta: ["USJ", "스파", "휴식"],
-              url: "/post/the-singulari-hotel-usj"
+              url: "/post/the-singulari-hotel-usj/"
             }]
         },
         hommachi: {
@@ -432,15 +432,15 @@ const cityConfig = {
           compareCaution: "도톤보리 바로 앞의 활기찬 분위기를 기대하면 다소 차분하게 느껴질 수 있습니다.",
           mismatchNote: "이번 답변에서 저녁 거리, 공항 이동, USJ 접근성을 강하게 골랐다면 혼마치는 보조 후보에 가깝습니다.",
           links: [
-            { title: "혼마치 근처 호텔 추천 TOP5", url: "/post/osaka-hommachi-hotels" },
-            { title: "오사카 가성비 호텔 추천 TOP5", url: "/post/osaka-value-hotels" }
+            { title: "혼마치 근처 호텔 추천 TOP5", url: "/post/osaka-hommachi-hotels/" },
+            { title: "오사카 가성비 호텔 추천 TOP5", url: "/post/osaka-value-hotels/" }
           ],
           hotels: [
-            { name: "오사카 엑셀 호텔 도큐", tag: "혼마치 중심", location: "혼마치 권역", reason: "난바와 우메다 사이에서 이동 균형을 잡고 싶은 일정에 어울리는 후보입니다.", meta: ["혼마치", "이동 균형", "깔끔한 도심"], url: "/post/osaka-excel-hotel-tokyu" },
-            { name: "더 로열 파크 호텔 아이코닉 오사카 미도스지", tag: "미도스지선 후보", location: "혼마치·요도야바시 권역", reason: "차분한 도심 분위기와 남북 이동 편의성을 함께 보고 싶은 여행자에게 적합합니다.", meta: ["미도스지", "도심", "커플"], url: "/post/the-royal-park-hotel-iconic-osaka-midosuji" },
-            { name: "코트야드 바이 메리어트 오사카 혼마치", tag: "역세권 안정형", location: "혼마치·사카이스지혼마치 주변", reason: "혼마치 권역에서 교통과 숙박 안정성을 함께 비교하기 좋은 후보입니다.", meta: ["혼마치", "역세권", "안정형"], url: "/post/courtyard-by-marriott-osaka-honmachi" },
-            { name: "다이와 로이넷 호텔 오사카 기타하마", tag: "차분한 실속형", location: "기타하마·혼마치 북쪽", reason: "우메다 접근성과 차분한 숙소 주변 분위기를 함께 원하는 경우 비교할 만합니다.", meta: ["차분함", "실속", "도심"], url: "/post/daiwa-roynet-hotel-osaka-kitahama" },
-            { name: "베스트 웨스턴 플러스 호텔 피노 오사카 기타하마", tag: "가성비 후보", location: "기타하마·혼마치 생활권", reason: "중심부 가격 부담을 줄이면서 도심 이동을 유지하고 싶은 여행자에게 어울립니다.", meta: ["가성비", "도심 이동", "실속"], url: "/post/best-western-plus-hotel-fino-osaka-kitahama" }
+            { name: "오사카 엑셀 호텔 도큐", tag: "혼마치 중심", location: "혼마치 권역", reason: "난바와 우메다 사이에서 이동 균형을 잡고 싶은 일정에 어울리는 후보입니다.", meta: ["혼마치", "이동 균형", "깔끔한 도심"], url: "/post/osaka-excel-hotel-tokyu/" },
+            { name: "더 로열 파크 호텔 아이코닉 오사카 미도스지", tag: "미도스지선 후보", location: "혼마치·요도야바시 권역", reason: "차분한 도심 분위기와 남북 이동 편의성을 함께 보고 싶은 여행자에게 적합합니다.", meta: ["미도스지", "도심", "커플"], url: "/post/the-royal-park-hotel-iconic-osaka-midosuji/" },
+            { name: "코트야드 바이 메리어트 오사카 혼마치", tag: "역세권 안정형", location: "혼마치·사카이스지혼마치 주변", reason: "혼마치 권역에서 교통과 숙박 안정성을 함께 비교하기 좋은 후보입니다.", meta: ["혼마치", "역세권", "안정형"], url: "/post/courtyard-by-marriott-osaka-honmachi/" },
+            { name: "다이와 로이넷 호텔 오사카 기타하마", tag: "차분한 실속형", location: "기타하마·혼마치 북쪽", reason: "우메다 접근성과 차분한 숙소 주변 분위기를 함께 원하는 경우 비교할 만합니다.", meta: ["차분함", "실속", "도심"], url: "/post/daiwa-roynet-hotel-osaka-kitahama/" },
+            { name: "베스트 웨스턴 플러스 호텔 피노 오사카 기타하마", tag: "가성비 후보", location: "기타하마·혼마치 생활권", reason: "중심부 가격 부담을 줄이면서 도심 이동을 유지하고 싶은 여행자에게 어울립니다.", meta: ["가성비", "도심 이동", "실속"], url: "/post/best-western-plus-hotel-fino-osaka-kitahama/" }
           ]
         }
       },
@@ -1064,7 +1064,7 @@ async function renderRelatedPostsLegacy(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 
@@ -1656,7 +1656,7 @@ async function renderRelatedPosts(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 

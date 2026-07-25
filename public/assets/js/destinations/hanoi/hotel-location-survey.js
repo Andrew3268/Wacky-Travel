@@ -53,11 +53,11 @@ const cityConfig = {
       "links": [
         {
           "title": "하노이 호안끼엠 호텔 추천 TOP5",
-          "url": "/post/hanoi-old-quarter-hotels"
+          "url": "/post/hanoi-old-quarter-hotels/"
         },
         {
           "title": "하노이 호안끼엠 숙소 위치 가이드",
-          "url": "/post/hanoi-old-quarter-stay-guide"
+          "url": "/post/hanoi-old-quarter-stay-guide/"
         }
       ],
       "hotels": [
@@ -71,7 +71,7 @@ const cityConfig = {
             "도보 이동",
             "부티크"
           ],
-          "url": "/post/la-siesta-premium-hang-be"
+          "url": "/post/la-siesta-premium-hang-be/"
         },
         {
           "name": "The Oriental Jade Hotel",
@@ -83,7 +83,7 @@ const cityConfig = {
             "커플",
             "중심"
           ],
-          "url": "/post/the-oriental-jade-hotel"
+          "url": "/post/the-oriental-jade-hotel/"
         },
         {
           "name": "Hanoi Tirant Hotel",
@@ -95,7 +95,7 @@ const cityConfig = {
             "첫 여행",
             "야시장"
           ],
-          "url": "/post/hanoi-tirant-hotel"
+          "url": "/post/hanoi-tirant-hotel/"
         },
         {
           "name": "JM Marvel Hotel & Spa",
@@ -107,7 +107,7 @@ const cityConfig = {
             "맛집",
             "커플"
           ],
-          "url": "/post/jm-marvel-hotel-spa"
+          "url": "/post/jm-marvel-hotel-spa/"
         },
         {
           "name": "Peridot Grand Luxury Boutique Hotel",
@@ -119,7 +119,7 @@ const cityConfig = {
             "컨디션",
             "중심"
           ],
-          "url": "/post/peridot-grand-luxury-boutique-hotel"
+          "url": "/post/peridot-grand-luxury-boutique-hotel/"
         }
       ]
     },
@@ -173,11 +173,11 @@ const cityConfig = {
       "links": [
         {
           "title": "하노이 프렌치쿼터 호텔 추천 TOP5",
-          "url": "/post/hanoi-french-quarter-hotels"
+          "url": "/post/hanoi-french-quarter-hotels/"
         },
         {
           "title": "하노이 프렌치쿼터 숙소 위치 가이드",
-          "url": "/post/hanoi-french-quarter-stay-guide"
+          "url": "/post/hanoi-french-quarter-stay-guide/"
         }
       ],
       "hotels": [
@@ -191,7 +191,7 @@ const cityConfig = {
             "기념일",
             "부모님"
           ],
-          "url": "/post/sofitel-legend-metropole-hanoi"
+          "url": "/post/sofitel-legend-metropole-hanoi/"
         },
         {
           "name": "Capella Hanoi",
@@ -203,7 +203,7 @@ const cityConfig = {
             "커플",
             "오페라하우스"
           ],
-          "url": "/post/capella-hanoi"
+          "url": "/post/capella-hanoi/"
         },
         {
           "name": "Hotel de l'Opera Hanoi - MGallery",
@@ -215,7 +215,7 @@ const cityConfig = {
             "컨디션",
             "산책"
           ],
-          "url": "/post/hotel-de-lopera-hanoi-mgallery"
+          "url": "/post/hotel-de-lopera-hanoi-mgallery/"
         },
         {
           "name": "Apricot Hotel",
@@ -227,7 +227,7 @@ const cityConfig = {
             "커플",
             "전망"
           ],
-          "url": "/post/apricot-hotel-hanoi"
+          "url": "/post/apricot-hotel-hanoi/"
         },
         {
           "name": "Meliá Hanoi",
@@ -239,7 +239,7 @@ const cityConfig = {
             "부모님",
             "비즈니스"
           ],
-          "url": "/post/melia-hanoi"
+          "url": "/post/melia-hanoi/"
         }
       ]
     },
@@ -293,11 +293,11 @@ const cityConfig = {
       "links": [
         {
           "title": "하노이 서호 호텔 추천 TOP5",
-          "url": "/post/hanoi-west-lake-hotels"
+          "url": "/post/hanoi-west-lake-hotels/"
         },
         {
           "title": "하노이 서호 숙소 위치 가이드",
-          "url": "/post/hanoi-west-lake-stay-guide"
+          "url": "/post/hanoi-west-lake-stay-guide/"
         }
       ],
       "hotels": [
@@ -311,7 +311,7 @@ const cityConfig = {
             "휴식",
             "커플"
           ],
-          "url": "/post/intercontinental-hanoi-westlake"
+          "url": "/post/intercontinental-hanoi-westlake/"
         },
         {
           "name": "Pan Pacific Hanoi",
@@ -323,7 +323,7 @@ const cityConfig = {
             "도심 접근",
             "부모님"
           ],
-          "url": "/post/pan-pacific-hanoi"
+          "url": "/post/pan-pacific-hanoi/"
         },
         {
           "name": "Sheraton Hanoi Hotel",
@@ -335,7 +335,7 @@ const cityConfig = {
             "대형 호텔",
             "휴식"
           ],
-          "url": "/post/sheraton-hanoi-hotel"
+          "url": "/post/sheraton-hanoi-hotel/"
         },
         {
           "name": "Elegant Suites Westlake",
@@ -347,7 +347,7 @@ const cityConfig = {
             "장기",
             "가족"
           ],
-          "url": "/post/elegant-suites-westlake"
+          "url": "/post/elegant-suites-westlake/"
         },
         {
           "name": "The Hanoi Club Hotel & Residences",
@@ -359,7 +359,7 @@ const cityConfig = {
             "레지던스",
             "호수"
           ],
-          "url": "/post/the-hanoi-club-hotel-residences"
+          "url": "/post/the-hanoi-club-hotel-residences/"
         }
       ]
     },
@@ -413,11 +413,11 @@ const cityConfig = {
       "links": [
         {
           "title": "하노이 바딘 호텔 추천 TOP5",
-          "url": "/post/hanoi-ba-dinh-hotels"
+          "url": "/post/hanoi-ba-dinh-hotels/"
         },
         {
           "title": "하노이 바딘 숙소 위치 가이드",
-          "url": "/post/hanoi-ba-dinh-stay-guide"
+          "url": "/post/hanoi-ba-dinh-stay-guide/"
         }
       ],
       "hotels": [
@@ -431,7 +431,7 @@ const cityConfig = {
             "가족",
             "쇼핑몰"
           ],
-          "url": "/post/lotte-hotel-hanoi"
+          "url": "/post/lotte-hotel-hanoi/"
         },
         {
           "name": "Hanoi Daewoo Hotel",
@@ -443,7 +443,7 @@ const cityConfig = {
             "부모님",
             "수영장"
           ],
-          "url": "/post/hanoi-daewoo-hotel"
+          "url": "/post/hanoi-daewoo-hotel/"
         },
         {
           "name": "Grand Vista Hanoi",
@@ -455,7 +455,7 @@ const cityConfig = {
             "컨디션",
             "가족"
           ],
-          "url": "/post/grand-vista-hanoi"
+          "url": "/post/grand-vista-hanoi/"
         },
         {
           "name": "Dolce by Wyndham Hanoi Golden Lake",
@@ -467,7 +467,7 @@ const cityConfig = {
             "고급",
             "가족"
           ],
-          "url": "/post/dolce-by-wyndham-hanoi-golden-lake"
+          "url": "/post/dolce-by-wyndham-hanoi-golden-lake/"
         },
         {
           "name": "Super Hotel Candle",
@@ -479,7 +479,7 @@ const cityConfig = {
             "실속",
             "장기"
           ],
-          "url": "/post/super-hotel-candle-hanoi"
+          "url": "/post/super-hotel-candle-hanoi/"
         }
       ]
     },
@@ -533,11 +533,11 @@ const cityConfig = {
       "links": [
         {
           "title": "하노이 동다 호텔 추천 TOP5",
-          "url": "/post/hanoi-dong-da-hotels"
+          "url": "/post/hanoi-dong-da-hotels/"
         },
         {
           "title": "하노이 동다 숙소 위치 가이드",
-          "url": "/post/hanoi-dong-da-stay-guide"
+          "url": "/post/hanoi-dong-da-stay-guide/"
         }
       ],
       "hotels": [
@@ -551,7 +551,7 @@ const cityConfig = {
             "컨디션",
             "도심"
           ],
-          "url": "/post/grand-mercure-hanoi"
+          "url": "/post/grand-mercure-hanoi/"
         },
         {
           "name": "Pullman Hanoi",
@@ -563,7 +563,7 @@ const cityConfig = {
             "비즈니스",
             "가족"
           ],
-          "url": "/post/pullman-hanoi"
+          "url": "/post/pullman-hanoi/"
         },
         {
           "name": "Mövenpick Hotel Hanoi Centre",
@@ -575,7 +575,7 @@ const cityConfig = {
             "중심",
             "컨디션"
           ],
-          "url": "/post/movenpick-hotel-hanoi-centre"
+          "url": "/post/movenpick-hotel-hanoi-centre/"
         },
         {
           "name": "SOJO Hotel Ga Hanoi",
@@ -587,7 +587,7 @@ const cityConfig = {
             "실속",
             "짧은 일정"
           ],
-          "url": "/post/sojo-hotel-ga-hanoi"
+          "url": "/post/sojo-hotel-ga-hanoi/"
         },
         {
           "name": "Nesta Hotel Hanoi",
@@ -599,7 +599,7 @@ const cityConfig = {
             "도심",
             "재방문"
           ],
-          "url": "/post/nesta-hotel-hanoi"
+          "url": "/post/nesta-hotel-hanoi/"
         }
       ]
     },
@@ -653,11 +653,11 @@ const cityConfig = {
       "links": [
         {
           "title": "하노이 미딩 호텔 추천 TOP5",
-          "url": "/post/hanoi-my-dinh-cau-giay-hotels"
+          "url": "/post/hanoi-my-dinh-cau-giay-hotels/"
         },
         {
           "title": "하노이 미딩 숙소 위치 가이드",
-          "url": "/post/hanoi-my-dinh-cau-giay-stay-guide"
+          "url": "/post/hanoi-my-dinh-cau-giay-stay-guide/"
         }
       ],
       "hotels": [
@@ -671,7 +671,7 @@ const cityConfig = {
             "전망",
             "대형 호텔"
           ],
-          "url": "/post/intercontinental-hanoi-landmark72"
+          "url": "/post/intercontinental-hanoi-landmark72/"
         },
         {
           "name": "JW Marriott Hotel Hanoi",
@@ -683,7 +683,7 @@ const cityConfig = {
             "출장",
             "컨벤션"
           ],
-          "url": "/post/jw-marriott-hotel-hanoi"
+          "url": "/post/jw-marriott-hotel-hanoi/"
         },
         {
           "name": "Hyatt Regency West Hanoi",
@@ -695,7 +695,7 @@ const cityConfig = {
             "출장",
             "가족"
           ],
-          "url": "/post/hyatt-regency-west-hanoi"
+          "url": "/post/hyatt-regency-west-hanoi/"
         },
         {
           "name": "Novotel Suites Hanoi",
@@ -707,7 +707,7 @@ const cityConfig = {
             "장기",
             "출장"
           ],
-          "url": "/post/novotel-suites-hanoi"
+          "url": "/post/novotel-suites-hanoi/"
         },
         {
           "name": "Grand Plaza Hanoi Hotel",
@@ -719,7 +719,7 @@ const cityConfig = {
             "실속",
             "서쪽"
           ],
-          "url": "/post/grand-plaza-hanoi-hotel"
+          "url": "/post/grand-plaza-hanoi-hotel/"
         }
       ]
     }
@@ -1556,7 +1556,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

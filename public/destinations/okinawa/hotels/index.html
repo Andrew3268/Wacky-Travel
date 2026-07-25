@@ -2,24 +2,24 @@
 
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><meta charset="utf-8"/>
+
 <title>오키나와 추천 호텔 리뷰 | Wacky Travel</title>
-<meta content="오키나와 호텔을 지역별로 살펴보고 위치, 렌터카 이동, 객실 컨디션, 주변 식당과 해변 접근성을 함께 보며 내 여행에 맞는 숙소를 비교해보세요." name="description"/>
-<link href="/destinations/okinawa/hotels/" rel="canonical"/>
-<meta content="website" property="og:type"/>
-<meta content="Wacky Travel" property="og:site_name"/>
-<meta content="오키나와 추천 호텔 리뷰 | Wacky Travel" property="og:title"/>
-<meta content="오키나와 호텔을 지역별로 살펴보고 위치, 렌터카 이동, 객실 컨디션, 주변 식당과 해변 접근성을 함께 보며 내 여행에 맞는 숙소를 비교해보세요." property="og:description"/>
-<meta content="/destinations/okinawa/hotels/" property="og:url"/>
-<meta content="ko_KR" property="og:locale"/>
+
+
+
+
+
+
+
+
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260723-post-width-100" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" rel="stylesheet"/>
 <link href="/assets/css/travel.css?v=20260724CityH1HomeH2V16" rel="stylesheet"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오키나와","item":"/destinations/okinawa"},{"@type":"ListItem","position":4,"name":"추천 호텔 리뷰","item":"/destinations/okinawa/hotels/"}]}</script>
-  <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet" />
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"오키나와","item":"/destinations/okinawa/"},{"@type":"ListItem","position":4,"name":"추천 호텔 리뷰","item":"/destinations/okinawa/hotels/"}]}</script>
+<link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet"/>
+<meta content="오키나와 호텔을 지역별로 살펴보고 위치, 렌터카 이동, 객실 컨디션, 주변 식당과 해변 접근성을 함께 보며 내 여행에 맞는 숙소를 비교해보세요." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/><meta content="#ffffff" name="theme-color"/><link href="/destinations/okinawa/hotels/" rel="canonical"/><meta content="website" property="og:type"/><meta content="Wacky Travel" property="og:site_name"/><meta content="오키나와 추천 호텔 리뷰 | Wacky Travel" property="og:title"/><meta content="오키나와 호텔을 지역별로 살펴보고 위치, 렌터카 이동, 객실 컨디션, 주변 식당과 해변 접근성을 함께 보며 내 여행에 맞는 숙소를 비교해보세요." property="og:description"/><meta content="/destinations/okinawa/hotels/" property="og:url"/><meta content="/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="오키나와 추천 호텔 리뷰 | Wacky Travel 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="오키나와 추천 호텔 리뷰 | Wacky Travel" name="twitter:title"/><meta content="오키나와 호텔을 지역별로 살펴보고 위치, 렌터카 이동, 객실 컨디션, 주변 식당과 해변 접근성을 함께 보며 내 여행에 맞는 숙소를 비교해보세요." name="twitter:description"/><meta content="/assets/images/og-default.png" name="twitter:image"/><meta content="오키나와 추천 호텔 리뷰 | Wacky Travel 대표 이미지" name="twitter:image:alt"/></head>
 <body class="travel-city-body travel-city-body--okinawa travel-archive-body travel-archive-body--hotels" data-destination-slug="okinawa">
 <header class="topbar topbar--editorial topbar--travel" data-site-header="main">
   <div class="topbar__inner container">
@@ -353,9 +353,12 @@
       const loadAllPostsOnce = async (initialRegion = '') => {
         if (!grid) return;
         grid.setAttribute('aria-busy', 'true');
-        grid.innerHTML = renderArchiveSkeleton('오키나와 호텔 글을 불러오는 중입니다.');
-        if (summary) summary.hidden = true;
-        if (count) count.textContent = '';
+        const hasServerRenderedCards = grid.dataset.ssrReady === 'true' && Boolean(grid.querySelector('.travel-card'));
+        if (!hasServerRenderedCards) {
+          grid.innerHTML = renderArchiveSkeleton('오키나와 호텔 글을 불러오는 중입니다.');
+          if (summary) summary.hidden = true;
+          if (count) count.textContent = '';
+        }
 
         let offset = 0;
         let html = '';

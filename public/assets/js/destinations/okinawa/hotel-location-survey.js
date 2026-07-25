@@ -53,15 +53,15 @@ const cityConfig = {
       "links": [
         {
           "title": "오키나와 첫 여행 호텔 추천 TOP5",
-          "url": "/post/okinawa-first-trip-hotels"
+          "url": "/post/okinawa-first-trip-hotels/"
         },
         {
           "title": "나하 국제거리 근처 호텔 추천 TOP5",
-          "url": "/post/okinawa-naha-hotels"
+          "url": "/post/okinawa-naha-hotels/"
         },
         {
           "title": "렌터카 없는 오키나와 숙소 위치 추천",
-          "url": "/post/okinawa-without-rental-car-hotels"
+          "url": "/post/okinawa-without-rental-car-hotels/"
         }
       ],
       "hotels": [
@@ -173,15 +173,15 @@ const cityConfig = {
       "links": [
         {
           "title": "차탄 아메리칸빌리지 호텔 추천 TOP5",
-          "url": "/post/okinawa-chatan-hotels"
+          "url": "/post/okinawa-chatan-hotels/"
         },
         {
           "title": "오키나와 커플 여행 호텔 추천 TOP5",
-          "url": "/post/okinawa-couple-hotels"
+          "url": "/post/okinawa-couple-hotels/"
         },
         {
           "title": "오키나와 가족 여행 호텔 추천 TOP5",
-          "url": "/post/okinawa-family-hotels"
+          "url": "/post/okinawa-family-hotels/"
         }
       ],
       "hotels": [
@@ -293,15 +293,15 @@ const cityConfig = {
       "links": [
         {
           "title": "온나손 리조트 호텔 추천 TOP5",
-          "url": "/post/okinawa-onna-resort-hotels"
+          "url": "/post/okinawa-onna-resort-hotels/"
         },
         {
           "title": "오키나와 리조트 호텔 추천 TOP5",
-          "url": "/post/okinawa-resort-hotels"
+          "url": "/post/okinawa-resort-hotels/"
         },
         {
           "title": "오키나와 스노클링 숙소 위치 추천",
-          "url": "/post/okinawa-snorkeling-hotels"
+          "url": "/post/okinawa-snorkeling-hotels/"
         }
       ],
       "hotels": [
@@ -413,15 +413,15 @@ const cityConfig = {
       "links": [
         {
           "title": "츄라우미 수족관 근처 호텔 추천 TOP5",
-          "url": "/post/okinawa-churaumi-hotels"
+          "url": "/post/okinawa-churaumi-hotels/"
         },
         {
           "title": "오키나와 북부 호텔 추천 TOP5",
-          "url": "/post/okinawa-north-hotels"
+          "url": "/post/okinawa-north-hotels/"
         },
         {
           "title": "코우리섬 여행 숙소 위치 추천",
-          "url": "/post/okinawa-kouri-hotels"
+          "url": "/post/okinawa-kouri-hotels/"
         }
       ],
       "hotels": [
@@ -533,15 +533,15 @@ const cityConfig = {
       "links": [
         {
           "title": "오키나와 조용한 숙소 추천 TOP5",
-          "url": "/post/okinawa-quiet-hotels"
+          "url": "/post/okinawa-quiet-hotels/"
         },
         {
           "title": "요미탄 호텔 추천 TOP5",
-          "url": "/post/okinawa-yomitan-hotels"
+          "url": "/post/okinawa-yomitan-hotels/"
         },
         {
           "title": "오키나와 커플 조용한 숙소 추천",
-          "url": "/post/okinawa-calm-couple-hotels"
+          "url": "/post/okinawa-calm-couple-hotels/"
         }
       ],
       "hotels": [
@@ -653,15 +653,15 @@ const cityConfig = {
       "links": [
         {
           "title": "오키나와 남부 숙소 추천 TOP5",
-          "url": "/post/okinawa-south-hotels"
+          "url": "/post/okinawa-south-hotels/"
         },
         {
           "title": "오키나와 귀국 전날 숙소 추천",
-          "url": "/post/okinawa-last-night-hotels"
+          "url": "/post/okinawa-last-night-hotels/"
         },
         {
           "title": "오키나와 남부 여행 가이드",
-          "url": "/post/okinawa-south-travel-guide"
+          "url": "/post/okinawa-south-travel-guide/"
         }
       ],
       "hotels": [
@@ -1559,7 +1559,7 @@ async function renderRelatedPostsLegacy(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 
@@ -2151,7 +2151,7 @@ async function renderRelatedPosts(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 

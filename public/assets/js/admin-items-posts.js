@@ -309,7 +309,7 @@ function adminPostsRenderPostItem(post) {
   const contentTypeLabel = adminPostsGetContentTypeLabel(post.content_type);
   const updatedAt = adminPostsFormatDate(post.updated_at || post.published_at);
   const publishedAt = adminPostsFormatDate(post.published_at);
-  const viewHref = isPublished ? `/post/${encodeURIComponent(postSlug)}` : `/edit.html?slug=${encodeURIComponent(postSlug)}`;
+  const viewHref = isPublished ? `/post/${encodeURIComponent(postSlug)}/` : `/edit.html?slug=${encodeURIComponent(postSlug)}`;
 
   return `
     <article class="admin-items-posts-item">

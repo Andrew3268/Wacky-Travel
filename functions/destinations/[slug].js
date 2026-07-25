@@ -1,4 +1,5 @@
 import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
+import { getSiteOrigin } from "../../lib/seo/site-url.js";
 import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } from "../../lib/travel/seo-jsonld.js";
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
@@ -25,9 +26,9 @@ export async function onRequestGet({ params, env, request }) {
   const postStamp = await env.TRAVEL_DB.prepare(postStampQuery.sql).bind(...postStampQuery.binds).first();
 
   const requestUrl = new URL(request.url);
-  const origin = requestUrl.origin;
+  const origin = getSiteOrigin(env, request);
   const destinationVersion = [meta.updated_at, postStamp?.posts_updated_at, DESTINATION_RENDER_VERSION].filter(Boolean).join("|");
-  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}?v=${encodeURIComponent(destinationVersion)}`;
+  const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}/?v=${encodeURIComponent(destinationVersion)}`;
 
   return edgeCache({
     request,
@@ -63,7 +64,7 @@ export async function onRequestGet({ params, env, request }) {
       const hotelPosts = [...top5HotelPosts, ...hotelIntroPosts];
       const nonHotelPosts = posts.filter((post) => !isHotelPost(post));
       const travelContentPosts = nonHotelPosts;
-      const canonical = `${origin}/destinations/${encodeURIComponent(slug)}`;
+      const canonical = `${origin}/destinations/${encodeURIComponent(slug)}/`;
       const heroTitle = getDestinationHeroTitle(destination);
       const heroSummary = getDestinationHeroSummary(destination);
       const heroImage = getDestinationHeroImage(destination);
@@ -83,7 +84,7 @@ export async function onRequestGet({ params, env, request }) {
           url: canonical,
           items: hotelPosts.map((post) => ({
             name: post.title,
-            url: `${origin}/post/${encodeURIComponent(post.slug)}`
+            url: `${origin}/post/${encodeURIComponent(post.slug)}/`
           }))
         })
       ];
@@ -466,7 +467,7 @@ function renderTravelContentMoreScript() {
 
 function renderHotelPostCard(post, contentTypes = []) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}`;
+  const href = `/post/${encodeURIComponent(slug)}/`;
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);
@@ -538,7 +539,7 @@ function renderTravelContentList(destination, posts = []) {
 
 function renderPostItem(post, destination = {}) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}`;
+  const href = `/post/${encodeURIComponent(slug)}/`;
   const meta = formatDate(post.updated_at);
   return `<article class="travel-list__item">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">

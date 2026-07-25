@@ -115,7 +115,7 @@
   }
 
   function buildResultItem(item) {
-    const href = `/post/${encodeURIComponent(item.slug || '')}`;
+    const href = `/post/${encodeURIComponent(item.slug || '')}/`;
     return `
       <a class="site-search__item" href="${href}">
         <strong class="site-search__item-title">${escapeHtml(item.title || '')}</strong>

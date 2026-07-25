@@ -39,7 +39,7 @@ const cityConfig = {
       "links": [
         {
           "title": "화렌역·시내중심 호텔 추천 TOP5",
-          "url": "/post/hualien-station-hotels"
+          "url": "/post/hualien-station-hotels/"
         },
         {
           "title": "화렌 숙소 위치 가이드",
@@ -149,7 +149,7 @@ const cityConfig = {
       "links": [
         {
           "title": "동대문 야시장·구시가지 호텔 추천 TOP5",
-          "url": "/post/dongdamen-old-town-hotels"
+          "url": "/post/dongdamen-old-town-hotels/"
         },
         {
           "title": "화렌 숙소 위치 가이드",
@@ -259,7 +259,7 @@ const cityConfig = {
       "links": [
         {
           "title": "메이룬·항구 호텔 추천 TOP5",
-          "url": "/post/meilun-harbor-hotels"
+          "url": "/post/meilun-harbor-hotels/"
         },
         {
           "title": "화렌 숙소 위치 가이드",
@@ -369,7 +369,7 @@ const cityConfig = {
       "links": [
         {
           "title": "치싱탄·신청 호텔 추천 TOP5",
-          "url": "/post/qixingtan-xincheng-hotels"
+          "url": "/post/qixingtan-xincheng-hotels/"
         },
         {
           "title": "화렌 숙소 위치 가이드",
@@ -479,7 +479,7 @@ const cityConfig = {
       "links": [
         {
           "title": "타이루거·톈샹 호텔 추천 TOP5",
-          "url": "/post/taroko-tianxiang-hotels"
+          "url": "/post/taroko-tianxiang-hotels/"
         },
         {
           "title": "화렌 숙소 위치 가이드",
@@ -1338,7 +1338,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);

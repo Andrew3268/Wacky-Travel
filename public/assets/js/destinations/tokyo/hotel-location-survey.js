@@ -24,8 +24,8 @@ const cityConfig = {
       compareGood: "대표 노선과 맛집 동선이 넓고 여행 초보자도 이동 계획을 세우기 쉽습니다.",
       compareCaution: "역과 번화가가 큰 만큼 출구, 소음, 객실 크기, 가격을 꼼꼼히 봐야 합니다.",
       mismatchNote: "이번 답변에서 조용함, 가족형 여유, 디즈니 이동을 더 중요하게 봤다면 신주쿠는 1순위가 아닐 수 있습니다.",
-      links: [{ title: "신주쿠 근처 호텔 추천 TOP5", url: "/post/tokyo-shinjuku-hotels" }, { title: "도쿄 첫 여행 호텔 추천 TOP5", url: "/post/tokyo-first-trip-hotels" }],
-      hotels: [{ name: "JR 호텔 블라썸 신주쿠", tag: "신주쿠역 접근", location: "신주쿠 권역", reason: "신주쿠 중심 동선과 깔끔한 객실 후기를 중요하게 본다면 후보에 넣어볼 만한 숙소입니다.", meta: ["첫 여행", "교통", "쇼핑 동선"], url: "/post/jr-kyushu-hotel-blossom-shinjuku" }, { name: "호텔 그레이스리 신주쿠", tag: "신주쿠 중심", location: "신주쿠 동쪽", reason: "맛집, 쇼핑, 저녁 동선 중심으로 짧게 움직이고 싶은 여행자에게 어울리는 위치입니다.", meta: ["맛집", "저녁 동선", "친구 여행"], url: "/post/hotel-gracery-shinjuku" }, { name: "토큐 스테이 신주쿠", tag: "실속형 후보", location: "신주쿠산초메 권역", reason: "신주쿠 접근성과 실용적인 객실 편의성을 중요하게 본다면 잘 맞습니다.", meta: ["가성비", "역세권", "대표 동선"], url: "/post/tokyu-stay-shinjuku" }]
+      links: [{ title: "신주쿠 근처 호텔 추천 TOP5", url: "/post/tokyo-shinjuku-hotels/" }, { title: "도쿄 첫 여행 호텔 추천 TOP5", url: "/post/tokyo-first-trip-hotels/" }],
+      hotels: [{ name: "JR 호텔 블라썸 신주쿠", tag: "신주쿠역 접근", location: "신주쿠 권역", reason: "신주쿠 중심 동선과 깔끔한 객실 후기를 중요하게 본다면 후보에 넣어볼 만한 숙소입니다.", meta: ["첫 여행", "교통", "쇼핑 동선"], url: "/post/jr-kyushu-hotel-blossom-shinjuku/" }, { name: "호텔 그레이스리 신주쿠", tag: "신주쿠 중심", location: "신주쿠 동쪽", reason: "맛집, 쇼핑, 저녁 동선 중심으로 짧게 움직이고 싶은 여행자에게 어울리는 위치입니다.", meta: ["맛집", "저녁 동선", "친구 여행"], url: "/post/hotel-gracery-shinjuku/" }, { name: "토큐 스테이 신주쿠", tag: "실속형 후보", location: "신주쿠산초메 권역", reason: "신주쿠 접근성과 실용적인 객실 편의성을 중요하게 본다면 잘 맞습니다.", meta: ["가성비", "역세권", "대표 동선"], url: "/post/tokyu-stay-shinjuku/" }]
     },
     shibuya: {
       name: "시부야",
@@ -44,8 +44,8 @@ const cityConfig = {
       compareGood: "쇼핑·카페 동선이 짧아 도쿄의 트렌디한 분위기를 즐기기 좋습니다.",
       compareCaution: "숙박비와 혼잡도가 높은 편이라 객실 크기와 출구 동선을 꼭 봐야 합니다.",
       mismatchNote: "이번 답변에서 공항 이동, 조용함, 가족형 여유를 더 많이 선택했다면 시부야는 보조 후보에 가깝습니다.",
-      links: [{ title: "시부야 근처 호텔 추천 TOP5", url: "/post/tokyo-shibuya-hotels" }, { title: "도쿄 쇼핑하기 좋은 호텔 추천 TOP5", url: "/post/tokyo-shopping-hotels" }],
-      hotels: [{ name: "시부야 스트림 엑셀 호텔 도큐", tag: "시부야 중심", location: "시부야 권역", reason: "시부야 쇼핑 동선과 하라주쿠 접근성을 같이 챙기고 싶다면 잘 맞는 후보입니다.", meta: ["쇼핑", "커플", "도보 동선"], url: "/post/shibuya-stream-excel-hotel-tokyu" }, { name: "시퀀스 미야시타 파크", tag: "감성형", location: "시부야·하라주쿠 사이", reason: "시부야와 하라주쿠 분위기를 하루에 묶고 싶은 일정에 보기 좋습니다.", meta: ["감성", "쇼핑", "친구 여행"], url: "/post/sequence-miyashita-park" }, { name: "트렁크 호텔 요요기 파크", tag: "부티크 후보", location: "요요기·시부야 권역", reason: "조금 더 여유 있는 분위기와 감성적인 숙소 분위기를 같이 따져볼 때 후보에 넣어볼 만합니다.", meta: ["부티크", "커플", "차분함"], url: "/post/trunk-hotel-yoyogi-park" }]
+      links: [{ title: "시부야 근처 호텔 추천 TOP5", url: "/post/tokyo-shibuya-hotels/" }, { title: "도쿄 쇼핑하기 좋은 호텔 추천 TOP5", url: "/post/tokyo-shopping-hotels/" }],
+      hotels: [{ name: "시부야 스트림 엑셀 호텔 도큐", tag: "시부야 중심", location: "시부야 권역", reason: "시부야 쇼핑 동선과 하라주쿠 접근성을 같이 챙기고 싶다면 잘 맞는 후보입니다.", meta: ["쇼핑", "커플", "도보 동선"], url: "/post/shibuya-stream-excel-hotel-tokyu/" }, { name: "시퀀스 미야시타 파크", tag: "감성형", location: "시부야·하라주쿠 사이", reason: "시부야와 하라주쿠 분위기를 하루에 묶고 싶은 일정에 보기 좋습니다.", meta: ["감성", "쇼핑", "친구 여행"], url: "/post/sequence-miyashita-park/" }, { name: "트렁크 호텔 요요기 파크", tag: "부티크 후보", location: "요요기·시부야 권역", reason: "조금 더 여유 있는 분위기와 감성적인 숙소 분위기를 같이 따져볼 때 후보에 넣어볼 만합니다.", meta: ["부티크", "커플", "차분함"], url: "/post/trunk-hotel-yoyogi-park/" }]
     },
     ginzaTokyoStation: {
       name: "긴자 & 도쿄역",
@@ -64,8 +64,8 @@ const cityConfig = {
       compareGood: "공항·근교와 도심 쇼핑을 안정적으로 묶기 좋습니다.",
       compareCaution: "시부야·신주쿠 밤 일정이 많다면 매번 이동이 필요할 수 있습니다.",
       mismatchNote: "이번 답변에서 쇼핑 감성, 저녁 동선, 가성비를 강하게 선택했다면 긴자 & 도쿄역은 2순위 대안으로 보는 편이 좋습니다.",
-      links: [{ title: "긴자 근처 호텔 추천 TOP5", url: "/post/tokyo-ginza-hotels" }, { title: "도쿄역 근처 호텔 추천 TOP5", url: "/post/tokyo-station-hotels" }],
-      hotels: [{ name: "호텔 메트로폴리탄 도쿄 마루노우치", tag: "도쿄역 접근", location: "도쿄역 권역", reason: "근교 이동과 공항 이동을 중요하게 본다면 후보에 넣어볼 만한 위치입니다.", meta: ["근교 이동", "공항", "부모님"], url: "/post/hotel-metropolitan-tokyo-marunouchi" }, { name: "미쓰이 가든 호텔 긴자 프리미어", tag: "긴자 도심형", location: "긴자 권역", reason: "긴자 쇼핑과 깔끔한 도심 숙소를 모두 챙기고 싶은 일정에 어울립니다.", meta: ["긴자", "깔끔한 도심", "커플"], url: "/post/mitsui-garden-hotel-ginza-premier" }, { name: "다이와 로이넷 호텔 긴자 프리미어", tag: "실속형", location: "긴자·유라쿠초 권역", reason: "긴자 접근성과 가격 균형을 같이 따져보기 좋습니다.", meta: ["긴자", "실속", "역세권"], url: "/post/daiwa-roynet-hotel-ginza-premier" }]
+      links: [{ title: "긴자 근처 호텔 추천 TOP5", url: "/post/tokyo-ginza-hotels/" }, { title: "도쿄역 근처 호텔 추천 TOP5", url: "/post/tokyo-station-hotels/" }],
+      hotels: [{ name: "호텔 메트로폴리탄 도쿄 마루노우치", tag: "도쿄역 접근", location: "도쿄역 권역", reason: "근교 이동과 공항 이동을 중요하게 본다면 후보에 넣어볼 만한 위치입니다.", meta: ["근교 이동", "공항", "부모님"], url: "/post/hotel-metropolitan-tokyo-marunouchi/" }, { name: "미쓰이 가든 호텔 긴자 프리미어", tag: "긴자 도심형", location: "긴자 권역", reason: "긴자 쇼핑과 깔끔한 도심 숙소를 모두 챙기고 싶은 일정에 어울립니다.", meta: ["긴자", "깔끔한 도심", "커플"], url: "/post/mitsui-garden-hotel-ginza-premier/" }, { name: "다이와 로이넷 호텔 긴자 프리미어", tag: "실속형", location: "긴자·유라쿠초 권역", reason: "긴자 접근성과 가격 균형을 같이 따져보기 좋습니다.", meta: ["긴자", "실속", "역세권"], url: "/post/daiwa-roynet-hotel-ginza-premier/" }]
     },
     uenoAsakusa: {
       name: "우에노 & 아사쿠사",
@@ -84,8 +84,8 @@ const cityConfig = {
       compareGood: "전통 관광과 실속형 숙소를 함께 잡기 좋습니다.",
       compareCaution: "신주쿠·시부야를 매일 오가면 이동 시간이 늘 수 있습니다.",
       mismatchNote: "이번 답변에서 쇼핑, 저녁 동선, 디즈니를 더 강하게 선택했다면 우에노 & 아사쿠사는 보조 후보에 가깝습니다.",
-      links: [{ title: "우에노 근처 호텔 추천 TOP5", url: "/post/tokyo-ueno-hotels" }, { title: "아사쿠사 근처 호텔 추천 TOP5", url: "/post/tokyo-asakusa-hotels" }],
-      hotels: [{ name: "노가 호텔 우에노 도쿄", tag: "우에노 감성형", location: "우에노 권역", reason: "우에노 접근성과 감성적인 숙소 분위기를 중요하게 본다면 잘 맞습니다.", meta: ["우에노", "가성비", "감성"], url: "/post/nohga-hotel-ueno-tokyo" }, { name: "리치몬드 호텔 프리미어 아사쿠사", tag: "아사쿠사 중심", location: "아사쿠사 권역", reason: "아사쿠사와 스카이트리 동선을 짧게 잡고 싶은 일정에 어울립니다.", meta: ["아사쿠사", "전통", "동쪽 관광"], url: "/post/richmond-hotel-premier-asakusa" }, { name: "더 게이트 호텔 카미나리몬 바이 훌릭", tag: "아사쿠사 전망형", location: "카미나리몬 권역", reason: "아사쿠사의 분위기와 도보 관광을 같이 따져보기 좋습니다.", meta: ["전망", "아사쿠사", "커플"], url: "/post/the-gate-hotel-kaminarimon-by-hulic" }]
+      links: [{ title: "우에노 근처 호텔 추천 TOP5", url: "/post/tokyo-ueno-hotels/" }, { title: "아사쿠사 근처 호텔 추천 TOP5", url: "/post/tokyo-asakusa-hotels/" }],
+      hotels: [{ name: "노가 호텔 우에노 도쿄", tag: "우에노 감성형", location: "우에노 권역", reason: "우에노 접근성과 감성적인 숙소 분위기를 중요하게 본다면 잘 맞습니다.", meta: ["우에노", "가성비", "감성"], url: "/post/nohga-hotel-ueno-tokyo/" }, { name: "리치몬드 호텔 프리미어 아사쿠사", tag: "아사쿠사 중심", location: "아사쿠사 권역", reason: "아사쿠사와 스카이트리 동선을 짧게 잡고 싶은 일정에 어울립니다.", meta: ["아사쿠사", "전통", "동쪽 관광"], url: "/post/richmond-hotel-premier-asakusa/" }, { name: "더 게이트 호텔 카미나리몬 바이 훌릭", tag: "아사쿠사 전망형", location: "카미나리몬 권역", reason: "아사쿠사의 분위기와 도보 관광을 같이 따져보기 좋습니다.", meta: ["전망", "아사쿠사", "커플"], url: "/post/the-gate-hotel-kaminarimon-by-hulic/" }]
     },
     odaibaBay: {
       name: "오다이바 & 도쿄베이",
@@ -104,8 +104,8 @@ const cityConfig = {
       compareGood: "가족형 일정과 휴식 분위기를 만들기 좋습니다.",
       compareCaution: "도쿄 중심 관광을 매일 하려면 이동 시간이 길어질 수 있습니다.",
       mismatchNote: "이번 답변에서 첫 여행 대표 동선, 쇼핑, 가성비를 더 많이 골랐다면 오다이바는 1순위가 아닐 수 있습니다.",
-      links: [{ title: "오다이바 근처 호텔 추천 TOP5", url: "/post/tokyo-odaiba-hotels" }, { title: "도쿄 가족 여행 호텔 추천 TOP5", url: "/post/tokyo-family-hotels" }],
-      hotels: [{ name: "그랜드 닛코 도쿄 다이바", tag: "오다이바 도쿄베이", location: "오다이바 권역", reason: "도쿄베이권과 여유로운 가족 일정을 중요하게 본다면 잘 맞습니다.", meta: ["가족", "도쿄베이", "여유"], url: "/post/grand-nikko-tokyo-daiba" }, { name: "힐튼 도쿄 오다이바", tag: "도쿄베이 전망", location: "오다이바 권역", reason: "도쿄베이 전망과 가족형 숙소를 모두 챙기고 싶은 일정에 어울립니다.", meta: ["전망", "가족", "휴식"], url: "/post/hilton-tokyo-odaiba" }, { name: "호텔 트러스티 도쿄 베이사이드", tag: "도쿄베이 실속", location: "아리아케 권역", reason: "도쿄베이권 접근성과 가격 균형을 같이 따져보기 좋습니다.", meta: ["실속", "도쿄베이", "가족"], url: "/post/hotel-trusty-tokyo-bayside" }]
+      links: [{ title: "오다이바 근처 호텔 추천 TOP5", url: "/post/tokyo-odaiba-hotels/" }, { title: "도쿄 가족 여행 호텔 추천 TOP5", url: "/post/tokyo-family-hotels/" }],
+      hotels: [{ name: "그랜드 닛코 도쿄 다이바", tag: "오다이바 도쿄베이", location: "오다이바 권역", reason: "도쿄베이권과 여유로운 가족 일정을 중요하게 본다면 잘 맞습니다.", meta: ["가족", "도쿄베이", "여유"], url: "/post/grand-nikko-tokyo-daiba/" }, { name: "힐튼 도쿄 오다이바", tag: "도쿄베이 전망", location: "오다이바 권역", reason: "도쿄베이 전망과 가족형 숙소를 모두 챙기고 싶은 일정에 어울립니다.", meta: ["전망", "가족", "휴식"], url: "/post/hilton-tokyo-odaiba/" }, { name: "호텔 트러스티 도쿄 베이사이드", tag: "도쿄베이 실속", location: "아리아케 권역", reason: "도쿄베이권 접근성과 가격 균형을 같이 따져보기 좋습니다.", meta: ["실속", "도쿄베이", "가족"], url: "/post/hotel-trusty-tokyo-bayside/" }]
     },
     akasakaRoppongi: {
       name: "아카사카 & 롯폰기",
@@ -124,8 +124,8 @@ const cityConfig = {
       compareGood: "번잡함을 줄이면서 도심 접근성을 유지하기 좋습니다.",
       compareCaution: "초행자의 대표 관광 동선만 보면 위치 장점이 덜 느껴질 수 있습니다.",
       mismatchNote: "이번 답변에서 가성비, 가족형 여유, 첫 여행 대표 동선을 많이 골랐다면 아카사카 & 롯폰기는 보조 후보입니다.",
-      links: [{ title: "아카사카 근처 호텔 추천 TOP5", url: "/post/tokyo-akasaka-hotels" }, { title: "도쿄 조용한 숙소 추천 TOP5", url: "/post/tokyo-quiet-hotels" }],
-      hotels: [{ name: "더 프린스 갤러리 도쿄 기오이초", tag: "아카사카·기오이초", location: "아카사카 권역", reason: "도심 접근성은 챙기면서 차분하게 쉬고 싶은 여행자에게 좋습니다.", meta: ["조용함", "고급", "커플"], url: "/post/the-prince-gallery-tokyo-kioicho" }, { name: "미쓰이 가든 호텔 롯폰기 도쿄 프리미어", tag: "롯폰기 도심", location: "롯폰기 권역", reason: "롯폰기 생활권에서 깔끔한 숙소와 저녁 동선을 같이 따져볼 때 좋습니다.", meta: ["롯폰기", "미식", "도심"], url: "/post/mitsui-garden-hotel-roppongi-tokyo-premier" }, { name: "호텔 더 셀레스틴 도쿄 시바", tag: "시바·도쿄타워", location: "시바 권역", reason: "비교적 차분한 분위기와 도쿄타워 주변 동선을 같이 따져볼 때 좋습니다.", meta: ["차분함", "도쿄타워", "커플"], url: "/post/hotel-the-celestine-tokyo-shiba" }]
+      links: [{ title: "아카사카 근처 호텔 추천 TOP5", url: "/post/tokyo-akasaka-hotels/" }, { title: "도쿄 조용한 숙소 추천 TOP5", url: "/post/tokyo-quiet-hotels/" }],
+      hotels: [{ name: "더 프린스 갤러리 도쿄 기오이초", tag: "아카사카·기오이초", location: "아카사카 권역", reason: "도심 접근성은 챙기면서 차분하게 쉬고 싶은 여행자에게 좋습니다.", meta: ["조용함", "고급", "커플"], url: "/post/the-prince-gallery-tokyo-kioicho/" }, { name: "미쓰이 가든 호텔 롯폰기 도쿄 프리미어", tag: "롯폰기 도심", location: "롯폰기 권역", reason: "롯폰기 생활권에서 깔끔한 숙소와 저녁 동선을 같이 따져볼 때 좋습니다.", meta: ["롯폰기", "미식", "도심"], url: "/post/mitsui-garden-hotel-roppongi-tokyo-premier/" }, { name: "호텔 더 셀레스틴 도쿄 시바", tag: "시바·도쿄타워", location: "시바 권역", reason: "비교적 차분한 분위기와 도쿄타워 주변 동선을 같이 따져볼 때 좋습니다.", meta: ["차분함", "도쿄타워", "커플"], url: "/post/hotel-the-celestine-tokyo-shiba/" }]
     }
   },
   questions: [
@@ -719,7 +719,7 @@ async function renderRelatedPostsLegacy(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 
@@ -1311,7 +1311,7 @@ async function renderRelatedPosts(area) {
     const item = document.createElement("li");
     const link = document.createElement("a");
 
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
 

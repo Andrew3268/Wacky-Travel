@@ -55,15 +55,15 @@ const cityConfig = {
       "links": [
         {
           "title": "타이중역 근처 호텔 추천 TOP5",
-          "url": "/post/taichung-station-hotels"
+          "url": "/post/taichung-station-hotels/"
         },
         {
           "title": "타이중 첫 여행 호텔 추천 TOP5",
-          "url": "/post/taichung-first-trip-hotels"
+          "url": "/post/taichung-first-trip-hotels/"
         },
         {
           "title": "타이중 구도심 숙소 위치 가이드",
-          "url": "/post/taichung-central-hotel-location"
+          "url": "/post/taichung-central-hotel-location/"
         }
       ],
       "hotels": [
@@ -77,7 +77,7 @@ const cityConfig = {
             "가성비",
             "구도심"
           ],
-          "url": "/post/53-hotel-taichung"
+          "url": "/post/53-hotel-taichung/"
         },
         {
           "name": "시티인 호텔 플러스 타이중역 브랜치",
@@ -89,7 +89,7 @@ const cityConfig = {
             "깔끔한 숙소",
             "첫 여행"
           ],
-          "url": "/post/cityinn-hotel-plus-taichung-station"
+          "url": "/post/cityinn-hotel-plus-taichung-station/"
         },
         {
           "name": "찬스 호텔 타이중",
@@ -101,7 +101,7 @@ const cityConfig = {
             "짧은 일정",
             "실속"
           ],
-          "url": "/post/chance-hotel-taichung"
+          "url": "/post/chance-hotel-taichung/"
         },
         {
           "name": "홀리데이 인 익스프레스 타이중 파크",
@@ -113,7 +113,7 @@ const cityConfig = {
             "브랜드형",
             "가족"
           ],
-          "url": "/post/holiday-inn-express-taichung-park"
+          "url": "/post/holiday-inn-express-taichung-park/"
         },
         {
           "name": "미카사 호텔 타이중",
@@ -125,7 +125,7 @@ const cityConfig = {
             "실용형",
             "기차 이동"
           ],
-          "url": "/post/micasa-hotel-taichung"
+          "url": "/post/micasa-hotel-taichung/"
         }
       ]
     },
@@ -180,15 +180,15 @@ const cityConfig = {
       "links": [
         {
           "title": "타이중 펑지아 호텔 추천 TOP5",
-          "url": "/post/taichung-fengjia-hotels"
+          "url": "/post/taichung-fengjia-hotels/"
         },
         {
           "title": "펑지아 야시장 도보권 호텔 추천 TOP5",
-          "url": "/post/fengjia-night-market-hotels"
+          "url": "/post/fengjia-night-market-hotels/"
         },
         {
           "title": "타이중 친구 여행 호텔 추천 TOP5",
-          "url": "/post/taichung-friends-hotels"
+          "url": "/post/taichung-friends-hotels/"
         }
       ],
       "hotels": [
@@ -202,7 +202,7 @@ const cityConfig = {
             "야시장",
             "커플·친구"
           ],
-          "url": "/post/la-vida-hotel-taichung"
+          "url": "/post/la-vida-hotel-taichung/"
         },
         {
           "name": "비컨 호텔 타이중",
@@ -214,7 +214,7 @@ const cityConfig = {
             "쇼핑",
             "저녁 동선"
           ],
-          "url": "/post/beacon-hotel-taichung"
+          "url": "/post/beacon-hotel-taichung/"
         },
         {
           "name": "호텔 7 타이중",
@@ -226,7 +226,7 @@ const cityConfig = {
             "실속",
             "친구 여행"
           ],
-          "url": "/post/hotel-7-taichung"
+          "url": "/post/hotel-7-taichung/"
         },
         {
           "name": "인 원 시티 인",
@@ -238,7 +238,7 @@ const cityConfig = {
             "펑지아",
             "쇼핑"
           ],
-          "url": "/post/in-one-city-inn"
+          "url": "/post/in-one-city-inn/"
         },
         {
           "name": "페어필드 바이 메리어트 타이중",
@@ -250,7 +250,7 @@ const cityConfig = {
             "브랜드형",
             "깔끔함"
           ],
-          "url": "/post/fairfield-by-marriott-taichung"
+          "url": "/post/fairfield-by-marriott-taichung/"
         }
       ]
     },
@@ -305,15 +305,15 @@ const cityConfig = {
       "links": [
         {
           "title": "타이중 초오도 호텔 추천 TOP5",
-          "url": "/post/taichung-calligraphy-greenway-hotels"
+          "url": "/post/taichung-calligraphy-greenway-hotels/"
         },
         {
           "title": "타이중 카페 여행 호텔 추천 TOP5",
-          "url": "/post/taichung-cafe-hotels"
+          "url": "/post/taichung-cafe-hotels/"
         },
         {
           "title": "타이중 조용한 숙소 추천 TOP5",
-          "url": "/post/taichung-quiet-hotels"
+          "url": "/post/taichung-quiet-hotels/"
         }
       ],
       "hotels": [
@@ -327,7 +327,7 @@ const cityConfig = {
             "감성 호텔",
             "커플"
           ],
-          "url": "/post/the-place-taichung"
+          "url": "/post/the-place-taichung/"
         },
         {
           "name": "더 스플렌더 호텔 타이중",
@@ -339,7 +339,7 @@ const cityConfig = {
             "고급형",
             "쇼핑"
           ],
-          "url": "/post/the-splendor-hotel-taichung"
+          "url": "/post/the-splendor-hotel-taichung/"
         },
         {
           "name": "호텔 내셔널 타이중",
@@ -351,7 +351,7 @@ const cityConfig = {
             "안정형",
             "산책"
           ],
-          "url": "/post/hotel-national-taichung"
+          "url": "/post/hotel-national-taichung/"
         },
         {
           "name": "에어라인 인 그린 파크 웨이",
@@ -363,7 +363,7 @@ const cityConfig = {
             "쇼핑",
             "실용형"
           ],
-          "url": "/post/airline-inn-green-park-way"
+          "url": "/post/airline-inn-green-park-way/"
         },
         {
           "name": "템퍼스 호텔 타이중",
@@ -375,7 +375,7 @@ const cityConfig = {
             "차분함",
             "가족"
           ],
-          "url": "/post/tempus-hotel-taichung"
+          "url": "/post/tempus-hotel-taichung/"
         }
       ]
     },
@@ -430,15 +430,15 @@ const cityConfig = {
       "links": [
         {
           "title": "타이중 시정부 호텔 추천 TOP5",
-          "url": "/post/taichung-city-hall-hotels"
+          "url": "/post/taichung-city-hall-hotels/"
         },
         {
           "title": "국립타이중극장 근처 호텔 추천 TOP5",
-          "url": "/post/national-taichung-theater-hotels"
+          "url": "/post/national-taichung-theater-hotels/"
         },
         {
           "title": "타이중 가족 여행 호텔 추천 TOP5",
-          "url": "/post/taichung-family-hotels"
+          "url": "/post/taichung-family-hotels/"
         }
       ],
       "hotels": [
@@ -452,7 +452,7 @@ const cityConfig = {
             "고급형",
             "가족"
           ],
-          "url": "/post/millennium-hotel-taichung"
+          "url": "/post/millennium-hotel-taichung/"
         },
         {
           "name": "더 린 호텔 타이중",
@@ -464,7 +464,7 @@ const cityConfig = {
             "기념일",
             "쇼핑몰"
           ],
-          "url": "/post/the-lin-hotel-taichung"
+          "url": "/post/the-lin-hotel-taichung/"
         },
         {
           "name": "헝스 맨션",
@@ -476,7 +476,7 @@ const cityConfig = {
             "깔끔함",
             "커플"
           ],
-          "url": "/post/hungs-mansion-taichung"
+          "url": "/post/hungs-mansion-taichung/"
         },
         {
           "name": "아이클라우드 럭셔리 리조트 앤 호텔",
@@ -488,7 +488,7 @@ const cityConfig = {
             "차량 이동",
             "넓은 객실"
           ],
-          "url": "/post/icloud-luxury-resort-hotel-taichung"
+          "url": "/post/icloud-luxury-resort-hotel-taichung/"
         },
         {
           "name": "호텔 디온 타이중",
@@ -500,7 +500,7 @@ const cityConfig = {
             "실속",
             "쇼핑"
           ],
-          "url": "/post/hotel-dion-taichung"
+          "url": "/post/hotel-dion-taichung/"
         }
       ]
     },
@@ -556,15 +556,15 @@ const cityConfig = {
       "links": [
         {
           "title": "타이중 이중상권 호텔 추천 TOP5",
-          "url": "/post/taichung-yizhong-hotels"
+          "url": "/post/taichung-yizhong-hotels/"
         },
         {
           "title": "타이중 가성비 호텔 추천 TOP5",
-          "url": "/post/taichung-value-hotels"
+          "url": "/post/taichung-value-hotels/"
         },
         {
           "title": "타이중공원 근처 호텔 추천 TOP5",
-          "url": "/post/taichung-park-hotels"
+          "url": "/post/taichung-park-hotels/"
         }
       ],
       "hotels": [
@@ -578,7 +578,7 @@ const cityConfig = {
             "가성비",
             "먹거리"
           ],
-          "url": "/post/lai-lai-hotel-taichung"
+          "url": "/post/lai-lai-hotel-taichung/"
         },
         {
           "name": "인하우스 호텔 타이중",
@@ -590,7 +590,7 @@ const cityConfig = {
             "실속",
             "타이중공원"
           ],
-          "url": "/post/inhouse-hotel-taichung"
+          "url": "/post/inhouse-hotel-taichung/"
         },
         {
           "name": "스테이 호텔 타이중",
@@ -602,7 +602,7 @@ const cityConfig = {
             "혼자 여행",
             "실속"
           ],
-          "url": "/post/stay-hotel-taichung"
+          "url": "/post/stay-hotel-taichung/"
         },
         {
           "name": "타이중 박스 디자인 호텔",
@@ -614,7 +614,7 @@ const cityConfig = {
             "젊은 상권",
             "친구"
           ],
-          "url": "/post/taichung-box-design-hotel"
+          "url": "/post/taichung-box-design-hotel/"
         },
         {
           "name": "겟차 호스텔 앤 비스트로",
@@ -626,7 +626,7 @@ const cityConfig = {
             "호스텔",
             "가성비"
           ],
-          "url": "/post/getcha-hostel-bistro"
+          "url": "/post/getcha-hostel-bistro/"
         }
       ]
     },
@@ -682,15 +682,15 @@ const cityConfig = {
       "links": [
         {
           "title": "타이중 구관온천 숙소 추천 TOP5",
-          "url": "/post/taichung-guguan-hot-spring-hotels"
+          "url": "/post/taichung-guguan-hot-spring-hotels/"
         },
         {
           "title": "타이중 조용한 휴식 호텔 추천 TOP5",
-          "url": "/post/taichung-relax-hotels"
+          "url": "/post/taichung-relax-hotels/"
         },
         {
           "title": "타이중 부모님 여행 호텔 추천 TOP5",
-          "url": "/post/taichung-parents-hotels"
+          "url": "/post/taichung-parents-hotels/"
         }
       ],
       "hotels": [
@@ -704,7 +704,7 @@ const cityConfig = {
             "고급 리조트",
             "휴식"
           ],
-          "url": "/post/hoshinoya-guguan"
+          "url": "/post/hoshinoya-guguan/"
         },
         {
           "name": "유니 리조트 구관",
@@ -716,7 +716,7 @@ const cityConfig = {
             "가족",
             "외곽 1박"
           ],
-          "url": "/post/uni-resort-ku-kuan"
+          "url": "/post/uni-resort-ku-kuan/"
         },
         {
           "name": "발리 네이처 스파 핫 스프링 리조트",
@@ -728,7 +728,7 @@ const cityConfig = {
             "커플",
             "휴식"
           ],
-          "url": "/post/bali-nature-spa-hot-spring-resort"
+          "url": "/post/bali-nature-spa-hot-spring-resort/"
         },
         {
           "name": "구관 호텔",
@@ -740,7 +740,7 @@ const cityConfig = {
             "실속",
             "부모님"
           ],
-          "url": "/post/ku-kuan-hotel"
+          "url": "/post/ku-kuan-hotel/"
         },
         {
           "name": "밍가오 스프링 호텔",
@@ -752,7 +752,7 @@ const cityConfig = {
             "휴식",
             "외곽"
           ],
-          "url": "/post/mingao-spring-hotel"
+          "url": "/post/mingao-spring-hotel/"
         }
       ]
     }
@@ -1579,7 +1579,7 @@ async function renderRelatedPosts(area) {
     const slug = String(post.slug || "").trim();
     const item = document.createElement("li");
     const link = document.createElement("a");
-    link.href = slug ? `/post/${encodeURIComponent(slug)}` : "#";
+    link.href = slug ? `/post/${encodeURIComponent(slug)}/` : "#";
     link.textContent = title;
     link.setAttribute("aria-label", `${title} 보기`);
     item.appendChild(link);
