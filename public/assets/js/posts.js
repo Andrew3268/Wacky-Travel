@@ -579,8 +579,8 @@ function buildPostsHeroNav(categories = []) {
       section.hidden = false;
       section.removeAttribute('aria-hidden');
     }
-    // API 응답 전에는 로딩 문구가 깜빡이지 않도록 실제 목록 영역만 숨깁니다.
-    root.hidden = true;
+    // API 응답 전에는 스켈레톤 목록을 표시합니다.
+    root.hidden = false;
 
     root.addEventListener('click', (event) => {
       const tabButton = event.target.closest('[data-city-post-tab]');
@@ -605,8 +605,11 @@ function buildPostsHeroNav(categories = []) {
 
   cityTravelRoots.forEach((root) => {
     const section = root.closest('.wt-city-dynamic-section');
-    if (section) section.hidden = true;
-    root.hidden = true;
+    if (section) {
+      section.hidden = false;
+      section.removeAttribute('aria-hidden');
+    }
+    root.hidden = false;
 
     root.addEventListener('click', async (event) => {
       const moreButton = event.target.closest('[data-city-travel-more]');
