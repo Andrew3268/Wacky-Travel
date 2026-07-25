@@ -14,12 +14,12 @@
 
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 
-<link href="/assets/css/app.css?v=20260723-post-width-100" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260725-h1-lineheight-12-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" rel="stylesheet"/>
 <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet"/>
 <style>
     .about-page { margin:0; background:#fff; color:#111; }
-    .about-shell { width:min(1040px, calc(100% - 48px)); margin:0 auto; }
+    .about-shell { width:100%; max-width:1200px; margin:0 auto; padding:0; }
 .about-hero { padding:84px 0 88px; border-bottom:1px solid #111; }
     .about-kicker { margin:0 0 24px; font-size:13px; line-height:1; letter-spacing:.16em; text-transform:uppercase; }
     .about-title { max-width:880px; margin:0; font-size:clamp(42px, 7vw, 78px); line-height:1.07; letter-spacing:-.055em; font-weight:600; }
@@ -40,8 +40,12 @@
     .about-button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 20px; border:1px solid #111; color:#111; text-decoration:none; font-size:14px; font-weight:600; }
     .about-button--primary { background:#111; color:#fff; }
     .about-footer { border-top:1px solid #111; }
+
+    @media (min-width:768px) and (max-width:1180px) {
+      .about-shell { padding-left:clamp(32px,5vw,56px); padding-right:clamp(32px,5vw,56px); }
+    }
     @media (max-width:767px) {
-      .about-shell { width:calc(100% - 32px); }
+      .about-shell { width:100%; padding-left:18px; padding-right:18px; }
       .about-hero { padding:48px 0 56px; }
       .about-title { font-size:38px; }
       .about-lead { margin-top:24px; font-size:16px; }

@@ -8650,3 +8650,9 @@ body.post-page-body--hotel-review-magazine .post-cover-wrap img{
     object-fit: cover;
   }
 }
+
+
+/* Global heading rhythm: all page-level h1 elements */
+html body h1{
+  line-height:1.2 !important;
+}

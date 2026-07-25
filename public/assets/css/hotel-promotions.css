@@ -940,3 +940,17 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
   text-decoration: none;
 }
 /* END WACKYTRAVEL_PROMOTION_H1_VERIFIED_DATE_V16 */
+
+
+/* Hotel promotions breadcrumb alignment */
+.wtpromo-page .wtpromo-breadcrumbs{
+  max-width:1200px;
+  padding-top:18px;
+  padding-bottom:18px;
+}
+@media (min-width:768px) and (max-width:1180px){
+  .wtpromo-page .wtpromo-breadcrumbs{padding-left:clamp(32px,5vw,56px);padding-right:clamp(32px,5vw,56px);}
+}
+@media (max-width:767px){
+  .wtpromo-page .wtpromo-breadcrumbs{display:none;}
+}

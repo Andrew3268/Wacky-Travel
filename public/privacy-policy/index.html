@@ -13,13 +13,13 @@
 
 
 <link href="/favicon.ico" rel="icon" sizes="any"/>
-<link href="/assets/css/app.css?v=20260723-post-width-100" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260725-h1-lineheight-12-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" rel="stylesheet"/>
 <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet"/>
 <style>
     .privacy-page { background:#fff; color:#111; }
     .privacy-main { }
-.privacy-shell { width:min(880px, calc(100% - 40px)); margin:0 auto; }
+.privacy-shell { width:100%; max-width:1200px; margin:0 auto; padding:0; }
     .privacy-hero { padding:56px 0 48px; border-bottom:1px solid #111; }
     .privacy-eyebrow { margin:0 0 18px; font-size:13px; letter-spacing:.16em; text-transform:uppercase; }
     .privacy-title { margin:0; font-size:clamp(36px, 6vw, 64px); line-height:1.08; letter-spacing:-.045em; font-weight:600; }
@@ -34,8 +34,12 @@
     .privacy-section strong { color:#111; }
     .privacy-notice { margin-top:20px; padding:20px 22px; background:#f5f5f3; border-left:3px solid #111; }
     .privacy-notice p { margin:0; color:#111; }
+
+    @media (min-width:768px) and (max-width:1180px) {
+      .privacy-shell { padding-left:clamp(32px,5vw,56px); padding-right:clamp(32px,5vw,56px); }
+    }
     @media (max-width:767px) {
-      .privacy-shell { width:calc(100% - 32px); }
+      .privacy-shell { width:100%; padding-left:18px; padding-right:18px; }
       .privacy-hero { padding:36px 0 34px; }
       .privacy-title { font-size:32px; }
       .privacy-intro { font-size:16px; }

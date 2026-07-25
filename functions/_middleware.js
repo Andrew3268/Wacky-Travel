@@ -25,6 +25,9 @@ export async function onRequest(context) {
   const originRedirect = buildOriginRedirect(requestUrl, env, siteOrigin, method);
   if (originRedirect) return originRedirect;
 
+  const knownPageFallbackRedirect = buildKnownDestinationPageFallbackRedirect(requestUrl, requestUrl.origin, method);
+  if (knownPageFallbackRedirect) return knownPageFallbackRedirect;
+
   const slashRedirect = buildTrailingSlashRedirect(requestUrl, requestUrl.origin, method);
   if (slashRedirect) return slashRedirect;
 
@@ -92,6 +95,14 @@ function buildOriginRedirect(url, env, siteOrigin, method) {
   const preferred = normalizeSiteOrigin(configured);
   if (url.origin === preferred) return null;
   return Response.redirect(`${preferred}${url.pathname}${url.search}`, 308);
+}
+
+function buildKnownDestinationPageFallbackRedirect(url, siteOrigin, method) {
+  if (!(method === "GET" || method === "HEAD")) return null;
+  const match = url.pathname.match(/^\/destinations\/([^/]+)\/(first-trip|value-hotel|near-trip|family-trip|quiet-stay|hotel-guide|travel-guide|hotels|hotel-recommendations)\/(?:.+)$/);
+  if (!match) return null;
+  const target = `${siteOrigin}/destinations/${match[1]}/${match[2]}/${url.search}`;
+  return Response.redirect(target, 308);
 }
 
 function buildTrailingSlashRedirect(url, siteOrigin, method) {
