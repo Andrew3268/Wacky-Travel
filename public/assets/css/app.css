@@ -8782,3 +8782,19 @@ p,
 strong {
   word-break: keep-all;
 }
+
+/* Global scrollbar visibility: preserve scrolling while hiding tracks and thumbs */
+html,
+body,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
