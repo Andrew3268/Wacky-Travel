@@ -276,7 +276,7 @@ function buildPostsHeroNav(categories = []) {
     setHotelHeroButtonsVisible(isVisible);
   };
 
-  if (hotelHeroButtons.length) setHotelHeroButtonsVisible(false);
+  if (hotelHeroButtons.length) setHotelHeroButtonsVisible(true);
 
   if (!cityPostRoots.length && !cityTravelRoots.length) {
     syncHotelHeroButtonsWithSection();
@@ -485,9 +485,14 @@ function buildPostsHeroNav(categories = []) {
       .map((item) => item.type);
     const hasAnyContent = availableTypes.length > 0;
 
-    if (section) section.hidden = !hasAnyContent;
+    // Hotel Picks의 제목 영역과 히어로 버튼은 콘텐츠 유무와 관계없이 유지합니다.
+    // 실제 글이 없을 때는 탭/목록 컨테이너만 숨깁니다.
+    if (section) {
+      section.hidden = false;
+      section.removeAttribute('aria-hidden');
+    }
     root.hidden = !hasAnyContent;
-    syncHotelHeroButtonsWithSection(section);
+    setHotelHeroButtonsVisible(true);
     if (!hasAnyContent) return;
 
     root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
@@ -570,7 +575,12 @@ function buildPostsHeroNav(categories = []) {
 
   cityPostRoots.forEach((root) => {
     const section = root.closest('.wt-city-dynamic-section');
-    if (section) section.hidden = true;
+    if (section) {
+      section.hidden = false;
+      section.removeAttribute('aria-hidden');
+    }
+    // API 응답 전에는 로딩 문구가 깜빡이지 않도록 실제 목록 영역만 숨깁니다.
+    root.hidden = true;
 
     root.addEventListener('click', (event) => {
       const tabButton = event.target.closest('[data-city-post-tab]');
