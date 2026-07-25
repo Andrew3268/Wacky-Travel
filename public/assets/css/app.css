@@ -8777,3 +8777,8 @@ body.post-page-body--hotel-review-magazine .post-cover-wrap img{
 
 
 /* Global heading rhythm: all page-level h1 elements */
+/* Global Korean text wrapping */
+p,
+strong {
+  word-break: keep-all;
+}

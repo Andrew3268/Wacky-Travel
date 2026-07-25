@@ -1532,4 +1532,8 @@ body.post-page-body .breadcrumbs.container.breadcrumbs--post-page .breadcrumbs__
     display: none;
   }
 }
-
+/* Global Korean text wrapping */
+p,
+strong {
+  word-break: keep-all;
+}

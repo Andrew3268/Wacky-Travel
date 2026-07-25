@@ -373,6 +373,14 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   outline: none;
 }
 
+@media (min-width: 768px) and (max-width: 1180px) {
+  html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .topbar__inner.container{
+    width: 100%;
+    max-width: var(--container, 1200px);
+    padding: 14px clamp(32px, 5vw, 56px);
+  }
+}
+
 @media (max-width: 767px) {
   html body [data-site-header="main"].topbar.topbar--editorial.topbar--travel .topbar__inner.container{
     width: 100%;
@@ -461,4 +469,9 @@ html body [data-site-header="main"] .topbar-search-button:focus-visible{
     padding: 0 13px;
     font-size: 12px;
   }
+}
+/* Global Korean text wrapping */
+p,
+strong {
+  word-break: keep-all;
 }

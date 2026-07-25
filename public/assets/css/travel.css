@@ -20188,7 +20188,7 @@ body.travel-city-body .wt-city-snapshot__heading h2{
   max-width: 820px !important;
   margin: 0 !important;
   color: #000000 !important;
-  font-size: clamp(30px, 4vw, 48px) !important;
+  font-size: 40px;
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
   line-height: 1.2;
@@ -20511,7 +20511,7 @@ body.travel-city-body .wt-city-faq{
 
   body.travel-city-body .section-heading h2,
 body.travel-city-body .wt-city-snapshot__heading h2{
-    font-size: clamp(28px, 9vw, 36px) !important;
+    font-size: 40px;
     line-height: 1.2;
   word-break: keep-all;
   }
@@ -20816,7 +20816,7 @@ body.travel-purpose-body .wt-section-title,
 body.travel-purpose-body .wt-purpose-page .wt-section-title,
 body.travel-purpose-body .wt-cta-band h2{
   color: #050505 !important;
-  font-size: clamp(30px, 3vw, 42px) !important;
+  font-size: 40px;
   font-weight: 600!important;
   line-height: 1.2;
   letter-spacing: -0.045em !important;
@@ -21188,7 +21188,7 @@ body.travel-purpose-body .wt-section--faq{
   body.travel-purpose-body .wt-section-title,
 body.travel-purpose-body .wt-purpose-page .wt-section-title,
 body.travel-purpose-body .wt-cta-band h2{
-    font-size: clamp(26px, 7.8vw, 34px) !important;
+    font-size: 40px;
   line-height: 1.2;
   word-break: keep-all;
   }
@@ -27317,7 +27317,7 @@ body.travel-purpose-body .wt-section--survey-cta .wt-cta-band h2{
   max-width: 670px !important;
   margin: 0 !important;
   color: #111 !important;
-  font-size: clamp(32px, 4.5vw, 54px) !important;
+  font-size: 40px;
   line-height: 1.2;
   letter-spacing: -.055em !important;
   word-break: keep-all;
@@ -32232,3 +32232,8 @@ body.travel-home-body main.travel-page.travel-home h2 {
   word-break: keep-all;
 }
 /* END WACKYTRAVEL_CITY_H1_HOME_H2_V16 */
+/* Global Korean text wrapping */
+p,
+strong {
+  word-break: keep-all;
+}

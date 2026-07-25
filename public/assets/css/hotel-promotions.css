@@ -971,3 +971,8 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
   .wtpromo-container{width:100%;padding-left:18px;padding-right:18px;}
   .wtpromo-hero{padding:40px 0 36px;}
 }
+/* Global Korean text wrapping */
+p,
+strong {
+  word-break: keep-all;
+}
