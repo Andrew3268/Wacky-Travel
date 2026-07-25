@@ -14,7 +14,7 @@
 
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 
-<link href="/assets/css/app.css?v=20260725-h1-direct-v2" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260725-h2-wordbreak-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260723PostBreadcrumbTabletPadding0V1" rel="stylesheet"/>
 <link href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" rel="stylesheet"/>
 <style>
@@ -22,11 +22,13 @@
     .about-shell { width:100%; max-width:1200px; margin:0 auto; padding:0; }
 .about-hero { padding:84px 0 88px; border-bottom:1px solid #111; }
     .about-kicker { margin:0 0 24px; font-size:13px; line-height:1; letter-spacing:.16em; text-transform:uppercase; }
-    .about-title { max-width:880px; margin:0; font-size:clamp(42px, 7vw, 78px); line-height:1.2; letter-spacing:-.055em; font-weight:600; }
-    .about-lead { max-width:680px; margin:32px 0 0 auto; font-size:18px; line-height:1.9; color:#4b4b4b; }
+    .about-title { color:#000; max-width:880px; margin:0; font-size:56px; line-height:1.2; letter-spacing:-.055em; font-weight:600;
+  word-break: keep-all; }
+    .about-lead { max-width:680px; font-size:18px; line-height:1.9; color:#4b4b4b; }
     .about-section { display:grid; grid-template-columns:minmax(160px, .7fr) minmax(0, 2fr); gap:64px; padding:72px 0; border-bottom:1px solid #d8d8d8; }
     .about-section-label { margin:4px 0 0; font-size:13px; letter-spacing:.12em; text-transform:uppercase; }
-    .about-section-copy h2 { max-width:700px; margin:0 0 24px; font-size:clamp(28px, 4vw, 44px); line-height:1.2; letter-spacing:-.04em; font-weight:600; }
+    .about-section-copy h2 { max-width:700px; margin:0 0 24px; font-size:clamp(28px, 4vw, 44px); line-height: 1.2; letter-spacing:-.04em; font-weight:600;
+  word-break: keep-all; }
     .about-section-copy p { max-width:720px; margin:0; font-size:17px; line-height:2; color:#444; }
     .about-principles { margin-top:42px; border-top:1px solid #111; }
     .about-principle { display:grid; grid-template-columns:56px minmax(180px, .7fr) minmax(0, 1.4fr); gap:24px; padding:24px 0; border-bottom:1px solid #d8d8d8; }
@@ -47,11 +49,14 @@
     @media (max-width:767px) {
       .about-shell { width:100%; padding-left:18px; padding-right:18px; }
       .about-hero { padding:48px 0 56px; }
-      .about-title { font-size:38px; line-height:1.2;}
-      .about-lead { margin-top:24px; font-size:16px; }
+      .about-title { color:#000; font-size:56px; line-height:1.2;
+  word-break: keep-all;}
+      .about-lead { font-size:16px; }
       .about-section { display:block; padding:48px 0; }
       .about-section-label { margin-bottom:26px; }
-      .about-section-copy h2 { font-size:28px; }
+      .about-section-copy h2 { font-size:28px;
+  line-height: 1.2;
+  word-break: keep-all; }
       .about-section-copy p { font-size:16px; }
       .about-principle { grid-template-columns:42px 1fr; gap:12px; }
       .about-principle p { grid-column:2; }

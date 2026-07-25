@@ -44,6 +44,7 @@
   font-size: clamp(2.1rem, 5vw, 4rem);
   line-height:1.2;
   letter-spacing: -0.045em;
+  word-break: keep-all;
 }
 
 .travel-hero__summary,
@@ -116,6 +117,8 @@
   margin: 0;
   font-size: clamp(1.6rem, 3vw, 2.25rem);
   letter-spacing: -0.035em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .section-heading p:not(.eyebrow){
@@ -170,8 +173,9 @@
 .travel-list h3{
   margin: 0;
   font-size: 1.22rem;
-  line-height: 1.35;
+  line-height: 1.2;
   letter-spacing: -0.025em;
+  word-break: keep-all;
 }
 
 .travel-card a,
@@ -275,6 +279,7 @@
   font-size: clamp(2.2rem, 5vw, 4.2rem);
   line-height:1.2;
   letter-spacing: -0.045em;
+  word-break: keep-all;
 }
 
 .hotel-detail__en{
@@ -332,6 +337,8 @@
   margin: 0 0 12px;
   font-size: 1.35rem;
   letter-spacing: -0.02em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .content-card--notice{
@@ -496,6 +503,7 @@ body{
   line-height:1.2;
   letter-spacing:-.075em;
   font-weight: 500;
+  word-break: keep-all;
 }
 .travel-hero__summary{
   font-size:1.08rem;
@@ -636,6 +644,8 @@ body{
 .section-heading h2{
   font-weight: 500;
   color:#171717;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 .travel-card-grid{
   gap:22px;
@@ -685,6 +695,8 @@ body{
 .travel-list h3{
   font-weight: 500;
   color:#171717;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 .travel-card p,
 .travel-list p,
@@ -729,6 +741,7 @@ body{
 }
 .hotel-detail__hero h1{
   font-weight: 500;
+  word-break: keep-all;
 }
 .hotel-detail__image,
 .travel-hero__image{
@@ -738,6 +751,8 @@ body{
 .side-card h2{
   font-weight: 500;
   letter-spacing:-.035em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 .content-card--notice{
   background:linear-gradient(135deg,#fff,#fff8ed);
@@ -786,6 +801,7 @@ body{
   }
   .travel-hero--home h1{
     font-size:clamp(2.25rem, 13vw, 3.7rem);
+  word-break: keep-all;
   }
   .travel-hero-card{
     border-radius:26px;
@@ -1578,6 +1594,7 @@ body{
 
 .travel-hero--destination-detail h1{
   max-width: 940px;
+  word-break: keep-all;
 }
 
 .travel-hero--destination-detail .travel-hero__summary{
@@ -1661,6 +1678,7 @@ body{
   line-height:1.2;
   letter-spacing: -0.045em;
   font-weight: 500;
+  word-break: keep-all;
 }
 
 .destination-detail-hero__summary{
@@ -1715,6 +1733,7 @@ body{
 
   .destination-detail-hero h1{
     font-size: clamp(2rem, 12vw, 3rem);
+  word-break: keep-all;
   }
 }
 
@@ -1783,6 +1802,7 @@ body{
 .destination-detail-hero h1,
 .destination-detail-hero__summary{
   max-width: none !important;
+  word-break: keep-all;
 }
 
 @media (max-width: 720px) {
@@ -2161,6 +2181,7 @@ body::after{
   line-height:1.2;
   letter-spacing: -0.073em;
   font-weight: 500;
+  word-break: keep-all;
 }
 
 .travel-hero__summary,
@@ -2211,6 +2232,8 @@ body::after{
   font-size: clamp(1.72rem, 3vw, 2.45rem);
   font-weight: 500;
   letter-spacing: -0.055em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .section-heading p:not(.eyebrow){
@@ -2282,7 +2305,7 @@ body::after{
 .travel-list h4{
   color: var(--travel-ink);
   font-weight: 500;
-  line-height: 1.36;
+  line-height: 1.2;
   letter-spacing: -0.042em;
   word-break: keep-all;
 }
@@ -2436,6 +2459,7 @@ body::after{
 
   .travel-hero--home h1{
     font-size: clamp(2.2rem, 12vw, 3.45rem);
+  word-break: keep-all;
   }
 
   .travel-hero__summary{
@@ -2519,6 +2543,7 @@ body::after{
   line-height:1.2;
   letter-spacing: -0.065em !important;
   font-weight: 500!important;
+  word-break: keep-all;
 }
 
 .travel-hero--service .travel-hero__summary{
@@ -2564,6 +2589,7 @@ body::after{
 
   .travel-hero--service h1{
     font-size: clamp(2rem, 10.5vw, 3rem) !important;
+  word-break: keep-all;
   }
 
   .travel-hero--service .travel-hero__actions{
@@ -2660,6 +2686,7 @@ body::after{
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height:1.2;
+  word-break: keep-all;
 }
 
 .travel-page > .travel-section:first-child{
@@ -3081,6 +3108,7 @@ body::after{
   line-height:1.2;
   letter-spacing: -0.06em;
   font-weight: 500;
+  word-break: keep-all;
 }
 
 .wthome-card__visual p{
@@ -3242,6 +3270,7 @@ body::after{
     margin: 16px 0 10px;
     font-size: clamp(30px, 4vw, 40px);
     line-height:1.2;
+  word-break: keep-all;
   }
 
   .wthome-card__visual p{
@@ -3392,6 +3421,7 @@ body::after{
     font-size: 31px;
     line-height:1.2;
     letter-spacing: -0.055em;
+  word-break: keep-all;
   }
 
   .wthome-card__visual p{
@@ -3513,6 +3543,7 @@ body::after{
 
   .wthome-card__visual h1{
     font-size: 28px;
+  word-break: keep-all;
   }
 
   .wthome-route-line{
@@ -3546,6 +3577,7 @@ body::after{
 
   .wthome-card__visual h1{
     font-size: clamp(30px, 3.3vw, 42px);
+  word-break: keep-all;
   }
 
   .wthome-card__visual p{
@@ -3593,10 +3625,12 @@ body::after{
   line-height:1.2;
   letter-spacing: -0.055em;
   font-weight: 500;
+  word-break: keep-all;
 }
 
 .wtsr-hero h1 span{
   color: #174C78;
+  word-break: keep-all;
 }
 
 .wtsr-hero__desc{
@@ -3695,8 +3729,9 @@ body::after{
   margin: 0;
   color: #102A45;
   font-size: 22px;
-  line-height: 1.35;
+  line-height: 1.2;
   letter-spacing: -0.04em;
+  word-break: keep-all;
 }
 
 .wtsr-summary p{
@@ -3914,6 +3949,7 @@ body::after{
 
   .wtsr-hero h1{
     font-size: 28px;
+  word-break: keep-all;
   }
 
   .wtsr-form{
@@ -4091,6 +4127,7 @@ body::after{
   line-height:1.2;
   letter-spacing: -0.055em;
   font-weight: 500;
+  word-break: keep-all;
 }
 
 .city-guide-hero__lead{
@@ -4155,9 +4192,10 @@ body::after{
   margin: 0 0 14px;
   color: #101828;
   font-size: clamp(1.45rem, 2.7vw, 2.08rem);
-  line-height: 1.28;
+  line-height: 1.2;
   letter-spacing: -0.04em;
   font-weight: 500;
+  word-break: keep-all;
 }
 
 .city-guide-section h3{
@@ -4615,6 +4653,7 @@ body::after{
   max-width: 900px;
   font-size: clamp(2.05rem, 4.6vw, 4rem);
   line-height:1.2;
+  word-break: keep-all;
 }
 
 .city-guide-hero__lead{
@@ -4654,6 +4693,8 @@ body::after{
 
 .city-guide-section h2{
   margin-bottom: 16px;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .city-guide-section h3{
@@ -4857,6 +4898,7 @@ body::after{
   font-size: clamp(2.35rem, 5.8vw, 5.1rem);
   line-height:1.2;
   letter-spacing: 0;
+  word-break: keep-all;
 }
 
 .wt-city-guide-hero__subtitle{
@@ -4918,8 +4960,9 @@ body::after{
   margin: 5px 0 0;
   color: #12263f;
   font-size: clamp(1.55rem, 3vw, 2.35rem);
-  line-height: 1.22;
+  line-height: 1.2;
   letter-spacing: -0.052em;
+  word-break: keep-all;
 }
 
 .wt-city-guide-snapshot__grid{
@@ -4993,8 +5036,9 @@ body::after{
   margin: 0 0 18px;
   color: #11263f;
   font-size: clamp(1.55rem, 3vw, 2.25rem);
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.055em;
+  word-break: keep-all;
 }
 
 .wt-city-guide-heading::before{
@@ -5005,6 +5049,8 @@ body::after{
   margin-bottom: 16px;
   border-radius: 999px;
   background: linear-gradient(90deg, #2563eb, #2563eb);
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-city-guide-subheading{
@@ -5170,13 +5216,16 @@ body::after{
 .wt-city-guide-related h2,
 .wt-city-guide-related p{
   color: #ffffff;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-city-guide-related h2{
   margin: 5px 0 10px;
   font-size: clamp(1.55rem, 3vw, 2.45rem);
-  line-height: 1.24;
+  line-height: 1.2;
   letter-spacing: -0.052em;
+  word-break: keep-all;
 }
 
 .wt-city-guide-related p{
@@ -5367,6 +5416,8 @@ body::after{
 .wt-city-guide-chapter-heading{
   margin-bottom: 0;
   font-size: clamp(1.45rem, 2.8vw, 2.05rem);
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-city-hotel-guide-page .wt-city-guide-section{
@@ -5532,6 +5583,8 @@ body::after{
 .wtsr-hero__title,
 .wtsr-result-card__title{
   color: #102A45 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .travel-card p,
@@ -5582,6 +5635,7 @@ body::after{
 
 .travel-home .wthome-card__visual h1{
   color: var(--wthome-heading) !important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual p,
@@ -5695,7 +5749,7 @@ body::after{
   color: #0f172a;
   font-size: clamp(1.85rem, 3.4vw, 2.75rem);
   letter-spacing: -.055em;
-  line-height: 1.15;
+  line-height: 1.2;
   word-break: keep-all;
 }
 
@@ -5987,6 +6041,7 @@ body::after{
 
   .wt-city-hero h1{
     font-size: clamp(2.05rem, 9.5vw, 2.8rem);
+  word-break: keep-all;
   }
 
   .wt-city-hero__actions,
@@ -6037,6 +6092,7 @@ body::after{
   font-size: clamp(2.35rem, 5.2vw, 3.25rem);
   line-height:1.2;
   letter-spacing: 1px;
+  word-break: keep-all;
 }
 
 .wt-page-hero p{
@@ -6160,8 +6216,9 @@ body::after{
   margin: 0;
   color: #0f172a;
   font-size: clamp(1.72rem, 3vw, 2.1rem);
-  line-height: 1.18;
+  line-height: 1.2;
   letter-spacing: -0.06em;
+  word-break: keep-all;
 }
 
 .wt-section-desc{
@@ -6408,6 +6465,8 @@ body::after{
   color: #0f172a;
   font-size: clamp(24px, 2.8vw, 34px);
   letter-spacing: -0.05em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-cta-band p{
@@ -6472,6 +6531,7 @@ body::after{
 
   .wt-page-hero h1{
     font-size: clamp(2.05rem, 9vw, 2.75rem);
+  word-break: keep-all;
   }
 
   .wt-page-hero p{
@@ -6610,6 +6670,7 @@ body::after{
   .wt-purpose-page .wt-page-hero h1{
     font-size: clamp(2.05rem, 9.5vw, 2.8rem);
     line-height:1.2;
+  word-break: keep-all;
   }
 
   .wt-purpose-page .wt-page-hero p,
@@ -6761,23 +6822,30 @@ body::after{
 .wt-city-snapshot__heading h2{
   font-size: clamp(1.72rem, 3vw, 2.1rem);
   letter-spacing: -0.045em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-purpose-page .wt-section-title{
   font-size: clamp(1.72rem, 3vw, 2.1rem);
   letter-spacing: -0.045em;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .wt-city-hero h1,
 .wt-purpose-page .wt-page-hero h1{
     font-size: clamp(2.2rem, 4.8vw, 3rem);
+  word-break: keep-all;
   }
 
   .wt-city-page .section-heading h2,
 .wt-city-snapshot__heading h2,
 .wt-purpose-page .wt-section-title{
     font-size: clamp(1.65rem, 3.4vw, 2rem);
+  line-height: 1.2;
+  word-break: keep-all;
   }
 }
 
@@ -6786,7 +6854,8 @@ body::after{
 .wt-city-snapshot__heading h2,
 .wt-purpose-page .wt-section-title{
     font-size: clamp(1.55rem, 6.4vw, 1.9rem);
-    line-height: 1.18;
+    line-height: 1.2;
+  word-break: keep-all;
   }
 }
 
@@ -6837,6 +6906,7 @@ main.travel-page.wt-city-guide-page .container{
 .wt-page-hero h1,
 .wt-purpose-page .wt-page-hero h1{
   line-height:1.2;
+  word-break: keep-all;
 }
 
 .wt-purpose-page .wt-hotel-grid{
@@ -6976,6 +7046,7 @@ main.travel-page.wt-city-guide-page .container{
 .wt-page-hero h1,
 .wt-purpose-page .wt-page-hero h1{
   line-height:1.2;
+  word-break: keep-all;
 }
 
 .wt-purpose-page .wt-hotel-grid{
@@ -7089,6 +7160,7 @@ main.travel-page.wt-city-guide-page .container{
   .wt-page-hero h1,
 .wt-purpose-page .wt-page-hero h1{
     line-height:1.2;
+  word-break: keep-all;
   }
 
   .wt-purpose-page .wt-hotel-card{
@@ -7529,6 +7601,7 @@ main.wt-purpose-page--quiet-stay .container{
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+  word-break: keep-all;
 }
 
 .travel-card-grid--hotels .wt-archive-skeleton-card{
@@ -9141,11 +9214,15 @@ main.wt-purpose-page--quiet-stay .container{
 /* City guide SEO table of contents and anchor spacing */
 .wt-city-guide-page :where(h2, h3, h4, section)[id]{
   scroll-margin-top: 32px;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 @media (max-width: 760px) {
   .wt-city-guide-page :where(h2, h3, h4, section)[id]{
     scroll-margin-top: 29px;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 }
 
@@ -10735,8 +10812,9 @@ width: 0%;
 margin: 0 0 8px;
       color: var(--wt-ink);
       font-size: clamp(23px, 3vw, 29px);
-      line-height: 1.34;
+      line-height: 1.2;
       letter-spacing: -0.045em;
+  word-break: keep-all;
 }
 
 .wt-location-page .wt-question-help{
@@ -11102,8 +11180,9 @@ margin: 0 0 6px;
 margin: 0;
       color: var(--wt-ink);
       font-size: 20px;
-      line-height: 1.4;
+      line-height: 1.2;
       letter-spacing: -0.035em;
+  word-break: keep-all;
 }
 
 .wt-location-page .wt-section-desc{
@@ -11510,11 +11589,14 @@ height: 7px;
 
 .wt-location-page .wt-survey-wrap.is-survey-started:not(.is-result-mode) .wt-progress + .wt-question-title{
 margin-top: 0;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-location-page .wt-survey-wrap.is-survey-started:not(.is-result-mode) .wt-question-title{
 font-size: clamp(22px, 6.2vw, 27px);
-        line-height: 1.34;
+        line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-location-page .wt-survey-wrap.is-survey-started:not(.is-result-mode) .wt-question-help{
@@ -11786,6 +11868,8 @@ margin-bottom: 8px;
 .wt-location-page .wt-result.is-active .wt-result-story-title,
 .wt-location-page .wt-result.is-active .wt-section-title{
 color: #172033;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .wt-location-page .wt-result.is-active .wt-result-story-desc,
@@ -12569,6 +12653,7 @@ margin-right: -24px;
   line-height:1.2;
   letter-spacing: -0.065em !important;
   font-weight: 500!important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual p{
@@ -12783,6 +12868,7 @@ margin-right: -24px;
     font-size: clamp(34px, 10.5vw, 43px) !important;
     line-height:1.2;
     letter-spacing: -0.065em !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-card__visual p{
@@ -12873,6 +12959,7 @@ margin-right: -24px;
 
 .travel-home .wthome-card__visual h1{
   margin: 20px 0 22px !important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual p{
@@ -12999,6 +13086,7 @@ margin-right: -24px;
 
   .travel-home .wthome-card__visual h1{
     margin: 16px 0 17px !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-search{
@@ -13074,6 +13162,7 @@ margin-right: -24px;
   margin: 22px 0 26px !important;
   font-size: clamp(42px, 5.15vw, 64px) !important;
   line-height:1.2;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual p{
@@ -13234,6 +13323,7 @@ margin-right: -24px;
   .travel-home .wthome-card__visual h1{
     margin: 18px 0 20px !important;
     font-size: clamp(36px, 10.8vw, 46px) !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-card__visual p{
@@ -14719,6 +14809,7 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
   line-height:1.2;
   letter-spacing: -0.042em !important;
   font-weight: 500!important;
+  word-break: keep-all;
 }
 
 @media (max-width: 720px) {
@@ -14727,6 +14818,7 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
     font-size: clamp(1.72rem, 8.4vw, 2.25rem) !important;
     line-height:1.2;
     letter-spacing: -0.035em !important;
+  word-break: keep-all;
   }
 }
 
@@ -14994,6 +15086,8 @@ main.travel-page .wt-city-guide-related.container strong{
   color: #ffffff !important;
   visibility: visible !important;
   opacity: 1 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 main.travel-page .wt-city-guide-related.container > div:first-child p:not(.eyebrow){
@@ -15537,7 +15631,7 @@ main.travel-page .wt-city-guide-related__card p{
 /* Travel heading readability */
 .travel-page h2,
 .travel-page h3{
-  line-height: 1.4;
+  line-height: 1.2;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -15818,8 +15912,9 @@ body.wt-location-survey-page--app .main-title{
   color: #1d1d1f;
   font-size: 25px;
   font-weight: 600;
-  line-height:1.2;
+  line-height: 1.2;
   letter-spacing: -0.045em;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .sub-description{
@@ -15930,9 +16025,10 @@ body.wt-location-survey-page--app .wt-question-title{
   color: #1d1d1f;
   font-size: clamp(22px, 6.2vw, 26px);
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.2;
   letter-spacing: -0.05em;
   max-width: 330px;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .wt-question-help{
@@ -16084,6 +16180,8 @@ body.wt-location-survey-page--app .loading-text{
   font-size: 19px;
   font-weight: 600;
   transition: opacity 0.2s ease-in-out;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .loading-sub-text{
@@ -16152,8 +16250,9 @@ body.wt-location-survey-page--app .result-destination{
   color: #1d1d1f;
   font-size: 32px;
   font-weight: 600;
-  line-height: 1.18;
+  line-height: 1.2;
   letter-spacing: -0.055em;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .simple-brief-text{
@@ -16282,8 +16381,9 @@ body.wt-location-survey-page--app .wt-result-mini-title{
   color: #1d1d1f;
   font-size: 18px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.2;
   letter-spacing: -0.035em;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .panel-text,
@@ -16552,6 +16652,8 @@ body.wt-location-survey-page--app .result-upper-section{
 
   body.wt-location-survey-page--app .result-destination{
     font-size: 28px;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 
   body.wt-location-survey-page--app .wt-option{
@@ -16883,6 +16985,8 @@ body.wt-location-survey-page--app .result-upper-section{
 body.wt-location-survey-page--app .result-upper-section .result-badge,
 body.wt-location-survey-page--app .result-upper-section .result-destination{
   text-align: left;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .detailed-info-section .result-badge{
@@ -17784,6 +17888,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   line-height:1.2;
   letter-spacing: -0.07em !important;
   font-weight: 540!important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual p{
@@ -17853,6 +17958,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
     margin: 12px 0 14px !important;
     font-size: clamp(32px, 9.8vw, 40px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-card__visual p{
@@ -17954,6 +18060,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
 
 .travel-home .wthome-card__visual-content > :not(#wthomeHeroTitle){
   display: none !important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual h1{
@@ -17966,6 +18073,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   font-weight: 600!important;
   text-align: center !important;
   text-wrap: balance !important;
+  word-break: keep-all;
 }
 
 .travel-home .travel-section--destination-hub{
@@ -18024,6 +18132,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
     font-size: clamp(41px, 12.4vw, 54px) !important;
     line-height:1.2;
     letter-spacing: -0.09em !important;
+  word-break: keep-all;
   }
 
   .travel-home .travel-section--destination-hub{
@@ -18083,6 +18192,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   font-size: clamp(34px, 5.2vw, 58px) !important;
   line-height:1.2;
   letter-spacing: -0.078em !important;
+  word-break: keep-all;
 }
 
 .travel-home .travel-section--destination-hub{
@@ -18117,6 +18227,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
     font-size: clamp(31px, 9.6vw, 39px) !important;
     line-height:1.2;
     letter-spacing: -0.082em !important;
+  word-break: keep-all;
   }
 
   .travel-home .travel-section--destination-hub{
@@ -18137,6 +18248,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
 
   .travel-home .wthome-card__visual h1{
     font-size: clamp(29px, 9.2vw, 35px) !important;
+  word-break: keep-all;
   }
 }
 /* End 20260630 Home compact hero refinement V4 */
@@ -18203,6 +18315,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
 
 .travel-home .wthome-card__visual-content > :not(#wthomeHeroTitle){
   display: initial !important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-card__visual h1{
@@ -18215,6 +18328,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   font-weight: 600!important;
   text-align: left !important;
   text-wrap: balance !important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-hero__desc{
@@ -18293,6 +18407,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
 
   .travel-home .wthome-card__visual h1{
     font-size: clamp(58px, 8.4vw, 84px) !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-hero__desc{
@@ -18316,6 +18431,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
     font-size: clamp(42px, 13.2vw, 58px) !important;
     line-height:1.2;
     letter-spacing: -0.085em !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-hero__desc{
@@ -18352,6 +18468,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   .travel-home .wthome-card__visual h1{
     max-width: 300px !important;
     font-size: clamp(38px, 12.4vw, 49px) !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-hero__desc{
@@ -18415,6 +18532,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   letter-spacing: -0.075em !important;
   font-weight: 600!important;
   text-align: left !important;
+  word-break: keep-all;
 }
 
 .travel-home .wthome-hero__desc{
@@ -18465,6 +18583,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   .travel-home .wthome-card__visual h1{
     max-width: 660px !important;
     font-size: clamp(46px, 6.8vw, 66px) !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-hero__desc{
@@ -18492,6 +18611,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
     font-size: clamp(35px, 10.6vw, 46px) !important;
     line-height:1.2;
     letter-spacing: -0.078em !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-hero__desc{
@@ -18530,6 +18650,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   .travel-home .wthome-card__visual h1{
     max-width: 292px !important;
     font-size: clamp(33px, 10vw, 40px) !important;
+  word-break: keep-all;
   }
 
   .travel-home .wthome-hero__desc{
@@ -18610,6 +18731,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTit
   font-weight: 600!important;
   text-align: left !important;
   text-wrap: balance !important;
+  word-break: keep-all;
 }
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
   max-width: 640px !important;
@@ -18621,6 +18743,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__
   font-weight: 600!important;
   text-align: left !important;
   text-wrap: balance !important;
+  word-break: keep-all;
 }
 
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18668,6 +18791,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
     max-width: 610px !important;
     font-size: clamp(42px, 6vw, 58px) !important;
+  word-break: keep-all;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18696,12 +18820,14 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__
     font-size: clamp(34px, 9.8vw, 43px) !important;
     line-height: 1.14 !important;
     letter-spacing: -0.073em !important;
+  word-break: keep-all;
   }
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
     max-width: 330px !important;
     font-size: clamp(34px, 9.8vw, 43px) !important;
     line-height:1.2;
     letter-spacing: -0.073em !important;
+  word-break: keep-all;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18740,6 +18866,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
     max-width: 295px !important;
     font-size: clamp(31px, 9.4vw, 38px) !important;
+  word-break: keep-all;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18764,12 +18891,14 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTit
   line-height: 1.14 !important;
   letter-spacing: -0.045em !important;
   font-weight: 600!important;
+  word-break: keep-all;
 }
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
   font-size: 56px !important;
   line-height:1.2;
   letter-spacing: -0.045em !important;
   font-weight: 600!important;
+  word-break: keep-all;
 }
 
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18796,6 +18925,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
     font-size: 52px !important;
     letter-spacing: -0.044em !important;
+  word-break: keep-all;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18810,12 +18940,14 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__
     font-size: 40px !important;
     line-height: 1.15 !important;
     letter-spacing: -0.04em !important;
+  word-break: keep-all;
   }
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
     max-width: 340px !important;
     font-size: 40px !important;
     line-height:1.2;
     letter-spacing: -0.04em !important;
+  word-break: keep-all;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18836,6 +18968,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__
 body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-card__visual h1#wthomeHeroTitle{
     font-size: 37px !important;
     letter-spacing: -0.038em !important;
+  word-break: keep-all;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc{
@@ -18895,6 +19028,8 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   align-items: flex-end !important;
   justify-content: space-between !important;
   gap: 16px !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading.section-heading--split > div{
@@ -18907,6 +19042,8 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 
 body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading h2{
   margin: 0 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .text-link{
@@ -19399,7 +19536,7 @@ body.travel-city-body--fukuoka .wt-city-hero h1{
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
   line-height:1.2;
-  word-break: keep-all !important;
+  word-break: keep-all;
 }
 
 body.travel-city-body--fukuoka .wt-city-hero__lead{
@@ -19493,8 +19630,8 @@ body.travel-city-body--fukuoka .wt-city-snapshot__heading h2{
   font-size: clamp(30px, 4vw, 48px) !important;
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
-  line-height: 1.12 !important;
-  word-break: keep-all !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-city-body--fukuoka .section-heading p:not(.eyebrow),
@@ -19662,7 +19799,8 @@ body.travel-city-body--fukuoka .wt-city-cta h2{
   font-size: clamp(28px, 3.6vw, 44px) !important;
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
-  line-height: 1.14 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-city-body--fukuoka .hotel-tabs,
@@ -19779,6 +19917,7 @@ body.travel-city-body--fukuoka .footer.container{
   body.travel-city-body--fukuoka .wt-city-hero h1{
     font-size: clamp(38px, 11vw, 48px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.travel-city-body--fukuoka .wt-city-hero__lead{
@@ -19812,7 +19951,8 @@ body.travel-city-body--fukuoka .wt-city-faq{
   body.travel-city-body--fukuoka .section-heading h2,
 body.travel-city-body--fukuoka .wt-city-snapshot__heading h2{
     font-size: clamp(28px, 9vw, 36px) !important;
-    line-height: 1.16 !important;
+    line-height: 1.2;
+  word-break: keep-all;
   }
 
   body.travel-city-body--fukuoka .wt-city-snapshot__grid{
@@ -19841,6 +19981,8 @@ body.travel-city-body--fukuoka .wt-city-snapshot__heading h2{
   body.travel-city-body--fukuoka .wt-city-area-panel h3,
 body.travel-city-body--fukuoka .wt-city-cta h2{
     font-size: clamp(26px, 8vw, 34px) !important;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 
   body.travel-city-body--fukuoka .wt-city-area-panel__grid{
@@ -19955,7 +20097,7 @@ body.travel-city-body .wt-city-hero h1{
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
   line-height:1.2;
-  word-break: keep-all !important;
+  word-break: keep-all;
 }
 
 body.travel-city-body .wt-city-hero__lead{
@@ -20049,8 +20191,8 @@ body.travel-city-body .wt-city-snapshot__heading h2{
   font-size: clamp(30px, 4vw, 48px) !important;
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
-  line-height: 1.12 !important;
-  word-break: keep-all !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-city-body .section-heading p:not(.eyebrow),
@@ -20218,7 +20360,8 @@ body.travel-city-body .wt-city-cta h2{
   font-size: clamp(28px, 3.6vw, 44px) !important;
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
-  line-height: 1.14 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-city-body .hotel-tabs,
@@ -20335,6 +20478,7 @@ body.travel-city-body .footer.container{
   body.travel-city-body .wt-city-hero h1{
     font-size: clamp(38px, 11vw, 48px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.travel-city-body .wt-city-hero__lead{
@@ -20368,7 +20512,8 @@ body.travel-city-body .wt-city-faq{
   body.travel-city-body .section-heading h2,
 body.travel-city-body .wt-city-snapshot__heading h2{
     font-size: clamp(28px, 9vw, 36px) !important;
-    line-height: 1.16 !important;
+    line-height: 1.2;
+  word-break: keep-all;
   }
 
   body.travel-city-body .wt-city-snapshot__grid{
@@ -20397,6 +20542,8 @@ body.travel-city-body .wt-city-snapshot__heading h2{
   body.travel-city-body .wt-city-area-panel h3,
 body.travel-city-body .wt-city-cta h2{
     font-size: clamp(26px, 8vw, 34px) !important;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 
   body.travel-city-body .wt-city-area-panel__grid{
@@ -20579,6 +20726,7 @@ body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
   font-weight: 600!important;
   line-height:1.2;
   letter-spacing: -0.045em !important;
+  word-break: keep-all;
 }
 
 body.travel-purpose-body .wt-page-hero p,
@@ -20670,8 +20818,9 @@ body.travel-purpose-body .wt-cta-band h2{
   color: #050505 !important;
   font-size: clamp(30px, 3vw, 42px) !important;
   font-weight: 600!important;
-  line-height: 1.16 !important;
+  line-height: 1.2;
   letter-spacing: -0.045em !important;
+  word-break: keep-all;
 }
 
 body.travel-purpose-body .wt-section-desc,
@@ -20987,6 +21136,7 @@ body.travel-purpose-body .wt-purpose-page .wt-page-hero{
 body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
     font-size: clamp(36px, 10vw, 46px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.travel-purpose-body .wt-page-hero p,
@@ -21039,6 +21189,8 @@ body.travel-purpose-body .wt-section--faq{
 body.travel-purpose-body .wt-purpose-page .wt-section-title,
 body.travel-purpose-body .wt-cta-band h2{
     font-size: clamp(26px, 7.8vw, 34px) !important;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 
   body.travel-purpose-body .wt-choice-main,
@@ -22014,7 +22166,7 @@ body.wt-guide-body .wt-page-hero h1{
   font-weight: 600!important;
   line-height:1.2;
   letter-spacing: -0.055em !important;
-  word-break: keep-all !important;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-hero__subtitle,
@@ -22098,7 +22250,8 @@ body.wt-guide-body .wt-city-guide-related h2,
 body.wt-guide-body .wt-cta-band h2{
   color: #000 !important;
   letter-spacing: -0.055em !important;
-  word-break: keep-all !important;
+  word-break: keep-all;
+  line-height: 1.2;
 }
 
 body.wt-guide-body .wt-city-guide-snapshot__head h2,
@@ -22106,7 +22259,8 @@ body.wt-guide-body .wt-section-title,
 body.wt-guide-body .wt-city-guide-heading{
   font-size: clamp(28px, 3vw, 42px) !important;
   font-weight: 600!important;
-  line-height: 1.22 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-snapshot__grid{
@@ -22211,6 +22365,8 @@ body.wt-guide-body .wt-city-guide-heading::before{
   margin-bottom: 16px !important;
   border-radius: 0 !important;
   background: #000 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-subheading,
@@ -22351,6 +22507,8 @@ body.wt-guide-body .wt-city-guide-related .eyebrow,
 body.wt-guide-body .wt-city-guide-related h2,
 body.wt-guide-body .wt-city-guide-related p{
   color: #000 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-survey-panel__eyebrow{
@@ -22505,6 +22663,7 @@ body.wt-guide-body .wt-page-hero{
 body.wt-guide-body .wt-page-hero h1{
     font-size: clamp(34px, 10vw, 46px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.wt-guide-body .wt-city-guide-hero__inner,
@@ -22592,6 +22751,8 @@ body.wt-guide-body .wt-check-item{
 body.wt-guide-body .wt-city-guide-section--chapter .wt-city-guide-heading,
 body.wt-guide-body .wt-section-kicker{
   color: #000 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-section--chapter{
@@ -22600,6 +22761,8 @@ body.wt-guide-body .wt-city-guide-section--chapter{
 
 body.wt-guide-body .wt-city-guide-section--chapter .wt-city-guide-chapter-heading{
   max-width: 760px !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-related,
@@ -22702,13 +22865,16 @@ body.wt-location-survey-page--app .wt-hotel-name,
 body.wt-location-survey-page--app .wt-decision-box strong,
 body.wt-location-survey-page--app .wt-result-lead--simple strong{
   color: #111111 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .main-title{
   font-size: clamp(27px, 7.2vw, 34px) !important;
-  line-height:1.2;
+  line-height: 1.2;
   letter-spacing: -0.055em !important;
   font-weight: 600!important;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app .sub-description,
@@ -23269,6 +23435,7 @@ body.wt-guide-body .wt-table-wrap{
   body.wt-guide-body .wt-city-guide-hero h1,
 body.wt-guide-body .wt-page-hero h1{
     font-size: clamp(30px, 9vw, 42px) !important;
+  word-break: keep-all;
   }
 }
 
@@ -23804,7 +23971,7 @@ body.travel-archive-body .wt-city-hero h1{
   font-weight: 600!important;
   letter-spacing: -0.06em !important;
   line-height:1.2;
-  word-break: keep-all !important;
+  word-break: keep-all;
 }
 
 body.travel-archive-body .wt-city-hero__lead{
@@ -24164,6 +24331,7 @@ body.travel-archive-body .footer.container{
   body.travel-archive-body .wt-city-hero h1{
     font-size: clamp(36px, 10.8vw, 48px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.travel-archive-body .wt-city-hero__lead{
@@ -24212,11 +24380,13 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h1{
     font-size: 25px !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   html body:not(.wtsr-page):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2{
     font-size: 24px !important;
-    line-height: 1.2 !important;
+    line-height: 1.2;
+  word-break: keep-all;
   }
 
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3{
@@ -24227,6 +24397,7 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
   html body.travel-home-body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) .travel-home .wthome-hero .wthome-card__visual h1{
     font-size: clamp(42px, 13.2vw, 58px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 }
 
@@ -24234,6 +24405,7 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
   html body.travel-home-body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) .travel-home .wthome-hero .wthome-card__visual h1{
     font-size: clamp(38px, 12.4vw, 49px) !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 }
 /* End 20260703 Mobile heading size normalization V2 */
@@ -24324,8 +24496,9 @@ body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc_
 body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head h2{
   margin: 0 !important;
   font-size: 24px !important;
-  line-height: 1.2 !important;
+  line-height: 1.2;
   letter-spacing: -0.04em !important;
+  word-break: keep-all;
 }
 
 body.wt-guide-body main.wt-city-hotel-guide-page #fukuoka-hotel-toc .wt-seo-toc__head p:last-child{
@@ -24570,8 +24743,9 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head h2{
   margin: 0 !important;
   font-size: 24px !important;
-  line-height: 1.2 !important;
+  line-height: 1.2;
   letter-spacing: -0.04em !important;
+  word-break: keep-all;
 }
 
 body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-toc__head p:last-child{
@@ -24849,7 +25023,7 @@ body.wt-guide-body main.travel-page.wt-city-travel-guide-page .wt-city-guide-her
   font-weight: 600!important;
   letter-spacing: -0.055em !important;
   line-height:1.2;
-  word-break: keep-all !important;
+  word-break: keep-all;
 }
 
 body.wt-guide-body .wt-city-guide-hero__subtitle{
@@ -24904,6 +25078,7 @@ body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .wt-city-guide-hero
 body.wt-guide-body main.travel-page.wt-city-travel-guide-page .wt-city-guide-hero h1{
     font-size: 32px !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.wt-guide-body .wt-city-guide-hero__subtitle{
@@ -26069,6 +26244,8 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
 body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section .result-destination{
   width: 100% !important;
   text-align: left !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section .tab-menu-container{
@@ -27141,9 +27318,9 @@ body.travel-purpose-body .wt-section--survey-cta .wt-cta-band h2{
   margin: 0 !important;
   color: #111 !important;
   font-size: clamp(32px, 4.5vw, 54px) !important;
-  line-height: 1.1 !important;
+  line-height: 1.2;
   letter-spacing: -.055em !important;
-  word-break: keep-all !important;
+  word-break: keep-all;
 }
 body.travel-purpose-body .wt-section--survey-cta .wt-cta-band p:not(.wt-city-kicker){
   max-width: 620px !important;
@@ -27716,10 +27893,12 @@ body.wtpromo-page.wtsr-page{
   font-weight: 600;
   line-height:1.2;
   letter-spacing: -.075em;
+  word-break: keep-all;
 }
 
 .wtsr-page .wtsr-hero h1 span{
   color: inherit;
+  word-break: keep-all;
 }
 
 .wtsr-page .wtsr-hero__desc{
@@ -27850,8 +28029,9 @@ body.wtpromo-page.wtsr-page{
   color: #111;
   font-size: clamp(30px, 4vw, 50px);
   font-weight: 600;
-  line-height: 1.08;
+  line-height: 1.2;
   letter-spacing: -.05em;
+  word-break: keep-all;
 }
 
 .wtsr-page .wtsr-summary p{
@@ -28062,6 +28242,7 @@ body.wtpromo-page.wtsr-page{
   .wtsr-page .wtsr-hero h1{
     font-size: clamp(44px, 14vw, 66px);
     line-height:1.2;
+  word-break: keep-all;
   }
 
   .wtsr-page .wtsr-hero__desc{
@@ -28282,7 +28463,7 @@ body.wtsr-page{
   margin: 0;
   font-size: clamp(28px, 3.4vw, 44px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -.045em;
   word-break: keep-all;
 }
@@ -28466,7 +28647,8 @@ body.wtsr-page{
 
   
   .wtsr-page .wtsr-hero{ padding: 48px 0 54px; }
-  .wtsr-page .wtsr-hero h1{ font-size: 48px; }
+  .wtsr-page .wtsr-hero h1{ font-size: 48px;
+  word-break: keep-all; }
   .wtsr-page .wtsr-hero__desc{ margin-top: 18px; font-size: 14px; }
   .wtsr-page .wtsr-hero__inner{ gap: 34px; }
   .wtsr-page .wtsr-form__row{ grid-template-columns: minmax(0, 1fr) 54px; height: 56px; }
@@ -30215,6 +30397,8 @@ body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-ho
 
 body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading h2{
   margin: 0 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-home-featured .section-heading .text-link.destinations-view-all-link{
@@ -30624,6 +30808,7 @@ body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-hero h1, .wt-page
   font-weight: 600 !important;
   line-height:1.2;
   letter-spacing: -.052em !important;
+  word-break: keep-all;
 }
 
 /* Full-width section grid, with readable article content inside it. */
@@ -30692,6 +30877,8 @@ body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-quote, blockquote
 body.wt-guide-body.wt-city-travel-guide-page :is(.wt-city-guide-heading, .wt-section-title, .wt-city-guide-subheading, .wt-city-guide-minor-heading),
 body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-heading, .wt-section-title, .wt-city-guide-subheading, .wt-city-guide-minor-heading){
   color: #000 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 body.wt-guide-body.wt-city-travel-guide-page :is(p, li),
@@ -30727,6 +30914,7 @@ body.wt-guide-body.wt-city-hotel-guide-page main.travel-page > :is(.wt-city-guid
 body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-hero h1, .wt-page-hero h1){
     font-size: 32px !important;
     line-height:1.2;
+  word-break: keep-all;
   }
 
   body.wt-guide-body.wt-city-travel-guide-page .wt-city-guide-section,
@@ -30861,8 +31049,9 @@ body.wt-guide-body main.travel-page .wt-city-guide-related.container h2{
   color: #000 !important;
   font-size: clamp(27px, 3.3vw, 42px) !important;
   font-weight: 600 !important;
-  line-height: 1.22 !important;
+  line-height: 1.2;
   letter-spacing: -.045em !important;
+  word-break: keep-all;
 }
 
 body.wt-guide-body main.travel-page .wt-city-guide-related.container p,
@@ -31408,6 +31597,8 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 
 .wtsr-page .wtsr-summary h2{
   font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 @media (max-width: 640px){
@@ -31462,6 +31653,8 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 
   .wtsr-page .wtsr-summary h2{
     font-size: 25px;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 
   .wtsr-page .wtsr-summary p{
@@ -31487,7 +31680,8 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
 .wtsr-page .wtsr-landing__form input::-webkit-search-cancel-button,.wtsr-page .wtsr-landing__form input::-webkit-search-decoration{display:none;-webkit-appearance:none}
 .wtsr-page .wtsr-landing__submit{width:86px;height:58px;margin:-1px -1px -1px 0;padding:0;border:0;background:#000;color:#fff;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer}
 .wtsr-page .wtsr-landing__content{width:min(1080px,100%);margin:clamp(72px,11vh,128px) auto 0;text-align:left}
-.wtsr-page .wtsr-landing__content h1{max-width:760px;margin:0;color:#000;font-size:clamp(42px,5.2vw,64px);line-height:1.2;letter-spacing:-.06em;font-weight:600}
+.wtsr-page .wtsr-landing__content h1{max-width:760px;margin:0;color:#000;font-size:clamp(42px,5.2vw,64px);line-height:1.2;letter-spacing:-.06em;font-weight:600;
+  word-break: keep-all;}
 .wtsr-page .wtsr-landing__content .home-search-overlay__eyebrow{margin:0 0 18px;color:#000;font-size:13px;font-weight:600;line-height:1.2}
 .wtsr-page .wtsr-landing__content .home-search-overlay__desc{max-width:620px;margin:22px 0 0;color:rgba(0,0,0,.62);font-size:16px;line-height:1.72;letter-spacing:-.035em}
 .wtsr-page .wtsr-landing__content .home-search-overlay__quick{width:min(680px,100%);margin:34px 0 0;display:flex;flex-wrap:wrap;gap:10px}
@@ -31504,7 +31698,8 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
  .wtsr-page .wtsr-landing__form input{height:50px;padding:0 13px;font-size:16px}
  .wtsr-page .wtsr-landing__submit{width:64px;height:52px;font-size:13px}
  .wtsr-page .wtsr-landing__content{margin-top:64px}
- .wtsr-page .wtsr-landing__content h1{max-width:330px;font-size:clamp(36px,11vw,44px);line-height:1.2}
+ .wtsr-page .wtsr-landing__content h1{max-width:330px;font-size:clamp(36px,11vw,44px);line-height:1.2;
+  word-break: keep-all;}
  .wtsr-page .wtsr-landing__content .home-search-overlay__eyebrow{margin-bottom:14px;font-size:12px}
  .wtsr-page .wtsr-landing__content .home-search-overlay__desc{max-width:330px;margin-top:18px;font-size:14px;line-height:1.68}
  .wtsr-page .wtsr-landing__content .home-search-overlay__quick{margin-top:28px;gap:8px}
@@ -31908,8 +32103,9 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
   color:#111;
   font-size:20px;
   font-weight:600;
-  line-height:1.2;
+  line-height: 1.2;
   letter-spacing:-.045em;
+  word-break: keep-all;
 }
 
 .wtsr-page .wtsr-popular-keywords{
@@ -31969,6 +32165,8 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
   .wtsr-page .wtsr-popular-section h2{
     margin-bottom:14px;
     font-size:17px;
+  line-height: 1.2;
+  word-break: keep-all;
   }
 
   .wtsr-page .wtsr-popular-keywords{
@@ -32024,10 +32222,13 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
     font-size: 56px !important;
     line-height:1.2;
     color: #000 !important;
+  word-break: keep-all;
   }
 }
 
 body.travel-home-body main.travel-page.travel-home h2 {
   color: #333 !important;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 /* END WACKYTRAVEL_CITY_H1_HOME_H2_V16 */

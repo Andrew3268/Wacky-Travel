@@ -323,10 +323,11 @@ html body .home-search-overlay[data-site-search-overlay="main"] .home-search-ove
   margin: 0;
   color: #000000;
   font-size: clamp(42px, 5.2vw, 64px);
-  line-height: 1.08;
+  line-height: 1.2;
   letter-spacing: -.06em;
   font-weight: 600;
   text-align: left;
+  word-break: keep-all;
 }
 
 html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__desc{
@@ -439,7 +440,8 @@ html body [data-site-header="main"] .topbar-search-button:focus-visible{
   html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content h2{
     max-width: 330px;
     font-size: clamp(36px, 11vw, 44px);
-    line-height: 1.1;
+    line-height: 1.2;
+  word-break: keep-all;
   }
 
   html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__desc{
