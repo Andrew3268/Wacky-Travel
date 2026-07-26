@@ -32421,3 +32421,150 @@ body.travel-city-body #travel-contents { padding-left: 0; padding-right: 0; }
     max-height: none;
   }
 }
+
+/* 2026-07-26: city dynamic-section skeletons match final card/list layout */
+body.travel-city-body #hotel-posts .wt-loading-skeleton-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  min-width: 0;
+}
+
+body.travel-city-body #hotel-posts .wt-loading-skeleton-card {
+  display: flex;
+  min-width: 0;
+  min-height: 430px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e4e4e4;
+  background: #fff;
+}
+
+body.travel-city-body #hotel-posts .wt-loading-skeleton-card__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #ededed;
+}
+
+body.travel-city-body #hotel-posts .wt-loading-skeleton-card__body {
+  display: flex;
+  min-height: 205px;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 13px;
+  padding: 22px;
+}
+
+.wt-loading-skeleton-line,
+.wt-loading-skeleton-button,
+.wt-loading-skeleton-row__arrow,
+.wt-loading-skeleton-card__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: #ededed;
+}
+
+.wt-loading-skeleton-line::after,
+.wt-loading-skeleton-button::after,
+.wt-loading-skeleton-row__arrow::after,
+.wt-loading-skeleton-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.76) 48%, transparent 100%);
+  animation: wtSkeletonShimmer 1.25s ease-in-out infinite;
+}
+
+.wt-loading-skeleton-line { height: 12px; }
+.wt-loading-skeleton-line--meta { width: 34%; height: 10px; }
+.wt-loading-skeleton-line--title { width: 88%; height: 25px; margin-top: 2px; }
+.wt-loading-skeleton-line--text { width: 100%; }
+.wt-loading-skeleton-line--short { width: 68%; }
+.wt-loading-skeleton-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+.wt-loading-skeleton-button { width: 98px; height: 38px; }
+.wt-loading-skeleton-button--small { width: 38px; border-radius: 50%; }
+
+body.travel-city-body #travel-contents .wt-loading-skeleton-list {
+  display: grid;
+  width: 100%;
+  gap: 0;
+}
+
+body.travel-city-body #travel-contents .wt-loading-skeleton-row {
+  display: flex;
+  min-height: 112px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 10px;
+  border: 0;
+  border-top: 1px solid #e4e4e4;
+  background: transparent;
+}
+body.travel-city-body #travel-contents .wt-loading-skeleton-row:last-child {
+  border-bottom: 1px solid #e4e4e4;
+}
+body.travel-city-body #travel-contents .wt-loading-skeleton-row__content {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+}
+.wt-loading-skeleton-line--row-meta { width: 120px; height: 9px; }
+.wt-loading-skeleton-line--row-title { width: min(520px, 76%); height: 22px; }
+.wt-loading-skeleton-line--row-text { width: min(680px, 92%); height: 11px; }
+body.travel-city-body #travel-contents .wt-loading-skeleton-row__arrow {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+}
+
+body.travel-city-body #hotel-posts .section-heading > div > h2:last-child,
+body.travel-city-body #travel-contents .section-heading > div > h2:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  body.travel-city-body #hotel-posts .wt-loading-skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body #hotel-posts .wt-loading-skeleton-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.travel-city-body #hotel-posts .wt-loading-skeleton-card {
+    min-height: 380px;
+  }
+  body.travel-city-body #hotel-posts .wt-loading-skeleton-card__body {
+    min-height: 180px;
+    padding: 20px;
+  }
+  body.travel-city-body #travel-contents .wt-loading-skeleton-row {
+    min-height: 96px;
+    gap: 14px;
+    padding: 18px 10px;
+  }
+  .wt-loading-skeleton-line--row-title { width: 88%; height: 19px; }
+  .wt-loading-skeleton-line--row-text { width: 96%; }
+  body.travel-city-body #travel-contents .wt-loading-skeleton-row__arrow {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+  }
+}
