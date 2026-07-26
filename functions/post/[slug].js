@@ -644,7 +644,7 @@ function renderMagazineHotelMeta(hotel = null) {
     items.push(`<span class="post-magazine-hotel-meta__item post-magazine-hotel-meta__item--rating" aria-label="투숙객 평점 ${escapeHtml(guestRating)}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2.8 2.83 5.73 6.32.92-4.58 4.46 1.08 6.3L12 17.24 6.35 20.2l1.08-6.3-4.58-4.46 6.32-.92L12 2.8Z"/></svg><span>${escapeHtml(guestRating)}</span></span>`);
   }
   if (!items.length) return "";
-  return `<div class="post-magazine-hotel-meta" aria-label="호텔 등급 및 평가">${items.join('<span class="post-magazine-hotel-meta__separator" aria-hidden="true">·</span>')}</div>`;
+  return `<div class="post-magazine-hotel-meta" aria-label="호텔 등급 및 평가">${items.join('<span class="post-magazine-hotel-meta__separator" aria-hidden="true">&middot;</span>')}</div>`;
 }
 
 function renderMagazineHotelBadges(hotel = null) {
