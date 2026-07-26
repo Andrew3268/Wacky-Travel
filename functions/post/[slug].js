@@ -116,8 +116,8 @@ export async function onRequestGet({ params, env, request }) {
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
       const contentTextLength = stripMarkdown(stripInlineImageTokens(cleanContentMd)).replace(/\s+/g, "").length;
-      const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, true);
-      const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, true);
+      const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, false);
+      const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
       const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,

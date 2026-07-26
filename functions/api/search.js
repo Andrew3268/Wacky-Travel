@@ -248,7 +248,7 @@ export async function onRequestGet({ env, request }) {
     selectColumn(postColumns, "focus_keyword", "p"),
     selectColumn(postColumns, "longtail_keywords_json", "p"),
     selectColumn(postColumns, "enable_sidebar_ad", "p", "enable_sidebar_ad", "0"),
-    selectColumn(postColumns, "enable_inarticle_ads", "p", "enable_inarticle_ads", "1"),
+    selectColumn(postColumns, "enable_inarticle_ads", "p", "enable_inarticle_ads", "0"),
     selectColumn(postColumns, "tags_json", "p"),
     selectColumn(postColumns, "content_type", "p"),
     selectColumn(postColumns, "destination_slug", "p"),

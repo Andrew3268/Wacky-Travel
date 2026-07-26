@@ -460,8 +460,8 @@ export async function onRequestPost({ env, request }) {
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
   const faqMd = String(body.faq_md || "").trim();
-  const enableSidebarAd = body.enable_sidebar_ad === false ? 0 : 1;
-  const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
+  const enableSidebarAd = body.enable_sidebar_ad === true ? 1 : 0;
+  const enableInarticleAds = body.enable_inarticle_ads === true ? 1 : 0;
   const status = normalizeStatusValue(body.status || "published");
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = normalizeContentType(body.content_type || "travel_tip");
