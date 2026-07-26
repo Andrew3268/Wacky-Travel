@@ -29015,7 +29015,7 @@ body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-section-head-row,
 body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-section-head-row{
   display: grid;
   grid-template-columns: minmax(0, 800px) auto;
-  align-items: center;
+  align-items: end;
   justify-content: space-between;
   gap: 32px;
   margin-bottom: 30px;
@@ -32513,7 +32513,8 @@ body.travel-city-body #travel-contents .section-heading > div > h2:last-child {
 
 /* V20260726: city kicker line, hotel card spacing, and detail action alignment */
 body.travel-city-body .wt-city-kicker::before,
-body.travel-purpose-body .wt-city-kicker::before{
+body.travel-purpose-body .wt-city-kicker::before,
+body.travel-purpose-body .wt-section-kicker::before{
   content: "";
   display: inline-block;
   width: 30px;
