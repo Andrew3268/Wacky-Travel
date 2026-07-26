@@ -1,10 +1,10 @@
-import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
+import { escapeHtml, okHtml, edgeCache, getAdminSession } from "../_utils.js";
 import { getSiteOrigin } from "../../lib/seo/site-url.js";
 import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } from "../../lib/travel/seo-jsonld.js";
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v24-hotel-card-mono-v1";
+const DESTINATION_RENDER_VERSION = "destination-detail-v25-admin-only-sections-v1";
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -25,16 +25,13 @@ export async function onRequestGet({ params, env, request }) {
   const postStampQuery = buildDestinationPostQuery(meta, { selectSql: "MAX(updated_at) AS posts_updated_at", orderSql: "" });
   const postStamp = await env.TRAVEL_DB.prepare(postStampQuery.sql).bind(...postStampQuery.binds).first();
 
-  const requestUrl = new URL(request.url);
   const origin = getSiteOrigin(env, request);
+  const adminSession = await getAdminSession(env, request).catch(() => null);
+  const isAdmin = Boolean(adminSession);
   const destinationVersion = [meta.updated_at, postStamp?.posts_updated_at, DESTINATION_RENDER_VERSION].filter(Boolean).join("|");
   const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}/?v=${encodeURIComponent(destinationVersion)}`;
 
-  return edgeCache({
-    request,
-    cacheKeyUrl,
-    ttlSeconds: 900,
-    buildResponse: async () => {
+  const buildDestinationResponse = async () => {
       const destination = await env.TRAVEL_DB.prepare(`
         SELECT * FROM destinations WHERE slug = ? AND status = 'published'
       `).bind(slug).first();
@@ -80,13 +77,13 @@ export async function onRequestGet({ params, env, request }) {
       const jsonLdItems = [
         buildBreadcrumbJsonLd(breadcrumbItems),
         buildDestinationJsonLd({ destination, url: canonical, siteName: "Wacky Travel" }),
-        buildItemListJsonLd({
+        ...(isAdmin ? [buildItemListJsonLd({
           url: canonical,
           items: hotelPosts.map((post) => ({
             name: post.title,
             url: `${origin}/post/${encodeURIComponent(post.slug)}/`
           }))
-        })
+        })] : [])
       ];
 
       const html = `<!doctype html>
@@ -114,18 +111,31 @@ export async function onRequestGet({ params, env, request }) {
       </div>
     </section>
 
-    ${renderHotelSection(destination, top5HotelPosts, hotelIntroPosts, contentTypes)}
+    ${isAdmin ? renderHotelSection(destination, top5HotelPosts, hotelIntroPosts, contentTypes) : ""}
 
-    ${renderTravelContentSection(destination, travelContentPosts)}
+    ${isAdmin ? renderTravelContentSection(destination, travelContentPosts) : ""}
   </main>
   ${renderFooter()}
-  ${renderHotelTabsScript()}
-  ${renderTravelContentMoreScript()}
+  ${isAdmin ? renderHotelTabsScript() : ""}
+  ${isAdmin ? renderTravelContentMoreScript() : ""}
   ${renderPostUpdateNoticeScript(destination)}
 </body>
 </html>`;
-      return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
-    }
+      return okHtml(html, {
+        headers: {
+          "cache-control": isAdmin ? "private, no-store" : "public, max-age=900",
+          ...(isAdmin ? { "x-robots-tag": "noindex, nofollow, noarchive" } : {})
+        }
+      });
+  };
+
+  if (isAdmin) return buildDestinationResponse();
+
+  return edgeCache({
+    request,
+    cacheKeyUrl,
+    ttlSeconds: 900,
+    buildResponse: buildDestinationResponse
   });
 }
 
