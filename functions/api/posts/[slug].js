@@ -18,11 +18,13 @@ function slugifyValue(value = "") {
     .replace(/^-|-$/g, "");
 }
 
+const HOTEL_FEATURE_BADGES = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리"]);
+
 function normalizeBadgeArray(value) {
   const source = Array.isArray(value)
     ? value
     : String(value || "").split(/[,.，、|]/);
-  return [...new Set(source.map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 12);
+  return [...new Set(source.map((item) => String(item || "").trim()).filter((item) => HOTEL_FEATURE_BADGES.has(item)))];
 }
 
 function parseJsonArray(value) {

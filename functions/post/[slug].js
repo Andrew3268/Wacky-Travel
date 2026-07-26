@@ -292,6 +292,8 @@ export async function onRequestGet({ params, env, request }) {
           showKicker: true
         }) : "";
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
+      const magazineHotelMetaHtml = isRecommendedHotelReviewPost ? renderMagazineHotelMeta(hotelHeroData?.hotel || null) : "";
+      const magazineHotelBadgesHtml = isRecommendedHotelReviewPost ? renderMagazineHotelBadges(hotelHeroData?.hotel || null) : "";
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
       const hotelPriceLink = isRecommendedHotelReviewPost
@@ -386,9 +388,11 @@ export async function onRequestGet({ params, env, request }) {
           <header class="card post-hero post-hero--product post-magazine-hero">
             ${coverImageHtml}
             <div class="post-magazine-head">
+              ${magazineHotelMetaHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
               ${magazineAdminActionsHtml}
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
+              ${magazineHotelBadgesHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
@@ -620,6 +624,24 @@ function renderProductStyleHeroKicker({ row = {}, hotel = null } = {}) {
   `;
 }
 
+function renderMagazineHotelMeta(hotel = null) {
+  if (!hotel) return "";
+  const items = [
+    formatStarRating(hotel.star_rating),
+    formatGuestRating(hotel.guest_rating),
+    String(hotel.price_level || "").trim()
+  ].filter(Boolean);
+  if (!items.length) return "";
+  return `<div class="post-magazine-hotel-meta" aria-label="호텔 등급 및 평가">${items.map((item) => `<span>${escapeHtml(item)}</span>`).join('<span class="post-magazine-hotel-meta__divider" aria-hidden="true">·</span>')}</div>`;
+}
+
+function renderMagazineHotelBadges(hotel = null) {
+  if (!hotel) return "";
+  const badges = buildHeroBadges({}, hotel, "");
+  if (!badges.length) return "";
+  return `<div class="post-magazine-feature-badges" aria-label="호텔 특징">${badges.map((badge) => `<span>${escapeHtml(badge)}</span>`).join("")}</div>`;
+}
+
 function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categoryLink = "/", summaryText = "", hotelHeroData = null, publishedIso = "", updatedIso = "", updatedDateText = "", showKicker = true }) {
   const hotel = hotelHeroData?.hotel || null;
   if (!hotel) return "";
@@ -628,7 +650,6 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
   const displayTitle = String(hotel.name || "").trim();
   const subtitle = String(hotel.name_en || "").trim();
   const heroKickerHtml = showKicker ? renderProductStyleHeroKicker({ row, hotel }) : "";
-  const badges = buildHeroBadges(row, hotel, updatedDateText);
   const ctaHtml = renderHeroCtas(links);
   const productSummary = String(summaryText || hotel.summary || "").trim();
 
@@ -639,12 +660,6 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
       ${displayTitle ? `<div class="post-hero-product-title" aria-label="호텔명">${escapeHtml(displayTitle)}</div>` : ""}
       ${subtitle ? `<p class="post-hero-subtitle">${escapeHtml(subtitle)}</p>` : ""}
       ${productSummary ? `<p class="post-hero-product-summary">${escapeHtml(productSummary)}</p>` : ""}
-
-      ${badges.length ? `
-        <div class="post-hero-info-pills" aria-label="호텔 뱃지 정보">
-          ${badges.map((badge) => `<span class="post-hero-info-pill">${escapeHtml(badge)}</span>`).join("")}
-        </div>
-      ` : ""}
 
       ${ctaHtml}
 
@@ -696,11 +711,12 @@ function formatGuestRating(value = "") {
 
 function buildHeroBadges(row = {}, hotel = null, updatedDateText = "") {
   if (!hotel) return [];
+  const allowed = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리"]);
   const badges = [];
   parseBadgeList(hotel.badges_json).forEach((badge) => {
-    if (!badges.includes(badge)) badges.push(badge);
+    if (allowed.has(badge) && !badges.includes(badge)) badges.push(badge);
   });
-  return badges.slice(0, 6);
+  return badges.slice(0, 7);
 }
 
 function parseBadgeList(value = "") {
