@@ -624,15 +624,27 @@ function renderProductStyleHeroKicker({ row = {}, hotel = null } = {}) {
   `;
 }
 
+function isHeroValueBadgeEnabled(value = "") {
+  const normalized = String(value || "").trim().replace(/\s+/g, "");
+  return normalized === "가성비" || normalized === "가성비호텔" || normalized === "true" || normalized === "1";
+}
+
 function renderMagazineHotelMeta(hotel = null) {
   if (!hotel) return "";
-  const items = [
-    formatStarRating(hotel.star_rating),
-    formatGuestRating(hotel.guest_rating),
-    String(hotel.price_level || "").trim()
-  ].filter(Boolean);
+  const items = [];
+  if (isHeroValueBadgeEnabled(hotel.price_level || "")) {
+    items.push('<span class="post-magazine-hotel-meta__item post-magazine-hotel-meta__item--value">가성비 호텔</span>');
+  }
+  const starRating = formatStarRating(hotel.star_rating);
+  if (starRating) {
+    items.push(`<span class="post-magazine-hotel-meta__item">${escapeHtml(starRating)}</span>`);
+  }
+  const guestRating = formatGuestRatingValue(hotel.guest_rating);
+  if (guestRating) {
+    items.push(`<span class="post-magazine-hotel-meta__item post-magazine-hotel-meta__item--rating" aria-label="투숙객 평점 ${escapeHtml(guestRating)}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 2.8 2.83 5.73 6.32.92-4.58 4.46 1.08 6.3L12 17.24 6.35 20.2l1.08-6.3-4.58-4.46 6.32-.92L12 2.8Z"/></svg><span>${escapeHtml(guestRating)}</span></span>`);
+  }
   if (!items.length) return "";
-  return `<div class="post-magazine-hotel-meta" aria-label="호텔 등급 및 평가">${items.map((item) => `<span>${escapeHtml(item)}</span>`).join('<span class="post-magazine-hotel-meta__divider" aria-hidden="true">·</span>')}</div>`;
+  return `<div class="post-magazine-hotel-meta" aria-label="호텔 등급 및 평가">${items.join("")}</div>`;
 }
 
 function renderMagazineHotelBadges(hotel = null) {
@@ -709,14 +721,20 @@ function formatGuestRating(value = "") {
   return normalized ? `투숙객 평점 ${normalized}+` : "";
 }
 
+function formatGuestRatingValue(value = "") {
+  const raw = String(value || "").trim().replace(/^(?:투숙객\s*)?평점\s*/i, "");
+  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  return normalized ? `${normalized}+` : "";
+}
+
 function buildHeroBadges(row = {}, hotel = null, updatedDateText = "") {
   if (!hotel) return [];
-  const allowed = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리"]);
+  const allowed = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리", "전망 좋은 뷰", "넓고 쾌적한 객실", "조식 맛집", "아이동반 최적", "커플 여행 최적", "호캉스 최적"]);
   const badges = [];
   parseBadgeList(hotel.badges_json).forEach((badge) => {
     if (allowed.has(badge) && !badges.includes(badge)) badges.push(badge);
   });
-  return badges.slice(0, 7);
+  return badges.slice(0, 13);
 }
 
 function parseBadgeList(value = "") {

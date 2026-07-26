@@ -18,7 +18,7 @@ function slugifyValue(value = "") {
     .replace(/^-|-$/g, "");
 }
 
-const HOTEL_FEATURE_BADGES = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리"]);
+const HOTEL_FEATURE_BADGES = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리", "전망 좋은 뷰", "넓고 쾌적한 객실", "조식 맛집", "아이동반 최적", "커플 여행 최적", "호캉스 최적"]);
 
 function normalizeBadgeArray(value) {
   const source = Array.isArray(value)
