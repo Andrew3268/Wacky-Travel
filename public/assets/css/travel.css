@@ -32381,3 +32381,43 @@ body.travel-city-body #travel-contents { padding-left: 0; padding-right: 0; }
 @keyframes wtSkeletonShimmer { 100% { transform:translateX(100%); } }
 @media (max-width:900px) { .wt-loading-skeleton-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:640px) { .wt-loading-skeleton-grid { grid-template-columns:1fr; } .wt-loading-skeleton-card { min-height:300px; } }
+
+/* Hotel location survey: viewport-bound app height (actual DOM target) */
+@media (min-width: 768px) {
+  body.wt-location-survey-page--app {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    min-height: 100dvh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  body.wt-location-survey-page--app .wt-app-container {
+    height: min(820px, calc(100dvh - 48px));
+    max-height: calc(100dvh - 48px);
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 767px) {
+  body.wt-location-survey-page--app,
+  body.wt-location-survey-page--app main.wt-location-page.wt-location-app {
+    min-height: 100dvh;
+    height: auto;
+    overflow: visible;
+  }
+
+  body.wt-location-survey-page--app .wt-app-container {
+    height: 100dvh;
+    max-height: none;
+  }
+}
