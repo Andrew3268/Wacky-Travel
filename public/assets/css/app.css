@@ -7399,7 +7399,7 @@ body.post-page-body .post-ad--placeholder{
 body.post-page-body .post-faq,
 body.post-page-body .post-related{
   width: 100%;
-  max-width: 880px;
+  max-width: 800px;
   margin: 84px auto 0;
   padding-top: 34px;
   border-top: 1px solid var(--wt-line);
@@ -8456,7 +8456,7 @@ body.post-page-body .post-magazine-head > .post-hero-admin-actions.post-admin-mi
    두 요소가 모든 화면에서 동일한 콘텐츠 기준선과 반응형 간격을 사용합니다.
 ========================================================= */
 body.post-page-body{
-  --post-reading-width: 880px;
+  --post-reading-width: 800px;
   --post-page-gutter: 0px;
   --post-page-top-space: clamp(20px, 2.4vw, 32px);
   --post-breadcrumb-hero-gap: clamp(24px, 3vw, 38px);
@@ -8465,8 +8465,8 @@ body.post-page-body{
 body.post-page-body .post-guide-page,
 body.post-page-body--hotel-review-magazine .post-guide-page{
   box-sizing: border-box;
-  width: min(var(--wt-container), calc(100% - (var(--post-page-gutter) * 2)));
-  max-width: none;
+  width: min(var(--post-reading-width), calc(100% - (var(--post-page-gutter) * 2)));
+  max-width: var(--post-reading-width);
   margin-inline: auto;
   padding: var(--post-page-top-space) 0 clamp(72px, 8vw, 96px);
 }
