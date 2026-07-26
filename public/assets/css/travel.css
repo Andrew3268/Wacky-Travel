@@ -32600,3 +32600,60 @@ body.travel-archive-body .hotel-card .text-link{
     margin-top: 28px;
   }
 }
+
+/* WACKYTRAVEL_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V1
+   - 도시 메인 관련 가이드 kicker를 wt-city-kicker로 통일
+   - 모바일 Hotel Picks 카드를 가로 스크롤로 표시
+========================================================= */
+body.travel-city-body .wt-city-start-guides .wt-city-kicker {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card-grid--hotels {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(280px, 84vw);
+    gap: 14px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card-grid--hotels > .travel-card.hotel-card {
+    width: 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .wt-loading-skeleton-grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(280px, 84vw);
+    grid-column: auto;
+    gap: 14px;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  body.travel-city-body:not(.travel-archive-body) #hotel-posts .wt-loading-skeleton-card {
+    width: 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+/* End WACKYTRAVEL_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V1 */
