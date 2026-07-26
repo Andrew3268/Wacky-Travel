@@ -1,10 +1,15 @@
-import { escapeHtml, okHtml, edgeCache } from "../_utils.js";
+import { escapeHtml, okHtml, edgeCache, getAdminSession } from "../_utils.js";
 import { getSiteOrigin } from "../../lib/seo/site-url.js";
 import { buildBreadcrumbJsonLd, buildDestinationJsonLd, buildItemListJsonLd } from "../../lib/travel/seo-jsonld.js";
 import { renderSiteHeader, renderFooter, renderBreadcrumbs, renderTravelHead, renderJsonLdScripts, formatDate } from "../../lib/travel/travel-utils.js";
 import { getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
-const DESTINATION_RENDER_VERSION = "destination-detail-v24-hotel-card-mono-v1";
+const DESTINATION_RENDER_VERSION = "destination-detail-v26-static-city-admin-gate-v2";
+const STATIC_CITY_SLUGS = new Set([
+  "osaka", "fukuoka", "tokyo", "sapporo", "okinawa",
+  "da-nang", "nha-trang", "ho-chi-minh-city", "hanoi", "phu-quoc",
+  "taipei", "taichung", "tainan", "kaohsiung", "hualien"
+]);
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const HOTEL_INITIAL_LIMIT = 3;
 const HOTEL_MORE_LIMIT = 3;
@@ -12,8 +17,16 @@ const TRAVEL_CONTENT_INITIAL_LIMIT = 10;
 const TRAVEL_CONTENT_MORE_LIMIT = 5;
 
 export async function onRequestGet({ params, env, request }) {
-  const slug = decodeURIComponent(String(params.slug || ""));
+  const slug = decodeURIComponent(String(params.slug || "")).trim();
   if (!slug) return okHtml("Not Found", { status: 404 });
+
+  const adminSession = await getAdminSession(env, request).catch(() => null);
+  const isAdmin = Boolean(adminSession);
+
+  if (STATIC_CITY_SLUGS.has(slug)) {
+    const staticCityResponse = await renderStaticCityHub({ slug, env, request, isAdmin });
+    if (staticCityResponse) return staticCityResponse;
+  }
 
   const meta = await env.TRAVEL_DB.prepare(`
     SELECT slug, name, city, updated_at
@@ -25,16 +38,11 @@ export async function onRequestGet({ params, env, request }) {
   const postStampQuery = buildDestinationPostQuery(meta, { selectSql: "MAX(updated_at) AS posts_updated_at", orderSql: "" });
   const postStamp = await env.TRAVEL_DB.prepare(postStampQuery.sql).bind(...postStampQuery.binds).first();
 
-  const requestUrl = new URL(request.url);
   const origin = getSiteOrigin(env, request);
   const destinationVersion = [meta.updated_at, postStamp?.posts_updated_at, DESTINATION_RENDER_VERSION].filter(Boolean).join("|");
   const cacheKeyUrl = `${origin}/destinations/${encodeURIComponent(slug)}/?v=${encodeURIComponent(destinationVersion)}`;
 
-  return edgeCache({
-    request,
-    cacheKeyUrl,
-    ttlSeconds: 900,
-    buildResponse: async () => {
+  const buildDestinationResponse = async () => {
       const destination = await env.TRAVEL_DB.prepare(`
         SELECT * FROM destinations WHERE slug = ? AND status = 'published'
       `).bind(slug).first();
@@ -80,13 +88,13 @@ export async function onRequestGet({ params, env, request }) {
       const jsonLdItems = [
         buildBreadcrumbJsonLd(breadcrumbItems),
         buildDestinationJsonLd({ destination, url: canonical, siteName: "Wacky Travel" }),
-        buildItemListJsonLd({
+        ...(isAdmin ? [buildItemListJsonLd({
           url: canonical,
           items: hotelPosts.map((post) => ({
             name: post.title,
             url: `${origin}/post/${encodeURIComponent(post.slug)}/`
           }))
-        })
+        })] : [])
       ];
 
       const html = `<!doctype html>
@@ -114,19 +122,102 @@ export async function onRequestGet({ params, env, request }) {
       </div>
     </section>
 
-    ${renderHotelSection(destination, top5HotelPosts, hotelIntroPosts, contentTypes)}
+    ${isAdmin ? renderHotelSection(destination, top5HotelPosts, hotelIntroPosts, contentTypes) : ""}
 
-    ${renderTravelContentSection(destination, travelContentPosts)}
+    ${isAdmin ? renderTravelContentSection(destination, travelContentPosts) : ""}
   </main>
   ${renderFooter()}
-  ${renderHotelTabsScript()}
-  ${renderTravelContentMoreScript()}
+  ${isAdmin ? renderHotelTabsScript() : ""}
+  ${isAdmin ? renderTravelContentMoreScript() : ""}
   ${renderPostUpdateNoticeScript(destination)}
 </body>
 </html>`;
-      return okHtml(html, { headers: { "cache-control": "public, max-age=900" } });
-    }
+      return okHtml(html, {
+        headers: {
+          "cache-control": isAdmin ? "private, no-store" : "public, max-age=900",
+          ...(isAdmin ? { "x-robots-tag": "noindex, nofollow, noarchive" } : {})
+        }
+      });
+  };
+
+  if (isAdmin) return buildDestinationResponse();
+
+  return edgeCache({
+    request,
+    cacheKeyUrl,
+    ttlSeconds: 900,
+    buildResponse: buildDestinationResponse
   });
+}
+
+async function renderStaticCityHub({ slug, env, request, isAdmin }) {
+  if (!env?.ASSETS?.fetch) return null;
+
+  const assetUrl = new URL(request.url);
+  assetUrl.pathname = `/destinations/${encodeURIComponent(slug)}/index.html`;
+  assetUrl.search = "";
+
+  let assetResponse;
+  try {
+    assetResponse = await env.ASSETS.fetch(new Request(assetUrl.toString(), {
+      method: "GET",
+      headers: { accept: "text/html" }
+    }));
+  } catch (_) {
+    return null;
+  }
+
+  if (!assetResponse?.ok) return null;
+
+  const headers = new Headers(assetResponse.headers);
+  headers.set("cache-control", "private, no-store");
+  headers.set("vary", appendVary(headers.get("vary"), "Cookie"));
+  headers.set("x-wackytravel-city-renderer", "static-hub-admin-gate-v2");
+
+  const response = new Response(assetResponse.body, {
+    status: assetResponse.status,
+    statusText: assetResponse.statusText,
+    headers
+  });
+
+  const rewriter = new HTMLRewriter();
+  if (isAdmin) {
+    rewriter
+      .on("#hotel-posts", new RevealAdminPreviewHandler())
+      .on("#travel-contents", new RevealAdminPreviewHandler())
+      .on('a[href="#hotel-posts"]', new RevealAdminPreviewHandler());
+  } else {
+    rewriter
+      .on("#hotel-posts", new RemoveElementHandler())
+      .on("#travel-contents", new RemoveElementHandler())
+      .on('a[href="#hotel-posts"]', new RemoveElementHandler());
+  }
+
+  return rewriter.transform(response);
+}
+
+function appendVary(currentValue = "", token = "") {
+  const values = String(currentValue || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  if (token && !values.some((value) => value.toLowerCase() === token.toLowerCase())) values.push(token);
+  return values.join(", ");
+}
+
+class RemoveElementHandler {
+  element(element) {
+    element.remove();
+  }
+}
+
+class RevealAdminPreviewHandler {
+  element(element) {
+    element.removeAttribute("hidden");
+    element.setAttribute("aria-hidden", "false");
+    element.removeAttribute("tabindex");
+    element.removeAttribute("aria-disabled");
+  }
 }
 
 function buildDestinationPostQuery(destination = {}, { selectSql = "*", orderSql = "", orderBinds = [] } = {}) {

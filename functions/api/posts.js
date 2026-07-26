@@ -28,11 +28,13 @@ function normalizedStatusSql() {
   return "LOWER(TRIM(COALESCE(status, 'published')))";
 }
 
+const HOTEL_FEATURE_BADGES = new Set(["훌륭한 위치", "뚜벅이 최적", "깔끔한 위생", "친절한 서비스", "쇼핑·맛집 중심", "높은 만족도", "공항 이동 편리", "전망 좋은 뷰", "넓고 쾌적한 객실", "조식 맛집", "아이동반 최적", "커플 여행 최적", "호캉스 최적"]);
+
 function normalizeBadgeArray(value) {
   const source = Array.isArray(value)
     ? value
     : String(value || "").split(/[,.，、|]/);
-  return [...new Set(source.map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 12);
+  return [...new Set(source.map((item) => String(item || "").trim()).filter((item) => HOTEL_FEATURE_BADGES.has(item)))];
 }
 
 async function ensureHotelColumns(db) {
@@ -460,8 +462,8 @@ export async function onRequestPost({ env, request }) {
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
   const faqMd = String(body.faq_md || "").trim();
-  const enableSidebarAd = body.enable_sidebar_ad === false ? 0 : 1;
-  const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
+  const enableSidebarAd = body.enable_sidebar_ad === true ? 1 : 0;
+  const enableInarticleAds = body.enable_inarticle_ads === true ? 1 : 0;
   const status = normalizeStatusValue(body.status || "published");
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = normalizeContentType(body.content_type || "travel_tip");

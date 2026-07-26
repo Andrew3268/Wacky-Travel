@@ -18,8 +18,9 @@
     "seo:routes": "node ./tools/generate-static-routes.mjs",
     "seo:audit": "node ./tools/seo-audit.mjs",
     "check:syntax": "node ./tools/syntax-check.mjs",
-    "check": "npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:syntax",
-    "predeploy": "npm run check"
+    "check": "npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:syntax && npm run check:city-hubs",
+    "predeploy": "npm run check",
+    "check:city-hubs": "node ./tools/city-hub-audit.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"

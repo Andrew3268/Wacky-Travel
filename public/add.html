@@ -131,7 +131,7 @@
               <div class="section-heading" style="margin-bottom:12px;">
                 <div>
                   <div class="h2">호텔 히어로 정보</div>
-                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 위치 유형, 성급, 투숙객 평점, 가성비 여부, CTA 버튼 정보를 입력합니다.</p>
+                  <p class="small">호텔명과 위치 정보, 제목 위 메타 정보, 특징 뱃지, CTA 버튼 정보를 입력합니다.</p>
                 </div>
               </div>
               <div class="grid grid--2">
@@ -189,19 +189,29 @@
                     <span>가성비 호텔로 표기</span>
                   </label>
                 </div>
-                <label>
-                  <div class="small">추가 뱃지 정보</div>
-                  <input class="input" id="heroHotelBadges" placeholder="예: 수영장, 조식 가능, 야경 전망" />
-                </label>
+                <div class="hotel-badge-options" role="group" aria-label="호텔 특징 뱃지 선택">
+                  <div class="small">호텔 특징 뱃지</div>
+                  <div class="hotel-badge-options__grid" style="margin-top:10px;">
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="훌륭한 위치" /><span>훌륭한 위치</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="뚜벅이 최적" /><span>뚜벅이 최적</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="깔끔한 위생" /><span>깔끔한 위생</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="친절한 서비스" /><span>친절한 서비스</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="쇼핑·맛집 중심" /><span>쇼핑·맛집 중심</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="높은 만족도" /><span>높은 만족도</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="공항 이동 편리" /><span>공항 이동 편리</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="전망 좋은 뷰" /><span>전망 좋은 뷰</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="넓고 쾌적한 객실" /><span>넓고 쾌적한 객실</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="조식 맛집" /><span>조식 맛집</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="아이동반 최적" /><span>아이동반 최적</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="커플 여행 최적" /><span>커플 여행 최적</span></label>
+                    <label class="checkbox-line"><input type="checkbox" class="hero-hotel-badge-option" value="호캉스 최적" /><span>호캉스 최적</span></label>
+                  </div>
+                </div>
               </div>
-              <div class="grid grid--2" style="margin-top:12px;">
+              <div style="margin-top:12px;">
                 <label>
                   <div class="small">객실 가격 확인 링크</div>
                   <input class="input" id="heroHotelPriceUrl" placeholder="https://..." />
-                </label>
-                <label>
-                  <div class="small">예약 가능 여부 링크</div>
-                  <input class="input" id="heroHotelAvailabilityUrl" placeholder="https://..." />
                 </label>
               </div>
             </div>
@@ -287,8 +297,8 @@
               <div style="display:flex; gap:18px; flex-wrap:wrap;">
                 <label class="row"><input type="checkbox" id="enableToc" /> 목차 사용</label>
                 <label class="row"><input type="checkbox" id="includeTocH3" /> H3 포함</label>
-                <label class="row"><input type="checkbox" id="enable_sidebar_ad" checked /> 사이드바 광고</label>
-                <label class="row"><input type="checkbox" id="enable_inarticle_ads" checked /> 본문 광고</label>
+                <label class="row"><input type="checkbox" id="enable_sidebar_ad" /> 사이드바 광고</label>
+                <label class="row"><input type="checkbox" id="enable_inarticle_ads" /> 본문 광고</label>
               </div>
               <div id="tocStatus" class="small" style="margin-top:10px;"></div>
             </div>

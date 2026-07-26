@@ -32611,3 +32611,45 @@ body.travel-city-body .wt-city-start-guides .wt-city-kicker {
   }
 }
 /* End WACKYTRAVEL_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V2 */
+
+/* WACKYTRAVEL_CITY_STATIC_ADMIN_GATE_AND_STYLE_RESTORE_V2
+   - Prevents admin-only city sections from flashing before session verification.
+   - Reasserts the latest CITY GUIDE kicker and guide-list layout when a stale
+     destination renderer or cached cascade previously overrode them.
+========================================================= */
+body.travel-city-body [data-admin-preview-section][hidden],
+body.travel-city-body [data-admin-hotel-anchor][hidden] {
+  display: none !important;
+}
+
+body.travel-city-body .wt-city-start-guides .wt-city-kicker {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+body.travel-city-body .wt-city-start-guides .wt-city-kicker::before {
+  content: "" !important;
+  display: inline-block !important;
+  flex: 0 0 30px !important;
+  width: 30px !important;
+  height: 1px !important;
+  margin: 0 10px 4px 0 !important;
+  background: currentColor !important;
+}
+
+body.travel-city-body .wt-city-start-guides .wt-firsttrip-guide-list {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+
+body.travel-city-body .wt-city-start-guides .wt-firsttrip-guide {
+  width: 100% !important;
+  min-width: 0 !important;
+}

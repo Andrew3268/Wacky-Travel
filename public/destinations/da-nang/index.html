@@ -7,7 +7,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260726PostWidth800V1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260726PurposeKickerHotelHeadV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260726CityStaticRestoreV2" rel="stylesheet"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"/"},{"@type":"ListItem","position":2,"name":"여행지","item":"/destinations/"},{"@type":"ListItem","position":3,"name":"다낭","item":"/destinations/da-nang/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristDestination","name":"다낭","alternateName":"Da Nang","description":"다낭 숙소 위치, 호텔 추천, 여행 동선, 해변 휴식, 호이안·바나힐 근교 여행을 정리한 Wacky Travel 도시 허브 페이지입니다.","url":"/destinations/da-nang/","touristType":["자유여행을 준비하는 분","커플 여행을 준비하는 분","가족 여행을 준비하는 분","호텔 비교를 원하는 분"],"containedInPlace":{"@type":"Country","name":"베트남"},"inLanguage":"ko-KR"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"다낭 숙소 선택 중요 동선","itemListElement":[{"@type":"ListItem","position":1,"name":"미케비치·푸억미"},{"@type":"ListItem","position":2,"name":"논느억·오행산 리조트권"},{"@type":"ListItem","position":3,"name":"다낭 시내·한시장"},{"@type":"ListItem","position":4,"name":"한강 동쪽·용다리"},{"@type":"ListItem","position":5,"name":"다낭 북부·공항·기차역 주변"}]}</script>
@@ -71,7 +71,7 @@
 <p class="wt-city-kicker">다낭 숙소 위치 가이드</p>
 <h1 id="danangCityTitle">다낭 숙소,<br/>어디에 잡으면 편할까요?</h1>
 <p class="wt-city-hero__lead">다낭 숙소는 실제 호텔이 몰린 권역을 기준으로 나누는 편이 정확합니다. 미케비치·푸억미, 논느억·오행산 리조트권, 다낭 시내·한시장, 한강 동쪽·용다리, 다낭 북부·공항·기차역 주변 중 내 일정과 가까운 곳부터 비교해보세요.</p>
-<div aria-label="다낭 페이지 바로가기" class="wt-city-hero__actions"><a class="wt-city-button wt-city-button--primary" href="#area-guide">숙소 위치 가이드</a><a class="wt-city-button" href="#hotel-posts">추천 호텔</a></div>
+<div aria-label="다낭 페이지 바로가기" class="wt-city-hero__actions"><a class="wt-city-button wt-city-button--primary" href="#area-guide">숙소 위치 가이드</a><a class="wt-city-button" href="#hotel-posts" data-admin-hotel-anchor="" hidden="" aria-hidden="true" tabindex="-1">추천 호텔</a></div>
 </div>
 </section>
 <section aria-labelledby="danangSnapshotTitle" class="wt-city-snapshot container" id="choices">
@@ -206,7 +206,7 @@
 <a class="wt-city-button wt-city-button--primary" href="/destinations/da-nang/hotel-location-survey/">숙소 위치 찾기</a>
 </div>
 </section>
-<section aria-labelledby="danangHotelPicksTitle" class="container travel-section wt-city-dynamic-section" id="hotel-posts">
+<section aria-labelledby="danangHotelPicksTitle" class="container travel-section wt-city-dynamic-section" id="hotel-posts" data-admin-preview-section="" hidden="" aria-hidden="true">
 <div class="section-heading section-heading--split">
 <div>
 <p class="wt-city-kicker">Hotel Picks</p>
@@ -237,7 +237,7 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="danangTravelContentsTitle" class="container travel-section wt-city-dynamic-section" id="travel-contents">
+<section aria-labelledby="danangTravelContentsTitle" class="container travel-section wt-city-dynamic-section" id="travel-contents" data-admin-preview-section="" hidden="" aria-hidden="true">
 <div class="section-heading section-heading--split">
 <div>
 <p class="wt-city-kicker">Travel Contents</p>
@@ -257,7 +257,7 @@
 <section aria-labelledby="danangGuideLinksTitle" class="wt-section wt-section--compact wt-firsttrip-related-guides wt-city-start-guides" id="guides">
 <div class="container">
 <div class="wt-section-head">
-<div class="wt-city-kicker">CITY GUIDE</div>
+<p class="wt-city-kicker">CITY GUIDE</p>
 <h2 class="wt-section-title" id="danangGuideLinksTitle">숙소 위치를 정했다면 바나힐과 호이안 일정도 함께 확인해보세요</h2>
 </div>
 <div class="wt-firsttrip-guide-list">
@@ -323,7 +323,7 @@
 </nav>
 </div>
 </footer>
-<script defer="" src="/assets/js/posts.js?v=20260725SurveySkeletonV1"></script>
+<script defer="" src="/assets/js/city-admin-sections.js?v=20260726CityAdminGateV2"></script>
 <script defer="" src="/assets/js/area-tabs-scroll.js?v=20260618MinimalBalanceV111"></script>
 <script defer="" src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
 </body>
