@@ -1537,3 +1537,28 @@ p,
 strong {
   word-break: keep-all;
 }
+
+
+/* Admin dashboard header logout */
+.admin-dashboard-logout{
+  appearance:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+}
+.admin-dashboard-logout:hover{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.admin-dashboard-logout:disabled{
+  cursor:wait;
+  opacity:.55;
+}

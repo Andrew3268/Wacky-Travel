@@ -24,6 +24,7 @@ async function initDashboard() {
   const recentListEl = document.getElementById('dashboardRecentList');
   const indexSidebarAdToggleEl = document.getElementById('indexSidebarAdToggle');
   const indexSidebarAdStatusEl = document.getElementById('indexSidebarAdStatus');
+  const logoutButtonEl = document.getElementById('adminDashboardLogout');
 
   if (!totalEl || !publishedEl || !draftEl || !popularListEl || !recentListEl) {
     console.error('대시보드 필수 요소를 찾을 수 없습니다.');
@@ -121,6 +122,25 @@ async function initDashboard() {
   }
 
   if (emailEl) emailEl.textContent = sessionJson.admin?.email || '관리자';
+
+  logoutButtonEl?.addEventListener('click', async () => {
+    logoutButtonEl.disabled = true;
+    logoutButtonEl.textContent = '로그아웃 중…';
+    try {
+      const res = await fetch('/api/admin/logout', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json' }
+      });
+      if (!res.ok) throw new Error(`로그아웃 실패 (${res.status})`);
+      location.href = '/admin/';
+    } catch (err) {
+      console.error(err);
+      alert('로그아웃 중 오류가 발생했습니다.');
+      logoutButtonEl.disabled = false;
+      logoutButtonEl.textContent = '로그아웃';
+    }
+  });
 
   let indexSidebarAdEnabled = false;
   await refreshDashboard();
