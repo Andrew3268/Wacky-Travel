@@ -479,7 +479,7 @@ function renderHotelPostCard(post, contentTypes = []) {
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
         <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
-        <span class="text-link">글 보기</span>
+        <span class="text-link">자세히 보기</span>
       </div>
     </a>
   </article>`;

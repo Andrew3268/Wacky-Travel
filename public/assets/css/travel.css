@@ -32568,3 +32568,35 @@ body.travel-city-body #travel-contents .section-heading > div > h2:last-child {
     flex-basis: 28px;
   }
 }
+
+/* V20260726: city kicker line, hotel card spacing, and detail action alignment */
+body.travel-city-body .wt-city-kicker::before{
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  margin: 0 10px 4px 0;
+  background: currentColor;
+}
+
+body.travel-city-body #hotel-posts .hotel-tabs__footer{
+  margin-top: 36px;
+}
+
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body > .travel-card__description + .text-link,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body > .travel-card__description + .text-link,
+body.travel-archive-body .hotel-card .travel-card__body > .travel-card__description + .text-link{
+  margin-top: 24px !important;
+}
+
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .text-link,
+body.travel-destination-detail-body #hotel-posts .hotel-card .text-link,
+body.travel-archive-body .hotel-card .text-link{
+  margin-left: auto !important;
+}
+
+@media (max-width: 767px){
+  body.travel-city-body #hotel-posts .hotel-tabs__footer{
+    margin-top: 28px;
+  }
+}
