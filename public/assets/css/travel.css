@@ -32628,6 +32628,18 @@ body.travel-city-body .wt-city-start-guides .wt-city-kicker {
 }
 
 
+/* WACKYTRAVEL_HOME_EYEBROW_LINE_V1 */
+body.travel-home-body .travel-section--destination-hub .eyebrow::before,
+body.travel-home-body .wt-home-start-guides .eyebrow::before{
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  margin: 0 10px 4px 0;
+  background: currentColor;
+}
+/* END WACKYTRAVEL_HOME_EYEBROW_LINE_V1 */
+
 /* WACKYTRAVEL_HOME_START_GUIDES_V1 */
 body.travel-home-body .wt-home-start-guides{
   background: #fff;
