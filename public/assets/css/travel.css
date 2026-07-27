@@ -32785,3 +32785,20 @@ body.wt-location-survey-page--app .tab-btn[hidden],
 body.wt-location-survey-page--app #relatedPostSection[hidden]{
   display: none !important;
 }
+
+/* BESTAYABLE_BREADCRUMB_HERO_SPACING_V111
+   Breadcrumb 아래 도시 메인 및 목적별 페이지 hero 상단 간격을 40px로 통일
+========================================================= */
+.breadcrumbs.container + main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
+.travel-page.wt-city-page > .wt-city-hero.container:first-child {
+  padding-top: 40px !important;
+}
+
+main.travel-page.wt-purpose-page > .wt-page-hero:first-child,
+.travel-page.wt-purpose-page > .wt-page-hero:first-child,
+main.travel-page.wt-purpose-page .wt-page-hero,
+.travel-page.wt-purpose-page .wt-page-hero {
+  padding-top: 40px !important;
+}
+/* End BESTAYABLE_BREADCRUMB_HERO_SPACING_V111 */

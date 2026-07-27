@@ -976,3 +976,21 @@ p,
 strong {
   word-break: keep-all;
 }
+
+/* BESTAYABLE_PROMOTION_HERO_SPACING_V17
+   프로모션 breadcrumb 아래 hero 간격 및 eyebrow 장식 통일
+========================================================= */
+.wtpromo-page .wtpromo-hero,
+.wtpromo-hero {
+  padding-top: 40px !important;
+}
+
+.wtpromo-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  margin: 0 10px 4px 0;
+  background: currentColor;
+}
+/* End BESTAYABLE_PROMOTION_HERO_SPACING_V17 */
