@@ -78,7 +78,7 @@
 <section aria-labelledby="nhaTrangArchiveTitle" class="wt-city-hero container">
 <div class="wt-city-hero__content">
 <p class="wt-city-kicker">Nha Trang Hotel Picks</p>
-<h1 id="nhaTrangArchiveTitle">나트랑 호텔 추천 글을 여행 스타일별로 모아봤어요</h1>
+<h1 id="nhaTrangArchiveTitle">나트랑에서 어떤 호텔을<br/>찾고 있나요?</h1>
 <p class="wt-city-hero__lead">첫 여행, 가성비, 섬 일정, 가족 여행, 조용한 숙소처럼 여행 준비할 때 실제로 고민하는 상황별 호텔 추천 글을 한곳에 모았습니다. 내 여행 목적에 맞는 글을 고르고, 나트랑 숙소 선택지를 차근히 정리해보세요.</p>
 </div>
 </section>
@@ -92,7 +92,7 @@
 <button class="wt-region-filter__button" type="button" data-category-filter-value="theme" aria-pressed="false">특별한 테마가 있는 호텔</button>
 <button class="wt-region-filter__button" type="button" data-category-filter-value="season-holiday" aria-pressed="false">지금 가기 좋은 호텔</button>
 </div>
-<div class="wt-category-filter-description" data-category-description="" hidden=""></div>
+
 <div class="wt-city-archive-summary" hidden>
 <div class="wt-city-archive-count" data-archive-count=""></div>
 </div>
@@ -181,7 +181,6 @@
       const count = document.querySelector('[data-archive-count]');
       const summary = document.querySelector('.wt-city-archive-summary');
       const filterWrap = document.querySelector('[data-category-filter]');
-      const descriptionBox = document.querySelector('[data-category-description]');
       const destination = "nha-trang";
       const type = 'top5_series';
       const limit = 60;
@@ -202,7 +201,6 @@
 
       const getCategorySlug = (item = {}) => String(item.slug || item.recommendation_category_slug || '').trim();
       const getCategoryName = (item = {}) => String(item.name || item.recommendation_category_name || getCategorySlug(item)).trim();
-      const getCategoryDescription = (item = {}) => String(item.description || item.recommendation_category_description || '').trim();
 
       const fetchSettings = async () => {
         try {
@@ -281,23 +279,6 @@
         `).join('');
       };
 
-      const renderCategoryDescription = () => {
-        if (!descriptionBox) return;
-        const item = getCategoryItem(activeCategory);
-        if (!item) {
-          descriptionBox.hidden = true;
-          descriptionBox.innerHTML = '';
-          return;
-        }
-        const title = getCategoryName(item);
-        const description = getCategoryDescription(item);
-        descriptionBox.hidden = false;
-        descriptionBox.innerHTML = `
-          <strong>${escapeHtml(title)}</strong>
-          ${description ? `<p>${escapeHtml(description)}</p>` : ''}
-        `;
-      };
-
       const centerActiveCategoryFilter = () => {
         if (!filterWrap || filterWrap.hidden) return;
         const activeButton = filterWrap.querySelector('.wt-region-filter__button.is-active');
@@ -343,8 +324,8 @@
         grid.querySelector('[data-filter-empty]')?.remove();
         const categoryName = getCategoryLabel(categorySlug);
         const message = categoryName
-          ? `${escapeHtml(categoryName)} 카테고리에 연결된 나트랑 호텔 추천 글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.`
-          : '현재 준비 중인 나트랑 호텔 추천 글이 없습니다. 곧 더 다양한 추천 콘텐츠를 확인하실 수 있습니다.';
+          ? `${escapeHtml(categoryName)} 이야기는 조금만 더 기다려 주세요.`
+          : '나트랑 호텔 이야기는 조금만 더 기다려 주세요.';
         grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
       };
 
@@ -355,7 +336,6 @@
         activeCategory = resolveCategory(category);
         if (shouldUpdateUrl) updateCategoryUrl(activeCategory, shouldReplaceUrl);
         renderCategoryFilter();
-        renderCategoryDescription();
         centerActiveCategoryFilter();
         if (!hasLoadedPosts) return;
 
@@ -441,7 +421,6 @@
         const requestedCategory = getCategoryFromUrl();
         activeCategory = resolveCategory(requestedCategory);
         renderCategoryFilter();
-        renderCategoryDescription();
         centerActiveCategoryFilter();
 
         const fetchedCategoryItems = await fetchSettings();
@@ -453,7 +432,6 @@
           updateCategoryUrl('', true);
         }
         renderCategoryFilter();
-        renderCategoryDescription();
         centerActiveCategoryFilter();
         await loadAllPostsOnce(initialCategory);
       };

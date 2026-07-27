@@ -310,8 +310,8 @@
         grid.querySelector('[data-filter-empty]')?.remove();
         const regionName = getRegionName(regionSlug);
         const message = regionName
-          ? `${escapeHtml(regionName)} 지역에 연결된 타이베이 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.`
-          : '현재 준비 중인 타이베이 호텔 글이 없습니다. 곧 더 다양한 호텔 콘텐츠를 확인하실 수 있습니다.';
+          ? `${escapeHtml(regionName)} 지역의 호텔 이야기는 조금만 더 기다려 주세요.`
+          : '타이베이 호텔 이야기는 조금만 더 기다려 주세요.';
         grid.insertAdjacentHTML('beforeend', `<div class="empty-card" data-filter-empty>${message}</div>`);
       };
 
