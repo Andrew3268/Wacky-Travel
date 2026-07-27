@@ -251,10 +251,18 @@ function buildPostsHeroNav(categories = []) {
 
 
 /* CITY_HOTEL_PICKS_RUNTIME_V4 */
-(function () {
+(async function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
   const hotelHeroButtons = Array.from(document.querySelectorAll('.wt-city-hero__actions a[href="#hotel-posts"]'));
+  const adminOnlySections = Array.from(document.querySelectorAll('#hotel-posts, #travel-contents'));
+
+  const setAdminSectionsVisible = (visible) => {
+    adminOnlySections.forEach((section) => {
+      section.hidden = !visible;
+      section.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    });
+  };
 
   const setHotelHeroButtonsVisible = (visible) => {
     hotelHeroButtons.forEach((button) => {
@@ -276,12 +284,23 @@ function buildPostsHeroNav(categories = []) {
     setHotelHeroButtonsVisible(isVisible);
   };
 
-  if (hotelHeroButtons.length) setHotelHeroButtonsVisible(true);
+  // 도시 메인의 미완성 콘텐츠는 관리자 인증이 확인되기 전까지 숨깁니다.
+  setAdminSectionsVisible(false);
+  setHotelHeroButtonsVisible(false);
 
-  if (!cityPostRoots.length && !cityTravelRoots.length) {
-    syncHotelHeroButtonsWithSection();
-    return;
-  }
+  if (!cityPostRoots.length && !cityTravelRoots.length) return;
+
+  const adminState = await (window.__adminSessionPromise || fetch('/api/admin/session', {
+    credentials: 'same-origin',
+    cache: 'no-store',
+    headers: { accept: 'application/json' }
+  }).then((response) => response.ok ? response.json() : { authenticated: false })
+    .catch(() => ({ authenticated: false })));
+  const isCityAdmin = Boolean(adminState && adminState.authenticated);
+  if (!isCityAdmin) return;
+
+  setAdminSectionsVisible(true);
+  setHotelHeroButtonsVisible(true);
 
   const CITY_ARCHIVES = {
     osaka: {
