@@ -3,12 +3,17 @@
   const tabs = document.getElementById("destinationTabs");
   if (!grid || !tabs) return;
 
+  const searchParams = new URLSearchParams(window.location.search);
+  const isSurveyEntry = searchParams.get("survey") === "1";
+
+  if (isSurveyEntry) {
+    tabs.querySelector('[data-destination-tab="popular"]')?.remove();
+    grid.querySelector('[data-destination-panel="popular"]')?.remove();
+  }
+
   const tabButtons = Array.from(tabs.querySelectorAll("[data-destination-tab]"));
   const tabPanels = Array.from(grid.querySelectorAll("[data-destination-panel]"));
   if (!tabButtons.length || !tabPanels.length) return;
-
-  const searchParams = new URLSearchParams(window.location.search);
-  const isSurveyEntry = searchParams.get("survey") === "1";
 
   function applySurveyEntryMode() {
     if (!isSurveyEntry) return;
