@@ -1,0 +1,8 @@
+-- Rename and reduce global recommendation categories to six items
+UPDATE recommendation_categories SET name = '함께 가기 좋은 호텔', description = '가족, 커플, 친구 등 함께 떠나는 사람에 맞춰 고르기 좋은 호텔 추천', sort_order = 1, is_active = 1, updated_at = datetime('now') WHERE slug = 'with-who' AND TRIM(COALESCE(destination_slug, '')) = '';
+UPDATE recommendation_categories SET name = '위치 좋은 호텔', description = '역, 관광지, 쇼핑 지역 등 여행 동선을 편하게 만드는 위치 좋은 호텔 추천', sort_order = 2, is_active = 1, updated_at = datetime('now') WHERE slug = 'location' AND TRIM(COALESCE(destination_slug, '')) = '';
+UPDATE recommendation_categories SET name = '가성비 호텔', description = '가격 부담은 줄이고 숙박 만족도는 챙길 수 있는 가성비 호텔 추천', sort_order = 3, is_active = 1, updated_at = datetime('now') WHERE slug = 'value' AND TRIM(COALESCE(destination_slug, '')) = '';
+UPDATE recommendation_categories SET name = '호캉스하기 좋은 호텔', description = '수영장, 스파, 다이닝 등 호텔 안에서 충분히 즐길 수 있는 호캉스 추천', sort_order = 4, is_active = 1, updated_at = datetime('now') WHERE slug = 'staycation' AND TRIM(COALESCE(destination_slug, '')) = '';
+UPDATE recommendation_categories SET name = '특별한 테마가 있는 호텔', description = '오션뷰, 독특한 디자인, 이색적인 분위기처럼 분명한 테마가 있는 호텔 추천', sort_order = 5, is_active = 1, updated_at = datetime('now') WHERE slug = 'theme' AND TRIM(COALESCE(destination_slug, '')) = '';
+UPDATE recommendation_categories SET name = '지금 가기 좋은 호텔', description = '계절, 날씨, 축제와 연휴 일정에 맞춰 지금 방문하기 좋은 호텔 추천', sort_order = 6, is_active = 1, updated_at = datetime('now') WHERE slug = 'season-holiday' AND TRIM(COALESCE(destination_slug, '')) = '';
+DELETE FROM recommendation_categories WHERE slug = 'must-check';
