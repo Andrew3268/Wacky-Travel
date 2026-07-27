@@ -9,6 +9,8 @@
     "d1:seed": "wrangler d1 execute wacky-travel-db --file=./db/seed.sql",
     "d1:migrate:travel": "wrangler d1 execute wacky-travel-db --file=./db/migrations/001_travel_affiliate_schema.sql",
     "d1:migrate:travel-settings": "wrangler d1 execute wacky-travel-db --file=./db/migrations/002_travel_exposure_settings.sql",
+    "d1:migrate:brand": "wrangler d1 execute wacky-travel-db --file=./db/migrations/011_be_stayable_brand.sql",
+    "d1:migrate:brand:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/011_be_stayable_brand.sql",
     "check:index-inline": "node ./tools/index-inline-check.js",
     "d1:migrate:regions": "wrangler d1 execute wacky-travel-db --file=./db/migrations/006_regions.sql",
     "d1:migrate:guest-rating": "wrangler d1 execute wacky-travel-db --file=./db/migrations/007_hotel_guest_rating.sql",

@@ -2935,7 +2935,7 @@ function setPreviewDevice(device) {
 
 function broadcastPostSaved(payload = {}, slug = "") {
   try {
-    localStorage.setItem("wackyTravelPostUpdated", JSON.stringify({
+    localStorage.setItem("beStayablePostUpdated", JSON.stringify({
       slug,
       destination_slug: payload.destination_slug || "",
       region_slug: payload.region_slug || "",

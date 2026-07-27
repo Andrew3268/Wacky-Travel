@@ -777,7 +777,7 @@ text-align:left;min-height:auto}
   gap:12px;
 }
 
-/* Wacky Travel mobile menu cleanup */
+/* Be Stayable mobile menu cleanup */
 .mobile-site-menu__panel{
   display:flex;
   flex-direction:column;
@@ -860,7 +860,7 @@ text-align:left;min-height:auto}
   content:none !important;
 }
 
-/* Wacky Travel mobile menu header + top alignment */
+/* Be Stayable mobile menu header + top alignment */
 .mobile-site-menu__panel{
   justify-content:flex-start;
   padding-top:92px;
@@ -1297,7 +1297,7 @@ body.search-open::before{display:none !important;}
 .post-card--row .post-admin-actions__controls{margin-left:auto;display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;}
 .post-card--row .post-admin-actions__controls > .btn{padding:5px 9px;font-size:12px;line-height:1.15;border-radius:999px;min-height:28px;}
 
-/* WACKYTRAVEL_GLOBAL_TYPOGRAPHY_REFINEMENT_V17 */
+/* BESTAYABLE_GLOBAL_TYPOGRAPHY_REFINEMENT_V17 */
 p{
   color: #333;
   font-weight: 400;
@@ -1309,7 +1309,7 @@ b{
 }
 
 
-/* Unified Wacky Travel footer — matched to /hotel-promotions/ */
+/* Unified Be Stayable footer — matched to /hotel-promotions/ */
 .wtpromo-footer{
   margin-top: 110px;
   border-top: 1px solid #111;

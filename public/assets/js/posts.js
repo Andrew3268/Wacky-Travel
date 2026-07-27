@@ -698,7 +698,7 @@ function buildPostsHeroNav(categories = []) {
 
     if (pageTitleEl) {
       pageTitleEl.classList.toggle('posts-home-hero__title--editorial', isHomeDefault);
-      pageTitleEl.textContent = isHomeDefault ? 'Wacky Travel' : getPageTitle();
+      pageTitleEl.textContent = isHomeDefault ? 'Be Stayable' : getPageTitle();
     }
 
     if (pageDescEl) {
@@ -758,7 +758,7 @@ function buildPostsHeroNav(categories = []) {
     if (safeStatus === 'all') return '전체 글 목록';
     if (category) return `카테고리: ${category}`;
     if (tag) return `태그: #${tag}`;
-    return 'Wacky Travel';
+    return 'Be Stayable';
   }
 
   function getPageDescription() {
@@ -1110,7 +1110,7 @@ function buildPostsHeroNav(categories = []) {
   });
 })();
 
-/* WACKYTRAVEL_HOTEL_TABS_ROBUST_CONTROLLER_V1 */
+/* BESTAYABLE_HOTEL_TABS_ROBUST_CONTROLLER_V1 */
 (function () {
   const TAB_SELECTOR = '[data-city-post-tab]';
   const PANEL_SELECTOR = '[data-city-post-panel]';
@@ -1237,7 +1237,7 @@ function buildPostsHeroNav(categories = []) {
     normalizeAllHotelTabs();
   }
 
-  window.WackyTravelHotelTabs = {
+  window.BeStayableHotelTabs = {
     activate: activateHotelTab,
     normalize: normalizeAllHotelTabs
   };

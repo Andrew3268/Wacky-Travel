@@ -745,7 +745,7 @@ body.wtpromo-page *::after{ scroll-behavior: auto !important; transition-duratio
     }
 
 
-/* Use the same editorial header as the rest of Wacky Travel. */
+/* Use the same editorial header as the rest of Be Stayable. */
 
 
 @media (max-width: 720px) {
@@ -827,7 +827,7 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
   }
 }
 
-/* WACKYTRAVEL_HOME_PROMO_ALIGNMENT_V5 */
+/* BESTAYABLE_HOME_PROMO_ALIGNMENT_V5 */
 body.travel-home-body .wtpromo-home-featured,
 body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
   width: 100% !important;
@@ -845,7 +845,7 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
     padding-bottom: 90px !important;
   }
 }
-/* END WACKYTRAVEL_HOME_PROMO_ALIGNMENT_V5 */
+/* END BESTAYABLE_HOME_PROMO_ALIGNMENT_V5 */
 
 
 /* Home index promotion copy and mobile tool-card alignment */
@@ -897,7 +897,7 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
   }
 }
 
-/* WACKYTRAVEL_PROMOTION_H1_VERIFIED_DATE_V16 */
+/* BESTAYABLE_PROMOTION_H1_VERIFIED_DATE_V16 */
 @media (min-width: 1024px) {
   body.wtpromo-page .wtpromo-hero h1,
   .wtpromo-hero h1 {
@@ -947,7 +947,7 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
   color: inherit;
   text-decoration: none;
 }
-/* END WACKYTRAVEL_PROMOTION_H1_VERIFIED_DATE_V16 */
+/* END BESTAYABLE_PROMOTION_H1_VERIFIED_DATE_V16 */
 
 
 /* Hotel promotions breadcrumb alignment */

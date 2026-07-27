@@ -442,7 +442,7 @@
 }
 
 
-/* Travel UI polish v2: Wacky Travel editorial mood + refined travel affiliate layout */
+/* Travel UI polish v2: Be Stayable editorial mood + refined travel affiliate layout */
 :root{
   --travel-bg:#f8fbff;
   --travel-sand:#eef7ff;
@@ -3587,7 +3587,7 @@ body::after{
 }
 
 
-/* Wacky Travel dedicated search results page */
+/* Be Stayable dedicated search results page */
 .wtsr-page{
   background: #ffffff;
 }
@@ -8192,7 +8192,7 @@ main.wt-purpose-page--quiet-stay .container{
 }
 
 
-/* wackytravel-v1 - first-trip quick answer + area guide refinement */
+/* bestayable-v1 - first-trip quick answer + area guide refinement */
 .wt-purpose-page--first-trip .wt-purpose-quick-grid--compact{
   gap: 12px;
 }
@@ -8277,7 +8277,7 @@ main.wt-purpose-page--quiet-stay .container{
 }
 
 
-/* wackytravel-v2 - first-trip area tabs, curated hotels and more banner polish */
+/* bestayable-v2 - first-trip area tabs, curated hotels and more banner polish */
 .wt-purpose-page--first-trip .wt-area-tab-list{
   display: flex;
   flex-wrap: wrap;
@@ -8492,7 +8492,7 @@ main.wt-purpose-page--quiet-stay .container{
 }
 
 
-/* wackytravel-v5 - first-trip rollback + spacing/card polish */
+/* bestayable-v5 - first-trip rollback + spacing/card polish */
 .wt-purpose-page--first-trip .wt-purpose-quick-grid--compact .wt-purpose-quick-card{
   border-color: #e5e7eb;
   background: #fff;
@@ -8556,7 +8556,7 @@ main.wt-purpose-page--quiet-stay .container{
   }
 }
 
-/* wackytravel-v6 - apply first-trip purpose layout polish to all osaka purpose pages */
+/* bestayable-v6 - apply first-trip purpose layout polish to all osaka purpose pages */
 .wt-purpose-page .wt-purpose-quick-grid--compact{
   gap: 12px;
 }
@@ -9108,7 +9108,7 @@ main.wt-purpose-page--quiet-stay .container{
   }
 }
 
-/* wackytravel-v1 - purpose page tab and hotel card polish */
+/* bestayable-v1 - purpose page tab and hotel card polish */
 .wt-purpose-page .wt-area-tab-list{
   padding-top: 5px;
   padding-bottom: 5px;
@@ -9539,7 +9539,7 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-related.container{
 }
 
 
-/* WackyTravel v1 guide/index polish 20260614 */
+/* BeStayable v1 guide/index polish 20260614 */
 /* Main city Hotel Picks tabs: align with the simple wt-region-filter look */
 .hotel-tabs__nav{
   display: flex !important;
@@ -9615,7 +9615,7 @@ body.wt-guide-body .hotel-guide-toc-floating{
 }
 
 
-/* WackyTravel v1 hero and hotel tabs interaction fix 20260614 */
+/* BeStayable v1 hero and hotel tabs interaction fix 20260614 */
 .hotel-tabs,
 .hotel-tabs__nav,
 .hotel-tabs__button{
@@ -9645,7 +9645,7 @@ body.wt-guide-body .hotel-guide-toc-floating{
   display: block !important;
 }
 
-/* WACKYTRAVEL_HOTEL_TABS_CLICK_LAYER_FIX_V1 */
+/* BESTAYABLE_HOTEL_TABS_CLICK_LAYER_FIX_V1 */
 .hotel-tabs{
   position: relative !important;
   z-index: 10 !important;
@@ -9674,7 +9674,7 @@ body.wt-guide-body .hotel-guide-toc-floating{
 }
 
 
-/* WACKYTRAVEL_HOTEL_TABS_CONTENT_AWARE_VISIBILITY_V1 */
+/* BESTAYABLE_HOTEL_TABS_CONTENT_AWARE_VISIBILITY_V1 */
 .hotel-tabs__button[hidden],
 .hotel-tabs__button[data-city-post-disabled="true"],
 .hotel-tab-panel[hidden],
@@ -9814,7 +9814,7 @@ body.wt-guide-body .hotel-guide-toc-floating{
   }
 }
 
-/* WACKYTRAVEL_TABLET_CONTAINER_PADDING_V1 */
+/* BESTAYABLE_TABLET_CONTAINER_PADDING_V1 */
 @media (min-width: 768px) and (max-width: 1180px) {
   .container:not(.breadcrumbs--post-page),
 main.travel-page .container{
@@ -9838,7 +9838,7 @@ main.travel-page.wt-city-travel-guide-page{
   }
 }
 
-/* WACKYTRAVEL_SHARED_PURPOSE_HOTEL_CARD_UI_V1 */
+/* BESTAYABLE_SHARED_PURPOSE_HOTEL_CARD_UI_V1 */
 .wt-purpose-page #hotels .wt-hotel-card__topline{
   order: 1;
   display: flex;
@@ -9991,7 +9991,7 @@ main.travel-page.wt-city-travel-guide-page{
   }
 }
 
-/* WACKYTRAVEL_RESPONSIVE_BREATHING_ROOM_V1 */
+/* BESTAYABLE_RESPONSIVE_BREATHING_ROOM_V1 */
 @media (min-width: 768px) and (max-width: 1180px) {
   .container,
 main.travel-page .container,
@@ -10181,7 +10181,7 @@ main.travel-page.wt-city-travel-guide-page{
   }
 }
 
-/* WACKYTRAVEL_HOTEL_MORE_BANNER_CTA_FIX_V1 */
+/* BESTAYABLE_HOTEL_MORE_BANNER_CTA_FIX_V1 */
 html,
 body{
   overflow-x: clip;
@@ -10338,7 +10338,7 @@ main.travel-page.wt-city-travel-guide-page{
   }
 }
 
-/* WACKYTRAVEL_HORIZONTAL_SHIFT_GUARD_V1 */
+/* BESTAYABLE_HORIZONTAL_SHIFT_GUARD_V1 */
 html,
 body{
   overflow-x: hidden;
@@ -10366,7 +10366,7 @@ body{
   display: none !important;
 }
 
-/* WACKYTRAVEL_CITY_SCROLL_AND_BREADCRUMB_FIX_V1 */
+/* BESTAYABLE_CITY_SCROLL_AND_BREADCRUMB_FIX_V1 */
 
 
 @media (min-width: 768px) and (max-width: 1180px) {
@@ -10377,7 +10377,7 @@ body{
   
 }
 
-/* WACKYTRAVEL_BREADCRUMB_HOTEL_BUTTON_REFINEMENT_V1 */
+/* BESTAYABLE_BREADCRUMB_HOTEL_BUTTON_REFINEMENT_V1 */
 
 
 .wt-purpose-page #hotels .wt-hotel-actions .wt-btn--primary,
@@ -10395,7 +10395,7 @@ body{
 }
 
 
-/* WACKYTRAVEL_SECTION_SPACING_REFINEMENT_V1 */
+/* BESTAYABLE_SECTION_SPACING_REFINEMENT_V1 */
 .travel-section{
   padding-top: 29px !important;
   padding-bottom: 29px !important;
@@ -11644,7 +11644,7 @@ min-height: 48px;
 }
 }
 
-/* wackytravel survey minimal polish v20260615 */
+/* bestayable survey minimal polish v20260615 */
 
 .wt-location-page{
 background: #ffffff;
@@ -11792,7 +11792,7 @@ flex-basis: min(84vw, 310px);
 }
 }
 
-/* wackytravel result page minimal polish v20260615 */
+/* bestayable result page minimal polish v20260615 */
 
 .wt-location-page .wt-result.is-active .wt-result-card{
 border: 0;
@@ -12033,7 +12033,7 @@ border-radius: 20px;
 }
 }
 
-/* WACKYTRAVEL_SURVEY_RESPONSIVE_BREATHING_ROOM_V1 */
+/* BESTAYABLE_SURVEY_RESPONSIVE_BREATHING_ROOM_V1 */
 
 @media (min-width: 768px) and (max-width: 1180px) {
 .wt-location-page{
@@ -12236,7 +12236,7 @@ margin-right: -24px;
 }
 /* End hotel location survey styles */
 
-/* WACKYTRAVEL_LOCATION_SURVEY_HOTEL_CARD_FOOTER_V2 */
+/* BESTAYABLE_LOCATION_SURVEY_HOTEL_CARD_FOOTER_V2 */
 .wt-location-page .wt-hotel-card{
   display: flex;
   flex-direction: column;
@@ -12277,7 +12277,7 @@ margin-right: -24px;
 }
 
 
-/* WACKYTRAVEL_LOCATION_SURVEY_START_TOP_V5 */
+/* BESTAYABLE_LOCATION_SURVEY_START_TOP_V5 */
 @media (min-width: 768px) {
   .wt-location-page:not(.is-survey-started){
     align-items: flex-start;
@@ -12300,9 +12300,9 @@ margin-right: -24px;
     padding-top: 32px;
   }
 }
-/* End WACKYTRAVEL_LOCATION_SURVEY_START_TOP_V5 */
+/* End BESTAYABLE_LOCATION_SURVEY_START_TOP_V5 */
 
-/* WACKYTRAVEL_LOCATION_SURVEY_SPACING_V6 */
+/* BESTAYABLE_LOCATION_SURVEY_SPACING_V6 */
 @media (max-width: 767px) {
   .wt-location-page:not(.is-survey-started){
     align-items: flex-start;
@@ -12325,11 +12325,11 @@ margin-right: -24px;
     padding-top: 0;
   }
 }
-/* End WACKYTRAVEL_LOCATION_SURVEY_SPACING_V6 */
+/* End BESTAYABLE_LOCATION_SURVEY_SPACING_V6 */
 
 
 
-/* WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V7 */
+/* BESTAYABLE_LOCATION_SURVEY_OPTIONS_V7 */
 .wt-location-page .wt-survey-wrap.is-result-mode .wt-survey-body{
   padding-top: 0;
 }
@@ -12392,10 +12392,10 @@ margin-right: -24px;
     font-size: 13px;
   }
 }
-/* End WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V7 */
+/* End BESTAYABLE_LOCATION_SURVEY_OPTIONS_V7 */
 
 
-/* WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V8 */
+/* BESTAYABLE_LOCATION_SURVEY_OPTIONS_V8 */
 .wt-location-page .wt-option{
   justify-content: center;
   text-align: center;
@@ -12405,7 +12405,7 @@ margin-right: -24px;
   width: 100%;
   text-align: center;
 }
-/* End WACKYTRAVEL_LOCATION_SURVEY_OPTIONS_V8 */
+/* End BESTAYABLE_LOCATION_SURVEY_OPTIONS_V8 */
 
 /* Home destination hub v17: static, minimal, 3-column country grid */
 .travel-section--destination-hub{
@@ -12933,7 +12933,7 @@ margin-right: -24px;
   }
 }
 
-/* WACKYTRAVEL_HOME_HERO_DESTINATION_HUB_V21
+/* BESTAYABLE_HOME_HERO_DESTINATION_HUB_V21
    - 메인 hero 콘텐츠 간격 보완
    - 여행지 허브 전체보기 텍스트 버튼을 화살표형 액션으로 정리
    - destination-chip border 제거 및 모바일 액션 우측 정렬 보완
@@ -13122,10 +13122,10 @@ margin-right: -24px;
     font-size: 0.9rem !important;
   }
 }
-/* End WACKYTRAVEL_HOME_HERO_DESTINATION_HUB_V21 */
+/* End BESTAYABLE_HOME_HERO_DESTINATION_HUB_V21 */
 
 
-/* WACKYTRAVEL_HOME_HERO_DESTINATION_HUB_V22
+/* BESTAYABLE_HOME_HERO_DESTINATION_HUB_V22
    - hero padding-top 0 고정 및 랜딩페이지형 여백 확장
    - 모바일/태블릿 여행지 허브 카드형 UI 보완
    - 나라명 표시 안정화 및 미니멀 화살표 버튼 정리
@@ -13397,9 +13397,9 @@ margin-right: -24px;
     background: #f7f9fc !important;
   }
 }
-/* End WACKYTRAVEL_HOME_HERO_DESTINATION_HUB_V22 */
+/* End BESTAYABLE_HOME_HERO_DESTINATION_HUB_V22 */
 
-/* WACKYTRAVEL_AREA_GUIDE_COMPONENTS_V16
+/* BESTAYABLE_AREA_GUIDE_COMPONENTS_V16
    공통 Area Guide 컴포넌트입니다.
    도시가 추가되어도 tokyo/osaka/fukuoka/sapporo/okinawa 같은 도시별 선택자를 늘리지 않고,
    아래 공통 클래스만 재사용합니다. 특정 도시만 달라야 하는 예외는 이 블록 아래에서 최소 범위로만 추가합니다. */
@@ -13728,9 +13728,9 @@ margin-right: -24px;
     justify-self: start;
   }
 }
-/* End WACKYTRAVEL_AREA_GUIDE_COMPONENTS_V16 */
+/* End BESTAYABLE_AREA_GUIDE_COMPONENTS_V16 */
 
-/* WACKYTRAVEL_TYPOGRAPHY_SPACING_REFINEMENT_V17 */
+/* BESTAYABLE_TYPOGRAPHY_SPACING_REFINEMENT_V17 */
 main.travel-page p,
 .travel-page p,
 .wt-location-page p{
@@ -14001,7 +14001,7 @@ main.travel-page .city-guide-section,
   }
 }
 
-/* WACKYTRAVEL_TARGETED_SPACING_TIGHTEN_V18
+/* BESTAYABLE_TARGETED_SPACING_TIGHTEN_V18
    - 일본 도시 메인 index: breadcrumb와 hero 사이 간격 축소
    - Area Guide 탭 버튼 위아래 여백 축소
    - Area Guide 직후 서베이/CTA 배너와의 간격 축소
@@ -14173,9 +14173,9 @@ main.travel-page.wt-purpose-page .wt-section--survey-cta,
     padding-bottom: 38px !important;
   }
 }
-/* End WACKYTRAVEL_TARGETED_SPACING_TIGHTEN_V18 */
+/* End BESTAYABLE_TARGETED_SPACING_TIGHTEN_V18 */
 
-/* WACKYTRAVEL_HERO_BREADCRUMB_REFINEMENT_V19
+/* BESTAYABLE_HERO_BREADCRUMB_REFINEMENT_V19
    - 목적별 페이지: breadcrumb 아래 wt-page-hero 상단 여백 15px 고정
    - 도시 메인 index: breadcrumb 아래 wt-city-hero.container 상단 여백 15px 고정
    - breadcrumb 링크 자체 padding 제거
@@ -14232,11 +14232,11 @@ main.travel-page.wt-city-page > .wt-city-hero.container:first-child,
     padding-top: 30px !important;
   }
 }
-/* End WACKYTRAVEL_HERO_BREADCRUMB_REFINEMENT_V19 */
+/* End BESTAYABLE_HERO_BREADCRUMB_REFINEMENT_V19 */
 
 
 
-/* WACKYTRAVEL_MINIMAL_SURFACE_REFINEMENT_V110
+/* BESTAYABLE_MINIMAL_SURFACE_REFINEMENT_V110
    - 모바일 도시 페이지 main padding-top 0
    - 여행 페이지 배경/카드/배너를 흰색 표면으로 통일
    - 그림자 제거, border 사용 최소화
@@ -14307,10 +14307,10 @@ main.travel-page.wt-city-travel-guide-page{
     padding-top: 0 !important;
   }
 }
-/* End WACKYTRAVEL_MINIMAL_SURFACE_REFINEMENT_V110 */
+/* End BESTAYABLE_MINIMAL_SURFACE_REFINEMENT_V110 */
 
 
-/* WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111
+/* BESTAYABLE_MINIMAL_BALANCE_REFINEMENT_V111
    - 흰 배경 기조 유지
    - 호텔 카드와 배너 버튼에는 최소 border 복구
    - 목적별 Area Guide와 서베이 CTA 간격 축소
@@ -14481,9 +14481,9 @@ main.travel-page :where(.wt-cta-band, .wt-city-cta__inner){
     gap: 14px !important;
   }
 }
-/* End WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111 */
+/* End BESTAYABLE_MINIMAL_BALANCE_REFINEMENT_V111 */
 
-/* WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111
+/* BESTAYABLE_MINIMAL_BALANCE_REFINEMENT_V111
    - v1.10의 과도한 무테 느낌 보완
    - CTA 배너/버튼과 호텔 카드에는 필요한 최소 border 복원
    - 목적별 Area Guide와 Survey CTA 간격 압축
@@ -14691,10 +14691,10 @@ main.travel-page.wt-city-page .wt-city-cta,
     gap: 10px !important;
   }
 }
-/* End WACKYTRAVEL_MINIMAL_BALANCE_REFINEMENT_V111 */
+/* End BESTAYABLE_MINIMAL_BALANCE_REFINEMENT_V111 */
 
 
-/* WACKYTRAVEL_CITY_AREA_PANEL_REFINEMENT_V112
+/* BESTAYABLE_CITY_AREA_PANEL_REFINEMENT_V112
    - 일본 도시 메인 Area Guide eyebrow/decision label 좌우 패딩 제거
    - 데스크탑에서 Area Guide grid와 decision 사이/하단 간격 압축
 ========================================================= */
@@ -14723,9 +14723,9 @@ main.travel-page.wt-city-page #area-guide .wt-city-area-panel__decision span,
     padding-bottom: 14px !important;
   }
 }
-/* End WACKYTRAVEL_CITY_AREA_PANEL_REFINEMENT_V112 */
+/* End BESTAYABLE_CITY_AREA_PANEL_REFINEMENT_V112 */
 
-/* WACKYTRAVEL_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113
+/* BESTAYABLE_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113
    - breadcrumb ol/current item horizontal padding reset
    - city hotel-guide survey panel text visibility fix on white surfaces
 ========================================================= */
@@ -14783,7 +14783,7 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-survey-panel__button,
   color: #ffffff !important;
   border: 1px solid rgba(37, 99, 235, 0.28) !important;
 }
-/* End WACKYTRAVEL_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113 */
+/* End BESTAYABLE_BREADCRUMB_SURVEY_PANEL_REFINEMENT_V113 */
 
 /* V113 - common archive, breadcrumb, and guide hero refinement */
 @media (min-width: 721px) {
@@ -14815,7 +14815,7 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
   }
 }
 
-/* WACKYTRAVEL_BREADCRUMB_TABLET_AND_SURVEY_RELATED_TOP5_V114
+/* BESTAYABLE_BREADCRUMB_TABLET_AND_SURVEY_RELATED_TOP5_V114
    - Tablet breadcrumb left padding reset
    - Desktop breadcrumb left padding preserved
 ========================================================= */
@@ -14826,10 +14826,10 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
 @media (min-width: 1181px) {
   
 }
-/* End WACKYTRAVEL_BREADCRUMB_TABLET_AND_SURVEY_RELATED_TOP5_V114 */
+/* End BESTAYABLE_BREADCRUMB_TABLET_AND_SURVEY_RELATED_TOP5_V114 */
 
 
-/* WACKYTRAVEL_LOCATION_SURVEY_RESULT_BREATHING_ROOM_V9 */
+/* BESTAYABLE_LOCATION_SURVEY_RESULT_BREATHING_ROOM_V9 */
 .wt-location-page.is-survey-started:not(.is-result-mode) .wt-survey-top-link{
   display: none;
 }
@@ -15004,9 +15004,9 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
     padding: 22px;
   }
 }
-/* End WACKYTRAVEL_LOCATION_SURVEY_RESULT_BREATHING_ROOM_V9 */
+/* End BESTAYABLE_LOCATION_SURVEY_RESULT_BREATHING_ROOM_V9 */
 
-/* WACKYTRAVEL_NHA_TRANG_LOCAL_PHRASE_PRONUNCIATION_V1 */
+/* BESTAYABLE_NHA_TRANG_LOCAL_PHRASE_PRONUNCIATION_V1 */
 .wt-local-phrase__vi{
   display: block;
   font-weight: 500;
@@ -15020,7 +15020,7 @@ main.travel-page.wt-city-archive-page .wt-city-dynamic-section,
   line-height: 1.45;
   color: #64748b;
 }
-/* End WACKYTRAVEL_NHA_TRANG_LOCAL_PHRASE_PRONUNCIATION_V1 */
+/* End BESTAYABLE_NHA_TRANG_LOCAL_PHRASE_PRONUNCIATION_V1 */
 
 
 /* V117 - Nha Trang travel guide related CTA visibility fix */
@@ -15056,7 +15056,7 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-layout + .wt-city-guid
 }
 
 
-/* WACKYTRAVEL_GUIDE_RELATED_VISIBILITY_FIX_V1
+/* BESTAYABLE_GUIDE_RELATED_VISIBILITY_FIX_V1
    Fixes guide CTA text/link visibility on all /travel-guide/ and /hotel-guide/ pages.
    Previous page-specific overrides could leave the related CTA title/links with the wrong
    contrast. Keep the component as a dark CTA and force all nested text to remain visible. */
@@ -15194,7 +15194,7 @@ main.travel-page .wt-city-guide-related__card p{
 }
 
 
-/* WACKYTRAVEL_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1
+/* BESTAYABLE_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1
    /destinations/ 전체 여행지 페이지를 메인 index 여행지 허브 카드와 동일한 카드형 UI로 통일하고,
    데이터 로딩 중에는 스켈레톤 카드를 먼저 보여준다. */
 .travel-section--destinations-archive{
@@ -15435,9 +15435,9 @@ main.travel-page .wt-city-guide-related__card p{
     animation: none;
   }
 }
-/* End WACKYTRAVEL_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1 */
+/* End BESTAYABLE_DESTINATIONS_ARCHIVE_HUB_SKELETON_V1 */
 
-/* WACKYTRAVEL_COUNTRY_PAGE_SKELETON_V1: 국가별 페이지 스켈레톤 로딩 */
+/* BESTAYABLE_COUNTRY_PAGE_SKELETON_V1: 국가별 페이지 스켈레톤 로딩 */
 .travel-page--country-hub .country-page-skeleton{
   display: none;
 }
@@ -15619,7 +15619,7 @@ main.travel-page .wt-city-guide-related__card p{
     animation: none;
   }
 }
-/* End WACKYTRAVEL_COUNTRY_PAGE_SKELETON_V1 */
+/* End BESTAYABLE_COUNTRY_PAGE_SKELETON_V1 */
 
 /* Travel heading readability */
 .travel-page h2,
@@ -15782,7 +15782,7 @@ main.travel-page .wt-city-guide-related__card p{
   }
 }
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_APP_UI_V1 */
+/* BESTAYABLE_FUKUOKA_SURVEY_APP_UI_V1 */
 body.wt-location-survey-page--app,
 body.wt-location-survey-page--app html{
   width: 100%;
@@ -16654,9 +16654,9 @@ body.wt-location-survey-page--app .result-upper-section{
     padding: 14px;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_APP_UI_V1 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_APP_UI_V1 */
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V3 */
+/* BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V3 */
 body.wt-location-survey-page--app{
   background: #f6f7f9;
 }
@@ -16842,9 +16842,9 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-link{
     margin-top: 2px;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V3 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V3 */
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V4 */
+/* BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V4 */
 body.wt-location-survey-page--app .logo-icon--intro{
   width: 92px;
   height: 92px;
@@ -16908,10 +16908,10 @@ body.wt-location-survey-page--app .simple-brief-text{
 body.wt-location-survey-page--app .wt-section-eyebrow{
   margin-bottom: 8px;
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V4 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V4 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V5 */
+/* BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V5 */
 body.wt-location-survey-page--app .logo-icon--intro{
   width: 94px;
   height: 94px;
@@ -16951,9 +16951,9 @@ body.wt-location-survey-page--app .detailed-info-section .result-badge{
   letter-spacing: -0.025em;
   word-break: keep-all;
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V5 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V5 */
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V6 */
+/* BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V6 */
 body.wt-location-survey-page--app .wt-result-lead--simple{
   padding: 18px 18px 17px;
   border: 1px solid #e2e6ee !important;
@@ -16987,10 +16987,10 @@ body.wt-location-survey-page--app .detailed-info-section .result-badge{
   color: #3f4652;
   border: 1px solid #e8ebf1;
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V6 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V6 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V7 */
+/* BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V7 */
 body.wt-location-survey-page--app .logo-icon--intro{
   width: 88px;
   height: 88px;
@@ -17034,10 +17034,10 @@ body.wt-location-survey-page--app .wt-reason-card p{
   grid-column: 1 / -1;
   margin-top: 0;
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_MINIMAL_WHITE_V7 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_MINIMAL_WHITE_V7 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_V9 */
+/* BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_V9 */
 body.wt-location-survey-page--app .wt-hotel-grid{
   display: flex;
   flex-direction: column;
@@ -17252,10 +17252,10 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlig
     margin-top: 2px !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_V9 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_V9 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_IMAGE_MATCH_V10 */
+/* BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_IMAGE_MATCH_V10 */
 body.wt-location-survey-page--app .wt-hotel-card.wt-hotel-card--compact{
   gap: 14px !important;
   padding: 18px 20px !important;
@@ -17403,10 +17403,10 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlig
     font-size: 16px !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_IMAGE_MATCH_V10 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_IMAGE_MATCH_V10 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_STABLE_V10 */
+/* BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_STABLE_V10 */
 body.wt-location-survey-page--app .wt-hotel-card-list{
   display: grid !important;
   gap: 12px !important;
@@ -17650,10 +17650,10 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag--highlig
     margin-left: 32px !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_STABLE_V10 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_STABLE_V10 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
+/* BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
 body.wt-location-survey-page--app .wt-hotel-card-list,
 body.wt-location-survey-page--app #hotelCardList{
   display: grid !important;
@@ -17686,10 +17686,10 @@ body.wt-location-survey-page--app .wt-hotel-card--compact::after{
   display: none !important;
   content: none !important;
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_HOTEL_CARD_HEIGHT_FIX_V11 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */
+/* BESTAYABLE_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */
 body.wt-location-survey-page--app #relatedSectionDesc,
 body.wt-location-survey-page--app .related-section .wt-section-desc{
   display: none !important;
@@ -17724,10 +17724,10 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-location-mai
 body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list .wt-hotel-tag{
   font-weight: 600!important;
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_RESULT_HOTEL_REFINEMENT_V12 */
 
 
-/* WACKYTRAVEL_FUKUOKA_SURVEY_COMPACT_HOTEL_PADDING_V21 */
+/* BESTAYABLE_FUKUOKA_SURVEY_COMPACT_HOTEL_PADDING_V21 */
 body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-location-main,
 body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
   padding-left: 0 !important;
@@ -17745,7 +17745,7 @@ body.wt-location-survey-page--app .wt-hotel-card--compact .wt-hotel-tag-list{
     margin-left: 0 !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_SURVEY_COMPACT_HOTEL_PADDING_V21 */
+/* End BESTAYABLE_FUKUOKA_SURVEY_COMPACT_HOTEL_PADDING_V21 */
 
 /* 20260630 Home fullscreen search renewal */
 
@@ -19463,7 +19463,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 /* End 20260630 Home search overlay + All icon refinement V15 */
 
 
-/* WACKYTRAVEL_FUKUOKA_CITY_INDEX_MINIMAL_PREMIUM_V16
+/* BESTAYABLE_FUKUOKA_CITY_INDEX_MINIMAL_PREMIUM_V16
    /destinations/fukuoka/ 전용: 메인 index V15 톤과 맞춘 블랙&화이트 미니멀 프리미엄 UI
    콘텐츠 구조와 문구는 유지하고, 색상·여백·버튼·카드 표면만 정리합니다.
 ========================================================= */
@@ -20022,9 +20022,9 @@ body.travel-city-body--fukuoka .wt-city-cta h2{
     padding: 0 16px 17px !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_CITY_INDEX_MINIMAL_PREMIUM_V16 */
+/* End BESTAYABLE_FUKUOKA_CITY_INDEX_MINIMAL_PREMIUM_V16 */
 
-/* WACKYTRAVEL_ALL_CITY_INDEX_MINIMAL_PREMIUM_V17
+/* BESTAYABLE_ALL_CITY_INDEX_MINIMAL_PREMIUM_V17
    모든 도시 메인 index 페이지 공통: 메인 index V15·후쿠오카 V16 톤과 맞춘 블랙&화이트 미니멀 프리미엄 UI
    콘텐츠 구조와 문구는 유지하고, 색상·여백·버튼·카드 표면만 정리합니다.
 ========================================================= */
@@ -20583,10 +20583,10 @@ body.travel-city-body .wt-city-cta h2{
     padding: 0 16px 17px !important;
   }
 }
-/* End WACKYTRAVEL_ALL_CITY_INDEX_MINIMAL_PREMIUM_V17 */
+/* End BESTAYABLE_ALL_CITY_INDEX_MINIMAL_PREMIUM_V17 */
 
 
-/* WACKYTRAVEL_ALL_CITY_INDEX_ALIGNMENT_BUTTONS_V18
+/* BESTAYABLE_ALL_CITY_INDEX_ALIGNMENT_BUTTONS_V18
    - 도시 메인 index breadcrumb 좌우 기준선 보정
    - 모바일 hero 버튼 3열 배치
    - CTA primary 버튼은 모바일을 제외하고 오른쪽 정렬
@@ -20651,9 +20651,9 @@ body.travel-city-body .wt-city-cta h2{
     min-width: 0 !important;
   }
 }
-/* End WACKYTRAVEL_ALL_CITY_INDEX_ALIGNMENT_BUTTONS_V18 */
+/* End BESTAYABLE_ALL_CITY_INDEX_ALIGNMENT_BUTTONS_V18 */
 
-/* WACKYTRAVEL_ALL_PURPOSE_PAGES_MINIMAL_PREMIUM_V19
+/* BESTAYABLE_ALL_PURPOSE_PAGES_MINIMAL_PREMIUM_V19
    - 모든 도시 목적별 페이지를 V15/V16 블랙&화이트 미니멀 프리미엄 톤으로 통일
    - 콘텐츠 문구는 유지하고 UI 표현만 정리
 ========================================================= */
@@ -21210,10 +21210,10 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-ban
     min-height: 48px !important;
   }
 }
-/* End WACKYTRAVEL_ALL_PURPOSE_PAGES_MINIMAL_PREMIUM_V19 */
+/* End BESTAYABLE_ALL_PURPOSE_PAGES_MINIMAL_PREMIUM_V19 */
 
 
-/* WACKYTRAVEL_ALL_PURPOSE_PAGES_SPACING_COMFORT_V20 */
+/* BESTAYABLE_ALL_PURPOSE_PAGES_SPACING_COMFORT_V20 */
 body.travel-purpose-body .wt-city-faq__accordion,
 body.travel-purpose-body .wt-purpose-faq .wt-city-faq__accordion,
 body.travel-purpose-body .wt-faq-list{
@@ -21332,10 +21332,10 @@ body.travel-purpose-body .wt-hotel-more-banner{
     padding: 20px !important;
   }
 }
-/* End WACKYTRAVEL_ALL_PURPOSE_PAGES_SPACING_COMFORT_V20 */
+/* End BESTAYABLE_ALL_PURPOSE_PAGES_SPACING_COMFORT_V20 */
 
 
-/* WACKYTRAVEL_ALL_PURPOSE_FAQ_HOTEL_CARD_REFINEMENT_V21 */
+/* BESTAYABLE_ALL_PURPOSE_FAQ_HOTEL_CARD_REFINEMENT_V21 */
 body.travel-purpose-body .wt-city-faq__accordion > .wt-city-faq__item:first-child,
 body.travel-purpose-body .wt-purpose-faq .wt-city-faq__accordion > .wt-city-faq__item:first-child,
 body.travel-purpose-body .wt-faq-list > details:first-child{
@@ -21578,9 +21578,9 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn{
     min-width: 0 !important;
   }
 }
-/* End WACKYTRAVEL_ALL_PURPOSE_FAQ_HOTEL_CARD_REFINEMENT_V21 */
+/* End BESTAYABLE_ALL_PURPOSE_FAQ_HOTEL_CARD_REFINEMENT_V21 */
 
-/* WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_EXACT_V22 */
+/* BESTAYABLE_ALL_PURPOSE_HOTEL_CARD_EXACT_V22 */
 body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-card,
 body.travel-purpose-body .wt-purpose-page .wt-hotel-card{
   position: relative !important;
@@ -21821,9 +21821,9 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn{
     font-size: 14px !important;
   }
 }
-/* End WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_EXACT_V22 */
+/* End BESTAYABLE_ALL_PURPOSE_HOTEL_CARD_EXACT_V22 */
 
-/* WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_COMPACT_V23 */
+/* BESTAYABLE_ALL_PURPOSE_HOTEL_CARD_COMPACT_V23 */
 body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-grid,
 body.travel-purpose-body .wt-purpose-page .wt-hotel-grid{
   align-items: stretch !important;
@@ -22050,9 +22050,9 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-card p{
     line-height: 1.55 !important;
   }
 }
-/* End WACKYTRAVEL_ALL_PURPOSE_HOTEL_CARD_COMPACT_V23 */
+/* End BESTAYABLE_ALL_PURPOSE_HOTEL_CARD_COMPACT_V23 */
 
-/* WACKYTRAVEL_ALL_GUIDE_PAGES_MINIMAL_V24
+/* BESTAYABLE_ALL_GUIDE_PAGES_MINIMAL_V24
    - hotel-guide / travel-guide pages
    - black & white minimal premium tone aligned with home V15
 ========================================================= */
@@ -22671,7 +22671,7 @@ body.wt-guide-body .wt-cta-band .wt-city-button--primary{
     width: 100% !important;
   }
 }
-/* End WACKYTRAVEL_ALL_GUIDE_PAGES_MINIMAL_V24 */
+/* End BESTAYABLE_ALL_GUIDE_PAGES_MINIMAL_V24 */
 
 /* V25 - Hotel guide content recovery and Osaka-baseline readability refinements */
 body.wt-guide-body main.wt-city-hotel-guide-page,
@@ -22751,7 +22751,7 @@ body.wt-guide-body .wt-section li{
 }
 
 
-/* WACKYTRAVEL_ALL_SURVEY_MINIMAL_BW_V26
+/* BESTAYABLE_ALL_SURVEY_MINIMAL_BW_V26
    - 호텔 위치 서베이 UI를 메인 index V15/V25와 같은 블랙&화이트 미니멀 톤으로 통일
    - 로고 SVG와 loadingPage 구조/동작은 변경하지 않음
 ========================================================= */
@@ -23121,9 +23121,9 @@ body.wt-location-survey-page--app .result-upper-section{
     padding-right: 22px !important;
   }
 }
-/* End WACKYTRAVEL_ALL_SURVEY_MINIMAL_BW_V26 */
+/* End BESTAYABLE_ALL_SURVEY_MINIMAL_BW_V26 */
 
-/* WACKYTRAVEL_GUIDE_AND_SURVEY_SPACING_V27 */
+/* BESTAYABLE_GUIDE_AND_SURVEY_SPACING_V27 */
 /* Guide pages: reduce excessive horizontal padding on tablet/mobile so content sections do not look squeezed. */
 @media (min-width: 768px) and (max-width: 1180px) {
   body.wt-guide-body main.travel-page .container,
@@ -23275,10 +23275,10 @@ body.wt-location-survey-page--app #resultPage .wt-result-lead--simple{
     padding-right: 14px !important;
   }
 }
-/* End WACKYTRAVEL_GUIDE_AND_SURVEY_SPACING_V27 */
+/* End BESTAYABLE_GUIDE_AND_SURVEY_SPACING_V27 */
 
 
-/* WACKYTRAVEL_GUIDE_MOBILE_FULL_WIDTH_V28
+/* BESTAYABLE_GUIDE_MOBILE_FULL_WIDTH_V28
    Hotel / travel guide pages: make mobile and tablet layouts use more of the screen width.
    This override is intentionally scoped to wt-guide-body so city index, purpose pages, and survey loading screens stay untouched.
 ========================================================= */
@@ -23437,9 +23437,9 @@ body.wt-guide-body .wt-table-wrap{
     width: calc(100% + 24px) ;
   }
 }
-/* End WACKYTRAVEL_GUIDE_MOBILE_FULL_WIDTH_V28 */
+/* End BESTAYABLE_GUIDE_MOBILE_FULL_WIDTH_V28 */
 
-/* WACKYTRAVEL_GUIDE_MOBILE_TABLET_CITY_PADDING_V29
+/* BESTAYABLE_GUIDE_MOBILE_TABLET_CITY_PADDING_V29
    Hotel / travel guide pages: match /destinations/도시/ mobile and tablet spacing.
    - outer page padding: 20px left/right
    - inner containers: margin-left/right 0, padding-left/right 0
@@ -23507,9 +23507,9 @@ body.wt-guide-body .wt-table-wrap{
 @media (max-width: 767px) {
   
 }
-/* End WACKYTRAVEL_GUIDE_MOBILE_TABLET_CITY_PADDING_V29 */
+/* End BESTAYABLE_GUIDE_MOBILE_TABLET_CITY_PADDING_V29 */
 
-/* WACKYTRAVEL_SURVEY_MOBILE_TABLET_CITY_PADDING_V30
+/* BESTAYABLE_SURVEY_MOBILE_TABLET_CITY_PADDING_V30
    Hotel location survey pages: match /destinations/도시/ mobile and tablet spacing.
    - outer survey page padding: 20px left/right
    - inner app container: margin-left/right 0, padding-left/right 0
@@ -23608,7 +23608,7 @@ body.wt-location-survey-page--app #resultPage .simple-summary-card{
     padding-right: 0 !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_MOBILE_TABLET_CITY_PADDING_V30 */
+/* End BESTAYABLE_SURVEY_MOBILE_TABLET_CITY_PADDING_V30 */
 
 /* =========================================================
    20260702 Home destination card editorial visual V16
@@ -24417,7 +24417,7 @@ body.travel-archive-body .eyebrow{
 /* End 20260703 City/archive topbar and archive breadcrumb alignment V4 */
 
 /* 20260703 Logo, guide topbar, and Fukuoka hotel TOC refinement V5
-   - 모든 페이지 Wacky Travel 텍스트 로고를 메인 index와 동일한 15px로 통일
+   - 모든 페이지 Be Stayable 텍스트 로고를 메인 index와 동일한 15px로 통일
    - 호텔 가이드/여행 가이드 topbar inner를 목적별 페이지(first-trip) 기준과 동일하게 정렬
    - /destinations/fukuoka/hotel-guide/ Table of Contents를 미니멀 리스트형 UI로 정리
 */
@@ -25543,7 +25543,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 }
 /* End 20260704 Home index layout refinement V1 */
 
-/* WACKYTRAVEL_SURVEY_CTA_FINAL_V1
+/* BESTAYABLE_SURVEY_CTA_FINAL_V1
    - 목적별 상세 페이지 하단 숙소 위치 CTA 문구/버튼 레이아웃 최종 반영
    - 데스크톱/태블릿: 버튼을 배너 오른쪽이 아닌 본문 아래 왼쪽에 배치
    - 모바일: 버튼을 CTA 본문 아래 100% 너비로 배치
@@ -25590,7 +25590,7 @@ body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band .
 }
 
 
-/* WACKYTRAVEL_SURVEY_APP_WIDTH_FIX_V31
+/* BESTAYABLE_SURVEY_APP_WIDTH_FIX_V31
    - /hotel-location-survey/ 앱 래퍼가 태블릿·랩탑 구간에서 풀폭으로 늘어나는 문제 수정
    - 480px 이상 화면에서는 모바일 앱처럼 430px 콘텐츠 폭을 유지
    - 모바일 479px 이하는 기존 20px 좌우 여백 구조 유지
@@ -25618,9 +25618,9 @@ body.wt-location-survey-page--app main.wt-location-page.wt-location-app{
     overflow: hidden !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_APP_WIDTH_FIX_V31 */
+/* End BESTAYABLE_SURVEY_APP_WIDTH_FIX_V31 */
 
-/* WACKYTRAVEL_SURVEY_HEADER_ACTIONS_PADDING_V32
+/* BESTAYABLE_SURVEY_HEADER_ACTIONS_PADDING_V32
    - 앱 폭 제한 적용 후 상단 버튼이 우측 보더와 겹치는 문제 수정
    - /hotel-location-survey/ 앱 페이지에만 header-actions 좌우 여백 보완
 ========================================================= */
@@ -25628,9 +25628,9 @@ body.wt-location-survey-page--app .header-actions{
   box-sizing: border-box !important;
   padding: 0 20px !important;
 }
-/* End WACKYTRAVEL_SURVEY_HEADER_ACTIONS_PADDING_V32 */
+/* End BESTAYABLE_SURVEY_HEADER_ACTIONS_PADDING_V32 */
 
-/* WACKYTRAVEL_HOTEL_CARD_CTA_REFINEMENT_V33
+/* BESTAYABLE_HOTEL_CARD_CTA_REFINEMENT_V33
    - 호텔 카드 상단 메타를 문장형으로 붙여 표시
    - 잔여 객실 확인 버튼을 60% 폭으로 오른쪽 정렬
    - 호텔 더보기 배너 버튼 SVG 아이콘 대응
@@ -25762,9 +25762,9 @@ body.travel-purpose-body .wt-purpose-page #hotels .wt-hotel-actions .wt-btn,
     max-width: 60% !important;
   }
 }
-/* End WACKYTRAVEL_HOTEL_CARD_CTA_REFINEMENT_V33 */
+/* End BESTAYABLE_HOTEL_CARD_CTA_REFINEMENT_V33 */
 
-/* WACKYTRAVEL_HOTEL_CARD_BODY_CLEANUP_V34
+/* BESTAYABLE_HOTEL_CARD_BODY_CLEANUP_V34
    - 호텔 카드 버튼 아래 불필요한 장식/빗금 배경 제거
    - 호텔 설명문은 모든 화면에서 3줄 말줄임으로 통일
    - 더보기 배너 SVG 아이콘의 흰색 배경 제거
@@ -25866,9 +25866,9 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-ban
   background-color: transparent !important;
   background-image: none !important;
 }
-/* End WACKYTRAVEL_HOTEL_CARD_BODY_CLEANUP_V34 */
+/* End BESTAYABLE_HOTEL_CARD_BODY_CLEANUP_V34 */
 
-/* WACKYTRAVEL_HOTEL_CARD_BOTTOM_SPACE_FIX_V35
+/* BESTAYABLE_HOTEL_CARD_BOTTOM_SPACE_FIX_V35
    - 잔여 객실 확인 버튼 아래 남는 하단 빈 공간 제거
    - 버튼 상단 점선 구분선 복원
 */
@@ -25899,10 +25899,10 @@ body.travel-purpose-body .wt-purpose-page .wt-hotel-actions .wt-btn,
 .wt-purpose-page .wt-hotel-actions .wt-btn{
   margin-bottom: 0 !important;
 }
-/* End WACKYTRAVEL_HOTEL_CARD_BOTTOM_SPACE_FIX_V35 */
+/* End BESTAYABLE_HOTEL_CARD_BOTTOM_SPACE_FIX_V35 */
 
 
-/* WACKYTRAVEL_SURVEY_APP_PADDING_AND_DETAIL_CLOSE_V36
+/* BESTAYABLE_SURVEY_APP_PADDING_AND_DETAIL_CLOSE_V36
    - /hotel-location-survey/ 태블릿·랩탑 구간 내부 좌우 패딩 보완
    - result-badge, wt-section-eyebrow 하단 짧은 장식선 제거
    - 자세히 보기 화면 닫기 동작과 맞도록 닫기 버튼 레이아웃 안정화
@@ -25997,10 +25997,10 @@ body.wt-location-survey-page--app main.wt-location-page.wt-location-app{
     max-width: 560px !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_APP_PADDING_AND_DETAIL_CLOSE_V36 */
+/* End BESTAYABLE_SURVEY_APP_PADDING_AND_DETAIL_CLOSE_V36 */
 
 
-/* WACKYTRAVEL_SURVEY_DETAIL_BACK_AND_EXIT_V37
+/* BESTAYABLE_SURVEY_DETAIL_BACK_AND_EXIT_V37
    - 결과 페이지 close-btn은 서베이 첫 화면이 아닌 이전/도시 페이지로 이동
    - 자세히 보기 화면에는 왼쪽 상단 SVG 뒤로가기 버튼 사용
    - 자세히 보기 화면 좌우 패딩을 별도로 보강
@@ -26109,9 +26109,9 @@ body.wt-location-survey-page--app .detailed-info-section .tab-content-container{
     padding-right: 22px !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_DETAIL_BACK_AND_EXIT_V37 */
+/* End BESTAYABLE_SURVEY_DETAIL_BACK_AND_EXIT_V37 */
 
-/* WACKYTRAVEL_SURVEY_DETAIL_PADDING_BACK_ICON_V38
+/* BESTAYABLE_SURVEY_DETAIL_PADDING_BACK_ICON_V38
    - V30의 #resultPage padding reset보다 높은 우선순위로 상세 화면 내부 여백 재적용
    - detail-back-btn 텍스트 제거 후 close-btn처럼 원형 아이콘 버튼화
    - 후쿠오카 result-badge 단문형 대응 및 상세 콘텐츠 좌우 답답함 보완
@@ -26277,12 +26277,12 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
   }
 }
 
-/* WACKYTRAVEL_SURVEY_DETAIL_MOBILE_EDGE_V39
+/* BESTAYABLE_SURVEY_DETAIL_MOBILE_EDGE_V39
    - 479px 이하 상세 보기 화면에서 detailed-info-section 좌우 padding을 0으로 조정
 ========================================================= */
-/* End WACKYTRAVEL_SURVEY_DETAIL_PADDING_BACK_ICON_V39 */
+/* End BESTAYABLE_SURVEY_DETAIL_PADDING_BACK_ICON_V39 */
 
-/* WACKYTRAVEL_SURVEY_HOTEL_TAB_OVERFLOW_V40
+/* BESTAYABLE_SURVEY_HOTEL_TAB_OVERFLOW_V40
    - 호텔 추천 탭 활성화 시 wt-hotel-card의 width:100% + padding(content-box) 조합으로 생기던 가로 스크롤 방지
    - 호텔 추천 패널과 카드 내부 요소를 border-box/min-width:0 기준으로 정리
 ========================================================= */
@@ -26343,9 +26343,9 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
     padding-right: 12px !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_HOTEL_TAB_OVERFLOW_V40 */
+/* End BESTAYABLE_SURVEY_HOTEL_TAB_OVERFLOW_V40 */
 
-/* WACKYTRAVEL_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41
+/* BESTAYABLE_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41
    - 호텔 추천 탭에서 카드가 화면 왼쪽에 붙어 border/radius가 잘려 보이던 문제 보완
    - 원인: 479px 이하에서 detailed-info-section padding을 0으로 조정한 뒤, hotelRecommendSection/tab-panel도 좌우 inset 없이 100% 폭 카드와 overflow hidden을 함께 사용함
    - 호텔 카드의 잔여 객실 확인 버튼을 다시 카드 우측에 고정
@@ -26459,9 +26459,9 @@ body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-sect
     margin-left: 0 !important;
   }
 }
-/* End WACKYTRAVEL_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41 */
+/* End BESTAYABLE_SURVEY_HOTEL_TAB_EDGE_AND_ACTION_V41 */
 
-/* WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1
+/* BESTAYABLE_HOTEL_CARD_MONO_UNIFIED_V1
    - 도시 메인 Hotel Picks와 호텔 아카이브 카드 UI를 블랙 & 화이트 미니멀 톤으로 통일
    - /hotel-recommendations/, /hotels/ 모바일 목록은 1열로 고정
 ========================================================= */
@@ -26719,7 +26719,7 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__media
     transition: none !important;
   }
 }
-/* End WACKYTRAVEL_HOTEL_CARD_MONO_UNIFIED_V1 */
+/* End BESTAYABLE_HOTEL_CARD_MONO_UNIFIED_V1 */
 
 
 /* Hotel promotions home banner: 2026-07-11 V3 — matches the soft promotion section */
@@ -26848,7 +26848,7 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__media
 }
 
 
-/* WACKYTRAVEL_HOME_REFINEMENT_V1 — 2026-07-12 */
+/* BESTAYABLE_HOME_REFINEMENT_V1 — 2026-07-12 */
 body.travel-home-body .travel-promo-link-section > .container{
   width: min(calc(100% - 30px), var(--container)) !important;
   max-width: var(--container) !important;
@@ -27066,9 +27066,9 @@ body.travel-home-body .home-latest-card .post-admin-mini-actions{
     body.travel-home-body .home-latest-card__content strong{ font-size: 21px; }
   body.travel-home-body .home-latest-card__content > span{ font-size: 13px; }
 }
-/* End WACKYTRAVEL_HOME_REFINEMENT_V1 */
+/* End BESTAYABLE_HOME_REFINEMENT_V1 */
 
-/* WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 — 2026-07-12 */
+/* BESTAYABLE_HOME_MOOD_DESTINATIONS_V1 — 2026-07-12 */
 body.travel-home-body .travel-promo-link-section > .container{
   width: min(calc(100% - 32px), var(--container, 1180px)) !important;
   max-width: var(--container, 1180px) !important;
@@ -27163,9 +27163,9 @@ body.travel-home-body .home-mood-card--featured .home-mood-card__link{ padding: 
   body.travel-home-body .home-mood-card__image,
 body.travel-home-body .home-mood-card__arrow{ transition: none !important; }
 }
-/* End WACKYTRAVEL_HOME_MOOD_DESTINATIONS_V1 */
+/* End BESTAYABLE_HOME_MOOD_DESTINATIONS_V1 */
 
-/* WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V1
+/* BESTAYABLE_FUKUOKA_PURPOSE_PROMO_STYLE_V1
    Align purpose-page reason grids, survey CTA and FAQ with /hotel-promotions/. */
 body.travel-purpose-body{
   --wt-purpose-promo-line: #d8d8d4;
@@ -27431,10 +27431,10 @@ body.travel-purpose-body .wt-section--survey-cta .wt-city-button--primary{
   }
   body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p{ padding-right: 42px !important; }
 }
-/* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V1 */
+/* End BESTAYABLE_FUKUOKA_PURPOSE_PROMO_STYLE_V1 */
 
 
-/* WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V2
+/* BESTAYABLE_FUKUOKA_PURPOSE_PROMO_STYLE_V2
    CTA grid placement and collision-proof FAQ +/- icon. */
 body.travel-purpose-body .wt-section--survey-cta .wt-cta-band{
   grid-template-columns: minmax(0, 1fr) auto !important;
@@ -27513,9 +27513,9 @@ body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > .wt-city-button-
     justify-self: end !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V2 */
+/* End BESTAYABLE_FUKUOKA_PURPOSE_PROMO_STYLE_V2 */
 
-/* WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V3
+/* BESTAYABLE_FUKUOKA_PURPOSE_PROMO_STYLE_V3
    Full-bleed soft background, white inner card, exact circular CTA button. */
 body.travel-purpose-body .wt-section--survey-cta,
 body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta{
@@ -27572,9 +27572,9 @@ body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band >
     flex-basis: 56px !important;
   }
 }
-/* End WACKYTRAVEL_FUKUOKA_PURPOSE_PROMO_STYLE_V3 */
+/* End BESTAYABLE_FUKUOKA_PURPOSE_PROMO_STYLE_V3 */
 
-/* WACKYTRAVEL_UNSPLASH_DIRECT_FIX_V4_APPLIED */
+/* BESTAYABLE_UNSPLASH_DIRECT_FIX_V4_APPLIED */
 body.travel-home-body .home-mood-card{
   min-height: 255px;
 }
@@ -30160,7 +30160,7 @@ body.travel-city-body .wt-city-start-guides .wt-firsttrip-guide:focus-visible{
 }
 /* END FUKUOKA_CITY_START_GUIDES_V1 */
 
-/* WACKYTRAVEL_CITY_HERO_CTA_MOBILE_V3 */
+/* BESTAYABLE_CITY_HERO_CTA_MOBILE_V3 */
 body.travel-city-body .wt-city-start-guides .wt-section-kicker{
   font-size: 15px !important;
 }
@@ -30203,7 +30203,7 @@ body.travel-city-body .wt-city-hero__actions .wt-city-button--ghost:hover{
     margin: 0 !important;
   }
 }
-/* End WACKYTRAVEL_CITY_HERO_CTA_MOBILE_V3 */
+/* End BESTAYABLE_CITY_HERO_CTA_MOBILE_V3 */
 
 /* Home mobile section spacing */
 @media (max-width: 760px) {
@@ -30213,7 +30213,7 @@ body.travel-city-body .wt-city-hero__actions .wt-city-button--ghost:hover{
   }
 }
 
-/* WACKYTRAVEL_HOME_LAYOUT_REFINEMENT_V3 */
+/* BESTAYABLE_HOME_LAYOUT_REFINEMENT_V3 */
 body.travel-home-body main.travel-page.travel-home .section-heading.section-heading--split{
   border-bottom: 3px solid #000 !important;
   padding-bottom: 20px !important;
@@ -30234,10 +30234,10 @@ body.travel-home-body .home-mood-card--featured{
     padding-bottom: 90px !important;
   }
 }
-/* END WACKYTRAVEL_HOME_LAYOUT_REFINEMENT_V3 */
+/* END BESTAYABLE_HOME_LAYOUT_REFINEMENT_V3 */
 
 
-/* WACKYTRAVEL_HOME_HEADING_LINKS_V4
+/* BESTAYABLE_HOME_HEADING_LINKS_V4
    - 홈 섹션 더 보기 링크 높이와 시각 스타일 통일
    - 프로모션 섹션 링크도 인기 여행지 링크와 동일한 텍스트+chevron 구조 적용
 ========================================================= */
@@ -30317,7 +30317,7 @@ body.travel-home-body .wtpromo-section-heading.wtpromo-section-heading--linked .
     height: 15px !important;
   }
 }
-/* END WACKYTRAVEL_HOME_HEADING_LINKS_V4 */
+/* END BESTAYABLE_HOME_HEADING_LINKS_V4 */
 
 /* Enforce 10px minimum height across desktop, tablet, and mobile. */
 body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .text-link.destinations-view-all-link,
@@ -30325,7 +30325,7 @@ body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-ho
   min-height: 10px !important;
 }
 
-/* WACKYTRAVEL_EDITOR_PICK_LINK_PARITY_V5
+/* BESTAYABLE_EDITOR_PICK_LINK_PARITY_V5
    Editor's Pick heading/link follows the Popular Destinations heading exactly,
    including typography, chevron icon, and mobile right-side alignment.
 ========================================================= */
@@ -30430,7 +30430,7 @@ body.travel-home-body main.travel-page.travel-home > .wtpromo-section.wtpromo-ho
     height: 15px !important;
   }
 }
-/* END WACKYTRAVEL_EDITOR_PICK_LINK_PARITY_V5 */
+/* END BESTAYABLE_EDITOR_PICK_LINK_PARITY_V5 */
 
 /* 20260716 Post header exact unification with main index */
 
@@ -30464,7 +30464,7 @@ body.wt-location-survey-page--app [data-admin-only][hidden]{
 }
 
 
-/* WACKYTRAVEL_GLOBAL_TYPOGRAPHY_AND_ALIGNMENT_FIX_V1 */
+/* BESTAYABLE_GLOBAL_TYPOGRAPHY_AND_ALIGNMENT_FIX_V1 */
 body.travel-purpose-body .wt-page-hero__content .wt-eyebrow,
 .wt-page-hero__content .wt-eyebrow{
   font-size: 15px !important;
@@ -30635,7 +30635,7 @@ body.is-survey-destination-selection .travel-section--destinations-archive .sect
   }
 }
 
-/* WACKYTRAVEL_HOME_DESTINATION_IMAGE_SKELETON_V1
+/* BESTAYABLE_HOME_DESTINATION_IMAGE_SKELETON_V1
    Popular Destinations 이미지가 로드되기 전 카드 비율을 유지하면서
    흰색/쿨그레이 기반의 스켈레톤 시머를 표시합니다. */
 body.travel-home-body .home-mood-card.is-loading{
@@ -30685,9 +30685,9 @@ body.travel-home-body .home-mood-card.is-loading .home-mood-card__link{
     animation: none;
   }
 }
-/* End WACKYTRAVEL_HOME_DESTINATION_IMAGE_SKELETON_V1 */
+/* End BESTAYABLE_HOME_DESTINATION_IMAGE_SKELETON_V1 */
 
-/* WACKYTRAVEL_ALL_CITY_GUIDES_UNIFIED_BW_V27
+/* BESTAYABLE_ALL_CITY_GUIDES_UNIFIED_BW_V27
    - every /travel-guide/ and /hotel-guide/ shares one layout grid
    - horizontal spacing matches /destinations/{city}/ pages
    - one black-and-white minimal component system across all cities
@@ -30871,9 +30871,9 @@ body.wt-guide-body.wt-city-hotel-guide-page .wt-city-guide-section{
     padding: 34px 0 !important;
   }
 }
-/* End WACKYTRAVEL_ALL_CITY_GUIDES_UNIFIED_BW_V27 */
+/* End BESTAYABLE_ALL_CITY_GUIDES_UNIFIED_BW_V27 */
 
-/* WACKYTRAVEL_GUIDE_COMPONENTS_BW_REFINEMENT_V28
+/* BESTAYABLE_GUIDE_COMPONENTS_BW_REFINEMENT_V28
    Removes the article child width cap and aligns the survey / related components
    with the shared black-and-white guide system across every city. */
 body.wt-guide-body.wt-city-travel-guide-page .wt-city-guide-section > *,
@@ -31141,7 +31141,7 @@ body.wt-guide-body main.travel-page .wt-city-guide-related__card{
     padding: 18px !important;
   }
 }
-/* End WACKYTRAVEL_GUIDE_COMPONENTS_BW_REFINEMENT_V28 */
+/* End BESTAYABLE_GUIDE_COMPONENTS_BW_REFINEMENT_V28 */
 
 
 
@@ -32161,7 +32161,7 @@ body.wt-guide-body main.travel-page .wt-seo-toc-section[data-guide-toc] .wt-seo-
   font-size:14px;
 }
 
-/* WACKYTRAVEL_CITY_H1_HOME_H2_V16
+/* BESTAYABLE_CITY_H1_HOME_H2_V16
    Desktop city hero heading and home section heading normalization. */
 @media (min-width: 1024px) {
   body.travel-city-body .wt-city-hero h1,
@@ -32180,7 +32180,7 @@ body.travel-home-body main.travel-page.travel-home h2 {
   line-height: 1.2;
   word-break: keep-all;
 }
-/* END WACKYTRAVEL_CITY_H1_HOME_H2_V16 */
+/* END BESTAYABLE_CITY_H1_HOME_H2_V16 */
 /* Global Korean text wrapping */
 p,
 strong {
@@ -32545,7 +32545,7 @@ body.travel-archive-body .hotel-card .text-link{
   }
 }
 
-/* WACKYTRAVEL_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V2
+/* BESTAYABLE_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V2
    - 도시 메인 관련 가이드 kicker를 wt-city-kicker로 통일
    - 모바일 Hotel Picks의 실제 카드와 스켈레톤을 같은 가로 스크롤 흐름으로 표시
 ========================================================= */
@@ -32610,10 +32610,10 @@ body.travel-city-body .wt-city-start-guides .wt-city-kicker {
     max-width: 100%;
   }
 }
-/* End WACKYTRAVEL_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V2 */
+/* End BESTAYABLE_CITY_GUIDE_KICKER_AND_MOBILE_HOTEL_SCROLL_V2 */
 
 
-/* WACKYTRAVEL_CITY_GUIDE_800PX_V7 */
+/* BESTAYABLE_CITY_GUIDE_800PX_V7 */
 @media (min-width: 1181px) {
   body.wt-guide-body.wt-city-travel-guide-page .wt-city-guide-layout.container,
   body.wt-guide-body.wt-city-hotel-guide-page .wt-city-guide-layout.container {
@@ -32628,7 +32628,7 @@ body.travel-city-body .wt-city-start-guides .wt-city-kicker {
 }
 
 
-/* WACKYTRAVEL_HOME_EYEBROW_LINE_V1 */
+/* BESTAYABLE_HOME_EYEBROW_LINE_V1 */
 body.travel-home-body .travel-section--destination-hub .eyebrow::before,
 body.travel-home-body .wt-home-start-guides .eyebrow::before{
   content: "";
@@ -32638,9 +32638,9 @@ body.travel-home-body .wt-home-start-guides .eyebrow::before{
   margin: 0 10px 4px 0;
   background: currentColor;
 }
-/* END WACKYTRAVEL_HOME_EYEBROW_LINE_V1 */
+/* END BESTAYABLE_HOME_EYEBROW_LINE_V1 */
 
-/* WACKYTRAVEL_HOME_START_GUIDES_V1 */
+/* BESTAYABLE_HOME_START_GUIDES_V1 */
 body.travel-home-body .wt-home-start-guides{
   background: #fff;
 }
@@ -32754,4 +32754,4 @@ body.travel-home-body .wt-home-start-guides .wt-firsttrip-guide:focus-visible{
     font-size: 21px;
   }
 }
-/* END WACKYTRAVEL_HOME_START_GUIDES_V1 */
+/* END BESTAYABLE_HOME_START_GUIDES_V1 */

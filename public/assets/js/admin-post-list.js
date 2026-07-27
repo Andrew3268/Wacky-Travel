@@ -179,7 +179,7 @@
     const panelTitleEl = document.getElementById('adminPostListPanelTitle');
     const listMetaEl = document.getElementById('adminPostListMeta');
 
-    document.title = `${meta.title} | Wacky Travel`;
+    document.title = `${meta.title} | Be Stayable`;
     if (titleEl) titleEl.textContent = meta.title;
     if (descEl) descEl.textContent = meta.desc;
     if (badgeEl) badgeEl.textContent = meta.label;

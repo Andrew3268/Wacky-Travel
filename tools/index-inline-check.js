@@ -27,7 +27,7 @@ for (const htmlFile of htmlFiles) {
     .filter(Boolean);
 
   for (let index = 0; index < scripts.length; index += 1) {
-    const tempFile = path.join(os.tmpdir(), `wackytravel-inline-${process.pid}-${checked}.js`);
+    const tempFile = path.join(os.tmpdir(), `bestayable-inline-${process.pid}-${checked}.js`);
     await fs.writeFile(tempFile, scripts[index], "utf8");
     const result = spawnSync(process.execPath, ["--check", tempFile], { encoding: "utf8" });
     await fs.rm(tempFile, { force: true });

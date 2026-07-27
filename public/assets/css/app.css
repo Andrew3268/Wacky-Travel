@@ -1,5 +1,5 @@
 /* =========================================================
-   Wacky Travel app.css
+   Be Stayable app.css
    역할별 섹션 정리본: 중복 선택자와 중복 선언은 최종 적용값 기준으로 통합했습니다.
 ========================================================= */
 
@@ -6387,7 +6387,7 @@ button{
 
 /* End travel topbar flat override */
 
-/* WACKYTRAVEL_GLOBAL_TYPOGRAPHY_REFINEMENT_V17 */
+/* BESTAYABLE_GLOBAL_TYPOGRAPHY_REFINEMENT_V17 */
 p{
   color: #333;
   font-weight: 400;

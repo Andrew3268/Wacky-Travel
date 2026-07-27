@@ -81,7 +81,7 @@ export async function onRequestGet({ params, env, request }) {
       const posts = postRows.results || [];
       const latestUpdatedAt = [...destinations.map((item) => item.updated_at), ...posts.map((item) => item.updated_at)].filter(Boolean).sort().pop() || "";
       const canonical = `${origin}/countries/${encodeURIComponent(countryToSlug(countryName))}/`;
-      const title = `${countryName} 여행 허브 | Wacky Travel`;
+      const title = `${countryName} 여행 허브 | Be Stayable`;
       const description = `${countryName} 주요 도시별 여행 콘텐츠를 글 종류별로 한 페이지에서 확인하세요.`;
       const breadcrumbItems = [
         { name: "홈", url: `${origin}/`, href: "/" },

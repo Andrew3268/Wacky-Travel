@@ -69,7 +69,7 @@ export async function onRequestGet({ params, env, request }) {
       const heroSummary = getDestinationHeroSummary(destination);
       const heroImage = getDestinationHeroImage(destination);
       const heroImageAlt = getDestinationHeroImageAlt(destination);
-      const title = `${heroTitle} | Wacky Travel`;
+      const title = `${heroTitle} | Be Stayable`;
       const description = destination.meta_description || heroSummary || `${destination.name} 여행지 정보와 호텔 선택 기준을 정리합니다.`;
       const breadcrumbItems = [
         { name: "홈", url: `${origin}/`, href: "/" },
@@ -79,7 +79,7 @@ export async function onRequestGet({ params, env, request }) {
 
       const jsonLdItems = [
         buildBreadcrumbJsonLd(breadcrumbItems),
-        buildDestinationJsonLd({ destination, url: canonical, siteName: "Wacky Travel" }),
+        buildDestinationJsonLd({ destination, url: canonical, siteName: "Be Stayable" }),
         buildItemListJsonLd({
           url: canonical,
           items: hotelPosts.map((post) => ({
@@ -269,7 +269,7 @@ function renderHotelSection(destination, top5Posts = [], hotelIntroPosts = [], c
   return `<section id="hotel-posts" class="container travel-section wt-city-dynamic-section">
       <div class="section-heading">
         <p class="eyebrow">Hotel Picks</p>
-        <h2>와키트래블 추천 호텔</h2>
+        <h2>비스테이어블 추천 호텔</h2>
         <p>여행 목적과 위치를 기준으로 비교하기 좋은 호텔을 모았습니다.</p>
       </div>
       ${renderHotelTabs(destination, top5Posts, hotelIntroPosts, contentTypes)}
@@ -320,7 +320,7 @@ function renderPostUpdateNoticeScript(destination = {}) {
   const destinationSlug = String(root?.dataset.destinationSlug || '${escapeHtml(fallbackDestinationSlug)}').trim();
   if (!destinationSlug) return;
 
-  const STORAGE_KEY = 'wackyTravelPostUpdated';
+  const STORAGE_KEY = 'beStayablePostUpdated';
   const pageLoadedAt = Date.now();
 
   const parsePayload = (raw) => {

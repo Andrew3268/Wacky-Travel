@@ -89,7 +89,7 @@ export async function onRequestGet({ params, env, request }) {
 
       const canonical = new URL(`/post/${encodeURIComponent(slug)}/`, origin);
 
-      const siteName = "Wacky Travel";
+      const siteName = "Be Stayable";
       const siteDescription = "여행지 정보, 호텔 선택 기준, 예약 전 체크포인트를 정리하는 여행 블로그";
       const authorName = "Travel Editor";
       const faqItems = parseFaqMarkdown(row.faq_md || "");
@@ -1293,9 +1293,9 @@ function renderNotFound(slug) {
 function topbar() {
   return `<header class="topbar topbar--editorial topbar--travel" data-site-header="main">
     <div class="topbar__inner container">
-      <a class="brand" href="/" aria-label="Wacky Travel 홈">
-        <span class="brand__mark">WT</span>
-        <span class="brand__text">Wacky Travel</span>
+      <a class="brand" href="/" aria-label="Be Stayable 홈">
+        <span class="brand__mark">BS</span>
+        <span class="brand__text">Be Stayable</span>
       </a>
       <button class="topbar-search-button" id="homeSearchOpenBtn" type="button" aria-label="검색 열기" aria-controls="homeSearchOverlay" aria-expanded="false">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">

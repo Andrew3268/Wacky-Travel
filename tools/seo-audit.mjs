@@ -157,8 +157,8 @@ const sourceFiles = (await walk(root)).filter((file) => /\.(?:js|mjs|html|toml|t
 for (const file of sourceFiles) {
   const rel = path.relative(root, file).split(path.sep).join("/");
   const text = await fs.readFile(file, "utf8");
-  if (text.includes("https://wacky-travel.pages.dev") && !["lib/seo/site-url.js", "wrangler.toml", "tools/seo-audit.mjs"].includes(rel)) {
-    errors.push(`${rel}: 운영 도메인 하드코딩 발견`);
+  if (/https:\/\/[a-z0-9.-]+\.pages\.dev/i.test(text)) {
+    errors.push(`${rel}: Cloudflare Pages 임시 도메인 하드코딩 발견`);
   }
   for (const match of text.matchAll(/["'](\/post\/[a-z0-9][a-z0-9-]*)(["'])/gi)) {
     const candidate = match[1];

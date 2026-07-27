@@ -421,7 +421,7 @@ function adminPostsScheduleReload() {
 }
 
 window.addEventListener("storage", (event) => {
-  if (event.key === "wackyTravelPostUpdated") adminPostsScheduleReload();
+  if (event.key === "beStayablePostUpdated") adminPostsScheduleReload();
 });
 
 window.addEventListener("pageshow", (event) => {

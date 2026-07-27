@@ -1,16 +1,25 @@
-# Wacky Travel
+# Be Stayable
 
 - v11: 오사카·도쿄·삿포로·오키나와 hotel-location-survey 결과 정확도 보정 로직 추가 및 결과 문구 일부 개선. SSR Blog
 
-Wacky Travel은 독립적으로 운영되는 여행 제휴마케팅/애드센스 블로그입니다.  
+Be Stayable은 독립적으로 운영되는 여행 제휴마케팅/애드센스 블로그입니다.  
 Cloudflare Pages Functions + D1 + SSR + Edge Cache 구조로 여행지 허브, 호텔 추천 글, 일반 여행 글을 빠르게 출력하도록 구성되어 있습니다.
 
 
-## wackytravel-v1.12 변경 요약
+## bestayable-v1.12 변경 요약
 
 - 일본 5개 도시 메인 index 페이지 Area Guide에서 `wt-city-area-panel__eyebrow`와 `wt-city-area-panel__decision span`의 좌우 패딩을 0으로 조정했습니다.
 - 데스크탑에서 Area Guide의 정보 그리드와 한 줄 판단 영역 사이, 한 줄 판단 영역 하단 간격을 줄였습니다.
 - 압축파일에는 `README.md` 외 별도 Markdown 문서를 포함하지 않도록 정리했습니다.
+
+
+## Be Stayable 브랜드 전환
+
+- 실제 서비스명: `Be Stayable(비스테이어블)`
+- 공식 도메인: `https://bestayable.com`
+- 기존 Cloudflare Pages 프로젝트명 `wacky-travel`, D1 데이터베이스명 `wacky-travel-db`, 바인딩명 `TRAVEL_DB`는 배포 연결을 보호하기 위해 유지합니다.
+- 기존 운영 D1의 `site_name`은 `npm run d1:migrate:brand:remote`로 갱신합니다. 로컬 D1은 `npm run d1:migrate:brand`를 사용합니다.
+- 도메인 연결 전에는 `CUSTOM_DOMAIN_CONNECTED = "false"`, `ENFORCE_SITE_ORIGIN = "false"`를 유지합니다. 연결 완료 후 두 값을 `true`로 전환합니다.
 
 ## 핵심 구조
 
@@ -173,7 +182,8 @@ D1 database: wacky-travel-db
 
 ```toml
 [vars]
-SITE_ORIGIN = "https://www.example.com"
+SITE_ORIGIN = "https://bestayable.com"
+CUSTOM_DOMAIN_CONNECTED = "true"
 ENFORCE_SITE_ORIGIN = "true"
 ```
 

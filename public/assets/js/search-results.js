@@ -256,7 +256,7 @@ const $ = (id) => document.getElementById(id);
       setView(hasQuery);
       $('wtsrInput').value = state.query;
       syncClearButton();
-      document.title = hasQuery ? `${state.query} 검색 결과 | Wacky Travel` : '검색 | Wacky Travel';
+      document.title = hasQuery ? `${state.query} 검색 결과 | Be Stayable` : '검색 | Be Stayable';
       if (replaceUrl) {
         const nextUrl = hasQuery ? `/search/?q=${encodeURIComponent(state.query)}` : '/search/';
         window.history.replaceState({}, '', nextUrl);

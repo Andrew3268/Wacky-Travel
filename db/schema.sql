@@ -1,4 +1,4 @@
--- Wacky Travel SSR Schema
+-- Be Stayable SSR Schema
 -- Cloudflare D1 / SQLite
 
 CREATE TABLE IF NOT EXISTS posts (
@@ -220,7 +220,7 @@ INSERT OR IGNORE INTO site_settings (key, value, updated_at)
 VALUES ('index_sidebar_ad_enabled', '0', datetime('now'));
 
 INSERT OR IGNORE INTO site_settings (key, value, updated_at)
-VALUES ('site_name', 'Wacky Travel', datetime('now'));
+VALUES ('site_name', 'Be Stayable', datetime('now'));
 
 INSERT OR IGNORE INTO site_settings (key, value, updated_at)
 VALUES ('site_description', '여행지 정보, 호텔 선택 기준, 예약 전 체크포인트를 빠르게 정리하는 여행 블로그', datetime('now'));

@@ -1,5 +1,5 @@
 -- 여행 제휴/애드센스 블로그 확장 마이그레이션
--- Wacky Travel 전용 여행 제휴/애드센스 확장 스키마입니다.
+-- Be Stayable 전용 여행 제휴/애드센스 확장 스키마입니다.
 
 ALTER TABLE posts ADD COLUMN content_type TEXT DEFAULT 'guide';
 ALTER TABLE posts ADD COLUMN destination_slug TEXT DEFAULT '';

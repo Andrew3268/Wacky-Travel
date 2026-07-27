@@ -123,7 +123,7 @@ async function fetchWithTimeout(url) {
       redirect: "manual",
       signal: controller.signal,
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; WackyTravel/1.0; +https://wackytravel.com)",
+        "User-Agent": "Mozilla/5.0 (compatible; BeStayable/1.0; +https://bestayable.com)",
         "Accept": "text/html,application/xhtml+xml"
       }
     });
