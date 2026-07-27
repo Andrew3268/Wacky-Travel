@@ -18,7 +18,7 @@
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/assets/css/app.css?v=20260727-post-spacing-v5" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
-<link href="/assets/css/travel.css?v=20260726PurposeKickerHotelHeadV2" rel="stylesheet"/>
+<link href="/assets/css/travel.css?v=20260727-home-tools-v1" rel="stylesheet"/>
 <link href="/assets/css/hotel-promotions.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
 <link href="/assets/css/site-header.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
 <meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/><meta content="#ffffff" name="theme-color"/><link href="/" rel="canonical"/><meta content="website" property="og:type"/><meta content="Wacky Travel" property="og:site_name"/><meta content="Wacky Travel | 여행지·호텔 추천 블로그" property="og:title"/><meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." property="og:description"/><meta content="/" property="og:url"/><meta content="/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="Wacky Travel | 여행지·호텔 추천 블로그 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="Wacky Travel | 여행지·호텔 추천 블로그" name="twitter:title"/><meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." name="twitter:description"/><meta content="/assets/images/og-default.png" name="twitter:image"/><meta content="Wacky Travel | 여행지·호텔 추천 블로그 대표 이미지" name="twitter:image:alt"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"/#website","url":"/","name":"Wacky Travel","inLanguage":"ko-KR","publisher":{"@id":"/#organization"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"/#organization","name":"Wacky Travel","url":"/","logo":{"@type":"ImageObject","url":"/assets/images/logo.png","width":520,"height":520}}</script></head>
@@ -82,9 +82,7 @@
 <p class="wthome-hero__desc">
                 어디에 숙소를 잡아야 할지 고민된다면, 여행지별 추천 지역을 비교해보세요. 일정과 동선에 맞는 최적의 숙소 위치를 찾아볼 수 있습니다.
               </p>
-<div class="wthome-hero__actions">
-<a class="wthome-hero__button wthome-hero__button--primary" href="/destinations/?survey=1">내 여행에 맞는 숙소 위치 찾기</a>
-</div>
+
 </div>
 </div>
 </div>
@@ -153,7 +151,7 @@
 </article>
 </div>
 </section>
-<section aria-labelledby="featuredTitle" class="wtpromo-section wtpromo-container wtpromo-home-featured">
+<section aria-labelledby="featuredTitle" class="wtpromo-section wtpromo-container wtpromo-home-featured" hidden aria-hidden="true" data-admin-home-promotion>
 <div class="section-heading section-heading--split">
 <div>
 <p class="eyebrow">Promotion Spotlight</p>
@@ -207,20 +205,30 @@
 </a>
 </div>
 </section>
-<section aria-labelledby="homeDiscountToolTitle" class="wtpromo-home-tool-section">
-<div class="wtpromo-container">
-<a aria-labelledby="homeDiscountToolTitle" class="wtpromo-tool-card wtpromo-tool-card--home" href="/agoda-card-discount/">
-<div class="wtpromo-tool-card--home__content">
-<div>
-<p class="wtpromo-eyebrow">PAYMENT DEAL FINDER</p>
-<h2 id="homeDiscountToolTitle">아고다 결제 할인 찾기</h2>
-<p>호텔 링크를 입력하고 카드·간편결제·통신사별 할인 페이지를 빠르게 확인해보세요.</p>
+<section aria-labelledby="homeTravelToolsTitle" class="wt-section wt-section--compact wt-firsttrip-related-guides wt-home-start-guides" id="travel-tools">
+<div class="container">
+<div class="wt-section-head">
+<div class="wt-city-kicker">TRAVEL TOOLS</div>
+<h2 class="wt-section-title" id="homeTravelToolsTitle">여행 준비를 더 쉽게 만드는 도구</h2>
 </div>
-</div>
-<span aria-hidden="true" class="wtpromo-primary-button">
-<svg viewbox="0 0 20 20"><path d="M4 10h11"></path><path d="m11 6 4 4-4 4"></path></svg>
+<div class="wt-firsttrip-guide-list">
+<a class="wt-firsttrip-guide" href="/destinations/?survey=1">
+<span class="wt-firsttrip-guide__content">
+<strong>내 여행에 맞는 숙소 위치 찾기</strong>
+<span>여행 스타일과 중요 동선을 선택하고 나에게 잘 맞는 도시별 숙소 지역을 찾아보세요.</span>
+<em>숙소 위치 찾기</em>
 </span>
+<span aria-hidden="true" class="wt-firsttrip-guide__arrow">→</span>
 </a>
+<a class="wt-firsttrip-guide" href="/agoda-card-discount/">
+<span class="wt-firsttrip-guide__content">
+<strong>아고다 결제 할인 찾기</strong>
+<span>호텔 링크를 입력하고 카드·간편결제·통신사별 할인 페이지를 한 번에 확인해보세요.</span>
+<em>결제 할인 확인하기</em>
+</span>
+<span aria-hidden="true" class="wt-firsttrip-guide__arrow">→</span>
+</a>
+</div>
 </div>
 </section>
 
@@ -413,6 +421,10 @@
       const adminData = adminRes ? await adminRes.json().catch(() => ({ authenticated: false })) : { authenticated: false };
 
       state.isAdmin = Boolean(adminData.authenticated);
+      document.querySelectorAll('[data-admin-home-promotion]').forEach((section) => {
+        section.hidden = !state.isAdmin;
+        section.setAttribute('aria-hidden', state.isAdmin ? 'false' : 'true');
+      });
       state.countries = Array.isArray(settingsData.countries) ? settingsData.countries : [];
       state.destinations = mergeDestinationSources(
         Array.isArray(destData.items) ? destData.items : [],
