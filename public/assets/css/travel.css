@@ -32726,6 +32726,12 @@ body.travel-home-body .wt-home-start-guides .wt-firsttrip-guide:focus-visible{
 }
 
 @media (max-width: 767px){
+  body.travel-home-body .wt-home-start-guides > .container{
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   body.travel-home-body .wt-home-start-guides .wt-section-head{
     margin-bottom: 26px;
   }
