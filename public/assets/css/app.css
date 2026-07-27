@@ -8877,7 +8877,7 @@ body.post-page-body .post-hotel-title-meta__item + .post-hotel-title-meta__item:
   font-weight: 400;
 }
 
-body.post-page-body .post-hotel-title-meta__item--value{
+body.post-page-body .post-hotel-title-meta__item--location{
   color: inherit;
 }
 

@@ -679,8 +679,9 @@ function renderHotelTitleMeta(hotelHeroData = null) {
   if (!hotel) return "";
 
   const items = [];
-  if (String(hotel.price_level || "").trim()) {
-    items.push('<span class="post-hotel-title-meta__item post-hotel-title-meta__item--value">가성비 호텔</span>');
+  const locationType = String(hotel.area || "").trim();
+  if (locationType) {
+    items.push(`<span class="post-hotel-title-meta__item post-hotel-title-meta__item--location">${escapeHtml(locationType)}</span>`);
   }
 
   const starRating = formatStarRating(hotel.star_rating);

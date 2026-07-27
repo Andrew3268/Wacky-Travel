@@ -131,7 +131,7 @@ function collectHotelHeroFormData() {
     area: normalizeHeroLocationType($("heroHotelLocationType")?.value || ""),
     star_rating: $("heroHotelStarRating")?.value.trim() || "",
     guest_rating: normalizeHeroGuestRating($("heroHotelGuestRating")?.value || ""),
-    price_level: $("heroHotelValueBadge")?.checked ? "가성비" : "",
+    price_level: "",
     badges: getSelectedHotelHeroBadges(),
     price_url: $("heroHotelPriceUrl")?.value.trim() || ""
   };
@@ -2843,7 +2843,7 @@ function renderPreview() {
     : { name: "", name_en: "", area: "", star_rating: "", guest_rating: "", price_level: "", badges: [], price_url: "" };
   const hotelBadges = normalizeHotelHeroBadges(hotelHero.badges);
   const hotelTitleMeta = [
-    hotelHero.price_level ? "가성비 호텔" : "",
+    hotelHero.area || "",
     formatHeroStarRating(hotelHero.star_rating),
     formatHeroGuestRating(hotelHero.guest_rating)
   ].filter(Boolean);
@@ -3044,7 +3044,7 @@ const inlineImageFieldIds = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offse
   return [`inlineImage${index}Id`, `inlineImage${index}Alt`, `inlineImage${index}Caption`, `inlineImage${index}Position`, `inlineImage${index}Placement`];
 }).flat();
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "travelMoodSlugs", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelPriceUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "travelMoodSlugs", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelPriceUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);
