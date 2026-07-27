@@ -122,6 +122,35 @@ async function initDashboard() {
 
   if (emailEl) emailEl.textContent = sessionJson.admin?.email || '관리자';
 
+  const logoutButtons = Array.from(document.querySelectorAll('.js-dashboard-logout'));
+  logoutButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      if (button.disabled) return;
+      logoutButtons.forEach((item) => {
+        item.disabled = true;
+        item.setAttribute('aria-busy', 'true');
+      });
+
+      try {
+        const res = await fetch('/api/admin/logout', {
+          method: 'POST',
+          credentials: 'same-origin',
+          cache: 'no-store',
+          headers: { Accept: 'application/json' }
+        });
+        if (!res.ok) throw new Error(`로그아웃 실패 (${res.status})`);
+        location.replace('/admin/');
+      } catch (err) {
+        console.error(err);
+        logoutButtons.forEach((item) => {
+          item.disabled = false;
+          item.removeAttribute('aria-busy');
+        });
+        alert(err?.message || '로그아웃 중 오류가 발생했습니다.');
+      }
+    });
+  });
+
   let indexSidebarAdEnabled = false;
   await refreshDashboard();
 
