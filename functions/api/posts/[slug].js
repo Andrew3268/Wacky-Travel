@@ -18,11 +18,28 @@ function slugifyValue(value = "") {
     .replace(/^-|-$/g, "");
 }
 
+const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
+  "훌륭한 위치",
+  "뚜벅이 최적",
+  "깔끔한 위생",
+  "친절한 서비스",
+  "쇼핑·맛집 중심",
+  "높은 만족도",
+  "공항 이동 편리",
+  "전망 좋은 뷰",
+  "넓고 쾌적한 객실",
+  "조식 맛집",
+  "아이동반 최적",
+  "커플 여행 최적",
+  "호캉스 최적",
+]);
+
 function normalizeBadgeArray(value) {
   const source = Array.isArray(value)
     ? value
     : String(value || "").split(/[,.，、|]/);
-  return [...new Set(source.map((item) => String(item || "").trim()).filter(Boolean))].slice(0, 12);
+  const selected = new Set(source.map((item) => String(item || "").trim()).filter(Boolean));
+  return HOTEL_HERO_BADGE_OPTIONS.filter((item) => selected.has(item));
 }
 
 function parseJsonArray(value) {
@@ -238,8 +255,7 @@ function hasHotelHeroInput(hero = {}) {
     normalizeHeroGuestRating(hero.guest_rating || hero.guest_score || hero.review_rating || "") ||
     isHeroValueBadgeEnabled(hero.price_level || hero.value_badge || "") ||
     badges ||
-    String(hero.price_url || hero.primary_url || "").trim() ||
-    String(hero.availability_url || hero.secondary_url || "").trim()
+    String(hero.price_url || hero.primary_url || "").trim()
   );
 }
 
@@ -307,10 +323,8 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", regionSl
   ).run();
 
   const primaryUrl = String(hero.price_url || hero.primary_url || "").trim();
-  const secondaryUrl = String(hero.availability_url || hero.secondary_url || "").trim();
   const links = [
-    primaryUrl ? { provider: "hero_price", label: "객실 가격 확인하기", affiliate_url: primaryUrl, button_text: "객실 가격 확인하기", sort_order: 1 } : null,
-    secondaryUrl ? { provider: "hero_availability", label: "예약 가능 여부 보기", affiliate_url: secondaryUrl, button_text: "예약 가능 여부 보기", sort_order: 2 } : null
+    primaryUrl ? { provider: "hero_price", label: "객실 가격 확인하기", affiliate_url: primaryUrl, button_text: "객실 가격 확인하기", sort_order: 1 } : null
   ].filter(Boolean);
 
   await db.prepare(`DELETE FROM hotel_affiliate_links WHERE hotel_slug = ? AND provider IN ('hero_price', 'hero_availability')`).bind(hotelSlug).run();
@@ -342,12 +356,11 @@ async function getHotelHeroData(db, hotelSlug = "") {
   const links = await db.prepare(`
     SELECT provider, affiliate_url
     FROM hotel_affiliate_links
-    WHERE hotel_slug = ? AND provider IN ('hero_price', 'hero_availability') AND COALESCE(is_active, 1) = 1
+    WHERE hotel_slug = ? AND provider = 'hero_price' AND COALESCE(is_active, 1) = 1
     ORDER BY sort_order ASC
   `).bind(slug).all();
   const rows = links.results || [];
   const price = rows.find((row) => row.provider === 'hero_price');
-  const availability = rows.find((row) => row.provider === 'hero_availability');
   return {
     slug,
     name: hotel.name || "",
@@ -357,8 +370,7 @@ async function getHotelHeroData(db, hotelSlug = "") {
     guest_rating: hotel.guest_rating || "",
     price_level: hotel.price_level || "",
     badges: parseJsonArray(hotel.badges_json),
-    price_url: price?.affiliate_url || "",
-    availability_url: availability?.affiliate_url || ""
+    price_url: price?.affiliate_url || ""
   };
 }
 
@@ -460,8 +472,8 @@ export async function onRequestPut({ env, params, request }) {
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
   const faqMd = String(body.faq_md || "").trim();
-  const enableSidebarAd = body.enable_sidebar_ad === false ? 0 : 1;
-  const enableInarticleAds = body.enable_inarticle_ads === false ? 0 : 1;
+  const enableSidebarAd = body.enable_sidebar_ad === true ? 1 : 0;
+  const enableInarticleAds = body.enable_inarticle_ads === true ? 1 : 0;
   const status = normalizeStatusValue(body.status || "published");
   const tags = Array.isArray(body.tags) ? body.tags : [];
   const contentType = normalizeContentType(body.content_type || "travel_tip");

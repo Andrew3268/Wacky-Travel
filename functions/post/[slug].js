@@ -2,7 +2,22 @@ import { escapeHtml, jsonld, okHtml, edgeCache } from "../_utils.js";
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260722-top5-hero-breadcrumb-v3";
+const POST_RENDER_VERSION = "20260727-hotel-head-meta-v2";
+const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
+  "훌륭한 위치",
+  "뚜벅이 최적",
+  "깔끔한 위생",
+  "친절한 서비스",
+  "쇼핑·맛집 중심",
+  "높은 만족도",
+  "공항 이동 편리",
+  "전망 좋은 뷰",
+  "넓고 쾌적한 객실",
+  "조식 맛집",
+  "아이동반 최적",
+  "커플 여행 최적",
+  "호캉스 최적"
+]);
 
 
 export async function onRequestGet({ params, env, request }) {
@@ -116,8 +131,8 @@ export async function onRequestGet({ params, env, request }) {
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
       const contentTextLength = stripMarkdown(stripInlineImageTokens(cleanContentMd)).replace(/\s+/g, "").length;
-      const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, true);
-      const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, true);
+      const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, false);
+      const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
       const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
@@ -294,6 +309,8 @@ export async function onRequestGet({ params, env, request }) {
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
+      const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData) : "";
+      const hotelFeatureBadgesHtml = isHotelIntroPost ? renderHotelFeatureBadges(hotelHeroData) : "";
       const hotelPriceLink = isRecommendedHotelReviewPost
         ? String(hotelHeroData?.links?.find((item) => String(item?.provider || "") === "hero_price")?.affiliate_url || "").trim()
         : "";
@@ -344,7 +361,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260727-hotel-head-meta-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260723-tablet-padding-cleanup" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
@@ -386,9 +403,11 @@ export async function onRequestGet({ params, env, request }) {
           <header class="card post-hero post-hero--product post-magazine-hero">
             ${coverImageHtml}
             <div class="post-magazine-head">
+              ${hotelTitleMetaHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-              ${magazineAdminActionsHtml}
+              ${hotelFeatureBadgesHtml}
               ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
+              ${magazineAdminActionsHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
@@ -538,9 +557,10 @@ async function getHotelHeroData(db, row = {}, postSlug = "") {
       SELECT provider, label, affiliate_url, button_text, sort_order
       FROM hotel_affiliate_links
       WHERE hotel_slug = ?
+        AND provider = 'hero_price'
         AND is_active = 1
       ORDER BY sort_order ASC, id ASC
-      LIMIT 2
+      LIMIT 1
     `).bind(hotelSlug).all();
 
     return {
@@ -654,6 +674,54 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
   `;
 }
 
+function renderHotelTitleMeta(hotelHeroData = null) {
+  const hotel = hotelHeroData?.hotel || null;
+  if (!hotel) return "";
+
+  const items = [];
+  if (String(hotel.price_level || "").trim()) {
+    items.push('<span class="post-hotel-title-meta__item post-hotel-title-meta__item--value">가성비 호텔</span>');
+  }
+
+  const starRating = formatStarRating(hotel.star_rating);
+  if (starRating) {
+    items.push(`<span class="post-hotel-title-meta__item">${escapeHtml(starRating)}</span>`);
+  }
+
+  const guestRating = normalizeHotelGuestRatingLabel(hotel.guest_rating);
+  if (guestRating) {
+    items.push(`
+      <span class="post-hotel-title-meta__item post-hotel-title-meta__item--rating" aria-label="투숙객 평점 ${escapeHtml(guestRating)}">
+        <svg class="post-hotel-title-meta__star" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M10 1.8l2.45 4.96 5.48.8-3.97 3.87.94 5.46L10 14.31l-4.9 2.58.94-5.46L2.07 7.56l5.48-.8L10 1.8z"></path>
+        </svg>
+        <span>${escapeHtml(guestRating)}</span>
+      </span>
+    `);
+  }
+
+  return items.length
+    ? `<div class="post-hotel-title-meta" aria-label="호텔 기본 정보">${items.join("")}</div>`
+    : "";
+}
+
+function renderHotelFeatureBadges(hotelHeroData = null) {
+  const hotel = hotelHeroData?.hotel || null;
+  const badges = buildHeroBadges({}, hotel);
+  if (!badges.length) return "";
+  return `
+    <div class="post-hotel-feature-badges" aria-label="호텔 핵심 특징">
+      ${badges.map((badge) => `<span class="post-hotel-feature-badge">${escapeHtml(badge)}</span>`).join("")}
+    </div>
+  `;
+}
+
+function normalizeHotelGuestRatingLabel(value = "") {
+  const raw = String(value || "").trim().replace(/^평점\s*/i, "");
+  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  return normalized ? `${normalized}+` : "";
+}
+
 function renderPostAdminActions(slug = "", titleText = "") {
   return `
       <div class="post-hero-admin-actions post-admin-mini-actions" aria-label="글 관리" data-admin-only hidden>
@@ -696,11 +764,8 @@ function formatGuestRating(value = "") {
 
 function buildHeroBadges(row = {}, hotel = null, updatedDateText = "") {
   if (!hotel) return [];
-  const badges = [];
-  parseBadgeList(hotel.badges_json).forEach((badge) => {
-    if (!badges.includes(badge)) badges.push(badge);
-  });
-  return badges.slice(0, 6);
+  const selected = new Set(parseBadgeList(hotel.badges_json));
+  return HOTEL_HERO_BADGE_OPTIONS.filter((badge) => selected.has(badge));
 }
 
 function parseBadgeList(value = "") {
@@ -724,9 +789,8 @@ function renderHeroCtas(links = []) {
     .slice(0, 2);
 
   if (!activeLinks.length) return "";
-  if (activeLinks.length === 1) activeLinks.push({ ...activeLinks[0] });
 
-  const buttonTexts = ["객실 가격 확인하기", "예약 가능 여부 보기"];
+  const buttonTexts = ["객실 가격 확인하기"];
   const buttons = activeLinks.map((item, index) => `
     <a class="post-hero-cta" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer nofollow sponsored">
       <span>${escapeHtml(buttonTexts[index] || item.label || "자세히 보기")}</span>
@@ -1204,7 +1268,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260723-post-width-100" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260727-hotel-head-meta-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
 </head>

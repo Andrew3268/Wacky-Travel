@@ -10,7 +10,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 
-<link href="/assets/css/app.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260727-hotel-head-meta-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
 <meta content="와키트래블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Wacky Travel" property="og:site_name"/><meta content="글 수정 | Wacky Travel" property="og:title"/><meta content="와키트래블 콘텐츠를 수정하는 관리자 전용 페이지입니다." property="og:description"/><meta content="/edit.html" property="og:url"/><meta content="/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="글 수정 | Wacky Travel 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 수정 | Wacky Travel" name="twitter:title"/><meta content="와키트래블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="/assets/images/og-default.png" name="twitter:image"/><meta content="글 수정 | Wacky Travel 대표 이미지" name="twitter:image:alt"/></head>
 <body>
@@ -131,7 +131,7 @@
               <div class="section-heading" style="margin-bottom:12px;">
                 <div>
                   <div class="h2">호텔 히어로 정보</div>
-                  <p class="small">post hero 이미지 아래에 출력될 호텔명, 영문명, 위치 유형, 성급, 투숙객 평점, 가성비 여부, CTA 버튼 정보를 수정합니다.</p>
+                  <p class="small">추천 호텔 리뷰 상단에 표시할 호텔명, 위치 유형, 성급, 투숙객 평점, 가성비 여부, 핵심 특징과 객실 가격 링크를 수정합니다.</p>
                 </div>
               </div>
               <div class="grid grid--2">
@@ -181,29 +181,75 @@
                   </select>
                 </label>
               </div>
-              <div class="grid grid--2" style="margin-top:12px;">
-                <div>
-                  <div class="small">가성비 여부</div>
-                  <label class="checkbox-line" style="margin-top:10px;">
-                    <input type="checkbox" id="heroHotelValueBadge" />
-                    <span>가성비 호텔로 표기</span>
+              <div style="margin-top:12px;">
+                <div class="small">가성비 여부</div>
+                <label class="checkbox-line" style="margin-top:10px;">
+                  <input type="checkbox" id="heroHotelValueBadge" />
+                  <span>가성비 호텔로 표기</span>
+                </label>
+              </div>
+              <fieldset class="editor-hotel-badge-selector" style="margin-top:18px;">
+                <legend class="small">호텔 핵심 특징</legend>
+                <p class="small editor-option-help">포스트 제목 아래에 표시할 특징을 선택하세요. 여러 항목을 함께 선택할 수 있습니다.</p>
+                <div class="editor-hotel-badge-options" id="heroHotelBadgeOptions">
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="훌륭한 위치" />
+                    <span>훌륭한 위치</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="뚜벅이 최적" />
+                    <span>뚜벅이 최적</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="깔끔한 위생" />
+                    <span>깔끔한 위생</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="친절한 서비스" />
+                    <span>친절한 서비스</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="쇼핑·맛집 중심" />
+                    <span>쇼핑·맛집 중심</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="높은 만족도" />
+                    <span>높은 만족도</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="공항 이동 편리" />
+                    <span>공항 이동 편리</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="전망 좋은 뷰" />
+                    <span>전망 좋은 뷰</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="넓고 쾌적한 객실" />
+                    <span>넓고 쾌적한 객실</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="조식 맛집" />
+                    <span>조식 맛집</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="아이동반 최적" />
+                    <span>아이동반 최적</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="커플 여행 최적" />
+                    <span>커플 여행 최적</span>
+                  </label>
+                  <label class="editor-hotel-badge-option">
+                    <input type="checkbox" name="heroHotelBadge" value="호캉스 최적" />
+                    <span>호캉스 최적</span>
                   </label>
                 </div>
-                <label>
-                  <div class="small">추가 뱃지 정보</div>
-                  <input class="input" id="heroHotelBadges" placeholder="예: 수영장, 조식 가능, 야경 전망" />
-                </label>
-              </div>
-              <div class="grid grid--2" style="margin-top:12px;">
-                <label>
-                  <div class="small">객실 가격 확인 링크</div>
-                  <input class="input" id="heroHotelPriceUrl" placeholder="https://..." />
-                </label>
-                <label>
-                  <div class="small">예약 가능 여부 링크</div>
-                  <input class="input" id="heroHotelAvailabilityUrl" placeholder="https://..." />
-                </label>
-              </div>
+              </fieldset>
+              <label style="display:block; margin-top:18px;">
+                <div class="small">객실 가격 확인 링크</div>
+                <input class="input" id="heroHotelPriceUrl" placeholder="https://..." />
+              </label>
             </div>
 
 
@@ -302,8 +348,8 @@
               <div style="display:flex; gap:18px; flex-wrap:wrap;">
                 <label class="row"><input type="checkbox" id="enableToc" /> 목차 사용</label>
                 <label class="row"><input type="checkbox" id="includeTocH3" /> H3 포함</label>
-                <label class="row"><input type="checkbox" id="enable_sidebar_ad" checked /> 사이드바 광고</label>
-                <label class="row"><input type="checkbox" id="enable_inarticle_ads" checked /> 본문 광고</label>
+                <label class="row"><input type="checkbox" id="enable_sidebar_ad" /> 사이드바 광고</label>
+                <label class="row"><input type="checkbox" id="enable_inarticle_ads" /> 본문 광고</label>
               </div>
               <div id="tocStatus" class="small" style="margin-top:10px;"></div>
             </div>
@@ -723,6 +769,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/edit.js?v=20260721CurationEditFixV2" defer></script>
+  <script src="/assets/js/edit.js?v=20260727-hotel-head-meta-v1" defer></script>
 </body>
 </html>

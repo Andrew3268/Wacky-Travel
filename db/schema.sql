@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS posts (
   faq_md TEXT DEFAULT '',
   view_count INTEGER DEFAULT 0,
   enable_sidebar_ad INTEGER DEFAULT 0,
-  enable_inarticle_ads INTEGER DEFAULT 1,
+  enable_inarticle_ads INTEGER DEFAULT 0,
   status TEXT DEFAULT 'published',
   content_type TEXT DEFAULT 'guide',
   destination_slug TEXT DEFAULT '',

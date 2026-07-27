@@ -241,13 +241,44 @@ function hydrateEditorKeywordFields(item = {}, rawContentMd = "") {
   if ($("lsiKeywords")) $("lsiKeywords").value = finalLsiKeywords.join(", ");
 }
 
-function parseBadgeInput(raw) {
-  return String(raw || "")
-    .split(/[,.，、|]/)
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .filter((item, index, arr) => arr.indexOf(item) === index)
-    .slice(0, 12);
+const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
+  "훌륭한 위치",
+  "뚜벅이 최적",
+  "깔끔한 위생",
+  "친절한 서비스",
+  "쇼핑·맛집 중심",
+  "높은 만족도",
+  "공항 이동 편리",
+  "전망 좋은 뷰",
+  "넓고 쾌적한 객실",
+  "조식 맛집",
+  "아이동반 최적",
+  "커플 여행 최적",
+  "호캉스 최적",
+]);
+
+function normalizeHotelHeroBadges(value) {
+  const source = Array.isArray(value)
+    ? value
+    : String(value || "").split(/[,.，、|]/);
+  const selected = new Set(source.map((item) => String(item || "").trim()).filter(Boolean));
+  return HOTEL_HERO_BADGE_OPTIONS.filter((item) => selected.has(item));
+}
+
+function getSelectedHotelHeroBadges() {
+  const selected = new Set(
+    Array.from(document.querySelectorAll('input[name="heroHotelBadge"]:checked'))
+      .map((input) => String(input.value || "").trim())
+      .filter(Boolean)
+  );
+  return HOTEL_HERO_BADGE_OPTIONS.filter((item) => selected.has(item));
+}
+
+function applySelectedHotelHeroBadges(value) {
+  const selected = new Set(normalizeHotelHeroBadges(value));
+  document.querySelectorAll('input[name="heroHotelBadge"]').forEach((input) => {
+    input.checked = selected.has(String(input.value || "").trim());
+  });
 }
 
 function normalizeHeroLocationType(value = "") {
@@ -307,7 +338,7 @@ function normalizeHeroGuestRating(value = "") {
 
 function formatHeroGuestRating(value = "") {
   const normalized = normalizeHeroGuestRating(value);
-  return normalized ? `투숙객 평점 ${normalized}` : "";
+  return normalized;
 }
 
 function collectHotelHeroFormData() {
@@ -318,23 +349,21 @@ function collectHotelHeroFormData() {
     star_rating: $("heroHotelStarRating")?.value.trim() || "",
     guest_rating: normalizeHeroGuestRating($("heroHotelGuestRating")?.value || ""),
     price_level: $("heroHotelValueBadge")?.checked ? "가성비" : "",
-    badges: parseBadgeInput($("heroHotelBadges")?.value || ""),
-    price_url: $("heroHotelPriceUrl")?.value.trim() || "",
-    availability_url: $("heroHotelAvailabilityUrl")?.value.trim() || ""
+    badges: getSelectedHotelHeroBadges(),
+    price_url: $("heroHotelPriceUrl")?.value.trim() || ""
   };
 }
 
 function applyHotelHeroFormData(hero = {}) {
-  const badges = Array.isArray(hero.badges) ? hero.badges : parseBadgeInput(hero.badges || hero.badges_json || "");
+  const badges = normalizeHotelHeroBadges(hero.badges || hero.badges_json || []);
   if ($("heroHotelName")) $("heroHotelName").value = hero.name || hero.name_ko || "";
   if ($("heroHotelNameEn")) $("heroHotelNameEn").value = hero.name_en || "";
   setSelectValuePreservingOption($("heroHotelLocationType"), hero.area || hero.location_type || "");
   if ($("heroHotelStarRating")) $("heroHotelStarRating").value = String(hero.star_rating || "").replace(/성급$/, "");
   if ($("heroHotelGuestRating")) $("heroHotelGuestRating").value = normalizeHeroGuestRating(hero.guest_rating || hero.guest_score || hero.review_rating || "");
   if ($("heroHotelValueBadge")) $("heroHotelValueBadge").checked = isHeroValueBadgeChecked(hero.price_level || hero.value_badge || "");
-  if ($("heroHotelBadges")) $("heroHotelBadges").value = badges.join(", ");
+  applySelectedHotelHeroBadges(badges);
   if ($("heroHotelPriceUrl")) $("heroHotelPriceUrl").value = hero.price_url || hero.primary_url || "";
-  if ($("heroHotelAvailabilityUrl")) $("heroHotelAvailabilityUrl").value = hero.availability_url || hero.secondary_url || "";
 }
 
 function stripMarkdown(md) {
@@ -3068,15 +3097,13 @@ function renderPreview() {
   const tags = parseTags($("tags").value);
   const hotelHero = isHotelIntroContentSelected()
     ? collectHotelHeroFormData()
-    : { name: "", name_en: "", area: "", star_rating: "", guest_rating: "", price_level: "", badges: [], price_url: "", availability_url: "" };
-  const hotelBadges = hotelHero.badges.filter(Boolean);
-  const hotelHeroKicker = [
-    getDestinationLabel(destination),
-    hotelHero.area,
+    : { name: "", name_en: "", area: "", star_rating: "", guest_rating: "", price_level: "", badges: [], price_url: "" };
+  const hotelBadges = normalizeHotelHeroBadges(hotelHero.badges);
+  const hotelTitleMeta = [
+    hotelHero.price_level ? "가성비 호텔" : "",
     formatHeroStarRating(hotelHero.star_rating),
-    formatHeroGuestRating(hotelHero.guest_rating),
-    hotelHero.price_level
-  ].filter(Boolean).join(" · ");
+    formatHeroGuestRating(hotelHero.guest_rating)
+  ].filter(Boolean);
   const slug = $("slugPreview").value.trim();
   const snippetUrl = slug ? `${window.location.origin}/post/${encodeURIComponent(slug)}/` : `${window.location.origin}/post/slug-example/`;
 
@@ -3091,20 +3118,6 @@ function renderPreview() {
 
       <div class="preview-post-card">
       ${coverImage ? `<img class="preview-cover" ${renderOptimizedImageAttrs(coverImage, { widths: [640, 960, 1200, 1600], sizes: "(max-width: 900px) 100vw, 960px", fallbackWidth: 960, fit: "cover", quality: 85 })} alt="${escapeHtml(coverImageAlt || `${title} 대표 이미지`)}" loading="lazy">` : ""}
-      ${hotelHero.name ? `
-        <section class="preview-hotel-hero-panel" aria-label="호텔 히어로 미리보기">
-          ${hotelHeroKicker ? `<div class="preview-hotel-hero-kicker">${escapeHtml(hotelHeroKicker)}</div>` : ""}
-          <div class="preview-hotel-hero-title">${escapeHtml(hotelHero.name)}</div>
-          ${hotelHero.name_en ? `<p class="preview-hotel-hero-subtitle">${escapeHtml(hotelHero.name_en)}</p>` : ""}
-          ${hotelBadges.length ? `<div class="preview-hotel-hero-pills">${hotelBadges.map((badge) => `<span>${escapeHtml(badge)}</span>`).join("")}</div>` : ""}
-          ${(hotelHero.price_url || hotelHero.availability_url) ? `
-            <div class="preview-hotel-hero-buttons">
-              <span>객실 가격 확인하기 ↗</span>
-              <span>예약 가능 여부 보기 ↗</span>
-            </div>
-          ` : ""}
-        </section>
-      ` : ""}
       <header class="preview-article__head">
         <div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
           <div class="row" style="gap:6px;flex-wrap:wrap;">
@@ -3114,7 +3127,9 @@ function renderPreview() {
           </div>
           <span class="small">${new Date().toISOString().slice(0, 10)}</span>
         </div>
+        ${hotelTitleMeta.length ? `<div class="preview-hotel-title-meta">${hotelTitleMeta.map((item, index) => `<span${index === hotelTitleMeta.length - 1 && hotelHero.guest_rating ? ' class="preview-hotel-title-rating"' : ''}>${index === hotelTitleMeta.length - 1 && hotelHero.guest_rating ? '<span aria-hidden="true">★</span> ' : ''}${escapeHtml(item)}</span>`).join("")}</div>` : ""}
         <h1 class="preview-title">${escapeHtml(title)}</h1>
+        ${hotelBadges.length ? `<div class="preview-hotel-feature-badges">${hotelBadges.map((badge) => `<span>${escapeHtml(badge)}</span>`).join("")}</div>` : ""}
         ${summary ? `<div class="preview-summary preview-summary--markdown">${markdownToHtml(summary)}</div>` : ""}
         ${tags.length ? `<div class="row">${tags.map((tag) => `<span class="tag-chip">#${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
       </header>
@@ -3243,8 +3258,8 @@ async function load() {
   const rawContentMd = item.content_md || "";
   hydrateEditorKeywordFields(item, rawContentMd);
   $("status").value = item.status || "published";
-  if ($("enable_sidebar_ad")) $("enable_sidebar_ad").checked = !(String(item.enable_sidebar_ad ?? 1) === "0");
-  if ($("enable_inarticle_ads")) $("enable_inarticle_ads").checked = !(String(item.enable_inarticle_ads ?? 1) === "0");
+  if ($("enable_sidebar_ad")) $("enable_sidebar_ad").checked = !(String(item.enable_sidebar_ad ?? 0) === "0");
+  if ($("enable_inarticle_ads")) $("enable_inarticle_ads").checked = !(String(item.enable_inarticle_ads ?? 0) === "0");
   applyInlineImageFormData(parseInlineImageMetaFromMarkdown(rawContentMd));
   applyAffiliateFormData(parseAffiliateMetaFromMarkdown(rawContentMd));
   applyAffiliateCtaFormData(parseAffiliateCtaMetaFromMarkdown(rawContentMd));
@@ -3382,7 +3397,7 @@ const inlineImageFieldIds = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offse
   return [`inlineImage${index}Id`, `inlineImage${index}Alt`, `inlineImage${index}Caption`, `inlineImage${index}Position`, `inlineImage${index}Placement`];
 }).flat();
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "travelMoodSlugs", "staySituationSlugs", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelBadges", "heroHotelPriceUrl", "heroHotelAvailabilityUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "travelMoodSlugs", "staySituationSlugs", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelValueBadge", "heroHotelPriceUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);
@@ -3402,6 +3417,9 @@ $("affiliateCtaList")?.addEventListener("click", (event) => {
 });
 $("enable_inarticle_ads")?.addEventListener("change", handleRealtimeChange);
 $("enable_sidebar_ad")?.addEventListener("change", handleRealtimeChange);
+document.querySelectorAll('input[name="heroHotelBadge"]').forEach((input) => {
+  input.addEventListener("change", handleRealtimeChange);
+});
 $("addAffiliateItemBtn")?.addEventListener("click", () => { addAffiliateItemCard(); handleRealtimeChange(); });
 document.querySelectorAll("[data-affiliate-remove]").forEach((button) => {
   button.addEventListener("click", () => { removeAffiliateItemCard(Number(button.dataset.affiliateRemove || "0")); handleRealtimeChange(); });
