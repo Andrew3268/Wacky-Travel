@@ -6790,8 +6790,8 @@ body.post-page-body a{
 
 
 body.post-page-body .post-guide-page{
-  width: min(var(--wt-container), calc(100% - 40px));
-  max-width: none;
+  width: min(800px, calc(100% - 40px));
+  max-width: 800px;
   margin: 0 auto;
   padding: 30px 0 0;
   background: #fff !important;
@@ -8462,8 +8462,8 @@ body.post-page-body{
 body.post-page-body .post-guide-page,
 body.post-page-body--hotel-review-magazine .post-guide-page{
   box-sizing: border-box;
-  width: min(var(--wt-container), calc(100% - (var(--post-page-gutter) * 2)));
-  max-width: none;
+  width: min(800px, calc(100% - (var(--post-page-gutter) * 2)));
+  max-width: 800px;
   margin-inline: auto;
   padding: var(--post-page-top-space) 0 clamp(72px, 8vw, 96px);
 }
@@ -8854,7 +8854,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-title-meta{
   gap: 0;
   margin: 0 0 11px;
   color: #666;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.015em;
@@ -8863,22 +8863,23 @@ body.post-page-body--recommended-hotel-review .post-hotel-title-meta{
 body.post-page-body .post-hotel-title-meta__item{
   display: inline-flex;
   align-items: center;
+  color: inherit;
   white-space: nowrap;
 }
 
 body.post-page-body .post-hotel-title-meta__item + .post-hotel-title-meta__item::before{
   content: "·";
   margin: 0 5px;
-  color: #b2b2b2;
+  color: inherit;
   font-weight: 400;
 }
 
 body.post-page-body .post-hotel-title-meta__item--value{
-  color: #242424;
+  color: inherit;
 }
 
 body.post-page-body .post-hotel-title-meta__item--rating{
-  gap: 4px;
+  gap: 0;
 }
 
 body.post-page-body .post-hotel-title-meta__star{
@@ -8903,7 +8904,7 @@ body.post-page-body .post-hotel-feature-badge{
   border-radius: 999px;
   background: #fff;
   color: #444;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.35;
 }
@@ -8976,7 +8977,6 @@ body.post-page-body .post-hotel-feature-badges + .post-magazine-desc{
 
   body.post-page-body .post-hotel-title-meta{
     margin-bottom: 10px;
-    font-size: 11.5px;
   }
 
   body.post-page-body .post-hotel-feature-badges{
@@ -8986,6 +8986,5 @@ body.post-page-body .post-hotel-feature-badges + .post-magazine-desc{
 
   body.post-page-body .post-hotel-feature-badge{
     padding: 5px 9px;
-    font-size: 11.5px;
   }
 }
