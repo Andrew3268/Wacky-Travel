@@ -56,25 +56,12 @@ const cityConfig = {
         {"name":"TMS Hotel Da Nang Beach","kr":"TMS 호텔 다낭 비치","area":"미케비치·푸억미","tag":"해변 전망형","text":"바다 전망과 해변 접근을 우선하는 여행자에게 비교 가치가 높은 숙소입니다."}
       ]
     },
-    "northTransit": {
-      "name": "다낭 북부·공항·기차역 주변",
-      "summary": "공항과 기차역, 북부 이동 동선을 가볍게 정리하면서 숙박비 부담까지 줄이고 싶은 당신에게 잘 맞는 실속형 위치입니다.",
-      "leadTitle": "공항·기차역 이동이나 장기 숙박이 목적일 때 보는 보조 권역입니다.",
-      "leadText": "일반적인 첫 다낭 여행의 대표 숙박지는 아니지만, 늦은 도착이나 이른 출국, 기차역 이동이 중요하다면 현실적인 선택지가 될 수 있습니다.",
-      "hotels": [
-        {"name":"Wink Hotel Danang Centre","kr":"윙크 호텔 다낭 센터","area":"시내·공항 접근","tag":"공항 접근형","text":"공항과 시내 접근성을 함께 보는 짧은 일정에 비교하기 좋습니다."},
-        {"name":"Vanda Hotel","kr":"반다 호텔","area":"도심 접근","tag":"이동 균형형","text":"공항·시내·강변 이동을 단순하게 가져가고 싶은 일정에 어울립니다."},
-        {"name":"Brilliant Hotel Danang","kr":"브릴리언트 호텔 다낭","area":"한강 동쪽·용다리","tag":"강변 야경형","text":"용다리와 한강 야경, 시내 식사 동선을 함께 잡기 좋은 도심형 호텔입니다."},
-        {"name":"Mandila Beach Hotel Danang","kr":"만딜라 비치 호텔 다낭","area":"미케비치·푸억미","tag":"실속 해변형","text":"공항 이동 후 해변 생활권에 머물고 싶은 일정에 비교할 수 있습니다."},
-        {"name":"Sala Danang Beach Hotel","kr":"살라 다낭 비치 호텔","area":"미케비치·푸억미","tag":"해변 접근 균형형","text":"미케비치·푸억미 도보권에서 해변 산책과 주변 식당 접근성을 함께 보기 좋은 호텔입니다."}
-      ]
-    }
   },
   "questions": [
     {"title":"이번 다낭 여행은 몇 번째인가요?","help":"처음이면 이동이 단순한 위치가 편하고, 재방문이면 휴식형 구역도 좋습니다.","options":[
       {"title":"첫 여행","scores":{"myKhe":5,"hanRiverEast":4,"cityCenter":2}},
       {"title":"재방문","scores":{"nonNuoc":4,"myKhe":2,"hanRiverEast":2}},
-      {"title":"익숙한 여행","scores":{"nonNuoc":3,"cityCenter":2,"northTransit":2}}
+      {"title":"익숙한 여행","scores":{"nonNuoc":3,"cityCenter":2}}
     ]},
     {"title":"누구와 함께 가나요?","help":"동행자에 따라 식사, 이동, 객실 크기의 중요도가 달라집니다.","options":[
       {"title":"혼자 또는 친구","scores":{"myKhe":4,"cityCenter":3,"hanRiverEast":3}},
@@ -89,14 +76,14 @@ const cityConfig = {
       {"title":"쇼핑·카페","scores":{"cityCenter":5,"hanRiverEast":3}}
     ]},
     {"title":"공항 이동은 얼마나 중요하나요?","help":"늦은 도착이나 이른 출국이면 공항 접근성이 중요합니다.","options":[
-      {"title":"매우 중요","scores":{"cityCenter":5,"hanRiverEast":4,"northTransit":4}},
+      {"title":"매우 중요","scores":{"cityCenter":6,"hanRiverEast":3,"myKhe":2}},
       {"title":"보통","scores":{"myKhe":3,"hanRiverEast":3,"cityCenter":2}},
       {"title":"크게 중요하지 않음","scores":{"nonNuoc":4,"myKhe":2}}
     ]},
     {"title":"근교 일정은 어느 정도인가요?","help":"호이안, 바나힐, 후에 일정 비중을 생각해보세요.","options":[
       {"title":"호이안 중심","scores":{"nonNuoc":6,"myKhe":2}},
       {"title":"바나힐 하루","scores":{"myKhe":3,"hanRiverEast":3,"cityCenter":2}},
-      {"title":"후에까지 예정","scores":{"hanRiverEast":4,"cityCenter":3,"northTransit":2}},
+      {"title":"후에까지 예정","scores":{"hanRiverEast":4,"cityCenter":3}},
       {"title":"근교 거의 없음","scores":{"myKhe":3,"hanRiverEast":3,"cityCenter":2}}
     ]},
     {"title":"숙소 주변 분위기는 어떤 쪽이 좋나요?","help":"저녁에 숙소 주변에서 어떻게 시간을 보낼지 떠올려보세요.","options":[
@@ -106,12 +93,12 @@ const cityConfig = {
       {"title":"시장·로컬 분위기","scores":{"cityCenter":5,"hanRiverEast":2}}
     ]},
     {"title":"숙소 예산은 어떤 편인가요?","help":"해변 바로 앞과 리조트형 숙소는 가격이 올라갈 수 있습니다.","options":[
-      {"title":"예산 절약","scores":{"cityCenter":6,"northTransit":3,"myKhe":2}},
+      {"title":"예산 절약","scores":{"cityCenter":6,"myKhe":2,"hanRiverEast":1}},
       {"title":"가격·위치 균형","scores":{"myKhe":4,"hanRiverEast":4,"cityCenter":3}},
       {"title":"휴식 우선","scores":{"nonNuoc":5,"myKhe":2}}
     ]},
     {"title":"호텔에서 보내는 시간은 어느 정도인가요?","help":"숙소 안 시간이 길수록 리조트 시설과 조용함이 중요합니다.","options":[
-      {"title":"잠만 자는 편","scores":{"cityCenter":4,"hanRiverEast":3,"northTransit":2}},
+      {"title":"잠만 자는 편","scores":{"cityCenter":5,"hanRiverEast":3,"myKhe":1}},
       {"title":"절반 정도 쉼","scores":{"myKhe":3,"hanRiverEast":3,"nonNuoc":2}},
       {"title":"호텔에서 오래 쉼","scores":{"nonNuoc":6,"myKhe":2}}
     ]}
@@ -123,7 +110,6 @@ const areaResultBadges = {
   "nonNuoc": "리조트 휴식에 집중하기 좋은 남쪽 해변",
   "cityCenter": "시장과 로컬 식당이 편한 도심",
   "hanRiverEast": "용다리 야경과 해변을 잇는 강변",
-  "northTransit": "이동 부담과 숙박비를 함께 줄이기 좋은 곳"
 };
 
 const hotelAccessPresets = {
@@ -143,10 +129,6 @@ const hotelAccessPresets = {
     "station": "용다리·한강 도보권",
     "airport": "공항 차량 약 15분"
   },
-  "northTransit": {
-    "station": "공항·기차역 이동 편한 위치",
-    "airport": "공항 차량 약 5~15분"
-  }
 };
 
 function normalizeAreaToken(value) {

@@ -300,6 +300,14 @@ const cityConfig = {
           }
         },
         {
+          "title": "현지 해변·카페",
+          "scores": {
+            "honChong": 7,
+            "cityBeach": 2,
+            "ninhHoa": 2
+          }
+        },
+        {
           "title": "섬투어·빈원더스",
           "scores": {
             "vinpearlHonTam": 6,
@@ -392,7 +400,7 @@ const cityConfig = {
         {
           "title": "조금 차분한 북쪽 해변",
           "scores": {
-            "honChong": 6
+            "honChong": 8
           }
         },
         {

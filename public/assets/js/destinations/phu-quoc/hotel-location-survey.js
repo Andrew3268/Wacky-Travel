@@ -518,117 +518,14 @@ const cityConfig = {
         }
       ]
     },
-    "baisao": {
-      "name": "사오비치·함닌",
-      "summary": "투명한 바다와 로컬 식당, 조금 더 느슨한 남동부 분위기를 따라 움직이며 푸꾸옥의 조용한 풍경을 일정에 담고 싶은 당신에게 잘 어울리는 지역입니다.",
-      "leadTitle": "동남부 해변 · 로컬 식당 · 당일 이동",
-      "leadText": "사오비치와 함닌은 푸꾸옥 동남부·동부의 로컬한 분위기를 느끼기 좋은 코스입니다. 숙소 선택지는 많지 않지만, 하루 일정으로 넣으면 해변과 로컬 식사를 함께 즐기기 좋습니다.",
-      "compareGood": "첫 숙소로 고르기보다 사오비치, 함닌, 로컬 식당을 일정에 넣을 때 이해하면 좋은 지역입니다.",
-      "compareCaution": "상점과 교통 선택지가 적어 늦은 시간 이동은 미리 준비하는 것이 좋습니다.",
-      "decision": "사오비치·함닌은 숙소보다 일정 구역으로 이해하면 만족도가 높습니다.",
-      "bestFor": [
-        "해변 당일치기",
-        "로컬 식당",
-        "사진 여행",
-        "조용한 일정"
-      ],
-      "notFor": [
-        "첫 여행 숙소 1순위",
-        "밤 일정이 많은 여행",
-        "다양한 호텔 선택지 우선"
-      ],
-      "bookingTips": [
-        "숙박지보다는 당일 코스로 넣는 편이 안전합니다. 이 지역에 머문다면 주변 식당과 이동 수단을 미리 확인하세요.",
-        "상점과 교통 선택지가 적어 늦은 시간 이동은 미리 준비하는 것이 좋습니다."
-      ],
-      "chips": [
-        "사오비치",
-        "로컬",
-        "사진",
-        "해변",
-        "당일 이동"
-      ],
-      "links": [
-        {
-          "title": "푸꾸옥 사오비치 호텔 추천 TOP5",
-          "url": "/post/phu-quoc-bai-sao-ham-ninh-hotels/"
-        },
-        {
-          "title": "푸꾸옥 사오비치 숙소 위치 가이드",
-          "url": "/post/phu-quoc-bai-sao-ham-ninh-stay-guide/"
-        }
-      ],
-      "hotels": [
-        {
-          "name": "JM Boutique Hotel",
-          "tag": "바이켐 실속",
-          "location": "바이켐",
-          "reason": "바이켐 주변에서 숙박비 부담을 낮추고 남부 일정을 잡고 싶을 때 잘 맞습니다.",
-          "meta": [
-            "실속",
-            "바이켐",
-            "남부"
-          ],
-          "url": "/post/jm-boutique-hotel/"
-        },
-        {
-          "name": "Premier Residences Phu Quoc Emerald Bay",
-          "tag": "남부 실속",
-          "location": "바이켐",
-          "reason": "켐비치 접근성과 레지던스형 편의성을 함께 챙기는 가족·실속 여행에 좋습니다.",
-          "meta": [
-            "레지던스",
-            "가족",
-            "남부"
-          ],
-          "url": "/post/premier-residences-phu-quoc-emerald-bay/"
-        },
-        {
-          "name": "New World Phu Quoc Resort",
-          "tag": "남부 풀빌라",
-          "location": "바이켐",
-          "reason": "남부 해변과 리조트 휴식을 함께 원하는 가족·커플 여행에 잘 맞는 선택지입니다.",
-          "meta": [
-            "풀빌라",
-            "가족",
-            "바이켐"
-          ],
-          "url": "/post/new-world-phu-quoc-resort/"
-        },
-        {
-          "name": "JW Marriott Phu Quoc Emerald Bay Resort & Spa",
-          "tag": "바이켐 럭셔리",
-          "location": "바이켐",
-          "reason": "켐비치의 상징적인 럭셔리 리조트 분위기를 원하는 기념일 여행에 맞습니다.",
-          "meta": [
-            "럭셔리",
-            "기념일",
-            "바이켐"
-          ],
-          "url": "/post/jw-marriott-phu-quoc-emerald-bay-resort-and-spa/"
-        },
-        {
-          "name": "La Festa Phu Quoc, Curio Collection by Hilton",
-          "tag": "선셋타운",
-          "location": "선셋타운·안터이",
-          "reason": "선셋타운 야간 분위기와 남부 액티비티를 함께 즐기고 싶을 때 잘 맞습니다.",
-          "meta": [
-            "선셋타운",
-            "커플",
-            "남부"
-          ],
-          "url": "/post/la-festa-phu-quoc-curio-collection-by-hilton/"
-        }
-      ]
-    }
   },
   "questions": [
     {
-      "title": "이번 푸꾸옥 여행에서 가장 중요한 건 무엇인가요?",
+      "title": "이번 푸꾸옥 여행에서 가장 중요한 것은 무엇인가요?",
       "help": "가장 우선순위가 높은 여행 목적을 골라주세요.",
       "options": [
         {
-          "label": "처음이라 이동이 쉬운 곳",
+          "title": "처음이라 이동이 쉬운 곳",
           "desc": "공항, 야시장, 식당, 투어 픽업이 중요해요.",
           "scores": {
             "duongdong": 5,
@@ -636,7 +533,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "해변 리조트에서 쉬기",
+          "title": "해변 리조트에서 쉬기",
           "desc": "수영장과 해변에서 머무는 시간이 길어요.",
           "scores": {
             "longbeach": 5,
@@ -645,7 +542,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "아이와 테마파크",
+          "title": "아이와 테마파크",
           "desc": "빈원더스, 사파리, 그랜드월드를 보고 싶어요.",
           "scores": {
             "ganhdau": 6,
@@ -653,11 +550,10 @@ const cityConfig = {
           }
         },
         {
-          "label": "케이블카와 섬투어",
+          "title": "케이블카와 섬투어",
           "desc": "혼똔 케이블카와 남부 섬투어가 핵심이에요.",
           "scores": {
             "baikhem": 6,
-            "baisao": 2
           }
         }
       ]
@@ -667,7 +563,7 @@ const cityConfig = {
       "help": "매일 저녁 외부 식당을 이용할 계획인지 생각해보세요.",
       "options": [
         {
-          "label": "매우 중요해요",
+          "title": "매우 중요해요",
           "desc": "야시장과 식당을 자주 갈 예정입니다.",
           "scores": {
             "duongdong": 5,
@@ -675,7 +571,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "가끔이면 충분해요",
+          "title": "가끔이면 충분해요",
           "desc": "택시로 한두 번 이동하는 건 괜찮아요.",
           "scores": {
             "longbeach": 3,
@@ -684,7 +580,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "리조트 안에서 해결해도 돼요",
+          "title": "리조트 안에서 해결해도 돼요",
           "desc": "조식과 리조트 식당을 주로 이용할 예정입니다.",
           "scores": {
             "ganhdau": 4,
@@ -699,7 +595,7 @@ const cityConfig = {
       "help": "중심 편의와 조용함 사이의 선호를 골라주세요.",
       "options": [
         {
-          "label": "중심 편의가 더 중요해요",
+          "title": "중심 편의가 더 중요해요",
           "desc": "약간 번잡해도 이동이 편한 곳이 좋아요.",
           "scores": {
             "duongdong": 5,
@@ -707,7 +603,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "적당히 조용하면 돼요",
+          "title": "적당히 조용하면 돼요",
           "desc": "중심까지 택시 이동이 가능하면 괜찮아요.",
           "scores": {
             "longbeach": 4,
@@ -716,12 +612,11 @@ const cityConfig = {
           }
         },
         {
-          "label": "조용한 휴식이 1순위예요",
+          "title": "조용한 휴식이 1순위예요",
           "desc": "주변이 차분하고 숙소에서 오래 쉬고 싶어요.",
           "scores": {
             "onglang": 6,
             "baikhem": 3,
-            "baisao": 2
           }
         }
       ]
@@ -731,7 +626,7 @@ const cityConfig = {
       "help": "빈원더스, 빈펄 사파리, 그랜드월드 방문 여부를 골라주세요.",
       "options": [
         {
-          "label": "네, 꼭 갈 예정이에요",
+          "title": "네, 꼭 갈 예정이에요",
           "desc": "북부 일정이 여행의 핵심입니다.",
           "scores": {
             "ganhdau": 6,
@@ -739,7 +634,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "하루 정도 고민 중이에요",
+          "title": "하루 정도 고민 중이에요",
           "desc": "숙소 위치에 따라 갈 수도 있어요.",
           "scores": {
             "ganhdau": 3,
@@ -748,7 +643,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "아니요",
+          "title": "아니요",
           "desc": "테마파크보다 해변과 휴식이 중요해요.",
           "scores": {
             "onglang": 2,
@@ -763,15 +658,14 @@ const cityConfig = {
       "help": "혼똔 케이블카, 안터이 섬투어, 선셋타운 계획을 골라주세요.",
       "options": [
         {
-          "label": "남부 일정이 핵심이에요",
+          "title": "남부 일정이 핵심이에요",
           "desc": "케이블카와 섬투어를 꼭 넣고 싶어요.",
           "scores": {
             "baikhem": 6,
-            "baisao": 2
           }
         },
         {
-          "label": "하루 정도만 갈래요",
+          "title": "하루 정도만 갈래요",
           "desc": "숙소는 다른 곳이어도 괜찮아요.",
           "scores": {
             "longbeach": 3,
@@ -780,7 +674,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "해변 휴식 위주예요",
+          "title": "해변 휴식 위주예요",
           "desc": "액티비티보다 숙소 휴식이 우선이에요.",
           "scores": {
             "onglang": 3,
@@ -795,7 +689,7 @@ const cityConfig = {
       "help": "함께 가는 사람에 따라 편한 지역이 달라집니다.",
       "options": [
         {
-          "label": "혼자 또는 친구",
+          "title": "혼자 또는 친구",
           "desc": "식당, 이동, 액티비티 균형이 중요해요.",
           "scores": {
             "duongdong": 3,
@@ -804,7 +698,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "커플",
+          "title": "커플",
           "desc": "해변 분위기와 조용한 휴식이 중요해요.",
           "scores": {
             "onglang": 4,
@@ -813,7 +707,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "아이 동반 가족",
+          "title": "아이 동반 가족",
           "desc": "수영장, 조식, 셔틀, 테마파크가 중요해요.",
           "scores": {
             "ganhdau": 5,
@@ -822,7 +716,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "부모님 동반",
+          "title": "부모님 동반",
           "desc": "이동 피로와 숙소 컨디션이 중요해요.",
           "scores": {
             "longbeach": 4,
@@ -837,7 +731,7 @@ const cityConfig = {
       "help": "도착·출국 시간이 애매하면 첫날과 마지막 날 위치가 중요합니다.",
       "options": [
         {
-          "label": "밤 도착 또는 새벽 출국",
+          "title": "밤 도착 또는 새벽 출국",
           "desc": "공항 이동을 줄이고 싶어요.",
           "scores": {
             "longbeach": 5,
@@ -845,7 +739,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "낮 도착·낮 출국",
+          "title": "낮 도착·낮 출국",
           "desc": "숙소 위치 선택이 비교적 자유로워요.",
           "scores": {
             "onglang": 2,
@@ -855,7 +749,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "3박 이상 여유 있어요",
+          "title": "3박 이상 여유 있어요",
           "desc": "숙소를 나누는 것도 괜찮아요.",
           "scores": {
             "ganhdau": 3,
@@ -870,17 +764,16 @@ const cityConfig = {
       "help": "같은 지역 안에서도 가격대가 크게 다릅니다.",
       "options": [
         {
-          "label": "가성비가 중요해요",
+          "title": "가성비가 중요해요",
           "desc": "숙박비와 이동비를 함께 줄이고 싶어요.",
           "scores": {
             "duongdong": 4,
             "longbeach": 3,
             "onglang": 2,
-            "baisao": 1
           }
         },
         {
-          "label": "중간 가격대가 좋아요",
+          "title": "중간 가격대가 좋아요",
           "desc": "위치와 컨디션의 균형을 원해요.",
           "scores": {
             "longbeach": 4,
@@ -889,7 +782,7 @@ const cityConfig = {
           }
         },
         {
-          "label": "숙소 만족도를 우선해요",
+          "title": "숙소 만족도를 우선해요",
           "desc": "리조트와 객실 컨디션이 중요해요.",
           "scores": {
             "baikhem": 5,
@@ -909,7 +802,6 @@ const areaResultBadges = {
   "onglang": "조용한 해변에서 여유롭게 쉬기 좋은 곳",
   "ganhdau": "테마파크와 북부 리조트를 잇는 즐거움",
   "baikhem": "케이블카와 선셋타운이 가까운 남쪽 휴식",
-  "baisao": "사오비치와 로컬 바다를 따라 쉬는 하루"
 };
 
 const hotelAccessPresets = {
@@ -933,10 +825,6 @@ const hotelAccessPresets = {
     "station": "바이켐·선셋타운 접근",
     "airport": "푸꾸옥공항 차량 약 25~40분"
   },
-  "baisao": {
-    "station": "사오비치·함닌 접근",
-    "airport": "푸꾸옥공항 차량 약 25~40분"
-  }
 };
 
 function normalizeAreaToken(value) {

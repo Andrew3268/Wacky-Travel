@@ -1015,12 +1015,12 @@ const cityConfig = {
 };
 
 const areaResultBadges = {
-  "formosa": "MRT 중심과 야시장이 가까운",
-  "central": "쇼핑과 도심 산책이 가벼운",
-  "sanduo": "85타워와 항구 야경이 가까운",
+  "formosa": "MRT 환승과 야시장이 가까운 중심",
+  "central": "쇼핑과 도심 산책이 편한 중심",
+  "sanduo": "85타워와 항구 야경이 가까운 도심",
   "pier2": "보얼예술특구와 항구 산책을 함께 즐기기 좋은 곳",
-  "zuoying": "고속철도와 아레나 이동이 편한",
-  "xiziwan": "바다 노을과 치진 산책이 가까운"
+  "zuoying": "고속철도와 아레나 이동이 편한 북부 거점",
+  "xiziwan": "바다 노을과 치진 산책이 가까운 해안"
 };
 
 const hotelAccessPresets = {

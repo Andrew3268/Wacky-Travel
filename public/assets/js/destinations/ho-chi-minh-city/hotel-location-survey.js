@@ -20,12 +20,13 @@ const cityConfig = {
       { title: "대표 관광", desc: "벤탄시장, 통일궁, 중앙우체국 등을 보고 싶어요.", scores: { district1: 5, dongkhoi: 3, district3: 1 } },
       { title: "맛집·마사지", desc: "저녁에도 짧게 이동하고 싶어요.", scores: { district1: 5, dongkhoi: 2 } },
       { title: "카페·여유", desc: "감성 카페와 조용한 동네 분위기가 좋아요.", scores: { thaodien: 5, district3: 3 } },
-      { title: "호텔 휴식", desc: "객실 컨디션과 숙소에서 쉬는 시간이 중요해요.", scores: { binhthanh: 4, dongkhoi: 4, thaodien: 2 } }
+      { title: "강변 야경·고층 전망", desc: "랜드마크81과 사이공강 야경을 가까이 즐기고 싶어요.", scores: { binhthanh: 8, dongkhoi: 3, thaodien: 2 } },
+      { title: "호텔 휴식", desc: "객실 컨디션과 숙소에서 쉬는 시간이 중요해요.", scores: { binhthanh: 5, dongkhoi: 4, thaodien: 2 } }
     ]},
     { title: "공항 이동은 얼마나 중요한가요?", help: "떤선녓공항은 가까워도 시간대에 따라 이동 시간이 달라질 수 있습니다.", options: [
       { title: "매우 중요", desc: "밤 도착이나 새벽 출국이라 최대한 쉽게 이동하고 싶어요.", scores: { airport: 7, district3: 1 } },
       { title: "보통", desc: "공항보다 시내 일정이 더 중요해요.", scores: { district1: 3, dongkhoi: 3, district3: 2 } },
-      { title: "중요 낮음", desc: "숙소 주변 분위기와 여행 흐름이 우선이에요.", scores: { thaodien: 3, binhthanh: 3, district1: 1 } }
+      { title: "크게 중요하지 않음", desc: "숙소 주변 분위기와 여행 흐름이 우선이에요.", scores: { thaodien: 3, binhthanh: 3, district1: 1 } }
     ]},
     { title: "근교 투어가 포함되어 있나요?", help: "꾸찌터널·메콩델타 투어는 픽업 가능 구역이 중요합니다.", options: [
       { title: "투어 2개 이상", desc: "아침 출발과 호텔 픽업이 편했으면 해요.", scores: { district1: 5, dongkhoi: 3 } },
@@ -283,6 +284,12 @@ function calculateScores() {
       if (Object.prototype.hasOwnProperty.call(scores, areaKey)) scores[areaKey] += score;
     });
   });
+
+  const firstAnswer = cityConfig.questions[0]?.options?.[answers[0]]?.title || "";
+  const airportAnswer = cityConfig.questions[3]?.options?.[answers[3]]?.title || "";
+  if (firstAnswer === "짧은 경유" && airportAnswer === "매우 중요") {
+    scores.airport += 9;
+  }
 
   return Object.entries(scores)
     .map(([key, score]) => ({ key, score, ...cityConfig.areas[key] }))

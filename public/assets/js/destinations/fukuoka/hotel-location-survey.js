@@ -431,7 +431,7 @@ const cityConfig = {
           options: [
             { title: "매우 중요", desc: "공항에서 숙소까지 최대한 쉽게 가고 싶어요.", scores: { hakata: 5, gion: 3, tenjin: 1 } },
             { title: "보통", desc: "조금 갈아타도 괜찮지만 너무 복잡한 건 싫어요.", scores: { hakata: 3, gion: 3, tenjin: 2 } },
-            { title: "중요 낮음", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { tenjin: 2, nakasuKawabata: 2, ohoriMomochi: 2, yakuinWatanabedori: 1 } }
+            { title: "크게 중요하지 않음", desc: "공항보다 현지 여행 동선이 더 중요해요.", scores: { tenjin: 2, nakasuKawabata: 2, ohoriMomochi: 2, yakuinWatanabedori: 1 } }
           ]
         },
     {

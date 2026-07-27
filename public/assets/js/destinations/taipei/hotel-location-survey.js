@@ -737,23 +737,13 @@ const cityConfig = {
           }
         },
         {
-          "title": "가족과 함께",
-          "desc": "동행자 컨디션과 식사 편의를 우선하고 싶어요.",
+          "title": "타이베이가 익숙해요",
+          "desc": "대표 명소보다 취향에 맞는 동네와 휴식을 우선하고 싶어요.",
           "scores": {
-            "station": 5,
+            "daan": 6,
             "zhongshan": 5,
             "beitou": 4,
-            "daan": 3
-          }
-        },
-        {
-          "title": "커플·친구 여행",
-          "desc": "카페, 쇼핑, 야경, 저녁 동선을 중요하게 봐요.",
-          "scores": {
-            "ximending": 5,
-            "xinyi": 5,
-            "daan": 4,
-            "zhongshan": 3
+            "xinyi": 3
           }
         }
       ]

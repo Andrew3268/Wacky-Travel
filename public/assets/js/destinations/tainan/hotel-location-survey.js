@@ -1014,11 +1014,11 @@ const cityConfig = {
 
 const areaResultBadges = {
   "station": "타이난역과 중서구를 잇는 첫 시작",
-  "shennong": "골목 산책과 저녁 미식이 가까운",
-  "confucius": "역사 거리와 카페 산책이 편한",
+  "shennong": "골목 산책과 저녁 미식이 가까운 거리",
+  "confucius": "역사 거리와 카페 산책이 편한 중심",
   "anping": "운하 노을과 오래된 거리를 함께 즐기기 좋은 곳",
   "guohua": "로컬 밥집이 모여 있는 타이난 미식 골목",
-  "flower": "야시장과 북구 동선이 편한 저녁"
+  "flower": "야시장과 북구 동선이 편한 저녁 거점"
 };
 
 const hotelAccessPresets = {
