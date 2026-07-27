@@ -32755,3 +32755,33 @@ body.travel-home-body .wt-home-start-guides .wt-firsttrip-guide:focus-visible{
   }
 }
 /* END BESTAYABLE_HOME_START_GUIDES_V1 */
+
+
+/* BESTAYABLE_SURVEY_RESULT_TAB_AND_BADGE_FIX_V1
+   - result-badge 최종 폰트 크기 17px
+   - 결과 상세 탭 메뉴 왼쪽 정렬
+========================================================= */
+body.wt-location-survey-page--app .result-badge,
+body.wt-location-survey-page--app .detailed-info-section .result-badge,
+body.wt-location-survey-page--app .result-upper-section .result-badge{
+  font-size: 17px !important;
+}
+
+body.wt-location-survey-page--app #resultPage .tab-menu-container,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section .tab-menu-container{
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+body.wt-location-survey-page--app #resultPage .tab-menu-list,
+body.wt-location-survey-page--app #resultPage.is-detail-open .detailed-info-section .tab-menu-list{
+  justify-content: flex-start !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+/* END BESTAYABLE_SURVEY_RESULT_TAB_AND_BADGE_FIX_V1 */
+
+body.wt-location-survey-page--app .tab-btn[hidden],
+body.wt-location-survey-page--app #relatedPostSection[hidden]{
+  display: none !important;
+}

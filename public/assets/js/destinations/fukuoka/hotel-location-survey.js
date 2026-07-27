@@ -904,8 +904,18 @@ async function renderRelatedPostsLegacy(area) {
   setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
 
   const posts = await fetchRelatedPostsByRegion(area);
+  const relatedTabButton = document.querySelector('.tab-btn[data-tab="3"]');
+  const hasRelatedPosts = posts.length > 0;
 
-  if (!posts.length) {
+  if (relatedTabButton) {
+    relatedTabButton.hidden = !hasRelatedPosts;
+    relatedTabButton.setAttribute("aria-hidden", String(!hasRelatedPosts));
+  }
+
+  section.hidden = !hasRelatedPosts;
+  section.style.display = hasRelatedPosts ? "" : "none";
+
+  if (!hasRelatedPosts) {
     section.style.display = "none";
     list.innerHTML = "";
     return;
@@ -1520,8 +1530,18 @@ async function renderRelatedPosts(area) {
   setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
 
   const posts = await fetchRelatedPostsByRegion(area);
+  const relatedTabButton = document.querySelector('.tab-btn[data-tab="3"]');
+  const hasRelatedPosts = posts.length > 0;
 
-  if (!posts.length) {
+  if (relatedTabButton) {
+    relatedTabButton.hidden = !hasRelatedPosts;
+    relatedTabButton.setAttribute("aria-hidden", String(!hasRelatedPosts));
+  }
+
+  section.hidden = !hasRelatedPosts;
+  section.style.display = hasRelatedPosts ? "" : "none";
+
+  if (!hasRelatedPosts) {
     if (empty) empty.style.display = "block";
     return;
   }

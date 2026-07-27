@@ -1534,8 +1534,22 @@ async function renderRelatedPosts(area) {
   setText("relatedPostTitle", `${area.name} 여행 스타일별 호텔 추천 글`);
 
   const posts = await fetchRelatedPostsByRegion(area);
-  if (!posts.length) {
-    if (empty) empty.style.display = "block";
+  const section = document.getElementById("relatedPostSection");
+  const relatedTabButton = document.querySelector('.tab-btn[data-tab="3"]');
+  const hasRelatedPosts = posts.length > 0;
+
+  if (relatedTabButton) {
+    relatedTabButton.hidden = !hasRelatedPosts;
+    relatedTabButton.setAttribute("aria-hidden", String(!hasRelatedPosts));
+  }
+
+  if (section) {
+    section.hidden = !hasRelatedPosts;
+    section.style.display = hasRelatedPosts ? "" : "none";
+  }
+
+  if (!hasRelatedPosts) {
+    if (empty) empty.style.display = "none";
     return;
   }
 
