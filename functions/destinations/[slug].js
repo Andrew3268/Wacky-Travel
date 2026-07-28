@@ -43,7 +43,7 @@ export async function onRequestGet({ params, env, request }) {
       const [postRows, contentTypes] = await Promise.all([
         (() => {
           const postQuery = buildDestinationPostQuery(destination, {
-            selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
+            selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
             orderSql: `
               ORDER BY
                 CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -471,11 +471,12 @@ function renderHotelPostCard(post, contentTypes = []) {
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);
+  const meta = getHotelCardMeta(post);
   return `<article class="travel-card hotel-card travel-card--clickable">
     <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
       ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
       <div class="travel-card__body">
-        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), post.category].filter(Boolean).join(" · "))}</div>
+        <div class="travel-card__meta">${escapeHtml(meta)}</div>
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
         <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
@@ -483,6 +484,14 @@ function renderHotelPostCard(post, contentTypes = []) {
       </div>
     </a>
   </article>`;
+}
+
+function getHotelCardMeta(post = {}) {
+  const region = String(post.region_name || "").trim();
+  const locationType = String(post.hotel_location_type || "").trim();
+  const rawStarRating = String(post.hotel_star_rating || "").trim();
+  const starRating = rawStarRating && !/성급$/.test(rawStarRating) ? `${rawStarRating}성급` : rawStarRating;
+  return [region, locationType, starRating].filter(Boolean).join(" · ");
 }
 
 function safeTags(value = "") {

@@ -26584,16 +26584,26 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title
   color: #000000 !important;
   font-size: clamp(21px, 1.7vw, 26px) !important;
   font-weight: 600!important;
+  display: -webkit-box !important;
+  height: 2.36em !important;
+  min-height: 2.36em !important;
+  max-height: 2.36em !important;
   line-height: 1.18 !important;
   letter-spacing: -0.055em !important;
   word-break: keep-all !important;
+  overflow: hidden !important;
   overflow-wrap: anywhere !important;
+  text-overflow: ellipsis !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
 }
 
 body.travel-archive-body .hotel-card .travel-card__description,
 body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__description,
 body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__description{
   margin: 15px 0 0 !important;
+  padding-bottom: 18px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
   color: rgba(0, 0, 0, 0.64) !important;
   font-size: 14px !important;
   font-weight: 400!important;

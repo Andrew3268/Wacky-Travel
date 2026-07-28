@@ -42,7 +42,7 @@ export async function onRequestGet({ env, request }) {
   const postQuery = buildDestinationPostQuery(destination, {
     regionSlug,
     recommendationCategorySlug,
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, updated_at, published_at",
+    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
     orderSql: `
       ORDER BY
         CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -373,19 +373,26 @@ function renderPostAdminActions(post, { hidden = true } = {}) {
   </div>`;
 }
 
+function getHotelCardMeta(post = {}) {
+  const region = String(post.region_name || "").trim();
+  const locationType = String(post.hotel_location_type || "").trim();
+  const rawStarRating = String(post.hotel_star_rating || "").trim();
+  const starRating = rawStarRating && !/성급$/.test(rawStarRating) ? `${rawStarRating}성급` : rawStarRating;
+  return [region, locationType, starRating].filter(Boolean).join(" · ");
+}
+
 export function renderHotelPostCard(post, contentTypes = []) {
   const slug = String(post.slug || "");
   const href = `/post/${encodeURIComponent(slug)}/`;
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);
-  const region = String(post.region_name || post.region_slug || "").trim();
-  const recommendationCategory = String(post.recommendation_category_name || post.recommendation_category_slug || "").trim();
+  const meta = getHotelCardMeta(post);
   return `<article class="travel-card hotel-card travel-card--clickable" data-region="${escapeHtml(post.region_slug || "")}" data-recommendation-category="${escapeHtml(post.recommendation_category_slug || "")}">
     <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
       ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
       <div class="travel-card__body">
-        <div class="travel-card__meta">${escapeHtml([labelContentType(post.content_type, contentTypes), recommendationCategory, region, post.category].filter(Boolean).join(" · "))}</div>
+        <div class="travel-card__meta">${escapeHtml(meta)}</div>
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
         <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
