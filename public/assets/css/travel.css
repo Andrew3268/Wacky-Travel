@@ -26585,9 +26585,6 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title
   font-size: clamp(21px, 1.7vw, 26px) !important;
   font-weight: 600!important;
   display: -webkit-box !important;
-  height: 2.36em !important;
-  min-height: 2.36em !important;
-  max-height: 2.36em !important;
   line-height: 1.18 !important;
   letter-spacing: -0.055em !important;
   word-break: keep-all !important;
@@ -26601,8 +26598,12 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title
 body.travel-archive-body .hotel-card .travel-card__description,
 body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__description,
 body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__description{
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
   margin: 15px 0 0 !important;
-  padding-bottom: 18px !important;
+  padding: 0 0 18px !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
   color: rgba(0, 0, 0, 0.64) !important;
   font-size: 14px !important;
@@ -32812,3 +32813,10 @@ main.travel-page.wt-purpose-page .wt-page-hero,
   padding-top: 40px !important;
 }
 /* End BESTAYABLE_BREADCRUMB_HERO_SPACING_V111 */
+
+/* V20260728: natural hotel-card title height and stable action alignment */
+body.travel-archive-body .hotel-card .travel-card__body > .text-link,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body > .text-link,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body > .text-link{
+  margin-top: auto !important;
+}

@@ -487,11 +487,12 @@ function renderHotelPostCard(post, contentTypes = []) {
 }
 
 function getHotelCardMeta(post = {}) {
+  const recommendationCategory = String(post.recommendation_category_name || "").trim();
   const region = String(post.region_name || "").trim();
   const locationType = String(post.hotel_location_type || "").trim();
   const rawStarRating = String(post.hotel_star_rating || "").trim();
   const starRating = rawStarRating && !/성급$/.test(rawStarRating) ? `${rawStarRating}성급` : rawStarRating;
-  return [region, locationType, starRating].filter(Boolean).join(" · ");
+  return [recommendationCategory, region, locationType, starRating].filter(Boolean).join(" · ");
 }
 
 function safeTags(value = "") {
