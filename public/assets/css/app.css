@@ -8990,3 +8990,60 @@ body.post-page-body .post-hotel-feature-badges + .post-magazine-desc{
     padding: 5px 9px;
   }
 }
+
+/* 2026-07-28 Recommended hotel review hero: decision-first information hierarchy
+   Breadcrumb → hotel meta → H1 → lead judgement → feature badges → cover image */
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-head{
+  padding: 0;
+}
+
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-title{
+  margin-bottom: 16px;
+}
+
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-lead,
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-lead p{
+  max-width: 760px;
+  color: #555 !important;
+  font-size: 1.05rem;
+  line-height: 1.85 !important;
+}
+
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-hotel-feature-badges{
+  margin-top: 20px;
+}
+
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-head + .post-cover-wrap,
+body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first.post-hero--product .post-magazine-head + .post-cover-wrap{
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-magazine-hero--decision-first{
+  margin-bottom: 44px;
+}
+
+@media (max-width: 767px){
+  body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-title{
+    margin-bottom: 14px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-lead,
+  body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-lead p{
+    font-size: 1rem;
+    line-height: 1.8 !important;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-hotel-feature-badges{
+    margin-top: 18px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-head + .post-cover-wrap,
+  body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first.post-hero--product .post-magazine-head + .post-cover-wrap{
+    margin-top: 24px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-magazine-hero--decision-first{
+    margin-bottom: 36px;
+  }
+}

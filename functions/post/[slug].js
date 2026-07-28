@@ -361,7 +361,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260727-post-layout-v4" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260728-decision-first-hero-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260723-tablet-padding-cleanup" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
@@ -400,16 +400,28 @@ export async function onRequestGet({ params, env, request }) {
     <article class="post-shell post-shell--guide-style" itemscope itemtype="https://schema.org/BlogPosting">
       <div class="post-grid">
         <div class="post-main">
-          <header class="card post-hero post-hero--product post-magazine-hero">
-            ${coverImageHtml}
-            <div class="post-magazine-head">
-              ${hotelTitleMetaHtml}
-              <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-              ${hotelFeatureBadgesHtml}
-              ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
-              ${magazineAdminActionsHtml}
-              ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
-            </div>
+          <header class="card post-hero post-hero--product post-magazine-hero${isRecommendedHotelReviewPost ? " post-magazine-hero--decision-first" : ""}">
+            ${isRecommendedHotelReviewPost ? `
+              <div class="post-magazine-head">
+                ${hotelTitleMetaHtml}
+                <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+                ${heroSummaryHtml ? `<div class="post-magazine-desc post-magazine-lead">${heroSummaryHtml}</div>` : ""}
+                ${hotelFeatureBadgesHtml}
+                ${magazineAdminActionsHtml}
+                ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
+              </div>
+              ${coverImageHtml}
+            ` : `
+              ${coverImageHtml}
+              <div class="post-magazine-head">
+                ${hotelTitleMetaHtml}
+                <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+                ${hotelFeatureBadgesHtml}
+                ${heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
+                ${magazineAdminActionsHtml}
+                ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
+              </div>
+            `}
 
             <meta itemprop="headline" content="${escapeHtml(titleText)}" />
             <meta itemprop="description" content="${escapeHtml(descriptionText)}" />
@@ -1269,7 +1281,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260727-post-layout-v4" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260728-decision-first-hero-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
 </head>
