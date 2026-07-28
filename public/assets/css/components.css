@@ -1379,7 +1379,7 @@ b{
 ========================================================= */
 .breadcrumbs.container {
   box-sizing: border-box;
-  width: min(calc(100% - 32px), var(--container));
+  width: min(100%, var(--container));
   max-width: var(--container);
   margin: 18px auto 0;
   padding: 0;
