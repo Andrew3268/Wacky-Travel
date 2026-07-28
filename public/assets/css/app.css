@@ -6863,7 +6863,7 @@ body.post-page-body .post-shell--guide-style .post-hero--product .post-cover{
 
 body.post-page-body .post-magazine-head{
   width: 100%;
-  margin: 0 auto 64px;
+  margin: 0 auto 10px;
   padding-bottom: 0;
   text-align: left;
 }
@@ -7618,7 +7618,7 @@ body.post-page-body .post-search-overlay__quick button{
   }
 
   body.post-page-body .post-magazine-head{
-    margin-bottom: 44px;
+    margin-bottom: 10px;
   }
 
   body.post-page-body .post-magazine-title{
@@ -8273,7 +8273,7 @@ body.post-page-body--hotel-review-magazine .post-body .post-content h3{
    - 추천 호텔 리뷰 글의 post-shell 상단 여백 축소
 ========================================== */
 body.post-page-body--hotel-review-magazine .post-shell.post-shell--guide-style{
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 body.post-page-body--hotel-review-magazine .post-magazine-hero > .post-magazine-kicker{
@@ -8482,7 +8482,7 @@ body.post-page-body .post-shell--guide-style{
 }
 
 body.post-page-body--hotel-review-magazine .post-shell.post-shell--guide-style{
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 @media (max-width: 760px) {
@@ -9025,7 +9025,7 @@ body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-mag
 
 @media (max-width: 767px){
   body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-title{
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-lead,
