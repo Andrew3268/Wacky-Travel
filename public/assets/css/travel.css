@@ -215,7 +215,7 @@
   align-items: center;
   gap: 6px;
   margin-top: 4px;
-  color: var(--travel-brand) !important;
+  color: var(--travel-brand);
   font-weight: 500;
 }
 
@@ -765,7 +765,7 @@ body{
   content:" ↗";
 }
 .text-link{
-  color:var(--travel-brand) !important;
+  color:var(--travel-brand);
 }
 .footer__inner{
   background:rgba(255,255,255,.58);
@@ -2103,8 +2103,8 @@ body::after{
 
 .btn--brand{
   background: var(--travel-brand-deep) !important;
-  border-color: var(--travel-brand-deep) !important;
-  color: #ffffff !important;
+  border-color: var(--travel-brand-deep);
+  color: #ffffff;
 }
 
 .btn--brand,
@@ -2245,7 +2245,7 @@ body::after{
 }
 
 .text-link{
-  color: var(--travel-brand-deep) !important;
+  color: var(--travel-brand-deep);
   font-weight: 500;
 }
 
@@ -2610,14 +2610,14 @@ body::after{
   }
 }
 
-/* V31: hotel cards keep summaries compact */
-.travel-card.hotel-card .travel-card__body p{
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  max-height: calc(1.74em * 3) !important;
+/* V31: hotel card summary clamp is handled by the inner text element.
+   Padding and border stay on the outer description element so they are not clipped. */
+.travel-card.hotel-card .travel-card__description-text{
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 /* V14: country page content hub compact list */
@@ -5557,7 +5557,6 @@ body::after{
 }
 
 .eyebrow,
-.text-link,
 .country-destination-group__link,
 .country-destination-group__add,
 .country-destination-group__manage,
@@ -24327,7 +24326,7 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
   word-break: keep-all;
   }
 
-  html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3{
+  html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3:not(.travel-card__title){
     font-size: 20px !important;
     line-height: 1.2 !important;
   }
@@ -26537,26 +26536,24 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__meta{
 body.travel-archive-body .hotel-card .travel-card__title,
 body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__title,
 body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title{
+  display: block;
+  min-width: 0;
   margin: 0;
-  color: #000000;
-  font-size: clamp(21px, 1.7vw, 26px);
-  font-weight: 600;
-  display: -webkit-box;
-  line-height: 1.18;
-  letter-spacing: -0.055em;
-  word-break: keep-all;
   overflow: hidden;
-  overflow-wrap: anywhere;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 
 body.travel-archive-body .hotel-card .travel-card__description,
 body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__description,
 body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__description{
   display: block;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   width: 100%;
   box-sizing: border-box;
   align-self: stretch;
@@ -26568,8 +26565,18 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__descr
   font-weight: 400;
   line-height: 1.7;
   letter-spacing: -0.032em;
-  word-break: keep-all;
+}
+
+body.travel-archive-body .hotel-card .travel-card__description-text,
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__description-text,
+body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__description-text{
+  display: -webkit-box;
+  overflow: hidden;
   overflow-wrap: anywhere;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 body.travel-archive-body .hotel-card .tag-row,
@@ -26655,8 +26662,8 @@ body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body{
   body.travel-archive-body .hotel-card .travel-card__title,
 body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__title,
 body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title{
-    font-size: 22px;
-    line-height: 1.2;
+    font-size: 18px;
+    line-height: 1.4;
   }
 
   body.travel-archive-body .hotel-card .text-link,
@@ -32755,96 +32762,4 @@ main.travel-page.wt-purpose-page .wt-page-hero,
 }
 /* End BESTAYABLE_BREADCRUMB_HERO_SPACING_V111 */
 
-/* V20260728: natural hotel-card title height and stable action alignment */
-body.travel-archive-body .hotel-card .travel-card__body > .text-link,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body > .text-link,
-body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body > .text-link{
-  margin-top: auto;
-}
-
-/* BESTAYABLE_TRAVEL_CARD_UI_FIX_V3
-   도시·목록 호텔 카드의 제목/설명 간격을 한 선언군에서 관리합니다. */
-body.travel-archive-body .hotel-card .travel-card__body,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body,
-body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body{
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  min-width: 0;
-  min-height: 250px;
-  padding: 22px;
-  background: #fff;
-}
-
-body.travel-archive-body .hotel-card .travel-card__title,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__title,
-body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title{
-  display: -webkit-box;
-  margin: 0;
-  overflow: hidden;
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.045em;
-  overflow-wrap: anywhere;
-  word-break: keep-all;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-body.travel-archive-body .hotel-card .travel-card__description,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__description,
-body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__description{
-  display: block;
-  flex: 0 0 auto;
-  width: 100%;
-  box-sizing: border-box;
-  align-self: stretch;
-  margin: 15px 0 0;
-  padding: 0 0 18px;
-  border-bottom: 1px solid #d9d9d9;
-  color: rgba(0, 0, 0, 0.64);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: -0.032em;
-  overflow-wrap: anywhere;
-  word-break: keep-all;
-}
-
-body.travel-archive-body .hotel-card .travel-card__body > .travel-card__description + .text-link,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body > .travel-card__description + .text-link,
-body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body > .travel-card__description + .text-link{
-  margin-top: auto;
-}
-
-body.travel-archive-body .hotel-card .travel-card__body > .tag-row,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body > .tag-row,
-body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body > .tag-row{
-  margin-top: 18px;
-}
-
-body.travel-archive-body .hotel-card .tag-row + .text-link,
-body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .tag-row + .text-link,
-body.travel-destination-detail-body #hotel-posts .hotel-card .tag-row + .text-link{
-  margin-top: auto;
-}
-
-@media (max-width: 767px){
-  body.travel-archive-body .hotel-card .travel-card__body,
-  body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__body,
-  body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__body{
-    min-height: 0;
-    padding: 20px;
-  }
-
-  body.travel-archive-body .hotel-card .travel-card__title,
-  body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__title,
-  body.travel-destination-detail-body #hotel-posts .hotel-card .travel-card__title{
-    font-size: 20px;
-    line-height: 1.35;
-  }
-}
 

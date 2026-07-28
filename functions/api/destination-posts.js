@@ -395,7 +395,7 @@ export function renderHotelPostCard(post, contentTypes = []) {
       <div class="travel-card__body">
         <div class="travel-card__meta">${escapeHtml(meta)}</div>
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
-        <p class="travel-card__description">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</p>
+        <p class="travel-card__description"><span class="travel-card__description-text">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</span></p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
         <span class="text-link">자세히 보기</span>
       </div>

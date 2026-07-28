@@ -4505,8 +4505,7 @@ select:focus{
 .preview-body h3,
 .post-body .post-content h3,
 .post-body .post-content a,
-.preview-body a,
-.text-link{
+.preview-body a{
   color: #2563EB !important;
 }
 
