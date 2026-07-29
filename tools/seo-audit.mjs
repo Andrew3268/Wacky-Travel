@@ -8,6 +8,7 @@ const root = path.resolve(__dirname, "..");
 const publicDir = path.join(root, "public");
 const errors = [];
 const warnings = [];
+const SITE_ORIGIN = "https://bestayable.com";
 
 async function walk(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -79,8 +80,18 @@ for (const file of htmlFiles) {
 
   const jsonScripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
   for (const match of jsonScripts) {
-    try { JSON.parse(match[1].trim()); }
-    catch (error) { errors.push(`${route}: JSON-LD 문법 오류 (${error.message})`); }
+    try {
+      const parsed = JSON.parse(match[1].trim());
+      const stack = [parsed];
+      while (stack.length) {
+        const current = stack.pop();
+        if (Array.isArray(current)) { stack.push(...current); continue; }
+        if (current && typeof current === "object") { stack.push(...Object.values(current)); continue; }
+        if (typeof current === "string" && current.startsWith("/")) {
+          errors.push(`${route}: JSON-LD 상대 URL 발견 (${current})`);
+        }
+      }
+    } catch (error) { errors.push(`${route}: JSON-LD 문법 오류 (${error.message})`); }
   }
 
   if (!noindex) {
@@ -101,7 +112,12 @@ for (const file of htmlFiles) {
     else {
       const href = attr(canonicalTags[0], "href");
       if (!href) errors.push(`${route}: canonical href 누락`);
-      else if (normalizePagePath(href) !== normalizePagePath(route)) errors.push(`${route}: canonical 경로 불일치 (${href})`);
+      else {
+        let parsedCanonical = null;
+        try { parsedCanonical = new URL(href); } catch {}
+        if (!parsedCanonical || parsedCanonical.origin !== SITE_ORIGIN) errors.push(`${route}: canonical은 공식 도메인의 절대 URL이어야 함 (${href})`);
+        else if (normalizePagePath(parsedCanonical.pathname) !== normalizePagePath(route)) errors.push(`${route}: canonical 경로 불일치 (${href})`);
+      }
       if (/[?#]/.test(href)) errors.push(`${route}: canonical에 쿼리 또는 해시 포함 (${href})`);
     }
     if (!meta(html, "name", "viewport")) errors.push(`${route}: viewport 누락`);
@@ -112,6 +128,20 @@ for (const file of htmlFiles) {
       ["name", "twitter:card"], ["name", "twitter:title"], ["name", "twitter:description"], ["name", "twitter:image"]
     ];
     for (const [key, value] of requiredMeta) if (!meta(html, key, value)) errors.push(`${route}: ${value} 누락`);
+
+    const ogUrl = meta(html, "property", "og:url");
+    try {
+      const parsed = new URL(ogUrl);
+      if (parsed.origin !== SITE_ORIGIN || normalizePagePath(parsed.pathname) !== normalizePagePath(route)) {
+        errors.push(`${route}: og:url 공식 절대주소 불일치 (${ogUrl})`);
+      }
+    } catch { errors.push(`${route}: og:url이 절대 URL이 아님 (${ogUrl})`); }
+
+    for (const [key, value] of [["property", "og:image"], ["name", "twitter:image"]]) {
+      const image = meta(html, key, value);
+      try { new URL(image); }
+      catch { errors.push(`${route}: ${value}가 절대 URL이 아님 (${image})`); }
+    }
 
     if (title) {
       const list = titleMap.get(title) || []; list.push(route); titleMap.set(title, list);

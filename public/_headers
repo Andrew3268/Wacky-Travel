@@ -53,3 +53,17 @@
 
 /
   Cache-Control: public, max-age=0, must-revalidate
+
+# Static pages on the default Pages host must never be indexed.
+# The custom domain remains the canonical origin in every HTML document.
+https://wacky-travel.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+# Preview deployment subdomains are also excluded from search results.
+https://:version.wacky-travel.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+# HSTS for the connected production domain. Static responses do not pass through Functions.
+https://bestayable.com/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Language: ko-KR

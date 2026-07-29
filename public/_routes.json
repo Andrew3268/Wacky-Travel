@@ -1,10 +1,43 @@
 {
   "version": 1,
   "include": [
-    "/*"
+    "/api/*",
+    "/post/*",
+    "/countries/*",
+    "/img/*",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/destinations/da-nang/hotels/*",
+    "/destinations/da-nang/hotel-recommendations/*",
+    "/destinations/fukuoka/hotels/*",
+    "/destinations/fukuoka/hotel-recommendations/*",
+    "/destinations/hanoi/hotels/*",
+    "/destinations/hanoi/hotel-recommendations/*",
+    "/destinations/ho-chi-minh-city/hotels/*",
+    "/destinations/ho-chi-minh-city/hotel-recommendations/*",
+    "/destinations/hualien/hotels/*",
+    "/destinations/hualien/hotel-recommendations/*",
+    "/destinations/kaohsiung/hotels/*",
+    "/destinations/kaohsiung/hotel-recommendations/*",
+    "/destinations/nha-trang/hotels/*",
+    "/destinations/nha-trang/hotel-recommendations/*",
+    "/destinations/okinawa/hotels/*",
+    "/destinations/okinawa/hotel-recommendations/*",
+    "/destinations/osaka/hotels/*",
+    "/destinations/osaka/hotel-recommendations/*",
+    "/destinations/phu-quoc/hotels/*",
+    "/destinations/phu-quoc/hotel-recommendations/*",
+    "/destinations/sapporo/hotels/*",
+    "/destinations/sapporo/hotel-recommendations/*",
+    "/destinations/taichung/hotels/*",
+    "/destinations/taichung/hotel-recommendations/*",
+    "/destinations/tainan/hotels/*",
+    "/destinations/tainan/hotel-recommendations/*",
+    "/destinations/taipei/hotels/*",
+    "/destinations/taipei/hotel-recommendations/*",
+    "/destinations/tokyo/hotels/*",
+    "/destinations/tokyo/hotel-recommendations/*",
+    "/travel-by-mood/ocean-rest/*"
   ],
-  "exclude": [
-    "/assets/*",
-    "/favicon.ico"
-  ]
+  "exclude": []
 }
