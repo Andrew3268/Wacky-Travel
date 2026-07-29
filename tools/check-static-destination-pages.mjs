@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, "..");
 const functionsDestinationDir = path.join(root, "functions", "destinations");
 const publicDestinationDir = path.join(root, "public", "destinations");
 const routesFile = path.join(root, "public", "_routes.json");
+const middlewareFile = path.join(root, "functions", "_middleware.js");
 
 const citySlugs = [
   "fukuoka",
@@ -64,6 +65,14 @@ if (!Array.isArray(routes.include) || !routes.include.includes("/*")) {
 }
 if (Array.isArray(routes.exclude) && routes.exclude.some((route) => String(route).startsWith("/destinations"))) {
   errors.push("도시 정적 페이지가 미들웨어에서 제외되어 있습니다.");
+}
+
+const middleware = await fs.readFile(middlewareFile, "utf8");
+if (!middleware.includes("loadStaticDestinationIndex(context, requestUrl, method)")) {
+  errors.push("전역 미들웨어에 정적 도시 index 강제 로딩이 없습니다.");
+}
+if (!middleware.includes("context.env.ASSETS.fetch")) {
+  errors.push("정적 도시 페이지를 ASSETS 바인딩에서 직접 가져오지 않습니다.");
 }
 
 if (errors.length) {

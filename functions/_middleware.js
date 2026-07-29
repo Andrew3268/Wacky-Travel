@@ -32,7 +32,8 @@ export async function onRequest(context) {
   if (slashRedirect) return slashRedirect;
 
   const dynamicPageStatePromise = loadDynamicPageState(env, requestUrl.pathname);
-  const upstream = await context.next();
+  const staticDestinationResponse = await loadStaticDestinationIndex(context, requestUrl, method);
+  const upstream = staticDestinationResponse || await context.next();
   const headers = new Headers(upstream.headers);
   applySecurityHeaders(headers, requestUrl);
 
@@ -85,6 +86,42 @@ export async function onRequest(context) {
     statusText: upstream.statusText,
     headers
   }));
+}
+
+const STATIC_DESTINATION_SLUGS = new Set([
+  "fukuoka",
+  "osaka",
+  "tokyo",
+  "sapporo",
+  "okinawa",
+  "da-nang",
+  "nha-trang",
+  "ho-chi-minh-city",
+  "hanoi",
+  "phu-quoc",
+  "taipei",
+  "taichung",
+  "tainan",
+  "kaohsiung",
+  "hualien"
+]);
+
+async function loadStaticDestinationIndex(context, requestUrl, method) {
+  if (!(method === "GET" || method === "HEAD")) return null;
+  const match = requestUrl.pathname.match(/^\/destinations\/([^/]+)\/$/);
+  if (!match) return null;
+
+  const slug = decodeURIComponent(match[1]).toLowerCase();
+  if (!STATIC_DESTINATION_SLUGS.has(slug)) return null;
+  if (!context?.env?.ASSETS || typeof context.env.ASSETS.fetch !== "function") return null;
+
+  const assetUrl = new URL(`/destinations/${slug}/index.html`, requestUrl.origin);
+  const assetRequest = new Request(assetUrl.toString(), {
+    method,
+    headers: context.request.headers
+  });
+  const response = await context.env.ASSETS.fetch(assetRequest);
+  return response.status === 404 ? null : response;
 }
 
 function buildOriginRedirect(url, env, siteOrigin, method) {
