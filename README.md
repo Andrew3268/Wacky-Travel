@@ -3,8 +3,15 @@
 - v11: 오사카·도쿄·삿포로·오키나와 hotel-location-survey 결과 정확도 보정 로직 추가 및 결과 문구 일부 개선. SSR Blog
 
 Be Stayable은 독립적으로 운영되는 여행 제휴마케팅/애드센스 블로그입니다.  
-Cloudflare Pages Functions + D1 + SSR + Edge Cache 구조로 여행지 허브, 호텔 추천 글, 일반 여행 글을 빠르게 출력하도록 구성되어 있습니다.
+도시 허브는 정적 HTML로 제공하고, Cloudflare Pages Functions + D1 + SSR은 게시글·국가 페이지·API에 사용하도록 구성되어 있습니다.
 
+
+## 출시 라우팅 수정
+
+- `functions/destinations/[slug].js` 동적 도시 라우트를 제거했습니다.
+- `/destinations/{city}/` 요청은 `public/destinations/{city}/index.html` 정적 페이지를 제공합니다.
+- 전체 HTML 미들웨어 적용은 유지하되, 정적 도시 페이지를 동적 SSR이 가로채지 않도록 분리했습니다.
+- 배포 전 검사에서 15개 도시 정적 메인 페이지와 동적 도시 Functions 부재를 확인합니다.
 
 ## bestayable-v1.12 변경 요약
 
@@ -26,7 +33,6 @@ Cloudflare Pages Functions + D1 + SSR + Edge Cache 구조로 여행지 허브, �
 ```text
 functions/
   post/[slug].js                  일반 여행 글 SSR
-  destinations/[slug].js          여행지 허브 SSR
   api/                            관리자/글/여행지 설정 API
 
 lib/travel/

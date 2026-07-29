@@ -20,10 +20,11 @@
     "seo:routes": "node ./tools/generate-static-routes.mjs",
     "seo:audit": "node ./tools/seo-audit.mjs",
     "check:syntax": "node ./tools/syntax-check.mjs",
-    "check": "npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:syntax",
+    "check": "npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:static-destinations && npm run check:syntax",
     "predeploy": "npm run check",
     "d1:migrate:recommendation-category-names": "wrangler d1 execute wacky-travel-db --file=./db/migrations/012_recommendation_category_names.sql",
-    "d1:migrate:recommendation-category-names:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/012_recommendation_category_names.sql"
+    "d1:migrate:recommendation-category-names:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/012_recommendation_category_names.sql",
+    "check:static-destinations": "node ./tools/check-static-destination-pages.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"
