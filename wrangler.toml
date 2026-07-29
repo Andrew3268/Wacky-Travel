@@ -8,12 +8,12 @@ database_name = "wacky-travel-db"
 database_id = "a172c735-910b-44c9-86a1-ee691ebf7ca4"
 
 [vars]
-# 연결 예정인 공식 도메인입니다.
+# 연결 완료된 공식 도메인입니다.
 SITE_ORIGIN = "https://bestayable.com"
-# DNS 연결과 인증서 발급이 끝나기 전에는 false를 유지합니다.
-CUSTOM_DOMAIN_CONNECTED = "false"
-# 연결 완료 후 공식 도메인으로 요청을 통일하려면 true로 변경합니다.
-ENFORCE_SITE_ORIGIN = "false"
+# 공식 도메인을 canonical·사이트맵·robots 기준 주소로 사용합니다.
+CUSTOM_DOMAIN_CONNECTED = "true"
+# pages.dev 및 다른 호스트 요청을 공식 도메인으로 통일합니다.
+ENFORCE_SITE_ORIGIN = "true"
 
 # 운영 전 실제 값으로 교체하세요!
 # ADSENSE_CLIENT = "ca-pub-xxxxxxxxxxxxxxxx"

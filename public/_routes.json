@@ -1,43 +1,10 @@
 {
   "version": 1,
   "include": [
-    "/api/*",
-    "/post/*",
-    "/countries/*",
-    "/destinations/*",
-    "/img/*",
-    "/sitemap.xml"
+    "/*"
   ],
   "exclude": [
-    "/destinations/osaka",
-    "/destinations/osaka/*",
-    "/destinations/fukuoka",
-    "/destinations/fukuoka/*",
-    "/destinations/tokyo",
-    "/destinations/tokyo/*",
-    "/destinations/sapporo",
-    "/destinations/sapporo/*",
-    "/destinations/okinawa",
-    "/destinations/okinawa/*",
-    "/destinations/da-nang",
-    "/destinations/da-nang/*",
-    "/destinations/nha-trang",
-    "/destinations/nha-trang/*",
-    "/destinations/ho-chi-minh-city",
-    "/destinations/ho-chi-minh-city/*",
-    "/destinations/hanoi",
-    "/destinations/hanoi/*",
-    "/destinations/phu-quoc",
-    "/destinations/phu-quoc/*",
-    "/destinations/taipei",
-    "/destinations/taipei/*",
-    "/destinations/taichung",
-    "/destinations/taichung/*",
-    "/destinations/tainan",
-    "/destinations/tainan/*",
-    "/destinations/kaohsiung",
-    "/destinations/kaohsiung/*",
-    "/destinations/hualien",
-    "/destinations/hualien/*"
+    "/assets/*",
+    "/favicon.ico"
   ]
 }

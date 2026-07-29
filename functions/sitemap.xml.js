@@ -1,5 +1,12 @@
 import { STATIC_ROUTES } from "../lib/seo/static-routes.js";
 import { getSiteOrigin, normalizePagePath } from "../lib/seo/site-url.js";
+import {
+  getHotelPostGroup,
+  postBelongsToDestination
+} from "./api/destination-posts.js";
+
+const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
+const ARCHIVE_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/$/;
 
 function xmlEscape(value) {
   return String(value || "")
@@ -64,19 +71,98 @@ async function safeAll(db, sql) {
   }
 }
 
+function parseJsonArray(value = "") {
+  if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+  try {
+    const parsed = JSON.parse(String(value || "[]"));
+    return Array.isArray(parsed) ? parsed.map((item) => String(item || "").trim()).filter(Boolean) : [];
+  } catch {
+    return [];
+  }
+}
+
+function isOceanRestPost(post = {}) {
+  return String(post.content_type || "").trim() === "hotel_intro"
+    && parseJsonArray(post.mood_tags_json).includes("ocean-rest");
+}
+
+function collectArchiveDestinations(destinations = []) {
+  const map = new Map();
+
+  destinations.forEach((destination) => {
+    const slug = String(destination.slug || "").trim();
+    if (slug) map.set(slug, destination);
+  });
+
+  STATIC_ROUTES.forEach((route) => {
+    const match = route.match(ARCHIVE_ROUTE_PATTERN);
+    if (!match || map.has(match[1])) return;
+    map.set(match[1], { slug: match[1], name: match[1], city: match[1] });
+  });
+
+  return Array.from(map.values());
+}
+
+function collectConditionalRouteAvailability(posts = [], destinations = []) {
+  const availableArchiveRoutes = new Set();
+  const archiveDestinations = collectArchiveDestinations(destinations);
+
+  archiveDestinations.forEach((destination) => {
+    let hasHotelReviews = false;
+    let hasHotelRecommendations = false;
+
+    for (const post of posts) {
+      if (!postBelongsToDestination(post, destination)) continue;
+      const group = getHotelPostGroup(post);
+      if (group === "hotel_intro") hasHotelReviews = true;
+      if (group === "top5_series") hasHotelRecommendations = true;
+      if (hasHotelReviews && hasHotelRecommendations) break;
+    }
+
+    const slug = String(destination.slug || "").trim();
+    if (hasHotelReviews) availableArchiveRoutes.add(`/destinations/${slug}/hotels/`);
+    if (hasHotelRecommendations) availableArchiveRoutes.add(`/destinations/${slug}/hotel-recommendations/`);
+  });
+
+  return {
+    availableArchiveRoutes,
+    oceanRestAvailable: posts.some(isOceanRestPost)
+  };
+}
+
+function shouldIncludeStaticRoute(route, availability) {
+  if (route === OCEAN_REST_ROUTE) return availability.oceanRestAvailable;
+  if (ARCHIVE_ROUTE_PATTERN.test(route)) return availability.availableArchiveRoutes.has(route);
+  return true;
+}
+
 export async function onRequestGet({ env, request }) {
   const origin = getSiteOrigin(env, request);
 
   const [posts, destinations] = await Promise.all([
     safeAll(env.TRAVEL_DB, `
-      SELECT slug, updated_at, published_at
+      SELECT
+        slug,
+        title,
+        category,
+        summary,
+        tags_json,
+        content_type,
+        destination_slug,
+        recommendation_category_slug,
+        recommendation_category_name,
+        recommendation_category_description,
+        hotel_slug,
+        mood_tags_json,
+        updated_at,
+        published_at
       FROM posts
       WHERE LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
       ORDER BY COALESCE(updated_at, published_at) DESC
       LIMIT 20000
     `),
     safeAll(env.TRAVEL_DB, `
-      SELECT slug, country, updated_at
+      SELECT slug, name, city, country, updated_at
       FROM destinations
       WHERE LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
       ORDER BY updated_at DESC
@@ -84,10 +170,11 @@ export async function onRequestGet({ env, request }) {
     `)
   ]);
 
+  const conditionalAvailability = collectConditionalRouteAvailability(posts, destinations);
   const urlMap = new Map();
 
-  // Static routes are generated from actual indexable HTML files at build time.
   STATIC_ROUTES.forEach((route) => {
+    if (!shouldIncludeStaticRoute(route, conditionalAvailability)) return;
     addUrl(urlMap, { loc: `${origin}${normalizePagePath(route)}` });
   });
 

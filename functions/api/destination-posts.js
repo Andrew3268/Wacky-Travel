@@ -210,6 +210,22 @@ function getDestinationSearchTerms(destination = {}) {
   ].map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter((value) => value.length >= 2))];
 }
 
+export function postBelongsToDestination(post = {}, destination = {}) {
+  const destinationSlug = String(destination.slug || "").trim().toLowerCase();
+  if (!destinationSlug) return false;
+
+  const explicitSlug = String(post.destination_slug || "").trim().toLowerCase();
+  if (getDestinationSlugAliases(destinationSlug).includes(explicitSlug)) return true;
+
+  const searchableText = [post.title, post.summary, post.tags_json, post.category]
+    .map((value) => String(value || "").toLowerCase())
+    .join(" ");
+
+  return getDestinationSearchTerms(destination)
+    .map((term) => term.toLowerCase())
+    .some((term) => searchableText.includes(term));
+}
+
 export function getHotelPostGroup(post = {}) {
   const rawType = String(post.content_type || "").trim();
   const type = normalizePostContentType(rawType);

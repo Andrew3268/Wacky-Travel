@@ -31,7 +31,7 @@ export async function onRequest(context) {
   const slashRedirect = buildTrailingSlashRedirect(requestUrl, requestUrl.origin, method);
   if (slashRedirect) return slashRedirect;
 
-  const archiveDataPromise = loadArchiveData(env, requestUrl.pathname);
+  const dynamicPageStatePromise = loadDynamicPageState(env, requestUrl.pathname);
   const upstream = await context.next();
   const headers = new Headers(upstream.headers);
   applySecurityHeaders(headers, requestUrl);
@@ -48,8 +48,9 @@ export async function onRequest(context) {
 
   if (!isHtml) return cloneResponse(upstream, headers);
 
+  const dynamicPageState = await dynamicPageStatePromise;
   const canonical = `${siteOrigin}${normalizePagePath(requestUrl.pathname)}`;
-  const robots = resolveRobotsDirective(requestUrl, upstream.status);
+  const robots = resolveRobotsDirective(requestUrl, upstream.status, dynamicPageState.indexable);
   headers.set("x-robots-tag", robots);
   headers.set("content-language", "ko-KR");
 
@@ -63,7 +64,7 @@ export async function onRequest(context) {
     headers.set("cache-control", "public, max-age=0, must-revalidate");
   }
 
-  const archiveData = await archiveDataPromise;
+  const archiveData = dynamicPageState.archiveData;
   const rewriter = new HTMLRewriter()
     .on('link[rel="canonical"]', new FixedAttributeHandler("href", canonical))
     .on('meta[property="og:url"]', new FixedAttributeHandler("content", canonical))
@@ -113,11 +114,12 @@ function buildTrailingSlashRedirect(url, siteOrigin, method) {
   return Response.redirect(target, 308);
 }
 
-function resolveRobotsDirective(url, status) {
+function resolveRobotsDirective(url, status, dynamicIndexable = null) {
   const path = url.pathname;
   if (status >= 400) return NOINDEX_PRIVATE;
   if (isPrivatePath(path)) return NOINDEX_PRIVATE;
   if (path === "/search/" || path === "/search") return NOINDEX_FOLLOW;
+  if (dynamicIndexable === false) return NOINDEX_FOLLOW;
 
   const duplicateParams = (
     (path === "/" && ["category", "tag", "status", "page"].some((key) => url.searchParams.has(key)))
@@ -171,6 +173,48 @@ function cloneResponse(response, headers) {
     statusText: response.statusText,
     headers
   });
+}
+
+async function loadDynamicPageState(env, pathname) {
+  const path = String(pathname || "");
+
+  if (/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/?$/.test(path)) {
+    const archiveData = await loadArchiveData(env, path);
+    return {
+      archiveData,
+      indexable: archiveData ? archiveData.total > 0 : null
+    };
+  }
+
+  if (path === "/travel-by-mood/ocean-rest/" || path === "/travel-by-mood/ocean-rest") {
+    const total = await loadOceanRestPostCount(env);
+    return {
+      archiveData: null,
+      indexable: total === null ? null : total > 0
+    };
+  }
+
+  return { archiveData: null, indexable: null };
+}
+
+async function loadOceanRestPostCount(env) {
+  if (!env?.TRAVEL_DB) return null;
+  try {
+    const row = await env.TRAVEL_DB.prepare(`
+      SELECT COUNT(*) AS total
+      FROM posts
+      WHERE LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
+        AND TRIM(COALESCE(content_type, '')) = 'hotel_intro'
+        AND EXISTS (
+          SELECT 1
+          FROM json_each(COALESCE(mood_tags_json, '[]'))
+          WHERE TRIM(json_each.value) = 'ocean-rest'
+        )
+    `).first();
+    return Number(row?.total || 0);
+  } catch {
+    return null;
+  }
 }
 
 async function loadArchiveData(env, pathname) {
