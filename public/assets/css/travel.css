@@ -6094,7 +6094,7 @@ body::after{
   word-break: keep-all;
 }
 
-.wt-page-hero p{
+.wt-page-hero p:not(.wt-city-kicker){
   max-width: 680px;
   margin: 20px 0 0;
   color: #475569;
@@ -6533,7 +6533,7 @@ body::after{
   word-break: keep-all;
   }
 
-  .wt-page-hero p{
+  .wt-page-hero p:not(.wt-city-kicker){
     font-size: 15px;
   }
 
@@ -20719,8 +20719,8 @@ body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
   word-break: keep-all;
 }
 
-body.travel-purpose-body .wt-page-hero p,
-body.travel-purpose-body .wt-purpose-page .wt-page-hero p{
+body.travel-purpose-body .wt-page-hero p:not(.wt-city-kicker),
+body.travel-purpose-body .wt-purpose-page .wt-page-hero p:not(.wt-city-kicker){
   max-width: 760px !important;
   margin-top: 24px !important;
   color: #3f3f46 !important;
@@ -21116,8 +21116,8 @@ body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
   word-break: keep-all;
   }
 
-  body.travel-purpose-body .wt-page-hero p,
-body.travel-purpose-body .wt-purpose-page .wt-page-hero p{
+  body.travel-purpose-body .wt-page-hero p:not(.wt-city-kicker),
+body.travel-purpose-body .wt-purpose-page .wt-page-hero p:not(.wt-city-kicker){
     margin-top: 20px !important;
     font-size: 15px !important;
     line-height: 1.76 !important;
@@ -22141,7 +22141,7 @@ body.wt-guide-body .wt-city-guide-hero__subtitle{
 }
 
 body.wt-guide-body .wt-city-guide-hero__lead,
-body.wt-guide-body .wt-page-hero p{
+body.wt-guide-body .wt-page-hero p:not(.wt-city-kicker){
   max-width: 790px !important;
   margin: 0 !important;
   color: #444 !important;
@@ -27222,7 +27222,7 @@ body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > div{
   max-width: 670px !important;
 }
 body.travel-purpose-body .wt-section--survey-cta .wt-city-kicker{
-  margin: 0 0 8px !important;
+  margin: 0 0 10px !important;
   color: #6f6f6c !important;
   font-size: 11px !important;
   font-weight: 600!important;
@@ -32763,3 +32763,19 @@ main.travel-page.wt-purpose-page .wt-page-hero,
 /* End BESTAYABLE_BREADCRUMB_HERO_SPACING_V111 */
 
 
+
+
+/* BESTAYABLE_PURPOSE_MOBILE_TYPOGRAPHY_V1
+   - 목적별 5개 페이지의 모든 h2를 모바일 22px로 통일
+   - wt-city-kicker는 위 여백 없이 아래 10px로 통일
+========================================================= */
+body.travel-purpose-body .wt-city-kicker{
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767px){
+  body.travel-purpose-body main.travel-page.wt-purpose-page h2{
+    font-size: 22px;
+  }
+}
+/* End BESTAYABLE_PURPOSE_MOBILE_TYPOGRAPHY_V1 */
