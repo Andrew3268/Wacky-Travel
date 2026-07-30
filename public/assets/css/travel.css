@@ -121,7 +121,7 @@
   word-break: keep-all;
 }
 
-.section-heading p:not(.eyebrow){
+.section-heading p:not(.eyebrow):not(.wt-city-kicker){
   margin: 10px 0 0;
   color: var(--travel-muted);
   line-height: 1.7;
@@ -2236,7 +2236,7 @@ body::after{
   word-break: keep-all;
 }
 
-.section-heading p:not(.eyebrow){
+.section-heading p:not(.eyebrow):not(.wt-city-kicker){
   max-width: 680px;
   color: var(--travel-muted);
   font-size: 0.98rem;
@@ -5590,7 +5590,7 @@ body::after{
 .travel-list p,
 .side-card p,
 .content-card p,
-.section-heading p:not(.eyebrow),
+.section-heading p:not(.eyebrow):not(.wt-city-kicker),
 .travel-hero__summary,
 .hotel-detail__summary,
 .wtsr-hero__desc,
@@ -6468,7 +6468,7 @@ body::after{
   word-break: keep-all;
 }
 
-.wt-cta-band p{
+.wt-cta-band p:not(.wt-city-kicker){
   margin: 10px 0 0;
   color: #64748b;
   line-height: 1.7;
@@ -6672,7 +6672,7 @@ body::after{
   word-break: keep-all;
   }
 
-  .wt-purpose-page .wt-page-hero p,
+  .wt-purpose-page .wt-page-hero p:not(.wt-city-kicker),
 .wt-purpose-page .wt-section-desc,
 .wt-purpose-page .wt-area-card p,
 .wt-purpose-page .wt-hotel-card p,
@@ -10493,7 +10493,7 @@ body{
   padding: 24px !important;
 }
 
-.wt-cta-band p{
+.wt-cta-band p:not(.wt-city-kicker){
   margin-top: 8px !important;
 }
 
@@ -13733,9 +13733,9 @@ margin-right: -24px;
 /* End BESTAYABLE_AREA_GUIDE_COMPONENTS_V16 */
 
 /* BESTAYABLE_TYPOGRAPHY_SPACING_REFINEMENT_V17 */
-main.travel-page p,
-.travel-page p,
-.wt-location-page p{
+main.travel-page p:not(.wt-city-kicker),
+.travel-page p:not(.wt-city-kicker),
+.wt-location-page p:not(.wt-city-kicker){
   color: #333 !important;
   font-weight: 400!important;
 }
@@ -19506,7 +19506,6 @@ body.travel-city-body--fukuoka .wt-city-hero__content{
   max-width: 880px !important;
 }
 
-body.travel-city-body--fukuoka .wt-city-kicker,
 body.travel-city-body--fukuoka .eyebrow,
 body.travel-city-body--fukuoka .destination-guide-link__label,
 body.travel-city-body--fukuoka .wt-city-area-panel__eyebrow,
@@ -19629,16 +19628,16 @@ body.travel-city-body--fukuoka .wt-city-snapshot__heading h2{
   word-break: keep-all;
 }
 
-body.travel-city-body--fukuoka .section-heading p:not(.eyebrow),
+body.travel-city-body--fukuoka .section-heading p:not(.eyebrow):not(.wt-city-kicker),
 body.travel-city-body--fukuoka .wt-city-snapshot__heading p:not(.wt-city-kicker),
-body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka p{
+body.travel-city-body--fukuoka main.travel-page.wt-city-page--fukuoka p:not(.wt-city-kicker){
   color: rgba(0, 0, 0, 0.66) !important;
   font-weight: 400!important;
   letter-spacing: -0.032em !important;
 }
 
 body.travel-city-body--fukuoka .wt-city-snapshot__heading p:not(.wt-city-kicker),
-body.travel-city-body--fukuoka .section-heading p:not(.eyebrow){
+body.travel-city-body--fukuoka .section-heading p:not(.eyebrow):not(.wt-city-kicker){
   max-width: 760px !important;
   margin-top: 18px !important;
   font-size: 15px !important;
@@ -20067,7 +20066,6 @@ body.travel-city-body .wt-city-hero__content{
   max-width: 880px !important;
 }
 
-body.travel-city-body .wt-city-kicker,
 body.travel-city-body .eyebrow,
 body.travel-city-body .destination-guide-link__label,
 body.travel-city-body .wt-city-area-panel__eyebrow,
@@ -20082,6 +20080,22 @@ body.travel-city-body .wt-city-choice-card span{
   letter-spacing: 0.08em !important;
   line-height: 1.35 !important;
   text-transform: uppercase !important;
+}
+
+body.travel-city-body .wt-city-kicker{
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 body.travel-city-body .wt-city-hero h1{
@@ -20190,16 +20204,16 @@ body.travel-city-body .wt-city-snapshot__heading h2{
   word-break: keep-all;
 }
 
-body.travel-city-body .section-heading p:not(.eyebrow),
+body.travel-city-body .section-heading p:not(.eyebrow):not(.wt-city-kicker),
 body.travel-city-body .wt-city-snapshot__heading p:not(.wt-city-kicker),
-body.travel-city-body main.travel-page.wt-city-page p{
+body.travel-city-body main.travel-page.wt-city-page p:not(.wt-city-kicker){
   color: rgba(0, 0, 0, 0.66) !important;
   font-weight: 400!important;
   letter-spacing: -0.032em !important;
 }
 
 body.travel-city-body .wt-city-snapshot__heading p:not(.wt-city-kicker),
-body.travel-city-body .section-heading p:not(.eyebrow){
+body.travel-city-body .section-heading p:not(.eyebrow):not(.wt-city-kicker){
   max-width: 760px !important;
   margin-top: 18px !important;
   font-size: 15px !important;
@@ -20699,8 +20713,7 @@ body.travel-purpose-body .wt-page-hero__content{
 }
 
 body.travel-purpose-body .wt-eyebrow,
-body.travel-purpose-body .wt-section-kicker,
-body.travel-purpose-body .wt-city-kicker{
+body.travel-purpose-body .wt-section-kicker{
   color: #111 !important;
   background: transparent !important;
   border: 0 !important;
@@ -20714,7 +20727,19 @@ body.travel-purpose-body .wt-city-kicker{
 }
 
 body.travel-purpose-body .wt-city-kicker{
+  display: inline-flex;
+  align-items: center;
   margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #111;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.3;
+  text-transform: uppercase;
 }
 
 body.travel-purpose-body .wt-page-hero h1,
@@ -20810,7 +20835,7 @@ body.travel-purpose-body .wt-cta-band h2{
 }
 
 body.travel-purpose-body .wt-section-desc,
-body.travel-purpose-body .wt-cta-band p,
+body.travel-purpose-body .wt-cta-band p:not(.wt-city-kicker),
 body.travel-purpose-body .wt-area-card p,
 body.travel-purpose-body .wt-choice-card__lead,
 body.travel-purpose-body .wt-choice-card__line,
@@ -21150,9 +21175,7 @@ body.travel-purpose-body .wt-section--faq{
     padding-bottom: 46px !important;
   }
 
-  body.travel-purpose-body .wt-section-title,
-  body.travel-purpose-body .wt-purpose-page .wt-section-title,
-  body.travel-purpose-body .wt-cta-band h2{
+  body.travel-purpose-body main.travel-page.wt-purpose-page h2{
     font-size: 22px;
     line-height: 1.2;
     word-break: keep-all;
@@ -22094,14 +22117,23 @@ body.wt-guide-body main.travel-page.wt-guide-page .container{
 
 body.wt-guide-body .eyebrow,
 body.wt-guide-body .wt-eyebrow,
-body.wt-guide-body .wt-section-kicker,
-body.wt-guide-body .wt-city-kicker{
+body.wt-guide-body .wt-section-kicker{
   color: #000 !important;
   font-size: 12px !important;
   font-weight: 600!important;
   line-height: 1.3 !important;
   letter-spacing: .06em !important;
   text-transform: uppercase !important;
+}
+
+body.wt-guide-body .wt-city-kicker{
+  margin: 0 0 10px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 body.wt-guide-body .wt-city-guide-hero,
@@ -23915,17 +23947,19 @@ body.travel-archive-body .wt-city-hero__content{
 }
 
 body.travel-archive-body .wt-city-kicker{
-  margin: 0 0 18px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #000000 !important;
-  font-size: 12px !important;
-  font-weight: 600!important;
-  letter-spacing: 0.08em !important;
-  line-height: 1.35 !important;
-  text-transform: uppercase !important;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 body.travel-archive-body .wt-city-hero h1{
@@ -24269,10 +24303,6 @@ body.travel-archive-body .footer.container{
     padding-bottom: 38px !important;
   }
 
-  body.travel-archive-body .wt-city-kicker{
-    margin-bottom: 14px !important;
-    font-size: 12px !important;
-  }
 
   body.travel-archive-body .wt-city-hero h1{
     font-size: clamp(36px, 10.8vw, 48px) !important;
@@ -24330,9 +24360,8 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
   }
 
   html body:not(.wtsr-page):not(.travel-purpose-body):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2{
-    font-size: 24px !important;
     line-height: 1.2;
-  word-break: keep-all;
+    word-break: keep-all;
   }
 
   html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3:not(.travel-card__title){
@@ -24375,11 +24404,8 @@ body.travel-city-body--fukuoka .wt-city-faq__item summary{
   padding: 18px !important;
 }
 
-body.travel-city-body .wt-city-kicker,
 body.travel-city-body .eyebrow,
-body.travel-city-body--fukuoka .wt-city-kicker,
 body.travel-city-body--fukuoka .eyebrow,
-body.travel-archive-body .wt-city-kicker,
 body.travel-archive-body .eyebrow{
   font-size: 15px !important;
 }
@@ -24944,19 +24970,19 @@ body.wt-guide-body .wt-city-guide-hero__inner{
 body.wt-guide-body .wt-city-guide-hero__inner .eyebrow,
 body.wt-guide-body .wt-city-guide-hero__inner .wt-city-kicker,
 body.wt-guide-body .wt-city-guide-hero__inner .wt-eyebrow{
-  display: inline-flex !important;
-  align-items: center !important;
-  margin: 0 0 10px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #000000 !important;
-  font-size: 15px !important;
-  font-weight: 600!important;
-  letter-spacing: 0.08em !important;
-  line-height: 1.35 !important;
-  text-transform: uppercase !important;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #000000;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 body.wt-guide-body .wt-city-guide-hero h1,
@@ -25535,9 +25561,6 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
    - 데스크톱/태블릿: 버튼을 배너 오른쪽이 아닌 본문 아래 왼쪽에 배치
    - 모바일: 버튼을 CTA 본문 아래 100% 너비로 배치
 ========================================================= */
-body.travel-purpose-body .wt-city-kicker{
-  font-size: 15px !important;
-}
 
 body.travel-purpose-body .wt-section--survey-cta .wt-cta-band,
 body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band{
@@ -27231,12 +27254,12 @@ body.travel-purpose-body .wt-section--survey-cta .wt-cta-band > div{
   max-width: 670px !important;
 }
 body.travel-purpose-body .wt-section--survey-cta .wt-city-kicker{
-  margin: 0 0 10px !important;
-  color: #6f6f6c !important;
-  font-size: 11px !important;
-  font-weight: 600!important;
-  letter-spacing: .12em !important;
-  text-transform: uppercase !important;
+  margin: 0 0 10px;
+  color: #6f6f6c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 body.travel-purpose-body .wt-section--survey-cta .wt-cta-band h2{
   max-width: 670px !important;
@@ -27370,10 +27393,6 @@ body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p{
 }
 
 @media (max-width: 760px) {
-  body.travel-purpose-body main.travel-page.wt-purpose-page h2{
-    font-size: 22px;
-  }
-
   body.travel-purpose-body .wt-reason-grid{ grid-template-columns: 1fr !important; }
   body.travel-purpose-body .wt-reason-grid .wt-reason-card{ border-right: 0 !important; }
   body.travel-purpose-body .wt-reason-grid .wt-reason-card > span:first-child{ margin-bottom: 25px !important; }
