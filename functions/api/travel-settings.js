@@ -12,6 +12,11 @@ function readEntity(body) {
   return String(body?.entity || body?.type || "").trim();
 }
 
+function isTravelSettingsSchemaError(error) {
+  const message = String(error?.message || error || "").toLowerCase();
+  return message.includes("no such table") || message.includes("no such column");
+}
+
 async function getNextSortOrder(db, tableName) {
   const row = await db.prepare(`SELECT COALESCE(MAX(sort_order), 0) AS max_sort FROM ${tableName}`).first();
   return Number(row?.max_sort || 0) + 1;
@@ -181,6 +186,18 @@ export async function onRequestGet({ env }) {
     const settings = await getTravelSettings(env.TRAVEL_DB, { includeInactive: true });
     return okJson(settings, { headers: { "cache-control": "private, no-store" } });
   } catch (error) {
+    // Only repair an actually outdated schema. Normal reads never run schema
+    // checks, CREATE/ALTER statements or default-data seeding.
+    if (isTravelSettingsSchemaError(error)) {
+      try {
+        await ensureTravelSettingsTables(env.TRAVEL_DB);
+        const settings = await getTravelSettings(env.TRAVEL_DB, { includeInactive: true });
+        return okJson(settings, { headers: { "cache-control": "private, no-store" } });
+      } catch (repairError) {
+        error = repairError;
+      }
+    }
+
     console.error("travel_settings_load_failed", error);
     return okJson({
       message: "관리 항목을 불러오지 못했습니다.",

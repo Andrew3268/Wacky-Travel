@@ -106,7 +106,6 @@ async function ensure(db) {
 }
 
 async function list(db) {
-  await ensure(db);
   const rows = await db.prepare(`
     SELECT id, type, slug, name, sort_order, is_active
     FROM curation_items
@@ -116,10 +115,24 @@ async function list(db) {
   return rows.results || [];
 }
 
+function isSchemaError(error) {
+  const message = String(error?.message || error || "").toLowerCase();
+  return message.includes("no such table") || message.includes("no such column");
+}
+
 export async function onRequestGet({ env }) {
   try {
     return okJson({ items: await list(env.TRAVEL_DB) }, { headers: { "cache-control": "private, no-store" } });
   } catch (error) {
+    if (isSchemaError(error)) {
+      try {
+        await ensure(env.TRAVEL_DB);
+        return okJson({ items: await list(env.TRAVEL_DB) }, { headers: { "cache-control": "private, no-store" } });
+      } catch (repairError) {
+        error = repairError;
+      }
+    }
+
     console.error("curation_items_load_failed", error);
     return okJson({
       message: "큐레이션 항목을 불러오지 못했습니다.",
