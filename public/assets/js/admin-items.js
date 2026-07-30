@@ -232,7 +232,10 @@ async function requestTravelSettingsApi(method = "GET", payload = null) {
   }
   const res = await fetch(`/api/travel-settings?ts=${Date.now()}`, options);
   const json = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(json?.message || "항목 관리 요청에 실패했습니다.");
+  if (!res.ok) {
+    const detail = String(json?.detail || "").trim();
+    throw new Error([json?.message || "항목 관리 요청에 실패했습니다.", detail].filter(Boolean).join(" "));
+  }
   return json;
 }
 

@@ -150,7 +150,10 @@ async function requestTravelSettings(method = 'GET', payload = null) {
     location.href = '/admin/';
     return null;
   }
-  if (!res.ok) throw new Error(json?.message || `요청에 실패했습니다. (${res.status})`);
+  if (!res.ok) {
+    const detail = String(json?.detail || '').trim();
+    throw new Error([json?.message || `요청에 실패했습니다. (${res.status})`, detail].filter(Boolean).join(' '));
+  }
   return json;
 }
 

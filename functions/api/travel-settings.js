@@ -1,5 +1,12 @@
 import { okJson, requireAdmin } from "../_utils.js";
-import { ensureTravelSettingsTables, getTravelSettings, normalizeText, slugifySetting, countryToSlug } from "../../lib/travel/travel-settings.js";
+import {
+  ensureTravelContentRelationColumns,
+  ensureTravelSettingsTables,
+  getTravelSettings,
+  normalizeText,
+  slugifySetting,
+  countryToSlug
+} from "../../lib/travel/travel-settings.js";
 
 function readEntity(body) {
   return String(body?.entity || body?.type || "").trim();
@@ -170,14 +177,24 @@ function readRecommendationCategoryPayload(body, { current = null } = {}) {
 }
 
 export async function onRequestGet({ env }) {
-  const settings = await getTravelSettings(env.TRAVEL_DB, { includeInactive: true });
-  return okJson(settings, { headers: { "cache-control": "private, no-store" } });
+  try {
+    const settings = await getTravelSettings(env.TRAVEL_DB, { includeInactive: true });
+    return okJson(settings, { headers: { "cache-control": "private, no-store" } });
+  } catch (error) {
+    console.error("travel_settings_load_failed", error);
+    return okJson({
+      message: "관리 항목을 불러오지 못했습니다.",
+      code: "travel_settings_load_failed",
+      detail: String(error?.message || error || "unknown_error")
+    }, { status: 500, headers: { "cache-control": "private, no-store" } });
+  }
 }
 
 export async function onRequestPost({ env, request }) {
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
   await ensureTravelSettingsTables(env.TRAVEL_DB);
+  await ensureTravelContentRelationColumns(env.TRAVEL_DB);
 
   const body = await request.json().catch(() => null);
   if (!body) return okJson({ message: "JSON이 필요합니다." }, { status: 400 });
@@ -314,6 +331,7 @@ export async function onRequestPut({ env, request }) {
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
   await ensureTravelSettingsTables(env.TRAVEL_DB);
+  await ensureTravelContentRelationColumns(env.TRAVEL_DB);
 
   const body = await request.json().catch(() => null);
   if (!body) return okJson({ message: "JSON이 필요합니다." }, { status: 400 });
@@ -499,6 +517,7 @@ export async function onRequestDelete({ env, request }) {
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
   await ensureTravelSettingsTables(env.TRAVEL_DB);
+  await ensureTravelContentRelationColumns(env.TRAVEL_DB);
 
   const body = await request.json().catch(() => null);
   if (!body) return okJson({ message: "JSON이 필요합니다." }, { status: 400 });
