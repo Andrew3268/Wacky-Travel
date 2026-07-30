@@ -1,4 +1,4 @@
-import { escapeHtml, jsonld, okHtml, edgeCache } from "../_utils.js";
+import { escapeHtml, jsonld, okHtml, edgeCache, getAdminSession } from "../_utils.js";
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
@@ -24,11 +24,25 @@ export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
   if (!slug) return okHtml("Not Found", { status: 404 });
 
+  const requestUrl = new URL(request.url);
+  const previewRequested = ["1", "true", "draft"].includes(String(requestUrl.searchParams.get("preview") || "").trim().toLowerCase());
+  const admin = previewRequested ? await getAdminSession(env, request) : null;
+  const isDraftPreview = previewRequested && Boolean(admin);
+
+  // 초안 존재 여부가 외부에 노출되지 않도록, 로그인하지 않은 미리보기 요청은 404로 처리합니다.
+  if (previewRequested && !admin) {
+    return okHtml(renderNotFound(slug), {
+      status: 404,
+      headers: { "cache-control": "private, no-store" }
+    });
+  }
+
+  const requestedStatus = isDraftPreview ? "draft" : "published";
   const meta = await env.TRAVEL_DB.prepare(`
-    SELECT updated_at
+    SELECT updated_at, LOWER(TRIM(COALESCE(status, 'published'))) AS status
     FROM posts
-    WHERE slug = ? AND status = 'published'
-  `).bind(slug).first();
+    WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = ?
+  `).bind(slug, requestedStatus).first();
 
   if (!meta) {
     return okHtml(renderNotFound(slug), {
@@ -37,21 +51,19 @@ export async function onRequestGet({ params, env, request }) {
     });
   }
 
-  await env.TRAVEL_DB.prepare(`
-    UPDATE posts
-    SET view_count = COALESCE(view_count, 0) + 1
-    WHERE slug = ? AND status = 'published'
-  `).bind(slug).run();
+  if (!isDraftPreview) {
+    await env.TRAVEL_DB.prepare(`
+      UPDATE posts
+      SET view_count = COALESCE(view_count, 0) + 1
+      WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
+    `).bind(slug).run();
+  }
 
   const updatedAt = String(meta.updated_at || "");
   const origin = getSiteOrigin(env, request);
   const cacheKeyUrl = `${origin}/post/${encodeURIComponent(slug)}/?v=${encodeURIComponent(updatedAt)}&r=${POST_RENDER_VERSION}`;
 
-  return edgeCache({
-    request,
-    cacheKeyUrl,
-    ttlSeconds: 600,
-    buildResponse: async () => {
+  const buildResponse = async () => {
       const row = await env.TRAVEL_DB.prepare(`
         SELECT
           slug,
@@ -76,8 +88,8 @@ export async function onRequestGet({ params, env, request }) {
           published_at,
           updated_at
         FROM posts
-        WHERE slug = ? AND status = 'published'
-      `).bind(slug).first();
+        WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = ?
+      `).bind(slug, requestedStatus).first();
 
       if (!row) {
         return okHtml(renderNotFound(slug), {
@@ -131,8 +143,8 @@ export async function onRequestGet({ params, env, request }) {
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
       const contentTextLength = stripMarkdown(stripInlineImageTokens(cleanContentMd)).replace(/\s+/g, "").length;
-      const shouldShowSidebarAd = toBool(row.enable_sidebar_ad, false);
-      const shouldShowInarticleAds = toBool(row.enable_inarticle_ads, false);
+      const shouldShowSidebarAd = !isDraftPreview && toBool(row.enable_sidebar_ad, false);
+      const shouldShowInarticleAds = !isDraftPreview && toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
       const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
@@ -153,7 +165,10 @@ export async function onRequestGet({ params, env, request }) {
         cleanContentMd,
         titleText
       );
-      const pageTitle = `${titleText} | ${siteName}`;
+      const pageTitle = `${isDraftPreview ? "[초안 미리보기] " : ""}${titleText} | ${siteName}`;
+      const robotsContent = isDraftPreview
+        ? "noindex,nofollow,noarchive,nosnippet"
+        : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
       const versionedCoverImage = appendImageVersion(row.cover_image, row.updated_at);
       const ogImage = versionedCoverImage || `${origin}/assets/images/logo.png`;
       const coverImageAltText = String(row.cover_image_alt || `${titleText} 대표 이미지`).trim();
@@ -321,6 +336,9 @@ export async function onRequestGet({ params, env, request }) {
       const mobileHotelAvailabilityCtaHtml = safeHotelPriceLink
         ? `<div class="post-hotel-availability-cta post-hotel-availability-cta--mobile" data-mobile-hotel-cta aria-hidden="true"><a class="post-hotel-availability-btn" href="${escapeHtml(safeHotelPriceLink)}" target="_blank" rel="sponsored noopener noreferrer">잔여 객실 확인</a></div>`
         : "";
+      const draftPreviewBannerHtml = isDraftPreview
+        ? `<div role="status" style="margin:16px 0;padding:12px 16px;border:1px solid #111;background:#fff7d6;font-size:14px;line-height:1.5"><strong>초안 미리보기</strong> · 관리자에게만 표시되며 검색엔진에 노출되지 않습니다. <a href="/edit.html?slug=${encodeURIComponent(slug)}" style="margin-left:8px;text-decoration:underline">편집 화면으로 돌아가기</a></div>`
+        : "";
       const bodyClassName = [
         "post-page-body",
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
@@ -336,7 +354,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(descriptionText)}" />
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="robots" content="${escapeHtml(robotsContent)}" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
@@ -395,6 +413,7 @@ export async function onRequestGet({ params, env, request }) {
   ${homeSearchOverlay()}
 
   <main id="main-content" class="container post-guide-page">
+    ${draftPreviewBannerHtml}
     ${breadcrumbHtml}
 
     <article class="post-shell post-shell--guide-style" itemscope itemtype="https://schema.org/BlogPosting">
@@ -520,13 +539,22 @@ export async function onRequestGet({ params, env, request }) {
 
       const res = okHtml(html, {
         headers: {
-          "cache-control": "public, max-age=600"
+          "cache-control": isDraftPreview ? "private, no-store" : "public, max-age=600"
         }
       });
 
       res.headers.set("x-blog-cache-version", updatedAt);
+      if (isDraftPreview) res.headers.set("x-draft-preview", "1");
       return res;
-    }
+  };
+
+  if (isDraftPreview) return buildResponse();
+
+  return edgeCache({
+    request,
+    cacheKeyUrl,
+    ttlSeconds: 600,
+    buildResponse
   });
 }
 

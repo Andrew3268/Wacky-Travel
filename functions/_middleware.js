@@ -118,6 +118,7 @@ function buildTrailingSlashRedirect(url, siteOrigin, method) {
 function resolveRobotsDirective(url, status, dynamicIndexable = null) {
   const path = url.pathname;
   if (status >= 400) return NOINDEX_PRIVATE;
+  if (/^\/post\/[^/]+\/?$/.test(path) && ["1", "true", "draft"].includes(String(url.searchParams.get("preview") || "").trim().toLowerCase())) return NOINDEX_PRIVATE;
   if (isPrivatePath(path)) return NOINDEX_PRIVATE;
   if (path === "/search/" || path === "/search") return NOINDEX_FOLLOW;
   if (dynamicIndexable === false) return NOINDEX_FOLLOW;

@@ -3277,7 +3277,10 @@ async function load() {
   let tags = [];
   try { tags = JSON.parse(item.tags_json || "[]"); } catch {}
   $("tags").value = Array.isArray(tags) ? tags.join(", ") : "";
-  if ($("viewBtn")) $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}/`;
+  if ($("viewBtn")) {
+    const previewSuffix = $("status")?.value === "draft" ? "?preview=1" : "";
+    $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}/${previewSuffix}`;
+  }
 
   await loadTravelSettings(loadedDestinationSlug, loadedContentType, loadedRegionSlug, loadedRecommendationCategorySlug);
   updateSlugPreview();
@@ -3374,8 +3377,8 @@ async function save() {
   broadcastPostSaved(payload, slug);
 
   if (payload.status === "draft") {
-    statusEl.textContent = "초안 저장 완료! 편집 페이지에 머무릅니다…";
-    location.href = `/edit.html?slug=${encodeURIComponent(slug)}&v=${Date.now()}`;
+    statusEl.textContent = "초안 저장 완료! 미리보기 페이지로 이동합니다…";
+    location.href = `/post/${encodeURIComponent(slug)}/?preview=1&v=${Date.now()}`;
     return;
   }
 
@@ -3391,6 +3394,10 @@ function handleRealtimeChange() {
   syncAffiliateSectionVisibility();
   syncTocControlsFromContent();
   updateSlugPreview();
+  if ($("viewBtn") && $("slug")) {
+    const previewSuffix = $("status")?.value === "draft" ? "?preview=1" : "";
+    $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}/${previewSuffix}`;
+  }
   updateAllCounts();
   renderSeoChecklist();
   renderPreview();

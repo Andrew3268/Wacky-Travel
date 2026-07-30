@@ -252,6 +252,16 @@ export async function onRequestGet({ env, request }) {
   const admin = await getAdminSession(env, request);
   const allowedStatuses = new Set(["published", "draft", "all"]);
   const requestedStatus = allowedStatuses.has(status) ? status : "published";
+  const adminRequested = ["1", "true", "yes"].includes(String(url.searchParams.get("admin") || "").trim().toLowerCase());
+  const requiresAdmin = adminRequested || requestedStatus !== "published";
+
+  if (requiresAdmin && !admin) {
+    return okJson({ message: "관리자 로그인이 필요합니다." }, {
+      status: 401,
+      headers: { "cache-control": "private, no-store" }
+    });
+  }
+
   const safeStatus = admin ? requestedStatus : "published";
 
   const where = [];
@@ -363,6 +373,8 @@ export async function onRequestGet({ env, request }) {
   const countSql = `SELECT COUNT(*) AS total FROM posts ${whereSql}`;
 
   const baseBind = [...binds];
+  const statusCountWhereSql = admin ? "" : whereSql;
+  const statusCountBinds = admin ? [] : [...binds];
   await env.TRAVEL_DB.prepare(`
     CREATE TABLE IF NOT EXISTS site_settings (
       key TEXT PRIMARY KEY,
@@ -397,9 +409,9 @@ export async function onRequestGet({ env, request }) {
     env.TRAVEL_DB.prepare(`
       SELECT ${normalizedStatusSql()} AS status, COUNT(*) AS count
       FROM posts
-      ${whereSql}
+      ${statusCountWhereSql}
       GROUP BY ${normalizedStatusSql()}
-    `).bind(...binds).all(),
+    `).bind(...statusCountBinds).all(),
     env.TRAVEL_DB.prepare(`SELECT key, value FROM site_settings WHERE key = 'index_sidebar_ad_enabled'`).all()
   ]);
 

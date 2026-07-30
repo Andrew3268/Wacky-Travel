@@ -169,6 +169,7 @@ async function adminPostsFetchPagesByStatus(status = "published") {
   while (hasMore && page <= maxPages) {
     const params = new URLSearchParams({
       status,
+      admin: "1",
       per_page: String(perPage),
       page: String(page),
       sort: "updated",
@@ -309,7 +310,9 @@ function adminPostsRenderPostItem(post) {
   const contentTypeLabel = adminPostsGetContentTypeLabel(post.content_type);
   const updatedAt = adminPostsFormatDate(post.updated_at || post.published_at);
   const publishedAt = adminPostsFormatDate(post.published_at);
-  const viewHref = isPublished ? `/post/${encodeURIComponent(postSlug)}/` : `/edit.html?slug=${encodeURIComponent(postSlug)}`;
+  const viewHref = isPublished
+    ? `/post/${encodeURIComponent(postSlug)}/`
+    : `/post/${encodeURIComponent(postSlug)}/?preview=1`;
 
   return `
     <article class="admin-items-posts-item">
@@ -325,7 +328,7 @@ function adminPostsRenderPostItem(post) {
       </div>
       <div class="admin-items-posts-item__actions">
         <a class="btn" href="/edit.html?slug=${encodeURIComponent(postSlug)}">수정</a>
-        <a class="btn" href="${viewHref}">${isPublished ? "글 보기" : "초안 열기"}</a>
+        <a class="btn" href="${viewHref}">${isPublished ? "글 보기" : "초안 미리보기"}</a>
       </div>
     </article>`;
 }

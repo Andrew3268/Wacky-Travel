@@ -14,7 +14,7 @@
       desc: '아직 발행하지 않은 초안 글을 최신 수정일 기준으로 확인합니다.',
       panelTitle: '초안 글 리스트',
       empty: '표시할 초안 글이 없습니다.',
-      viewLabel: '초안 열기'
+      viewLabel: '초안 미리보기'
     }
   };
 
@@ -96,6 +96,7 @@
     const perPage = 24;
     const firstUrl = new URL('/api/posts', window.location.origin);
     firstUrl.searchParams.set('status', status);
+    firstUrl.searchParams.set('admin', '1');
     firstUrl.searchParams.set('page', '1');
     firstUrl.searchParams.set('per_page', String(perPage));
     firstUrl.searchParams.set('ts', String(Date.now()));
@@ -109,6 +110,7 @@
     for (let page = 2; page <= totalPages; page += 1) {
       const url = new URL('/api/posts', window.location.origin);
       url.searchParams.set('status', status);
+      url.searchParams.set('admin', '1');
       url.searchParams.set('page', String(page));
       url.searchParams.set('per_page', String(perPage));
       url.searchParams.set('ts', String(Date.now()));
@@ -137,7 +139,7 @@
     bodyEl.innerHTML = visibleItems.map((item) => {
       const title = item.title || item.slug || '제목 없음';
       const slug = String(item.slug || '').trim();
-      const postUrl = slug ? `/post/${encodeURIComponent(slug)}/` : '#';
+      const postUrl = slug ? (status === 'draft' ? `/post/${encodeURIComponent(slug)}/?preview=1` : `/post/${encodeURIComponent(slug)}/`) : '#';
       const editUrl = slug ? `/edit.html?slug=${encodeURIComponent(slug)}` : '#';
       return `
         <tr>
