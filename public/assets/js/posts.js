@@ -250,7 +250,7 @@ function buildPostsHeroNav(categories = []) {
 }
 
 
-/* CITY_HOTEL_PICKS_RUNTIME_V4 */
+/* CITY_HOTEL_PICKS_RUNTIME_V5_DRAFT_PREVIEW */
 (async function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
@@ -412,7 +412,7 @@ function buildPostsHeroNav(categories = []) {
 
   const fetchJson = async (url, fallback) => {
     try {
-      const response = await fetch(url, { headers: { accept: 'application/json' }, cache: 'no-store' });
+      const response = await fetch(url, { credentials: 'same-origin', headers: { accept: 'application/json' }, cache: 'no-store' });
       if (!response.ok) return fallback;
       return await response.json();
     } catch (_) {
@@ -420,13 +420,14 @@ function buildPostsHeroNav(categories = []) {
     }
   };
 
-  const buildDestinationPostUrl = ({ destination, type, offset = 0, limit = 6 }) => {
+  const buildDestinationPostUrl = ({ destination, type, offset = 0, limit = 6, includeDrafts = false }) => {
     const params = new URLSearchParams({
       destination: String(destination || ''),
       type: String(type || ''),
       offset: String(Math.max(0, Number(offset || 0))),
       limit: String(Math.max(1, Number(limit || 6)))
     });
+    if (includeDrafts) params.set('include_drafts', '1');
     return '/api/destination-posts?' + params.toString();
   };
 
@@ -474,7 +475,7 @@ function buildPostsHeroNav(categories = []) {
     if (!destination || !grid) return { type, hasItems: false, total: 0 };
 
     grid.setAttribute('aria-busy', 'true');
-    const data = await fetchJson(buildDestinationPostUrl({ destination, type, offset: 0, limit }), {
+    const data = await fetchJson(buildDestinationPostUrl({ destination, type, offset: 0, limit, includeDrafts: true }), {
       ok: false,
       html: '',
       hasMore: false,

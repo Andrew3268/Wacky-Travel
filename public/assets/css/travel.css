@@ -32797,3 +32797,27 @@ main.travel-page.wt-purpose-page .wt-page-hero,
   padding-top: 40px !important;
 }
 /* End BESTAYABLE_BREADCRUMB_HERO_SPACING_V111 */
+
+
+/* ADMIN_CITY_DRAFT_HOTEL_CARD_V1 */
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .hotel-card .travel-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+body.travel-city-body:not(.travel-archive-body) #hotel-posts .travel-card__draft-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 3px 8px;
+  border: 1px solid rgba(23, 76, 120, 0.22);
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.14);
+  color: #174c78;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}

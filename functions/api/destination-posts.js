@@ -1,4 +1,4 @@
-import { escapeHtml, okJson } from "../_utils.js";
+import { escapeHtml, okJson, requireAdmin } from "../_utils.js";
 import { formatDate } from "../../lib/travel/travel-utils.js";
 import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
 
@@ -15,6 +15,7 @@ export async function onRequestGet({ env, request }) {
   const destinationSlug = decodeURIComponent(String(url.searchParams.get("destination") || "")).trim();
   const rawType = String(url.searchParams.get("type") || "").trim();
   const requestedType = rawType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_TYPE : normalizeContentType(rawType);
+  const wantsDrafts = requestedType !== TRAVEL_CONTENT_TYPE && isTruthyParam(url.searchParams.get("include_drafts"));
   const regionSlug = String(url.searchParams.get("region") || url.searchParams.get("region_slug") || "").trim();
   const recommendationCategorySlug = String(url.searchParams.get("category") || url.searchParams.get("recommendation_category") || url.searchParams.get("recommendation_category_slug") || "").trim();
   const offset = Math.max(0, Number.parseInt(url.searchParams.get("offset") || "0", 10) || 0);
@@ -26,6 +27,15 @@ export async function onRequestGet({ env, request }) {
     return okJson({ ok: false, error: "invalid_request", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 400, headers: noStoreHeaders() });
   }
 
+  if (wantsDrafts && !await requireAdmin(env, request)) {
+    return okJson({ ok: false, error: "admin_required", html: "", items: [], hasMore: false, nextOffset: offset }, {
+      status: 401,
+      headers: privateNoStoreHeaders()
+    });
+  }
+
+  const responseHeaders = wantsDrafts ? privateNoStoreHeaders() : noStoreHeaders();
+
   await ensureTravelSettingsTables(env.TRAVEL_DB);
 
   const destinationRow = await env.TRAVEL_DB.prepare(`
@@ -36,13 +46,14 @@ export async function onRequestGet({ env, request }) {
 
   const destination = destinationRow || getFallbackDestination(destinationSlug);
   if (!destination) {
-    return okJson({ ok: false, error: "destination_not_found", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 404, headers: noStoreHeaders() });
+    return okJson({ ok: false, error: "destination_not_found", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 404, headers: responseHeaders });
   }
 
   const postQuery = buildDestinationPostQuery(destination, {
     regionSlug,
     recommendationCategorySlug,
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
+    includeDrafts: wantsDrafts,
+    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, status, updated_at, published_at",
     orderSql: `
       ORDER BY
         CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -79,15 +90,27 @@ export async function onRequestGet({ env, request }) {
     nextOffset,
     hasMore,
     html,
-    items: items.map((post) => ({ slug: post.slug, title: post.title, region_slug: post.region_slug || "", region_name: post.region_name || "", recommendation_category_slug: post.recommendation_category_slug || "", recommendation_category_name: post.recommendation_category_name || "", recommendation_category_description: post.recommendation_category_description || "" }))
-  }, { headers: noStoreHeaders() });
+    items: items.map((post) => ({ slug: post.slug, title: post.title, status: normalizePostStatus(post.status), region_slug: post.region_slug || "", region_name: post.region_name || "", recommendation_category_slug: post.recommendation_category_slug || "", recommendation_category_name: post.recommendation_category_name || "", recommendation_category_description: post.recommendation_category_description || "" }))
+  }, { headers: responseHeaders });
 }
 
 function noStoreHeaders() {
   return { "cache-control": "no-store" };
 }
 
-export function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommendationCategorySlug = "", selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
+function privateNoStoreHeaders() {
+  return {
+    "cache-control": "private, no-store, no-cache, must-revalidate",
+    "pragma": "no-cache",
+    "expires": "0"
+  };
+}
+
+function isTruthyParam(value) {
+  return ["1", "true", "yes", "on"].includes(String(value || "").trim().toLowerCase());
+}
+
+export function buildDestinationPostQuery(destination = {}, { regionSlug = "", recommendationCategorySlug = "", includeDrafts = false, selectSql = "*", orderSql = "", orderBinds = [] } = {}) {
   const destinationSlug = String(destination.slug || "").trim();
   const slugAliases = getDestinationSlugAliases(destinationSlug);
   const terms = getDestinationSearchTerms(destination);
@@ -118,7 +141,7 @@ export function buildDestinationPostQuery(destination = {}, { regionSlug = "", r
     sql: `
       SELECT ${selectSql}
       FROM posts
-      WHERE ${normalizedStatusSql()} = 'published'
+      WHERE ${includeDrafts ? `${normalizedStatusSql()} IN ('published', 'draft')` : `${normalizedStatusSql()} = 'published'`}
         ${regionSlug ? "AND TRIM(COALESCE(region_slug, '')) = ?" : ""}
         ${recommendationCategorySlug ? "AND TRIM(COALESCE(recommendation_category_slug, '')) = ?" : ""}
         AND (
@@ -185,7 +208,21 @@ const FALLBACK_DESTINATIONS = Object.freeze({
 });
 
 function normalizedStatusSql() {
-  return "LOWER(TRIM(COALESCE(status, 'published')))";
+  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, 'published'), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
+  return `CASE
+    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
+    WHEN ${cleaned} IN ('published', 'publish', '발행', '공개', '') THEN 'published'
+    ELSE ${cleaned}
+  END`;
+}
+
+function normalizePostStatus(value = "") {
+  const raw = String(value || "")
+    .replace(/[\t\n\r　]/g, "")
+    .trim()
+    .toLowerCase();
+  if (["draft", "초안", "임시저장", "임시 저장"].includes(raw)) return "draft";
+  return "published";
 }
 
 function getFallbackDestination(slug = "") {
@@ -400,20 +437,28 @@ function getHotelCardMeta(post = {}) {
 
 export function renderHotelPostCard(post, contentTypes = []) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}/`;
+  const isDraft = normalizePostStatus(post.status) === "draft";
+  const href = isDraft
+    ? `/post/${encodeURIComponent(slug)}/?preview=1`
+    : `/post/${encodeURIComponent(slug)}/`;
   const tags = safeTags(post.tags_json).slice(0, 3);
   const coverImage = appendImageVersion(post.cover_image, post.updated_at);
   const title = getHotelCardTitle(post);
   const meta = getHotelCardMeta(post);
-  return `<article class="travel-card hotel-card travel-card--clickable" data-region="${escapeHtml(post.region_slug || "")}" data-recommendation-category="${escapeHtml(post.recommendation_category_slug || "")}">
-    <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(`${title} 보기`)}">
+  const metaHtml = [
+    isDraft ? '<span class="travel-card__draft-badge">초안</span>' : '',
+    meta ? `<span class="travel-card__meta-text">${escapeHtml(meta)}</span>` : ''
+  ].filter(Boolean).join('');
+  const linkLabel = isDraft ? `${title} 초안 미리보기` : `${title} 보기`;
+  return `<article class="travel-card hotel-card travel-card--clickable${isDraft ? " travel-card--draft" : ""}" data-region="${escapeHtml(post.region_slug || "")}" data-recommendation-category="${escapeHtml(post.recommendation_category_slug || "")}" data-post-status="${isDraft ? "draft" : "published"}">
+    <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(linkLabel)}">
       ${coverImage ? `<figure class="travel-card__media"><img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
       <div class="travel-card__body">
-        <div class="travel-card__meta">${escapeHtml(meta)}</div>
+        ${metaHtml ? `<div class="travel-card__meta">${metaHtml}</div>` : ""}
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>
         <p class="travel-card__description"><span class="travel-card__description-text">${escapeHtml(post.summary || "호텔 위치와 예약 전 체크포인트를 정리했습니다.")}</span></p>
         ${tags.length ? `<div class="tag-row">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
-        <span class="text-link">자세히 보기</span>
+        <span class="text-link">${isDraft ? "초안 미리보기" : "자세히 보기"}</span>
       </div>
     </a>
   </article>`;
