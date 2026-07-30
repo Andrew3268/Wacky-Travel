@@ -6850,11 +6850,16 @@ body::after{
 
 @media (max-width: 767px) {
   .wt-city-page .section-heading h2,
-.wt-city-snapshot__heading h2,
-.wt-purpose-page .wt-section-title{
+.wt-city-snapshot__heading h2{
     font-size: clamp(1.55rem, 6.4vw, 1.9rem);
     line-height: 1.2;
-  word-break: keep-all;
+    word-break: keep-all;
+  }
+
+  .wt-purpose-page .wt-section-title{
+    font-size: 22px;
+    line-height: 1.2;
+    word-break: keep-all;
   }
 }
 
@@ -20708,6 +20713,10 @@ body.travel-purpose-body .wt-city-kicker{
   text-transform: uppercase !important;
 }
 
+body.travel-purpose-body .wt-city-kicker{
+  margin: 0 0 10px;
+}
+
 body.travel-purpose-body .wt-page-hero h1,
 body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
   max-width: 980px !important;
@@ -21142,11 +21151,11 @@ body.travel-purpose-body .wt-section--faq{
   }
 
   body.travel-purpose-body .wt-section-title,
-body.travel-purpose-body .wt-purpose-page .wt-section-title,
-body.travel-purpose-body .wt-cta-band h2{
-    font-size: 40px;
-  line-height: 1.2;
-  word-break: keep-all;
+  body.travel-purpose-body .wt-purpose-page .wt-section-title,
+  body.travel-purpose-body .wt-cta-band h2{
+    font-size: 22px;
+    line-height: 1.2;
+    word-break: keep-all;
   }
 
   body.travel-purpose-body .wt-choice-main,
@@ -24320,7 +24329,7 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
   word-break: keep-all;
   }
 
-  html body:not(.wtsr-page):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2{
+  html body:not(.wtsr-page):not(.travel-purpose-body):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h2{
     font-size: 24px !important;
     line-height: 1.2;
   word-break: keep-all;
@@ -27361,6 +27370,10 @@ body.travel-purpose-body .wt-purpose-faq .wt-city-faq__item > p{
 }
 
 @media (max-width: 760px) {
+  body.travel-purpose-body main.travel-page.wt-purpose-page h2{
+    font-size: 22px;
+  }
+
   body.travel-purpose-body .wt-reason-grid{ grid-template-columns: 1fr !important; }
   body.travel-purpose-body .wt-reason-grid .wt-reason-card{ border-right: 0 !important; }
   body.travel-purpose-body .wt-reason-grid .wt-reason-card > span:first-child{ margin-bottom: 25px !important; }
@@ -32761,21 +32774,3 @@ main.travel-page.wt-purpose-page .wt-page-hero,
   padding-top: 40px !important;
 }
 /* End BESTAYABLE_BREADCRUMB_HERO_SPACING_V111 */
-
-
-
-
-/* BESTAYABLE_PURPOSE_MOBILE_TYPOGRAPHY_V1
-   - 목적별 5개 페이지의 모든 h2를 모바일 22px로 통일
-   - wt-city-kicker는 위 여백 없이 아래 10px로 통일
-========================================================= */
-body.travel-purpose-body .wt-city-kicker{
-  margin-bottom: 10px;
-}
-
-@media (max-width: 767px){
-  body.travel-purpose-body main.travel-page.wt-purpose-page h2{
-    font-size: 22px;
-  }
-}
-/* End BESTAYABLE_PURPOSE_MOBILE_TYPOGRAPHY_V1 */
