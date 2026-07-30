@@ -1,2 +1,7 @@
 # Legacy survey entry point.
 /hotel-location-survey/ /destinations/?survey=1 301
+
+# Retired dynamic travel hub manager; item data is managed in /admin/items.html.
+/admin/home-hub /admin/items.html 302
+/admin/home-hub/ /admin/items.html 302
+/admin/home-hub.html /admin/items.html 302
