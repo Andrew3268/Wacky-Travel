@@ -1,7 +1,11 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 
 function normalizeStatusSql() {
-  return "LOWER(TRIM(COALESCE(status, 'published')))";
+  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, ''), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
+  return `CASE
+    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
+    ELSE 'published'
+  END`;
 }
 
 async function ensureSiteSettings(db) {

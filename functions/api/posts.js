@@ -25,7 +25,11 @@ function normalizeStatusValue(value = "published") {
 }
 
 function normalizedStatusSql() {
-  return "LOWER(TRIM(COALESCE(status, 'published')))";
+  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, ''), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
+  return `CASE
+    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
+    ELSE 'published'
+  END`;
 }
 
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
@@ -360,7 +364,7 @@ export async function onRequestGet({ env, request }) {
       (SELECT h.name_en FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name_en,
       affiliate_enabled,
       search_intent,
-      status,
+      ${normalizedStatusSql()} AS status,
       view_count,
       published_at,
       updated_at

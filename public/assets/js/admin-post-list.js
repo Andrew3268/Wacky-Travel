@@ -94,23 +94,21 @@
 
   async function fetchAllPosts(status) {
     const perPage = 24;
-    const firstUrl = new URL('/api/posts', window.location.origin);
+    const firstUrl = new URL('/api/admin/post-list', window.location.origin);
     firstUrl.searchParams.set('status', status);
-    firstUrl.searchParams.set('admin', '1');
     firstUrl.searchParams.set('page', '1');
     firstUrl.searchParams.set('per_page', String(perPage));
     firstUrl.searchParams.set('ts', String(Date.now()));
 
     const firstJson = await fetchJson(firstUrl);
-    if (!firstJson) return { items: [], sidebar: {} };
+    if (!firstJson) return { items: [], counts: {}, pagination: {} };
 
     const items = Array.isArray(firstJson.items) ? [...firstJson.items] : [];
     const totalPages = Math.min(Number(firstJson.pagination?.total_pages || 1), 200);
 
     for (let page = 2; page <= totalPages; page += 1) {
-      const url = new URL('/api/posts', window.location.origin);
+      const url = new URL('/api/admin/post-list', window.location.origin);
       url.searchParams.set('status', status);
-      url.searchParams.set('admin', '1');
       url.searchParams.set('page', String(page));
       url.searchParams.set('per_page', String(perPage));
       url.searchParams.set('ts', String(Date.now()));
@@ -119,7 +117,7 @@
       items.push(...(Array.isArray(json.items) ? json.items : []));
     }
 
-    return { items, sidebar: firstJson.sidebar || {}, pagination: firstJson.pagination || {} };
+    return { items, counts: firstJson.counts || {}, pagination: firstJson.pagination || {} };
   }
 
   function renderRows(items, status, query) {
@@ -199,8 +197,7 @@
     setActiveStatus(status);
 
     try {
-      const { items, sidebar } = await fetchAllPosts(status);
-      const counts = sidebar?.counts || {};
+      const { items, counts } = await fetchAllPosts(status);
       if (publishedCountEl) publishedCountEl.textContent = formatNumber(counts.published || (status === 'published' ? items.length : 0));
       if (draftCountEl) draftCountEl.textContent = formatNumber(counts.draft || (status === 'draft' ? items.length : 0));
       renderHeader(status, items.length);
