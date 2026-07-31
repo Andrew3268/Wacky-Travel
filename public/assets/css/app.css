@@ -7685,7 +7685,7 @@ body.post-page-body .post-search-overlay__quick button{
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   
 
   
@@ -7788,15 +7788,40 @@ body.post-page-body .post-shell--guide-style .post-body .post-content ol{
   }
 
   body.post-page-body .post-inline-image__img{
+    height: auto;
+    max-height: none;
     border-radius: 22px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    object-fit: contain;
   }
 
-  body.post-page-body .post-toc,
-body.post-page-body .post-shell--guide-style .post-body .table-wrap,
-body.post-page-body .post-shell--guide-style .post-body .post-content .table-wrap{
+  body.post-page-body .post-toc{
     border-radius: 22px;
+  }
+
+  body.post-page-body .post-shell--guide-style .post-body .table-wrap,
+  body.post-page-body .post-shell--guide-style .post-body .post-content .table-wrap{
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: auto;
+    border-radius: 22px;
+  }
+
+  body.post-page-body .post-shell--guide-style .post-body table,
+  body.post-page-body .post-shell--guide-style .post-body .post-content table{
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  body.post-page-body .post-shell--guide-style .post-body table th,
+  body.post-page-body .post-shell--guide-style .post-body table td,
+  body.post-page-body .post-shell--guide-style .post-body .post-content table th,
+  body.post-page-body .post-shell--guide-style .post-body .post-content table td{
+    padding: 11px 8px;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
 
   body.post-page-body .post-faq,
