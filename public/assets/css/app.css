@@ -9218,6 +9218,9 @@ body.post-page-body .post-hotel-title-meta__item--pick{
 
 body.post-page-body .post-cover-link{
   display:block;
+  width:100%;
+  height:100%;
+  line-height:0;
   color:inherit;
   text-decoration:none;
 }

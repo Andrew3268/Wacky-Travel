@@ -38,5 +38,12 @@ for (const column of ["cover_image_source", "cover_image_link_url", "cover_image
 const postRenderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 assert.match(postRenderer, /rel="sponsored noopener noreferrer"/);
 assert.match(postRenderer, /getLargestSrcsetUrl/);
+assert.match(postRenderer, /20260731-agoda-mobile-cover-v1/);
+
+const appCss = fs.readFileSync("public/assets/css/app.css", "utf8");
+assert.match(
+  appCss,
+  /body\.post-page-body \.post-cover-link\{[^}]*display:block;[^}]*width:100%;[^}]*height:100%;[^}]*line-height:0;/s
+);
 
 console.log("Cover image source check passed");
