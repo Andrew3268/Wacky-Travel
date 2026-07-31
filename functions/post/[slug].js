@@ -2,7 +2,7 @@ import { escapeHtml, jsonld, okHtml, edgeCache, getAdminSession } from "../_util
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260727-post-layout-v4";
+const POST_RENDER_VERSION = "20260731-hotel-pick-v1";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -17,8 +17,59 @@ const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "아이동반 최적",
   "커플 여행 최적",
   "호캉스 최적"
-]);
+ ]);
 
+function normalizeHotelPickLabel(value = "") {
+  const label = String(value || "").replace(/\s+/g, " ").trim().slice(0, 30);
+  if (!label) return "";
+  return label === "가성비" ? "가성비픽" : label;
+}
+
+function isMissingHotelPickColumnError(error) {
+  return /no such column:\s*(?:posts\.)?hotel_pick_label/i.test(String(error?.message || error || ""));
+}
+
+async function loadPostRow(db, slug, requestedStatus) {
+  const sql = `
+    SELECT
+      slug,
+      title,
+      category,
+      meta_description,
+      summary,
+      cover_image,
+      cover_image_alt,
+      tags_json,
+      content_md,
+      faq_md,
+      view_count,
+      enable_sidebar_ad,
+      enable_inarticle_ads,
+      status,
+      content_type,
+      destination_slug,
+      hotel_slug,
+      hotel_pick_label,
+      affiliate_enabled,
+      search_intent,
+      published_at,
+      updated_at
+    FROM posts
+    WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = ?
+  `;
+
+  try {
+    return await db.prepare(sql).bind(slug, requestedStatus).first();
+  } catch (error) {
+    if (!isMissingHotelPickColumnError(error)) throw error;
+    try {
+      await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
+    } catch (migrationError) {
+      if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
+    }
+    return db.prepare(sql).bind(slug, requestedStatus).first();
+  }
+}
 
 export async function onRequestGet({ params, env, request }) {
   const slug = decodeURIComponent(String(params.slug || ""));
@@ -64,32 +115,7 @@ export async function onRequestGet({ params, env, request }) {
   const cacheKeyUrl = `${origin}/post/${encodeURIComponent(slug)}/?v=${encodeURIComponent(updatedAt)}&r=${POST_RENDER_VERSION}`;
 
   const buildResponse = async () => {
-      const row = await env.TRAVEL_DB.prepare(`
-        SELECT
-          slug,
-          title,
-          category,
-          meta_description,
-          summary,
-          cover_image,
-          cover_image_alt,
-          tags_json,
-          content_md,
-          faq_md,
-          view_count,
-          enable_sidebar_ad,
-          enable_inarticle_ads,
-          status,
-          content_type,
-          destination_slug,
-          hotel_slug,
-          affiliate_enabled,
-          search_intent,
-          published_at,
-          updated_at
-        FROM posts
-        WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = ?
-      `).bind(slug, requestedStatus).first();
+      const row = await loadPostRow(env.TRAVEL_DB, slug, requestedStatus);
 
       if (!row) {
         return okHtml(renderNotFound(slug), {
@@ -324,7 +350,7 @@ export async function onRequestGet({ params, env, request }) {
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
-      const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData) : "";
+      const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData, row.hotel_pick_label) : "";
       const hotelFeatureBadgesHtml = isHotelIntroPost ? renderHotelFeatureBadges(hotelHeroData) : "";
       const hotelPriceLink = isRecommendedHotelReviewPost
         ? String(hotelHeroData?.links?.find((item) => String(item?.provider || "") === "hero_price")?.affiliate_url || "").trim()
@@ -379,9 +405,9 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260728-decision-first-hero-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260731-hotel-pick-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
-  <link rel="stylesheet" href="/assets/css/travel.css?v=20260723-tablet-padding-cleanup" />
+  <link rel="stylesheet" href="/assets/css/travel.css?v=20260731-hotel-pick-v1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
   <style>
     .post-body,
@@ -714,11 +740,19 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
   `;
 }
 
-function renderHotelTitleMeta(hotelHeroData = null) {
+function renderHotelTitleMeta(hotelHeroData = null, hotelPickLabel = "") {
   const hotel = hotelHeroData?.hotel || null;
-  if (!hotel) return "";
-
   const items = [];
+  const pickLabel = normalizeHotelPickLabel(hotelPickLabel);
+  if (pickLabel) {
+    items.push(`<span class="post-hotel-title-meta__item post-hotel-title-meta__item--pick">${escapeHtml(pickLabel)}</span>`);
+  }
+
+  if (!hotel) {
+    return items.length
+      ? `<div class="post-hotel-title-meta" aria-label="호텔 기본 정보">${items.join("")}</div>`
+      : "";
+  }
   const locationType = String(hotel.area || "").trim();
   if (locationType) {
     items.push(`<span class="post-hotel-title-meta__item post-hotel-title-meta__item--location">${escapeHtml(locationType)}</span>`);
@@ -1309,7 +1343,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260728-decision-first-hero-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260731-hotel-pick-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
 </head>

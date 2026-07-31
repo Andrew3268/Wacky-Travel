@@ -42,6 +42,12 @@ function normalizeBadgeArray(value) {
   return HOTEL_HERO_BADGE_OPTIONS.filter((item) => selected.has(item));
 }
 
+function normalizeHotelPickLabel(value = "") {
+  const label = String(value || "").replace(/\s+/g, " ").trim().slice(0, 30);
+  if (!label) return "";
+  return label === "가성비" ? "가성비픽" : label;
+}
+
 function parseJsonArray(value) {
   if (Array.isArray(value)) return value;
   try {
@@ -206,6 +212,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_slug TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_name TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_description TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
@@ -406,6 +413,7 @@ export async function onRequestGet({ env, params, request }) {
       recommendation_category_slug,
       recommendation_category_name,
       recommendation_category_description,
+      hotel_pick_label,
       mood_tags_json,
       situation_tags_json,
       hotel_slug,
@@ -483,6 +491,7 @@ export async function onRequestPut({ env, params, request }) {
   const recommendationCategorySlug = String(body.recommendation_category_slug || "").trim();
   const recommendationCategoryName = String(body.recommendation_category_name || "").trim();
   const recommendationCategoryDescription = String(body.recommendation_category_description || "").trim();
+  const hotelPickLabel = contentType === "hotel_intro" ? normalizeHotelPickLabel(body.hotel_pick_label || "") : "";
   const moodTags = Array.isArray(body.mood_tags) ? [...new Set(body.mood_tags.map(slugifyValue).filter(Boolean))] : [];
   const situationTags = Array.isArray(body.situation_tags) ? [...new Set(body.situation_tags.map(slugifyValue).filter(Boolean))] : [];
   let hotelSlug = body.hotel_slug === undefined ? null : String(body.hotel_slug || "").trim();
@@ -581,6 +590,7 @@ export async function onRequestPut({ env, params, request }) {
       recommendation_category_slug = ?,
       recommendation_category_name = ?,
       recommendation_category_description = ?,
+      hotel_pick_label = ?,
       mood_tags_json = ?,
       situation_tags_json = ?,
       hotel_slug = ?,
@@ -611,6 +621,7 @@ export async function onRequestPut({ env, params, request }) {
     recommendationCategorySlug,
     recommendationCategoryName,
     recommendationCategoryDescription,
+    hotelPickLabel,
     JSON.stringify(moodTags),
     JSON.stringify(situationTags),
     hotelSlug,

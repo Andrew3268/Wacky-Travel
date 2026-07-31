@@ -10,7 +10,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 
-<link href="/assets/css/app.css?v=20260727-post-spacing-v5" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260731-hotel-pick-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
 <meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="글 수정 | Be Stayable" property="og:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." property="og:description"/><meta content="https://bestayable.com/edit.html" property="og:url"/><meta content="https://bestayable.com/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="글 수정 | Be Stayable 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 수정 | Be Stayable" name="twitter:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/og-default.png" name="twitter:image"/><meta content="글 수정 | Be Stayable 대표 이미지" name="twitter:image:alt"/></head>
 <body>
@@ -181,6 +181,28 @@
                   </select>
                 </label>
               </div>
+              <fieldset class="editor-hotel-pick-selector" style="margin-top:18px;">
+                <legend class="small">호텔 픽 라벨</legend>
+                <p class="small editor-option-help">카드 이미지와 글 제목 정보에 표시할 라벨을 하나만 선택하세요. 선택하지 않아도 됩니다.</p>
+                <div class="editor-hotel-pick-options" id="heroHotelPickOptions">
+                  <label class="editor-hotel-pick-option">
+                    <input type="checkbox" name="heroHotelPick" value="editor" />
+                    <span>에디터픽</span>
+                  </label>
+                  <label class="editor-hotel-pick-option">
+                    <input type="checkbox" name="heroHotelPick" value="value" />
+                    <span>가성비픽</span>
+                  </label>
+                  <label class="editor-hotel-pick-option">
+                    <input type="checkbox" name="heroHotelPick" value="custom" />
+                    <span>기타</span>
+                  </label>
+                </div>
+                <label class="editor-hotel-pick-custom" id="heroHotelPickCustomWrap" hidden aria-hidden="true">
+                  <span class="small">기타 라벨 문구</span>
+                  <input class="input" id="heroHotelPickCustomText" maxlength="30" placeholder="예: 텐진역 도보 3분" />
+                </label>
+              </fieldset>
               <fieldset class="editor-hotel-badge-selector" style="margin-top:18px;">
                 <legend class="small">호텔 핵심 특징</legend>
                 <p class="small editor-option-help">포스트 제목 아래에 표시할 특징을 선택하세요. 여러 항목을 함께 선택할 수 있습니다.</p>
@@ -256,11 +278,11 @@
                 </div>
                 <a class="btn" href="/admin/items.html#curationItems">항목 관리</a>
               </div>
-              <label>
-                <div class="small">Travel by Mood</div>
-                <select class="input editor-curation-select" id="travelMoodSlugs" multiple size="10" aria-describedby="travelMoodHelp"></select>
-                <div class="small" id="travelMoodHelp" style="margin-top:6px;">Ctrl 또는 Command 키를 누른 채 여러 항목을 선택할 수 있습니다.</div>
-              </label>
+              <fieldset class="editor-curation-checkbox-selector">
+                <legend class="small">Travel by Mood</legend>
+                <div class="editor-curation-checkbox-options" id="travelMoodOptions" aria-describedby="travelMoodHelp"></div>
+                <div class="small" id="travelMoodHelp" style="margin-top:8px;">해당하는 항목을 여러 개 선택할 수 있습니다.</div>
+              </fieldset>
             </div>
             <div class="card editor-option-card editor-recommendation-category-card" hidden aria-hidden="true">
               <div class="section-heading" style="margin-bottom:12px;">
@@ -755,6 +777,6 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/edit.js?v=20260730-draft-preview-v1" defer></script>
+  <script src="/assets/js/edit.js?v=20260731-hotel-pick-v1" defer></script>
 </body>
 </html>

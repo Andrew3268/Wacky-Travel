@@ -219,6 +219,24 @@ async function loadOceanRestPostCount(env) {
   }
 }
 
+function isMissingHotelPickColumnError(error) {
+  return /no such column:\s*(?:posts\.)?hotel_pick_label/i.test(String(error?.message || error || ""));
+}
+
+async function loadArchivePostRows(db, query) {
+  try {
+    return await db.prepare(query.sql).bind(...query.binds).all();
+  } catch (error) {
+    if (!isMissingHotelPickColumnError(error)) throw error;
+    try {
+      await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
+    } catch (migrationError) {
+      if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
+    }
+    return db.prepare(query.sql).bind(...query.binds).all();
+  }
+}
+
 async function loadArchiveData(env, pathname) {
   const match = String(pathname || "").match(/^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/?$/);
   if (!match || !env?.TRAVEL_DB) return null;
@@ -235,7 +253,7 @@ async function loadArchiveData(env, pathname) {
     `).bind(destinationSlug).first() || { slug: destinationSlug, name: destinationSlug, city: destinationSlug };
 
     const postQuery = buildDestinationPostQuery(destination, {
-      selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
+      selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
       orderSql: `
         ORDER BY
           CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -246,7 +264,7 @@ async function loadArchiveData(env, pathname) {
       orderBinds: [destinationSlug]
     });
 
-    const rows = await env.TRAVEL_DB.prepare(postQuery.sql).bind(...postQuery.binds).all();
+    const rows = await loadArchivePostRows(env.TRAVEL_DB, postQuery);
     const items = (rows.results || [])
       .filter((post) => getHotelPostGroup(post) === requestedType)
       .slice(0, 60);

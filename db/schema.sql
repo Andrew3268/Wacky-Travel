@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS posts (
   recommendation_category_slug TEXT DEFAULT '',
   recommendation_category_name TEXT DEFAULT '',
   recommendation_category_description TEXT DEFAULT '',
+  hotel_pick_label TEXT DEFAULT '',
   mood_tags_json TEXT DEFAULT '[]',
   situation_tags_json TEXT DEFAULT '[]',
   hotel_slug TEXT DEFAULT '',
