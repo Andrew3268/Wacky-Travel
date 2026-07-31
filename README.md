@@ -214,3 +214,9 @@ Build output directory: public
 https://운영도메인/robots.txt
 https://운영도메인/sitemap.xml
 ```
+
+## 2026-07-31 도시 메인 관리자 전용 추천 호텔 버튼
+
+- 모바일 CSS의 강제 `display: inline-flex` 선택자가 `hidden` 속성을 덮어쓰던 문제를 수정했습니다.
+- 모바일 표시 규칙은 `:not([hidden])` 상태의 버튼에만 적용됩니다.
+- 15개 도시 메인 페이지에서 추천 호텔 버튼은 관리자 인증 전과 로그아웃 상태에 숨겨집니다.

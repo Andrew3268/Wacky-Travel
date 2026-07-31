@@ -20,7 +20,7 @@
     "seo:routes": "node ./tools/generate-static-routes.mjs",
     "seo:audit": "node ./tools/seo-audit.mjs",
     "check:syntax": "node ./tools/syntax-check.mjs",
-    "check": "npm run seo:normalize && npm run routes:functions && npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:static-destinations && npm run check:cover-image-source && npm run check:inline-agoda-images && npm run check:post-mobile-media && npm run check:syntax",
+    "check": "npm run seo:normalize && npm run routes:functions && npm run seo:routes && npm run seo:audit && npm run check:index-inline && npm run check:static-destinations && npm run check:cover-image-source && npm run check:inline-agoda-images && npm run check:post-mobile-media && npm run check:city-admin-hero-button && npm run check:syntax",
     "predeploy": "npm run check",
     "d1:migrate:recommendation-category-names": "wrangler d1 execute wacky-travel-db --file=./db/migrations/012_recommendation_category_names.sql",
     "d1:migrate:recommendation-category-names:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/012_recommendation_category_names.sql",
@@ -33,7 +33,8 @@
     "d1:migrate:cover-image:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/014_cover_image_source.sql",
     "check:cover-image-source": "node ./tools/test-cover-image-source.mjs",
     "check:inline-agoda-images": "node ./tools/test-inline-agoda-images.mjs",
-    "check:post-mobile-media": "node ./tools/test-post-mobile-media.mjs"
+    "check:post-mobile-media": "node ./tools/test-post-mobile-media.mjs",
+    "check:city-admin-hero-button": "node ./tools/test-city-admin-hero-button.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"
