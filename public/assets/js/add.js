@@ -893,7 +893,9 @@ function bindTravelSettingsManagerEvents() {
 const TOC_TOKEN_RE = /^\[\[TOC(?::(h2|h2,h3))?\]\]$/i;
 
 const INLINE_IMAGE_LIMIT = 7;
+const AGODA_INLINE_IMAGE_LIMIT = 6;
 const INLINE_IMAGE_TOKEN_RE = /^\[\[(POST_IMAGE_([1-7]))\s+(.+?)\]\]$/i;
+const AGODA_INLINE_IMAGE_TOKEN_RE = /^\[\[(POST_AGODA_IMAGE_([1-6]))\s+(.+?)\]\]$/i;
 const AFFILIATE_TOKEN_RE = /^\[\[(POST_AFFILIATE_(?:[1-5]))\s+(.+?)\]\]$/i;
 const AFFILIATE_CTA_TOKEN_RE = /^\[\[POST_AFFILIATE_CTA\s+(.+?)\]\]$/i;
 
@@ -907,6 +909,15 @@ function parseTokenAttributes(raw = "") {
   return attrs;
 }
 
+function decodeInlineTokenValue(value = "") {
+  const raw = String(value || "");
+  try { return decodeURIComponent(raw); } catch (_) { return raw; }
+}
+
+function encodeInlineTokenValue(value = "") {
+  return encodeURIComponent(String(value || "").trim());
+}
+
 function defaultInlineImagePosition(index = 1) {
   if (index === 1) return 3;
   if (index === 2) return 5;
@@ -918,52 +929,100 @@ function clampInlineImagePosition(value, index = 1) {
   return Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(value || String(fallback), 10) || fallback));
 }
 
-function normalizeInlineImagePlacement(value = "after") {
-  return String(value || "").trim().toLowerCase() === "before" ? "before" : "after";
+function normalizeInlineImagePlacement(value = "before") {
+  return String(value || "").trim().toLowerCase() === "after" ? "after" : "before";
 }
 
 function createInlineImageMeta(index = 1) {
   return {
     enabled: false,
+    source: "r2",
     key: `POST_IMAGE_${index}`,
     index,
     url: "",
     alt: "",
     caption: "",
     position: defaultInlineImagePosition(index),
-    placement: "after"
+    placement: "before"
+  };
+}
+
+function createAgodaInlineImageMeta(index = 1) {
+  return {
+    enabled: false,
+    source: "agoda",
+    key: `POST_AGODA_IMAGE_${index}`,
+    index,
+    url: "",
+    srcset: "",
+    link: "",
+    alt: "",
+    caption: "",
+    position: defaultInlineImagePosition(index),
+    placement: "before"
   };
 }
 
 function getInlineImageItems(meta = {}) {
   const sourceItems = Array.isArray(meta.items)
     ? meta.items
-    : Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => meta[`image${offset + 1}`]);
+    : [
+        ...Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => meta[`image${offset + 1}`]),
+        ...Array.from({ length: AGODA_INLINE_IMAGE_LIMIT }, (_, offset) => meta[`agodaImage${offset + 1}`])
+      ];
   return sourceItems
-    .map((item, offset) => ({
-      ...createInlineImageMeta(offset + 1),
-      ...(item || {}),
-      index: item?.index || offset + 1,
-      key: item?.key || `POST_IMAGE_${item?.index || offset + 1}`,
-      position: clampInlineImagePosition(item?.position, item?.index || offset + 1),
-      placement: normalizeInlineImagePlacement(item?.placement)
-    }))
+    .filter(Boolean)
+    .map((item, offset) => {
+      const isAgoda = item?.source === "agoda" || String(item?.key || "").startsWith("POST_AGODA_IMAGE_");
+      const fallbackIndex = isAgoda
+        ? Math.max(1, Math.min(AGODA_INLINE_IMAGE_LIMIT, parseInt(item?.index || "1", 10) || 1))
+        : Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(item?.index || String(offset + 1), 10) || offset + 1));
+      return {
+        ...(isAgoda ? createAgodaInlineImageMeta(fallbackIndex) : createInlineImageMeta(fallbackIndex)),
+        ...(item || {}),
+        source: isAgoda ? "agoda" : "r2",
+        index: fallbackIndex,
+        key: item?.key || (isAgoda ? `POST_AGODA_IMAGE_${fallbackIndex}` : `POST_IMAGE_${fallbackIndex}`),
+        position: clampInlineImagePosition(item?.position, fallbackIndex),
+        placement: normalizeInlineImagePlacement(item?.placement)
+      };
+    })
     .filter((item) => item.enabled && (item.url || item.id));
 }
 
 function parseInlineImageToken(line = "") {
-  const match = String(line || "").trim().match(INLINE_IMAGE_TOKEN_RE);
+  const source = String(line || "").trim();
+  const agodaMatch = source.match(AGODA_INLINE_IMAGE_TOKEN_RE);
+  if (agodaMatch) {
+    const index = Math.max(1, Math.min(AGODA_INLINE_IMAGE_LIMIT, parseInt(agodaMatch[2] || "1", 10) || 1));
+    const attrs = parseTokenAttributes(agodaMatch[3]);
+    return {
+      key: agodaMatch[1].toUpperCase(),
+      source: "agoda",
+      index,
+      url: decodeInlineTokenValue(attrs.image || attrs.url || attrs.src || ""),
+      srcset: decodeInlineTokenValue(attrs.srcset || ""),
+      link: decodeInlineTokenValue(attrs.link || attrs.href || ""),
+      alt: decodeInlineTokenValue(attrs.alt || ""),
+      caption: decodeInlineTokenValue(attrs.caption || ""),
+      position: clampInlineImagePosition(attrs.position, index),
+      placement: normalizeInlineImagePlacement(attrs.placement || attrs.place)
+    };
+  }
+
+  const match = source.match(INLINE_IMAGE_TOKEN_RE);
   if (!match) return null;
   const index = Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(match[2] || "1", 10) || 1));
   const attrs = parseTokenAttributes(match[3]);
   return {
     key: match[1].toUpperCase(),
+    source: "r2",
     index,
     url: String(attrs.url || attrs.id || "").trim(),
     alt: String(attrs.alt || "").trim(),
     caption: String(attrs.caption || "").trim(),
     position: clampInlineImagePosition(attrs.position, index),
-    placement: normalizeInlineImagePlacement(attrs.placement || attrs.place)
+    placement: (attrs.placement || attrs.place) ? normalizeInlineImagePlacement(attrs.placement || attrs.place) : "after"
   };
 }
 
@@ -983,33 +1042,43 @@ function parseInlineImageMetaFromMarkdown(md = "") {
     result[`image${index}`] = item;
     result.items.push(item);
   }
+  for (let index = 1; index <= AGODA_INLINE_IMAGE_LIMIT; index += 1) {
+    const item = createAgodaInlineImageMeta(index);
+    result[`agodaImage${index}`] = item;
+    result.items.push(item);
+  }
   String(md || "").split("\n").forEach((line) => {
     const token = parseInlineImageToken(line);
     if (!token) return;
-    const target = result[`image${token.index}`];
+    const target = token.source === "agoda"
+      ? result[`agodaImage${token.index}`]
+      : result[`image${token.index}`];
     if (!target) return;
-    target.enabled = !!token.url;
-    target.url = token.url;
-    target.alt = token.alt;
-    target.caption = token.caption;
-    target.position = token.position;
-    target.placement = token.placement;
+    Object.assign(target, token, { enabled: !!token.url });
   });
   return result;
 }
 
 function buildInlineImageToken(key, data) {
   if (!data || !data.enabled || !String((data.url || data.id || "")).trim()) return "";
+  const isAgoda = data.source === "agoda" || String(key || "").startsWith("POST_AGODA_IMAGE_");
+  if (isAgoda) {
+    const index = Math.max(1, Math.min(AGODA_INLINE_IMAGE_LIMIT, parseInt(String(key).replace("POST_AGODA_IMAGE_", ""), 10) || 1));
+    const safePosition = clampInlineImagePosition(data.position, index);
+    const safePlacement = normalizeInlineImagePlacement(data.placement);
+    return `[[POST_AGODA_IMAGE_${index} image="${encodeInlineTokenValue(data.url)}" srcset="${encodeInlineTokenValue(data.srcset)}" link="${encodeInlineTokenValue(data.link)}" alt="${encodeInlineTokenValue(data.alt)}" caption="${encodeInlineTokenValue(data.caption)}" position="${safePosition}" placement="${safePlacement}"]]`;
+  }
+
   const safeUrl = sanitizeImageUrlValue(data.url || data.id || "").replace(/"/g, "&quot;");
   const safeAlt = String(data.alt || "").trim().replace(/"/g, "&quot;");
   const safeCaption = String(data.caption || "").trim().replace(/"/g, "&quot;");
   const index = Math.max(1, Math.min(INLINE_IMAGE_LIMIT, parseInt(String(key).replace("POST_IMAGE_", ""), 10) || 1));
   const safePosition = clampInlineImagePosition(data.position, index);
   const safePlacement = normalizeInlineImagePlacement(data.placement);
-  return `[[${key} url="${safeUrl}" alt="${safeAlt}" caption="${safeCaption}" position="${safePosition}" placement="${safePlacement}"]]`;
+  return `[[POST_IMAGE_${index} url="${safeUrl}" alt="${safeAlt}" caption="${safeCaption}" position="${safePosition}" placement="${safePlacement}"]]`;
 }
 
-function collectInlineImageFormData() {
+function collectR2InlineImageFormData() {
   const result = { items: [] };
   for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
     const item = {
@@ -1027,6 +1096,72 @@ function collectInlineImageFormData() {
   return result;
 }
 
+function setAgodaInlineImageStatus(index, message = "", state = "") {
+  const status = $(`agodaInlineImage${index}Status`);
+  if (!status) return;
+  status.textContent = message;
+  status.dataset.state = state;
+}
+
+function collectAgodaInlineImageFormData({ validate = false } = {}) {
+  const result = { items: [], ok: true, error: "", invalidIndex: 0 };
+  const utils = window.CoverImageSourceUtils;
+  for (let index = 1; index <= AGODA_INLINE_IMAGE_LIMIT; index += 1) {
+    const enabled = !!($(`enableAgodaInlineImage${index}`)?.checked);
+    const rawHtml = $(`agodaInlineImage${index}Html`)?.value || "";
+    const base = {
+      ...createAgodaInlineImageMeta(index),
+      enabled,
+      alt: $(`agodaInlineImage${index}Alt`)?.value.trim() || "",
+      caption: $(`agodaInlineImage${index}Caption`)?.value.trim() || "",
+      position: clampInlineImagePosition($(`agodaInlineImage${index}Position`)?.value, index),
+      placement: normalizeInlineImagePlacement($(`agodaInlineImage${index}Placement`)?.value)
+    };
+
+    if (!enabled) {
+      setAgodaInlineImageStatus(index, "", "");
+      result[`agodaImage${index}`] = base;
+      result.items.push(base);
+      continue;
+    }
+
+    const parsed = utils?.parseAgodaHtml
+      ? utils.parseAgodaHtml(rawHtml)
+      : { ok: false, error: "아고다 이미지 파서가 준비되지 않았습니다." };
+    if (!parsed.ok) {
+      const message = parsed.error || `아고다 이미지 ${index} 정보를 확인해 주세요.`;
+      setAgodaInlineImageStatus(index, message, "error");
+      if (result.ok) {
+        result.ok = false;
+        result.error = message;
+        result.invalidIndex = index;
+      }
+      result[`agodaImage${index}`] = base;
+      result.items.push(base);
+      continue;
+    }
+
+    const item = { ...base, url: parsed.image, srcset: parsed.srcset || "", link: parsed.link || "" };
+    setAgodaInlineImageStatus(index, "아고다 링크와 이미지 주소를 확인했습니다.", "success");
+    result[`agodaImage${index}`] = item;
+    result.items.push(item);
+  }
+  return result;
+}
+
+function collectInlineImageFormData(options = {}) {
+  const r2 = collectR2InlineImageFormData();
+  const agoda = collectAgodaInlineImageFormData(options);
+  return {
+    ...r2,
+    ...Object.fromEntries(Object.entries(agoda).filter(([key]) => key.startsWith("agodaImage"))),
+    items: [...r2.items, ...agoda.items],
+    ok: agoda.ok,
+    error: agoda.error,
+    invalidIndex: agoda.invalidIndex
+  };
+}
+
 function applyInlineImageFormData(meta = {}) {
   for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
     const image = meta[`image${index}`] || {};
@@ -1037,7 +1172,46 @@ function applyInlineImageFormData(meta = {}) {
     if ($(`inlineImage${index}Position`)) $(`inlineImage${index}Position`).value = String(clampInlineImagePosition(image.position, index));
     if ($(`inlineImage${index}Placement`)) $(`inlineImage${index}Placement`).value = normalizeInlineImagePlacement(image.placement);
   }
+
+  const utils = window.CoverImageSourceUtils;
+  for (let index = 1; index <= AGODA_INLINE_IMAGE_LIMIT; index += 1) {
+    const image = meta[`agodaImage${index}`] || {};
+    if ($(`enableAgodaInlineImage${index}`)) $(`enableAgodaInlineImage${index}`).checked = !!image.enabled;
+    if ($(`agodaInlineImage${index}Html`)) {
+      $(`agodaInlineImage${index}Html`).value = image.enabled && utils?.buildAgodaHtml
+        ? utils.buildAgodaHtml({ link: image.link, image: image.url || image.id, srcset: image.srcset })
+        : "";
+    }
+    if ($(`agodaInlineImage${index}Alt`)) $(`agodaInlineImage${index}Alt`).value = image.alt || "";
+    if ($(`agodaInlineImage${index}Caption`)) $(`agodaInlineImage${index}Caption`).value = image.caption || "";
+    if ($(`agodaInlineImage${index}Position`)) $(`agodaInlineImage${index}Position`).value = String(clampInlineImagePosition(image.position, index));
+    if ($(`agodaInlineImage${index}Placement`)) $(`agodaInlineImage${index}Placement`).value = normalizeInlineImagePlacement(image.placement);
+  }
+  const hasR2Images = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => meta[`image${offset + 1}`]).some((item) => item?.enabled);
+  const hasAgodaImages = Array.from({ length: AGODA_INLINE_IMAGE_LIMIT }, (_, offset) => meta[`agodaImage${offset + 1}`]).some((item) => item?.enabled);
+  if (hasAgodaImages && !hasR2Images) {
+    const agodaSourceInput = document.querySelector('input[name="inlineImageEditorSource"][value="agoda"]');
+    if (agodaSourceInput) agodaSourceInput.checked = true;
+  }
   syncInlineImageVisibility();
+}
+
+function getSelectedInlineImageEditorSource() {
+  return String(document.querySelector('input[name="inlineImageEditorSource"]:checked')?.value || "r2") === "agoda"
+    ? "agoda"
+    : "r2";
+}
+
+function syncInlineImageSourcePanels() {
+  const source = getSelectedInlineImageEditorSource();
+  const r2Panel = $("r2InlineImagePanel");
+  const agodaPanel = $("agodaInlineImagePanel");
+  if (r2Panel) r2Panel.hidden = source !== "r2";
+  if (agodaPanel) agodaPanel.hidden = source !== "agoda";
+  document.querySelectorAll(".inline-image-source-option").forEach((label) => {
+    const input = label.querySelector('input[name="inlineImageEditorSource"]');
+    label.classList.toggle("is-active", !!input?.checked);
+  });
 }
 
 function syncInlineImageVisibility() {
@@ -1047,6 +1221,13 @@ function syncInlineImageVisibility() {
     if (!toggle || !field) continue;
     field.hidden = !toggle.checked;
   }
+  for (let index = 1; index <= AGODA_INLINE_IMAGE_LIMIT; index += 1) {
+    const toggle = $(`enableAgodaInlineImage${index}`);
+    const field = $(`agodaInlineImage${index}Fields`);
+    if (!toggle || !field) continue;
+    field.hidden = !toggle.checked;
+  }
+  syncInlineImageSourcePanels();
 }
 
 function buildContentWithInlineImageTokens(md = "") {
@@ -1057,14 +1238,21 @@ function buildContentWithInlineImageTokens(md = "") {
 }
 
 function renderInlineImageFigure(data = {}, index = 1, extraClass = "") {
-  const imageUrl = sanitizeImageUrlValue(data.url || data.id || "");
+  const imageUrl = String(data.url || data.id || "").trim();
   if (!imageUrl) return "";
   const alt = String(data.alt || `본문 이미지 ${index}`).trim();
   const caption = String(data.caption || "").trim();
-  const figureClass = ["preview-inline-image", String(extraClass || "").trim()].filter(Boolean).join(" ");
+  const isAgoda = data.source === "agoda";
+  const figureClass = ["preview-inline-image", isAgoda ? "preview-inline-image--agoda" : "", String(extraClass || "").trim()].filter(Boolean).join(" ");
+  const imageHtml = isAgoda
+    ? `<img src="${escapeHtml(imageUrl)}"${data.srcset ? ` srcset="${escapeHtml(data.srcset)}"` : ""} sizes="(max-width: 760px) 100vw, 760px" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />`
+    : `<img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />`;
+  const linkedImage = isAgoda && data.link
+    ? `<a class="preview-inline-image__link" href="${escapeHtml(data.link)}" target="_blank" rel="sponsored noopener noreferrer">${imageHtml}</a>`
+    : imageHtml;
   return `
     <figure class="${figureClass}">
-      <img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      ${linkedImage}
       ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
     </figure>
   `;
@@ -2027,8 +2215,11 @@ function evaluateOtherKeywordStuffing(focusKeyword = "", plainContent = "") {
   };
 }
 
-function getImageSeoData(contentMd, coverImage, coverImageAlt, focusKeyword) {
-  const bodyImages = getImages(contentMd);
+function getImageSeoData(contentMd, coverImage, coverImageAlt, focusKeyword, inlineImages = {}) {
+  const bodyImages = [
+    ...getImages(contentMd),
+    ...getInlineImageItems(inlineImages).map((item) => ({ url: item.url || item.id || "", alt: item.alt || "" }))
+  ];
   const bodyImagesWithoutAlt = bodyImages.filter((img) => !img.alt).length;
   const bodyAlts = bodyImages.map((img) => img.alt).filter(Boolean);
   const hasCoverImage = !!String(coverImage || "").trim();
@@ -2123,7 +2314,7 @@ function evaluateSeo() {
   const links = getLinks(contentMd);
   const internalLinks = links.filter((href) => href.startsWith("/")).length;
   const externalLinks = links.filter((href) => /^https?:\/\//.test(href)).length;
-  const imageSeo = getImageSeoData(contentMd, coverImage, coverImageAlt, focusKeyword);
+  const imageSeo = getImageSeoData(contentMd, coverImage, coverImageAlt, focusKeyword, inlineImages);
   const firstParagraph = getFirstParagraph(contentMd);
   const keywordInTitle = focusKeyword ? containsKeyword(title, focusKeyword) : false;
   const keywordInMeta = focusKeyword ? containsKeyword(metaDescription, focusKeyword) : false;
@@ -3071,6 +3262,15 @@ async function save() {
     return;
   }
 
+  const inlineImageValidation = collectInlineImageFormData({ validate: true });
+  if (!inlineImageValidation.ok) {
+    statusEl.textContent = inlineImageValidation.error || "아고다 본문 이미지 정보를 확인해 주세요.";
+    const invalidIndex = inlineImageValidation.invalidIndex || 1;
+    document.querySelector('input[name="inlineImageEditorSource"][value="agoda"]')?.click();
+    $(`agodaInlineImage${invalidIndex}Html`)?.focus();
+    return;
+  }
+
   const payload = {
     slug,
     title,
@@ -3156,10 +3356,16 @@ function handleRealtimeChange() {
   renderPreview();
 }
 
-const inlineImageFieldIds = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => {
-  const index = offset + 1;
-  return [`inlineImage${index}Id`, `inlineImage${index}Alt`, `inlineImage${index}Caption`, `inlineImage${index}Position`, `inlineImage${index}Placement`];
-}).flat();
+const inlineImageFieldIds = [
+  ...Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => {
+    const index = offset + 1;
+    return [`inlineImage${index}Id`, `inlineImage${index}Alt`, `inlineImage${index}Caption`, `inlineImage${index}Position`, `inlineImage${index}Placement`];
+  }).flat(),
+  ...Array.from({ length: AGODA_INLINE_IMAGE_LIMIT }, (_, offset) => {
+    const index = offset + 1;
+    return [`agodaInlineImage${index}Html`, `agodaInlineImage${index}Alt`, `agodaInlineImage${index}Caption`, `agodaInlineImage${index}Position`, `agodaInlineImage${index}Placement`];
+  }).flat()
+];
 
 ["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "agoda_image_html", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelPickCustomText", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelPriceUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
@@ -3170,6 +3376,12 @@ const inlineImageFieldIds = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offse
 for (let index = 1; index <= INLINE_IMAGE_LIMIT; index += 1) {
   $(`enableInlineImage${index}`)?.addEventListener("change", handleRealtimeChange);
 }
+for (let index = 1; index <= AGODA_INLINE_IMAGE_LIMIT; index += 1) {
+  $(`enableAgodaInlineImage${index}`)?.addEventListener("change", handleRealtimeChange);
+}
+document.querySelectorAll('input[name="inlineImageEditorSource"]').forEach((input) => {
+  input.addEventListener("change", () => { syncInlineImageSourcePanels(); handleRealtimeChange(); });
+});
 $("enableAffiliateLinks")?.addEventListener("change", handleRealtimeChange);
 $("enableAffiliateCta")?.addEventListener("change", () => { syncAffiliateCtaVisibility(); handleRealtimeChange(); });
 $("addAffiliateCtaBtn")?.addEventListener("click", addAffiliateCtaEditorRow);

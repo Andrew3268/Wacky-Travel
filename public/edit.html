@@ -10,7 +10,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 
-<link href="/assets/css/app.css?v=20260731-cover-image-source-v1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260731-inline-agoda-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
 <meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="글 수정 | Be Stayable" property="og:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." property="og:description"/><meta content="https://bestayable.com/edit.html" property="og:url"/><meta content="https://bestayable.com/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="글 수정 | Be Stayable 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 수정 | Be Stayable" name="twitter:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/og-default.png" name="twitter:image"/><meta content="글 수정 | Be Stayable 대표 이미지" name="twitter:image:alt"/></head>
 <body>
@@ -403,12 +403,29 @@
             </label>
 
             <div class="card editor-option-card inline-image-box">
-              <div class="h2">본문 이미지</div>
-              <div class="inline-image-grid">
+              <div class="h2">본문 이미지 추가</div>
+              <div class="inline-image-source-switch" role="tablist" aria-label="본문 이미지 출처 선택">
+                <label class="inline-image-source-option">
+                  <input type="radio" name="inlineImageEditorSource" value="r2" checked />
+                  <span>R2 본문 이미지 추가</span>
+                </label>
+                <label class="inline-image-source-option">
+                  <input type="radio" name="inlineImageEditorSource" value="agoda" />
+                  <span>아고다 본문 이미지 추가</span>
+                </label>
+              </div>
+              <p class="small inline-image-box__description">선택한 H2의 위 또는 아래에 이미지를 배치합니다. 기본 방향은 위입니다.</p>
+
+              <div id="r2InlineImagePanel" class="inline-image-source-panel" data-inline-image-panel="r2">
+                <div class="inline-image-panel-heading">
+                  <strong>R2 본문 이미지 추가</strong>
+                  <span class="small">기존 R2 이미지 URL 방식 · 최대 7개</span>
+                </div>
+                <div class="inline-image-grid">
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage1" /> 이미지 1 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage1" /> R2 이미지 1 사용</label>
                   <div id="inlineImage1Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage1Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage1Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage1Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage1Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -422,16 +439,16 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage1Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage2" /> 이미지 2 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage2" /> R2 이미지 2 사용</label>
                   <div id="inlineImage2Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage2Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage2Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage2Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage2Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -445,16 +462,16 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage2Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage3" /> 이미지 3 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage3" /> R2 이미지 3 사용</label>
                   <div id="inlineImage3Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage3Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage3Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage3Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage3Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -468,16 +485,16 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage3Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage4" /> 이미지 4 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage4" /> R2 이미지 4 사용</label>
                   <div id="inlineImage4Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage4Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage4Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage4Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage4Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -491,16 +508,16 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage4Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage5" /> 이미지 5 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage5" /> R2 이미지 5 사용</label>
                   <div id="inlineImage5Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage5Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage5Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage5Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage5Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -514,16 +531,16 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage5Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage6" /> 이미지 6 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage6" /> R2 이미지 6 사용</label>
                   <div id="inlineImage6Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage6Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage6Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage6Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage6Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -537,16 +554,16 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage6Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
                 <section class="inline-image-card">
-                  <label class="row"><input type="checkbox" id="enableInlineImage7" /> 이미지 7 사용</label>
+                  <label class="row"><input type="checkbox" id="enableInlineImage7" /> R2 이미지 7 사용</label>
                   <div id="inlineImage7Fields" hidden class="inline-image-fields">
-                    <input class="input" id="inlineImage7Id" placeholder="이미지 URL" />
+                    <input class="input" id="inlineImage7Id" placeholder="R2 이미지 URL" />
                     <input class="input" id="inlineImage7Alt" placeholder="ALT 텍스트" />
                     <input class="input" id="inlineImage7Caption" placeholder="캡션" />
                     <div class="grid grid--2">
@@ -560,12 +577,166 @@
                         <option value="7">7번 H2</option>
                       </select>
                       <select class="input" id="inlineImage7Placement">
+                        <option value="before" selected>위</option>
                         <option value="after">아래</option>
-                        <option value="before">위</option>
                       </select>
                     </div>
                   </div>
                 </section>
+                </div>
+              </div>
+
+              <div id="agodaInlineImagePanel" class="inline-image-source-panel" data-inline-image-panel="agoda" hidden>
+                <div class="inline-image-panel-heading">
+                  <strong>아고다 본문 이미지 추가</strong>
+                  <span class="small">파트너스 이미지 HTML 입력 · 최대 6개</span>
+                </div>
+                <div class="inline-image-grid">
+                <section class="inline-image-card inline-image-card--agoda">
+                  <label class="row"><input type="checkbox" id="enableAgodaInlineImage1" /> 아고다 이미지 1 사용</label>
+                  <div id="agodaInlineImage1Fields" hidden class="inline-image-fields">
+                    <textarea class="input inline-image-agoda-html" id="agodaInlineImage1Html" rows="4" placeholder="아고다 파트너스 이미지 링크 HTML을 붙여 넣으세요."></textarea>
+                    <div class="small inline-image-parse-status" id="agodaInlineImage1Status" aria-live="polite"></div>
+                    <input class="input" id="agodaInlineImage1Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="agodaInlineImage1Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="agodaInlineImage1Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="agodaInlineImage1Placement">
+                        <option value="before" selected>위</option>
+                        <option value="after">아래</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card inline-image-card--agoda">
+                  <label class="row"><input type="checkbox" id="enableAgodaInlineImage2" /> 아고다 이미지 2 사용</label>
+                  <div id="agodaInlineImage2Fields" hidden class="inline-image-fields">
+                    <textarea class="input inline-image-agoda-html" id="agodaInlineImage2Html" rows="4" placeholder="아고다 파트너스 이미지 링크 HTML을 붙여 넣으세요."></textarea>
+                    <div class="small inline-image-parse-status" id="agodaInlineImage2Status" aria-live="polite"></div>
+                    <input class="input" id="agodaInlineImage2Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="agodaInlineImage2Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="agodaInlineImage2Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="agodaInlineImage2Placement">
+                        <option value="before" selected>위</option>
+                        <option value="after">아래</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card inline-image-card--agoda">
+                  <label class="row"><input type="checkbox" id="enableAgodaInlineImage3" /> 아고다 이미지 3 사용</label>
+                  <div id="agodaInlineImage3Fields" hidden class="inline-image-fields">
+                    <textarea class="input inline-image-agoda-html" id="agodaInlineImage3Html" rows="4" placeholder="아고다 파트너스 이미지 링크 HTML을 붙여 넣으세요."></textarea>
+                    <div class="small inline-image-parse-status" id="agodaInlineImage3Status" aria-live="polite"></div>
+                    <input class="input" id="agodaInlineImage3Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="agodaInlineImage3Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="agodaInlineImage3Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="agodaInlineImage3Placement">
+                        <option value="before" selected>위</option>
+                        <option value="after">아래</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card inline-image-card--agoda">
+                  <label class="row"><input type="checkbox" id="enableAgodaInlineImage4" /> 아고다 이미지 4 사용</label>
+                  <div id="agodaInlineImage4Fields" hidden class="inline-image-fields">
+                    <textarea class="input inline-image-agoda-html" id="agodaInlineImage4Html" rows="4" placeholder="아고다 파트너스 이미지 링크 HTML을 붙여 넣으세요."></textarea>
+                    <div class="small inline-image-parse-status" id="agodaInlineImage4Status" aria-live="polite"></div>
+                    <input class="input" id="agodaInlineImage4Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="agodaInlineImage4Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="agodaInlineImage4Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="agodaInlineImage4Placement">
+                        <option value="before" selected>위</option>
+                        <option value="after">아래</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card inline-image-card--agoda">
+                  <label class="row"><input type="checkbox" id="enableAgodaInlineImage5" /> 아고다 이미지 5 사용</label>
+                  <div id="agodaInlineImage5Fields" hidden class="inline-image-fields">
+                    <textarea class="input inline-image-agoda-html" id="agodaInlineImage5Html" rows="4" placeholder="아고다 파트너스 이미지 링크 HTML을 붙여 넣으세요."></textarea>
+                    <div class="small inline-image-parse-status" id="agodaInlineImage5Status" aria-live="polite"></div>
+                    <input class="input" id="agodaInlineImage5Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="agodaInlineImage5Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="agodaInlineImage5Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="agodaInlineImage5Placement">
+                        <option value="before" selected>위</option>
+                        <option value="after">아래</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                <section class="inline-image-card inline-image-card--agoda">
+                  <label class="row"><input type="checkbox" id="enableAgodaInlineImage6" /> 아고다 이미지 6 사용</label>
+                  <div id="agodaInlineImage6Fields" hidden class="inline-image-fields">
+                    <textarea class="input inline-image-agoda-html" id="agodaInlineImage6Html" rows="4" placeholder="아고다 파트너스 이미지 링크 HTML을 붙여 넣으세요."></textarea>
+                    <div class="small inline-image-parse-status" id="agodaInlineImage6Status" aria-live="polite"></div>
+                    <input class="input" id="agodaInlineImage6Alt" placeholder="ALT 텍스트" />
+                    <input class="input" id="agodaInlineImage6Caption" placeholder="캡션" />
+                    <div class="grid grid--2">
+                      <select class="input" id="agodaInlineImage6Position">
+                        <option value="1">1번 H2</option>
+                        <option value="2">2번 H2</option>
+                        <option value="3">3번 H2</option>
+                        <option value="4">4번 H2</option>
+                        <option value="5">5번 H2</option>
+                        <option value="6">6번 H2</option>
+                        <option value="7">7번 H2</option>
+                      </select>
+                      <select class="input" id="agodaInlineImage6Placement">
+                        <option value="before" selected>위</option>
+                        <option value="after">아래</option>
+                      </select>
+                    </div>
+                  </div>
+                </section>
+                </div>
               </div>
             </div>
 
@@ -808,6 +979,6 @@
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
   <script src="/assets/js/cover-image-source.js?v=20260731-cover-source-v1" defer></script>
-  <script src="/assets/js/edit.js?v=20260731-cover-source-v1" defer></script>
+  <script src="/assets/js/edit.js?v=20260731-inline-agoda-v1" defer></script>
 </body>
 </html>

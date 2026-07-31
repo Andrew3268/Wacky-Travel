@@ -2952,6 +2952,82 @@ body.ww-wrapper{
 .inline-image-fields[hidden]{
   display: none !important;
 }
+
+.inline-image-source-switch{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.inline-image-source-option{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+.inline-image-source-option.is-active{
+  border-color: #111;
+  background: #f7f7f7;
+}
+.inline-image-source-option input{
+  margin: 0;
+}
+.inline-image-box__description{
+  margin: -4px 0 0;
+}
+.inline-image-source-panel{
+  display: grid;
+  gap: 14px;
+}
+.inline-image-source-panel[hidden]{
+  display: none;
+}
+.inline-image-panel-heading{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.inline-image-agoda-html{
+  min-height: 112px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.inline-image-parse-status{
+  min-height: 18px;
+}
+.inline-image-parse-status[data-state="success"]{
+  color: #0b7a3e;
+}
+.inline-image-parse-status[data-state="error"]{
+  color: #b42318;
+}
+.preview-inline-image__link,
+body.post-page-body .post-inline-image__link{
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  line-height: 0;
+  text-decoration: none;
+}
+@media (max-width: 720px){
+  .inline-image-source-switch{
+    grid-template-columns: 1fr;
+  }
+}
+
 .admin-auth-page{
   min-height: calc(100vh - 180px);
   display: grid;
@@ -7214,6 +7290,20 @@ body.post-page-body .post-body .post-content a{
   background: #000;
   color: #fff !important;
   font-weight: 600;
+  text-decoration: none;
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content figure.post-inline-image a.post-inline-image__link,
+body.post-page-body .post-body .post-content figure.post-inline-image a.post-inline-image__link,
+.preview-body figure.preview-inline-image a.preview-inline-image__link{
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  line-height: 0;
   text-decoration: none;
 }
 
