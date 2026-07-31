@@ -186,12 +186,33 @@
         });
       };
 
+
+      const ensureAgodaImageConnectionHints = () => {
+        const head = document.head;
+        if (!head) return;
+        if (!head.querySelector('link[rel="dns-prefetch"][href="//pix8.agoda.net"]')) {
+          const dnsPrefetch = document.createElement('link');
+          dnsPrefetch.rel = 'dns-prefetch';
+          dnsPrefetch.href = '//pix8.agoda.net';
+          head.appendChild(dnsPrefetch);
+        }
+        if (!head.querySelector('link[rel="preconnect"][href="https://pix8.agoda.net"]')) {
+          const preconnect = document.createElement('link');
+          preconnect.rel = 'preconnect';
+          preconnect.href = 'https://pix8.agoda.net';
+          preconnect.crossOrigin = 'anonymous';
+          head.appendChild(preconnect);
+        }
+      };
+
       const fetchJson = async (offset = 0) => {
         const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
         try {
           const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
           if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
-          return await response.json();
+          const data = await response.json();
+          if (data?.uses_agoda_images) ensureAgodaImageConnectionHints();
+          return data;
         } catch (_) {
           return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
         }

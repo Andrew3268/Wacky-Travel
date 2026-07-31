@@ -339,6 +339,10 @@ export async function onRequestGet({ params, env, request }) {
               quality: 82
             }, origin))
         : null;
+      const agodaConnectionHints = coverImageSource === "agoda"
+        ? `<link rel="dns-prefetch" href="//pix8.agoda.net" />
+  <link rel="preconnect" href="https://pix8.agoda.net" crossorigin />`
+        : "";
       const coverImagePreload = coverImage
         ? `<link rel="preload" as="image" href="${escapeHtml(coverImage.src)}"${coverImage.srcset ? ` imagesrcset="${escapeHtml(coverImage.srcset)}"` : ""}${coverImage.sizes ? ` imagesizes="${escapeHtml(coverImage.sizes)}"` : ""} fetchpriority="high" />`
         : "";
@@ -416,6 +420,7 @@ export async function onRequestGet({ params, env, request }) {
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="author" content="${escapeHtml(authorName)}" />
   <link rel="canonical" href="${escapeHtml(canonical.toString())}" />
+  ${agodaConnectionHints}
   ${coverImagePreload}
   ${adsenseHeadScript}
 

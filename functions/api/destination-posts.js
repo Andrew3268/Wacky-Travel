@@ -106,8 +106,12 @@ export async function onRequestGet({ env, request }) {
     ? items.map((post) => renderTravelPostItem(post)).join("")
     : items.map((post) => renderHotelPostCard(post, contentTypes)).join("");
 
+  const usesAgodaImages = requestedType !== TRAVEL_CONTENT_TYPE
+    && items.some((post) => normalizeCoverImageSource(post.cover_image_source) === "agoda" && String(post.cover_image || "").trim());
+
   return okJson({
     ok: true,
+    uses_agoda_images: usesAgodaImages,
     type: requestedType,
     region: regionSlug,
     recommendation_category: recommendationCategorySlug,

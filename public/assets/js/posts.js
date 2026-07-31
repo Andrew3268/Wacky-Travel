@@ -9,6 +9,36 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
+
+function ensureAgodaImageConnectionHints() {
+  const head = document.head;
+  if (!head) return;
+
+  if (!head.querySelector('link[rel="dns-prefetch"][href="//pix8.agoda.net"]')) {
+    const dnsPrefetch = document.createElement('link');
+    dnsPrefetch.rel = 'dns-prefetch';
+    dnsPrefetch.href = '//pix8.agoda.net';
+    head.appendChild(dnsPrefetch);
+  }
+
+  if (!head.querySelector('link[rel="preconnect"][href="https://pix8.agoda.net"]')) {
+    const preconnect = document.createElement('link');
+    preconnect.rel = 'preconnect';
+    preconnect.href = 'https://pix8.agoda.net';
+    preconnect.crossOrigin = 'anonymous';
+    head.appendChild(preconnect);
+  }
+}
+
+function itemsUseAgodaImages(items = []) {
+  return (Array.isArray(items) ? items : []).some((item) => {
+    const source = String(item?.cover_image_source || '').trim().toLowerCase();
+    const image = String(item?.cover_image || '').trim().toLowerCase();
+    const srcset = String(item?.cover_image_srcset || '').trim().toLowerCase();
+    return source === 'agoda' || image.includes('pix8.agoda.net') || srcset.includes('pix8.agoda.net');
+  });
+}
+
 function unwrapCfImageUrl(src = "") {
   const value = String(src || "").trim();
   if (!value || !value.includes("/cdn-cgi/image/")) return value;
@@ -482,6 +512,10 @@ function buildPostsHeroNav(categories = []) {
       nextOffset: 0,
       total: 0
     });
+
+    if (data?.uses_agoda_images || itemsUseAgodaImages(data?.items)) {
+      ensureAgodaImageConnectionHints();
+    }
 
     const hasHtml = Boolean(data && data.ok && String(data.html || '').trim());
     if (!hasHtml) {
@@ -972,6 +1006,7 @@ function buildPostsHeroNav(categories = []) {
       if (!res.ok) throw new Error('API 오류: ' + res.status);
       const data = await res.json();
       const items = Array.isArray(data?.items) ? data.items : [];
+      if (itemsUseAgodaImages(items)) ensureAgodaImageConnectionHints();
       const pagination = data?.pagination || {};
       const sidebar = data?.sidebar || {};
 
