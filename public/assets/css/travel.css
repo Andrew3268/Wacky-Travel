@@ -19290,7 +19290,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
   display: inline-flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
-  gap: 8px !important;
+  gap: 2px !important;
   min-height: 42px !important;
   margin-left: auto !important;
   padding: 0 !important;
@@ -19336,7 +19336,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 
   body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link{
     min-height: 34px !important;
-    gap: 6px !important;
+    gap: 2px !important;
     font-size: 1.1rem !important;
   }
 
@@ -19355,7 +19355,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 ========================================================= */
 body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link{
   color: #000000 !important;
-  gap: 8px !important;
+  gap: 2px !important;
   background: transparent !important;
   box-shadow: none !important;
   text-decoration: none !important;
@@ -25545,7 +25545,7 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
 @media (max-width: 767px) {
   body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .section-heading .destinations-view-all-link{
     font-size: 0.86rem !important;
-    gap: 5px !important;
+    gap: 2px !important;
   }
 
   body.travel-home-body main.travel-page.travel-home > .container.travel-section.travel-section--destination-hub .destinations-view-all-icon{
@@ -27112,7 +27112,8 @@ body.travel-home-body .home-mood-card__title{
   letter-spacing: -.04em; word-break: keep-all; font-weight: 600;
 }
 body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__title{ font-size: 22px; }
-body.travel-home-body .home-mood-card__desc{
+body.travel-home-body .home-mood-card--featured .home-mood-card__desc,
+body.travel-home-body .home-mood-card:not(.home-mood-card--featured) .home-mood-card__desc{
   margin: 10px 0 0; max-width: 440px; color: #fff !important; font-size: 14px;
   line-height: 1.6; word-break: keep-all; font-weight: 600;
 }
