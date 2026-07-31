@@ -10,7 +10,7 @@
 <link href="/assets/images/favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 
-<link href="/assets/css/app.css?v=20260731-hotel-pick-v1" rel="stylesheet"/>
+<link href="/assets/css/app.css?v=20260731-cover-image-source-v1" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260725-snapshot-scroll-v1" rel="stylesheet"/>
 <meta content="비스테이어블 콘텐츠를 작성하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="글 작성 | Be Stayable" property="og:title"/><meta content="비스테이어블 콘텐츠를 작성하는 관리자 전용 페이지입니다." property="og:description"/><meta content="https://bestayable.com/add.html" property="og:url"/><meta content="https://bestayable.com/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="글 작성 | Be Stayable 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 작성 | Be Stayable" name="twitter:title"/><meta content="비스테이어블 콘텐츠를 작성하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/og-default.png" name="twitter:image"/><meta content="글 작성 | Be Stayable 대표 이미지" name="twitter:image:alt"/></head>
 <body>
@@ -175,9 +175,13 @@
                   <select class="input" id="heroHotelGuestRating">
                     <option value="">평점 선택</option>
                     <option value="6+">6+</option>
+                    <option value="6.5+">6.5+</option>
                     <option value="7+">7+</option>
+                    <option value="7.5+">7.5+</option>
                     <option value="8+">8+</option>
+                    <option value="8.5+">8.5+</option>
                     <option value="9+">9+</option>
+                    <option value="9.5+">9.5+</option>
                   </select>
                 </label>
               </div>
@@ -326,16 +330,42 @@
             </label>
 
 
-            <div class="grid editor-cover-fields">
-              <label>
-                <div class="small">대표 이미지 URL</div>
-                <input class="input" id="cover_image" placeholder="https://..." />
-              </label>
-              <label>
+            <section class="editor-cover-source-card" aria-labelledby="coverImageSourceLegend">
+              <fieldset class="editor-cover-source-selector">
+                <legend class="small" id="coverImageSourceLegend">대표 이미지 출처</legend>
+                <div class="editor-cover-source-options">
+                  <label class="editor-cover-source-option">
+                    <input type="radio" name="coverImageSource" value="r2" checked />
+                    <span>R2 이미지</span>
+                  </label>
+                  <label class="editor-cover-source-option">
+                    <input type="radio" name="coverImageSource" value="agoda" />
+                    <span>아고다 이미지 링크</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="editor-cover-source-panel" id="coverImageR2Panel" data-cover-source-panel="r2">
+                <label>
+                  <div class="small">대표 이미지 URL</div>
+                  <input class="input" id="cover_image" placeholder="https://...r2.dev/hotel.webp" />
+                </label>
+              </div>
+
+              <div class="editor-cover-source-panel" id="coverImageAgodaPanel" data-cover-source-panel="agoda" hidden aria-hidden="true">
+                <label>
+                  <div class="small">아고다 이미지 링크 HTML</div>
+                  <textarea class="input editor-agoda-image-html" id="agoda_image_html" rows="5" placeholder='&lt;a href="https://www.agoda.com/partners/partnersearch.aspx?..." target="_blank"&gt;&lt;img src="//pix8.agoda.net/..." srcset="..." /&gt;&lt;/a&gt;'></textarea>
+                </label>
+                <p class="small editor-agoda-image-help">아고다 파트너스에서 제공한 &lt;a&gt;와 &lt;img&gt; 전체 코드를 붙여 넣으세요. 이미지 주소와 제휴 링크만 안전하게 추출해 저장합니다.</p>
+                <div class="small editor-agoda-image-status" id="agodaImageParseStatus" aria-live="polite"></div>
+              </div>
+
+              <label class="editor-cover-alt-field">
                 <div class="small">대표 이미지 ALT</div>
-                <input class="input" id="cover_image_alt" placeholder="대표 이미지 설명" />
+                <input class="input" id="cover_image_alt" placeholder="호텔명과 공간 특징이 드러나는 이미지 설명" />
               </label>
-            </div>
+            </section>
 
             <div class="card editor-option-card">
               <div style="display:flex; gap:18px; flex-wrap:wrap;">
@@ -762,6 +792,7 @@
   <script src="/assets/js/admin-ui.js" defer></script>
   <script src="/assets/js/nav.js" defer></script>
   <script src="/assets/js/site-search.js" defer></script>
-  <script src="/assets/js/add.js?v=20260731-hotel-pick-v1" defer></script>
+  <script src="/assets/js/cover-image-source.js?v=20260731-cover-source-v1" defer></script>
+  <script src="/assets/js/add.js?v=20260731-cover-source-v1" defer></script>
 </body>
 </html>

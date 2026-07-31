@@ -1,8 +1,9 @@
 import { escapeHtml, jsonld, okHtml, edgeCache, getAdminSession } from "../_utils.js";
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
+import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260731-hotel-pick-v1";
+const POST_RENDER_VERSION = "20260731-cover-image-source-v1";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -39,6 +40,9 @@ async function loadPostRow(db, slug, requestedStatus) {
       summary,
       cover_image,
       cover_image_alt,
+      cover_image_source,
+      cover_image_link_url,
+      cover_image_srcset,
       tags_json,
       content_md,
       faq_md,
@@ -61,12 +65,13 @@ async function loadPostRow(db, slug, requestedStatus) {
   try {
     return await db.prepare(sql).bind(slug, requestedStatus).first();
   } catch (error) {
-    if (!isMissingHotelPickColumnError(error)) throw error;
+    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
     try {
       await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
     } catch (migrationError) {
       if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
     }
+    await ensureCoverImageColumns(db);
     return db.prepare(sql).bind(slug, requestedStatus).first();
   }
 }
@@ -195,9 +200,23 @@ export async function onRequestGet({ params, env, request }) {
       const robotsContent = isDraftPreview
         ? "noindex,nofollow,noarchive,nosnippet"
         : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
-      const versionedCoverImage = appendImageVersion(row.cover_image, row.updated_at);
-      const ogImage = versionedCoverImage || `${origin}/assets/images/logo.png`;
-      const coverImageAltText = String(row.cover_image_alt || `${titleText} 대표 이미지`).trim();
+      const storedCoverData = normalizeCoverImagePayload({
+        cover_image_source: row.cover_image_source,
+        cover_image: row.cover_image,
+        cover_image_alt: row.cover_image_alt,
+        cover_image_link_url: row.cover_image_link_url,
+        cover_image_srcset: row.cover_image_srcset
+      });
+      const safeCoverData = storedCoverData.ok
+        ? storedCoverData
+        : normalizeCoverImagePayload({ cover_image_source: "r2", cover_image: row.cover_image, cover_image_alt: row.cover_image_alt });
+      const coverImageSource = safeCoverData.source;
+      const rawCoverImage = safeCoverData.image;
+      const versionedCoverImage = coverImageSource === "agoda" ? rawCoverImage : appendImageVersion(rawCoverImage, row.updated_at);
+      const coverImageSrcset = coverImageSource === "agoda" ? safeCoverData.srcset : "";
+      const coverImageLinkUrl = coverImageSource === "agoda" ? safeCoverData.link : "";
+      const ogImage = (coverImageSource === "agoda" ? getLargestSrcsetUrl(coverImageSrcset, versionedCoverImage) : versionedCoverImage) || `${origin}/assets/images/logo.png`;
+      const coverImageAltText = String(safeCoverData.alt || `${titleText} 대표 이미지`).trim();
 
       const publishedDate = formatDate(row.published_at);
       const updatedDate = formatDate(row.updated_at);
@@ -305,13 +324,20 @@ export async function onRequestGet({ params, env, request }) {
         : null;
 
       const coverImage = versionedCoverImage
-        ? buildImageAttrs(versionedCoverImage, {
-            widths: [480, 768, 960, 1200],
-            sizes: "(max-width: 900px) 100vw, 900px",
-            fallbackWidth: 960,
-            fit: "cover",
-            quality: 82
-          }, origin)
+        ? (coverImageSource === "agoda"
+          ? {
+              src: versionedCoverImage,
+              srcset: coverImageSrcset,
+              sizes: "(max-width: 900px) 100vw, 900px",
+              attrs: `src="${escapeHtml(versionedCoverImage)}"${coverImageSrcset ? ` srcset="${escapeHtml(coverImageSrcset)}"` : ""} sizes="(max-width: 900px) 100vw, 900px"`
+            }
+          : buildImageAttrs(versionedCoverImage, {
+              widths: [480, 768, 960, 1200],
+              sizes: "(max-width: 900px) 100vw, 900px",
+              fallbackWidth: 960,
+              fit: "cover",
+              quality: 82
+            }, origin))
         : null;
       const coverImagePreload = coverImage
         ? `<link rel="preload" as="image" href="${escapeHtml(coverImage.src)}"${coverImage.srcset ? ` imagesrcset="${escapeHtml(coverImage.srcset)}"` : ""}${coverImage.sizes ? ` imagesizes="${escapeHtml(coverImage.sizes)}"` : ""} fetchpriority="high" />`
@@ -321,7 +347,8 @@ export async function onRequestGet({ params, env, request }) {
         : "/";
       const coverImageHtml = coverImage
         ? `
-        <figure class="post-cover-wrap">
+        <figure class="post-cover-wrap${coverImageSource === "agoda" ? " post-cover-wrap--agoda" : ""}">
+          ${coverImageLinkUrl ? `<a class="post-cover-link" href="${escapeHtml(coverImageLinkUrl)}" target="_blank" rel="sponsored noopener noreferrer" aria-label="${escapeHtml(`${titleText} 아고다 예약 페이지 열기`)}">` : ""}
           <img
             class="post-cover"
             ${coverImage.attrs}
@@ -329,9 +356,10 @@ export async function onRequestGet({ params, env, request }) {
             loading="eager"
             fetchpriority="high"
             decoding="async"
-            width="1200"
-            height="630"
+            width="${coverImageSource === "agoda" ? "960" : "1200"}"
+            height="${coverImageSource === "agoda" ? "720" : "630"}"
           />
+          ${coverImageLinkUrl ? `</a>` : ""}
         </figure>
         `
         : "";
@@ -405,7 +433,7 @@ export async function onRequestGet({ params, env, request }) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260731-hotel-pick-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260731-cover-image-source-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/travel.css?v=20260731-hotel-pick-v1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
@@ -793,7 +821,7 @@ function renderHotelFeatureBadges(hotelHeroData = null) {
 
 function normalizeHotelGuestRatingLabel(value = "") {
   const raw = String(value || "").trim().replace(/^평점\s*/i, "");
-  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  const normalized = raw.match(/^(6(?:\.5)?|7(?:\.5)?|8(?:\.5)?|9(?:\.5)?)\+?$/)?.[1];
   return normalized ? `${normalized}+` : "";
 }
 
@@ -833,7 +861,7 @@ function buildHeroEyebrowItems(row = {}, hotel = null) {
 
 function formatGuestRating(value = "") {
   const raw = String(value || "").trim().replace(/^평점\s*/i, "");
-  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  const normalized = raw.match(/^(6(?:\.5)?|7(?:\.5)?|8(?:\.5)?|9(?:\.5)?)\+?$/)?.[1];
   return normalized ? `투숙객 평점 ${normalized}+` : "";
 }
 
@@ -1343,7 +1371,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260731-hotel-pick-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260731-cover-image-source-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260723PostBreadcrumbIsolatedV1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260723-mobile16-post-fix" />
 </head>

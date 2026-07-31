@@ -11,6 +11,7 @@ import {
   renderHotelPostCard
 } from "./api/destination-posts.js";
 import { DEFAULT_CONTENT_TYPES } from "../lib/travel/travel-settings.js";
+import { ensureCoverImageColumns, isMissingCoverImageColumnError } from "../lib/posts/cover-image.js";
 
 const INDEX_ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 const NOINDEX_FOLLOW = "noindex, follow, noarchive";
@@ -227,12 +228,13 @@ async function loadArchivePostRows(db, query) {
   try {
     return await db.prepare(query.sql).bind(...query.binds).all();
   } catch (error) {
-    if (!isMissingHotelPickColumnError(error)) throw error;
+    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
     try {
       await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
     } catch (migrationError) {
       if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
     }
+    await ensureCoverImageColumns(db);
     return db.prepare(query.sql).bind(...query.binds).all();
   }
 }
@@ -253,7 +255,7 @@ async function loadArchiveData(env, pathname) {
     `).bind(destinationSlug).first() || { slug: destinationSlug, name: destinationSlug, city: destinationSlug };
 
     const postQuery = buildDestinationPostQuery(destination, {
-      selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
+      selectSql: "slug, title, category, summary, cover_image, cover_image_alt, cover_image_source, cover_image_link_url, cover_image_srcset, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
       orderSql: `
         ORDER BY
           CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,

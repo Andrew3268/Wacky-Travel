@@ -1,6 +1,7 @@
 import { escapeHtml, okJson, requireAdmin } from "../_utils.js";
 import { formatDate } from "../../lib/travel/travel-utils.js";
 import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
+import { normalizeCoverImageSource, normalizeCoverImageSrcset, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const DEFAULT_LIMIT = 6;
@@ -24,12 +25,13 @@ async function loadDestinationPostRows(db, postQuery) {
   try {
     return await db.prepare(postQuery.sql).bind(...postQuery.binds).all();
   } catch (error) {
-    if (!isMissingHotelPickColumnError(error)) throw error;
+    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
     try {
       await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
     } catch (migrationError) {
       if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
     }
+    await ensureCoverImageColumns(db);
     return db.prepare(postQuery.sql).bind(...postQuery.binds).all();
   }
 }
@@ -77,7 +79,7 @@ export async function onRequestGet({ env, request }) {
     regionSlug,
     recommendationCategorySlug,
     includeDrafts: wantsDrafts,
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, status, updated_at, published_at",
+    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, cover_image_source, cover_image_link_url, cover_image_srcset, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, status, updated_at, published_at",
     orderSql: `
       ORDER BY
         CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
@@ -114,7 +116,7 @@ export async function onRequestGet({ env, request }) {
     nextOffset,
     hasMore,
     html,
-    items: items.map((post) => ({ slug: post.slug, title: post.title, status: normalizePostStatus(post.status), region_slug: post.region_slug || "", region_name: post.region_name || "", recommendation_category_slug: post.recommendation_category_slug || "", recommendation_category_name: post.recommendation_category_name || "", recommendation_category_description: post.recommendation_category_description || "", hotel_pick_label: normalizeHotelPickLabel(post.hotel_pick_label) }))
+    items: items.map((post) => ({ slug: post.slug, title: post.title, status: normalizePostStatus(post.status), region_slug: post.region_slug || "", region_name: post.region_name || "", recommendation_category_slug: post.recommendation_category_slug || "", recommendation_category_name: post.recommendation_category_name || "", recommendation_category_description: post.recommendation_category_description || "", hotel_pick_label: normalizeHotelPickLabel(post.hotel_pick_label), cover_image_source: normalizeCoverImageSource(post.cover_image_source) }))
   }, { headers: responseHeaders });
 }
 
@@ -466,7 +468,9 @@ export function renderHotelPostCard(post, contentTypes = []) {
     ? `/post/${encodeURIComponent(slug)}/?preview=1`
     : `/post/${encodeURIComponent(slug)}/`;
   const tags = safeTags(post.tags_json).slice(0, 3);
-  const coverImage = appendImageVersion(post.cover_image, post.updated_at);
+  const coverImageSource = normalizeCoverImageSource(post.cover_image_source);
+  const coverImage = coverImageSource === "agoda" ? String(post.cover_image || "").trim() : appendImageVersion(post.cover_image, post.updated_at);
+  const coverImageSrcset = coverImageSource === "agoda" ? normalizeCoverImageSrcset(post.cover_image_srcset) : "";
   const pickLabel = normalizeHotelPickLabel(post.hotel_pick_label);
   const title = getHotelCardTitle(post);
   const meta = getHotelCardMeta(post);
@@ -477,7 +481,7 @@ export function renderHotelPostCard(post, contentTypes = []) {
   const linkLabel = isDraft ? `${title} 초안 미리보기` : `${title} 보기`;
   return `<article class="travel-card hotel-card travel-card--clickable${isDraft ? " travel-card--draft" : ""}" data-region="${escapeHtml(post.region_slug || "")}" data-recommendation-category="${escapeHtml(post.recommendation_category_slug || "")}" data-post-status="${isDraft ? "draft" : "published"}">
     <a class="travel-card__full-link" href="${href}" aria-label="${escapeHtml(linkLabel)}">
-      ${coverImage ? `<figure class="travel-card__media">${pickLabel ? `<span class="travel-card__pick-label">${escapeHtml(pickLabel)}</span>` : ""}<img src="${escapeHtml(coverImage)}" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
+      ${coverImage ? `<figure class="travel-card__media">${pickLabel ? `<span class="travel-card__pick-label">${escapeHtml(pickLabel)}</span>` : ""}<img src="${escapeHtml(coverImage)}"${coverImageSrcset ? ` srcset="${escapeHtml(coverImageSrcset)}"` : ""} sizes="(max-width: 720px) 100vw, 420px" alt="${escapeHtml(post.cover_image_alt || `${post.title} 대표 이미지`)}" loading="lazy" decoding="async" /></figure>` : ""}
       <div class="travel-card__body">
         ${metaHtml ? `<div class="travel-card__meta">${metaHtml}</div>` : ""}
         <h3 class="travel-card__title">${escapeHtml(title)}</h3>

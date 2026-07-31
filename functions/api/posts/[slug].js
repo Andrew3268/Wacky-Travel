@@ -1,5 +1,6 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 import { normalizeContentType } from "../../../lib/travel/travel-settings.js";
+import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../../lib/posts/cover-image.js";
 
 
 function normalizeStatusValue(value = "published") {
@@ -207,6 +208,7 @@ async function ensureHotelColumns(db) {
 }
 
 async function ensurePostRegionColumns(db) {
+  await ensureCoverImageColumns(db);
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN region_slug TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN region_name TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN recommendation_category_slug TEXT DEFAULT ''`).run(); } catch (_) {}
@@ -248,7 +250,7 @@ function normalizeHeroLocationType(value = "") {
 
 function normalizeHeroGuestRating(value = "") {
   const raw = String(value || "").trim().replace(/^평점\s*/i, "");
-  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  const normalized = raw.match(/^(6(?:\.5)?|7(?:\.5)?|8(?:\.5)?|9(?:\.5)?)\+?$/)?.[1];
   return normalized ? `${normalized}+` : "";
 }
 
@@ -399,6 +401,9 @@ export async function onRequestGet({ env, params, request }) {
       summary,
       cover_image,
       cover_image_alt,
+      cover_image_source,
+      cover_image_link_url,
+      cover_image_srcset,
       focus_keyword,
       longtail_keywords_json,
       enable_sidebar_ad,
@@ -474,8 +479,13 @@ export async function onRequestPut({ env, params, request }) {
   const category = String(body.category || "").trim();
   const metaDescription = String(body.meta_description || "").trim();
   const summary = String(body.summary || "").trim();
-  const coverImage = String(body.cover_image || "").trim();
-  const coverImageAlt = String(body.cover_image_alt || "").trim();
+  const coverData = normalizeCoverImagePayload(body);
+  if (!coverData.ok) return okJson({ message: coverData.message }, { status: 400 });
+  const coverImage = coverData.image;
+  const coverImageAlt = coverData.alt;
+  const coverImageSource = coverData.source;
+  const coverImageLinkUrl = coverData.link;
+  const coverImageSrcset = coverData.srcset;
   const focusKeyword = String(body.focus_keyword || "").trim();
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
@@ -576,6 +586,9 @@ export async function onRequestPut({ env, params, request }) {
       summary = ?,
       cover_image = ?,
       cover_image_alt = ?,
+      cover_image_source = ?,
+      cover_image_link_url = ?,
+      cover_image_srcset = ?,
       focus_keyword = ?,
       longtail_keywords_json = ?,
       tags_json = ?,
@@ -607,6 +620,9 @@ export async function onRequestPut({ env, params, request }) {
     summary,
     coverImage,
     coverImageAlt,
+    coverImageSource,
+    coverImageLinkUrl,
+    coverImageSrcset,
     finalFocusKeyword,
     JSON.stringify(finalLongtailKeywords),
     JSON.stringify(tags),

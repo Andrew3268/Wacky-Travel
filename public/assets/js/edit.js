@@ -404,13 +404,34 @@ function formatHeroStarRating(value = "") {
 
 function normalizeHeroGuestRating(value = "") {
   const raw = String(value || "").trim().replace(/^평점\s*/i, "");
-  const normalized = raw.match(/^([6-9])\+?$/)?.[1];
+  const normalized = raw.match(/^(6(?:\.5)?|7(?:\.5)?|8(?:\.5)?|9(?:\.5)?)\+?$/)?.[1];
   return normalized ? `${normalized}+` : "";
 }
 
 function formatHeroGuestRating(value = "") {
   const normalized = normalizeHeroGuestRating(value);
   return normalized;
+}
+
+function collectCoverImageFormData(options = {}) {
+  const utils = window.CoverImageSourceUtils;
+  if (!utils) {
+    const image = sanitizeImageUrlValue($("cover_image")?.value || "");
+    return { ok: true, source: "r2", image, link: "", srcset: "", alt: $("cover_image_alt")?.value.trim() || "" };
+  }
+  return utils.collect(options);
+}
+
+function renderPreviewCoverImage(coverData, altText = "") {
+  if (!coverData?.image) return "";
+  const alt = escapeHtml(altText || "대표 이미지");
+  if (coverData.source === "agoda") {
+    const image = `<img class="preview-cover" src="${escapeHtml(coverData.image)}"${coverData.srcset ? ` srcset="${escapeHtml(coverData.srcset)}"` : ""} alt="${alt}" loading="lazy" decoding="async">`;
+    return coverData.link
+      ? `<a class="preview-cover-link" href="${escapeHtml(coverData.link)}" target="_blank" rel="sponsored noopener noreferrer">${image}</a>`
+      : image;
+  }
+  return `<img class="preview-cover" ${renderOptimizedImageAttrs(coverData.image, { widths: [640, 960, 1200, 1600], sizes: "(max-width: 900px) 100vw, 960px", fallbackWidth: 960, fit: "cover", quality: 85 })} alt="${alt}" loading="lazy">`;
 }
 
 function collectHotelHeroFormData() {
@@ -2343,7 +2364,8 @@ function evaluateSeo() {
   const focusKeyword = $("focusKeyword")?.value.trim() || "";
   const longtailKeywords = parseKeywords($("longtailKeywords")?.value || "");
   const lsiKeywords = parseKeywords($("lsiKeywords")?.value || "");
-  const coverImage = sanitizeImageUrlValue($("cover_image")?.value || "");
+  const coverData = collectCoverImageFormData();
+  const coverImage = coverData.ok ? coverData.image : "";
   const coverImageAlt = $("cover_image_alt")?.value.trim() || "";
 
   const plainContent = stripMarkdown(contentMd);
@@ -3157,7 +3179,8 @@ function renderPreview() {
   const summary = $("summary").value.trim();
   const plainSummary = stripMarkdown(summary);
   const metaDescription = $("meta_description").value.trim();
-  const coverImage = sanitizeImageUrlValue($("cover_image").value);
+  const coverData = collectCoverImageFormData();
+  const coverImage = coverData.ok ? coverData.image : "";
   const coverImageAlt = $("cover_image_alt")?.value.trim() || "";
   const contentMd = stripLsiKeywordsTokenLines($("content_md").value || "");
   const inlineImages = collectInlineImageFormData();
@@ -3192,7 +3215,7 @@ function renderPreview() {
       </section>
 
       <div class="preview-post-card">
-      ${coverImage ? `<img class="preview-cover" ${renderOptimizedImageAttrs(coverImage, { widths: [640, 960, 1200, 1600], sizes: "(max-width: 900px) 100vw, 960px", fallbackWidth: 960, fit: "cover", quality: 85 })} alt="${escapeHtml(coverImageAlt || `${title} 대표 이미지`)}" loading="lazy">` : ""}
+      ${coverImage ? renderPreviewCoverImage(coverData, coverImageAlt || `${title} 대표 이미지`) : ""}
       <header class="preview-article__head">
         <div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
           <div class="row" style="gap:6px;flex-wrap:wrap;">
@@ -3355,8 +3378,12 @@ async function load() {
   renderContentTypeOptions(loadedContentType);
   $("meta_description").value = item.meta_description || "";
   $("summary").value = item.summary || "";
-  $("cover_image").value = sanitizeImageUrlValue(item.cover_image || "");
-  if ($("cover_image_alt")) $("cover_image_alt").value = item.cover_image_alt || "";
+  if (window.CoverImageSourceUtils) {
+    window.CoverImageSourceUtils.apply(item);
+  } else {
+    $("cover_image").value = sanitizeImageUrlValue(item.cover_image || "");
+    if ($("cover_image_alt")) $("cover_image_alt").value = item.cover_image_alt || "";
+  }
   const rawContentMd = item.content_md || "";
   hydrateEditorKeywordFields(item, rawContentMd);
   $("status").value = item.status || "published";
@@ -3424,6 +3451,14 @@ async function save() {
     return;
   }
 
+  const coverData = collectCoverImageFormData({ validate: true });
+  if (!coverData.ok) {
+    statusEl.textContent = coverData.error || "대표 이미지 정보를 확인해 주세요.";
+    if (window.CoverImageSourceUtils?.getSelectedSource() === "agoda") $("agoda_image_html")?.focus();
+    else $("cover_image")?.focus();
+    return;
+  }
+
   const payload = {
     title,
     category: "",
@@ -3441,8 +3476,11 @@ async function save() {
     situation_tags: [],
     meta_description: $("meta_description").value.trim(),
     summary: $("summary").value.trim(),
-    cover_image: sanitizeImageUrlValue($("cover_image").value),
-    cover_image_alt: $("cover_image_alt").value.trim(),
+    cover_image: coverData.image,
+    cover_image_alt: coverData.alt,
+    cover_image_source: coverData.source,
+    cover_image_link_url: coverData.link,
+    cover_image_srcset: coverData.srcset,
     focus_keyword: $("focusKeyword")?.value.trim() || "",
     longtail_keywords: parseKeywords($("longtailKeywords")?.value || ""),
     seo_keywords: {
@@ -3515,7 +3553,7 @@ const inlineImageFieldIds = Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offse
   return [`inlineImage${index}Id`, `inlineImage${index}Alt`, `inlineImage${index}Caption`, `inlineImage${index}Position`, `inlineImage${index}Placement`];
 }).flat();
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelPickCustomText", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelPriceUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
+["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "agoda_image_html", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelPickCustomText", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelPriceUrl", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);
@@ -3539,6 +3577,7 @@ document.querySelectorAll('input[name="heroHotelBadge"]').forEach((input) => {
   input.addEventListener("change", handleRealtimeChange);
 });
 bindHotelPickControls();
+window.CoverImageSourceUtils?.bind(handleRealtimeChange);
 $("addAffiliateItemBtn")?.addEventListener("click", () => { addAffiliateItemCard(); handleRealtimeChange(); });
 document.querySelectorAll("[data-affiliate-remove]").forEach((button) => {
   button.addEventListener("click", () => { removeAffiliateItemCard(Number(button.dataset.affiliateRemove || "0")); handleRealtimeChange(); });
