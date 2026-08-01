@@ -33049,6 +33049,15 @@ body.travel-home-body .home-travel-mood-card--placeholder{
   color: #111;
 }
 
+.wt-purpose-page #hotels a.wt-purpose-hotel-card{
+  text-decoration: none;
+}
+
+.wt-purpose-page #hotels a.wt-purpose-hotel-card:focus-visible{
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+
 .wt-purpose-page #hotels .wt-purpose-hotel-card *,
 .wt-purpose-page #hotels .wt-purpose-hotel-card *::before,
 .wt-purpose-page #hotels .wt-purpose-hotel-card *::after{
