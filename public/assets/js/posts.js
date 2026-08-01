@@ -284,8 +284,9 @@ function buildPostsHeroNav(categories = []) {
 (async function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
-  const hotelHeroButtons = Array.from(document.querySelectorAll('.wt-city-hero__actions a[href="#hotel-posts"]'));
+  const hotelHeroActionGroups = Array.from(document.querySelectorAll('body.travel-city-body .wt-city-hero__actions'));
   const adminOnlySections = Array.from(document.querySelectorAll('#hotel-posts, #travel-contents'));
+  const HOTEL_HERO_BUTTON_SELECTOR = '[data-admin-city-content="hotel-button"], a[href="#hotel-posts"]';
 
   const setAdminSectionsVisible = (visible) => {
     adminOnlySections.forEach((section) => {
@@ -294,43 +295,76 @@ function buildPostsHeroNav(categories = []) {
     });
   };
 
-  const setHotelHeroButtonsVisible = (visible) => {
-    hotelHeroButtons.forEach((button) => {
-      button.hidden = !visible;
-      button.setAttribute('aria-hidden', visible ? 'false' : 'true');
-      if (visible) {
-        button.removeAttribute('tabindex');
-        button.removeAttribute('aria-disabled');
-      } else {
-        button.setAttribute('tabindex', '-1');
-        button.setAttribute('aria-disabled', 'true');
-      }
+  const removeHotelHeroButtons = () => {
+    hotelHeroActionGroups.forEach((group) => {
+      group.querySelectorAll(HOTEL_HERO_BUTTON_SELECTOR).forEach((button) => button.remove());
     });
   };
 
-  const syncHotelHeroButtonsWithSection = (section) => {
-    const targetSection = section || document.getElementById('hotel-posts');
-    const isVisible = Boolean(targetSection && !targetSection.hidden && targetSection.getAttribute('aria-hidden') !== 'true');
-    setHotelHeroButtonsVisible(isVisible);
+  const ensureHotelHeroButtons = () => {
+    hotelHeroActionGroups.forEach((group) => {
+      if (group.querySelector('[data-admin-city-content="hotel-button"]')) return;
+      const button = document.createElement('a');
+      button.className = 'wt-city-button';
+      button.href = '#hotel-posts';
+      button.dataset.adminCityContent = 'hotel-button';
+      button.textContent = '추천 호텔';
+      button.setAttribute('aria-hidden', 'false');
+      group.appendChild(button);
+    });
   };
 
-  // 도시 메인의 미완성 콘텐츠는 관리자 인증이 확인되기 전까지 숨깁니다.
+  const setHotelHeroButtonsVisible = (visible) => {
+    if (visible) ensureHotelHeroButtons();
+    else removeHotelHeroButtons();
+  };
+
+  const fetchFreshAdminState = async () => {
+    const sessionUrl = new URL('/api/admin/session', window.location.origin);
+    sessionUrl.searchParams.set('ts', String(Date.now()));
+    try {
+      const response = await fetch(sessionUrl.toString(), {
+        credentials: 'same-origin',
+        cache: 'no-store',
+        headers: {
+          accept: 'application/json',
+          'cache-control': 'no-cache'
+        }
+      });
+      if (!response.ok) return { authenticated: false };
+      return await response.json();
+    } catch (_) {
+      return { authenticated: false };
+    }
+  };
+
+  const applyFreshAdminVisibility = async () => {
+    // 이전 페이지 상태나 모바일 뒤로가기 캐시에 남은 버튼도 먼저 DOM에서 제거합니다.
+    setAdminSectionsVisible(false);
+    setHotelHeroButtonsVisible(false);
+    const state = await fetchFreshAdminState();
+    const authenticated = Boolean(state && state.authenticated);
+    if (authenticated) {
+      setAdminSectionsVisible(true);
+      setHotelHeroButtonsVisible(true);
+    }
+    return authenticated;
+  };
+
+  // 정적 HTML에는 관리자 버튼을 넣지 않으며, 인증 확인 후에만 동적으로 생성합니다.
   setAdminSectionsVisible(false);
   setHotelHeroButtonsVisible(false);
 
   if (!cityPostRoots.length && !cityTravelRoots.length) return;
 
-  const adminState = await (window.__adminSessionPromise || fetch('/api/admin/session', {
-    credentials: 'same-origin',
-    cache: 'no-store',
-    headers: { accept: 'application/json' }
-  }).then((response) => response.ok ? response.json() : { authenticated: false })
-    .catch(() => ({ authenticated: false })));
-  const isCityAdmin = Boolean(adminState && adminState.authenticated);
-  if (!isCityAdmin) return;
+  // 모바일 브라우저의 뒤로가기 캐시가 관리자 상태의 DOM을 복원하는 경우 다시 검증합니다.
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    void applyFreshAdminVisibility();
+  });
 
-  setAdminSectionsVisible(true);
-  setHotelHeroButtonsVisible(true);
+  const isCityAdmin = await applyFreshAdminVisibility();
+  if (!isCityAdmin) return;
 
   const CITY_ARCHIVES = {
     osaka: {

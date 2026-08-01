@@ -7,44 +7,78 @@ const cityPages = fs.readdirSync(destinationsDir, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => path.join(destinationsDir, entry.name, 'index.html'))
   .filter((file) => fs.existsSync(file))
-  .filter((file) => fs.readFileSync(file, 'utf8').includes('data-admin-city-content="hotel-button"'));
+  .filter((file) => {
+    const html = fs.readFileSync(file, 'utf8');
+    return html.includes('class="travel-city-body') && html.includes('data-city-post-root');
+  });
 
 if (cityPages.length !== 15) {
-  throw new Error(`관리자 전용 추천 호텔 버튼이 있는 도시 메인 페이지가 15개가 아닙니다: ${cityPages.length}`);
+  throw new Error(`도시 메인 페이지가 15개가 아닙니다: ${cityPages.length}`);
 }
 
 for (const file of cityPages) {
   const html = fs.readFileSync(file, 'utf8');
-  const buttonPattern = /<a\b(?=[^>]*data-admin-city-content="hotel-button")(?=[^>]*href="#hotel-posts")(?=[^>]*\shidden(?:="")?)(?=[^>]*aria-hidden="true")[^>]*>추천 호텔<\/a>/;
-  if (!buttonPattern.test(html)) {
-    throw new Error(`초기 비노출 속성이 누락된 도시 버튼: ${path.relative(root, file)}`);
+  if (!html.includes('class="wt-city-hero__actions"')) {
+    throw new Error(`도시 히어로 액션 영역이 없습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/css/travel.css?v=20260731-admin-hero-mobile-v1')) {
+  if (/data-admin-city-content="hotel-button"|href="#hotel-posts"[^>]*>추천 호텔</.test(html)) {
+    throw new Error(`비로그인 정적 HTML에 추천 호텔 버튼이 남아 있습니다: ${path.relative(root, file)}`);
+  }
+  if (!html.includes('/assets/js/posts.js?v=20260731AdminHeroRuntimeV2')) {
+    throw new Error(`관리자 버튼 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
+  }
+  if (!html.includes('/assets/css/travel.css?v=20260731-admin-hero-mobile-v2')) {
     throw new Error(`도시 CSS 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
 }
 
 const css = fs.readFileSync(path.join(root, 'public', 'assets', 'css', 'travel.css'), 'utf8');
-const safeMobileRule = /@media\s*\(max-width:\s*767px\)[\s\S]*?body\.travel-city-body \.wt-city-hero__actions \.wt-city-button:not\(\[hidden\]\)\s*\{[\s\S]*?display:\s*inline-flex\s*!important;/;
-if (!safeMobileRule.test(css)) {
-  throw new Error('모바일 버튼 표시 규칙이 :not([hidden]) 상태로 제한되지 않았습니다.');
-}
-
-const unsafeRule = /body\.travel-city-body \.wt-city-hero__actions \.wt-city-button\s*\{\s*display:\s*inline-flex\s*!important;/;
-if (unsafeRule.test(css)) {
-  throw new Error('hidden 속성을 덮어쓰는 기존 모바일 display 규칙이 남아 있습니다.');
+for (const required of [
+  'BESTAYABLE_CITY_ADMIN_HERO_BUTTON_FAIL_CLOSED_V2',
+  'body.travel-city-body .wt-city-hero__actions [data-admin-city-content="hotel-button"][hidden]',
+  'body.travel-city-body .wt-city-hero__actions a[href="#hotel-posts"][hidden]',
+  'display: none !important;'
+]) {
+  if (!css.includes(required)) {
+    throw new Error(`관리자 버튼 방어 CSS가 누락되었습니다: ${required}`);
+  }
 }
 
 const postsJs = fs.readFileSync(path.join(root, 'public', 'assets', 'js', 'posts.js'), 'utf8');
 for (const required of [
-  'setHotelHeroButtonsVisible(false);',
-  'const isCityAdmin = Boolean(adminState && adminState.authenticated);',
-  'if (!isCityAdmin) return;',
-  'setHotelHeroButtonsVisible(true);'
+  'const removeHotelHeroButtons = () =>',
+  'const ensureHotelHeroButtons = () =>',
+  "button.dataset.adminCityContent = 'hotel-button';",
+  "button.textContent = '추천 호텔';",
+  "sessionUrl.searchParams.set('ts', String(Date.now()));",
+  "cache: 'no-store'",
+  'const applyFreshAdminVisibility = async () =>',
+  "window.addEventListener('pageshow', (event) =>",
+  'if (!event.persisted) return;',
+  'const isCityAdmin = await applyFreshAdminVisibility();',
+  'if (!isCityAdmin) return;'
 ]) {
   if (!postsJs.includes(required)) {
-    throw new Error(`관리자 인증 기반 버튼 처리 코드가 누락되었습니다: ${required}`);
+    throw new Error(`관리자 인증 후 동적 버튼 생성 코드가 누락되었습니다: ${required}`);
   }
 }
 
-console.log(`도시 메인 관리자 전용 추천 호텔 버튼 검사 통과: ${cityPages.length}개`);
+const cityRuntimeStart = postsJs.indexOf('/* CITY_HOTEL_PICKS_RUNTIME_V5_DRAFT_PREVIEW */');
+const cityRuntimeEnd = postsJs.indexOf('\n(function () {', cityRuntimeStart);
+const cityRuntime = postsJs.slice(cityRuntimeStart, cityRuntimeEnd > cityRuntimeStart ? cityRuntimeEnd : undefined);
+if (cityRuntime.includes('window.__adminSessionPromise')) {
+  throw new Error('도시 관리자 버튼이 캐시될 수 있는 공용 세션 Promise를 사용하고 있습니다.');
+}
+
+const sessionApi = fs.readFileSync(path.join(root, 'functions', 'api', 'admin', 'session.js'), 'utf8');
+for (const required of [
+  '"cache-control": "private, no-store, max-age=0"',
+  '"pragma": "no-cache"',
+  '"vary": "Cookie"'
+]) {
+  if (!sessionApi.includes(required)) {
+    throw new Error(`관리자 세션 API 캐시 차단 헤더가 누락되었습니다: ${required}`);
+  }
+}
+
+console.log(`도시 메인 관리자 전용 추천 호텔 버튼 fail-closed 검사 통과: ${cityPages.length}개`);

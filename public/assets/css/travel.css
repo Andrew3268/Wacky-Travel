@@ -32863,3 +32863,10 @@ body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clicka
     font-size: 13px;
   }
 }
+
+
+/* BESTAYABLE_CITY_ADMIN_HERO_BUTTON_FAIL_CLOSED_V2 */
+body.travel-city-body .wt-city-hero__actions [data-admin-city-content="hotel-button"][hidden],
+body.travel-city-body .wt-city-hero__actions a[href="#hotel-posts"][hidden]{
+  display: none !important;
+}

@@ -10,5 +10,11 @@ export async function onRequestGet({ env, request }) {
     has_admin: adminCount > 0,
     authenticated: !!admin,
     admin: admin ? { email: admin.email } : null
+  }, {
+    headers: {
+      "cache-control": "private, no-store, max-age=0",
+      "pragma": "no-cache",
+      "vary": "Cookie"
+    }
   });
 }

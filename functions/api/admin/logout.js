@@ -9,5 +9,11 @@ export async function onRequestPost({ env, request }) {
       await env.TRAVEL_DB.prepare(`DELETE FROM admin_sessions WHERE token_hash = ?`).bind(tokenHash).run();
     }
   }
-  return okJson({ ok: true }, { headers: { "set-cookie": buildAdminLogoutCookie() } });
+  return okJson({ ok: true }, {
+    headers: {
+      "set-cookie": buildAdminLogoutCookie(),
+      "cache-control": "private, no-store, max-age=0",
+      "pragma": "no-cache"
+    }
+  });
 }
