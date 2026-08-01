@@ -14253,6 +14253,8 @@ main.travel-page{
   background-color: #ffffff !important;
 }
 
+/* 테두리 초기화는 실제로 무테가 필요한 기존 표면만 명시한다.
+   부분 문자열 선택자는 새 카드·배지·패널의 고유 border를 덮어쓰므로 사용하지 않는다. */
 main.travel-page:not(.travel-home) :where(
   .wt-section,
   .wt-city-section,
@@ -14270,20 +14272,12 @@ main.travel-page:not(.travel-home) :where(
   .wt-city-guide-links,
   .wt-survey-wrap,
   .wt-survey-card,
-  [class*="-card"]:not(.wt-ft-line-card),
-  [class*="__card"],
-  [class*="panel"],
-  [class*="banner"],
-  [class*="surface"],
-  [class*="box"],
-  [class*="note"],
-  [class*="notice"],
-  [class*="badge"],
-  [class*="chip"]
+  .destination-tab-panel,
+  .destination-city-card,
+  .destination-city-card__cta,
+  .wt-loading-skeleton-card
 ){
   border: 0 !important;
-  border-color: transparent !important;
-  outline: 0 !important;
 }
 
 main.travel-page :where(.wt-area-tab-list, .wt-city-area-tab-list){
