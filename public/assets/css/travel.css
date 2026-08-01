@@ -32870,3 +32870,155 @@ body.travel-city-body .wt-city-hero__actions [data-admin-city-content="hotel-but
 body.travel-city-body .wt-city-hero__actions a[href="#hotel-posts"][hidden]{
   display: none !important;
 }
+
+/* HOME_TRAVEL_BY_MOOD_ADMIN_SCROLL_V1 */
+body.travel-home-body .travel-section--home-moods{
+  overflow: hidden;
+}
+
+body.travel-home-body .travel-section--home-moods .section-heading{
+  margin-bottom: 24px;
+}
+
+body.travel-home-body .home-travel-mood-scroll{
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #111 transparent;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.travel-home-body .home-travel-mood-scroll:focus-visible{
+  outline: 1px solid #111;
+  outline-offset: 6px;
+}
+
+body.travel-home-body .home-travel-mood-scroll::-webkit-scrollbar{
+  height: 5px;
+}
+
+body.travel-home-body .home-travel-mood-scroll::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+body.travel-home-body .home-travel-mood-scroll::-webkit-scrollbar-thumb{
+  background: #111;
+  border-radius: 0;
+}
+
+body.travel-home-body .home-travel-mood-track{
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: 14px;
+  padding: 0 0 18px;
+}
+
+body.travel-home-body .home-travel-mood-card{
+  position: relative;
+  display: flex;
+  flex: 0 0 292px;
+  min-height: 210px;
+  padding: 22px;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  text-decoration: none;
+  scroll-snap-align: start;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+body.travel-home-body .home-travel-mood-card::after{
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+body.travel-home-body .home-travel-mood-card__index{
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: .12em;
+}
+
+body.travel-home-body .home-travel-mood-card__line{
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 18px 0 auto;
+  background: currentColor;
+}
+
+body.travel-home-body .home-travel-mood-card strong{
+  display: block;
+  max-width: 220px;
+  margin-top: 28px;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -.025em;
+}
+
+body.travel-home-body .home-travel-mood-card__foot{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding-right: 18px;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+body.travel-home-body .home-travel-mood-card--linked{
+  transition: background-color .2s ease, color .2s ease;
+}
+
+body.travel-home-body .home-travel-mood-card--linked:hover,
+body.travel-home-body .home-travel-mood-card--linked:focus-visible{
+  background: #111;
+  color: #fff;
+}
+
+body.travel-home-body .home-travel-mood-card--linked:focus-visible{
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+
+body.travel-home-body .home-travel-mood-card--placeholder{
+  border-color: #9a9a9a;
+  color: #555;
+  cursor: default;
+}
+
+@media (max-width: 767px){
+  body.travel-home-body .home-travel-mood-track{
+    gap: 12px;
+  }
+
+  body.travel-home-body .home-travel-mood-card{
+    flex-basis: min(78vw, 280px);
+    min-height: 196px;
+    padding: 20px;
+  }
+
+  body.travel-home-body .home-travel-mood-card::after{
+    right: 20px;
+    bottom: 20px;
+  }
+
+  body.travel-home-body .home-travel-mood-card strong{
+    font-size: 19px;
+  }
+}
