@@ -160,6 +160,33 @@ body.travel-mood-body{
   min-height: 420px;
 }
 
+.wtm-draft-badge{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,.72);
+  background: rgba(17,17,17,.88);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+}
+
+.wtm-feature--draft{
+  outline: 2px dashed rgba(255,255,255,.72);
+  outline-offset: -2px;
+}
+
+.wtm-hotel-card--draft .wtm-hotel-card__visual{
+  outline: 2px dashed rgba(17,17,17,.62);
+  outline-offset: -2px;
+}
+
 .wtm-feature__image,
 .wtm-hotel-card__image{
   position: absolute;

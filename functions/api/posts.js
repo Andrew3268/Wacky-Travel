@@ -265,6 +265,8 @@ export async function onRequestGet({ env, request }) {
   const admin = await getAdminSession(env, request);
   const allowedStatuses = new Set(["published", "draft", "all"]);
   const requestedStatus = allowedStatuses.has(status) ? status : "published";
+  const includeDraftsIfAdmin = requestedStatus === "published"
+    && ["1", "true", "yes", "on"].includes(String(url.searchParams.get("include_drafts_if_admin") || "").trim().toLowerCase());
   const adminRequested = ["1", "true", "yes"].includes(String(url.searchParams.get("admin") || "").trim().toLowerCase());
   const requiresAdmin = adminRequested || requestedStatus !== "published";
 
@@ -275,7 +277,9 @@ export async function onRequestGet({ env, request }) {
     });
   }
 
-  const safeStatus = admin ? requestedStatus : "published";
+  const safeStatus = includeDraftsIfAdmin
+    ? (admin ? "all" : "published")
+    : (admin ? requestedStatus : "published");
 
   const where = [];
   const binds = [];
@@ -435,9 +439,11 @@ export async function onRequestGet({ env, request }) {
   const total = Number(countRow?.total || 0);
   const totalPages = Math.max(1, Math.ceil(total / perPage));
   const statusMap = new Map((statusRows?.results || []).map((row) => [String(row.status || "published").trim().toLowerCase(), Number(row.count || 0)]));
-  const publicCacheHeaders = !admin && safeStatus === "published"
-    ? { "cache-control": "public, max-age=30, s-maxage=60" }
-    : { "cache-control": "private, no-store" };
+  const publicCacheHeaders = includeDraftsIfAdmin
+    ? { "cache-control": "private, no-store", "vary": "Cookie" }
+    : (!admin && safeStatus === "published"
+      ? { "cache-control": "public, max-age=30, s-maxage=60" }
+      : { "cache-control": "private, no-store" });
 
   return okJson({
     items: itemsRows.results || [],

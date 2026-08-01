@@ -43,7 +43,11 @@
   };
 
   const cityName = (slug = '') => destinationNames[slug] || String(slug || '').replaceAll('-', ' ');
-  const postUrl = (slug = '') => `/post/${encodeURIComponent(slug)}/`;
+  const normalizeStatus = (value = 'published') => String(value || 'published').trim().toLowerCase() === 'draft' ? 'draft' : 'published';
+  const postUrl = (item = {}) => {
+    const base = `/post/${encodeURIComponent(String(item.slug || '').trim())}/`;
+    return normalizeStatus(item.status) === 'draft' ? `${base}?preview=1` : base;
+  };
 
   function normalizePost(item) {
     const moodTags = parseArray(item.mood_tags || item.mood_tags_json);
@@ -58,7 +62,9 @@
       hotel_name_en: String(item.hotel_name_en || '').trim(),
       summary: String(item.summary || item.meta_description || '바다를 가까이 두고 머물기 좋은 호텔입니다.').trim(),
       cover_image: String(item.cover_image || '').trim(),
-      region_name: String(item.region_name || '').trim()
+      region_name: String(item.region_name || '').trim(),
+      status: normalizeStatus(item.status),
+      isDraft: normalizeStatus(item.status) === 'draft'
     };
   }
 
@@ -68,8 +74,9 @@
       ? `<img class="wtm-feature__image" src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || item.title)}" loading="${index === 0 ? 'eager' : 'lazy'}" />`
       : '';
     const tags = [cityName(item.destination_slug), ...item.tags].filter(Boolean).slice(0, 3);
-    return `<a class="wtm-feature${isSmall ? ' wtm-feature--small' : ''}" href="${postUrl(item.slug)}">
+    return `<a class="wtm-feature${isSmall ? ' wtm-feature--small' : ''}${item.isDraft ? ' wtm-feature--draft' : ''}" href="${postUrl(item)}">
       ${image}
+      ${item.isDraft ? '<span class="wtm-draft-badge">초안 미리보기</span>' : ''}
       <div class="wtm-feature__body">
         <span class="wtm-feature__number">${String(index + 1).padStart(2, '0')}</span>
         <h3>${escapeHtml(item.hotel_name)}</h3>
@@ -86,15 +93,15 @@
       ? `<img class="wtm-hotel-card__image" src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.cover_image_alt || item.title)}" loading="lazy" />`
       : '';
     const tags = item.tags.length ? item.tags : ['바다 휴식', '호텔 큐레이션'];
-    return `<article class="wtm-hotel-card" data-city="${escapeHtml(item.destination_slug || 'other')}">
-      <a class="wtm-hotel-card__visual" href="${postUrl(item.slug)}" aria-label="${escapeHtml(item.title)} 리뷰 보기">${image}</a>
+    return `<article class="wtm-hotel-card${item.isDraft ? ' wtm-hotel-card--draft' : ''}" data-city="${escapeHtml(item.destination_slug || 'other')}" data-post-status="${item.isDraft ? 'draft' : 'published'}">
+      <a class="wtm-hotel-card__visual" href="${postUrl(item)}" aria-label="${escapeHtml(item.title)} ${item.isDraft ? '초안 미리보기' : '리뷰 보기'}">${image}${item.isDraft ? '<span class="wtm-draft-badge">초안</span>' : ''}</a>
       <p class="wtm-hotel-card__location">${escapeHtml(location || 'Travel by Mood')}</p>
-      <h3><a href="${postUrl(item.slug)}">${escapeHtml(item.hotel_name)}</a></h3>
+      <h3><a href="${postUrl(item)}">${escapeHtml(item.hotel_name)}</a></h3>
       ${item.hotel_name_en ? `<p class="wtm-hotel-name-en">${escapeHtml(item.hotel_name_en)}</p>` : ''}
       <p class="wtm-hotel-card__reason">${escapeHtml(item.summary)}</p>
       <div class="wtm-hotel-card__tags">${tags.slice(0, 3).map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}</div>
       <p class="wtm-hotel-card__check"><strong>에디터 노트</strong> 객실 전망과 실제 해변 동선은 객실 유형과 호텔 위치에 따라 달라질 수 있습니다.</p>
-      <a class="wtm-hotel-card__link" href="${postUrl(item.slug)}">호텔 리뷰 보기</a>
+      <a class="wtm-hotel-card__link" href="${postUrl(item)}">${item.isDraft ? '초안 미리보기' : '호텔 리뷰 보기'}</a>
     </article>`;
   }
 
@@ -120,12 +127,17 @@
           tab.setAttribute('aria-selected', String(active));
         });
         let visible = 0;
+        let visibleDrafts = 0;
         grid.querySelectorAll('.wtm-hotel-card').forEach(card => {
           const show = selected === 'all' || card.dataset.city === selected;
           card.hidden = !show;
-          if (show) visible += 1;
+          if (show) {
+            visible += 1;
+            if (card.dataset.postStatus === 'draft') visibleDrafts += 1;
+          }
         });
-        resultText.textContent = `${selected === 'all' ? '전체 도시' : cityName(selected)}의 호텔 리뷰 ${visible}개를 보고 있습니다.`;
+        const draftNotice = visibleDrafts ? ` 관리자 테스트용 초안 ${visibleDrafts}개가 포함되어 있습니다.` : '';
+        resultText.textContent = `${selected === 'all' ? '전체 도시' : cityName(selected)}의 호텔 리뷰 ${visible}개를 보고 있습니다.${draftNotice}`;
       });
     });
   }
@@ -134,12 +146,17 @@
     try {
       const params = new URLSearchParams({
         status: 'published',
+        include_drafts_if_admin: '1',
         content_type: 'hotel_intro',
         mood_tag: MOOD_SLUG,
         per_page: '24',
         sort: 'published'
       });
-      const response = await fetch(`/api/posts?${params.toString()}`, { headers: { accept: 'application/json' } });
+      const response = await fetch(`/api/posts?${params.toString()}`, {
+        credentials: 'same-origin',
+        cache: 'no-store',
+        headers: { accept: 'application/json' }
+      });
       if (!response.ok) throw new Error('호텔 리뷰를 불러오지 못했습니다.');
       const payload = await response.json();
       const items = (Array.isArray(payload.items) ? payload.items : [])
@@ -157,7 +174,10 @@
       editorsGrid.innerHTML = items.slice(0, 3).map(featureMarkup).join('');
       grid.innerHTML = items.map(cardMarkup).join('');
       buildTabs(items);
-      resultText.textContent = `전체 도시의 호텔 리뷰 ${items.length}개를 보고 있습니다.`;
+      const draftCount = items.filter(item => item.isDraft).length;
+      resultText.textContent = draftCount
+        ? `전체 도시의 호텔 리뷰 ${items.length}개를 보고 있습니다. 관리자 테스트용 초안 ${draftCount}개가 포함되어 있습니다.`
+        : `전체 도시의 호텔 리뷰 ${items.length}개를 보고 있습니다.`;
     } catch (error) {
       console.error(error);
       grid.innerHTML = `<div class="wtm-empty"><strong>호텔 컬렉션을 불러오지 못했습니다</strong><p>잠시 후 다시 시도해 주세요.</p></div>`;

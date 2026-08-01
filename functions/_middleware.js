@@ -16,6 +16,7 @@ import { ensureCoverImageColumns, isMissingCoverImageColumnError } from "../lib/
 const INDEX_ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 const NOINDEX_FOLLOW = "noindex, follow, noarchive";
 const NOINDEX_PRIVATE = "noindex, nofollow, noarchive, nosnippet";
+const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -193,7 +194,7 @@ async function loadDynamicPageState(env, pathname) {
     const total = await loadOceanRestPostCount(env);
     return {
       archiveData: null,
-      indexable: total === null ? null : total > 0
+      indexable: total !== null && total >= OCEAN_REST_MIN_PUBLISHED_POSTS
     };
   }
 

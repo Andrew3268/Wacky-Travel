@@ -6,6 +6,7 @@ import {
 } from "./api/destination-posts.js";
 
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
+const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
 const ARCHIVE_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/$/;
 
 function xmlEscape(value) {
@@ -126,7 +127,7 @@ function collectConditionalRouteAvailability(posts = [], destinations = []) {
 
   return {
     availableArchiveRoutes,
-    oceanRestAvailable: posts.some(isOceanRestPost)
+    oceanRestAvailable: posts.filter(isOceanRestPost).length >= OCEAN_REST_MIN_PUBLISHED_POSTS
   };
 }
 
