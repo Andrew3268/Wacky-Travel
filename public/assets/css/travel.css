@@ -14270,7 +14270,7 @@ main.travel-page:not(.travel-home) :where(
   .wt-city-guide-links,
   .wt-survey-wrap,
   .wt-survey-card,
-  [class*="-card"],
+  [class*="-card"]:not(.wt-ft-line-card),
   [class*="__card"],
   [class*="panel"],
   [class*="banner"],
