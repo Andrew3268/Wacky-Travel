@@ -234,7 +234,6 @@ function isBlockedSingleSearchKeyword(value = "") {
 }
 
 export async function onRequestGet({ env, request }) {
-  await ensurePostRegionColumns(env.TRAVEL_DB);
   const url = new URL(request.url);
   const status = String(url.searchParams.get("status") || "published").trim().toLowerCase();
   const category = String(url.searchParams.get("category") || "").trim();
@@ -396,19 +395,6 @@ export async function onRequestGet({ env, request }) {
   const baseBind = [...binds];
   const statusCountWhereSql = admin ? "" : whereSql;
   const statusCountBinds = admin ? [] : [...binds];
-  await env.TRAVEL_DB.prepare(`
-    CREATE TABLE IF NOT EXISTS site_settings (
-      key TEXT PRIMARY KEY,
-      value TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    )
-  `).run();
-
-  await env.TRAVEL_DB.prepare(`
-    INSERT OR IGNORE INTO site_settings (key, value, updated_at)
-    VALUES ('index_sidebar_ad_enabled', '0', ?)
-  `).bind(new Date().toISOString()).run();
-
   const [itemsRows, countRow, categoryRows, popularRows, statusRows, settingsRows] = await Promise.all([
     env.TRAVEL_DB.prepare(itemsSql).bind(...baseBind, perPage, offset).all(),
     env.TRAVEL_DB.prepare(countSql).bind(...binds).first(),

@@ -198,7 +198,7 @@
 
       const fetchSettings = async () => {
         try {
-          const response = await fetch('/api/travel-settings?ts=' + Date.now(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          const response = await fetch('/api/travel-settings', { headers: { accept: 'application/json' } });
           if (!response.ok) return [];
           const json = await response.json();
           return Array.isArray(json.regions)
@@ -297,7 +297,7 @@
       const fetchJson = async (offset = 0) => {
         const params = new URLSearchParams({ destination, type, offset: String(offset), limit: String(limit) });
         try {
-          const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' }, cache: 'no-store' });
+          const response = await fetch('/api/destination-posts?' + params.toString(), { headers: { accept: 'application/json' } });
           if (!response.ok) return { ok: false, html: '', hasMore: false, nextOffset: offset, total: 0 };
           const data = await response.json();
           if (data?.uses_agoda_images) ensureAgodaImageConnectionHints();
@@ -422,10 +422,33 @@
       });
 
       const init = async () => {
+        const hasServerRenderedArchive = grid?.dataset.ssrReady === 'true';
+        if (hasServerRenderedArchive && filterWrap) {
+          const renderedRegionItems = Array.from(filterWrap.querySelectorAll('[data-region-filter-value]'))
+            .map((button) => ({
+              slug: String(button.dataset.regionFilterValue || '').trim(),
+              name: String(button.textContent || '').trim()
+            }))
+            .filter((item) => item.slug && item.name);
+          if (renderedRegionItems.length) regionItems = renderedRegionItems;
+        }
+
         const requestedRegion = getRegionFromUrl();
         activeRegion = resolveRegion(requestedRegion);
         renderRegionFilter();
         centerActiveRegionFilter();
+
+        if (hasServerRenderedArchive) {
+          hasLoadedPosts = true;
+          allPostsTotal = getCards().length;
+          grid.setAttribute('aria-busy', 'false');
+          if (grid.querySelector('img[src*="pix8.agoda.net"], img[srcset*="pix8.agoda.net"]')) {
+            ensureAgodaImageConnectionHints();
+          }
+          if (requestedRegion && requestedRegion !== activeRegion) updateRegionUrl('', true);
+          applyRegionFilter(activeRegion, { updateUrl: false });
+          return;
+        }
 
         const fetchedRegionItems = await fetchSettings();
         if (fetchedRegionItems.length) regionItems = fetchedRegionItems;

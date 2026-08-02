@@ -161,7 +161,7 @@ for (const file of htmlFiles) {
     if (!href || href.includes("${") || /^(?:#|mailto:|tel:|javascript:|data:)/i.test(href) || /^https?:\/\//i.test(href)) continue;
     const resolved = new URL(href, `https://audit.invalid${route}`);
     const pathname = resolved.pathname;
-    if (pathname.startsWith("/post/") || pathname.startsWith("/countries/") || pathname.startsWith("/api/")) continue;
+    if (pathname.startsWith("/post/") || pathname.startsWith("/api/")) continue;
     try { await fs.access(localFileFor(pathname)); }
     catch { errors.push(`${route}: 존재하지 않는 내부 링크 ${href}`); }
   }

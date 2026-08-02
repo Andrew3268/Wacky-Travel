@@ -10,7 +10,6 @@ const outputFile = path.join(root, "public", "_routes.json");
 const include = [
   "/api/*",
   "/post/*",
-  "/countries/*",
   "/img/*",
   "/robots.txt",
   "/sitemap.xml"

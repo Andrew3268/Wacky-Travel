@@ -3,7 +3,6 @@
   "include": [
     "/api/*",
     "/post/*",
-    "/countries/*",
     "/img/*",
     "/robots.txt",
     "/sitemap.xml",

@@ -6,12 +6,10 @@ import {
   normalizeSiteOrigin
 } from "../lib/seo/site-url.js";
 import {
-  buildDestinationPostQuery,
   getHotelPostGroup,
   renderHotelPostCard
 } from "./api/destination-posts.js";
 import { DEFAULT_CONTENT_TYPES } from "../lib/travel/travel-settings.js";
-import { ensureCoverImageColumns, isMissingCoverImageColumnError } from "../lib/posts/cover-image.js";
 
 const INDEX_ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 const NOINDEX_FOLLOW = "noindex, follow, noarchive";
@@ -80,6 +78,12 @@ export async function onRequest(context) {
       .on("[data-archive-grid]", new ArchiveGridHandler(archiveData))
       .on("[data-archive-count]", new ArchiveCountHandler(archiveData))
       .on(".wt-city-archive-summary", new ArchiveSummaryHandler(archiveData));
+
+    if (archiveData.type === "hotel_intro") {
+      rewriter.on("[data-region-filter]", new ArchiveFilterHandler(archiveData, "region"));
+    } else {
+      rewriter.on("[data-category-filter]", new ArchiveFilterHandler(archiveData, "category"));
+    }
   }
 
   return rewriter.transform(new Response(upstream.body, {
@@ -221,65 +225,126 @@ async function loadOceanRestPostCount(env) {
   }
 }
 
-function isMissingHotelPickColumnError(error) {
-  return /no such column:\s*(?:posts\.)?hotel_pick_label/i.test(String(error?.message || error || ""));
-}
-
-async function loadArchivePostRows(db, query) {
-  try {
-    return await db.prepare(query.sql).bind(...query.binds).all();
-  } catch (error) {
-    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
-    try {
-      await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
-    } catch (migrationError) {
-      if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
-    }
-    await ensureCoverImageColumns(db);
-    return db.prepare(query.sql).bind(...query.binds).all();
-  }
-}
-
 async function loadArchiveData(env, pathname) {
   const match = String(pathname || "").match(/^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/?$/);
   if (!match || !env?.TRAVEL_DB) return null;
 
-  const destinationSlug = decodeURIComponent(match[1]);
+  const destinationSlug = decodeURIComponent(match[1]).trim().toLowerCase();
   const requestedType = match[2] === "hotels" ? "hotel_intro" : "top5_series";
+  const destinationStatement = env.TRAVEL_DB.prepare(`
+    SELECT slug, name, city
+    FROM destinations
+    WHERE slug = ? AND status = 'published'
+    LIMIT 1
+  `).bind(destinationSlug);
+  const postsStatement = env.TRAVEL_DB.prepare(`
+    SELECT
+      p.slug,
+      p.title,
+      p.category,
+      p.summary,
+      p.cover_image,
+      p.cover_image_alt,
+      p.cover_image_source,
+      p.cover_image_link_url,
+      p.cover_image_srcset,
+      p.tags_json,
+      p.content_type,
+      p.destination_slug,
+      p.region_slug,
+      p.region_name,
+      p.recommendation_category_slug,
+      p.recommendation_category_name,
+      p.recommendation_category_description,
+      p.hotel_pick_label,
+      p.hotel_slug,
+      h.name AS hotel_name,
+      h.area AS hotel_location_type,
+      h.star_rating AS hotel_star_rating,
+      p.updated_at,
+      p.published_at
+    FROM posts p
+    LEFT JOIN hotels h ON h.slug = p.hotel_slug
+    WHERE p.destination_slug = ?
+      AND p.status = 'published'
+    ORDER BY p.updated_at DESC, p.published_at DESC
+    LIMIT 240
+  `).bind(destinationSlug);
+  const filtersStatement = requestedType === "hotel_intro"
+    ? env.TRAVEL_DB.prepare(`
+        SELECT slug, name
+        FROM regions
+        WHERE destination_slug = ? AND is_active = 1
+        ORDER BY sort_order ASC, name COLLATE NOCASE ASC
+        LIMIT 100
+      `).bind(destinationSlug)
+    : env.TRAVEL_DB.prepare(`
+        SELECT slug, name, description
+        FROM recommendation_categories
+        WHERE is_active = 1
+          AND TRIM(COALESCE(destination_slug, '')) = ''
+        ORDER BY sort_order ASC, name COLLATE NOCASE ASC
+        LIMIT 100
+      `);
 
   try {
-    const destination = await env.TRAVEL_DB.prepare(`
-      SELECT slug, name, city
-      FROM destinations
-      WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
-      LIMIT 1
-    `).bind(destinationSlug).first() || { slug: destinationSlug, name: destinationSlug, city: destinationSlug };
+    let destinationRows;
+    let postRows;
+    let filterRows;
+    if (typeof env.TRAVEL_DB.batch === "function") {
+      [destinationRows, postRows, filterRows] = await env.TRAVEL_DB.batch([
+        destinationStatement,
+        postsStatement,
+        filtersStatement
+      ]);
+    } else {
+      [destinationRows, postRows, filterRows] = await Promise.all([
+        destinationStatement.all(),
+        postsStatement.all(),
+        filtersStatement.all()
+      ]);
+    }
 
-    const postQuery = buildDestinationPostQuery(destination, {
-      selectSql: "slug, title, category, summary, cover_image, cover_image_alt, cover_image_source, cover_image_link_url, cover_image_srcset, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, updated_at, published_at",
-      orderSql: `
-        ORDER BY
-          CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
-          updated_at DESC,
-          published_at DESC
-        LIMIT 240
-      `,
-      orderBinds: [destinationSlug]
-    });
-
-    const rows = await loadArchivePostRows(env.TRAVEL_DB, postQuery);
-    const items = (rows.results || [])
+    const destination = destinationRows?.results?.[0]
+      || { slug: destinationSlug, name: destinationSlug, city: destinationSlug };
+    const items = (postRows?.results || [])
       .filter((post) => getHotelPostGroup(post) === requestedType)
       .slice(0, 60);
+    const filters = (filterRows?.results || [])
+      .map((item) => ({
+        slug: String(item.slug || "").trim(),
+        name: String(item.name || item.slug || "").trim(),
+        description: String(item.description || "").trim()
+      }))
+      .filter((item) => item.slug && item.name);
 
     return {
       type: requestedType,
       destinationName: String(destination.name || destination.city || destinationSlug),
       total: items.length,
+      filters,
       html: items.map((post) => renderHotelPostCard(post, DEFAULT_CONTENT_TYPES)).join("")
     };
   } catch {
     return null;
+  }
+}
+
+
+class ArchiveFilterHandler {
+  constructor(data, mode) {
+    this.data = data;
+    this.mode = mode;
+  }
+  element(element) {
+    const filters = Array.isArray(this.data.filters) ? this.data.filters : [];
+    if (!filters.length) return;
+    const attribute = this.mode === "region" ? "data-region-filter-value" : "data-category-filter-value";
+    const buttons = [
+      `<button class="wt-region-filter__button is-active" type="button" ${attribute}="" aria-pressed="true">전체</button>`,
+      ...filters.map((item) => `<button class="wt-region-filter__button" type="button" ${attribute}="${escapeHtml(item.slug)}" aria-pressed="false">${escapeHtml(item.name)}</button>`)
+    ];
+    element.setInnerContent(buttons.join(""), { html: true });
   }
 }
 
