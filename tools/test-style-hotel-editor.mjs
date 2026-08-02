@@ -15,9 +15,10 @@ for (const file of ["public/add.html", "public/edit.html"]) {
   assert.match(html, /id="styleHotelMarkdownEditor"/);
   assert.match(html, /id="styleHotelSetList"/);
   assert.match(html, /id="styleHotelEndingMarkdown"/);
-  assert.match(html, /style-hotel-editor\.js\?v=20260802-style-hotel-editor-v1/);
+  assert.match(html, /style-hotel-editor\.js\?v=20260802-style-hotel-editor-v2/);
   assert.equal((html.match(/id="content_md"/g) || []).length, 1, `${file}: content_md must remain a single backing field`);
-  assert.match(html, /본문 이미지 추가/, `${file}: existing inline-image section must remain`);
+  assert.match(html, /id="inlineImageEditorCard"[^>]*class="card editor-option-card inline-image-box"|class="card editor-option-card inline-image-box"[^>]*id="inlineImageEditorCard"/, `${file}: inline-image card must remain addressable`);
+  assert.match(html, /본문 이미지 추가/, `${file}: existing inline-image section must remain for other content types`);
 }
 
 const editorCode = read("public/assets/js/style-hotel-editor.js");
@@ -32,6 +33,16 @@ const sandbox = {
 };
 vm.createContext(sandbox);
 vm.runInContext(editorCode, sandbox);
+
+assert.match(editorCode, /function syncInlineImageBoxVisibility\(hidden\)/);
+assert.match(editorCode, /syncInlineImageBoxVisibility\(nextActive\)/);
+
+const editJs = read("public/assets/js/edit.js");
+const settingsLoadIndex = editJs.indexOf("await loadTravelSettings(loadedDestinationSlug");
+const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
+assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
+assert.match(read("public/edit.html"), /edit\.js\?v=20260802-style-hotel-edit-v2/);
+
 const api = sandbox.window.StyleHotelEditor;
 assert.ok(api, "StyleHotelEditor API missing");
 assert.equal(api.MAX_SETS, 7);

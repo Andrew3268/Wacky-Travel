@@ -415,6 +415,13 @@
     syncVisibility(contentType);
   }
 
+  function syncInlineImageBoxVisibility(hidden) {
+    const box = $("inlineImageEditorCard") || document.querySelector?.(".card.editor-option-card.inline-image-box");
+    if (!box) return;
+    box.hidden = Boolean(hidden);
+    box.setAttribute("aria-hidden", hidden ? "true" : "false");
+  }
+
   function syncVisibility(explicitType) {
     const contentType = explicitType !== undefined ? explicitType : $("content_type")?.value;
     const nextActive = isTop5Type(contentType);
@@ -456,6 +463,7 @@
       structured.hidden = !nextActive;
       structured.setAttribute("aria-hidden", nextActive ? "false" : "true");
     }
+    syncInlineImageBoxVisibility(nextActive);
     updateCounter();
   }
 

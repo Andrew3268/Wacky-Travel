@@ -3697,8 +3697,8 @@ async function load() {
   applyAffiliateFormData(parseAffiliateMetaFromMarkdown(rawContentMd));
   applyAffiliateCtaFormData(parseAffiliateCtaMetaFromMarkdown(rawContentMd));
   applyLsiKeywordsFromMarkdown(rawContentMd);
-  $("content_md").value = stripLsiKeywordsTokenLines(stripAffiliateCtaTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(rawContentMd))));
-  window.StyleHotelEditor?.loadFromContent($("content_md").value, loadedContentType);
+  const loadedEditorContentMd = stripLsiKeywordsTokenLines(stripAffiliateCtaTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(rawContentMd))));
+  $("content_md").value = loadedEditorContentMd;
   if ($("faq_md")) $("faq_md").value = item.faq_md || "";
   applyHotelHeroFormData(item.hotel_hero || {});
   applyHotelPickFormData({ price_level: item.hotel_pick_label || "" });
@@ -3714,6 +3714,10 @@ async function load() {
   }
 
   await loadTravelSettings(loadedDestinationSlug, loadedContentType, loadedRegionSlug, loadedRecommendationCategorySlug);
+  // 여행 설정이 content_type 옵션을 최종 렌더링한 뒤 기존 호텔 세트를 복원해야
+  // edit 페이지에서도 이미지·본문·버튼·마무리 입력값이 정확히 표시된다.
+  window.StyleHotelEditor?.loadFromContent(loadedEditorContentMd, loadedContentType);
+  window.StyleHotelEditor?.syncVisibility(loadedContentType);
   updateSlugPreview();
   syncTocControlsFromContent();
   updateAllCounts();
