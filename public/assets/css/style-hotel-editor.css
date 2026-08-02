@@ -112,6 +112,10 @@
   display:none;
 }
 
+.style-hotel-set-card [data-alt-field][hidden]{
+  display:none;
+}
+
 .style-hotel-markdown{
   min-height:260px;
 }

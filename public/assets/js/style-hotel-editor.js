@@ -45,7 +45,7 @@
       agodaHtml: "",
       alt: "",
       markdown: "",
-      buttonText: "예약 가능 객실 확인",
+      buttonText: "잔여 객실 확인",
       buttonLink: ""
     };
   }
@@ -70,7 +70,7 @@
     const attrs = parseAttrs(match[1]);
     return {
       index: Math.max(1, Math.min(MAX_SETS, parseInt(attrs.index || "1", 10) || 1)),
-      buttonText: decode(attrs.text || attrs.button || ""),
+      buttonText: decode(attrs.text || attrs.button || "") || "잔여 객실 확인",
       buttonLink: decode(attrs.link || attrs.url || "")
     };
   }
@@ -278,7 +278,7 @@
           <div class="small editor-agoda-image-status" data-field="agodaStatus" aria-live="polite"></div>
         </div>
 
-        <label>
+        <label data-alt-field ${source === "agoda" ? 'hidden aria-hidden="true"' : 'aria-hidden="false"'}>
           <span class="small">이미지 ALT</span>
           <input class="input" data-field="alt" value="${escapeHtml(item.alt)}" placeholder="호텔명과 특징이 드러나는 이미지 설명">
         </label>
@@ -291,7 +291,7 @@
         <div class="grid grid--2 style-hotel-button-fields">
           <label>
             <span class="small">본문 버튼명</span>
-            <input class="input" data-field="buttonText" value="${escapeHtml(item.buttonText)}" placeholder="예약 가능 객실 확인">
+            <input class="input" data-field="buttonText" value="${escapeHtml(item.buttonText || "잔여 객실 확인")}" placeholder="잔여 객실 확인">
           </label>
           <label>
             <span class="small">본문 버튼 링크</span>
@@ -325,6 +325,12 @@
     card.querySelectorAll("[data-source-panel]").forEach((panel) => {
       panel.hidden = panel.dataset.sourcePanel !== source;
     });
+    const altField = card.querySelector("[data-alt-field]");
+    if (altField) {
+      const hideAlt = source === "agoda";
+      altField.hidden = hideAlt;
+      altField.setAttribute("aria-hidden", hideAlt ? "true" : "false");
+    }
   }
 
   function getCountSource() {
@@ -358,7 +364,7 @@
         item.image = utils?.normalizeR2ImageUrl ? utils.normalizeR2ImageUrl(item.image) : item.image;
         if (!item.image) return { ok: false, error: `호텔 ${index + 1}: R2 이미지 URL을 입력해 주세요.`, focus: card?.querySelector('[data-field="r2Image"]') };
       }
-      if (!item.alt) return { ok: false, error: `호텔 ${index + 1}: 이미지 ALT를 입력해 주세요.`, focus: card?.querySelector('[data-field="alt"]') };
+      if (item.source !== "agoda" && !item.alt) return { ok: false, error: `호텔 ${index + 1}: 이미지 ALT를 입력해 주세요.`, focus: card?.querySelector('[data-field="alt"]') };
       if (!item.markdown.trim()) return { ok: false, error: `호텔 ${index + 1}: 마크다운 본문을 입력해 주세요.`, focus: card?.querySelector('[data-field="markdown"]') };
       if (!item.buttonText) return { ok: false, error: `호텔 ${index + 1}: 본문 버튼명을 입력해 주세요.`, focus: card?.querySelector('[data-field="buttonText"]') };
       const normalizedButtonLink = window.CoverImageSourceUtils?.normalizeHttpsUrl
