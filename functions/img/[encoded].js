@@ -43,7 +43,8 @@ function buildCachedImageResponse(upstreamResponse) {
   });
 }
 
-export async function onRequestGet({ params, request }) {
+export async function onRequestGet(context) {
+  const { params, request } = context;
   const encoded = String(params.encoded || "").trim();
   if (!encoded) return new Response("Missing image", { status: 400 });
 
@@ -89,6 +90,11 @@ export async function onRequestGet({ params, request }) {
 
   const response = buildCachedImageResponse(upstream);
   response.headers.set("x-image-proxy-cache", "MISS");
-  await cache.put(cacheKey, response.clone());
+  const cacheWrite = cache.put(cacheKey, response.clone()).catch(() => undefined);
+  if (typeof context.waitUntil === "function") {
+    context.waitUntil(cacheWrite);
+  } else {
+    await cacheWrite;
+  }
   return response;
 }

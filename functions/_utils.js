@@ -25,7 +25,7 @@ export function okHtml(html, init = {}) {
   });
 }
 
-export async function edgeCache({ request, cacheKeyUrl, ttlSeconds = 300, buildResponse }) {
+export async function edgeCache({ request, cacheKeyUrl, ttlSeconds = 300, buildResponse, waitUntil }) {
   const cache = caches.default;
   const cacheKey = new Request(cacheKeyUrl, request);
 
@@ -43,7 +43,12 @@ export async function edgeCache({ request, cacheKeyUrl, ttlSeconds = 300, buildR
   }
   res.headers.set("x-blog-cache", "MISS");
   res.headers.set("x-blog-cache-key", new URL(cacheKeyUrl).pathname + new URL(cacheKeyUrl).search);
-  await cache.put(cacheKey, res.clone());
+  const cacheWrite = cache.put(cacheKey, res.clone()).catch(() => undefined);
+  if (typeof waitUntil === "function") {
+    waitUntil(cacheWrite);
+  } else {
+    await cacheWrite;
+  }
   return res;
 }
 

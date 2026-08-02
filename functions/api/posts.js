@@ -25,13 +25,6 @@ function normalizeStatusValue(value = "published") {
   return "published";
 }
 
-function normalizedStatusSql() {
-  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, ''), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
-  return `CASE
-    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
-    ELSE 'published'
-  END`;
-}
 
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
@@ -261,13 +254,14 @@ export async function onRequestGet({ env, request }) {
     }, { headers: { "cache-control": "no-store" } });
   }
 
-  const admin = await getAdminSession(env, request);
   const allowedStatuses = new Set(["published", "draft", "all"]);
   const requestedStatus = allowedStatuses.has(status) ? status : "published";
   const includeDraftsIfAdmin = requestedStatus === "published"
     && ["1", "true", "yes", "on"].includes(String(url.searchParams.get("include_drafts_if_admin") || "").trim().toLowerCase());
   const adminRequested = ["1", "true", "yes"].includes(String(url.searchParams.get("admin") || "").trim().toLowerCase());
   const requiresAdmin = adminRequested || requestedStatus !== "published";
+  const shouldCheckAdmin = requiresAdmin || includeDraftsIfAdmin;
+  const admin = shouldCheckAdmin ? await getAdminSession(env, request) : null;
 
   if (requiresAdmin && !admin) {
     return okJson({ message: "관리자 로그인이 필요합니다." }, {
@@ -284,7 +278,7 @@ export async function onRequestGet({ env, request }) {
   const binds = [];
 
   if (safeStatus !== "all") {
-    where.push(`${normalizedStatusSql()} = ?`);
+    where.push("status = ?");
     binds.push(safeStatus);
   }
 
@@ -380,7 +374,7 @@ export async function onRequestGet({ env, request }) {
       (SELECT h.name_en FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name_en,
       affiliate_enabled,
       search_intent,
-      ${normalizedStatusSql()} AS status,
+      status,
       view_count,
       published_at,
       updated_at
@@ -414,10 +408,10 @@ export async function onRequestGet({ env, request }) {
       LIMIT 10
     `).bind(...binds).all(),
     env.TRAVEL_DB.prepare(`
-      SELECT ${normalizedStatusSql()} AS status, COUNT(*) AS count
+      SELECT status, COUNT(*) AS count
       FROM posts
       ${statusCountWhereSql}
-      GROUP BY ${normalizedStatusSql()}
+      GROUP BY status
     `).bind(...statusCountBinds).all(),
     env.TRAVEL_DB.prepare(`SELECT key, value FROM site_settings WHERE key = 'index_sidebar_ad_enabled'`).all()
   ]);

@@ -1,12 +1,5 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 
-function normalizeStatusSql() {
-  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, ''), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
-  return `CASE
-    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
-    ELSE 'published'
-  END`;
-}
 
 async function ensureSiteSettings(db) {
   await db.prepare(`
@@ -33,27 +26,25 @@ export async function onRequestGet({ env, request }) {
   }
 
   await ensureSiteSettings(env.TRAVEL_DB);
-  const statusExpr = normalizeStatusSql();
-
   const [countsRow, statusRows, popularRows, recentRows, settingsRows] = await Promise.all([
     env.TRAVEL_DB.prepare(`
       SELECT COUNT(*) AS total
       FROM posts
     `).first(),
     env.TRAVEL_DB.prepare(`
-      SELECT ${statusExpr} AS status_key, COUNT(*) AS count
+      SELECT status AS status_key, COUNT(*) AS count
       FROM posts
-      GROUP BY ${statusExpr}
+      GROUP BY status
     `).all(),
     env.TRAVEL_DB.prepare(`
       SELECT slug, title, COALESCE(view_count, 0) AS view_count, updated_at, published_at
       FROM posts
-      WHERE ${statusExpr} = 'published'
+      WHERE status = 'published'
       ORDER BY COALESCE(view_count, 0) DESC, updated_at DESC, published_at DESC
       LIMIT 10
     `).all(),
     env.TRAVEL_DB.prepare(`
-      SELECT slug, title, ${statusExpr} AS status, updated_at, published_at
+      SELECT slug, title, status, updated_at, published_at
       FROM posts
       ORDER BY updated_at DESC, published_at DESC
       LIMIT 5

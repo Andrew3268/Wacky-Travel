@@ -59,7 +59,7 @@ async function loadPostRow(db, slug, requestedStatus) {
       published_at,
       updated_at
     FROM posts
-    WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = ?
+    WHERE slug = ? AND status = ?
   `;
 
   try {
@@ -76,7 +76,8 @@ async function loadPostRow(db, slug, requestedStatus) {
   }
 }
 
-export async function onRequestGet({ params, env, request }) {
+export async function onRequestGet(context) {
+  const { params, env, request } = context;
   const slug = decodeURIComponent(String(params.slug || ""));
   if (!slug) return okHtml("Not Found", { status: 404 });
 
@@ -95,9 +96,9 @@ export async function onRequestGet({ params, env, request }) {
 
   const requestedStatus = isDraftPreview ? "draft" : "published";
   const meta = await env.TRAVEL_DB.prepare(`
-    SELECT updated_at, LOWER(TRIM(COALESCE(status, 'published'))) AS status
+    SELECT updated_at, status
     FROM posts
-    WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = ?
+    WHERE slug = ? AND status = ?
   `).bind(slug, requestedStatus).first();
 
   if (!meta) {
@@ -108,11 +109,13 @@ export async function onRequestGet({ params, env, request }) {
   }
 
   if (!isDraftPreview) {
-    await env.TRAVEL_DB.prepare(`
+    const viewCountWrite = env.TRAVEL_DB.prepare(`
       UPDATE posts
       SET view_count = COALESCE(view_count, 0) + 1
-      WHERE slug = ? AND LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
-    `).bind(slug).run();
+      WHERE slug = ? AND status = 'published'
+    `).bind(slug).run().catch(() => undefined);
+    if (typeof context.waitUntil === "function") context.waitUntil(viewCountWrite);
+    else await viewCountWrite;
   }
 
   const updatedAt = String(meta.updated_at || "");
@@ -614,7 +617,8 @@ export async function onRequestGet({ params, env, request }) {
     request,
     cacheKeyUrl,
     ttlSeconds: 600,
-    buildResponse
+    buildResponse,
+    waitUntil: typeof context.waitUntil === "function" ? (promise) => context.waitUntil(promise) : null
   });
 }
 

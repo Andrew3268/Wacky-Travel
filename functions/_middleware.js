@@ -211,7 +211,7 @@ async function loadOceanRestPostCount(env) {
     const row = await env.TRAVEL_DB.prepare(`
       SELECT COUNT(*) AS total
       FROM posts
-      WHERE LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
+      WHERE status = 'published'
         AND TRIM(COALESCE(content_type, '')) = 'hotel_intro'
         AND EXISTS (
           SELECT 1

@@ -281,7 +281,7 @@ export function buildDestinationPostQuery(destination = {}, { regionSlug = "", r
     sql: `
       SELECT ${selectSql}
       FROM posts
-      WHERE ${includeDrafts ? `${normalizedStatusSql()} IN ('published', 'draft')` : `${normalizedStatusSql()} = 'published'`}
+      WHERE ${includeDrafts ? "status IN ('published', 'draft')" : "status = 'published'"}
         ${regionSlug ? "AND TRIM(COALESCE(region_slug, '')) = ?" : ""}
         ${recommendationCategorySlug ? "AND TRIM(COALESCE(recommendation_category_slug, '')) = ?" : ""}
         AND (
@@ -347,14 +347,6 @@ const FALLBACK_DESTINATIONS = Object.freeze({
   "nha-trang": { slug: "nha-trang", name: "나트랑", city: "나트랑" }
 });
 
-function normalizedStatusSql() {
-  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, 'published'), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
-  return `CASE
-    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
-    WHEN ${cleaned} IN ('published', 'publish', '발행', '공개', '') THEN 'published'
-    ELSE ${cleaned}
-  END`;
-}
 
 function normalizePostStatus(value = "") {
   const raw = String(value || "")

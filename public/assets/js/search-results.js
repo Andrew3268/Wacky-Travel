@@ -2,7 +2,7 @@ const $ = (id) => document.getElementById(id);
     const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[ch]));
     const normalizeText = (value) => String(value || '').replace(/\s+/g, ' ').trim();
     const escapeRegExp = (value) => String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const state = { query: '', page: 1, totalPages: 1, isLoading: false };
+    const state = { query: '', page: 1, totalPages: 1, isLoading: false, controller: null };
     const broadSearchKeywords = new Set(['호텔', '숙소', '여행', '추천']);
 
     const landing = $('wtsrLanding');
@@ -47,16 +47,6 @@ const $ = (id) => document.getElementById(id);
       return getMeaningfulSearchTerms(value).length === 0;
     }
 
-    function safeArray(value) {
-      if (Array.isArray(value)) return value;
-      try {
-        const parsed = JSON.parse(value || '[]');
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (_) {
-        return [];
-      }
-    }
-
     function labelPostType(value) {
       const type = String(value || '').trim();
       if (type === 'top5_series') return '여행 스타일별 호텔 추천';
@@ -70,52 +60,6 @@ const $ = (id) => document.getElementById(id);
       const compact = full.replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, '');
       const parts = full.split(/[\s,，、|/·・]+/).map(normalizeText).filter((term) => term.length >= 2);
       return [...new Set([full, compact, ...parts].filter(Boolean))].sort((a, b) => b.length - a.length).slice(0, 10);
-    }
-
-    function normalizeSearchBlob(value = '') {
-      return normalizeText(value).toLowerCase();
-    }
-
-    function compactSearchBlob(value = '') {
-      return normalizeSearchBlob(value).replace(/[\s\-_/·・.,，、|()（）\[\]{}<>]+/g, '');
-    }
-
-    function itemMatchesQuery(item = {}, query = '') {
-      const title = normalizeSearchBlob(item.title);
-      const compactTitle = compactSearchBlob(item.title);
-      const terms = getMeaningfulSearchTerms(query);
-      if (!terms.length) return false;
-      return terms.every((term) => title.includes(term) || compactTitle.includes(compactSearchBlob(term)));
-    }
-
-    async function loadFallbackSearch(query = '') {
-      const collected = [];
-      const seen = new Set();
-      let page = 1;
-      let hasMore = true;
-
-      while (hasMore && page <= 30) {
-        const url = new URL('/api/posts', window.location.origin);
-        url.searchParams.set('page', String(page));
-        url.searchParams.set('per_page', '24');
-        url.searchParams.set('sort', 'published');
-        url.searchParams.set('ts', String(Date.now()));
-        const res = await fetch(url.toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' });
-        if (!res.ok) break;
-        const data = await res.json().catch(() => ({}));
-        const items = Array.isArray(data.items) ? data.items : [];
-        for (const item of items) {
-          const slug = String(item.slug || '');
-          if (!slug || seen.has(slug)) continue;
-          if (!itemMatchesQuery(item, query)) continue;
-          seen.add(slug);
-          collected.push(item);
-        }
-        hasMore = Boolean(data.pagination && data.pagination.has_more);
-        page += 1;
-      }
-
-      return collected.slice(0, 24);
     }
 
     function highlightText(value = '', query = '') {
@@ -142,13 +86,6 @@ const $ = (id) => document.getElementById(id);
     function getExcerpt(item = {}) {
       const raw = normalizeText(item.summary) || normalizeText(item.meta_description) || '검색어와 관련된 여행 콘텐츠입니다.';
       return raw.length > 150 ? `${raw.slice(0, 150).trim()}…` : raw;
-    }
-
-    function getTags(item = {}) {
-      return [...safeArray(item.tags_json), ...safeArray(item.longtail_keywords_json)]
-        .map(normalizeText)
-        .filter(Boolean)
-        .slice(0, 5);
     }
 
     function renderCard(item = {}, index = 0) {
@@ -195,7 +132,10 @@ const $ = (id) => document.getElementById(id);
         setEmpty('조금 더 구체적으로 검색해 주세요', '도시, 지역 또는 여행 조건을 함께 입력해 주세요.', '예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
         return;
       }
-      if (state.isLoading) return;
+
+      if (state.controller) state.controller.abort();
+      const controller = new AbortController();
+      state.controller = controller;
       state.isLoading = true;
       setLoading(append);
 
@@ -204,27 +144,23 @@ const $ = (id) => document.getElementById(id);
         url.searchParams.set('q', query);
         url.searchParams.set('page', String(page));
         url.searchParams.set('per_page', '12');
-                url.searchParams.set('ts', String(Date.now()));
-        const res = await fetch(url.toString(), { headers: { Accept: 'application/json' }, cache: 'no-store' });
+        const res = await fetch(url.toString(), {
+          headers: { Accept: 'application/json' },
+          signal: controller.signal
+        });
         if (!res.ok) throw new Error('search_failed');
         const data = await res.json().catch(() => ({}));
         if (data.blocked) {
-              setEmpty('조금 더 구체적으로 검색해 주세요', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.', '예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
+          setEmpty('조금 더 구체적으로 검색해 주세요', data.message || '도시, 지역 또는 여행 조건을 함께 입력해 주세요.', '예: 다낭 호텔, 하카타역 숙소, 공항 근처 호텔');
           return;
         }
+
         const items = Array.isArray(data.items) ? data.items : [];
         const pagination = data.pagination || {};
-        const total = Number(pagination.total || items.length || 0);
         state.page = Number(pagination.page || page) || page;
         state.totalPages = Number(pagination.total_pages || 1) || 1;
 
         if (!items.length && !append) {
-          const fallbackItems = await loadFallbackSearch(query).catch(() => []);
-          if (fallbackItems.length) {
-            $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
-            $('wtsrMoreBtn').hidden = true;
-            return;
-          }
           setEmpty('검색 결과가 없습니다', '제목에 들어갈 만한 도시명이나 호텔명으로 다시 검색해 보세요.');
         } else {
           const html = items.map(renderCard).join('');
@@ -235,16 +171,15 @@ const $ = (id) => document.getElementById(id);
         $('wtsrMoreBtn').hidden = !hasMore;
         $('wtsrMoreBtn').textContent = '더 보기';
         $('wtsrMoreBtn').disabled = false;
-      } catch (_) {
-        const fallbackItems = !append ? await loadFallbackSearch(query).catch(() => []) : [];
-        if (fallbackItems.length) {
-          $('wtsrResults').innerHTML = fallbackItems.map(renderCard).join('');
-        } else {
-          $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>제목에 들어갈 만한 도시명이나 호텔명으로 다시 검색해 보세요.</div>';
-        }
+      } catch (error) {
+        if (error && error.name === 'AbortError') return;
+        $('wtsrResults').innerHTML = '<div class="wtsr-error"><strong>검색 결과를 불러오지 못했습니다</strong>잠시 후 같은 검색어로 다시 시도해 주세요.</div>';
         $('wtsrMoreBtn').hidden = true;
       } finally {
-        state.isLoading = false;
+        if (state.controller === controller) {
+          state.controller = null;
+          state.isLoading = false;
+        }
       }
     }
 
@@ -253,6 +188,11 @@ const $ = (id) => document.getElementById(id);
       state.page = 1;
       state.totalPages = 1;
       const hasQuery = Boolean(state.query);
+      if (!hasQuery && state.controller) {
+        state.controller.abort();
+        state.controller = null;
+        state.isLoading = false;
+      }
       setView(hasQuery);
       $('wtsrInput').value = state.query;
       syncClearButton();

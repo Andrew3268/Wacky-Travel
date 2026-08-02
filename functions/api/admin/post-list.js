@@ -6,20 +6,12 @@ function clampInt(value, fallback, min, max) {
   return Math.min(max, Math.max(min, num));
 }
 
-function normalizedStatusSql() {
-  const cleaned = `LOWER(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(COALESCE(status, ''), CHAR(9), ''), CHAR(10), ''), CHAR(13), ''), '　', '')))`;
-  return `CASE
-    WHEN ${cleaned} IN ('draft', '초안', '임시저장', '임시 저장') THEN 'draft'
-    ELSE 'published'
-  END`;
-}
 
 function isMissingColumnError(error) {
   return /no such column/i.test(String(error?.message || error || ""));
 }
 
 async function loadItems(db, { status, limit, offset }) {
-  const statusExpr = normalizedStatusSql();
   const binds = [status, limit, offset];
   const fullSql = `
     SELECT
@@ -34,12 +26,12 @@ async function loadItems(db, { status, limit, offset }) {
       region_name,
       recommendation_category_slug,
       recommendation_category_name,
-      ${statusExpr} AS status,
+      status,
       COALESCE(view_count, 0) AS view_count,
       published_at,
       updated_at
     FROM posts
-    WHERE ${statusExpr} = ?
+    WHERE status = ?
     ORDER BY updated_at DESC, published_at DESC
     LIMIT ? OFFSET ?
   `;
@@ -62,12 +54,12 @@ async function loadItems(db, { status, limit, offset }) {
         '' AS region_name,
         '' AS recommendation_category_slug,
         '' AS recommendation_category_name,
-        ${statusExpr} AS status,
+        status,
         COALESCE(view_count, 0) AS view_count,
         published_at,
         updated_at
       FROM posts
-      WHERE ${statusExpr} = ?
+      WHERE status = ?
       ORDER BY updated_at DESC, published_at DESC
       LIMIT ? OFFSET ?
     `;
@@ -76,7 +68,6 @@ async function loadItems(db, { status, limit, offset }) {
 }
 
 async function loadMinimalItems(db, { status, limit, offset }) {
-  const statusExpr = normalizedStatusSql();
   return db.prepare(`
     SELECT
       slug,
@@ -90,12 +81,12 @@ async function loadMinimalItems(db, { status, limit, offset }) {
       '' AS region_name,
       '' AS recommendation_category_slug,
       '' AS recommendation_category_name,
-      ${statusExpr} AS status,
+      status,
       COALESCE(view_count, 0) AS view_count,
       published_at,
       updated_at
     FROM posts
-    WHERE ${statusExpr} = ?
+    WHERE status = ?
     ORDER BY updated_at DESC, published_at DESC
     LIMIT ? OFFSET ?
   `).bind(status, limit, offset).all();
@@ -116,18 +107,17 @@ export async function onRequestGet({ env, request }) {
   const page = clampInt(url.searchParams.get("page"), 1, 1, 9999);
   const perPage = clampInt(url.searchParams.get("per_page"), 50, 1, 100);
   const offset = (page - 1) * perPage;
-  const statusExpr = normalizedStatusSql();
 
   const [selectedCountRow, statusRows] = await Promise.all([
     env.TRAVEL_DB.prepare(`
       SELECT COUNT(*) AS total
       FROM posts
-      WHERE ${statusExpr} = ?
+      WHERE status = ?
     `).bind(status).first(),
     env.TRAVEL_DB.prepare(`
-      SELECT ${statusExpr} AS status_key, COUNT(*) AS count
+      SELECT status AS status_key, COUNT(*) AS count
       FROM posts
-      GROUP BY ${statusExpr}
+      GROUP BY status
     `).all()
   ]);
 

@@ -219,3 +219,18 @@ https://운영도메인/sitemap.xml
 - 모바일 CSS의 강제 `display: inline-flex` 선택자가 `hidden` 속성을 덮어쓰던 문제를 수정했습니다.
 - 모바일 표시 규칙은 `:not([hidden])` 상태의 버튼에만 적용됩니다.
 - 15개 도시 메인 페이지에서 추천 호텔 버튼은 관리자 인증 전과 로그아웃 상태에 숨겨집니다.
+
+
+## 2026-08-02 2차 성능 최적화
+
+- 포스트 조회수 증가는 `waitUntil()`으로 분리해 HTML 응답과 Edge Cache 적중 응답을 막지 않습니다.
+- 검색 API는 스키마 `PRAGMA` 검사와 본문 500건 선조회를 제거하고, 필요한 컬럼만 DB 페이지네이션으로 조회합니다.
+- 검색 실패 시 `/api/posts`를 최대 30페이지 순회하던 예비 검색을 제거했습니다.
+- 기존 `status` 값은 `016_status_normalization.sql`로 한 번 정규화하고, 읽기 쿼리는 `status = 'published'`처럼 직접 비교합니다.
+- HTML과 이미지의 Edge Cache 저장은 `waitUntil()`에서 처리합니다.
+
+운영 D1 적용 명령:
+
+```bash
+npm run d1:migrate:status-normalization:remote
+```

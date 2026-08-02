@@ -132,14 +132,14 @@ export async function onRequestGet({ env, request }) {
         updated_at,
         published_at
       FROM posts
-      WHERE LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
+      WHERE status = 'published'
       ORDER BY COALESCE(updated_at, published_at) DESC
       LIMIT 20000
     `),
     safeAll(env.TRAVEL_DB, `
       SELECT slug, name, city, updated_at
       FROM destinations
-      WHERE LOWER(TRIM(COALESCE(status, 'published'))) = 'published'
+      WHERE status = 'published'
       ORDER BY updated_at DESC
       LIMIT 5000
     `)
