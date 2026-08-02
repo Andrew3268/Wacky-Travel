@@ -1,0 +1,14 @@
+{
+  "source": "public/assets/css/travel.css (phase 2 baseline)",
+  "originalBytes": 891498,
+  "splitBytes": 828500,
+  "duplicateRulesRemoved": 75,
+  "outputFiles": [
+    "travel-core.css",
+    "travel-home.css",
+    "travel-city.css",
+    "travel-purpose.css",
+    "travel-archive.css",
+    "travel-survey.css"
+  ]
+}
