@@ -53,6 +53,7 @@ CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommenda
 CREATE INDEX IF NOT EXISTS idx_posts_destination_recommendation_category ON posts(destination_slug, recommendation_category_slug);
 CREATE INDEX IF NOT EXISTS idx_posts_hotel_slug ON posts(hotel_slug);
 CREATE INDEX IF NOT EXISTS idx_posts_content_type ON posts(content_type);
+CREATE INDEX IF NOT EXISTS idx_posts_destination_status_updated ON posts(destination_slug, status, updated_at DESC, published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_posts_affiliate_enabled ON posts(affiliate_enabled);
 
 CREATE TABLE IF NOT EXISTS categories (

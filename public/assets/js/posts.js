@@ -280,7 +280,7 @@ function buildPostsHeroNav(categories = []) {
 }
 
 
-/* CITY_HOTEL_PICKS_RUNTIME_V5_DRAFT_PREVIEW */
+/* CITY_HOTEL_PICKS_RUNTIME_V6_UNIFIED_REQUEST */
 (async function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
@@ -319,52 +319,10 @@ function buildPostsHeroNav(categories = []) {
     else removeHotelHeroButtons();
   };
 
-  const fetchFreshAdminState = async () => {
-    const sessionUrl = new URL('/api/admin/session', window.location.origin);
-    sessionUrl.searchParams.set('ts', String(Date.now()));
-    try {
-      const response = await fetch(sessionUrl.toString(), {
-        credentials: 'same-origin',
-        cache: 'no-store',
-        headers: {
-          accept: 'application/json',
-          'cache-control': 'no-cache'
-        }
-      });
-      if (!response.ok) return { authenticated: false };
-      return await response.json();
-    } catch (_) {
-      return { authenticated: false };
-    }
-  };
-
-  const applyFreshAdminVisibility = async () => {
-    // 이전 페이지 상태나 모바일 뒤로가기 캐시에 남은 버튼도 먼저 DOM에서 제거합니다.
-    setAdminSectionsVisible(false);
-    setHotelHeroButtonsVisible(false);
-    const state = await fetchFreshAdminState();
-    const authenticated = Boolean(state && state.authenticated);
-    if (authenticated) {
-      setAdminSectionsVisible(true);
-      setHotelHeroButtonsVisible(true);
-    }
-    return authenticated;
-  };
-
-  // 정적 HTML에는 관리자 버튼을 넣지 않으며, 인증 확인 후에만 동적으로 생성합니다.
+  // 관리자 전용 섹션은 인증된 통합 콘텐츠 응답을 받기 전까지 항상 숨깁니다.
   setAdminSectionsVisible(false);
   setHotelHeroButtonsVisible(false);
-
   if (!cityPostRoots.length && !cityTravelRoots.length) return;
-
-  // 모바일 브라우저의 뒤로가기 캐시가 관리자 상태의 DOM을 복원하는 경우 다시 검증합니다.
-  window.addEventListener('pageshow', (event) => {
-    if (!event.persisted) return;
-    void applyFreshAdminVisibility();
-  });
-
-  const isCityAdmin = await applyFreshAdminVisibility();
-  if (!isCityAdmin) return;
 
   const CITY_ARCHIVES = {
     osaka: {
@@ -476,7 +434,11 @@ function buildPostsHeroNav(categories = []) {
 
   const fetchJson = async (url, fallback) => {
     try {
-      const response = await fetch(url, { credentials: 'same-origin', headers: { accept: 'application/json' }, cache: 'no-store' });
+      const response = await fetch(url, {
+        credentials: 'same-origin',
+        headers: { accept: 'application/json' },
+        cache: 'no-store'
+      });
       if (!response.ok) return fallback;
       return await response.json();
     } catch (_) {
@@ -484,25 +446,27 @@ function buildPostsHeroNav(categories = []) {
     }
   };
 
-  const buildDestinationPostUrl = ({ destination, type, offset = 0, limit = 6, includeDrafts = false }) => {
+  const buildDestinationPostUrl = ({
+    destination,
+    type,
+    offset = 0,
+    limit = 6,
+    hotelLimit = 6,
+    travelLimit = 5,
+    includeDrafts = false
+  }) => {
     const params = new URLSearchParams({
       destination: String(destination || ''),
       type: String(type || ''),
       offset: String(Math.max(0, Number(offset || 0))),
       limit: String(Math.max(1, Number(limit || 6)))
     });
+    if (type === 'all') {
+      params.set('hotel_limit', String(Math.max(1, Number(hotelLimit || 6))));
+      params.set('travel_limit', String(Math.max(1, Number(travelLimit || 5))));
+    }
     if (includeDrafts) params.set('include_drafts', '1');
     return '/api/destination-posts?' + params.toString();
-  };
-
-  const renderEmpty = (grid) => {
-    if (!grid) return;
-    grid.innerHTML = '<div class="empty-card" data-city-post-empty="">아직 관련글이 없습니다.</div>';
-  };
-
-  const renderTravelEmpty = (list) => {
-    if (!list) return;
-    list.innerHTML = '<div class="empty-card" data-city-travel-empty="">아직 관련 글이 없습니다.</div>';
   };
 
   const setFooterLink = ({ footer, destination, type, hasItems }) => {
@@ -518,7 +482,7 @@ function buildPostsHeroNav(categories = []) {
   };
 
   const setActiveTab = (root, type) => {
-    if (!root) return;
+    if (!root || !type) return;
     root.querySelectorAll('[data-city-post-tab]').forEach((button) => {
       const active = button.getAttribute('data-city-post-tab') === type;
       button.classList.toggle('is-active', active);
@@ -531,38 +495,17 @@ function buildPostsHeroNav(categories = []) {
     });
   };
 
-  const loadHotelGroup = async (root, type) => {
+  const applyHotelGroupData = (root, type, data = {}) => {
     const destination = String(root?.dataset?.destinationSlug || '').trim();
-    const limit = Math.max(1, Number(root?.dataset?.pageSize || 6) || 6);
     const grid = root?.querySelector(`[data-city-post-grid="${type}"]`);
     const footer = root?.querySelector(`[data-city-post-footer="${type}"]`);
     if (!destination || !grid) return { type, hasItems: false, total: 0 };
 
-    grid.setAttribute('aria-busy', 'true');
-    const data = await fetchJson(buildDestinationPostUrl({ destination, type, offset: 0, limit, includeDrafts: true }), {
-      ok: false,
-      html: '',
-      hasMore: false,
-      nextOffset: 0,
-      total: 0
-    });
-
-    if (data?.uses_agoda_images || itemsUseAgodaImages(data?.items)) {
-      ensureAgodaImageConnectionHints();
-    }
-
-    const hasHtml = Boolean(data && data.ok && String(data.html || '').trim());
-    if (!hasHtml) {
-      grid.innerHTML = '';
-      setFooterLink({ footer, destination, type, hasItems: false });
-      grid.removeAttribute('aria-busy');
-      return { type, hasItems: false, total: Number(data?.total || 0) };
-    }
-
-    grid.innerHTML = data.html;
-    setFooterLink({ footer, destination, type, hasItems: true });
+    const hasHtml = Boolean(data && String(data.html || '').trim());
+    grid.innerHTML = hasHtml ? data.html : '';
+    setFooterLink({ footer, destination, type, hasItems: hasHtml });
     grid.removeAttribute('aria-busy');
-    return { type, hasItems: true, total: Number(data?.total || 0) };
+    return { type, hasItems: hasHtml, total: Number(data?.total || 0) };
   };
 
   const updateHotelSectionVisibility = (root, results = []) => {
@@ -573,8 +516,6 @@ function buildPostsHeroNav(categories = []) {
       .map((item) => item.type);
     const hasAnyContent = availableTypes.length > 0;
 
-    // Hotel Picks의 제목 영역과 히어로 버튼은 콘텐츠 유무와 관계없이 유지합니다.
-    // 실제 글이 없을 때는 탭/목록 컨테이너만 숨깁니다.
     if (section) {
       section.hidden = false;
       section.removeAttribute('aria-hidden');
@@ -617,59 +558,80 @@ function buildPostsHeroNav(categories = []) {
     setActiveTab(root, currentActive || availableTypes[0]);
   };
 
-  const loadTravelPosts = async (root) => {
-    const destination = String(root?.dataset?.destinationSlug || '').trim();
-    const limit = Math.max(1, Number(root?.dataset?.pageSize || 5) || 5);
+  const applyTravelGroupData = (root, data = {}) => {
     const list = root?.querySelector('[data-city-travel-list]');
     const footer = root?.querySelector('[data-city-travel-footer]');
     const section = root?.closest('.wt-city-dynamic-section');
-    if (!destination || !list) {
-      if (section) section.hidden = true;
-      if (root) root.hidden = true;
-      return;
-    }
+    if (!root || !list) return;
 
-    const data = await fetchJson(buildDestinationPostUrl({ destination, type: 'travel_content', offset: 0, limit }), {
-      ok: false,
-      html: '',
-      hasMore: false,
-      nextOffset: 0
+    const hasHtml = Boolean(data && String(data.html || '').trim());
+    list.innerHTML = hasHtml ? data.html : '';
+    if (footer) {
+      if (hasHtml && data.hasMore) {
+        const limit = Math.max(1, Number(root.dataset.pageSize || 5) || 5);
+        footer.innerHTML = `<button class="hotel-load-more" type="button" data-city-travel-more="travel_content" data-offset="${Number(data.nextOffset || limit)}">더보기</button>`;
+        footer.hidden = false;
+      } else {
+        footer.innerHTML = '';
+        footer.hidden = true;
+      }
+    }
+    if (section) section.hidden = !hasHtml;
+    root.hidden = !hasHtml;
+  };
+
+  let loadSequence = 0;
+  const loadCityContent = async () => {
+    const sequence = ++loadSequence;
+    setAdminSectionsVisible(false);
+    setHotelHeroButtonsVisible(false);
+
+    const primaryRoot = cityPostRoots[0] || cityTravelRoots[0];
+    const destination = String(primaryRoot?.dataset?.destinationSlug || '').trim();
+    if (!destination) return false;
+
+    const hotelLimit = Math.max(1, Number(cityPostRoots[0]?.dataset?.pageSize || 6) || 6);
+    const travelLimit = Math.max(1, Number(cityTravelRoots[0]?.dataset?.pageSize || 5) || 5);
+    cityPostRoots.forEach((root) => {
+      root.querySelectorAll('[data-city-post-grid]').forEach((grid) => grid.setAttribute('aria-busy', 'true'));
     });
 
-    if (data && data.ok && String(data.html || '').trim()) {
-      list.innerHTML = data.html;
-      if (footer) {
-        if (data.hasMore) {
-          footer.innerHTML = `<button class="hotel-load-more" type="button" data-city-travel-more="travel_content" data-offset="${Number(data.nextOffset || limit)}">더보기</button>`;
-          footer.hidden = false;
-        } else {
-          footer.innerHTML = '';
-          footer.hidden = true;
-        }
-      }
-      if (section) section.hidden = false;
-      root.hidden = false;
-      return;
+    const data = await fetchJson(buildDestinationPostUrl({
+      destination,
+      type: 'all',
+      hotelLimit,
+      travelLimit,
+      includeDrafts: true
+    }), { ok: false, authenticated: false, groups: {} });
+
+    if (sequence !== loadSequence) return false;
+    if (!data?.ok || !data?.authenticated) {
+      cityPostRoots.forEach((root) => {
+        root.querySelectorAll('[data-city-post-grid]').forEach((grid) => grid.removeAttribute('aria-busy'));
+      });
+      return false;
     }
 
-    list.innerHTML = '';
-    if (footer) {
-      footer.innerHTML = '';
-      footer.hidden = true;
+    setAdminSectionsVisible(true);
+    setHotelHeroButtonsVisible(true);
+    if (data.uses_agoda_images
+      || itemsUseAgodaImages(data?.groups?.top5_series?.items)
+      || itemsUseAgodaImages(data?.groups?.hotel_intro?.items)) {
+      ensureAgodaImageConnectionHints();
     }
-    if (section) section.hidden = true;
-    root.hidden = true;
+
+    cityPostRoots.forEach((root) => {
+      const results = [
+        applyHotelGroupData(root, 'top5_series', data?.groups?.top5_series),
+        applyHotelGroupData(root, 'hotel_intro', data?.groups?.hotel_intro)
+      ];
+      updateHotelSectionVisibility(root, results);
+    });
+    cityTravelRoots.forEach((root) => applyTravelGroupData(root, data?.groups?.travel_content));
+    return true;
   };
 
   cityPostRoots.forEach((root) => {
-    const section = root.closest('.wt-city-dynamic-section');
-    if (section) {
-      section.hidden = false;
-      section.removeAttribute('aria-hidden');
-    }
-    // API 응답 전에는 스켈레톤 목록을 표시합니다.
-    root.hidden = false;
-
     root.addEventListener('click', (event) => {
       const tabButton = event.target.closest('[data-city-post-tab]');
       if (!tabButton || !root.contains(tabButton) || tabButton.hidden) return;
@@ -684,21 +646,9 @@ function buildPostsHeroNav(categories = []) {
       event.preventDefault();
       setActiveTab(root, tabButton.getAttribute('data-city-post-tab'));
     });
-
-    Promise.all([
-      loadHotelGroup(root, 'top5_series'),
-      loadHotelGroup(root, 'hotel_intro')
-    ]).then((results) => updateHotelSectionVisibility(root, results));
   });
 
   cityTravelRoots.forEach((root) => {
-    const section = root.closest('.wt-city-dynamic-section');
-    if (section) {
-      section.hidden = false;
-      section.removeAttribute('aria-hidden');
-    }
-    root.hidden = false;
-
     root.addEventListener('click', async (event) => {
       const moreButton = event.target.closest('[data-city-travel-more]');
       if (!moreButton || moreButton.dataset.loading === '1') return;
@@ -711,14 +661,26 @@ function buildPostsHeroNav(categories = []) {
 
       moreButton.dataset.loading = '1';
       moreButton.textContent = '불러오는 중...';
-      const data = await fetchJson(buildDestinationPostUrl({ destination, type: 'travel_content', offset, limit }), {
+      const data = await fetchJson(buildDestinationPostUrl({
+        destination,
+        type: 'travel_content',
+        offset,
+        limit,
+        includeDrafts: true
+      }), {
         ok: false,
+        authenticated: false,
         html: '',
         hasMore: false,
         nextOffset: offset
       });
-      if (data && data.ok && String(data.html || '').trim()) list.insertAdjacentHTML('beforeend', data.html);
-      if (data && data.hasMore) {
+      if (!data?.ok || !data?.authenticated) {
+        setAdminSectionsVisible(false);
+        setHotelHeroButtonsVisible(false);
+        return;
+      }
+      if (String(data.html || '').trim()) list.insertAdjacentHTML('beforeend', data.html);
+      if (data.hasMore) {
         footer.innerHTML = `<button class="hotel-load-more" type="button" data-city-travel-more="travel_content" data-offset="${Number(data.nextOffset || offset + limit)}">더보기</button>`;
         footer.hidden = false;
       } else {
@@ -726,8 +688,14 @@ function buildPostsHeroNav(categories = []) {
         footer.hidden = true;
       }
     });
-    loadTravelPosts(root);
   });
+
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    void loadCityContent();
+  });
+
+  void loadCityContent();
 })();
 
 (function () {

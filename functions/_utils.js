@@ -159,16 +159,23 @@ export function buildAdminLogoutCookie() {
 export async function getAdminSession(env, request) {
   const cookies = parseCookies(request);
   const token = cookies[ADMIN_COOKIE];
-  if (!token) return null;
+  if (!token || !env?.TRAVEL_DB) return null;
 
-  await ensureAdminTables(env.TRAVEL_DB);
+  // 읽기 요청에서는 관리자 테이블 생성 여부를 매번 검사하지 않습니다.
+  // 관리자 설정/로그인 경로에서만 ensureAdminTables()를 실행합니다.
   const tokenHash = await sha256Hex(token);
-  const row = await env.TRAVEL_DB.prepare(`
-    SELECT s.token_hash, s.expires_at, u.id, u.email
-    FROM admin_sessions s
-    JOIN admin_users u ON u.id = s.admin_id
-    WHERE s.token_hash = ?
-  `).bind(tokenHash).first();
+  let row = null;
+  try {
+    row = await env.TRAVEL_DB.prepare(`
+      SELECT s.token_hash, s.expires_at, u.id, u.email
+      FROM admin_sessions s
+      JOIN admin_users u ON u.id = s.admin_id
+      WHERE s.token_hash = ?
+    `).bind(tokenHash).first();
+  } catch (error) {
+    if (/no such table:\s*(admin_sessions|admin_users)/i.test(String(error?.message || error || ""))) return null;
+    throw error;
+  }
 
   if (!row) return null;
   if (new Date(row.expires_at).getTime() <= Date.now()) {

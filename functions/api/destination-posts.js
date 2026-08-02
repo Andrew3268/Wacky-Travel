@@ -1,15 +1,43 @@
 import { escapeHtml, okJson, requireAdmin } from "../_utils.js";
 import { formatDate } from "../../lib/travel/travel-utils.js";
-import { ensureTravelSettingsTables, getActiveContentTypes, normalizeContentType, labelContentType } from "../../lib/travel/travel-settings.js";
-import { normalizeCoverImageSource, normalizeCoverImageSrcset, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
+import { normalizeContentType } from "../../lib/travel/travel-settings.js";
+import { normalizeCoverImageSource, normalizeCoverImageSrcset } from "../../lib/posts/cover-image.js";
 
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
+const ALL_CONTENT_TYPE = "all";
 const DEFAULT_LIMIT = 6;
 const MAX_LIMIT = 60;
 const TRAVEL_CONTENT_TYPE = "travel_content";
 const TRAVEL_CONTENT_DEFAULT_LIMIT = 5;
 const TRAVEL_CONTENT_MAX_LIMIT = 5;
 const MAX_SOURCE_ROWS = 240;
+const DESTINATION_POST_SELECT = `
+  p.slug,
+  p.title,
+  p.category,
+  p.summary,
+  p.cover_image,
+  p.cover_image_alt,
+  p.cover_image_source,
+  p.cover_image_link_url,
+  p.cover_image_srcset,
+  p.tags_json,
+  p.content_type,
+  p.destination_slug,
+  p.region_slug,
+  p.region_name,
+  p.recommendation_category_slug,
+  p.recommendation_category_name,
+  p.recommendation_category_description,
+  p.hotel_pick_label,
+  p.hotel_slug,
+  h.name AS hotel_name,
+  h.area AS hotel_location_type,
+  h.star_rating AS hotel_star_rating,
+  p.status,
+  p.updated_at,
+  p.published_at
+`;
 
 function normalizeHotelPickLabel(value = "") {
   const label = String(value || "").replace(/\s+/g, " ").trim().slice(0, 30);
@@ -17,110 +45,185 @@ function normalizeHotelPickLabel(value = "") {
   return label === "가성비" ? "가성비픽" : label;
 }
 
-function isMissingHotelPickColumnError(error) {
-  return /no such column:\s*(?:posts\.)?hotel_pick_label/i.test(String(error?.message || error || ""));
+function normalizeRequestedType(rawType = "") {
+  const raw = String(rawType || "").trim();
+  if (raw === ALL_CONTENT_TYPE) return ALL_CONTENT_TYPE;
+  if (raw === TRAVEL_CONTENT_TYPE) return TRAVEL_CONTENT_TYPE;
+  return normalizeContentType(raw);
 }
 
-async function loadDestinationPostRows(db, postQuery) {
-  try {
-    return await db.prepare(postQuery.sql).bind(...postQuery.binds).all();
-  } catch (error) {
-    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
-    try {
-      await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
-    } catch (migrationError) {
-      if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
-    }
-    await ensureCoverImageColumns(db);
-    return db.prepare(postQuery.sql).bind(...postQuery.binds).all();
+function buildFastDestinationPostQuery(destinationSlugs, {
+  regionSlug = "",
+  recommendationCategorySlug = "",
+  includeDrafts = false
+} = {}) {
+  const slugs = [...new Set((Array.isArray(destinationSlugs) ? destinationSlugs : [destinationSlugs])
+    .map((value) => String(value || "").trim().toLowerCase())
+    .filter(Boolean))];
+  const placeholders = slugs.map(() => "?").join(", ");
+  const filters = [
+    includeDrafts ? "p.status IN ('published', 'draft')" : "p.status = 'published'",
+    `p.destination_slug IN (${placeholders})`
+  ];
+  const binds = [...slugs];
+
+  if (regionSlug) {
+    filters.push("p.region_slug = ?");
+    binds.push(regionSlug);
   }
+  if (recommendationCategorySlug) {
+    filters.push("p.recommendation_category_slug = ?");
+    binds.push(recommendationCategorySlug);
+  }
+
+  return {
+    sql: `
+      SELECT ${DESTINATION_POST_SELECT}
+      FROM posts p
+      LEFT JOIN hotels h ON h.slug = p.hotel_slug
+      WHERE ${filters.join("\n        AND ")}
+      ORDER BY p.updated_at DESC, p.published_at DESC
+      LIMIT ${MAX_SOURCE_ROWS}
+    `,
+    binds
+  };
+}
+
+async function runDestinationPostQuery(db, destinationSlugs, options = {}) {
+  const query = buildFastDestinationPostQuery(destinationSlugs, options);
+  return db.prepare(query.sql).bind(...query.binds).all();
+}
+
+async function loadDestinationPostRows(db, destinationSlug, options = {}) {
+  // 정상적으로 저장된 글은 canonical destination_slug 한 값으로 조회해
+  // 복합 인덱스와 정렬 순서를 그대로 활용합니다.
+  const canonicalRows = await runDestinationPostQuery(db, [destinationSlug], options);
+  if ((canonicalRows.results || []).length > 0) return canonicalRows;
+
+  // 과거 별칭 데이터는 canonical 결과가 없을 때만 보조 조회합니다.
+  const legacyAliases = getDestinationSlugAliases(destinationSlug).filter((slug) => slug !== destinationSlug);
+  if (!legacyAliases.length) return canonicalRows;
+  return runDestinationPostQuery(db, legacyAliases, options);
+}
+
+function getDestinationContentGroup(post = {}) {
+  return getHotelPostGroup(post) || TRAVEL_CONTENT_TYPE;
+}
+
+function serializePost(post = {}) {
+  return {
+    slug: post.slug,
+    title: post.title,
+    status: normalizePostStatus(post.status),
+    region_slug: post.region_slug || "",
+    region_name: post.region_name || "",
+    recommendation_category_slug: post.recommendation_category_slug || "",
+    recommendation_category_name: post.recommendation_category_name || "",
+    recommendation_category_description: post.recommendation_category_description || "",
+    hotel_pick_label: normalizeHotelPickLabel(post.hotel_pick_label),
+    cover_image_source: normalizeCoverImageSource(post.cover_image_source)
+  };
+}
+
+function buildGroupPayload(posts = [], type, { offset = 0, limit = DEFAULT_LIMIT } = {}) {
+  const safePosts = Array.isArray(posts) ? posts : [];
+  const items = safePosts.slice(offset, offset + limit);
+  const nextOffset = offset + items.length;
+  const hasMore = nextOffset < safePosts.length;
+  const html = type === TRAVEL_CONTENT_TYPE
+    ? items.map((post) => renderTravelPostItem(post)).join("")
+    : items.map((post) => renderHotelPostCard(post)).join("");
+
+  return {
+    type,
+    total: safePosts.length,
+    offset,
+    nextOffset,
+    hasMore,
+    html,
+    items: items.map(serializePost)
+  };
 }
 
 export async function onRequestGet({ env, request }) {
   const url = new URL(request.url);
-  const destinationSlug = decodeURIComponent(String(url.searchParams.get("destination") || "")).trim();
-  const rawType = String(url.searchParams.get("type") || "").trim();
-  const requestedType = rawType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_TYPE : normalizeContentType(rawType);
-  const wantsDrafts = requestedType !== TRAVEL_CONTENT_TYPE && isTruthyParam(url.searchParams.get("include_drafts"));
+  const destinationSlug = decodeURIComponent(String(url.searchParams.get("destination") || "")).trim().toLowerCase();
+  const requestedType = normalizeRequestedType(url.searchParams.get("type"));
+  const wantsDrafts = isTruthyParam(url.searchParams.get("include_drafts"));
   const regionSlug = String(url.searchParams.get("region") || url.searchParams.get("region_slug") || "").trim();
   const recommendationCategorySlug = String(url.searchParams.get("category") || url.searchParams.get("recommendation_category") || url.searchParams.get("recommendation_category_slug") || "").trim();
   const offset = Math.max(0, Number.parseInt(url.searchParams.get("offset") || "0", 10) || 0);
   const defaultLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_DEFAULT_LIMIT : DEFAULT_LIMIT;
   const maxLimit = requestedType === TRAVEL_CONTENT_TYPE ? TRAVEL_CONTENT_MAX_LIMIT : MAX_LIMIT;
   const limit = Math.min(maxLimit, Math.max(1, Number.parseInt(url.searchParams.get("limit") || String(defaultLimit), 10) || defaultLimit));
+  const hotelLimit = Math.min(MAX_LIMIT, Math.max(1, Number.parseInt(url.searchParams.get("hotel_limit") || String(DEFAULT_LIMIT), 10) || DEFAULT_LIMIT));
+  const travelLimit = Math.min(TRAVEL_CONTENT_MAX_LIMIT, Math.max(1, Number.parseInt(url.searchParams.get("travel_limit") || String(TRAVEL_CONTENT_DEFAULT_LIMIT), 10) || TRAVEL_CONTENT_DEFAULT_LIMIT));
+  const validType = requestedType === ALL_CONTENT_TYPE || requestedType === TRAVEL_CONTENT_TYPE || HOTEL_CONTENT_TYPES.includes(requestedType);
 
-  if (!destinationSlug || !(HOTEL_CONTENT_TYPES.includes(requestedType) || requestedType === TRAVEL_CONTENT_TYPE)) {
-    return okJson({ ok: false, error: "invalid_request", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 400, headers: noStoreHeaders() });
-  }
-
-  if (wantsDrafts && !await requireAdmin(env, request)) {
-    return okJson({ ok: false, error: "admin_required", html: "", items: [], hasMore: false, nextOffset: offset }, {
-      status: 401,
-      headers: privateNoStoreHeaders()
+  if (!destinationSlug || !validType) {
+    return okJson({ ok: false, authenticated: false, error: "invalid_request", html: "", items: [], hasMore: false, nextOffset: offset }, {
+      status: 400,
+      headers: noStoreHeaders()
     });
   }
 
-  const responseHeaders = wantsDrafts ? privateNoStoreHeaders() : noStoreHeaders();
-
-  await ensureTravelSettingsTables(env.TRAVEL_DB);
-
-  const destinationRow = await env.TRAVEL_DB.prepare(`
-    SELECT slug, name, city
-    FROM destinations
-    WHERE slug = ? AND status = 'published'
-  `).bind(destinationSlug).first();
-
-  const destination = destinationRow || getFallbackDestination(destinationSlug);
-  if (!destination) {
-    return okJson({ ok: false, error: "destination_not_found", html: "", items: [], hasMore: false, nextOffset: offset }, { status: 404, headers: responseHeaders });
+  let admin = null;
+  if (wantsDrafts) {
+    admin = await requireAdmin(env, request);
+    if (!admin) {
+      return okJson({ ok: false, authenticated: false, error: "admin_required", html: "", items: [], hasMore: false, nextOffset: offset }, {
+        status: 401,
+        headers: privateNoStoreHeaders()
+      });
+    }
   }
 
-  const postQuery = buildDestinationPostQuery(destination, {
+  const responseHeaders = wantsDrafts ? privateNoStoreHeaders() : publicCacheHeaders();
+  const postRows = await loadDestinationPostRows(env.TRAVEL_DB, destinationSlug, {
     regionSlug,
     recommendationCategorySlug,
-    includeDrafts: wantsDrafts,
-    selectSql: "slug, title, category, summary, cover_image, cover_image_alt, cover_image_source, cover_image_link_url, cover_image_srcset, tags_json, content_type, destination_slug, region_slug, region_name, recommendation_category_slug, recommendation_category_name, recommendation_category_description, hotel_pick_label, hotel_slug, (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name, (SELECT h.area FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_location_type, (SELECT h.star_rating FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_star_rating, status, updated_at, published_at",
-    orderSql: `
-      ORDER BY
-        CASE WHEN TRIM(COALESCE(destination_slug, '')) = ? THEN 0 ELSE 1 END,
-        updated_at DESC,
-        published_at DESC
-      LIMIT ${MAX_SOURCE_ROWS}
-    `,
-    orderBinds: [destinationSlug]
+    includeDrafts: wantsDrafts
   });
 
-  const [postRows, contentTypes] = await Promise.all([
-    loadDestinationPostRows(env.TRAVEL_DB, postQuery),
-    getActiveContentTypes(env.TRAVEL_DB)
-  ]);
+  const grouped = {
+    top5_series: [],
+    hotel_intro: [],
+    travel_content: []
+  };
+  for (const post of postRows.results || []) {
+    grouped[getDestinationContentGroup(post)].push(post);
+  }
 
-  const allPosts = (postRows.results || []).filter((post) => {
-    const hotelGroup = getHotelPostGroup(post, requestedType);
-    return requestedType === TRAVEL_CONTENT_TYPE ? !hotelGroup : hotelGroup === requestedType;
-  });
-  const items = allPosts.slice(offset, offset + limit);
-  const nextOffset = offset + items.length;
-  const hasMore = nextOffset < allPosts.length;
-  const html = requestedType === TRAVEL_CONTENT_TYPE
-    ? items.map((post) => renderTravelPostItem(post)).join("")
-    : items.map((post) => renderHotelPostCard(post, contentTypes)).join("");
+  if (requestedType === ALL_CONTENT_TYPE) {
+    const groups = {
+      top5_series: buildGroupPayload(grouped.top5_series, "top5_series", { limit: hotelLimit }),
+      hotel_intro: buildGroupPayload(grouped.hotel_intro, "hotel_intro", { limit: hotelLimit }),
+      travel_content: buildGroupPayload(grouped.travel_content, TRAVEL_CONTENT_TYPE, { limit: travelLimit })
+    };
+    const hotelItems = [...grouped.top5_series.slice(0, hotelLimit), ...grouped.hotel_intro.slice(0, hotelLimit)];
+    return okJson({
+      ok: true,
+      authenticated: Boolean(admin),
+      destination: destinationSlug,
+      region: regionSlug,
+      recommendation_category: recommendationCategorySlug,
+      uses_agoda_images: hotelItems.some((post) => normalizeCoverImageSource(post.cover_image_source) === "agoda" && String(post.cover_image || "").trim()),
+      groups
+    }, { headers: responseHeaders });
+  }
 
+  const payload = buildGroupPayload(grouped[requestedType] || [], requestedType, { offset, limit });
   const usesAgodaImages = requestedType !== TRAVEL_CONTENT_TYPE
-    && items.some((post) => normalizeCoverImageSource(post.cover_image_source) === "agoda" && String(post.cover_image || "").trim());
+    && (grouped[requestedType] || []).slice(offset, offset + limit)
+      .some((post) => normalizeCoverImageSource(post.cover_image_source) === "agoda" && String(post.cover_image || "").trim());
 
   return okJson({
     ok: true,
+    authenticated: Boolean(admin),
     uses_agoda_images: usesAgodaImages,
-    type: requestedType,
     region: regionSlug,
     recommendation_category: recommendationCategorySlug,
-    total: allPosts.length,
-    offset,
-    nextOffset,
-    hasMore,
-    html,
-    items: items.map((post) => ({ slug: post.slug, title: post.title, status: normalizePostStatus(post.status), region_slug: post.region_slug || "", region_name: post.region_name || "", recommendation_category_slug: post.recommendation_category_slug || "", recommendation_category_name: post.recommendation_category_name || "", recommendation_category_description: post.recommendation_category_description || "", hotel_pick_label: normalizeHotelPickLabel(post.hotel_pick_label), cover_image_source: normalizeCoverImageSource(post.cover_image_source) }))
+    ...payload
   }, { headers: responseHeaders });
 }
 
@@ -128,11 +231,18 @@ function noStoreHeaders() {
   return { "cache-control": "no-store" };
 }
 
+function publicCacheHeaders() {
+  return {
+    "cache-control": "public, max-age=60, s-maxage=300, stale-while-revalidate=600"
+  };
+}
+
 function privateNoStoreHeaders() {
   return {
     "cache-control": "private, no-store, no-cache, must-revalidate",
     "pragma": "no-cache",
-    "expires": "0"
+    "expires": "0",
+    "vary": "Cookie"
   };
 }
 
@@ -430,13 +540,17 @@ function safeTags(value = "") {
 
 function renderTravelPostItem(post = {}) {
   const slug = String(post.slug || "");
-  const href = `/post/${encodeURIComponent(slug)}/`;
+  const isDraft = normalizePostStatus(post.status) === "draft";
+  const href = isDraft
+    ? `/post/${encodeURIComponent(slug)}/?preview=1`
+    : `/post/${encodeURIComponent(slug)}/`;
   const meta = formatDate(post.updated_at);
-  return `<article class="travel-list__item">
-    <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(`${post.title || "여행 글"} 읽기`)}">
+  const label = isDraft ? `${post.title || "여행 글"} 초안 미리보기` : `${post.title || "여행 글"} 읽기`;
+  return `<article class="travel-list__item${isDraft ? " travel-list__item--draft" : ""}" data-post-status="${isDraft ? "draft" : "published"}">
+    <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(label)}">
       <div class="travel-list__content">
         <h4>${escapeHtml(post.title || "여행 콘텐츠")}</h4>
-        <div class="travel-card__meta">${escapeHtml(meta)}</div>
+        <div class="travel-card__meta">${isDraft ? '<span class="travel-card__draft-badge">초안</span>' : ""}${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</div>
       </div>
       <div class="travel-list__actions" aria-hidden="true">
         <span class="travel-list__arrow">→</span>
@@ -465,7 +579,7 @@ function getHotelCardMeta(post = {}) {
   return [recommendationCategory, region, locationType, starRating].filter(Boolean).join(" · ");
 }
 
-export function renderHotelPostCard(post, contentTypes = []) {
+export function renderHotelPostCard(post) {
   const slug = String(post.slug || "");
   const isDraft = normalizePostStatus(post.status) === "draft";
   const href = isDraft

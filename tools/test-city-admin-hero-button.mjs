@@ -24,7 +24,7 @@ for (const file of cityPages) {
   if (/data-admin-city-content="hotel-button"|href="#hotel-posts"[^>]*>추천 호텔</.test(html)) {
     throw new Error(`비로그인 정적 HTML에 추천 호텔 버튼이 남아 있습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/js/posts.js?v=20260731AdminHeroRuntimeV2')) {
+  if (!html.includes('/assets/js/posts.js?v=20260802CityContentUnifiedV1')) {
     throw new Error(`관리자 버튼 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
   if (!html.includes('/assets/css/travel.css?v=20260731-admin-hero-mobile-v2')) {
@@ -50,24 +50,27 @@ for (const required of [
   'const ensureHotelHeroButtons = () =>',
   "button.dataset.adminCityContent = 'hotel-button';",
   "button.textContent = '추천 호텔';",
-  "sessionUrl.searchParams.set('ts', String(Date.now()));",
-  "cache: 'no-store'",
-  'const applyFreshAdminVisibility = async () =>',
+  'const loadCityContent = async () =>',
+  "type: 'all',",
+  'includeDrafts: true',
+  'if (!data?.ok || !data?.authenticated)',
   "window.addEventListener('pageshow', (event) =>",
   'if (!event.persisted) return;',
-  'const isCityAdmin = await applyFreshAdminVisibility();',
-  'if (!isCityAdmin) return;'
+  'void loadCityContent();'
 ]) {
   if (!postsJs.includes(required)) {
-    throw new Error(`관리자 인증 후 동적 버튼 생성 코드가 누락되었습니다: ${required}`);
+    throw new Error(`관리자 인증 후 통합 콘텐츠 로딩 코드가 누락되었습니다: ${required}`);
   }
 }
 
-const cityRuntimeStart = postsJs.indexOf('/* CITY_HOTEL_PICKS_RUNTIME_V5_DRAFT_PREVIEW */');
+const cityRuntimeStart = postsJs.indexOf('/* CITY_HOTEL_PICKS_RUNTIME_V6_UNIFIED_REQUEST */');
 const cityRuntimeEnd = postsJs.indexOf('\n(function () {', cityRuntimeStart);
 const cityRuntime = postsJs.slice(cityRuntimeStart, cityRuntimeEnd > cityRuntimeStart ? cityRuntimeEnd : undefined);
-if (cityRuntime.includes('window.__adminSessionPromise')) {
-  throw new Error('도시 관리자 버튼이 캐시될 수 있는 공용 세션 Promise를 사용하고 있습니다.');
+if (cityRuntime.includes('/api/admin/session')) {
+  throw new Error('도시 콘텐츠가 별도 관리자 세션 API를 먼저 호출하고 있습니다.');
+}
+if ((cityRuntime.match(/type: 'all'/g) || []).length !== 1) {
+  throw new Error('도시 초기 콘텐츠 통합 요청이 정확히 한 번 정의되어야 합니다.');
 }
 
 const sessionApi = fs.readFileSync(path.join(root, 'functions', 'api', 'admin', 'session.js'), 'utf8');
