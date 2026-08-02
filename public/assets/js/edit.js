@@ -462,7 +462,7 @@ function applyHotelHeroFormData(hero = {}) {
 }
 
 function stripMarkdown(md) {
-  return String(md || "")
+  return stripStyleHotelTokenLines(String(md || ""))
     .replace(/^<!--\s*[\s\S]*?\s*-->\s*$/gm, "")
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`([^`]+)`/g, "$1")
@@ -661,6 +661,7 @@ function renderContentTypeOptions(selectedValue = "") {
   syncHotelHeroCardVisibility();
   syncHotelCurationCardVisibility();
   syncRecommendationCategoryCardVisibility();
+  window.StyleHotelEditor?.syncVisibility(normalized || "");
 }
 
 function renderCountryOptions(selectedValue = "") {
@@ -2065,6 +2066,26 @@ function applyTocControls() {
   const enableTocEl = $("enableToc");
   if (!contentEl || !enableTocEl) return;
 
+  if (window.StyleHotelEditor?.isActive()) {
+    if (!enableTocEl.checked) {
+      window.StyleHotelEditor.setTocMode(null);
+      if (statusEl) statusEl.textContent = "목차가 제거되었습니다.";
+      handleRealtimeChange();
+      return;
+    }
+    const mode = getSelectedTocMode();
+    const result = window.StyleHotelEditor.setTocMode(mode);
+    if (!result.ok) {
+      enableTocEl.checked = false;
+      if (statusEl) statusEl.textContent = mode === "h2,h3" ? "호텔 본문에 H2 또는 H3 소제목이 있어야 목차를 만들 수 있습니다." : "호텔 본문에 H2 소제목이 있어야 목차를 만들 수 있습니다.";
+      handleRealtimeChange();
+      return;
+    }
+    if (statusEl) statusEl.textContent = `목차가 적용되었습니다. (${mode === "h2,h3" ? "H2 + H3" : "H2만"})`;
+    handleRealtimeChange();
+    return;
+  }
+
   if (!enableTocEl.checked) {
     contentEl.value = stripTocTokenLines(contentEl.value || "");
     if (statusEl) statusEl.textContent = "목차가 제거되었습니다.";
@@ -2161,7 +2182,11 @@ function updateCount(inputId, outputId) {
   const inputEl = $(inputId);
   const outputEl = $(outputId);
   if (!inputEl || !outputEl) return;
-  const countSource = inputId === "summary" ? stripMarkdown(inputEl.value) : inputEl.value;
+  const countSource = inputId === "summary"
+    ? stripMarkdown(inputEl.value)
+    : (inputId === "content_md" && window.StyleHotelEditor?.isActive()
+      ? window.StyleHotelEditor.getCountSource()
+      : inputEl.value);
   const includedValue = countText(countSource);
   const excludedValue = countTextWithoutSpaces(countSource);
   outputEl.textContent = `공백 포함 ${includedValue}자 / 제외 ${excludedValue}자`;
@@ -2381,7 +2406,7 @@ function getFirstParagraph(md = "") {
     .map((block) => block.trim())
     .filter(Boolean)
     .filter((block) => !/^\s{0,3}#{1,6}\s+/.test(block))
-    .filter((block) => !/^\s*\[\[(?:TOC|POST_|AFFILIATE_)/i.test(block))
+    .filter((block) => !/^\s*\[\[(?:TOC|POST_|AFFILIATE_|STYLE_HOTEL_)/i.test(block))
     .filter((block) => !/^\s*```/.test(block));
   return stripMarkdown(blocks[0] || "");
 }
@@ -2475,7 +2500,8 @@ function evaluateOtherKeywordStuffing(focusKeyword = "", plainContent = "") {
 function getImageSeoData(contentMd, coverImage, coverImageAlt, focusKeyword, inlineImages = {}) {
   const bodyImages = [
     ...getImages(contentMd),
-    ...getInlineImageItems(inlineImages).map((item) => ({ url: item.url || item.id || "", alt: item.alt || "" }))
+    ...getInlineImageItems(inlineImages).map((item) => ({ url: item.url || item.id || "", alt: item.alt || "" })),
+    ...(window.StyleHotelEditor?.isActive() ? window.StyleHotelEditor.getImages() : [])
   ];
   const bodyImagesWithoutAlt = bodyImages.filter((img) => !img.alt).length;
   const bodyAlts = bodyImages.map((img) => img.alt).filter(Boolean);
@@ -3148,6 +3174,69 @@ function isHotelReviewSectionLabelHtml(html = "") {
   return /^\d{1,2}[.)]\s+.{1,80}$/.test(labelText);
 }
 
+
+const STYLE_HOTEL_IMAGE_TOKEN_RE = /^\[\[STYLE_HOTEL_IMAGE\s+(.+?)\]\]$/i;
+const STYLE_HOTEL_BUTTON_TOKEN_RE = /^\[\[STYLE_HOTEL_BUTTON\s+(.+?)\]\]$/i;
+const STYLE_HOTEL_ENDING_TOKEN_RE = /^\[\[STYLE_HOTEL_ENDING\]\]$/i;
+
+function parseStyleHotelTokenAttributes(raw = "") {
+  const attrs = {};
+  const re = /(\w+)="([^"]*)"/g;
+  let match;
+  while ((match = re.exec(String(raw || ""))) !== null) attrs[match[1]] = match[2];
+  return attrs;
+}
+
+function decodeStyleHotelTokenValue(value = "") {
+  try { return decodeURIComponent(String(value || "")); } catch (_) { return String(value || ""); }
+}
+
+function parseStyleHotelImageToken(line = "") {
+  const match = String(line || "").trim().match(STYLE_HOTEL_IMAGE_TOKEN_RE);
+  if (!match) return null;
+  const attrs = parseStyleHotelTokenAttributes(match[1]);
+  return {
+    source: String(attrs.source || "r2").toLowerCase() === "agoda" ? "agoda" : "r2",
+    image: decodeStyleHotelTokenValue(attrs.image || attrs.url || ""),
+    srcset: decodeStyleHotelTokenValue(attrs.srcset || ""),
+    link: decodeStyleHotelTokenValue(attrs.link || ""),
+    alt: decodeStyleHotelTokenValue(attrs.alt || "")
+  };
+}
+
+function parseStyleHotelButtonToken(line = "") {
+  const match = String(line || "").trim().match(STYLE_HOTEL_BUTTON_TOKEN_RE);
+  if (!match) return null;
+  const attrs = parseStyleHotelTokenAttributes(match[1]);
+  return {
+    buttonText: decodeStyleHotelTokenValue(attrs.text || attrs.button || "예약 가능 객실 확인"),
+    linkUrl: decodeStyleHotelTokenValue(attrs.link || attrs.url || "")
+  };
+}
+
+function stripStyleHotelTokenLines(md = "") {
+  return String(md || "")
+    .split("\n")
+    .filter((line) => !STYLE_HOTEL_IMAGE_TOKEN_RE.test(line.trim()) && !STYLE_HOTEL_BUTTON_TOKEN_RE.test(line.trim()) && !STYLE_HOTEL_ENDING_TOKEN_RE.test(line.trim()))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function renderStyleHotelPreviewImage(data = {}) {
+  const imageUrl = String(data.image || "").trim();
+  if (!imageUrl) return "";
+  const alt = String(data.alt || "호텔 이미지").trim();
+  if (data.source === "agoda") {
+    const image = `<img src="${escapeHtml(imageUrl)}"${data.srcset ? ` srcset="${escapeHtml(data.srcset)}"` : ""} sizes="(max-width: 760px) 100vw, 760px" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`;
+    const linked = data.link
+      ? `<a class="preview-inline-image__link" href="${escapeHtml(data.link)}" target="_blank" rel="sponsored noopener noreferrer">${image}</a>`
+      : image;
+    return `<figure class="preview-inline-image preview-inline-image--agoda style-hotel-preview-image">${linked}</figure>`;
+  }
+  return `<figure class="preview-inline-image style-hotel-preview-image"><img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async"></figure>`;
+}
+
 function markdownToHtml(md, options = {}) {
   const inlineImages = options.inlineImages || parseInlineImageMetaFromMarkdown(md);
   const affiliates = options.affiliates || parseAffiliateMetaFromMarkdown(md);
@@ -3213,6 +3302,30 @@ function markdownToHtml(md, options = {}) {
     const line = rawLine.trim();
 
     if (!line) {
+      closeLists();
+      closeQuote();
+      continue;
+    }
+
+    const styleHotelImage = parseStyleHotelImageToken(line);
+    if (styleHotelImage) {
+      closeLists();
+      closeQuote();
+      const imageHtml = renderStyleHotelPreviewImage(styleHotelImage);
+      if (imageHtml) pushContentBlock(imageHtml);
+      continue;
+    }
+
+    const styleHotelButton = parseStyleHotelButtonToken(line);
+    if (styleHotelButton) {
+      closeLists();
+      closeQuote();
+      const buttonHtml = renderAffiliateCtaPreviewButton({ ...styleHotelButton, enabled: true, position: 1 });
+      if (buttonHtml) pushContentBlock(buttonHtml);
+      continue;
+    }
+
+    if (STYLE_HOTEL_ENDING_TOKEN_RE.test(line)) {
       closeLists();
       closeQuote();
       continue;
@@ -3585,6 +3698,7 @@ async function load() {
   applyAffiliateCtaFormData(parseAffiliateCtaMetaFromMarkdown(rawContentMd));
   applyLsiKeywordsFromMarkdown(rawContentMd);
   $("content_md").value = stripLsiKeywordsTokenLines(stripAffiliateCtaTokenLines(stripAffiliateTokenLines(stripInlineImageTokenLines(rawContentMd))));
+  window.StyleHotelEditor?.loadFromContent($("content_md").value, loadedContentType);
   if ($("faq_md")) $("faq_md").value = item.faq_md || "";
   applyHotelHeroFormData(item.hotel_hero || {});
   applyHotelPickFormData({ price_level: item.hotel_pick_label || "" });
@@ -3648,6 +3762,15 @@ async function save() {
     if (window.CoverImageSourceUtils?.getSelectedSource() === "agoda") $("agoda_image_html")?.focus();
     else $("cover_image")?.focus();
     return;
+  }
+
+  if (normalizedContentType === "top5_series" && window.StyleHotelEditor?.isActive()) {
+    const styleHotelValidation = window.StyleHotelEditor.validateAndSync();
+    if (!styleHotelValidation.ok) {
+      statusEl.textContent = styleHotelValidation.error || "호텔별 본문 입력 내용을 확인해 주세요.";
+      styleHotelValidation.focus?.focus();
+      return;
+    }
   }
 
   const inlineImageValidation = collectInlineImageFormData({ validate: true });

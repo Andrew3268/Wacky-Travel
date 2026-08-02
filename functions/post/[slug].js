@@ -1,5 +1,5 @@
 import { escapeHtml, jsonld, okHtml, edgeCache, getAdminSession } from "../_utils.js";
-import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
+import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripStyleHotelTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
@@ -176,7 +176,7 @@ export async function onRequestGet(context) {
 
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
-      const contentTextLength = stripMarkdown(stripInlineImageTokens(cleanContentMd)).replace(/\s+/g, "").length;
+      const contentTextLength = stripMarkdown(stripStyleHotelTokens(stripInlineImageTokens(cleanContentMd))).replace(/\s+/g, "").length;
       const shouldShowSidebarAd = !isDraftPreview && toBool(row.enable_sidebar_ad, false);
       const shouldShowInarticleAds = !isDraftPreview && toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
@@ -196,7 +196,7 @@ export async function onRequestGet(context) {
       const descriptionText = buildDescription(
         row.meta_description,
         row.summary,
-        cleanContentMd,
+        stripStyleHotelTokens(cleanContentMd),
         titleText
       );
       const pageTitle = `${isDraftPreview ? "[초안 미리보기] " : ""}${titleText} | ${siteName}`;

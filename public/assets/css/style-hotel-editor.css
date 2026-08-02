@@ -1,0 +1,151 @@
+/* 여행 스타일별 호텔 추천 전용 본문 편집기 */
+.editor-content-markdown-section{
+  display:grid;
+  gap:8px;
+}
+
+.editor-content-markdown-section__label{
+  display:block;
+}
+
+.style-hotel-editor{
+  display:grid;
+  gap:18px;
+}
+
+.style-hotel-editor[hidden]{
+  display:none;
+}
+
+.style-hotel-editor__intro{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  padding:18px;
+  border:1px solid var(--line, #dedede);
+  border-radius:14px;
+  background:#f8f8f6;
+}
+
+.style-hotel-editor__intro p{
+  margin:6px 0 0;
+}
+
+.style-hotel-set-list{
+  display:grid;
+  gap:18px;
+}
+
+.style-hotel-set-card{
+  display:grid;
+  gap:14px;
+  padding:20px;
+  border:1px solid var(--line, #dedede);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.035);
+}
+
+.style-hotel-set-card__head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line, #e5e5e5);
+}
+
+.style-hotel-set-card__head > div:first-child{
+  display:grid;
+  gap:4px;
+}
+
+.style-hotel-set-card__actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:6px;
+}
+
+.style-hotel-set-card .btn--small{
+  min-height:34px;
+  padding:7px 10px;
+  font-size:12px;
+}
+
+.style-hotel-set-card .btn--danger{
+  color:#a32626;
+  border-color:#dfbcbc;
+  background:#fff8f8;
+}
+
+.style-hotel-image-source{
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+.style-hotel-image-source legend{
+  margin-bottom:8px;
+}
+
+.style-hotel-image-source__options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 18px;
+}
+
+.style-hotel-image-source__options label{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  cursor:pointer;
+}
+
+.style-hotel-source-panel{
+  display:grid;
+  gap:8px;
+}
+
+.style-hotel-source-panel[hidden]{
+  display:none;
+}
+
+.style-hotel-markdown{
+  min-height:260px;
+}
+
+.style-hotel-button-fields{
+  align-items:end;
+}
+
+.style-hotel-ending-field{
+  display:grid;
+  gap:8px;
+  padding:20px;
+  border:1px solid var(--line, #dedede);
+  border-radius:16px;
+  background:#fafaf8;
+}
+
+@media (max-width: 720px){
+  .style-hotel-editor__intro,
+  .style-hotel-set-card__head{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .style-hotel-editor__intro .btn,
+  .style-hotel-set-card__actions{
+    width:100%;
+  }
+
+  .style-hotel-set-card__actions{
+    justify-content:flex-start;
+  }
+
+  .style-hotel-set-card{
+    padding:16px;
+  }
+}
