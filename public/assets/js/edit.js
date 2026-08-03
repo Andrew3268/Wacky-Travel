@@ -3226,6 +3226,15 @@ function stripStyleHotelTokenLines(md = "") {
     .trim();
 }
 
+function normalizeStyleHotelPreviewBadges(raw = "") {
+  return Array.from(new Set(
+    String(raw || "")
+      .split(/[,，]/)
+      .map((item) => item.replace(/\s+/g, " ").trim().slice(0, 40))
+      .filter(Boolean)
+  )).slice(0, 8);
+}
+
 function renderStyleHotelPreviewMeta(data = {}) {
   const star = ["3", "4", "5"].includes(String(data.starRating || "").trim())
     ? `${String(data.starRating).trim()}성급`
@@ -3233,12 +3242,17 @@ function renderStyleHotelPreviewMeta(data = {}) {
   const rating = /^(?:6\.5|7\.0|7\.5|8\.0|8\.5|9\.0|9\.5)\+$/.test(String(data.guestRating || "").trim())
     ? String(data.guestRating).trim()
     : "";
-  const badge = String(data.badge || "").replace(/\s+/g, " ").trim().slice(0, 40);
   const items = [];
   if (star) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--star">${escapeHtml(star)}</span>`);
-  if (rating) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--rating"><span aria-hidden="true">★</span> ${escapeHtml(rating)}</span>`);
-  if (badge) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--badge">${escapeHtml(badge)}</span>`);
-  return items.length ? `<div class="preview-style-hotel-meta">${items.join("")}</div>` : "";
+  if (star && rating) items.push('<span class="preview-style-hotel-meta__separator" aria-hidden="true">|</span>');
+  if (rating) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--rating"><span aria-hidden="true">★</span>${escapeHtml(rating)}</span>`);
+  return items.length ? `<div class="preview-style-hotel-meta" aria-label="호텔 성급 및 평점">${items.join("")}</div>` : "";
+}
+
+function renderStyleHotelPreviewBadges(data = {}) {
+  const badges = normalizeStyleHotelPreviewBadges(data.badge);
+  if (!badges.length) return "";
+  return `<p class="preview-style-hotel-badges" aria-label="호텔 특징">${badges.map((badge) => escapeHtml(badge)).join('<span aria-hidden="true"> | </span>')}</p>`;
 }
 
 function renderStyleHotelPreviewImage(data = {}) {
@@ -3274,6 +3288,8 @@ function markdownToHtml(md, options = {}) {
   let h2Count = 0;
   const useHotelSectionLabelAnchor = options.hotelReviewSectionImageAnchor === true;
   let activeAffiliateCtaItems = [];
+  let pendingStyleHotelHeadingData = null;
+  let skipStyleHotelLeadList = false;
 
   function maybeInsertAd() {
     while (options.showAds && adPointer < adPositions.length && adPositions[adPointer] === contentBlockCount) {
@@ -3325,10 +3341,19 @@ function markdownToHtml(md, options = {}) {
       continue;
     }
 
+    if (skipStyleHotelLeadList && /^[-*]\s+(.+)$/.test(line)) {
+      closeLists();
+      closeQuote();
+      continue;
+    }
+    if (skipStyleHotelLeadList) skipStyleHotelLeadList = false;
+
     const styleHotelImage = parseStyleHotelImageToken(line);
     if (styleHotelImage) {
       closeLists();
       closeQuote();
+      pendingStyleHotelHeadingData = styleHotelImage;
+      skipStyleHotelLeadList = false;
       const imageHtml = renderStyleHotelPreviewImage(styleHotelImage);
       if (imageHtml) pushContentBlock(imageHtml);
       continue;
@@ -3413,6 +3438,12 @@ function markdownToHtml(md, options = {}) {
       const headingText = normalizeArticleHeadingText(level, headingMatch[2].trim());
       const headingId = buildHeadingSlug(headingText, slugCounts);
       pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
+      if (level === 2 && pendingStyleHotelHeadingData) {
+        const badgesHtml = renderStyleHotelPreviewBadges(pendingStyleHotelHeadingData);
+        if (badgesHtml) pushContentBlock(badgesHtml);
+        skipStyleHotelLeadList = true;
+        pendingStyleHotelHeadingData = null;
+      }
       if (level === 2) {
         getInlineImageItems(inlineImages)
           .filter((item) => item.placement === "after" && item.position === h2Count)

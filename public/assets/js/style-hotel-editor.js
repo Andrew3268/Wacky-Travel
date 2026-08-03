@@ -323,7 +323,7 @@
           </label>
           <label>
             <span class="small">뱃지</span>
-            <input class="input" data-field="badge" value="${escapeHtml(item.badge)}" placeholder="예: 위치 최고" maxlength="40">
+            <input class="input" data-field="badge" value="${escapeHtml(item.badge)}" placeholder="예: 위치 최고, 조식 맛집, 쾌적한 객실" maxlength="120">
           </label>
         </div>
 
