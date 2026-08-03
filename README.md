@@ -265,3 +265,16 @@ npm run d1:migrate:status-normalization:remote
 - 호텔 성급·평점 메타 하단 여백을 모든 화면에서 5px로 조정했습니다.
 - 포스트 본문 이미지의 테두리를 제거했습니다.
 - CSS 캐시 버전과 동적 포스트 렌더 캐시 버전을 갱신했습니다.
+
+
+## 2026-08-03 여행 스타일별 호텔 추천 H3·마무리 본문 보완 (v9)
+
+- `top5_series` 글의 H3 상·하단 테두리 제거
+- H3 폰트 크기 18px 적용
+- H3 제목 오른쪽에 제한된 길이의 실선 추가
+- 기존 호텔 리뷰 H3 테두리 규칙의 적용 범위를 `top5_series` 외 글로 제한
+- `[[STYLE_HOTEL_ENDING]]` 이후 Markdown을 `.post-style-hotel-ending` 섹션으로 묶고 상단 구분선 적용
+- add/edit 미리보기에도 동일한 H3 및 마무리 구분선 적용
+- 포스트 Edge Cache 렌더 버전 갱신
+- CSS 버전 `20260803-frontend-v8`로 통일
+- D1 SQL 변경 없음

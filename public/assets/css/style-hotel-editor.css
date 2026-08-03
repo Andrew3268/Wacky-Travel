@@ -290,3 +290,36 @@
   }
 }
 
+.preview-body--top5-series h3{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:fit-content;
+  max-width:100%;
+  margin:34px 0 16px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#111;
+  font-size:18px;
+  font-weight:600;
+  line-height:1.45;
+  text-align:left;
+}
+
+.preview-body--top5-series h3 .post-style-hotel-h3-line{
+  display:block;
+  flex:0 1 140px;
+  width:clamp(64px,12vw,140px);
+  min-width:56px;
+  height:1px;
+  background:currentColor;
+  opacity:.35;
+}
+
+.preview-body--top5-series .preview-style-hotel-ending{
+  margin-top:48px;
+  padding-top:28px;
+  border-top:1px solid rgba(17,17,17,.24);
+}
+

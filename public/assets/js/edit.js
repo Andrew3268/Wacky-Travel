@@ -3296,6 +3296,7 @@ function markdownToHtml(md, options = {}) {
   let activeAffiliateCtaItems = [];
   let pendingStyleHotelHeadingData = null;
   let skipStyleHotelLeadList = false;
+  let styleHotelEndingOpen = false;
 
   function maybeInsertAd() {
     while (options.showAds && adPointer < adPositions.length && adPositions[adPointer] === contentBlockCount) {
@@ -3377,6 +3378,10 @@ function markdownToHtml(md, options = {}) {
     if (STYLE_HOTEL_ENDING_TOKEN_RE.test(line)) {
       closeLists();
       closeQuote();
+      if (!styleHotelEndingOpen) {
+        htmlParts.push('<section class="preview-style-hotel-ending">');
+        styleHotelEndingOpen = true;
+      }
       continue;
     }
 
@@ -3443,7 +3448,10 @@ function markdownToHtml(md, options = {}) {
       }
       const headingText = normalizeArticleHeadingText(level, headingMatch[2].trim());
       const headingId = buildHeadingSlug(headingText, slugCounts);
-      pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}</h${level}>`);
+      const styleHotelH3Line = level === 3 && options.styleHotelSeries === true
+        ? '<span class="post-style-hotel-h3-line" aria-hidden="true"></span>'
+        : "";
+      pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}${styleHotelH3Line}</h${level}>`);
       if (level === 2 && pendingStyleHotelHeadingData) {
         const badgesHtml = renderStyleHotelPreviewBadges(pendingStyleHotelHeadingData);
         if (badgesHtml) pushContentBlock(badgesHtml);
@@ -3517,6 +3525,9 @@ function markdownToHtml(md, options = {}) {
   closeLists();
   closeQuote();
   maybeInsertAffiliateCtaAtSectionEnd();
+  if (styleHotelEndingOpen) {
+    htmlParts.push("</section>");
+  }
 
   while (options.showAds && adPointer < adPositions.length) {
     htmlParts.push(renderPreviewAdBox(adPointer));
@@ -3590,7 +3601,7 @@ function renderPreview() {
         ${summary ? `<div class="preview-summary preview-summary--markdown">${markdownToHtml(summary)}</div>` : ""}
         ${tags.length ? `<div class="row">${tags.map((tag) => `<span class="tag-chip">#${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
       </header>
-      <section class="preview-body">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta, hotelReviewSectionImageAnchor: ($("content_type")?.value || "") === "hotel_intro" })}</section>
+      <section class="preview-body${($("content_type")?.value || "") === "top5_series" ? " preview-body--top5-series" : ""}">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta, hotelReviewSectionImageAnchor: ($("content_type")?.value || "") === "hotel_intro", styleHotelSeries: ($("content_type")?.value || "") === "top5_series" })}</section>
       ${faqItems.length ? `
         <section class="preview-faq" aria-label="자주 묻는 질문">
           <h2>자주 묻는 질문</h2>

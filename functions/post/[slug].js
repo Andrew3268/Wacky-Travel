@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260803-style-hotel-visual-tuning-v8";
+const POST_RENDER_VERSION = "20260803-style-hotel-h3-ending-v9";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -183,6 +183,7 @@ export async function onRequestGet(context) {
       const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
         useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
+        styleHotelSeries: isTop5SeriesPost,
         origin
       });
       const faqSectionHtml = renderFaqSection(faqItems, origin);
@@ -442,10 +443,10 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260803-frontend-v7" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260803-frontend-v7" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260803-frontend-v7" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260803-frontend-v7" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260803-frontend-v8" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260803-frontend-v8" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260803-frontend-v8" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260803-frontend-v8" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -1056,7 +1057,8 @@ function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0,
     inlineImages,
     origin: options.origin || DEFAULT_SITE_ORIGIN,
     hotelReviewSectionImageAnchor: options.useUnifiedHotelSectionHeading === true,
-    hotelSectionHeadingClasses: options.useUnifiedHotelSectionHeading === true
+    hotelSectionHeadingClasses: options.useUnifiedHotelSectionHeading === true,
+    styleHotelSeries: options.styleHotelSeries === true
   });
   if (!blocks.length) return "";
 
@@ -1381,9 +1383,9 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260803-frontend-v7" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260803-frontend-v7" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260803-frontend-v7" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260803-frontend-v8" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260803-frontend-v8" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260803-frontend-v8" />
 </head>
 <body>
   ${topbar()}

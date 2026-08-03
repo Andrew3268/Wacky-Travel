@@ -55,8 +55,8 @@ const editJs = read("public/assets/js/edit.js");
 const settingsLoadIndex = editJs.indexOf("await loadTravelSettings(loadedDestinationSlug");
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
-assert.match(read("public/add.html"), /add\.js\?v=20260803-style-hotel-add-v5/);
-assert.match(read("public/edit.html"), /edit\.js\?v=20260803-style-hotel-edit-v6/);
+assert.match(read("public/add.html"), /add\.js\?v=20260803-style-hotel-add-v6/);
+assert.match(read("public/edit.html"), /edit\.js\?v=20260803-style-hotel-edit-v7/);
 
 const api = sandbox.window.StyleHotelEditor;
 assert.ok(api, "StyleHotelEditor API missing");
@@ -73,7 +73,7 @@ const sets = [
     guestRating: "9.0+",
     badge: "위치 최고, 조식 맛집, 쾌적한 객실",
     imageBadge: "에디터 픽",
-    markdown: "**1. HOTEL A**\n\n## 호텔 A\n\n- 기존 호텔 특징 목록\n- 제거 대상 목록\n\n호텔 A 본문입니다.",
+    markdown: "**1. HOTEL A**\n\n## 호텔 A\n\n- 기존 호텔 특징 목록\n- 제거 대상 목록\n\n호텔 A 본문입니다.\n\n### 추천 객실 타입",
     buttonText: "호텔 A 객실 확인",
     buttonLink: "https://www.agoda.com/a"
   },
@@ -108,7 +108,8 @@ assert.equal(parsed.ending, ending);
 const html = renderMarkdown(md, {
   origin: "https://bestayable.com",
   hotelSectionHeadingClasses: true,
-  hotelReviewSectionImageAnchor: true
+  hotelReviewSectionImageAnchor: true,
+  styleHotelSeries: true
 });
 const order = [
   html.indexOf("post-style-hotel-image"),
@@ -121,7 +122,9 @@ assert.ok(order[0] < order[1] && order[1] < order[2] && order[2] < order[3], `wr
 assert.match(html, /post-style-hotel-image post-inline-image--before-section-label|post-inline-image--before-section-label post-style-hotel-image/);
 assert.match(html, /post-hotel-section-label post-section-label--after-image|post-section-label--after-image post-hotel-section-label/);
 assert.match(html, /post-style-hotel-image-badge[^>]*>에디터 픽<\/span>/);
+assert.match(html, /<section class="post-style-hotel-ending">[\s\S]*어떤 호텔을 고를까[\s\S]*<\/section>/);
 assert.match(html, /post-style-hotel-meta/);
+assert.match(html, /<h3[^>]*>추천 객실 타입<span class="post-style-hotel-h3-line" aria-hidden="true"><\/span><\/h3>/);
 assert.match(html, />5성급</);
 assert.match(html, /post-style-hotel-meta__separator[^>]*>\|<\/span>/);
 assert.match(html, />★<\/span>9\.0\+</);
@@ -140,7 +143,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260803-style-hotel-visual-tuning-v8"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260803-style-hotel-h3-ending-v9"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");
@@ -158,6 +161,10 @@ assert.match(travelCoreCss, /p\.post-style-hotel-badges\{[\s\S]*?margin:0 0 25px
 assert.match(travelCoreCss, /post-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta > \.preview-style-hotel-meta__item\{[^}]*border/);
 assert.match(editorCss, /preview-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
+assert.match(appCss, /post-page-body--top5-series \.post-body \.post-content h3\{[\s\S]*?border: 0;[\s\S]*?font-size: 18px;/);
+assert.match(appCss, /post-style-hotel-ending\{[\s\S]*?border-top: 1px solid/);
+assert.match(editorCss, /preview-body--top5-series h3\{[\s\S]*?border:0;[\s\S]*?font-size:18px;/);
+assert.match(editorCss, /preview-style-hotel-ending\{[\s\S]*?border-top:1px solid/);
 assert.match(editorCss, /style-hotel-badge-fields\{[\s\S]*?grid-template-columns:minmax\(0,7fr\) minmax\(0,3fr\)/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta__item--rating\{[^}]*border/);
 assert.match(editorCss, /preview-style-hotel-image-badge\{[\s\S]*?background:#000;[\s\S]*?color:#fff;/);
@@ -168,4 +175,4 @@ assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item\{[^}]*padding:/)
 assert.doesNotMatch(appCss, /body\.post-page-body \.post-inline-image__img\{[^}]*border:/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item--badge/);
 
-console.log("Style hotel editor check passed: 1-7 sets, star/rating separator, badges below H2, legacy lead list removal, and image → metadata → markdown → button → ending order.");
+console.log("Style hotel editor check passed: 1-7 sets, star/rating separator, badges below H2, legacy lead list removal, and image → metadata → markdown → button → bordered ending order, plus top5 H3 title line.");
