@@ -9344,3 +9344,60 @@ body.post-page-body .post-cover-wrap--agoda .post-cover-link:focus-visible{
   outline-offset:3px;
   border-radius:inherit;
 }
+
+
+/* 여행 스타일별 호텔 추천: 호텔별 성급·평점·뱃지 */
+body.post-page-body .post-style-hotel-meta,
+.preview-style-hotel-meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+  margin:12px 0 22px;
+}
+
+body.post-page-body .post-style-hotel-meta__item,
+.preview-style-hotel-meta__item{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid #dedbd4;
+  border-radius:999px;
+  background:#fff;
+  color:#3d3a35;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.2;
+}
+
+body.post-page-body .post-style-hotel-meta__item--rating,
+.preview-style-hotel-meta__item--rating{
+  gap:4px;
+}
+
+body.post-page-body .post-style-hotel-meta__item--rating > span,
+.preview-style-hotel-meta__item--rating > span{
+  color:#a86a24;
+}
+
+body.post-page-body .post-style-hotel-meta__item--badge,
+.preview-style-hotel-meta__item--badge{
+  border-color:#cfc5b8;
+  background:#f7f2eb;
+}
+
+@media (max-width:720px){
+  body.post-page-body .post-style-hotel-meta,
+  .preview-style-hotel-meta{
+    gap:6px;
+    margin:10px 0 18px;
+  }
+
+  body.post-page-body .post-style-hotel-meta__item,
+  .preview-style-hotel-meta__item{
+    min-height:28px;
+    padding:5px 9px;
+    font-size:12px;
+  }
+}

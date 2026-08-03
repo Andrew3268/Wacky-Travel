@@ -44,6 +44,9 @@
       imageLink: "",
       agodaHtml: "",
       alt: "",
+      starRating: "",
+      guestRating: "",
+      badge: "",
       markdown: "",
       buttonText: "잔여 객실 확인",
       buttonLink: ""
@@ -60,7 +63,10 @@
       image: decode(attrs.image || attrs.url || ""),
       srcset: decode(attrs.srcset || ""),
       imageLink: decode(attrs.link || ""),
-      alt: decode(attrs.alt || "")
+      alt: decode(attrs.alt || ""),
+      starRating: decode(attrs.star || ""),
+      guestRating: decode(attrs.rating || ""),
+      badge: decode(attrs.badge || "")
     };
   }
 
@@ -130,7 +136,7 @@
   }
 
   function buildImageToken(item, index) {
-    return `[[STYLE_HOTEL_IMAGE index="${index}" source="${item.source === "agoda" ? "agoda" : "r2"}" image="${encode(item.image)}" srcset="${encode(item.srcset)}" link="${encode(item.imageLink)}" alt="${encode(item.alt)}"]]`;
+    return `[[STYLE_HOTEL_IMAGE index="${index}" source="${item.source === "agoda" ? "agoda" : "r2"}" image="${encode(item.image)}" srcset="${encode(item.srcset)}" link="${encode(item.imageLink)}" alt="${encode(item.alt)}" star="${encode(item.starRating)}" rating="${encode(item.guestRating)}" badge="${encode(item.badge)}"]]`;
   }
 
   function buildButtonToken(item, index) {
@@ -177,6 +183,9 @@
         imageLink: String(card.dataset.imageLink || ""),
         agodaHtml: String(card.querySelector('[data-field="agodaHtml"]')?.value || ""),
         alt: String(card.querySelector('[data-field="alt"]')?.value || "").trim(),
+        starRating: String(card.querySelector('[data-field="starRating"]')?.value || "").trim(),
+        guestRating: String(card.querySelector('[data-field="guestRating"]')?.value || "").trim(),
+        badge: String(card.querySelector('[data-field="badge"]')?.value || "").trim(),
         markdown: String(card.querySelector('[data-field="markdown"]')?.value || ""),
         buttonText: String(card.querySelector('[data-field="buttonText"]')?.value || "").trim(),
         buttonLink: String(card.querySelector('[data-field="buttonLink"]')?.value || "").trim()
@@ -237,6 +246,22 @@
     output.textContent = `공백 포함 ${source.length}자 / 제외 ${source.replace(/\s/g, "").length}자`;
   }
 
+  function renderStarOptions(selected = "") {
+    const value = String(selected || "");
+    return ["", "3", "4", "5"].map((option) => {
+      const label = option ? `${option}성급` : "성급 선택";
+      return `<option value="${option}" ${value === option ? "selected" : ""}>${label}</option>`;
+    }).join("");
+  }
+
+  function renderGuestRatingOptions(selected = "") {
+    const value = String(selected || "");
+    return ["", "6.5+", "7.0+", "7.5+", "8.0+", "8.5+", "9.0+", "9.5+"].map((option) => {
+      const label = option || "평점 선택";
+      return `<option value="${option}" ${value === option ? "selected" : ""}>${label}</option>`;
+    }).join("");
+  }
+
   function renderSetCard(item, index) {
     const source = item.source === "agoda" ? "agoda" : "r2";
     const canMoveUp = index > 0;
@@ -282,6 +307,25 @@
           <span class="small">이미지 ALT</span>
           <input class="input" data-field="alt" value="${escapeHtml(item.alt)}" placeholder="호텔명과 특징이 드러나는 이미지 설명">
         </label>
+
+        <div class="style-hotel-meta-fields">
+          <label>
+            <span class="small">성급</span>
+            <select class="input" data-field="starRating">
+              ${renderStarOptions(item.starRating)}
+            </select>
+          </label>
+          <label>
+            <span class="small">평점</span>
+            <select class="input" data-field="guestRating">
+              ${renderGuestRatingOptions(item.guestRating)}
+            </select>
+          </label>
+          <label>
+            <span class="small">뱃지</span>
+            <input class="input" data-field="badge" value="${escapeHtml(item.badge)}" placeholder="예: 위치 최고" maxlength="40">
+          </label>
+        </div>
 
         <label>
           <span class="small">호텔 본문 Markdown</span>

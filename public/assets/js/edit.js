@@ -3200,7 +3200,10 @@ function parseStyleHotelImageToken(line = "") {
     image: decodeStyleHotelTokenValue(attrs.image || attrs.url || ""),
     srcset: decodeStyleHotelTokenValue(attrs.srcset || ""),
     link: decodeStyleHotelTokenValue(attrs.link || ""),
-    alt: decodeStyleHotelTokenValue(attrs.alt || "")
+    alt: decodeStyleHotelTokenValue(attrs.alt || ""),
+    starRating: decodeStyleHotelTokenValue(attrs.star || ""),
+    guestRating: decodeStyleHotelTokenValue(attrs.rating || ""),
+    badge: decodeStyleHotelTokenValue(attrs.badge || "")
   };
 }
 
@@ -3223,6 +3226,21 @@ function stripStyleHotelTokenLines(md = "") {
     .trim();
 }
 
+function renderStyleHotelPreviewMeta(data = {}) {
+  const star = ["3", "4", "5"].includes(String(data.starRating || "").trim())
+    ? `${String(data.starRating).trim()}성급`
+    : "";
+  const rating = /^(?:6\.5|7\.0|7\.5|8\.0|8\.5|9\.0|9\.5)\+$/.test(String(data.guestRating || "").trim())
+    ? String(data.guestRating).trim()
+    : "";
+  const badge = String(data.badge || "").replace(/\s+/g, " ").trim().slice(0, 40);
+  const items = [];
+  if (star) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--star">${escapeHtml(star)}</span>`);
+  if (rating) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--rating"><span aria-hidden="true">★</span> ${escapeHtml(rating)}</span>`);
+  if (badge) items.push(`<span class="preview-style-hotel-meta__item preview-style-hotel-meta__item--badge">${escapeHtml(badge)}</span>`);
+  return items.length ? `<div class="preview-style-hotel-meta">${items.join("")}</div>` : "";
+}
+
 function renderStyleHotelPreviewImage(data = {}) {
   const imageUrl = String(data.image || "").trim();
   if (!imageUrl) return "";
@@ -3232,9 +3250,9 @@ function renderStyleHotelPreviewImage(data = {}) {
     const linked = data.link
       ? `<a class="preview-inline-image__link" href="${escapeHtml(data.link)}" target="_blank" rel="sponsored noopener noreferrer">${image}</a>`
       : image;
-    return `<figure class="preview-inline-image preview-inline-image--agoda style-hotel-preview-image">${linked}</figure>`;
+    return `<figure class="preview-inline-image preview-inline-image--agoda style-hotel-preview-image">${linked}</figure>${renderStyleHotelPreviewMeta(data)}`;
   }
-  return `<figure class="preview-inline-image style-hotel-preview-image"><img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async"></figure>`;
+  return `<figure class="preview-inline-image style-hotel-preview-image"><img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async"></figure>${renderStyleHotelPreviewMeta(data)}`;
 }
 
 function markdownToHtml(md, options = {}) {
