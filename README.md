@@ -2,6 +2,14 @@
 
 - v11: 오사카·도쿄·삿포로·오키나와 hotel-location-survey 결과 정확도 보정 로직 추가 및 결과 문구 일부 개선. SSR Blog
 
+
+## 2026-08-03 여행 스타일별 호텔 추천 H3·특징 뱃지 보완
+
+- `top5_series` 본문의 H3가 모바일에서도 한 줄로 유지되도록 `flex-wrap: nowrap`과 `white-space: nowrap`을 적용했습니다.
+- H3 글자 크기를 17px로 조정했습니다.
+- 호텔 특징 뱃지 문단의 글자 크기를 16px, 글자 굵기를 400으로 조정했습니다.
+- 실제 포스트와 add/edit 미리보기 스타일을 동일하게 맞췄습니다.
+
 Be Stayable은 독립적으로 운영되는 여행 제휴마케팅/애드센스 블로그입니다.  
 도시 허브는 정적 HTML로 제공하고, Cloudflare Pages Functions + D1 + SSR은 게시글·국가 페이지·API에 사용하도록 구성되어 있습니다.
 
@@ -276,5 +284,5 @@ npm run d1:migrate:status-normalization:remote
 - `[[STYLE_HOTEL_ENDING]]` 이후 Markdown을 `.post-style-hotel-ending` 섹션으로 묶고 상단 구분선 적용
 - add/edit 미리보기에도 동일한 H3 및 마무리 구분선 적용
 - 포스트 Edge Cache 렌더 버전 갱신
-- CSS 버전 `20260803-frontend-v8`로 통일
+- CSS 버전 `20260803-frontend-v9`로 통일
 - D1 SQL 변경 없음

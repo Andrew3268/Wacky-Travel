@@ -8059,6 +8059,7 @@ body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .po
 
 body.post-page-body--top5-series .post-body .post-content h3{
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 14px;
   width: fit-content;
@@ -8068,10 +8069,11 @@ body.post-page-body--top5-series .post-body .post-content h3{
   border: 0;
   background: transparent;
   color: var(--hotel-review-ink);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.45;
   text-align: left;
+  white-space: nowrap;
 }
 
 body.post-page-body--top5-series .post-body .post-content h3 .post-style-hotel-h3-line{
