@@ -169,3 +169,86 @@
     grid-template-columns:1fr;
   }
 }
+
+/* 여행 스타일별 호텔 추천: 작성·수정 미리보기 메타·뱃지 */
+.preview-body .preview-style-hotel-meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  margin:12px 0 15px;
+}
+
+.preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid #dedbd4;
+  border-radius:999px;
+  background:#fff;
+  color:#3d3a35;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.2;
+}
+
+.preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item--star{
+  padding:5px 0;
+  border:0;
+  border-radius:0;
+}
+
+.preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__separator{
+  color:#777;
+  font-size:13px;
+  font-weight:400;
+  line-height:1;
+}
+
+.preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item--rating{
+  gap:1px;
+}
+
+.preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item--rating > span{
+  color:#000;
+}
+
+.preview-body p.preview-style-hotel-badges{
+  margin:0 0 25px;
+  color:#555;
+  font-size:18px;
+  font-weight:500;
+  line-height:1.65;
+  letter-spacing:-0.02em;
+  word-break:keep-all;
+}
+
+.preview-body p.preview-style-hotel-badges > .preview-style-hotel-badges__separator{
+  display:inline-block;
+  margin:0 9px;
+  color:#aaa;
+  font-weight:400;
+}
+
+@media (max-width:720px){
+  .preview-body .preview-style-hotel-meta{
+    gap:5px;
+    margin:10px 0 15px;
+  }
+
+  .preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item{
+    min-height:28px;
+    padding:5px 9px;
+    font-size:12px;
+  }
+
+  .preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item--star{
+    padding:5px 0;
+  }
+
+  .preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__separator{
+    font-size:12px;
+  }
+}
+

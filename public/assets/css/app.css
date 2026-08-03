@@ -8059,7 +8059,7 @@ body.post-page-body--hotel-review-magazine .post-body .post-content h3::after{
   display: none !important;
 }
 
-body.post-page-body--hotel-review-magazine .post-body .post-content p,
+body.post-page-body--hotel-review-magazine .post-body .post-content p:not(.post-style-hotel-badges),
 body.post-page-body--hotel-review-magazine .post-body .post-content li{
   color: var(--hotel-review-text) !important;
   font-size: 1rem;
@@ -8067,7 +8067,7 @@ body.post-page-body--hotel-review-magazine .post-body .post-content li{
   line-height: 1.8;
 }
 
-body.post-page-body--hotel-review-magazine .post-body .post-content p{
+body.post-page-body--hotel-review-magazine .post-body .post-content p:not(.post-style-hotel-badges){
   margin: 0 0 18px;
 }
 
@@ -8353,7 +8353,7 @@ body.post-page-body--hotel-review-magazine .post-body .post-content figure.post-
 }
 
 body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> strong:first-child:last-child):has(+ h2) + h2{
-  margin: 0 0 24px !important;
+  margin: 0 0 10px !important;
   padding: 0 !important;
   border: 0 !important;
   line-height: 1.2;
@@ -9343,94 +9343,4 @@ body.post-page-body .post-cover-wrap--agoda .post-cover-link:focus-visible{
   outline:2px solid #111;
   outline-offset:3px;
   border-radius:inherit;
-}
-
-
-/* 여행 스타일별 호텔 추천: 호텔별 성급·평점·뱃지 */
-body.post-page-body .post-style-hotel-meta,
-.preview-style-hotel-meta{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:6px;
-  margin:12px 0 15px;
-}
-
-body.post-page-body .post-style-hotel-meta__item,
-.preview-style-hotel-meta__item{
-  display:inline-flex;
-  align-items:center;
-  min-height:30px;
-  padding:5px 10px;
-  border:1px solid #dedbd4;
-  border-radius:999px;
-  background:#fff;
-  color:#3d3a35;
-  font-size:13px;
-  font-weight:600;
-  line-height:1.2;
-}
-
-body.post-page-body .post-style-hotel-meta__item--star,
-.preview-style-hotel-meta__item--star{
-  padding-left:0;
-  padding-right:0;
-  border:0;
-  border-radius:0;
-}
-
-body.post-page-body .post-style-hotel-meta__separator,
-.preview-style-hotel-meta__separator{
-  color:#777;
-  font-size:13px;
-  font-weight:400;
-  line-height:1;
-}
-
-body.post-page-body .post-style-hotel-meta__item--rating,
-.preview-style-hotel-meta__item--rating{
-  gap:1px;
-}
-
-body.post-page-body .post-style-hotel-meta__item--rating > span,
-.preview-style-hotel-meta__item--rating > span{
-  color:#000;
-}
-
-body.post-page-body .post-style-hotel-badges,
-.preview-style-hotel-badges{
-  margin:-10px 0 24px;
-  color:#555;
-  font-size:13px;
-  font-weight:500;
-  line-height:1.6;
-  word-break:keep-all;
-}
-
-@media (max-width:720px){
-  body.post-page-body .post-style-hotel-meta,
-  .preview-style-hotel-meta{
-    gap:5px;
-    margin:10px 0 15px;
-  }
-
-  body.post-page-body .post-style-hotel-meta__item,
-  .preview-style-hotel-meta__item{
-    min-height:28px;
-    padding:5px 9px;
-    font-size:12px;
-  }
-
-  body.post-page-body .post-style-hotel-meta__item--star,
-  .preview-style-hotel-meta__item--star{
-    padding-left:0;
-    padding-right:0;
-  }
-
-  body.post-page-body .post-style-hotel-meta__separator,
-  .preview-style-hotel-meta__separator,
-  body.post-page-body .post-style-hotel-badges,
-  .preview-style-hotel-badges{
-    font-size:12px;
-  }
 }

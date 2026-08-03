@@ -3252,7 +3252,7 @@ function renderStyleHotelPreviewMeta(data = {}) {
 function renderStyleHotelPreviewBadges(data = {}) {
   const badges = normalizeStyleHotelPreviewBadges(data.badge);
   if (!badges.length) return "";
-  return `<p class="preview-style-hotel-badges" aria-label="호텔 특징">${badges.map((badge) => escapeHtml(badge)).join('<span aria-hidden="true"> | </span>')}</p>`;
+  return `<p class="preview-style-hotel-badges" aria-label="호텔 특징">${badges.map((badge) => escapeHtml(badge)).join('<span class="preview-style-hotel-badges__separator" aria-hidden="true">|</span>')}</p>`;
 }
 
 function renderStyleHotelPreviewImage(data = {}) {

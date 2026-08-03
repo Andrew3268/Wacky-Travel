@@ -8995,3 +8995,87 @@ body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clicka
   font-size: 13px;
 }
 }
+
+/* 여행 스타일별 호텔 추천: 실제 포스트 메타·뱃지 최종 스타일
+   app.css보다 뒤에 로드되는 파일에서 관리해 일반 포스트 규칙의 재정의를 방지한다. */
+body.post-page-body .post-body .post-content .post-style-hotel-meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  margin:12px 0 15px;
+}
+
+body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid #dedbd4;
+  border-radius:999px;
+  background:#fff;
+  color:#3d3a35;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.2;
+}
+
+body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--star{
+  padding:5px 0;
+  border:0;
+  border-radius:0;
+}
+
+body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__separator{
+  color:#777;
+  font-size:13px;
+  font-weight:400;
+  line-height:1;
+}
+
+body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--rating{
+  gap:1px;
+}
+
+body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--rating > span{
+  color:#000;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-style-hotel-badges{
+  margin:0 0 25px;
+  color:#555;
+  font-size:18px;
+  font-weight:500;
+  line-height:1.65;
+  letter-spacing:-0.02em;
+  word-break:keep-all;
+}
+
+body.post-page-body--hotel-review-magazine .post-body .post-content p.post-style-hotel-badges > .post-style-hotel-badges__separator{
+  display:inline-block;
+  margin:0 9px;
+  color:#aaa;
+  font-weight:400;
+}
+
+@media (max-width:720px){
+  body.post-page-body .post-body .post-content .post-style-hotel-meta{
+    gap:5px;
+    margin:10px 0 15px;
+  }
+
+  body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item{
+    min-height:28px;
+    padding:5px 9px;
+    font-size:12px;
+  }
+
+  body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--star{
+    padding:5px 0;
+  }
+
+  body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__separator{
+    font-size:12px;
+  }
+}
+
