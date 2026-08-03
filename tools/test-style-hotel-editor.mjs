@@ -140,7 +140,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260803-style-hotel-image-badge-v7"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260803-style-hotel-visual-tuning-v8"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");
@@ -149,21 +149,23 @@ const editorCss = read("public/assets/css/style-hotel-editor.css");
 assert.doesNotMatch(appCss, /여행 스타일별 호텔 추천: 호텔별 성급·평점·뱃지/);
 assert.match(appCss, /p:not\(\.post-style-hotel-badges\)/);
 assert.match(appCss, /p:has\(> strong:first-child:last-child\):has\(\+ h2\) \+ h2\{[\s\S]*?margin: 0 0 10px !important;/);
-assert.match(travelCoreCss, /post-style-hotel-meta__item--star\{[\s\S]*?padding:5px 0;/);
 assert.match(travelCoreCss, /post-style-hotel-meta__item--rating\{[\s\S]*?gap:1px;/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta > \.post-style-hotel-meta__item\{[^}]*border/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item--rating\{[^}]*border/);
-assert.match(travelCoreCss, /post-style-hotel-meta__item--rating > span\{[\s\S]*?color:#000;/);
-assert.match(travelCoreCss, /post-style-hotel-meta\{[\s\S]*?margin:12px 0 15px;/);
-assert.match(travelCoreCss, /p\.post-style-hotel-badges\{[\s\S]*?margin:0 0 25px;[\s\S]*?font-size:18px;/);
+assert.match(travelCoreCss, /post-style-hotel-meta__item--rating > span\{[\s\S]*?color:inherit;/);
+assert.match(travelCoreCss, /post-style-hotel-meta\{[\s\S]*?margin:12px 0 5px;[\s\S]*?color:#000;[\s\S]*?font-weight:600;/);
+assert.match(travelCoreCss, /p\.post-style-hotel-badges\{[\s\S]*?margin:0 0 25px;[\s\S]*?font-size:17px;/);
 assert.match(travelCoreCss, /post-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
-assert.match(editorCss, /preview-style-hotel-meta__item--star\{[\s\S]*?padding:5px 0;/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta > \.preview-style-hotel-meta__item\{[^}]*border/);
 assert.match(editorCss, /preview-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
 assert.match(editorCss, /style-hotel-badge-fields\{[\s\S]*?grid-template-columns:minmax\(0,7fr\) minmax\(0,3fr\)/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta__item--rating\{[^}]*border/);
 assert.match(editorCss, /preview-style-hotel-image-badge\{[\s\S]*?background:#000;[\s\S]*?color:#fff;/);
 assert.match(travelCoreCss, /post-style-hotel-image-badge\{[\s\S]*?background:#000;[\s\S]*?color:#fff;/);
+assert.match(travelCoreCss, /post-style-hotel-image-badge\{[\s\S]*?top:19px;[\s\S]*?padding:8px 30px;/);
+assert.match(travelCoreCss, /@media \(max-width:720px\)\{[\s\S]*?post-style-hotel-image-badge\{[\s\S]*?top:20px;[\s\S]*?padding:7px 30px;/);
+assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item\{[^}]*padding:/);
+assert.doesNotMatch(appCss, /body\.post-page-body \.post-inline-image__img\{[^}]*border:/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item--badge/);
 
 console.log("Style hotel editor check passed: 1-7 sets, star/rating separator, badges below H2, legacy lead list removal, and image → metadata → markdown → button → ending order.");

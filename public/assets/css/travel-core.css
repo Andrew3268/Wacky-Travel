@@ -9006,10 +9006,10 @@ body.post-page-body .post-body .post-content .post-style-hotel-image{
 body.post-page-body .post-body .post-content .post-style-hotel-image-badge{
   position:absolute;
   z-index:2;
-  top:16px;
+  top:19px;
   left:16px;
   max-width:calc(100% - 32px);
-  padding:8px 12px;
+  padding:8px 30px;
   border-radius:6px;
   background:#000;
   color:#fff;
@@ -9028,29 +9028,26 @@ body.post-page-body .post-body .post-content .post-style-hotel-meta{
   flex-wrap:wrap;
   align-items:center;
   gap:6px;
-  margin:12px 0 15px;
+  margin:12px 0 5px;
+  color:#000;
+  font-weight:600;
 }
 
 body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item{
   display:inline-flex;
   align-items:center;
   min-height:30px;
-  padding:5px 10px;
   background:#fff;
-  color:#3d3a35;
+  color:inherit;
   font-size:13px;
-  font-weight:600;
+  font-weight:inherit;
   line-height:1.2;
 }
 
-body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--star{
-  padding:5px 0;
-}
-
 body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__separator{
-  color:#777;
+  color:inherit;
   font-size:13px;
-  font-weight:400;
+  font-weight:inherit;
   line-height:1;
 }
 
@@ -9059,13 +9056,13 @@ body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-styl
 }
 
 body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--rating > span{
-  color:#000;
+  color:inherit;
 }
 
 body.post-page-body--hotel-review-magazine .post-body .post-content p.post-style-hotel-badges{
   margin:0 0 25px;
   color:#555;
-  font-size:18px;
+  font-size:17px;
   font-weight:500;
   line-height:1.65;
   letter-spacing:-0.02em;
@@ -9081,26 +9078,21 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p.post-style
 
 @media (max-width:720px){
   body.post-page-body .post-body .post-content .post-style-hotel-image-badge{
-    top:12px;
+    top:20px;
     left:12px;
     max-width:calc(100% - 24px);
-    padding:7px 10px;
+    padding:7px 30px;
     font-size:13px;
   }
 
   body.post-page-body .post-body .post-content .post-style-hotel-meta{
     gap:5px;
-    margin:10px 0 15px;
+    margin:10px 0 5px;
   }
 
   body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item{
     min-height:28px;
-    padding:5px 9px;
     font-size:12px;
-  }
-
-  body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--star{
-    padding:5px 0;
   }
 
   body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__separator{
