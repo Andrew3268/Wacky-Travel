@@ -3203,7 +3203,8 @@ function parseStyleHotelImageToken(line = "") {
     alt: decodeStyleHotelTokenValue(attrs.alt || ""),
     starRating: decodeStyleHotelTokenValue(attrs.star || ""),
     guestRating: decodeStyleHotelTokenValue(attrs.rating || ""),
-    badge: decodeStyleHotelTokenValue(attrs.badge || "")
+    badge: decodeStyleHotelTokenValue(attrs.badge || ""),
+    imageBadge: decodeStyleHotelTokenValue(attrs.image_badge || attrs.imageBadge || "")
   };
 }
 
@@ -3255,6 +3256,11 @@ function renderStyleHotelPreviewBadges(data = {}) {
   return `<p class="preview-style-hotel-badges" aria-label="호텔 특징">${badges.map((badge) => escapeHtml(badge)).join('<span class="preview-style-hotel-badges__separator" aria-hidden="true">|</span>')}</p>`;
 }
 
+function renderStyleHotelPreviewImageBadge(data = {}) {
+  const text = String(data.imageBadge || "").replace(/\s+/g, " ").trim().slice(0, 40);
+  return text ? `<span class="preview-style-hotel-image-badge">${escapeHtml(text)}</span>` : "";
+}
+
 function renderStyleHotelPreviewImage(data = {}) {
   const imageUrl = String(data.image || "").trim();
   if (!imageUrl) return "";
@@ -3264,9 +3270,9 @@ function renderStyleHotelPreviewImage(data = {}) {
     const linked = data.link
       ? `<a class="preview-inline-image__link" href="${escapeHtml(data.link)}" target="_blank" rel="sponsored noopener noreferrer">${image}</a>`
       : image;
-    return `<figure class="preview-inline-image preview-inline-image--agoda style-hotel-preview-image">${linked}</figure>${renderStyleHotelPreviewMeta(data)}`;
+    return `<figure class="preview-inline-image preview-inline-image--agoda style-hotel-preview-image">${linked}${renderStyleHotelPreviewImageBadge(data)}</figure>${renderStyleHotelPreviewMeta(data)}`;
   }
-  return `<figure class="preview-inline-image style-hotel-preview-image"><img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async"></figure>${renderStyleHotelPreviewMeta(data)}`;
+  return `<figure class="preview-inline-image style-hotel-preview-image"><img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async">${renderStyleHotelPreviewImageBadge(data)}</figure>${renderStyleHotelPreviewMeta(data)}`;
 }
 
 function markdownToHtml(md, options = {}) {

@@ -8998,6 +8998,31 @@ body.travel-destination-detail-body #hotel-posts .hotel-card.travel-card--clicka
 
 /* 여행 스타일별 호텔 추천: 실제 포스트 메타·뱃지 최종 스타일
    app.css보다 뒤에 로드되는 파일에서 관리해 일반 포스트 규칙의 재정의를 방지한다. */
+
+body.post-page-body .post-body .post-content .post-style-hotel-image{
+  position:relative;
+}
+
+body.post-page-body .post-body .post-content .post-style-hotel-image-badge{
+  position:absolute;
+  z-index:2;
+  top:16px;
+  left:16px;
+  max-width:calc(100% - 32px);
+  padding:8px 12px;
+  border-radius:6px;
+  background:#000;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:-0.02em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  pointer-events:none;
+}
+
 body.post-page-body .post-body .post-content .post-style-hotel-meta{
   display:flex;
   flex-wrap:wrap;
@@ -9011,8 +9036,6 @@ body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-styl
   align-items:center;
   min-height:30px;
   padding:5px 10px;
-  border:1px solid #dedbd4;
-  border-radius:999px;
   background:#fff;
   color:#3d3a35;
   font-size:13px;
@@ -9022,8 +9045,6 @@ body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-styl
 
 body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__item--star{
   padding:5px 0;
-  border:0;
-  border-radius:0;
 }
 
 body.post-page-body .post-body .post-content .post-style-hotel-meta > .post-style-hotel-meta__separator{
@@ -9059,6 +9080,14 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p.post-style
 }
 
 @media (max-width:720px){
+  body.post-page-body .post-body .post-content .post-style-hotel-image-badge{
+    top:12px;
+    left:12px;
+    max-width:calc(100% - 24px);
+    padding:7px 10px;
+    font-size:13px;
+  }
+
   body.post-page-body .post-body .post-content .post-style-hotel-meta{
     gap:5px;
     margin:10px 0 15px;

@@ -119,13 +119,26 @@
 
 .style-hotel-meta-fields{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
 
 .style-hotel-meta-fields label{
   display:grid;
+  min-width:0;
   gap:8px;
+}
+
+.style-hotel-badge-fields{
+  display:grid;
+  grid-column:1 / -1;
+  grid-template-columns:minmax(0,7fr) minmax(0,3fr);
+  gap:12px;
+}
+
+.style-hotel-badge-fields .input{
+  width:100%;
+  min-width:0;
 }
 
 .style-hotel-markdown{
@@ -166,8 +179,38 @@
   }
 
   .style-hotel-meta-fields{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
+
+  .style-hotel-badge-fields{
+    grid-template-columns:minmax(0,7fr) minmax(0,3fr);
+    gap:8px;
+  }
+}
+
+
+.preview-body .style-hotel-preview-image{
+  position:relative;
+}
+
+.preview-body .preview-style-hotel-image-badge{
+  position:absolute;
+  z-index:2;
+  top:14px;
+  left:14px;
+  max-width:calc(100% - 28px);
+  padding:7px 11px;
+  border-radius:6px;
+  background:#000;
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:-0.02em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  pointer-events:none;
 }
 
 /* 여행 스타일별 호텔 추천: 작성·수정 미리보기 메타·뱃지 */
@@ -184,8 +227,6 @@
   align-items:center;
   min-height:30px;
   padding:5px 10px;
-  border:1px solid #dedbd4;
-  border-radius:999px;
   background:#fff;
   color:#3d3a35;
   font-size:13px;
@@ -195,8 +236,6 @@
 
 .preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__item--star{
   padding:5px 0;
-  border:0;
-  border-radius:0;
 }
 
 .preview-body .preview-style-hotel-meta > .preview-style-hotel-meta__separator{

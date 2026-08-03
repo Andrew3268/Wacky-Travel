@@ -47,6 +47,7 @@
       starRating: "",
       guestRating: "",
       badge: "",
+      imageBadge: "",
       markdown: "",
       buttonText: "잔여 객실 확인",
       buttonLink: ""
@@ -66,7 +67,8 @@
       alt: decode(attrs.alt || ""),
       starRating: decode(attrs.star || ""),
       guestRating: decode(attrs.rating || ""),
-      badge: decode(attrs.badge || "")
+      badge: decode(attrs.badge || ""),
+      imageBadge: decode(attrs.image_badge || attrs.imageBadge || "")
     };
   }
 
@@ -136,7 +138,7 @@
   }
 
   function buildImageToken(item, index) {
-    return `[[STYLE_HOTEL_IMAGE index="${index}" source="${item.source === "agoda" ? "agoda" : "r2"}" image="${encode(item.image)}" srcset="${encode(item.srcset)}" link="${encode(item.imageLink)}" alt="${encode(item.alt)}" star="${encode(item.starRating)}" rating="${encode(item.guestRating)}" badge="${encode(item.badge)}"]]`;
+    return `[[STYLE_HOTEL_IMAGE index="${index}" source="${item.source === "agoda" ? "agoda" : "r2"}" image="${encode(item.image)}" srcset="${encode(item.srcset)}" link="${encode(item.imageLink)}" alt="${encode(item.alt)}" star="${encode(item.starRating)}" rating="${encode(item.guestRating)}" badge="${encode(item.badge)}" image_badge="${encode(item.imageBadge)}"]]`;
   }
 
   function buildButtonToken(item, index) {
@@ -186,6 +188,7 @@
         starRating: String(card.querySelector('[data-field="starRating"]')?.value || "").trim(),
         guestRating: String(card.querySelector('[data-field="guestRating"]')?.value || "").trim(),
         badge: String(card.querySelector('[data-field="badge"]')?.value || "").trim(),
+        imageBadge: String(card.querySelector('[data-field="imageBadge"]')?.value || "").trim(),
         markdown: String(card.querySelector('[data-field="markdown"]')?.value || ""),
         buttonText: String(card.querySelector('[data-field="buttonText"]')?.value || "").trim(),
         buttonLink: String(card.querySelector('[data-field="buttonLink"]')?.value || "").trim()
@@ -321,10 +324,16 @@
               ${renderGuestRatingOptions(item.guestRating)}
             </select>
           </label>
-          <label>
-            <span class="small">뱃지</span>
-            <input class="input" data-field="badge" value="${escapeHtml(item.badge)}" placeholder="예: 위치 최고, 조식 맛집, 쾌적한 객실" maxlength="120">
-          </label>
+          <div class="style-hotel-badge-fields">
+            <label>
+              <span class="small">특징 뱃지</span>
+              <input class="input" data-field="badge" value="${escapeHtml(item.badge)}" placeholder="예: 위치 최고, 조식 맛집, 쾌적한 객실" maxlength="120">
+            </label>
+            <label>
+              <span class="small">이미지 뱃지</span>
+              <input class="input" data-field="imageBadge" value="${escapeHtml(item.imageBadge)}" placeholder="예: 에디터 픽" maxlength="40">
+            </label>
+          </div>
         </div>
 
         <label>
