@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = process.cwd();
-const VERSION = '20260803-frontend-v9';
+const VERSION = '20260803-frontend-v10';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const assert = (condition, message) => {
   if (!condition) throw new Error(message);

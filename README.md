@@ -284,5 +284,12 @@ npm run d1:migrate:status-normalization:remote
 - `[[STYLE_HOTEL_ENDING]]` 이후 Markdown을 `.post-style-hotel-ending` 섹션으로 묶고 상단 구분선 적용
 - add/edit 미리보기에도 동일한 H3 및 마무리 구분선 적용
 - 포스트 Edge Cache 렌더 버전 갱신
-- CSS 버전 `20260803-frontend-v9`로 통일
+- CSS 버전 `20260803-frontend-v10`로 통일
 - D1 SQL 변경 없음
+
+## 2026-08-03 가이드형 포스트 H3 최종 보완
+
+- `body.post-page-body .post-shell--guide-style .post-body .post-content h3`의 기본·모바일·후반부 최종 선언을 `font-size: 18px`, `margin-top: 30px`로 통일했습니다.
+- `top5_series` 전용 H3가 기존 값을 17px/34px로 다시 덮어쓰던 문제를 제거했습니다.
+- add/edit 미리보기 H3도 18px/30px로 통일했습니다.
+- CSS 캐시 버전을 `20260803-frontend-v10`, 포스트 렌더 캐시를 `20260803-guide-h3-18-v11`로 갱신했습니다.

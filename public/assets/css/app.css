@@ -4215,13 +4215,13 @@ body.post-page-body .post-inline-image__link{
 }
 
 .post-shell--guide-style .post-body .post-content h3{
-  margin: clamp(40px, 5vw, 58px) 0 16px;
+  margin: 30px 0 16px;
   padding: 0 0 0 14px;
   border: 0;
   border-left: 3px solid rgba(37, 99, 235, 0.50);
   background: transparent;
   color: #12263f;
-  font-size: clamp(1.14rem, 1.6vw, 1.32rem);
+  font-size: 18px;
   line-height: 1.48;
   letter-spacing: -0.028em;
   font-weight: 500;
@@ -4462,8 +4462,8 @@ body.post-page-body .post-inline-image__link{
   }
 
   .post-shell--guide-style .post-body .post-content h3{
-    margin-top: 38px;
-    font-size: 1.1rem;
+    margin-top: 30px;
+    font-size: 18px;
   }
 
   .post-shell--guide-style .post-body .post-content h4{
@@ -7194,12 +7194,12 @@ body.post-page-body .post-shell--guide-style .post-h2-text{
 
 body.post-page-body .post-shell--guide-style .post-body .post-content h3{
   max-width: 780px;
-  margin: 42px 0 14px;
+  margin: 30px 0 14px;
   padding: 0;
   border: 0;
   background: transparent;
   color: #111 !important;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.32;
   letter-spacing: -0.045em;
   font-weight: 600;
@@ -7759,10 +7759,10 @@ body.post-page-body .post-shell--guide-style .post-body .post-content ol{
   }
 
   body.post-page-body .post-shell--guide-style .post-body .post-content h3{
-    margin-top: 0;
+    margin-top: 30px;
     padding: 0;
     border: 0;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   body.post-page-body .post-shell--guide-style .post-body .post-content h3::before{
@@ -8064,12 +8064,12 @@ body.post-page-body--top5-series .post-body .post-content h3{
   gap: 14px;
   width: fit-content;
   max-width: 100%;
-  margin: 34px 0 16px;
+  margin: 30px 0 16px;
   padding: 0;
   border: 0;
   background: transparent;
   color: var(--hotel-review-ink);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.45;
   text-align: left;
