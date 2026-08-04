@@ -5,7 +5,7 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260804-author-about-entity-v17"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260804-about-editorial-policy-v18"/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
@@ -33,7 +33,11 @@ assert.match(renderer, /const authorUrl = `\$\{origin\}\/about\/`;/);
 assert.match(renderer, /"@id": authorId,[\s\S]*?name: authorName,[\s\S]*?url: authorUrl/);
 
 const about = fs.readFileSync("public/about/index.html", "utf8");
-assert.match(about, /"@type": "AboutPage"/);
-assert.match(about, /"@id": "https:\/\/bestayable\.com\/about\/#author"/);
-assert.match(about, /"name": "Be Stayable Editor"/);
+assert.match(about, /"@type"\s*:\s*"AboutPage"/);
+assert.match(about, /"@id"\s*:\s*"https:\/\/bestayable\.com\/about\/#author"/);
+assert.match(about, /"name"\s*:\s*"Be Stayable Editor"/);
+assert.match(about, /id="editorial-policy"/);
+assert.match(about, />콘텐츠 작성 및 편집 원칙</);
+assert.ok(about.includes('href="/about/#editorial-policy">편집 원칙</a>'));
+assert.ok(renderer.includes('href="/about/#editorial-policy">편집 원칙</a>'));
 assert.match(about, /<section class="about-section" id="author"/);

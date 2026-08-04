@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260804-author-about-entity-v17";
+const POST_RENDER_VERSION = "20260804-about-editorial-policy-v18";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -1473,6 +1473,7 @@ function footer(siteName) {
       </div>
       <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
         <a href="/about/">소개</a>
+        <a href="/about/#editorial-policy">편집 원칙</a>
 <a href="/privacy-policy/">개인정보 처리방침</a>
         <a href="/destinations/">여행지</a>
         <a href="/hotel-promotions/">호텔 프로모션</a>
