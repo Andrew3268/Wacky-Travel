@@ -9100,3 +9100,77 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p.post-style
   }
 }
 
+
+/* 포스트 매거진 헤더: 제목 · 작성자 · 대표 이미지 순서 */
+body.post-page-body .post-magazine-head--title{
+  margin-bottom:20px;
+}
+
+body.post-page-body .post-magazine-head--details:empty{
+  display:none;
+}
+
+body.post-page-body .post-author-profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:fit-content;
+  margin-top:14px;
+  color:#111;
+}
+
+body.post-page-body .post-author-profile__avatar{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  overflow:hidden;
+  border-radius:50%;
+  background:#111;
+  color:#fff;
+  font-size:10px;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:-0.03em;
+  text-align:center;
+}
+
+body.post-page-body .post-author-profile__name{
+  color:#111;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.3;
+}
+
+body.post-page-body .post-magazine-head--title + .post-cover-wrap{
+  margin-top:0;
+  margin-bottom:30px;
+}
+
+body.post-page-body .post-magazine-head--details{
+  margin-top:0;
+}
+
+@media (max-width:720px){
+  body.post-page-body .post-magazine-head--title{
+    margin-bottom:16px;
+  }
+
+  body.post-page-body .post-author-profile{
+    gap:9px;
+    margin-top:12px;
+  }
+
+  body.post-page-body .post-author-profile__avatar{
+    width:38px;
+    height:38px;
+    flex-basis:38px;
+    font-size:9px;
+  }
+
+  body.post-page-body .post-author-profile__name{
+    font-size:13px;
+  }
+}
