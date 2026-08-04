@@ -5,12 +5,12 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260804-post-mobile-all-images-fullbleed-v16"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260804-author-about-entity-v17"/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
 assert.match(renderer, /class="post-author-profile__avatar"[^>]*>프로필<\/span>/);
-assert.match(renderer, /class="post-author-profile__name"[^>]*>Editor<\/span>/);
+assert.match(renderer, /class="post-author-profile__name"[^>]*href="\/about\/"[^>]*rel="author"[^>]*><span itemprop="name">\$\{escapeHtml\(authorName\)\}<\/span><\/a>/);
 
 const h1Index = renderer.indexOf('<h1 class="h1 post-title post-magazine-title"');
 const profileIndex = renderer.indexOf('${magazineAuthorProfileHtml}', h1Index);
@@ -27,3 +27,13 @@ assert.doesNotMatch(componentsCss, /breadcrumbs--post-page[\s\S]{0,240}calc\(100
 assert.match(css, /p\.post-style-hotel-badges\{[\s\S]*?padding:10px 0;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
 
 console.log("Post author profile check passed: H1 → author strip → cover, full-width breadcrumbs, 10px feature-badge padding.");
+
+assert.match(renderer, /const authorName = "Be Stayable Editor";/);
+assert.match(renderer, /const authorUrl = `\$\{origin\}\/about\/`;/);
+assert.match(renderer, /"@id": authorId,[\s\S]*?name: authorName,[\s\S]*?url: authorUrl/);
+
+const about = fs.readFileSync("public/about/index.html", "utf8");
+assert.match(about, /"@type": "AboutPage"/);
+assert.match(about, /"@id": "https:\/\/bestayable\.com\/about\/#author"/);
+assert.match(about, /"name": "Be Stayable Editor"/);
+assert.match(about, /<section class="about-section" id="author"/);

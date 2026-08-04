@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260804-post-mobile-all-images-fullbleed-v16";
+const POST_RENDER_VERSION = "20260804-author-about-entity-v17";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -137,7 +137,9 @@ export async function onRequestGet(context) {
 
       const siteName = "Be Stayable";
       const siteDescription = "여행지 정보, 호텔 선택 기준, 예약 전 체크포인트를 정리하는 여행 블로그";
-      const authorName = "Travel Editor";
+      const authorName = "Be Stayable Editor";
+      const authorUrl = `${origin}/about/`;
+      const authorId = `${origin}/about/#author`;
       const faqItems = parseFaqMarkdown(row.faq_md || "");
       const relatedRows = row.category
         ? (await env.TRAVEL_DB.prepare(`
@@ -230,7 +232,7 @@ export async function onRequestGet(context) {
         <div class="post-author-card" aria-label="작성자 정보">
           <img class="post-author-card__avatar" src="/assets/images/favicon-32x32.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
           <div class="post-author-card__body">
-            <div class="post-author-card__name">${escapeHtml(authorName)}</div>
+            <div class="post-author-card__name"><a href="/about/" rel="author">${escapeHtml(authorName)}</a></div>
             <div class="post-author-card__meta">
               <time datetime="${escapeHtml(publishedIso || "")}">발행 ${escapeHtml(publishedDate)}</time>
               <span aria-hidden="true"> · </span>
@@ -277,7 +279,9 @@ export async function onRequestGet(context) {
         image: [ogImage],
         author: {
           "@type": "Person",
-          name: authorName
+          "@id": authorId,
+          name: authorName,
+          url: authorUrl
         },
         publisher: {
           "@type": "Organization",
@@ -386,9 +390,9 @@ export async function onRequestGet(context) {
         }) : "";
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const magazineAuthorProfileHtml = `
-        <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" aria-label="작성자">
+        <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" itemid="${escapeHtml(authorId)}" aria-label="작성자">
           <span class="post-author-profile__avatar" aria-hidden="true">프로필</span>
-          <span class="post-author-profile__name" itemprop="name">Editor</span>
+          <a class="post-author-profile__name" itemprop="url" href="/about/" rel="author"><span itemprop="name">${escapeHtml(authorName)}</span></a>
         </div>
       `;
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
