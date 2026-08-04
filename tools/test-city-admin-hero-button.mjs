@@ -27,7 +27,7 @@ for (const file of cityPages) {
   if (!html.includes('/assets/js/posts.js?v=20260802CityContentUnifiedV1')) {
     throw new Error(`관리자 버튼 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/css/travel-core.css?v=20260804-frontend-v11') || !html.includes('/assets/css/travel-city.css?v=20260804-frontend-v11')) {
+  if (!html.includes('/assets/css/travel-core.css?v=20260804-frontend-v12') || !html.includes('/assets/css/travel-city.css?v=20260804-frontend-v12')) {
     throw new Error(`도시 CSS 분리 파일 또는 통합 캐시 버전이 누락되었습니다: ${path.relative(root, file)}`);
   }
 }
