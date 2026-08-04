@@ -269,7 +269,9 @@
 
 @media (max-width:720px){
   .preview-body .preview-style-hotel-image-badge{
-    top:20px;
+    top:50px;
+    left:15px;
+    max-width:calc(100% - 30px);
     padding-left:30px;
     padding-right:30px;
   }

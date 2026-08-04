@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260804-post-mobile-fullbleed-v14";
+const POST_RENDER_VERSION = "20260804-post-mobile-image-polish-v15";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -449,10 +449,10 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260804-frontend-v13" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260804-frontend-v13" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260804-frontend-v13" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260804-frontend-v13" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260804-frontend-v14" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260804-frontend-v14" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260804-frontend-v14" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260804-frontend-v14" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -1382,9 +1382,9 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260804-frontend-v13" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260804-frontend-v13" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260804-frontend-v13" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260804-frontend-v14" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260804-frontend-v14" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260804-frontend-v14" />
 </head>
 <body>
   ${topbar()}

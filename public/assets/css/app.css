@@ -8632,7 +8632,7 @@ body.post-page-body--hotel-review-magazine .post-shell.post-shell--guide-style{
   padding-top: 40px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   body.post-page-body{
     --post-page-gutter: 16px;
     --post-page-top-space: 18px;
@@ -8644,15 +8644,6 @@ body.post-page-body--hotel-review-magazine .post-guide-page{
     width: calc(100% - (var(--post-page-gutter) * 2));
     padding-top: 0;
     padding-bottom: 72px;
-  }
-
-  /* Mobile post images: extend only images across the page gutter. */
-  body.post-page-body .post-cover-wrap,
-  body.post-page-body .post-body .post-content figure.post-inline-image{
-    width: calc(100% + (var(--post-page-gutter) * 2));
-    max-width: none;
-    margin-left: calc(var(--post-page-gutter) * -1);
-    margin-right: calc(var(--post-page-gutter) * -1);
   }
 }
 
