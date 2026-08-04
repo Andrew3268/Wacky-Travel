@@ -5,7 +5,7 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260804-post-author-profile-layout-v13"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260804-post-mobile-fullbleed-v14"/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
@@ -24,6 +24,6 @@ assert.match(css, /body\.post-page-body \.post-magazine-head--title \+ \.post-co
 
 assert.match(componentsCss, /body\.post-page-body \.breadcrumbs\.container\.breadcrumbs--post-page \{[\s\S]*?width: min\(100%, var\(--container\)\);/);
 assert.doesNotMatch(componentsCss, /breadcrumbs--post-page[\s\S]{0,240}calc\(100% - 32px\)/);
-assert.match(css, /p\.post-style-hotel-badges\{[\s\S]*?padding:20px 0;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
+assert.match(css, /p\.post-style-hotel-badges\{[\s\S]*?padding:10px 0;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
 
-console.log("Post author profile check passed: H1 → author strip → cover, full-width breadcrumbs, bordered feature badges.");
+console.log("Post author profile check passed: H1 → author strip → cover, full-width breadcrumbs, 10px feature-badge padding.");
