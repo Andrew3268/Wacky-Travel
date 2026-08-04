@@ -9189,12 +9189,20 @@ body.post-page-body .post-magazine-head--details{
 
   body.post-page-body .post-magazine-hero > .post-cover-wrap,
   body.post-page-body .post-shell--guide-style .post-hero--product > .post-cover-wrap,
-  body.post-page-body--hotel-review-magazine .post-cover-wrap{
+  body.post-page-body--hotel-review-magazine .post-cover-wrap,
+  body.post-page-body .post-body .post-content figure.post-inline-image{
+    box-sizing:border-box;
     width:calc(100% + (var(--post-page-gutter) * 2));
     max-width:none;
     margin-left:calc(var(--post-page-gutter) * -1);
     margin-right:calc(var(--post-page-gutter) * -1);
     border-radius:0;
+  }
+
+  body.post-page-body .post-body .post-content figure.post-inline-image .post-inline-image__caption{
+    box-sizing:border-box;
+    padding-left:var(--post-page-gutter);
+    padding-right:var(--post-page-gutter);
   }
 
   body.post-page-body .post-cover,

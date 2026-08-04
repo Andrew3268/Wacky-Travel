@@ -5,7 +5,7 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260804-post-mobile-image-polish-v15"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260804-post-mobile-all-images-fullbleed-v16"/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
