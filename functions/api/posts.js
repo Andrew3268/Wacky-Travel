@@ -1,6 +1,7 @@
 import { okJson, getAdminSession, requireAdmin } from "../_utils.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../lib/posts/cover-image.js";
+import { ensurePublicModifiedDateColumn, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -77,6 +78,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
+  await ensurePublicModifiedDateColumn(db);
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -224,6 +226,19 @@ function normalizePublicSearchQuery(value = "") {
 
 function isBlockedSingleSearchKeyword(value = "") {
   return BLOCKED_SINGLE_SEARCH_KEYWORDS.has(normalizePublicSearchQuery(value));
+}
+
+async function loadPostListItems(db, sql, binds = []) {
+  try {
+    return await db.prepare(sql).bind(...binds).all();
+  } catch (error) {
+    if (!isMissingPublicModifiedColumnError(error)) throw error;
+    const fallbackSql = sql.replace(
+      "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
+      "published_at AS content_modified_at"
+    );
+    return db.prepare(fallbackSql).bind(...binds).all();
+  }
 }
 
 export async function onRequestGet({ env, request }) {
@@ -377,6 +392,7 @@ export async function onRequestGet({ env, request }) {
       status,
       view_count,
       published_at,
+      COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at,
       updated_at
     FROM posts
     ${whereSql}
@@ -390,7 +406,7 @@ export async function onRequestGet({ env, request }) {
   const statusCountWhereSql = admin ? "" : whereSql;
   const statusCountBinds = admin ? [] : [...binds];
   const [itemsRows, countRow, categoryRows, popularRows, statusRows, settingsRows] = await Promise.all([
-    env.TRAVEL_DB.prepare(itemsSql).bind(...baseBind, perPage, offset).all(),
+    loadPostListItems(env.TRAVEL_DB, itemsSql, [...baseBind, perPage, offset]),
     env.TRAVEL_DB.prepare(countSql).bind(...binds).first(),
     env.TRAVEL_DB.prepare(`
       SELECT TRIM(COALESCE(category, '')) AS category_name, COUNT(*) AS count
@@ -555,8 +571,9 @@ export async function onRequestPost({ env, request }) {
       search_intent,
       status,
       published_at,
+      content_modified_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -589,6 +606,7 @@ export async function onRequestPost({ env, request }) {
       search_intent = excluded.search_intent,
       status = excluded.status,
       published_at = excluded.published_at,
+      content_modified_at = COALESCE(NULLIF(posts.content_modified_at, ''), posts.published_at, excluded.content_modified_at),
       updated_at = excluded.updated_at
   `).bind(
     slug,
@@ -622,6 +640,7 @@ export async function onRequestPost({ env, request }) {
     affiliateEnabled,
     searchIntent,
     status,
+    now,
     now,
     now
   ).run();

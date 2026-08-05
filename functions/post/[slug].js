@@ -2,8 +2,9 @@ import { escapeHtml, jsonld, okHtml, edgeCache, getAdminSession } from "../_util
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripStyleHotelTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
+import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260805-post-author-dates-v19";
+const POST_RENDER_VERSION = "20260805-public-modified-date-v20";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -57,14 +58,23 @@ async function loadPostRow(db, slug, requestedStatus) {
       affiliate_enabled,
       search_intent,
       published_at,
+      COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at,
       updated_at
     FROM posts
     WHERE slug = ? AND status = ?
   `;
 
+  const fallbackDateSql = sql.replace(
+    "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
+    "published_at AS content_modified_at"
+  );
+
   try {
     return await db.prepare(sql).bind(slug, requestedStatus).first();
   } catch (error) {
+    if (isMissingPublicModifiedColumnError(error)) {
+      return db.prepare(fallbackDateSql).bind(slug, requestedStatus).first();
+    }
     if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
     try {
       await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
@@ -72,7 +82,12 @@ async function loadPostRow(db, slug, requestedStatus) {
       if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
     }
     await ensureCoverImageColumns(db);
-    return db.prepare(sql).bind(slug, requestedStatus).first();
+    try {
+      return await db.prepare(sql).bind(slug, requestedStatus).first();
+    } catch (retryError) {
+      if (!isMissingPublicModifiedColumnError(retryError)) throw retryError;
+      return db.prepare(fallbackDateSql).bind(slug, requestedStatus).first();
+    }
   }
 }
 
@@ -224,10 +239,11 @@ export async function onRequestGet(context) {
       const ogImage = (coverImageSource === "agoda" ? getLargestSrcsetUrl(coverImageSrcset, versionedCoverImage) : versionedCoverImage) || `${origin}/assets/images/logo.png`;
       const coverImageAltText = String(safeCoverData.alt || `${titleText} 대표 이미지`).trim();
 
+      const publicModifiedAt = getPublicModifiedAt(row);
       const publishedDate = formatDate(row.published_at);
-      const updatedDate = formatDate(row.updated_at);
+      const updatedDate = formatDate(publicModifiedAt);
       const publishedIso = toIso(row.published_at);
-      const updatedIso = toIso(row.updated_at);
+      const updatedIso = toIso(publicModifiedAt);
       const authorCardHtml = `
         <div class="post-author-card" aria-label="작성자 정보">
           <img class="post-author-card__avatar" src="/assets/images/favicon-32x32.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
@@ -294,7 +310,7 @@ export async function onRequestGet(context) {
           }
         },
         datePublished: publishedIso || row.published_at || "",
-        dateModified: updatedIso || row.updated_at || "",
+        dateModified: updatedIso || publicModifiedAt || row.published_at || "",
         url: canonical.toString(),
         inLanguage: "ko-KR",
         articleSection: row.category || "블로그",
@@ -385,7 +401,7 @@ export async function onRequestGet(context) {
           hotelHeroData,
           publishedIso,
           updatedIso,
-          updatedDateText: formatKoreanDate(row.updated_at) || updatedDate,
+          updatedDateText: formatKoreanDate(publicModifiedAt) || updatedDate,
           showKicker: true
         }) : "";
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);

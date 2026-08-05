@@ -2,6 +2,7 @@ import { escapeHtml, okJson, requireAdmin } from "../_utils.js";
 import { formatDate } from "../../lib/travel/travel-utils.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { normalizeCoverImageSource, normalizeCoverImageSrcset } from "../../lib/posts/cover-image.js";
+import { isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 
 const HOTEL_CONTENT_TYPES = ["top5_series", "hotel_intro"];
 const ALL_CONTENT_TYPE = "all";
@@ -36,7 +37,8 @@ const DESTINATION_POST_SELECT = `
   h.star_rating AS hotel_star_rating,
   p.status,
   p.updated_at,
-  p.published_at
+  p.published_at,
+  COALESCE(NULLIF(p.content_modified_at, ''), p.published_at) AS content_modified_at
 `;
 
 function normalizeHotelPickLabel(value = "") {
@@ -91,7 +93,16 @@ function buildFastDestinationPostQuery(destinationSlugs, {
 
 async function runDestinationPostQuery(db, destinationSlugs, options = {}) {
   const query = buildFastDestinationPostQuery(destinationSlugs, options);
-  return db.prepare(query.sql).bind(...query.binds).all();
+  try {
+    return await db.prepare(query.sql).bind(...query.binds).all();
+  } catch (error) {
+    if (!isMissingPublicModifiedColumnError(error)) throw error;
+    const fallbackSql = query.sql.replace(
+      "COALESCE(NULLIF(p.content_modified_at, ''), p.published_at) AS content_modified_at",
+      "p.published_at AS content_modified_at"
+    );
+    return db.prepare(fallbackSql).bind(...query.binds).all();
+  }
 }
 
 async function loadDestinationPostRows(db, destinationSlug, options = {}) {
@@ -536,7 +547,7 @@ function renderTravelPostItem(post = {}) {
   const href = isDraft
     ? `/post/${encodeURIComponent(slug)}/?preview=1`
     : `/post/${encodeURIComponent(slug)}/`;
-  const meta = formatDate(post.updated_at);
+  const meta = formatDate(post.content_modified_at || post.published_at);
   const label = isDraft ? `${post.title || "여행 글"} 초안 미리보기` : `${post.title || "여행 글"} 읽기`;
   return `<article class="travel-list__item${isDraft ? " travel-list__item--draft" : ""}" data-post-status="${isDraft ? "draft" : "published"}">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(label)}">

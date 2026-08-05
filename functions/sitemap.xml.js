@@ -4,6 +4,7 @@ import {
   getHotelPostGroup,
   postBelongsToDestination
 } from "./api/destination-posts.js";
+import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified-date.js";
 
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
@@ -43,6 +44,26 @@ async function safeAll(db, sql) {
     return rows.results || [];
   } catch {
     return [];
+  }
+}
+
+async function safeAllWithPublicModifiedFallback(db, sql) {
+  try {
+    if (!db) return [];
+    const rows = await db.prepare(sql).all();
+    return rows.results || [];
+  } catch (error) {
+    if (!isMissingPublicModifiedColumnError(error)) return [];
+    const fallbackSql = sql.replace(
+      "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
+      "published_at AS content_modified_at"
+    );
+    try {
+      const rows = await db.prepare(fallbackSql).all();
+      return rows.results || [];
+    } catch {
+      return [];
+    }
   }
 }
 
@@ -115,7 +136,7 @@ export async function onRequestGet({ env, request }) {
   const origin = getSiteOrigin(env, request);
 
   const [posts, destinations] = await Promise.all([
-    safeAll(env.TRAVEL_DB, `
+    safeAllWithPublicModifiedFallback(env.TRAVEL_DB, `
       SELECT
         slug,
         title,
@@ -130,7 +151,8 @@ export async function onRequestGet({ env, request }) {
         hotel_slug,
         mood_tags_json,
         updated_at,
-        published_at
+        published_at,
+        COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at
       FROM posts
       WHERE status = 'published'
       ORDER BY COALESCE(updated_at, published_at) DESC
@@ -169,7 +191,7 @@ export async function onRequestGet({ env, request }) {
     if (!slug) return;
     addUrl(urlMap, {
       loc: `${origin}/post/${encodeURIComponent(slug)}/`,
-      lastmod: item.updated_at || item.published_at
+      lastmod: item.content_modified_at || item.published_at
     });
   });
 

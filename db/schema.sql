@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS posts (
   affiliate_enabled INTEGER DEFAULT 0,
   search_intent TEXT DEFAULT '',
   published_at TEXT NOT NULL,
+  content_modified_at TEXT DEFAULT '',
   updated_at TEXT NOT NULL
 );
 

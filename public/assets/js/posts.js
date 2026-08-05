@@ -938,7 +938,7 @@ function buildPostsHeroNav(categories = []) {
         : `<span class="badge">미분류</span>`;
       const summary = escapeHtml(it.summary || '요약이 아직 없습니다.');
       const slug = String(it.slug || '');
-      const updated = escapeHtml(String(it.updated_at || '').slice(0, 10));
+      const updated = escapeHtml(String(it.content_modified_at || it.published_at || '').slice(0, 10));
       const cover = String(it.cover_image || '').trim();
       const itemStatus = String(it.status || 'published').trim().toLowerCase();
       const statusBadge = itemStatus === 'draft'

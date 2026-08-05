@@ -1,0 +1,57 @@
+/* 20260805 공개 수정일 선택 UI */
+.editor-public-modified-card{
+  display:grid;
+  gap:12px;
+}
+.editor-public-modified-card__head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.editor-public-modified-card__head .h2{
+  font-size:16px;
+  margin-bottom:6px;
+}
+.editor-public-modified-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:42px;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+.editor-public-modified-toggle input{
+  width:18px;
+  height:18px;
+  margin:0;
+  accent-color:var(--brand);
+}
+.editor-public-modified-toggle:has(input:checked){
+  border-color:#111;
+  background:#f7f7f7;
+}
+.editor-public-modified-card__help{
+  margin:0;
+  line-height:1.65;
+}
+.editor-public-modified-card__notice{
+  margin:0;
+  padding:10px 12px;
+  border-left:3px solid #111;
+  background:#f7f7f7;
+  color:#111;
+  line-height:1.55;
+}
+@media (max-width: 640px){
+  .editor-public-modified-toggle{
+    width:100%;
+    justify-content:center;
+  }
+}

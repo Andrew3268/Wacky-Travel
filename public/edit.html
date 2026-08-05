@@ -13,6 +13,7 @@
 <link href="/assets/css/app.css?v=20260805-frontend-v16" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260805-frontend-v16" rel="stylesheet"/>
 <link href="/assets/css/style-hotel-editor.css?v=20260805-frontend-v16" rel="stylesheet"/>
+<link href="/assets/css/public-modified-date-editor.css?v=20260805-frontend-v16" rel="stylesheet"/>
 <meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="글 수정 | Be Stayable" property="og:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." property="og:description"/><meta content="https://bestayable.com/edit.html" property="og:url"/><meta content="https://bestayable.com/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="글 수정 | Be Stayable 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 수정 | Be Stayable" name="twitter:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/og-default.png" name="twitter:image"/><meta content="글 수정 | Be Stayable 대표 이미지" name="twitter:image:alt"/></head>
 <body>
   <header class="topbar topbar--editorial">
@@ -320,9 +321,24 @@
               <input class="input" id="published_at" readonly />
             </label>
             <label>
-              <div class="small">수정일</div>
+              <div class="small">마지막 저장일</div>
               <input class="input" id="updated_at" readonly />
             </label>
+          </div>
+
+          <div class="card editor-option-card editor-public-modified-card">
+            <div class="editor-public-modified-card__head">
+              <div>
+                <div class="h2">공개 수정일</div>
+                <p class="small">현재 공개 수정일: <strong id="content_modified_at">-</strong></p>
+              </div>
+              <label class="editor-public-modified-toggle">
+                <input type="checkbox" id="refresh_public_modified_date" />
+                <span>공개 수정일 갱신</span>
+              </label>
+            </div>
+            <p class="small editor-public-modified-card__help">호텔 정보, 추천 목록, 교통편 등 독자의 선택에 영향을 주는 내용을 수정한 경우에만 선택하세요. 오탈자나 문장 표현만 고친 경우에는 선택하지 않아도 됩니다.</p>
+            <p class="small editor-public-modified-card__notice" id="publicModifiedDateNotice" hidden>저장하면 화면과 구조화 데이터의 수정일이 현재 시각으로 변경됩니다.</p>
           </div>
 
             <label>
@@ -1001,6 +1017,6 @@
   <script src="/assets/js/site-search.js" defer></script>
   <script src="/assets/js/cover-image-source.js?v=20260731-cover-source-v1" defer></script>
   <script src="/assets/js/style-hotel-editor.js?v=20260803-style-hotel-editor-v6" defer></script>
-  <script src="/assets/js/edit.js?v=20260803-style-hotel-edit-v7" defer></script>
+  <script src="/assets/js/edit.js?v=20260805-public-modified-v8" defer></script>
 </body>
 </html>

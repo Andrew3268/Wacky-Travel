@@ -3740,6 +3740,9 @@ async function load() {
   $("slug").value = item.slug || slug;
   $("published_at").value = item.published_at || "";
   $("updated_at").value = item.updated_at || "";
+  if ($("content_modified_at")) $("content_modified_at").textContent = item.content_modified_at || item.published_at || "-";
+  if ($("refresh_public_modified_date")) $("refresh_public_modified_date").checked = false;
+  if ($("publicModifiedDateNotice")) $("publicModifiedDateNotice").hidden = true;
   $("title").value = item.title || "";
   const loadedContentType = normalizeContentType(item.content_type || "") || "travel_tip";
   const loadedDestinationSlug = item.destination_slug || "";
@@ -3882,6 +3885,7 @@ async function save() {
       lsi: parseKeywords($("lsiKeywords")?.value || "")
     },
     status: $("status").value,
+    refresh_public_modified_date: Boolean($("refresh_public_modified_date")?.checked),
     enable_sidebar_ad: Boolean($("enable_sidebar_ad")?.checked),
     enable_inarticle_ads: Boolean($("enable_inarticle_ads")?.checked),
     tags: parseTags($("tags").value),
@@ -3940,6 +3944,11 @@ function handleRealtimeChange() {
   renderSeoChecklist();
   renderPreview();
 }
+
+$("refresh_public_modified_date")?.addEventListener("change", (event) => {
+  const notice = $("publicModifiedDateNotice");
+  if (notice) notice.hidden = !Boolean(event.currentTarget?.checked);
+});
 
 const inlineImageFieldIds = [
   ...Array.from({ length: INLINE_IMAGE_LIMIT }, (_, offset) => {

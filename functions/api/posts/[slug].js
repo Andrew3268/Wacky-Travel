@@ -1,6 +1,7 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 import { normalizeContentType } from "../../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../../lib/posts/cover-image.js";
+import { ensurePublicModifiedDateColumn } from "../../../lib/posts/public-modified-date.js";
 
 
 function normalizeStatusValue(value = "published") {
@@ -217,6 +218,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
+  await ensurePublicModifiedDateColumn(db);
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -426,6 +428,7 @@ export async function onRequestGet({ env, params, request }) {
       search_intent,
       status,
       published_at,
+      COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at,
       updated_at
     FROM posts
     WHERE slug = ?
@@ -518,7 +521,7 @@ export async function onRequestPut({ env, params, request }) {
   await ensurePostRegionColumns(env.TRAVEL_DB);
 
   const current = await env.TRAVEL_DB
-    .prepare(`SELECT published_at, hotel_slug, focus_keyword, longtail_keywords_json, content_md FROM posts WHERE slug = ?`)
+.prepare(`SELECT published_at, COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at, hotel_slug, focus_keyword, longtail_keywords_json, content_md FROM posts WHERE slug = ?`)
     .bind(slug)
     .first();
 
@@ -528,6 +531,10 @@ export async function onRequestPut({ env, params, request }) {
 
   const now = new Date().toISOString();
   const publishedAt = String(current.published_at || now);
+  const refreshPublicModifiedDate = body.refresh_public_modified_date === true || body.refresh_public_modified_date === 1 || body.refresh_public_modified_date === "1";
+  const contentModifiedAt = refreshPublicModifiedDate
+    ? now
+    : String(current.content_modified_at || current.published_at || publishedAt);
   const heroName = String(body.hotel_hero?.name || body.hotel_hero?.name_ko || "").trim();
   const heroNameEn = String(body.hotel_hero?.name_en || "").trim();
   const hotelNames = [heroName, heroNameEn].filter(Boolean);
@@ -611,6 +618,7 @@ export async function onRequestPut({ env, params, request }) {
       search_intent = ?,
       status = ?,
       published_at = ?,
+      content_modified_at = ?,
       updated_at = ?
     WHERE slug = ?
   `).bind(
@@ -645,11 +653,12 @@ export async function onRequestPut({ env, params, request }) {
     searchIntent,
     status,
     publishedAt,
+    contentModifiedAt,
     now,
     slug
   ).run();
 
-  return okJson({ ok: true, slug });
+  return okJson({ ok: true, slug, published_at: publishedAt, content_modified_at: contentModifiedAt, updated_at: now });
 }
 
 export async function onRequestDelete({ env, params, request }) {
