@@ -3,7 +3,7 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260804-about-editorial-policy-v18";
+const POST_RENDER_VERSION = "20260805-post-author-dates-v19";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -390,9 +390,16 @@ export async function onRequestGet(context) {
         }) : "";
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const magazineAuthorProfileHtml = `
-        <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" itemid="${escapeHtml(authorId)}" aria-label="작성자">
+        <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" itemid="${escapeHtml(authorId)}" aria-label="작성자 및 글 날짜">
           <span class="post-author-profile__avatar" aria-hidden="true">프로필</span>
-          <a class="post-author-profile__name" itemprop="url" href="/about/" rel="author"><span itemprop="name">${escapeHtml(authorName)}</span></a>
+          <div class="post-author-profile__body">
+            <a class="post-author-profile__name" itemprop="url" href="/about/" rel="author"><span itemprop="name">${escapeHtml(authorName)}</span></a>
+            <div class="post-author-profile__meta" aria-label="글 발행 및 수정 날짜">
+              <time datetime="${escapeHtml(publishedIso || "")}">발행 ${escapeHtml(publishedDate)}</time>
+              <span class="post-author-profile__separator" aria-hidden="true">·</span>
+              <time datetime="${escapeHtml(updatedIso || "")}">수정 ${escapeHtml(updatedDate)}</time>
+            </div>
+          </div>
         </div>
       `;
       const heroSummaryText = String(row.summary || descriptionText || "").trim();
@@ -453,10 +460,10 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260804-frontend-v15" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260804-frontend-v15" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260804-frontend-v15" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260804-frontend-v15" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260805-frontend-v16" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260805-frontend-v16" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260805-frontend-v16" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260805-frontend-v16" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -1293,7 +1300,14 @@ function toIso(value) {
 function formatDate(value) {
   const d = new Date(value);
   if (Number.isNaN(d.getTime())) return "-";
-  return d.toISOString().slice(0, 10);
+  const parts = new Intl.DateTimeFormat("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(d);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}.${values.month}.${values.day}`;
 }
 
 function buildPostBreadcrumbItems({ origin = DEFAULT_SITE_ORIGIN, canonical = null, row = {}, titleText = "", hotelHeroData = null, destinationData = null } = {}) {
@@ -1386,9 +1400,9 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260804-frontend-v15" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260804-frontend-v15" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260804-frontend-v15" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260805-frontend-v16" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260805-frontend-v16" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260805-frontend-v16" />
 </head>
 <body>
   ${topbar()}

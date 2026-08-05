@@ -318,5 +318,5 @@ npm run d1:migrate:status-normalization:remote
 - 모바일에서 대표 이미지뿐 아니라 모든 `figure.post-inline-image` 래퍼가 페이지 좌우 거터를 상쇄하도록 수정했습니다.
 - R2 본문 이미지, 아고다 본문 이미지, 여행 스타일별 호텔 이미지가 화면 좌우 끝까지 표시됩니다.
 - 이미지 캡션은 읽기 쉽도록 기존 모바일 거터만큼 내부 패딩을 유지합니다.
-- CSS 캐시 버전 `20260804-frontend-v15`, 포스트 렌더 버전 `20260804-post-mobile-all-images-fullbleed-v16`으로 갱신했습니다.
+- CSS 캐시 버전 `20260805-frontend-v16`, 포스트 렌더 버전 `20260804-post-mobile-all-images-fullbleed-v16`으로 갱신했습니다.
 - D1 변경은 없습니다.

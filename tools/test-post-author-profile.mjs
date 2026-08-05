@@ -5,12 +5,14 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260804-about-editorial-policy-v18"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260805-post-author-dates-v19"/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
 assert.match(renderer, /class="post-author-profile__avatar"[^>]*>프로필<\/span>/);
+assert.match(renderer, /class="post-author-profile__body"/);
 assert.match(renderer, /class="post-author-profile__name"[^>]*href="\/about\/"[^>]*rel="author"[^>]*><span itemprop="name">\$\{escapeHtml\(authorName\)\}<\/span><\/a>/);
+assert.match(renderer, /class="post-author-profile__meta"[^>]*>[\s\S]*?<time datetime="\$\{escapeHtml\(publishedIso \|\| ""\)\}">발행 \$\{escapeHtml\(publishedDate\)\}<\/time>[\s\S]*?post-author-profile__separator[\s\S]*?<time datetime="\$\{escapeHtml\(updatedIso \|\| ""\)\}">수정 \$\{escapeHtml\(updatedDate\)\}<\/time>/);
 
 const h1Index = renderer.indexOf('<h1 class="h1 post-title post-magazine-title"');
 const profileIndex = renderer.indexOf('${magazineAuthorProfileHtml}', h1Index);
@@ -19,7 +21,9 @@ assert.ok(h1Index >= 0 && profileIndex > h1Index && coverIndex > profileIndex, "
 
 assert.match(css, /body\.post-page-body \.post-author-profile\{[\s\S]*?display:flex;[\s\S]*?align-items:center;[\s\S]*?width:100%;[\s\S]*?margin:20px 0;[\s\S]*?padding:10px;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
 assert.match(css, /body\.post-page-body \.post-author-profile__avatar\{[\s\S]*?width:42px;[\s\S]*?height:42px;[\s\S]*?border-radius:50%;/);
+assert.match(css, /body\.post-page-body \.post-author-profile__body\{[\s\S]*?flex-direction:column;[\s\S]*?gap:3px;/);
 assert.match(css, /body\.post-page-body \.post-author-profile__name\{[\s\S]*?font-size:14px;[\s\S]*?font-weight:600;/);
+assert.match(css, /body\.post-page-body \.post-author-profile__meta\{[\s\S]*?color:#666;[\s\S]*?font-size:12px;/);
 assert.match(css, /body\.post-page-body \.post-magazine-head--title \+ \.post-cover-wrap\{[\s\S]*?margin-top:0;[\s\S]*?margin-bottom:30px;/);
 
 assert.match(componentsCss, /body\.post-page-body \.breadcrumbs\.container\.breadcrumbs--post-page \{[\s\S]*?width: min\(100%, var\(--container\)\);/);
@@ -43,3 +47,6 @@ assert.ok(renderer.includes('href="/about/#editorial-policy">편집 원칙</a>')
 assert.match(about, /Be Stayable Editor는 호텔의 위치, 객실, 시설, 실제 이용후기를 바탕으로 여행 목적에 맞는 숙소를 분석하고 추천합니다\./);
 assert.doesNotMatch(about, /한 명의 운영자가 콘텐츠를 직접 기획하고 작성하며 검수하는/);
 assert.match(about, /<section class="about-section" id="author"/);
+
+assert.match(about, /여행지를 선택하고 나에게 맞는 호텔을 찾아보세요\./);
+assert.doesNotMatch(about, /여행지별 호텔 추천과 숙소 선택 기준을 살펴보세요\./);
