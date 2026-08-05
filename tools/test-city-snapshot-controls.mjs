@@ -15,6 +15,8 @@ for (const required of [
   "grid.scrollBy({ left: -getSnapshotScrollStep(grid), behavior: 'smooth' })",
   "grid.scrollBy({ left: getSnapshotScrollStep(grid), behavior: 'smooth' })",
   "button.setAttribute('aria-label'",
+  "document.createElementNS('http://www.w3.org/2000/svg', 'svg')",
+  "icon.setAttribute('class', 'wt-city-snapshot__scroll-icon')",
   'previousButton.hidden = !hasOverflow || atStart',
   'nextButton.hidden = !hasOverflow || atEnd'
 ]) {
@@ -22,8 +24,8 @@ for (const required of [
 }
 
 for (const required of [
-  '@media (min-width: 1024px)',
-  '.wt-city-snapshot__scroll-button::before',
+  '@media (min-width: 900px)',
+  '.wt-city-snapshot__scroll-icon',
   '.wt-city-snapshot__scroll-button[hidden]',
   '.wt-city-snapshot__scroll-button--previous',
   '.wt-city-snapshot__scroll-button--next'
@@ -39,9 +41,20 @@ for (const entry of fs.readdirSync(destinationsRoot, { withFileTypes: true })) {
   const html = fs.readFileSync(indexPath, 'utf8');
   if (!html.includes('wt-city-snapshot__grid')) continue;
   pageCount += 1;
-  if (!html.includes('/assets/js/area-tabs-scroll.js?v=20260805CitySnapshotControlsV1')) {
+  if (!html.includes('/assets/js/area-tabs-scroll.js?v=20260805CitySnapshotControlsV2')) {
     errors.push(`City snapshot page is missing the current control script version: ${entry.name}`);
   }
+  if (!html.includes('/assets/css/travel-city.css?v=20260805-frontend-v17')) {
+    errors.push(`City snapshot page is missing the cache-busted city stylesheet: ${entry.name}`);
+  }
+  if (html.includes('/assets/css/travel-city.css?v=20260805-frontend-v16')) {
+    errors.push(`City snapshot page still references the stale immutable city stylesheet: ${entry.name}`);
+  }
+}
+
+const headers = fs.readFileSync(path.join(root, 'public', '_headers'), 'utf8');
+if (!headers.includes('/assets/*') || !headers.includes('max-age=31536000, immutable')) {
+  errors.push('Asset immutable cache policy changed; review snapshot cache-busting assumptions.');
 }
 
 if (pageCount === 0) errors.push('No city snapshot pages were found.');

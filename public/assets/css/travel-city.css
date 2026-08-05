@@ -6764,7 +6764,7 @@ body.travel-city-body .wt-city-snapshot__scroll-button {
   display: none;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
   body.travel-city-body .wt-city-snapshot__scroll-button {
     position: absolute;
     top: 50%;
@@ -6788,31 +6788,24 @@ body.travel-city-body .wt-city-snapshot__scroll-button {
     display: none !important;
   }
 
-  body.travel-city-body .wt-city-snapshot__scroll-button::before {
-    width: 10px;
-    height: 10px;
+  body.travel-city-body .wt-city-snapshot__scroll-icon {
+    width: 20px;
+    height: 20px;
     display: block;
-    border-top: 1.7px solid currentColor;
-    border-right: 1.7px solid currentColor;
-    content: "";
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
   }
 
   body.travel-city-body .wt-city-snapshot__scroll-button--previous {
     left: 14px;
   }
 
-  body.travel-city-body .wt-city-snapshot__scroll-button--previous::before {
-    margin-left: 4px;
-    transform: rotate(-135deg);
-  }
-
   body.travel-city-body .wt-city-snapshot__scroll-button--next {
     right: 14px;
-  }
-
-  body.travel-city-body .wt-city-snapshot__scroll-button--next::before {
-    margin-right: 4px;
-    transform: rotate(45deg);
   }
 
   body.travel-city-body .wt-city-snapshot__scroll-button:hover {

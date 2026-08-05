@@ -60,6 +60,17 @@
     button.setAttribute('aria-label', isPrevious ? '이전 숙소 선택 보기' : '다음 숙소 선택 보기');
     button.setAttribute('aria-controls', gridId);
     button.title = isPrevious ? '이전 항목' : '다음 항목';
+
+    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    icon.setAttribute('class', 'wt-city-snapshot__scroll-icon');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.setAttribute('focusable', 'false');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', isPrevious ? 'M15 18 9 12l6-6' : 'm9 18 6-6-6-6');
+    icon.appendChild(path);
+    button.appendChild(icon);
     return button;
   };
 
@@ -133,7 +144,9 @@
     }
 
     window.addEventListener('load', scheduleUpdate, { once: true });
+    if (document.fonts?.ready) document.fonts.ready.then(scheduleUpdate).catch(() => {});
     update();
+    window.requestAnimationFrame(update);
   };
 
   const setup = () => {
