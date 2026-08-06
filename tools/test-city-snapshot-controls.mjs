@@ -27,6 +27,17 @@ for (const required of [
   if (!script.includes(required)) errors.push(`Missing snapshot control script marker: ${required}`);
 }
 
+
+const baseButtonRule = css.match(/body\.travel-city-body \.wt-city-snapshot__scroll-button \{([\s\S]*?)\n  \}/)?.[1] || '';
+const hoverButtonRule = css.match(/body\.travel-city-body \.wt-city-snapshot__scroll-button:hover \{([\s\S]*?)\n  \}/)?.[1] || '';
+if (!baseButtonRule) errors.push('Snapshot scroll button base rule missing.');
+if (/border-radius\s*:/.test(baseButtonRule)) errors.push('Snapshot scroll button still has border-radius.');
+if (/box-shadow\s*:/.test(baseButtonRule)) errors.push('Snapshot scroll button still has box-shadow.');
+if (/box-shadow\s*:/.test(hoverButtonRule)) errors.push('Snapshot scroll button hover still has box-shadow.');
+if (/box-shadow/.test(baseButtonRule.match(/transition\s*:[^;]+;/)?.[0] || '')) {
+  errors.push('Snapshot scroll button transition still references box-shadow.');
+}
+
 for (const required of [
   '@media (min-width: 900px)',
   '.wt-city-snapshot__scroll-controls',
@@ -52,7 +63,7 @@ for (const entry of fs.readdirSync(destinationsRoot, { withFileTypes: true })) {
   if (!html.includes('/assets/js/area-tabs-scroll.js?v=20260805CitySnapshotControlsV3')) {
     errors.push(`City snapshot page is missing the current control script version: ${entry.name}`);
   }
-  if (!html.includes('/assets/css/travel-city.css?v=20260805-frontend-v18')) {
+  if (!html.includes('/assets/css/travel-city.css?v=20260806-frontend-v19')) {
     errors.push(`City snapshot page is missing the cache-busted city stylesheet: ${entry.name}`);
   }
   if (html.includes('/assets/css/travel-city.css?v=20260805-frontend-v16') ||
