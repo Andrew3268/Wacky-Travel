@@ -1,0 +1,510 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "나트랑 섬투어 숙소 위치 추천 | 혼땀·빈펄·깜란 동선",
+    "description": "나트랑에서 혼땀, 혼문, 빈펄, 깜란 리조트 일정을 함께 본다면 숙소는 선착장 거리와 리조트 체류 방식을 나눠 봐야 합니다. 시내·나트랑 비치와 빈펄·혼땀을 비교해보세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/nha-trang/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "나트랑 섬투어 숙소 위치 추천 | 혼땀·빈펄·깜란 동선",
+      "description": "나트랑에서 혼땀, 혼문, 빈펄, 깜란 리조트 일정을 함께 본다면 숙소는 선착장 거리와 리조트 체류 방식을 나눠 봐야 합니다. 시내·나트랑 비치와 빈펄·혼땀을 비교해보세요.",
+      "url": "https://bestayable.com/destinations/nha-trang/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "나트랑 섬투어 숙소 위치 추천 | 혼땀·빈펄·깜란 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "나트랑 섬투어 숙소 위치 추천 | 혼땀·빈펄·깜란 동선",
+      "description": "나트랑에서 혼땀, 혼문, 빈펄, 깜란 리조트 일정을 함께 본다면 숙소는 선착장 거리와 리조트 체류 방식을 나눠 봐야 합니다. 시내·나트랑 비치와 빈펄·혼땀을 비교해보세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "나트랑 섬투어 숙소 위치 추천 | 혼땀·빈펄·깜란 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "나트랑",
+            "item": "https://bestayable.com/destinations/nha-trang/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "나트랑 섬투어 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/nha-trang/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "나트랑 섬투어 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "시내·나트랑 비치"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "빈펄·혼땀"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "나트랑 섬투어 숙소는 시내가 가장 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "혼땀·혼문 투어가 많다면 시내·나트랑 비치가 편합니다. 선착장 이동과 복귀 후 식사 동선을 잡기 쉽습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "빈펄 일정이 많으면 어디에 묵는 게 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "빈펄이나 혼땀 리조트권을 함께 보는 것이 좋습니다. 이동보다 리조트 안에서 보내는 시간이 길수록 만족도가 높습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "깜란 리조트에 묵으면 섬투어가 불편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "시내 출발 섬투어는 이동 시간이 길어질 수 있습니다. 휴식이 중심이라면 괜찮지만 투어가 많으면 시내 숙소가 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "나트랑 섬투어 후 저녁 동선은 중요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "물놀이 후 피로도가 높아 주변 식당과 마사지 동선이 중요합니다. 시내·나트랑 비치가 이 부분에서 유리합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "아이와 함께라면 어느 지역이 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "리조트 안에서 수영장과 식사를 해결하고 싶다면 빈펄·혼땀이나 깜란 리조트권이 좋고, 투어와 시내 식사를 함께 원하면 나트랑 비치가 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "나트랑",
+      "href": "/destinations/nha-trang/",
+      "current": false
+    },
+    {
+      "label": "나트랑 섬투어 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "나트랑 숙소 가이드",
+    "title": "나트랑 섬투어 숙소는 선착장과 리조트 체류 방식을 나눠보세요",
+    "description": "혼땀, 혼문, 빈펄, 깜란처럼 목적지가 흩어져 있으면 숙소 선택 기준이 달라집니다. 섬투어가 많으면 선착장과 식사 동선이 중요하고, 리조트 체류가 중심이면 이동보다 숙소 안에서 보내는 시간이 더 중요합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "혼땀·혼문 투어는 시내, 빈펄·리조트 체류는 섬·리조트권이 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "나트랑 근교와 섬투어 일정은 출발 지점과 체류 방식이 다릅니다. 선착장 접근과 리조트 휴식 중 어디에 더 무게를 둘지 먼저 나누세요."
+    },
+    "ariaLabel": "나트랑 섬투어 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "섬투어와 시내 식사를 함께 본다면",
+        "title": "시내·나트랑 비치",
+        "lead": "혼땀·혼문 투어 픽업과 선착장 이동, 저녁 식사와 마사지 동선을 함께 잡기 좋아 처음 나트랑에서 가장 관리하기 쉽습니다.",
+        "chipsAriaLabel": "시내·나트랑 비치 선택 포인트",
+        "chips": [
+          "선착장 이동",
+          "나트랑 비치",
+          "식사·마사지"
+        ],
+        "line": "섬투어가 하루 이상 있고 밤에는 시내에서 먹고 쉬고 싶다면 시내·나트랑 비치가 편합니다."
+      },
+      {
+        "label": "빈펄·리조트 체류가 중심이라면",
+        "title": "빈펄·혼땀",
+        "lead": "워터파크, 리조트 수영장, 섬 안 체류 시간이 많은 일정이라면 매일 시내를 오가기보다 리조트 중심으로 잡는 편이 여유롭습니다.",
+        "chipsAriaLabel": "빈펄·혼땀 선택 포인트",
+        "chips": [
+          "빈펄",
+          "혼땀",
+          "리조트 체류"
+        ],
+        "line": "숙소 안에서 보내는 시간이 길고 아이와 함께라면 빈펄·혼땀 리조트권을 함께 보세요."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "why1Title",
+      "head": {
+        "kicker": "Why City Beach",
+        "title": "혼땀·혼문 투어가 많다면 시내·나트랑 비치 동선이 편합니다",
+        "titleId": "why1Title",
+        "description": "시내·나트랑 비치는 선착장, 식사, 마사지, 야시장 동선을 함께 잡기 좋아 섬투어 전후 피로를 줄이기 쉽습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "선착장 이동을 관리하기 쉽습니다",
+          "description": "섬투어는 아침 출발이 많아 호텔에서 집합 장소까지의 실제 이동 시간이 중요합니다."
+        },
+        {
+          "number": "02",
+          "title": "복귀 후 식사 선택지가 많습니다",
+          "description": "물놀이 후에는 숙소 주변에서 식사와 마사지를 바로 해결할 수 있는 위치가 편합니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 없는 날도 움직이기 쉽습니다",
+          "description": "나트랑 비치 산책, 카페, 쇼핑을 짧은 도보나 택시로 이어가기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "조용한 휴식은 리조트권도 보세요",
+          "description": "시내가 번잡하게 느껴진다면 빈펄이나 깜란 리조트권을 함께 비교하는 편이 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "why2Title",
+      "head": {
+        "kicker": "Why Island Resorts",
+        "title": "빈펄·혼땀 일정이 많다면 리조트 체류형으로 잡는 편이 좋습니다",
+        "titleId": "why2Title",
+        "description": "빈펄·혼땀은 매일 이동하기보다 숙소 안에서 쉬고 즐기는 시간이 길수록 만족도가 높아집니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "아이 동반 일정에 여유가 생깁니다",
+          "description": "워터파크나 수영장 중심 일정은 이동을 줄이는 것이 컨디션 관리에 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "리조트 안에서 하루가 완성됩니다",
+          "description": "식사, 수영장, 해변, 액티비티를 숙소 안에서 해결할 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "체크인·체크아웃 시간을 고려해야 합니다",
+          "description": "섬이나 리조트 이동은 배차와 이동 시간이 있어 첫날과 마지막 날 계획이 중요합니다."
+        },
+        {
+          "number": "04",
+          "title": "시내 맛집 탐방은 약해질 수 있습니다",
+          "description": "매일 시내 식당과 마사지를 즐기고 싶다면 시내·나트랑 비치가 더 편할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "섬투어와 빈펄 일정에 맞는 숙소 위치를 찾아보세요",
+    "description": "혼땀, 혼문, 빈펄, 깜란 일정이 있다면 이동 방식과 픽업 위치가 중요합니다. 여행 비중에 맞는 숙소 위치를 확인할 수 있습니다.",
+    "href": "/destinations/nha-trang/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "나트랑 섬투어 호텔은 선착장 거리, 픽업, 복귀 후 식사 동선을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "숙소를 정했다면 섬투어 집합 장소, 리조트 이동 시간, 물놀이 후 식사와 휴식 동선을 먼저 확인하세요."
+    },
+    "items": [
+      {
+        "title": "선착장·픽업 위치",
+        "description": "섬투어 집합 장소와 호텔 픽업 가능 여부를 확인하세요."
+      },
+      {
+        "title": "복귀 후 식사",
+        "description": "물놀이 후 주변에서 식사와 마사지를 해결할 수 있는지 보세요."
+      },
+      {
+        "title": "리조트 이동 시간",
+        "description": "빈펄·혼땀은 체크인, 배편, 이동 시간을 함께 계산해야 합니다."
+      },
+      {
+        "title": "깜란 공항 동선",
+        "description": "리조트권을 선택하면 공항은 편하지만 시내 이동 시간이 길어질 수 있습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "섬투어와 리조트 체류까지 보기 좋은 나트랑 숙소 위치",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "나트랑 비치·선착장 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-near-trip-1",
+        "image": {
+          "alt": "시내·나트랑 비치 섬투어형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "시내 선착장형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "시내·나트랑 비치 섬투어형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "섬투어 중심",
+          "근교 여행",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-near-trip-1",
+          "text": "혼땀·혼문 투어와 저녁 식사 동선을 함께 잡기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-near-trip-2",
+        "image": {
+          "alt": "나트랑 비치 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "나트랑 비치형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "나트랑 비치 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "식사·마사지",
+          "근교 여행",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-near-trip-2",
+          "text": "투어 후 산책과 마사지, 카페까지 편하게 이어가기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-near-trip-3",
+        "image": {
+          "alt": "빈펄·혼땀 리조트 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "빈펄 체류형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "빈펄·혼땀 리조트 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "리조트 중심",
+          "근교 여행",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-near-trip-3",
+          "text": "아이와 함께 리조트 안에서 하루를 보내는 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-near-trip-4",
+        "image": {
+          "alt": "깜란·바이다이 리조트 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "깜란 휴식형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "깜란·바이다이 리조트 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "공항·휴식",
+          "근교 여행",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-near-trip-4",
+          "text": "도심보다 조용한 휴식과 공항 동선을 우선할 때 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "섬투어 중심과 리조트 휴식 중심은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "나트랑 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/nha-trang/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에서 가장 무난한 숙소 위치를 비교합니다."
+      },
+      {
+        "href": "/destinations/nha-trang/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 줄이는 선택을 정리했습니다."
+      },
+      {
+        "href": "/destinations/nha-trang/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택입니다."
+      },
+      {
+        "href": "/destinations/nha-trang/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 차분히 쉬는 선택입니다."
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "나트랑 섬투어 숙소, 시내와 리조트 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "나트랑 섬투어 숙소는 시내가 가장 편한가요?",
+        "answer": "혼땀·혼문 투어가 많다면 시내·나트랑 비치가 편합니다. 선착장 이동과 복귀 후 식사 동선을 잡기 쉽습니다.",
+        "open": true
+      },
+      {
+        "question": "빈펄 일정이 많으면 어디에 묵는 게 좋나요?",
+        "answer": "빈펄이나 혼땀 리조트권을 함께 보는 것이 좋습니다. 이동보다 리조트 안에서 보내는 시간이 길수록 만족도가 높습니다.",
+        "open": false
+      },
+      {
+        "question": "깜란 리조트에 묵으면 섬투어가 불편한가요?",
+        "answer": "시내 출발 섬투어는 이동 시간이 길어질 수 있습니다. 휴식이 중심이라면 괜찮지만 투어가 많으면 시내 숙소가 편합니다.",
+        "open": false
+      },
+      {
+        "question": "나트랑 섬투어 후 저녁 동선은 중요한가요?",
+        "answer": "물놀이 후 피로도가 높아 주변 식당과 마사지 동선이 중요합니다. 시내·나트랑 비치가 이 부분에서 유리합니다.",
+        "open": false
+      },
+      {
+        "question": "아이와 함께라면 어느 지역이 좋나요?",
+        "answer": "리조트 안에서 수영장과 식사를 해결하고 싶다면 빈펄·혼땀이나 깜란 리조트권이 좋고, 투어와 시내 식사를 함께 원하면 나트랑 비치가 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

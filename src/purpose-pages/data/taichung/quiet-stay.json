@@ -1,0 +1,523 @@
+{
+  "purpose": "quiet-stay",
+  "head": {
+    "title": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교",
+    "description": "타이중 조용한 숙소는 펑지아나 이중상권 한복판보다 시정부·국립가극원, 심계신촌·초오도처럼 이동과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/taichung/quiet-stay/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교",
+      "description": "타이중 조용한 숙소는 펑지아나 이중상권 한복판보다 시정부·국립가극원, 심계신촌·초오도처럼 이동과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "url": "https://bestayable.com/destinations/taichung/quiet-stay/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교",
+      "description": "타이중 조용한 숙소는 펑지아나 이중상권 한복판보다 시정부·국립가극원, 심계신촌·초오도처럼 이동과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "타이중",
+            "item": "https://bestayable.com/destinations/taichung/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "타이중 조용한 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/taichung/quiet-stay/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "타이중 조용한 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "시정부·국립가극원"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "심계신촌·초오도"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "차오마"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "타이중역 조용한 블록"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "타이중 조용한 숙소는 어디부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "도시 편의와 이동을 함께 보려면 시정부·국립가극원, 산책과 카페 휴식이 중요하면 심계신촌·초오도를 먼저 비교하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "펑지아 근처도 조용한 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "야시장 중심과 가까우면 밤에 붐빌 수 있습니다. 펑지아를 고른다면 큰길에서 벗어난 블록과 객실 방음 후기를 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이중역 주변은 조용한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "기차 이동에는 편하지만 역 주변 분위기가 숙소마다 다릅니다. 역 바로 앞보다 조용한 골목과 객실 방향을 함께 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "초오도 주변은 이동이 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "택시를 함께 쓰면 크게 어렵지 않습니다. 다만 야시장과 외곽 관광을 많이 넣는다면 이동 시간을 비교하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이중 조용한 호텔은 무엇을 확인해야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "야시장과의 거리, 도로 소음, 택시 승하차 편의, 주변 식당과 카페 거리를 함께 확인하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "타이중",
+      "href": "/destinations/taichung/",
+      "current": false
+    },
+    {
+      "label": "조용한 숙소",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "타이중 숙소 가이드",
+    "title": "타이중 조용한 숙소는 야시장 한복판보다 시정부·초오도 쪽을 보세요",
+    "description": "타이중은 야시장과 상권이 매력적이지만 숙소 주변까지 늦게 붐비면 피로가 커질 수 있습니다. 정돈된 도심과 식사 동선을 원하면 시정부·국립가극원, 산책과 카페 중심의 조용한 시간을 원하면 심계신촌·초오도를 비교해보세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "quietAreaTitle",
+    "head": {
+      "kicker": "Quiet Choice",
+      "title": "정돈된 도심은 시정부, 산책과 카페 휴식은 초오도가 편합니다",
+      "titleId": "quietAreaTitle",
+      "description": "조용한 타이중 숙소는 버스·택시 이동이 쉬운지, 야시장 소음과 얼마나 떨어져 있는지, 숙소 주변에서 쉬기 좋은지를 함께 봐야 합니다."
+    },
+    "ariaLabel": "타이중 조용한 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "차분한 도심 편의를 원한다면",
+        "title": "시정부·국립가극원",
+        "lead": "신광미츠코시, 국립가극원, 고속철도·차오마 이동을 함께 보기 좋아 도시 편의와 조용함을 균형 있게 잡기 좋습니다.",
+        "chipsAriaLabel": "시정부·국립가극원 선택 포인트",
+        "chips": [
+          "정돈된 도심",
+          "쇼핑·식사",
+          "차오마 이동"
+        ],
+        "line": "펑지아 접근은 유지하되 숙소 주변까지 야시장처럼 붐비는 건 피하고 싶을 때 좋습니다."
+      },
+      {
+        "label": "느긋한 산책과 카페가 좋다면",
+        "title": "심계신촌·초오도",
+        "lead": "녹지, 카페, 산책 동선을 중심으로 차분하게 쉬기 좋아 일정 사이에 여유를 만들기 좋습니다.",
+        "chipsAriaLabel": "심계신촌·초오도 선택 포인트",
+        "chips": [
+          "카페 산책",
+          "녹지 동선",
+          "차분한 오후"
+        ],
+        "line": "타이중을 빠르게 훑기보다 동네 분위기와 휴식감을 함께 보고 싶을 때 어울립니다."
+      }
+    ],
+    "support": {
+      "title": "보조 후보도 함께 비교하세요.",
+      "description": "타이중역 주변은 기차 이동과 구도심 관광에는 편하지만, 조용함이 우선이라면 역 바로 앞보다 큰길에서 한 블록 들어간 숙소를 보세요."
+    }
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyXitunTitle",
+      "head": {
+        "kicker": "Why Xitun Civic Center",
+        "title": "시정부·국립가극원은 도시 편의와 조용함의 균형이 좋습니다",
+        "titleId": "whyXitunTitle",
+        "description": "식사, 쇼핑, 택시 이동을 편하게 쓰면서 숙소 주변은 비교적 정돈된 분위기를 원하는 여행에 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "쇼핑과 식사가 편합니다",
+          "description": "대형 백화점과 식당 선택지가 있어 저녁 이후에도 동선이 단순합니다."
+        },
+        {
+          "number": "02",
+          "title": "차오마·고속철도 접근을 보기 좋습니다",
+          "description": "도시 간 이동이나 공항버스, 택시 이동을 함께 고려할 때 편합니다."
+        },
+        {
+          "number": "03",
+          "title": "펑지아보다 숙소 주변이 차분할 수 있습니다",
+          "description": "야시장 중심부보다 늦은 밤 유동 인구와 소음 부담이 줄어들 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "가족·커플 여행에도 무난합니다",
+          "description": "호텔 컨디션과 이동 편의를 함께 보기 좋아 여행 스타일을 크게 타지 않습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyGreenwayTitle",
+      "head": {
+        "kicker": "Why Shenji & Calligraphy Greenway",
+        "title": "심계신촌·초오도는 산책과 카페 휴식에 잘 맞습니다",
+        "titleId": "whyGreenwayTitle",
+        "description": "타이중 특유의 느긋한 분위기와 카페, 녹지 산책을 숙소 주변에서 함께 느끼고 싶을 때 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "산책 동선이 자연스럽습니다",
+          "description": "초오도와 주변 녹지를 따라 걷기 좋아 일정 사이에 쉬는 시간을 만들기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "카페와 작은 상점이 어울립니다",
+          "description": "관광지 중심보다 동네 분위기의 카페와 식당을 이용하기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "밤 분위기가 차분합니다",
+          "description": "야시장 핵심 지역보다 숙소 주변이 더 조용하게 느껴질 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "이동은 택시를 함께 봐야 합니다",
+          "description": "타이중은 MRT보다 버스·택시 비중이 높아 주요 목적지까지 이동 시간을 확인하는 편이 좋습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "조용한 숙소가 고민된다면",
+    "title": "차분하게 쉬기 좋은 타이중 숙소 위치를 찾아보세요",
+    "description": "야시장 접근성, 카페 거리, 기차역 이동, 시내 분위기를 함께 보면 조용하면서도 일정이 불편하지 않은 위치를 찾기 좋습니다.",
+    "href": "/destinations/taichung/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "타이중 조용한 호텔은 야시장 거리, 택시 접근, 주변 식사 선택지를 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "조용한 숙소는 지역명만 보고 고르기보다 실제 객실 위치, 주변 도로, 밤 시간대 분위기를 함께 확인해야 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "대로변과 철도 소음",
+        "description": "역과 가까워도 큰길이나 철도 바로 옆이면 밤 소음이 느껴질 수 있습니다. 객실 방향과 방음 후기를 함께 확인하세요."
+      },
+      {
+        "title": "밤에 돌아오는 길",
+        "description": "너무 외진 곳은 조용해도 불편할 수 있습니다. 늦은 저녁 식사 후 숙소까지 걷는 길이 안전하고 단순한지 확인하세요."
+      },
+      {
+        "title": "식사와 편의시설 거리",
+        "description": "조용한 지역일수록 늦게 여는 식당이 적을 수 있습니다. 편의점, 카페, 간단한 식사 선택지가 주변에 있는지 보는 편이 좋습니다."
+      },
+      {
+        "title": "객실 방음 후기",
+        "description": "같은 지역이라도 호텔마다 체감이 다릅니다. 엘리베이터 옆 객실, 저층 객실, 도로 방향 객실 후기를 특히 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Stay Candidates",
+      "title": "차분하게 쉬고 싶을 때 비교할 만한 타이중 숙소",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "시정부·차오마 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-quiet-stay-1",
+        "image": {
+          "alt": "시정부·국립가극원 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도심 안정",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "시정부·국립가극원 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-quiet-stay-1",
+          "text": "정돈된 도심과 호텔 컨디션을 함께 보고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-quiet-stay-2",
+        "image": {
+          "alt": "차오마 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "교통 실용",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "차오마 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-quiet-stay-2",
+          "text": "도시간 이동이나 외곽 이동을 함께 넣는 일정에서 비교하기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-quiet-stay-3",
+        "image": {
+          "alt": "심계신촌 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "카페 휴식",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "심계신촌 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-quiet-stay-3",
+          "text": "작은 카페와 여유로운 산책을 좋아하는 여행에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-quiet-stay-4",
+        "image": {
+          "alt": "초오도 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "녹지 산책",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "초오도 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-quiet-stay-4",
+          "text": "도시 중심보다 쉬는 시간이 중요한 일정에서 볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "가성비, 근교 이동, 가족 여행이면 조용한 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "타이중 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/taichung/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 방문할 때 실패를 줄이는 중심 위치 선택"
+      },
+      {
+        "href": "/destinations/taichung/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 보는 실속형 선택"
+      },
+      {
+        "href": "/destinations/taichung/near-trip/",
+        "number": "03",
+        "title": "근교 여행 숙소",
+        "description": "근교 이동과 투어 출발 동선을 먼저 보는 선택"
+      },
+      {
+        "href": "/destinations/taichung/family-trip/",
+        "number": "04",
+        "title": "가족 여행 숙소",
+        "description": "아이·부모님 동선과 쉬는 시간을 함께 보는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "faqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "타이중 조용한 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "faqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "타이중 조용한 숙소는 어디부터 보면 좋나요?",
+        "answer": "도시 편의와 이동을 함께 보려면 시정부·국립가극원, 산책과 카페 휴식이 중요하면 심계신촌·초오도를 먼저 비교하세요.",
+        "open": false
+      },
+      {
+        "question": "펑지아 근처도 조용한 숙소로 괜찮나요?",
+        "answer": "야시장 중심과 가까우면 밤에 붐빌 수 있습니다. 펑지아를 고른다면 큰길에서 벗어난 블록과 객실 방음 후기를 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "타이중역 주변은 조용한가요?",
+        "answer": "기차 이동에는 편하지만 역 주변 분위기가 숙소마다 다릅니다. 역 바로 앞보다 조용한 골목과 객실 방향을 함께 보세요.",
+        "open": false
+      },
+      {
+        "question": "초오도 주변은 이동이 불편하지 않나요?",
+        "answer": "택시를 함께 쓰면 크게 어렵지 않습니다. 다만 야시장과 외곽 관광을 많이 넣는다면 이동 시간을 비교하세요.",
+        "open": false
+      },
+      {
+        "question": "타이중 조용한 호텔은 무엇을 확인해야 하나요?",
+        "answer": "야시장과의 거리, 도로 소음, 택시 승하차 편의, 주변 식당과 카페 거리를 함께 확인하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

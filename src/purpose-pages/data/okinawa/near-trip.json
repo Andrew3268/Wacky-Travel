@@ -1,0 +1,520 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "오키나와 근교·북부 여행 숙소 위치 추천 | 츄라우미·코우리섬·케라마 동선",
+    "description": "츄라우미수족관·코우리섬·푸른동굴·케라마 제도까지 보는 오키나와 여행은 숙소 주변 분위기보다 렌터카 이동 시간, 주차, 항구 접근성을 먼저 확인해야 합니다. 나하와 북부 숙박 기준을 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/okinawa/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "오키나와 근교·북부 여행 숙소 위치 추천 | 츄라우미·코우리섬·케라마 동선",
+      "description": "츄라우미수족관·코우리섬·푸른동굴·케라마 제도까지 보는 오키나와 여행은 숙소 주변 분위기보다 렌터카 이동 시간, 주차, 항구 접근성을 먼저 확인해야 합니다. 나하와 북부 숙박 기준을 정리했습니다.",
+      "url": "https://bestayable.com/destinations/okinawa/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "오키나와 근교·북부 여행 숙소 위치 추천 | 츄라우미·코우리섬·케라마 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "오키나와 근교·북부 여행 숙소 위치 추천 | 츄라우미·코우리섬·케라마 동선",
+      "description": "츄라우미수족관·코우리섬·푸른동굴·케라마 제도까지 보는 오키나와 여행은 숙소 주변 분위기보다 렌터카 이동 시간, 주차, 항구 접근성을 먼저 확인해야 합니다. 나하와 북부 숙박 기준을 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "오키나와 근교·북부 여행 숙소 위치 추천 | 츄라우미·코우리섬·케라마 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "오키나와",
+            "item": "https://bestayable.com/destinations/okinawa/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "오키나와 근교·북부 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/okinawa/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "오키나와 근교 여행 숙소 추천 호텔",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "나하 도마리항 주변 숙소"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "온나손 리조트권 숙소"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "나고 시내 숙소"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "모토부 주변 숙소"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "오키나와 근교·북부 여행 숙소는 나하와 북부 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "케라마 제도 투어와 공항 이동이 중요하다면 나하가 편하고, 츄라우미수족관·코우리섬·푸른동굴을 여유 있게 보려면 온나손·나고·모토부를 함께 고려하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "츄라우미수족관을 가려면 북부 숙박이 필요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "당일치기도 가능하지만 나하에서 왕복하면 운전 시간이 길어질 수 있습니다. 츄라우미와 코우리섬, 비세후쿠기길을 함께 본다면 북부 숙박이 더 여유롭습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "케라마 제도 투어가 있으면 나하 숙소가 좋은가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대체로 나하나 도마리항 접근이 좋은 숙소가 편합니다. 아침 집합 시간이 빠른 투어라면 항구까지의 실제 이동 시간을 꼭 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "온나손은 근교 여행에 어떤 일정과 잘 맞나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "푸른동굴, 만좌모, 중부 해변, 리조트 휴식을 함께 보는 일정에 잘 맞습니다. 북부와 나하 사이를 나누는 중간 거점으로도 볼 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오키나와 근교 여행은 숙소를 나누는 것이 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "북부 일정이 많다면 나하 1박 후 온나손·나고·모토부 1박처럼 나누는 편이 운전 피로를 줄일 수 있습니다. 짧은 일정이라면 나하 또는 차탄 중심으로 단순하게 잡는 것도 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "오키나와",
+      "href": "/destinations/okinawa/",
+      "current": false
+    },
+    {
+      "label": "오키나와 근교·북부 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "오키나와 숙소 가이드",
+    "title": "오키나와 근교·북부 여행 숙소는 렌터카 거리와 항구 동선으로 고르세요",
+    "description": "츄라우미수족관, 코우리섬, 푸른동굴, 케라마 제도처럼 이동 거리가 긴 일정이 들어가면 숙소 선택 기준이 달라집니다. 해변 분위기만 보기보다 운전 시간, 항구 출발, 주차 편의, 첫날과 마지막 날 공항 동선을 함께 봐야 합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "케라마 투어는 나하, 츄라우미·코우리섬은 북부 숙박이 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "오키나와 근교·북부 여행은 모든 지역을 한 번에 비교하기보다, 섬투어와 북부 드라이브 중 어느 일정이 더 큰지 기준으로 나하와 북부·중부 숙박을 먼저 나누면 선택이 쉬워집니다."
+    },
+    "ariaLabel": "오키나와 근교·북부 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "섬투어·첫날 이동이라면",
+        "title": "나하",
+        "lead": "나하와 도마리항 주변은 케라마 제도 투어, 공항 접근, 국제거리 저녁 동선을 함께 보기 좋아 뚜벅이와 첫날 일정에 편합니다.",
+        "chipsAriaLabel": "나하 선택 포인트",
+        "chips": [
+          "도마리항",
+          "공항 접근",
+          "국제거리"
+        ],
+        "line": "케라마 투어가 있거나 첫날·마지막 날 공항 이동을 줄이고 싶다면 나하부터 보는 편이 안전합니다."
+      },
+      {
+        "label": "북부 드라이브가 많다면",
+        "title": "온나손·나고·모토부",
+        "lead": "츄라우미수족관, 코우리섬, 만좌모, 푸른동굴을 여러 번 보는 일정은 중부·북부 숙박으로 운전 피로를 줄일 수 있습니다.",
+        "chipsAriaLabel": "온나손·나고·모토부 선택 포인트",
+        "chips": [
+          "츄라우미",
+          "코우리섬",
+          "렌터카"
+        ],
+        "line": "북부 관광지가 일정의 중심이라면 나하에서 매번 왕복하기보다 온나손·나고·모토부를 함께 보는 것이 좋습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyFirstTitle",
+      "head": {
+        "kicker": "Why Naha",
+        "title": "케라마 제도 투어와 공항 동선이 있다면 나하가 편합니다",
+        "titleId": "whyFirstTitle",
+        "description": "나하는 공항, 도마리항, 국제거리 접근을 함께 보기 좋아 섬투어와 첫날·마지막 날 이동이 있는 일정에서 실패 가능성이 낮습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "도마리항 접근이 쉽습니다",
+          "description": "케라마 제도 투어를 이용한다면 항구까지의 이동 시간이 짧을수록 아침 출발 부담이 줄어듭니다."
+        },
+        {
+          "number": "02",
+          "title": "공항과 첫날 동선이 단순합니다",
+          "description": "도착 후 렌터카를 받거나 숙소에 짐을 맡기고 시내를 보는 일정이라면 나하가 편합니다."
+        },
+        {
+          "number": "03",
+          "title": "뚜벅이 일정에도 대응하기 좋습니다",
+          "description": "유이레일과 버스, 택시를 함께 활용하기 좋아 렌터카가 없는 날에도 움직이기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "국제거리 저녁 동선이 짧습니다",
+          "description": "섬투어 후 돌아와 식사와 쇼핑, 숙소 복귀를 한 생활권 안에서 해결하기 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whySecondTitle",
+      "head": {
+        "kicker": "Why North Okinawa",
+        "title": "츄라우미·코우리섬·푸른동굴이 많다면 북부 숙박이 편합니다",
+        "titleId": "whySecondTitle",
+        "description": "중부·북부 숙박은 긴 운전 시간을 줄이고 해변과 관광지를 여유 있게 묶기 좋아 렌터카 여행자에게 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "츄라우미 왕복 피로가 줄어듭니다",
+          "description": "나하에서 북부까지 매번 왕복하면 운전 시간이 길어질 수 있어 모토부나 나고 숙박을 함께 고려할 만합니다."
+        },
+        {
+          "number": "02",
+          "title": "코우리섬과 북부 드라이브가 여유로워집니다",
+          "description": "코우리섬, 비세후쿠기길, 해안 드라이브를 하루에 몰아보지 않고 나누기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "푸른동굴·온나손 리조트와 잘 맞습니다",
+          "description": "푸른동굴, 만좌모, 리조트 휴식을 함께 보고 싶다면 온나손 숙박이 동선을 줄여줍니다."
+        },
+        {
+          "number": "04",
+          "title": "섬투어가 중심이면 나하도 보세요",
+          "description": "케라마 제도 투어나 도마리항 출발 일정이 있다면 북부보다 나하가 더 단순할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "츄라우미·코우리섬·케라마 일정에 맞는 숙소 위치를 찾아보세요",
+    "description": "북부 드라이브와 항구 이동은 출발 위치에 따라 피로도가 달라집니다. 나하, 차탄, 온나손 중 일정에 맞는 곳을 확인할 수 있습니다.",
+    "href": "/destinations/okinawa/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "오키나와 근교 호텔은 주차, 운전 시간, 투어 출발 항구를 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "숙소 지역을 정했다면 렌터카 주차, 북부 왕복 시간, 항구 접근, 첫날·마지막 날 공항 이동만 먼저 확인해도 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "가장 긴 이동 일정",
+        "description": "츄라우미, 코우리섬, 케라마, 푸른동굴 중 가장 시간이 오래 걸리는 일정이 무엇인지 먼저 정리하세요."
+      },
+      {
+        "title": "렌터카와 주차 편의",
+        "description": "호텔 주차 가능 여부와 주차비, 성수기 출입 동선을 함께 확인하는 것이 좋습니다."
+      },
+      {
+        "title": "투어 출발 항구와 집합 시간",
+        "description": "케라마 투어처럼 아침 출발이 빠른 일정은 항구까지의 실제 이동 시간을 확인하세요."
+      },
+      {
+        "title": "숙소 이동을 나눌지 여부",
+        "description": "나하 1박 후 북부 1박처럼 숙소를 나누면 긴 왕복 운전을 줄일 수 있습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "근교·북부 이동까지 보기 좋은 오키나와 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "나하·온나손·나고 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오키나와-near-trip-1",
+        "image": {
+          "alt": "나하 도마리항 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "나하 항구 접근",
+        "nameEn": "NAHA TOMARI PORT AREA",
+        "nameKo": "나하 도마리항 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "케라마",
+          "근교 여행",
+          "오키나와"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오키나와-near-trip-1",
+          "text": "케라마 제도 투어와 국제거리 저녁 동선을 함께 잡고 싶은 일정에 편합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오키나와-near-trip-2",
+        "image": {
+          "alt": "온나손 리조트권 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "온나손 리조트권",
+        "nameEn": "ONNA RESORT AREA",
+        "nameKo": "온나손 리조트권 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "푸른동굴",
+          "근교 여행",
+          "오키나와"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오키나와-near-trip-2",
+          "text": "푸른동굴, 만좌모, 리조트 휴식을 함께 보고 싶은 렌터카 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오키나와-near-trip-3",
+        "image": {
+          "alt": "나고 시내 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "나고 중심",
+        "nameEn": "NAGO AREA",
+        "nameKo": "나고 시내 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "북부 연결",
+          "근교 여행",
+          "오키나와"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오키나와-near-trip-3",
+          "text": "츄라우미와 코우리섬을 함께 보면서 편의시설 접근도 원하는 일정에 비교 가치가 있습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오키나와-near-trip-4",
+        "image": {
+          "alt": "모토부 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "모토부 접근",
+        "nameEn": "MOTOBU AREA",
+        "nameKo": "모토부 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "츄라우미",
+          "근교 여행",
+          "오키나와"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오키나와-near-trip-4",
+          "text": "츄라우미수족관과 비세후쿠기길, 코우리섬을 여유 있게 보고 싶은 분께 편합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "나하 중심 여행과 북부 드라이브 여행은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "오키나와 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/okinawa/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에 맞춰 숙소 지역을 빠르게 좁히는 선택"
+      },
+      {
+        "href": "/destinations/okinawa/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/okinawa/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/okinawa/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "오키나와 근교·북부 여행 숙소, 나하와 북부 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "오키나와 근교·북부 여행 숙소는 나하와 북부 중 어디가 좋나요?",
+        "answer": "케라마 제도 투어와 공항 이동이 중요하다면 나하가 편하고, 츄라우미수족관·코우리섬·푸른동굴을 여유 있게 보려면 온나손·나고·모토부를 함께 고려하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "츄라우미수족관을 가려면 북부 숙박이 필요한가요?",
+        "answer": "당일치기도 가능하지만 나하에서 왕복하면 운전 시간이 길어질 수 있습니다. 츄라우미와 코우리섬, 비세후쿠기길을 함께 본다면 북부 숙박이 더 여유롭습니다.",
+        "open": false
+      },
+      {
+        "question": "케라마 제도 투어가 있으면 나하 숙소가 좋은가요?",
+        "answer": "대체로 나하나 도마리항 접근이 좋은 숙소가 편합니다. 아침 집합 시간이 빠른 투어라면 항구까지의 실제 이동 시간을 꼭 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "온나손은 근교 여행에 어떤 일정과 잘 맞나요?",
+        "answer": "푸른동굴, 만좌모, 중부 해변, 리조트 휴식을 함께 보는 일정에 잘 맞습니다. 북부와 나하 사이를 나누는 중간 거점으로도 볼 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "오키나와 근교 여행은 숙소를 나누는 것이 좋나요?",
+        "answer": "북부 일정이 많다면 나하 1박 후 온나손·나고·모토부 1박처럼 나누는 편이 운전 피로를 줄일 수 있습니다. 짧은 일정이라면 나하 또는 차탄 중심으로 단순하게 잡는 것도 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

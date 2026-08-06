@@ -1,0 +1,530 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교",
+    "description": "첫 타이중 여행 숙소는 타이중역과 펑지아부터 비교하면 쉽습니다. 기차 도착, 미야하라·구도심, 펑지아 야시장, 택시 이동 기준으로 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/taichung/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교",
+      "description": "첫 타이중 여행 숙소는 타이중역과 펑지아부터 비교하면 쉽습니다. 기차 도착, 미야하라·구도심, 펑지아 야시장, 택시 이동 기준으로 정리했습니다.",
+      "url": "https://bestayable.com/destinations/taichung/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교",
+      "description": "첫 타이중 여행 숙소는 타이중역과 펑지아부터 비교하면 쉽습니다. 기차 도착, 미야하라·구도심, 펑지아 야시장, 택시 이동 기준으로 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "타이중",
+            "item": "https://bestayable.com/destinations/taichung/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "타이중 첫 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/taichung/first-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "타이중 첫 여행 숙소 위치 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "타이중역·중구"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "펑지아·시툰"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "초오도·근미술관"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "시정부·국립가극원"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "이중상권·타이중공원"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "구관온천·외곽휴식"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "타이중 처음이면 타이중역과 펑지아 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "기차로 도착하고 미야하라·구도심을 쉽게 묶고 싶다면 타이중역이 편합니다. 야시장과 늦은 저녁 분위기를 중요하게 보면 펑지아가 더 잘 맞을 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이중은 지하철보다 택시를 많이 타야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "타이중은 일부 구간을 제외하면 지하철만으로 움직이기보다 택시와 버스를 섞는 경우가 많습니다. 그래서 숙소를 고를 때 역 이름보다 실제 이동 방식과 밤 복귀 동선을 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "펑지아 야시장 근처 숙소는 시끄럽지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "야시장 중심부와 가까우면 밤 시간대 소음과 혼잡이 있을 수 있습니다. 야시장 접근성을 원하되 조용함도 중요하다면 메인 거리에서 조금 떨어진 호텔을 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "고속철도로 도착하면 어느 지역 숙소가 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "고속철도 타이중역은 도심과 거리가 있어 바로 숙소를 잡기보다 이후 이동할 지역을 기준으로 보는 것이 좋습니다. 구도심 일정은 타이중역, 야시장 중심은 펑지아가 더 자연스럽습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이중 2박 3일이면 숙소를 옮길 필요가 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2박 3일이면 보통 한 지역에 머무는 편이 편합니다. 구도심과 야시장을 모두 본다면 이동 시간이 길어지지 않는 위치를 잡고 택시를 적절히 활용하는 방식이 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "타이중",
+      "href": "/destinations/taichung/",
+      "current": false
+    },
+    {
+      "label": "타이중 첫 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "타이중 숙소 가이드",
+    "title": "타이중 첫 여행 숙소는 기차역 동선과 야시장 시간을 나눠보세요",
+    "description": "첫 타이중 여행은 대중교통만으로 움직이기보다 택시와 버스를 함께 쓰는 경우가 많습니다. 기차로 도착하고 구도심을 먼저 본다면 타이중역, 저녁마다 야시장과 쇼핑을 즐기고 싶다면 펑지아부터 비교하면 쉽습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "기차·구도심은 타이중역, 야시장 중심은 펑지아가 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "기차로 도착하고 미야하라·구도심을 먼저 본다면 타이중역, 저녁마다 야시장과 쇼핑을 즐기고 싶다면 펑지아부터 보면 됩니다."
+    },
+    "ariaLabel": "첫 타이중 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "도착 동선이 중요하다면",
+        "title": "타이중역",
+        "lead": "기차 도착, 미야하라, 구도심 산책을 짧게 묶기 좋아 첫날 일정이 단순해집니다.",
+        "chipsAriaLabel": "타이중역 선택 포인트",
+        "chips": [
+          "기차 도착",
+          "미야하라",
+          "구도심"
+        ],
+        "line": "타이중이 처음이고 도착 후 바로 움직이고 싶다면 타이중역이 편합니다."
+      },
+      {
+        "label": "밤 일정이 중요하다면",
+        "title": "펑지아",
+        "lead": "펑지아 야시장과 주변 식당, 쇼핑 동선을 숙소 주변에서 해결하기 좋아 저녁 시간이 길어집니다.",
+        "chipsAriaLabel": "펑지아 선택 포인트",
+        "chips": [
+          "야시장",
+          "쇼핑",
+          "저녁 동선"
+        ],
+        "line": "밤에 먹고 걷는 시간이 많다면 펑지아 쪽이 더 잘 맞습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "firstTripWhyATitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "기차 도착과 구도심 산책을 묶는다면 타이중역이 편합니다",
+        "titleId": "firstTripWhyATitle",
+        "description": "타이중역은 기차 이동, 미야하라, 구도심 산책을 먼저 보는 일정에 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "도착 후 이동이 단순합니다",
+          "description": "기차로 타이중에 들어오거나 다른 도시로 이동할 계획이 있다면 역 주변 숙소가 편합니다."
+        },
+        {
+          "number": "02",
+          "title": "구도심을 짧게 묶기 좋습니다",
+          "description": "미야하라, 제2시장, 구도심 카페와 오래된 거리를 가볍게 이어가기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "택시 이동 기준을 잡기 좋습니다",
+          "description": "펑지아, 초오도, 국립타이완미술관으로 이동할 때 위치를 잡기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "짧은 일정에 무난합니다",
+          "description": "2박 3일처럼 시간이 짧다면 도착과 출발 동선을 줄이는 쪽이 편합니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "firstTripWhyBTitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "야시장과 저녁 시간이 중요하다면 펑지아가 편합니다",
+        "titleId": "firstTripWhyBTitle",
+        "description": "펑지아는 저녁 식사와 쇼핑, 야시장 분위기를 숙소 주변에서 즐기기 좋은 선택입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "밤 동선이 짧아집니다",
+          "description": "펑지아 야시장을 보고 숙소로 돌아오는 길이 짧아 늦은 시간에도 부담이 적습니다."
+        },
+        {
+          "number": "02",
+          "title": "식당과 간식 선택지가 많습니다",
+          "description": "야시장, 로컬 식당, 카페를 한 번에 묶기 좋아 저녁 일정이 자연스럽게 이어집니다."
+        },
+        {
+          "number": "03",
+          "title": "젊은 분위기가 강합니다",
+          "description": "쇼핑과 야시장 중심으로 활기 있는 타이중을 느끼고 싶다면 펑지아가 잘 맞습니다."
+        },
+        {
+          "number": "04",
+          "title": "기차 이동이 많다면 타이중역도 함께 보세요",
+          "description": "도착·출발이 자주 있거나 구도심 관광이 핵심이라면 타이중역이 더 단순할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "아직 고민된다면",
+    "title": "기차역과 야시장 동선에 맞는 첫 타이중 숙소 위치를 찾아보세요",
+    "description": "타이중은 MRT만으로 모든 일정을 보기 어렵습니다. 기차역, 펑지아 야시장, 시내 이동 방식을 함께 보면 처음 머물기 좋은 위치를 정하기 쉽습니다.",
+    "href": "/destinations/taichung/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "firstTripBookingTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "타이중 호텔은 택시 이동, 버스 노선, 야시장 복귀 동선을 확인하세요",
+      "titleId": "firstTripBookingTitle",
+      "description": "타이중은 MRT만으로 모든 여행지를 보기 어렵기 때문에 실제 이동 방식까지 함께 보는 것이 좋습니다."
+    },
+    "items": [
+      {
+        "title": "택시 이동이 부담스럽지 않은가",
+        "description": "관광지가 넓게 퍼져 있어 택시를 여러 번 탈 수 있으니 이동 시간을 함께 보세요."
+      },
+      {
+        "title": "버스 정류장이 가까운가",
+        "description": "대중교통을 쓴다면 숙소 주변 버스 정류장과 노선을 먼저 확인하세요."
+      },
+      {
+        "title": "야시장 후 복귀가 쉬운가",
+        "description": "펑지아를 자주 갈 계획이라면 밤에 숙소로 돌아오는 거리도 중요합니다."
+      },
+      {
+        "title": "도착·출발 동선이 단순한가",
+        "description": "기차역이나 고속철도역을 이용한다면 첫날과 마지막 날 이동을 기준으로 보세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "타이중역·펑지아 중심으로 보기 좋은 타이중 숙소",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "타이중역·펑지아 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-first-trip-1",
+        "image": {
+          "alt": "53 호텔 타이중 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "타이중역 실속형",
+        "nameEn": "53 Hotel",
+        "nameKo": "53 호텔 타이중",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "역 가까움",
+          "첫 여행",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-first-trip-1",
+          "text": "타이중역과 미야하라 이동을 짧게 묶을 수 있어 처음 도착한 날 숙소 위치를 이해하기 쉽습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-first-trip-2",
+        "image": {
+          "alt": "시티인 호텔 플러스 타이중역 브랜치 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "역세권 깔끔형",
+        "nameEn": "CityInn Hotel Plus - Taichung Station Branch",
+        "nameKo": "시티인 호텔 플러스 타이중역 브랜치",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "밤 동선",
+          "첫 여행",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-first-trip-2",
+          "text": "역 접근성과 깔끔한 객실을 함께 보고 싶은 첫 여행자에게 무난한 선택입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-first-trip-3",
+        "image": {
+          "alt": "찬스 호텔 타이중 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "초역세권 실속형",
+        "nameEn": "Chance Hotel",
+        "nameKo": "찬스 호텔 타이중",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "동선 균형",
+          "첫 여행",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-first-trip-3",
+          "text": "기차 이동과 체크인 이동을 최대한 단순하게 만들고 싶을 때 비교하기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-first-trip-4",
+        "image": {
+          "alt": "홀리데이 인 익스프레스 타이중 파크 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "공원 접근형",
+        "nameEn": "Holiday Inn Express Taichung Park",
+        "nameKo": "홀리데이 인 익스프레스 타이중 파크",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "시내 중심",
+          "첫 여행",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-first-trip-4",
+          "text": "구도심 접근과 익숙한 브랜드 호텔의 안정감을 함께 보고 싶은 일정에 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "구도심 관광은 타이중역, 야시장은 펑지아, 카페 여행은 초오도를 보세요",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "타이중 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/taichung/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/taichung/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "고미습지·구관온천·무지개마을 이동을 출발 방식 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/taichung/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 식사·차량 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/taichung/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 늦은 시간에는 편히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "firsttripFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "타이중 첫 여행 숙소, 타이중역과 펑지아 중 어디가 좋을까요?",
+      "titleId": "firsttripFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "타이중 처음이면 타이중역과 펑지아 중 어디가 좋나요?",
+        "answer": "기차로 도착하고 미야하라·구도심을 쉽게 묶고 싶다면 타이중역이 편합니다. 야시장과 늦은 저녁 분위기를 중요하게 보면 펑지아가 더 잘 맞을 수 있습니다.",
+        "open": true
+      },
+      {
+        "question": "타이중은 지하철보다 택시를 많이 타야 하나요?",
+        "answer": "타이중은 일부 구간을 제외하면 지하철만으로 움직이기보다 택시와 버스를 섞는 경우가 많습니다. 그래서 숙소를 고를 때 역 이름보다 실제 이동 방식과 밤 복귀 동선을 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "펑지아 야시장 근처 숙소는 시끄럽지 않나요?",
+        "answer": "야시장 중심부와 가까우면 밤 시간대 소음과 혼잡이 있을 수 있습니다. 야시장 접근성을 원하되 조용함도 중요하다면 메인 거리에서 조금 떨어진 호텔을 보세요.",
+        "open": false
+      },
+      {
+        "question": "고속철도로 도착하면 어느 지역 숙소가 편한가요?",
+        "answer": "고속철도 타이중역은 도심과 거리가 있어 바로 숙소를 잡기보다 이후 이동할 지역을 기준으로 보는 것이 좋습니다. 구도심 일정은 타이중역, 야시장 중심은 펑지아가 더 자연스럽습니다.",
+        "open": false
+      },
+      {
+        "question": "타이중 2박 3일이면 숙소를 옮길 필요가 있나요?",
+        "answer": "2박 3일이면 보통 한 지역에 머무는 편이 편합니다. 구도심과 야시장을 모두 본다면 이동 시간이 길어지지 않는 위치를 잡고 택시를 적절히 활용하는 방식이 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

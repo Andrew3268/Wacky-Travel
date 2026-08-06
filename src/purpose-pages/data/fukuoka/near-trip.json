@@ -153,24 +153,12 @@
       "current": true
     }
   ],
-  "mainClasses": [
-    "travel-page",
-    "wt-purpose-page",
-    "wt-purpose-page--near-trip",
-    "wt-purpose-page--fukuoka-unified"
-  ],
   "hero": {
     "kicker": "후쿠오카 숙소 가이드",
     "title": "후쿠오카 근교 여행 숙소는 출발역 기준으로 고르세요",
     "description": "다자이후, 이토시마, 유후인, 기타큐슈처럼 근교 일정이 들어가면 숙소 선택 기준이 달라집니다. 호텔 주변 명소보다 아침에 어디서 출발하는지, 저녁에 돌아와서 식사와 휴식을 어떻게 이어갈지가 더 중요합니다."
   },
   "areaChoice": {
-    "classes": [
-      "wt-section",
-      "wt-near-area-choice",
-      "wt-first-area-choice",
-      "wt-area-choice--unified"
-    ],
     "ariaLabelledby": "nearAreaTitle",
     "head": {
       "kicker": "Route Choice",
@@ -181,10 +169,6 @@
     "ariaLabel": "후쿠오카 근교 여행 숙소 위치 선택",
     "choices": [
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--hakata"
-        ],
         "label": "JR·버스 출발이 많다면",
         "title": "하카타",
         "lead": "하카타역과 버스터미널을 함께 쓰기 좋아 유후인, 기타큐슈, 나가사키처럼 철도·버스 이동이 섞인 일정에서 동선이 단순합니다.",
@@ -197,10 +181,6 @@
         "line": "여러 근교를 섞거나 아침 출발이 빠른 날이 많다면 하카타부터 보는 편이 안전합니다."
       },
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--tenjin"
-        ],
         "label": "니시테츠·서쪽 동선이라면",
         "title": "텐진",
         "lead": "니시테츠후쿠오카역과 지하철을 쓰기 좋아 다자이후, 이토시마, 텐진 쇼핑과 저녁 식사를 한 번에 묶기 좋습니다.",
@@ -212,14 +192,11 @@
         ],
         "line": "다자이후와 도심 쇼핑이 중심이고, 밤에도 텐진 주변에서 보내는 시간이 많다면 텐진이 편합니다."
       }
-    ]
+    ],
+    "support": null
   },
   "reasons": [
     {
-      "classes": [
-        "wt-section",
-        "wt-section--soft"
-      ],
       "ariaLabelledby": "whyHakataTitle",
       "head": {
         "kicker": "Why Hakata",
@@ -251,10 +228,6 @@
       ]
     },
     {
-      "classes": [
-        "wt-section",
-        "wt-section--soft"
-      ],
       "ariaLabelledby": "whyTenjinTitle",
       "head": {
         "kicker": "Why Tenjin",
@@ -287,11 +260,6 @@
     }
   ],
   "survey": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-section--survey-cta"
-    ],
     "kicker": "근교 일정이 있다면",
     "title": "다자이후·유후인 일정에 맞는 후쿠오카 숙소 위치를 찾아보세요",
     "description": "근교 이동이 있는 여행은 출발역과 돌아오는 시간이 중요합니다. 하카타, 텐진, 나카스 중 일정에 맞는 위치를 확인할 수 있습니다.",
@@ -299,11 +267,6 @@
     "button": "내 여행에 맞는 숙소 위치 찾기"
   },
   "bookingChecks": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-firsttrip-before-booking"
-    ],
     "ariaLabelledby": "bookingCheckTitle",
     "head": {
       "kicker": "Before Booking",
@@ -331,9 +294,6 @@
     ]
   },
   "hotels": {
-    "classes": [
-      "wt-section"
-    ],
     "ariaLabelledby": "hotelTitle",
     "ariaHidden": "true",
     "adminOnly": true,
@@ -352,17 +312,18 @@
     "cards": [
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-1",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "JR 큐슈 호텔 블러섬 하카타 센트럴 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": ""
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "하카타역 중심",
         "nameEn": "JR Kyushu Hotel Blossom Hakata Central",
@@ -373,29 +334,29 @@
           "근교 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "근교 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-1",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-near-trip-1",
           "text": "하카타역을 중심으로 JR 이동과 후쿠오카 시내 일정을 함께 잡고 싶은 분께 편합니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-2",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "미야코 호텔 하카타 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "하카타역 바로 앞",
         "nameEn": "Miyako Hotel Hakata",
@@ -406,29 +367,29 @@
           "근교 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "근교 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-2",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-near-trip-2",
           "text": "빠른 아침 출발과 귀국일 동선을 단순하게 만들고 싶은 일정에 어울립니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-3",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "호텔 닛코 후쿠오카 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "하카타 안정형",
         "nameEn": "Hotel Nikko Fukuoka",
@@ -439,29 +400,29 @@
           "근교 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "근교 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-3",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-near-trip-3",
           "text": "하카타역 접근성과 안정적인 숙박 분위기를 함께 원하는 일정에 비교 가치가 있습니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-4",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "솔라리아 니시테츠 호텔 후쿠오카 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "텐진 교통 중심",
         "nameEn": "Solaria Nishitetsu Hotel Fukuoka",
@@ -472,23 +433,18 @@
           "근교 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "근교 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-near-trip-4",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-near-trip-4",
           "text": "다자이후와 텐진 쇼핑, 저녁 식사를 한 번에 묶고 싶은 분께 어울립니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       }
     ]
   },
   "otherChoices": {
-    "classes": [
-      "wt-section",
-      "wt-firsttrip-other-choices"
-    ],
     "ariaLabelledby": "otherChoicesTitle",
     "head": {
       "kicker": "Other Choices",
@@ -525,11 +481,6 @@
     ]
   },
   "faq": {
-    "classes": [
-      "wt-section",
-      "wt-section--compact",
-      "wt-purpose-faq"
-    ],
     "ariaLabelledby": "nearFaqTitle",
     "head": {
       "kicker": "FAQ",
@@ -564,5 +515,6 @@
         "open": false
       }
     ]
-  }
+  },
+  "extraScripts": []
 }

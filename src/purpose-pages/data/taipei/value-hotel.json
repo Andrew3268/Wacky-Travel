@@ -1,0 +1,520 @@
+{
+  "purpose": "value-hotel",
+  "head": {
+    "title": "타이베이 가성비 숙소 위치 추천 | 중산·시먼딩·베이먼 비교",
+    "description": "타이베이 가성비 숙소는 최저가보다 MRT 환승과 밤 동선이 중요합니다. 깔끔한 도심 숙박은 중산·쌍롄, 먹거리와 예산은 시먼딩·베이먼을 중심으로 비교하세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/taipei/value-hotel/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "타이베이 가성비 숙소 위치 추천 | 중산·시먼딩·베이먼 비교",
+      "description": "타이베이 가성비 숙소는 최저가보다 MRT 환승과 밤 동선이 중요합니다. 깔끔한 도심 숙박은 중산·쌍롄, 먹거리와 예산은 시먼딩·베이먼을 중심으로 비교하세요.",
+      "url": "https://bestayable.com/destinations/taipei/value-hotel/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "타이베이 가성비 숙소 위치 추천 | 중산·시먼딩·베이먼 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "타이베이 가성비 숙소 위치 추천 | 중산·시먼딩·베이먼 비교",
+      "description": "타이베이 가성비 숙소는 최저가보다 MRT 환승과 밤 동선이 중요합니다. 깔끔한 도심 숙박은 중산·쌍롄, 먹거리와 예산은 시먼딩·베이먼을 중심으로 비교하세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "타이베이 가성비 숙소 위치 추천 | 중산·시먼딩·베이먼 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "타이베이",
+            "item": "https://bestayable.com/destinations/taipei/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "타이베이 가성비 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/taipei/value-hotel/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "타이베이 가성비 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "중산·쌍롄"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "시먼딩·베이먼"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "타이베이역"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "다안"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "타이베이 가성비 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "깔끔한 도심 숙박과 MRT 이동을 중요하게 본다면 중산·쌍롄, 먹거리와 예산을 함께 본다면 시먼딩·베이먼부터 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "시먼딩은 가성비 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "먹거리와 쇼핑을 숙소 주변에서 해결하기 좋아 좋습니다. 다만 소음, 객실 크기, 엘리베이터 대기 후기는 함께 확인하는 편이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "중산은 시먼딩보다 비싼 편인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "날짜와 호텔에 따라 다르지만, 중산은 객실 컨디션이 안정적인 숙소가 많아 가격만 낮추기보다 만족도까지 함께 보는 여행에 잘 맞습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이베이 가성비 호텔에서 가장 중요한 기준은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MRT역 거리, 환승 수, 객실 면적, 밤 소음 후기를 함께 보는 것이 중요합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "공항철도만 보고 타이베이역 근처를 고르면 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "공항 이동은 편하지만 매일 방문할 지역이 시먼딩, 중산, 다안 쪽이라면 환승과 도보 동선까지 함께 비교하는 것이 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "타이베이",
+      "href": "/destinations/taipei/",
+      "current": false
+    },
+    {
+      "label": "가성비를 원한다면",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "타이베이 숙소 가이드",
+    "title": "타이베이 가성비 숙소는 MRT 환승과 밤 동선을 함께 보세요",
+    "description": "타이베이에서 숙소비를 아끼려면 무조건 중심에서 멀어질 필요는 없습니다. MRT 환승, 공항철도, 야시장 복귀 동선을 함께 보면 중산·쌍롄과 시먼딩·베이먼이 현실적인 후보가 됩니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "valueAreaTitle",
+    "head": {
+      "kicker": "Value Choice",
+      "title": "깔끔한 도심 숙박은 중산·쌍롄, 먹거리와 예산은 시먼딩·베이먼이 편합니다",
+      "titleId": "valueAreaTitle",
+      "description": "가성비 숙소는 1박 요금만 낮은 곳보다, 매일 오갈 MRT역과 저녁 복귀 동선이 짧은 곳이 체감 만족도가 높습니다."
+    },
+    "ariaLabel": "타이베이 가성비 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "깔끔한 도심 숙박을 원한다면",
+        "title": "중산·쌍롄",
+        "lead": "카페, 백화점, 식당 접근이 좋고 MRT 이동도 단순해 숙소 컨디션과 도심 편의를 함께 보기 좋은 위치입니다.",
+        "chipsAriaLabel": "중산·쌍롄 선택 포인트",
+        "chips": [
+          "MRT 이동",
+          "카페·식당",
+          "차분한 숙박"
+        ],
+        "line": "시먼딩의 복잡함은 피하고 싶지만 도심 접근성은 유지하고 싶을 때 먼저 볼 만합니다."
+      },
+      {
+        "label": "예산과 먹거리를 같이 본다면",
+        "title": "시먼딩·베이먼",
+        "lead": "먹거리와 쇼핑 동선을 짧게 쓰기 좋고, 베이먼 쪽까지 함께 보면 숙박비 선택지가 넓어집니다.",
+        "chipsAriaLabel": "시먼딩·베이먼 선택 포인트",
+        "chips": [
+          "먹거리",
+          "쇼핑",
+          "예산 선택지"
+        ],
+        "line": "늦은 저녁까지 움직이는 일정이라면 숙소 주변 편의가 체감 가성비를 높여줍니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyATitle",
+      "head": {
+        "kicker": "Why Zhongshan",
+        "title": "복잡한 번화가보다 정돈된 도심을 원한다면 중산·쌍롄이 좋습니다",
+        "titleId": "whyATitle",
+        "description": "MRT 접근, 식당, 카페, 호텔 컨디션을 함께 보면서 너무 시끄럽지 않은 도심 숙박을 원할 때 보기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "MRT와 도심 접근이 안정적입니다",
+          "description": "중산과 쌍롄은 주요 도심 권역으로 이어지기 쉬워 첫날 이동과 저녁 복귀가 비교적 단순합니다."
+        },
+        {
+          "number": "02",
+          "title": "호텔 선택지가 깔끔한 편입니다",
+          "description": "중저가부터 안정적인 시티호텔까지 선택 폭이 있어 같은 예산에서 객실 컨디션을 비교하기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "카페와 식당 동선이 좋습니다",
+          "description": "아침 카페, 점심 식사, 저녁 산책을 숙소 주변에서 해결하기 쉬워 이동 피로를 줄일 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "공항 이동도 함께 계산하기 좋습니다",
+          "description": "공항철도만 기준으로 보지 말고 MRT 환승과 캐리어 이동까지 함께 보면 중산권의 균형이 보입니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyBTitle",
+      "head": {
+        "kicker": "Why Ximending",
+        "title": "시먼딩 한복판이 부담된다면 베이먼 쪽까지 함께 보세요",
+        "titleId": "whyBTitle",
+        "description": "먹거리와 쇼핑 접근성은 살리면서 숙박비 부담을 낮추고 싶을 때 시먼딩 외곽과 베이먼 주변이 현실적인 후보가 됩니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "밤 동선이 짧습니다",
+          "description": "저녁 식사, 쇼핑, 간식 동선을 숙소 주변에서 해결하기 쉬워 늦은 시간 복귀 부담이 적습니다."
+        },
+        {
+          "number": "02",
+          "title": "숙박비 선택지가 넓습니다",
+          "description": "시먼딩 중심부가 비싸거나 복잡하다면 베이먼 방향까지 넓혀보면 가격 비교 폭이 커집니다."
+        },
+        {
+          "number": "03",
+          "title": "첫 타이베이 일정에도 무난합니다",
+          "description": "용산사, 타이베이역, 시먼딩 쇼핑을 묶기 좋아 짧은 일정에서 이동을 단순하게 만들 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "소음과 객실 크기는 확인해야 합니다",
+          "description": "번화가 주변은 위치가 좋은 대신 소음, 방 크기, 엘리베이터 대기 후기를 함께 보는 편이 좋습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가성비가 고민된다면",
+    "title": "예산과 MRT 동선에 맞는 타이베이 숙소 위치를 찾아보세요",
+    "description": "숙박비만 보기보다 공항 이동, 환승 편의성, 야시장 복귀 동선까지 살펴보면 만족하기 좋은 위치를 찾기 쉽습니다.",
+    "href": "/destinations/taipei/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "타이베이 가성비 호텔은 MRT역 거리와 객실 크기를 함께 보세요",
+      "titleId": "bookingCheckTitle",
+      "description": "지역을 정했다면 역 출구, 환승 수, 객실 면적, 밤 소음만 먼저 확인해도 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "MRT역 출구와 실제 도보 시간",
+        "description": "도보 5분이라도 지하도, 횡단보도, 엘리베이터 위치에 따라 캐리어 이동 체감이 달라집니다."
+      },
+      {
+        "title": "공항철도와 환승 횟수",
+        "description": "공항 접근만 보고 고르면 매일 시내 이동이 번거로울 수 있습니다. 공항과 일정 동선을 함께 보세요."
+      },
+      {
+        "title": "객실 크기와 창문 후기",
+        "description": "저렴한 도심 호텔은 방 크기와 창문, 방음 후기가 만족도를 크게 좌우합니다."
+      },
+      {
+        "title": "밤 소음과 주변 분위기",
+        "description": "시먼딩처럼 편의가 좋은 지역은 소음 후기를 함께 확인해야 체감 가성비가 좋아집니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "MRT 동선과 가격을 함께 보기 좋은 타이베이 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "중산·난징 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-value-hotel-1",
+        "image": {
+          "alt": "호텔 로열 닛코 타이베이 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "중산 안정형",
+        "nameEn": "Hotel Royal-Nikko Taipei",
+        "nameKo": "호텔 로열 닛코 타이베이",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "중산 생활권",
+          "가성비",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-value-hotel-1",
+          "text": "중산역 주변에서 식당과 쇼핑, 안정적인 호텔 분위기를 함께 보고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-value-hotel-2",
+        "image": {
+          "alt": "더 오쿠라 프레스티지 타이베이 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "중산 깔끔형",
+        "nameEn": "The Okura Prestige Taipei",
+        "nameKo": "더 오쿠라 프레스티지 타이베이",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "도심 컨디션",
+          "가성비",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-value-hotel-2",
+          "text": "예산이 조금 올라가더라도 위치와 객실 만족을 함께 보고 싶을 때 비교 가치가 있습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-value-hotel-3",
+        "image": {
+          "alt": "호텔 코지 민셩 타이베이 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "차분한 도심형",
+        "nameEn": "Hotel Cozzi Minsheng Taipei",
+        "nameKo": "호텔 코지 민셩 타이베이",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "환승 균형",
+          "가성비",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-value-hotel-3",
+          "text": "중심지 접근성은 유지하면서 주변 분위기는 조금 차분하게 가져가고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-value-hotel-4",
+        "image": {
+          "alt": "그린 월드 그랜드 난징 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "시먼딩 대안형",
+        "nameEn": "Green World Grand Nanjing",
+        "nameKo": "그린 월드 그랜드 난징",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "가격 균형",
+          "가성비",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-value-hotel-4",
+          "text": "도심 이동과 가격을 함께 보는 일정에서 객실 컨디션까지 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "예산보다 일정 성격이 더 중요할 때도 있습니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "타이베이 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/taipei/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에 맞춰 가장 무난한 숙소 위치를 고르는 선택"
+      },
+      {
+        "href": "/destinations/taipei/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "근교 이동과 출발 동선을 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/taipei/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/taipei/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "valueFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "타이베이 가성비 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "valueFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "타이베이 가성비 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "깔끔한 도심 숙박과 MRT 이동을 중요하게 본다면 중산·쌍롄, 먹거리와 예산을 함께 본다면 시먼딩·베이먼부터 비교하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "시먼딩은 가성비 숙소로 괜찮나요?",
+        "answer": "먹거리와 쇼핑을 숙소 주변에서 해결하기 좋아 좋습니다. 다만 소음, 객실 크기, 엘리베이터 대기 후기는 함께 확인하는 편이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "중산은 시먼딩보다 비싼 편인가요?",
+        "answer": "날짜와 호텔에 따라 다르지만, 중산은 객실 컨디션이 안정적인 숙소가 많아 가격만 낮추기보다 만족도까지 함께 보는 여행에 잘 맞습니다.",
+        "open": false
+      },
+      {
+        "question": "타이베이 가성비 호텔에서 가장 중요한 기준은 무엇인가요?",
+        "answer": "MRT역 거리, 환승 수, 객실 면적, 밤 소음 후기를 함께 보는 것이 중요합니다.",
+        "open": false
+      },
+      {
+        "question": "공항철도만 보고 타이베이역 근처를 고르면 되나요?",
+        "answer": "공항 이동은 편하지만 매일 방문할 지역이 시먼딩, 중산, 다안 쪽이라면 환승과 도보 동선까지 함께 비교하는 것이 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

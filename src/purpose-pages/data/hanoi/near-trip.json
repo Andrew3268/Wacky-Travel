@@ -1,0 +1,510 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "하노이 근교 투어 숙소 위치 추천 | 닌빈·하롱베이·사파 픽업 동선",
+    "description": "하노이에서 닌빈, 하롱베이, 사파 투어를 계획한다면 숙소는 픽업 구역과 장거리 복귀 동선이 중요합니다. 호안끼엠·올드쿼터와 프렌치쿼터·오페라하우스를 비교해보세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/hanoi/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "하노이 근교 투어 숙소 위치 추천 | 닌빈·하롱베이·사파 픽업 동선",
+      "description": "하노이에서 닌빈, 하롱베이, 사파 투어를 계획한다면 숙소는 픽업 구역과 장거리 복귀 동선이 중요합니다. 호안끼엠·올드쿼터와 프렌치쿼터·오페라하우스를 비교해보세요.",
+      "url": "https://bestayable.com/destinations/hanoi/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "하노이 근교 투어 숙소 위치 추천 | 닌빈·하롱베이·사파 픽업 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "하노이 근교 투어 숙소 위치 추천 | 닌빈·하롱베이·사파 픽업 동선",
+      "description": "하노이에서 닌빈, 하롱베이, 사파 투어를 계획한다면 숙소는 픽업 구역과 장거리 복귀 동선이 중요합니다. 호안끼엠·올드쿼터와 프렌치쿼터·오페라하우스를 비교해보세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "하노이 근교 투어 숙소 위치 추천 | 닌빈·하롱베이·사파 픽업 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "하노이",
+            "item": "https://bestayable.com/destinations/hanoi/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "하노이 근교 투어 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/hanoi/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "하노이 근교 투어 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "호안끼엠·올드쿼터"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "프렌치쿼터·오페라하우스"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "하노이 근교 투어 숙소는 올드쿼터가 가장 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "닌빈·하롱베이 투어가 많다면 올드쿼터가 가장 단순합니다. 다만 조용한 숙박을 원하면 프렌치쿼터도 함께 볼 만합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "프렌치쿼터 숙소도 투어 픽업이 가능한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "투어사마다 다릅니다. 예약 전 호텔 픽업 가능 여부나 미팅 포인트 이동 시간을 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "사파 1박 투어가 있으면 숙소를 어떻게 잡아야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "출발 전후 짐 보관과 샤워, 대기 시간이 중요합니다. 올드쿼터 외곽이나 차량 접근이 쉬운 숙소가 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "하롱베이 투어 후 밤 복귀는 안전한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대부분 투어 차량으로 돌아오지만 하차 지점에서 숙소까지의 도보 거리와 주변 밝기를 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "하노이 근교 투어가 많으면 서호 숙소는 불편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "서호는 조용하지만 투어 픽업과 올드쿼터 이동이 번거로울 수 있습니다. 휴식 비중이 높을 때 보조 후보로 보는 편이 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "하노이",
+      "href": "/destinations/hanoi/",
+      "current": false
+    },
+    {
+      "label": "하노이 근교 투어 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "하노이 숙소 가이드",
+    "title": "하노이 근교 투어 숙소는 픽업 구역과 장거리 복귀 동선으로 고르세요",
+    "description": "닌빈, 하롱베이, 사파처럼 하루가 길어지는 투어가 들어가면 숙소 위치는 관광지와의 거리보다 픽업 가능 여부와 밤 복귀 후 피로도가 더 중요합니다. 처음이라면 올드쿼터 중심으로 보고, 조용한 숙박을 원하면 프렌치쿼터까지 함께 비교하세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "닌빈·하롱베이 픽업은 올드쿼터, 조용한 복귀는 프렌치쿼터가 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "하노이 근교 투어는 대부분 아침 출발이 빠르고 복귀가 늦습니다. 숙소는 투어 픽업, 골목 접근성, 밤 복귀 동선을 함께 보고 고르는 편이 좋습니다."
+    },
+    "ariaLabel": "하노이 근교 투어 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "투어 픽업이 가장 중요하다면",
+        "title": "호안끼엠·올드쿼터",
+        "lead": "닌빈, 하롱베이, 사파 투어 픽업을 잡기 쉽고 식당, 카페, 환전, 마사지까지 숙소 주변에서 해결하기 좋습니다.",
+        "chipsAriaLabel": "호안끼엠·올드쿼터 선택 포인트",
+        "chips": [
+          "투어 픽업",
+          "올드쿼터",
+          "식당·마사지"
+        ],
+        "line": "첫 하노이에서 근교 투어가 많다면 호안끼엠·올드쿼터를 먼저 보는 편이 가장 단순합니다."
+      },
+      {
+        "label": "조용한 숙박과 도보 복귀를 원한다면",
+        "title": "프렌치쿼터·오페라하우스",
+        "lead": "올드쿼터와 가깝지만 분위기가 조금 더 차분해 장거리 투어 후 쉬기 좋고, 호안끼엠 호수와 주요 식당도 무리 없이 이어집니다.",
+        "chipsAriaLabel": "프렌치쿼터·오페라하우스 선택 포인트",
+        "chips": [
+          "오페라하우스",
+          "조용한 거리",
+          "택시 접근"
+        ],
+        "line": "투어 픽업은 확인이 필요하지만, 숙소 주변의 소음과 피로도를 줄이고 싶다면 프렌치쿼터가 좋습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "why1Title",
+      "head": {
+        "kicker": "Why Old Quarter",
+        "title": "닌빈·하롱베이 투어가 많다면 호안끼엠·올드쿼터가 가장 단순합니다",
+        "titleId": "why1Title",
+        "description": "올드쿼터는 투어 픽업과 식사, 환전, 마사지 동선을 함께 해결하기 쉬운 하노이 근교 투어의 기본 위치입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "픽업 선택지가 많습니다",
+          "description": "하롱베이와 닌빈 투어는 올드쿼터 픽업을 제공하는 경우가 많아 출발 준비가 단순해집니다."
+        },
+        {
+          "number": "02",
+          "title": "복귀 후 바로 쉬기 좋습니다",
+          "description": "늦게 돌아와도 주변 식당과 마사지 선택지가 많아 하루를 무리 없이 마무리할 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "사파 이동 전후 동선도 쉽습니다",
+          "description": "야간 버스나 기차를 이용하는 일정이라면 짐 보관과 대기 시간이 중요합니다."
+        },
+        {
+          "number": "04",
+          "title": "골목 접근성은 꼭 확인하세요",
+          "description": "차량 진입이 어려운 골목 숙소는 캐리어 이동이 불편할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "why2Title",
+      "head": {
+        "kicker": "Why French Quarter",
+        "title": "조용한 숙박과 장거리 복귀 피로를 줄이고 싶다면 프렌치쿼터가 좋습니다",
+        "titleId": "why2Title",
+        "description": "프렌치쿼터는 올드쿼터보다 차분한 분위기에서 쉬기 좋고, 택시 접근과 산책 동선을 함께 보기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "숙소 주변이 비교적 차분합니다",
+          "description": "투어 후 휴식이 중요한 일정이라면 소음이 적은 위치가 만족도를 높입니다."
+        },
+        {
+          "number": "02",
+          "title": "호안끼엠과 도보 연결이 쉽습니다",
+          "description": "호수와 식당, 카페까지 이어가기 쉬워 시내 일정도 크게 불편하지 않습니다."
+        },
+        {
+          "number": "03",
+          "title": "택시 접근성이 안정적입니다",
+          "description": "장거리 투어 복귀 후 차에서 내려 숙소까지 걷는 거리가 짧은지 확인하기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "픽업 가능 여부는 별도 확인하세요",
+          "description": "일부 투어는 올드쿼터 중심 픽업이라 프렌치쿼터 호텔은 미팅 포인트 이동이 필요할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "닌빈·하롱베이·사파 일정에 맞는 숙소 위치를 찾아보세요",
+    "description": "근교 투어가 많은 일정이라면 픽업 위치와 밤 복귀 동선이 중요합니다. 올드쿼터와 호안끼엠 주변 중 편한 위치를 확인할 수 있습니다.",
+    "href": "/destinations/hanoi/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "하노이 근교 투어 호텔은 픽업 구역, 골목 접근성, 밤 복귀 동선을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "호텔 위치를 정했다면 투어 픽업 여부, 차량 접근성, 장거리 이동 후 식사와 휴식 동선을 먼저 확인하세요."
+    },
+    "items": [
+      {
+        "title": "투어 픽업 구역",
+        "description": "예약 전 호텔 픽업인지 미팅 포인트 이동인지 확인하세요."
+      },
+      {
+        "title": "골목 진입 가능 여부",
+        "description": "올드쿼터 골목 숙소는 차량 하차 지점과 실제 도보 거리가 다를 수 있습니다."
+      },
+      {
+        "title": "늦은 복귀 후 식사",
+        "description": "하롱베이·닌빈 투어 후에도 식사와 마사지가 가능한지 보세요."
+      },
+      {
+        "title": "사파 이동 전후 짐 보관",
+        "description": "야간 이동이 있다면 체크아웃 후 짐 보관과 대기 공간을 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "닌빈·하롱베이 투어 전후로 보기 좋은 하노이 숙소 위치",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "호안끼엠·올드쿼터 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-near-trip-1",
+        "image": {
+          "alt": "호안끼엠·올드쿼터 픽업형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "올드쿼터 픽업형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "호안끼엠·올드쿼터 픽업형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "투어 중심",
+          "근교 여행",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-near-trip-1",
+          "text": "닌빈·하롱베이 투어가 많은 일정에서 출발 준비가 단순합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-near-trip-2",
+        "image": {
+          "alt": "호안끼엠 호수 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "호안끼엠 도보형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "호안끼엠 호수 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "식사·산책",
+          "근교 여행",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-near-trip-2",
+          "text": "투어 후 저녁 산책과 식사를 숙소 주변에서 마무리하기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-near-trip-3",
+        "image": {
+          "alt": "프렌치쿼터·오페라하우스 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "프렌치쿼터 휴식형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "프렌치쿼터·오페라하우스 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 복귀",
+          "근교 여행",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-near-trip-3",
+          "text": "장거리 투어 후 조용히 쉬고 싶은 일정에 비교 가치가 있습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-near-trip-4",
+        "image": {
+          "alt": "올드쿼터 외곽 접근성 좋은 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "사파 이동 준비형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "올드쿼터 외곽 접근성 좋은 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "짐 보관",
+          "근교 여행",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-near-trip-4",
+          "text": "야간 이동 전후 짐 보관과 차량 접근을 함께 보기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "시내 관광과 근교 투어는 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "하노이 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/hanoi/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에서 가장 무난한 숙소 위치를 비교합니다."
+      },
+      {
+        "href": "/destinations/hanoi/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 줄이는 선택을 정리했습니다."
+      },
+      {
+        "href": "/destinations/hanoi/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택입니다."
+      },
+      {
+        "href": "/destinations/hanoi/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 차분히 쉬는 선택입니다."
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "하노이 근교 투어 숙소, 올드쿼터에 묵는 게 가장 편할까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "하노이 근교 투어 숙소는 올드쿼터가 가장 편한가요?",
+        "answer": "닌빈·하롱베이 투어가 많다면 올드쿼터가 가장 단순합니다. 다만 조용한 숙박을 원하면 프렌치쿼터도 함께 볼 만합니다.",
+        "open": true
+      },
+      {
+        "question": "프렌치쿼터 숙소도 투어 픽업이 가능한가요?",
+        "answer": "투어사마다 다릅니다. 예약 전 호텔 픽업 가능 여부나 미팅 포인트 이동 시간을 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "사파 1박 투어가 있으면 숙소를 어떻게 잡아야 하나요?",
+        "answer": "출발 전후 짐 보관과 샤워, 대기 시간이 중요합니다. 올드쿼터 외곽이나 차량 접근이 쉬운 숙소가 편합니다.",
+        "open": false
+      },
+      {
+        "question": "하롱베이 투어 후 밤 복귀는 안전한가요?",
+        "answer": "대부분 투어 차량으로 돌아오지만 하차 지점에서 숙소까지의 도보 거리와 주변 밝기를 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "하노이 근교 투어가 많으면 서호 숙소는 불편한가요?",
+        "answer": "서호는 조용하지만 투어 픽업과 올드쿼터 이동이 번거로울 수 있습니다. 휴식 비중이 높을 때 보조 후보로 보는 편이 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

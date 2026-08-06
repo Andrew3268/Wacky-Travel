@@ -1,0 +1,523 @@
+{
+  "purpose": "family-trip",
+  "head": {
+    "title": "삿포로 가족 여행 숙소 위치 추천 | 삿포로역·오도리·나카지마공원 비교",
+    "description": "삿포로 가족 여행 숙소는 지하도 접근, 눈길 이동, 식사 선택지, 공원 산책, 객실 구조까지 함께 보고 고르는 것이 좋습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/sapporo/family-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "삿포로 가족 여행 숙소 위치 추천 | 삿포로역·오도리·나카지마공원 비교",
+      "description": "삿포로 가족 여행 숙소는 지하도 접근, 눈길 이동, 식사 선택지, 공원 산책, 객실 구조까지 함께 보고 고르는 것이 좋습니다.",
+      "url": "https://bestayable.com/destinations/sapporo/family-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "삿포로 가족 여행 숙소 위치 추천 | 삿포로역·오도리·나카지마공원 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "삿포로 가족 여행 숙소 위치 추천 | 삿포로역·오도리·나카지마공원 비교",
+      "description": "삿포로 가족 여행 숙소는 지하도 접근, 눈길 이동, 식사 선택지, 공원 산책, 객실 구조까지 함께 보고 고르는 것이 좋습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "삿포로 가족 여행 숙소 위치 추천 | 삿포로역·오도리·나카지마공원 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "삿포로",
+            "item": "https://bestayable.com/destinations/sapporo/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "삿포로 가족 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/sapporo/family-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "삿포로 가족 여행 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "삿포로역"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "오도리·나카지마공원"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "스스키노"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "조잔케이"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "삿포로 가족 여행 숙소는 삿포로역과 오도리 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "공항 이동, JR, 오타루·비에이 일정이 많다면 삿포로역이 편합니다. 공원 산책과 시내 도보를 중시한다면 오도리도 좋은 후보입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "겨울 가족 여행이면 어디가 무난한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "눈길 이동을 줄이고 싶다면 삿포로역이나 오도리처럼 지하도 접근이 쉬운 위치가 무난합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "아이와 함께라면 스스키노 숙소는 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "식사 선택지는 좋지만 밤에는 붐빌 수 있습니다. 가족 여행이라면 스스키노 중심보다 오도리나 나카지마공원 쪽도 함께 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "나카지마공원 근처에 묵으면 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "조용한 저녁과 공원 산책을 원한다면 좋습니다. 다만 JR 근교 출발이 많다면 삿포로역보다 이동 시간이 늘 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "삿포로 가족 호텔은 무엇을 먼저 봐야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "객실 크기, 지하도 접근, 역 출구와 엘리베이터 동선, 주변 식당과 편의점, 겨울 이동 동선을 먼저 확인하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "삿포로",
+      "href": "/destinations/sapporo/",
+      "current": false
+    },
+    {
+      "label": "가족 여행이라면",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "삿포로 숙소 가이드",
+    "title": "삿포로 가족 여행 숙소는 지하도와 눈길 동선을 함께 보세요",
+    "description": "아이 또는 부모님과 함께하는 삿포로 여행은 계절에 따라 이동 피로가 크게 달라집니다. 공항·JR·근교 이동이 많다면 삿포로역이 편하고, 오도리공원 산책과 저녁 동선까지 함께 본다면 오도리·나카지마공원도 좋은 후보입니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "familyAreaTitle",
+    "head": {
+      "kicker": "Family Choice",
+      "title": "JR·공항 이동은 삿포로역, 공원 산책과 저녁 동선은 오도리·나카지마공원이 편합니다",
+      "titleId": "familyAreaTitle",
+      "description": "가족 여행은 “어디가 더 중심인가”보다 아이와 부모님의 이동 피로, 눈길 동선, 쉬는 시간을 기준으로 보는 편이 좋습니다."
+    },
+    "ariaLabel": "삿포로 가족 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "이동을 줄이고 싶다면",
+        "title": "삿포로역",
+        "lead": "신치토세공항, JR, 오타루·비에이·후라노 이동을 함께 보기 좋아 아이·부모님·캐리어가 있는 일정에서 동선이 단순합니다.",
+        "chipsAriaLabel": "삿포로역 선택 포인트",
+        "chips": [
+          "공항 이동",
+          "JR 접근",
+          "근교 출발"
+        ],
+        "line": "겨울 여행이거나 오타루·비에이·후라노를 함께 본다면 삿포로역이 가장 무난합니다."
+      },
+      {
+        "label": "천천히 쉬고 싶다면",
+        "title": "오도리·나카지마공원",
+        "lead": "오도리공원, 삿포로 TV타워, 타누키코지, 나카지마공원 동선을 함께 보기 좋아 아이와 산책하거나 여유 있게 쉬기 좋습니다.",
+        "chipsAriaLabel": "오도리·나카지마공원 선택 포인트",
+        "chips": [
+          "공원 산책",
+          "시내 도보",
+          "조용한 저녁"
+        ],
+        "line": "쇼핑보다 산책과 휴식, 저녁 복귀 안정성이 중요하다면 오도리·나카지마공원이 잘 맞습니다."
+      }
+    ],
+    "support": {
+      "title": "스스키노는 보조 후보로 보면 좋습니다.",
+      "description": "식사와 야시장 분위기는 편하지만 밤에는 붐빌 수 있어 가족 여행이라면 큰길 접근성과 소음 여부를 함께 확인하세요."
+    }
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyATitle",
+      "head": {
+        "kicker": "Why Sapporo Station",
+        "title": "겨울 가족 여행이나 근교 일정이 많다면 삿포로역이 단순합니다",
+        "titleId": "whyATitle",
+        "description": "가족 여행에서는 눈길 이동과 환승이 피로로 이어질 수 있어 출발과 복귀가 쉬운 위치가 유리합니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "공항에서 들어오는 길이 단순합니다",
+          "description": "신치토세공항에서 JR로 들어오는 일정이라면 도착 첫날과 귀국일 이동 부담을 줄이기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "오타루·비에이 출발을 보기 좋습니다",
+          "description": "JR과 투어 집결지를 함께 확인하기 쉬워 근교 일정이 섞여도 동선이 단순합니다."
+        },
+        {
+          "number": "03",
+          "title": "눈 오는 날 이동 부담이 적습니다",
+          "description": "역과 연결된 상업시설을 활용하기 좋아 겨울 가족 여행에서 체감 피로를 줄이기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "단점은 주변 분위기가 실용적입니다",
+          "description": "공원 산책이나 조용한 저녁 분위기를 중시한다면 오도리·나카지마공원도 함께 비교하세요."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyBTitle",
+      "head": {
+        "kicker": "Why Odori & Nakajima Park",
+        "title": "아이와 산책하거나 여유 있게 쉬는 일정이라면 오도리·나카지마공원도 좋습니다",
+        "titleId": "whyBTitle",
+        "description": "삿포로를 바쁘게 돌기보다 공원, 시내 산책, 조용한 저녁 일정을 즐기고 싶을 때 어울리는 선택입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "공원과 시내 산책이 편합니다",
+          "description": "오도리공원과 나카지마공원을 중심으로 움직이면 아이와 함께 걷고 쉬는 시간이 자연스럽게 생깁니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 동선이 비교적 안정적입니다",
+          "description": "스스키노와 너무 가까운 위치보다 한 걸음 떨어지면 소음과 혼잡을 줄이기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "식사와 카페를 함께 보기 좋습니다",
+          "description": "타누키코지와 오도리 주변 식당, 카페, 편의점을 활용하기 좋아 일정 중간 휴식이 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "단점은 공항·JR 이동 시간입니다",
+          "description": "공항 이동과 JR 근교 출발이 많다면 삿포로역보다 이동 시간이 늘 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가족 동선이 걱정된다면",
+    "title": "가족과 머물기 편한 삿포로 숙소 위치를 찾아보세요",
+    "description": "아이와 부모님이 함께라면 지하도 접근, 식사 편의성, 쉬어가기 좋은 동선이 중요합니다. 가족 일정에 맞는 위치를 확인할 수 있습니다.",
+    "href": "/destinations/sapporo/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "삿포로 가족 호텔은 지하도 접근과 눈길 이동을 먼저 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "삿포로 가족 여행은 지도상 거리보다 눈 오는 날의 실제 이동, 역 출구, 지하도 연결, 식사 선택지가 더 중요하게 느껴질 수 있습니다."
+    },
+    "items": [
+      {
+        "title": "객실 크기와 침대 구성",
+        "description": "트윈룸, 트리플룸, 커넥팅룸, 엑스트라베드 가능 여부와 캐리어를 펼 공간을 함께 확인하세요."
+      },
+      {
+        "title": "역 출구와 엘리베이터 동선",
+        "description": "유모차나 큰 캐리어가 있다면 “역 도보 몇 분”보다 계단, 횡단보도, 엘리베이터 위치가 더 중요합니다."
+      },
+      {
+        "title": "주변 식사와 편의점",
+        "description": "아이 컨디션이나 부모님 식사 시간을 고려해 호텔 주변 식당, 편의점, 조식 선택지를 확인하는 편이 좋습니다."
+      },
+      {
+        "title": "저녁 이후 소음과 복귀 동선",
+        "description": "번화가 중심은 편하지만 늦은 시간 소음이 있을 수 있으니 큰길 접근성과 골목 분위기를 함께 보세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "가족 동선과 객실 편의를 함께 보기 좋은 삿포로 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "삿포로역·오도리 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-family-trip-1",
+        "image": {
+          "alt": "JR 타워 호텔 닛코 삿포로 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "JR 이동",
+        "nameEn": "JR Tower Hotel Nikko Sapporo",
+        "nameKo": "JR 타워 호텔 닛코 삿포로",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "삿포로역",
+          "가족 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-family-trip-1",
+          "text": "신치토세공항과 JR 이동을 단순하게 만들고 싶은 가족 여행에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-family-trip-2",
+        "image": {
+          "alt": "삿포로 그랜드 호텔 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "중심 균형",
+        "nameEn": "Sapporo Grand Hotel",
+        "nameKo": "삿포로 그랜드 호텔",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "오도리",
+          "가족 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-family-trip-2",
+          "text": "오도리와 삿포로역 사이 동선을 활용하기 좋아 가족 일정의 이동 피로를 줄이기 쉽습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-family-trip-3",
+        "image": {
+          "alt": "베셀 인 삿포로 나카지마 파크 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "조용한 저녁",
+        "nameEn": "Vessel Inn Sapporo Nakajima Park",
+        "nameKo": "베셀 인 삿포로 나카지마 파크",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "나카지마공원",
+          "가족 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-family-trip-3",
+          "text": "저녁 이후 조금 더 차분하게 쉬고 싶은 가족에게 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-family-trip-4",
+        "image": {
+          "alt": "카라쿠사 호텔 삿포로 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "식사 동선",
+        "nameEn": "Karaksa Hotel Sapporo",
+        "nameKo": "카라쿠사 호텔 삿포로",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "타누키코지",
+          "가족 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-family-trip-4",
+          "text": "타누키코지와 오도리 동선을 함께 보고 싶은 가족에게 잘 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "겨울 여행, 근교 일정, 예산에 따라 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "삿포로 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/sapporo/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "삿포로가 처음일 때 먼저 비교하면 좋은 중심 구역"
+      },
+      {
+        "href": "/destinations/sapporo/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/sapporo/near-trip/",
+        "number": "03",
+        "title": "근교 여행 숙소",
+        "description": "당일치기와 외곽 이동을 출발 동선 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/sapporo/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "familyFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "삿포로 가족 여행 숙소는 어디부터 보면 좋을까요?",
+      "titleId": "familyFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "삿포로 가족 여행 숙소는 삿포로역과 오도리 중 어디가 좋나요?",
+        "answer": "공항 이동, JR, 오타루·비에이 일정이 많다면 삿포로역이 편합니다. 공원 산책과 시내 도보를 중시한다면 오도리도 좋은 후보입니다.",
+        "open": true
+      },
+      {
+        "question": "겨울 가족 여행이면 어디가 무난한가요?",
+        "answer": "눈길 이동을 줄이고 싶다면 삿포로역이나 오도리처럼 지하도 접근이 쉬운 위치가 무난합니다.",
+        "open": false
+      },
+      {
+        "question": "아이와 함께라면 스스키노 숙소는 괜찮나요?",
+        "answer": "식사 선택지는 좋지만 밤에는 붐빌 수 있습니다. 가족 여행이라면 스스키노 중심보다 오도리나 나카지마공원 쪽도 함께 보세요.",
+        "open": false
+      },
+      {
+        "question": "나카지마공원 근처에 묵으면 불편하지 않나요?",
+        "answer": "조용한 저녁과 공원 산책을 원한다면 좋습니다. 다만 JR 근교 출발이 많다면 삿포로역보다 이동 시간이 늘 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "삿포로 가족 호텔은 무엇을 먼저 봐야 하나요?",
+        "answer": "객실 크기, 지하도 접근, 역 출구와 엘리베이터 동선, 주변 식당과 편의점, 겨울 이동 동선을 먼저 확인하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

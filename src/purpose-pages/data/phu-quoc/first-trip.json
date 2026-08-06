@@ -1,0 +1,416 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 푸꾸옥 여행 숙소 위치 추천 | 즈엉동·롱비치와 리조트권 비교",
+    "description": "첫 푸꾸옥 여행 숙소는 즈엉동·롱비치와 바이다이·그랜드월드 또는 바이켐·안터이를 나눠보는 것이 좋습니다. 야시장, 식당, 테마파크, 케이블카 일정 기준으로 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/phu-quoc/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 푸꾸옥 여행 숙소 위치 추천 | 즈엉동·롱비치와 리조트권 비교",
+      "description": "첫 푸꾸옥 여행 숙소는 즈엉동·롱비치와 바이다이·그랜드월드 또는 바이켐·안터이를 나눠보는 것이 좋습니다. 야시장, 식당, 테마파크, 케이블카 일정 기준으로 정리했습니다.",
+      "url": "https://bestayable.com/destinations/phu-quoc/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 푸꾸옥 여행 숙소 위치 추천 | 즈엉동·롱비치와 리조트권 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 푸꾸옥 여행 숙소 위치 추천 | 즈엉동·롱비치와 리조트권 비교",
+      "description": "첫 푸꾸옥 여행 숙소는 즈엉동·롱비치와 바이다이·그랜드월드 또는 바이켐·안터이를 나눠보는 것이 좋습니다. 야시장, 식당, 테마파크, 케이블카 일정 기준으로 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 푸꾸옥 여행 숙소 위치 추천 | 즈엉동·롱비치와 리조트권 비교 대표 이미지"
+    },
+    "structuredData": []
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "푸꾸옥",
+      "href": "/destinations/phu-quoc/",
+      "current": false
+    },
+    {
+      "label": "처음 가는 푸꾸옥 숙소 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "푸꾸옥 숙소 가이드",
+    "title": "푸꾸옥 첫 여행 숙소는 야시장과 리조트 동선부터 나눠보세요",
+    "description": "첫 푸꾸옥 여행은 야시장과 식당을 자주 갈지, 북부 테마파크나 남부 케이블카처럼 목적지가 분명한 일정인지에 따라 숙소 위치가 달라집니다. 처음이라면 즈엉동·롱비치를 기준으로 보고, 목적지가 뚜렷할 때만 바이다이·그랜드월드 또는 바이켐·안터이를 비교하면 쉽습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "야시장·식당은 즈엉동, 테마파크·케이블카는 목적지 가까운 리조트가 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "야시장과 식당을 자주 갈 계획이면 즈엉동·롱비치, 북부 테마파크나 남부 케이블카가 핵심이면 목적지 가까운 리조트권을 먼저 보면 됩니다."
+    },
+    "ariaLabel": "첫 푸꾸옥 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "첫 여행을 단순하게 잡고 싶다면",
+        "title": "즈엉동·롱비치",
+        "lead": "공항 이동, 야시장, 식당, 마사지, 투어 픽업을 한 번에 묶기 쉬워 처음 방문하는 일정에 가장 무난합니다.",
+        "chipsAriaLabel": "즈엉동·롱비치 선택 포인트",
+        "chips": [
+          "야시장",
+          "식당 동선",
+          "투어 픽업"
+        ],
+        "line": "푸꾸옥이 처음이고 일정이 아직 넓다면 즈엉동·롱비치부터 보는 편이 안전합니다."
+      },
+      {
+        "label": "목적지가 분명하다면",
+        "title": "바이다이·그랜드월드 또는 바이켐·안터이",
+        "lead": "그랜드월드·빈원더스가 목적이면 바이다이·그랜드월드, 케이블카와 선셋타운이 목적이면 바이켐·안터이 쪽이 이동 시간을 줄이기 좋습니다.",
+        "chipsAriaLabel": "바이다이·그랜드월드 또는 바이켐·안터이 선택 포인트",
+        "chips": [
+          "테마파크",
+          "케이블카",
+          "리조트 휴식"
+        ],
+        "line": "숙소 주변에서 오래 쉬거나 특정 명소가 목적이라면 리조트 위치를 먼저 잡는 편이 좋습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "firstTripWhyATitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "야시장과 식당을 함께 보려면 즈엉동·롱비치가 편합니다",
+        "titleId": "firstTripWhyATitle",
+        "description": "공항 이동, 야시장, 식당, 투어 픽업을 한 번에 묶고 싶다면 즈엉동·롱비치가 편합니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "첫날 이동이 단순합니다",
+          "description": "공항에서 들어오기 쉽고 숙소 주변에서 식사와 산책을 바로 이어가기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 일정 후 복귀가 쉽습니다",
+          "description": "야시장, 식당, 마사지 후 숙소로 돌아오는 동선이 짧아 처음 방문해도 부담이 적습니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 픽업을 맞추기 편합니다",
+          "description": "호핑투어와 섬투어 픽업 기준이 되는 호텔이 많아 예약 전 확인이 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "짧은 일정에 특히 안전합니다",
+          "description": "2박 3일처럼 시간이 짧다면 이동 시간을 줄이고 대표 동선을 한곳에 묶기 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "firstTripWhyBTitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "테마파크와 케이블카가 목적이면 바이다이·그랜드월드 또는 바이켐·안터이를 보세요",
+        "titleId": "firstTripWhyBTitle",
+        "description": "북부 테마파크나 남부 케이블카가 여행의 핵심이라면 바이다이·그랜드월드 또는 바이켐·안터이가 더 편할 수 있습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "북부 테마파크는 바이다이가 편합니다",
+          "description": "빈원더스, 사파리, 그랜드월드가 핵심 일정이라면 북부 리조트권이 이동 시간을 줄여줍니다."
+        },
+        {
+          "number": "02",
+          "title": "남부 케이블카는 바이켐·안터이가 편합니다",
+          "description": "혼똔섬 케이블카와 선셋타운을 중심에 둔다면 남부 숙소가 더 자연스럽습니다."
+        },
+        {
+          "number": "03",
+          "title": "숙소 체류 시간이 길다면 좋습니다",
+          "description": "리조트 안에서 수영장, 조식, 해변을 즐기는 일정이면 중심지 접근성보다 숙소 컨디션이 중요합니다."
+        },
+        {
+          "number": "04",
+          "title": "야시장과 식당을 자주 간다면 즈엉동도 보세요",
+          "description": "매일 외부 식당과 야시장을 다닐 계획이라면 외곽 리조트는 이동이 번거로울 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "아직 고민된다면",
+    "title": "야시장과 해변 동선에 맞는 첫 푸꾸옥 숙소 위치를 찾아보세요",
+    "description": "즈엉동, 롱비치, 옹랑, 북부·남부 리조트는 이동 시간이 다르게 느껴집니다. 처음 가는 일정에 맞는 위치를 확인할 수 있습니다.",
+    "href": "/destinations/phu-quoc/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "firstTripBookingTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "푸꾸옥 호텔은 공항 거리, 투어 픽업, 리조트 주변 편의시설을 확인하세요",
+      "titleId": "firstTripBookingTitle",
+      "description": "섬 안에서 이동 시간이 길게 느껴질 수 있어 숙소 주변 편의와 목적지 거리를 함께 보는 것이 좋습니다."
+    },
+    "items": [
+      {
+        "title": "공항에서 호텔까지 얼마나 걸리는가",
+        "description": "첫날과 마지막 날 이동 피로가 크지 않도록 공항 거리와 차량 이동 시간을 확인하세요."
+      },
+      {
+        "title": "야시장까지 자주 갈 계획인가",
+        "description": "야시장을 여러 번 갈 예정이면 외곽 리조트보다 즈엉동·롱비치가 편합니다."
+      },
+      {
+        "title": "투어 픽업이 가능한가",
+        "description": "호핑투어와 남부 투어를 예약한다면 호텔 픽업 가능 여부를 미리 확인하세요."
+      },
+      {
+        "title": "리조트 주변 편의시설이 충분한가",
+        "description": "외곽 리조트는 주변 식당과 편의점이 적을 수 있어 식사 계획을 함께 세우는 편이 좋습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "firstHotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "즈엉동·롱비치 중심으로 보기 좋은 푸꾸옥 숙소",
+      "titleId": "firstHotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "즈엉동·롱비치 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-first-trip-1",
+        "image": {
+          "alt": "Seashells Phu Quoc Hotel & Spa 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "즈엉동 중심",
+        "nameEn": "DUONG DONG",
+        "nameKo": "Seashells Phu Quoc Hotel & Spa",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "5성급",
+          "첫 여행",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-first-trip-1",
+          "text": "야시장과 중심가 식당을 자주 이용할 첫 여행자에게 잘 맞는 도심형 호텔입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-first-trip-2",
+        "image": {
+          "alt": "L'Azure Resort and Spa 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "롱비치 휴식",
+        "nameEn": "LONG BEACH",
+        "nameKo": "L'Azure Resort and Spa",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-first-trip-2",
+          "text": "중심가 접근성과 해변 휴식을 함께 챙기고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-first-trip-3",
+        "image": {
+          "alt": "Saigon Phu Quoc Resort & Spa 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "중심 리조트",
+        "nameEn": "DUONG DONG",
+        "nameKo": "Saigon Phu Quoc Resort & Spa",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-first-trip-3",
+          "text": "야시장 접근과 리조트형 휴식을 함께 오래전부터 여행자들이 많이 찾는 대표 선택지입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-first-trip-4",
+        "image": {
+          "alt": "Cassia Cottage 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "감성 해변",
+        "nameEn": "LONG BEACH",
+        "nameKo": "Cassia Cottage",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-first-trip-4",
+          "text": "작고 차분한 해변 숙소 분위기를 선호하는 커플 여행에 잘 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "야시장은 즈엉동, 테마파크는 북부, 리조트 휴식은 남부를 보세요",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "푸꾸옥 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/phu-quoc/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 이동비와 식사 선택지까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/phu-quoc/near-trip/",
+        "number": "02",
+        "title": "액티비티 숙소",
+        "description": "빈원더스·사파리·혼똔 케이블카·섬투어 방향을 기준으로 보는 선택"
+      },
+      {
+        "href": "/destinations/phu-quoc/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "아이와 부모님 컨디션, 수영장, 조식, 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/phu-quoc/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심의 번잡함은 줄이고 해변 휴식과 숙소 체류를 우선한 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "firstTripFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "푸꾸옥 첫 여행 숙소, 즈엉동·롱비치와 북부 리조트 중 어디가 좋을까요?",
+      "titleId": "firstTripFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "푸꾸옥 처음이면 즈엉동·롱비치에 묵는 게 가장 좋나요?",
+        "answer": "처음이라면 야시장, 식당, 마사지, 공항, 투어 픽업을 함께 묶기 쉬운 즈엉동·롱비치가 가장 무난합니다. 리조트 휴식이 목적이라면 바이다이·그랜드월드나 바이켐·안터이도 함께 비교해보세요.",
+        "open": true
+      },
+      {
+        "question": "북부 리조트는 첫 여행자에게 불편하지 않나요?",
+        "answer": "바이다이·그랜드월드는 그랜드월드와 빈원더스, 바이다이 리조트 체류에 좋습니다. 다만 야시장과 중심권 이동은 길어질 수 있어 일정이 북부 중심일 때 선택하는 편이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "남부 바이켐·선셋타운은 어떤 일정에 좋나요?",
+        "answer": "남부 케이블카, 선셋타운, 조용한 리조트 휴식이 목적이라면 바이켐·안터이가 좋습니다. 중심권 먹거리와 야시장 중심 여행이라면 이동 시간이 길게 느껴질 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "푸꾸옥은 숙소를 나눠서 잡는 게 좋나요?",
+        "answer": "3박 이상이고 북부 테마파크와 남부 리조트를 모두 보고 싶다면 숙소를 나누는 방법이 좋습니다. 짧은 일정이라면 즈엉동·롱비치를 기준으로 잡는 편이 더 단순합니다.",
+        "open": false
+      },
+      {
+        "question": "푸꾸옥 3박 4일이면 중심권과 리조트 중 어디에 묵는 게 좋나요?",
+        "answer": "첫 여행이라면 즈엉동·롱비치 1~2박과 바이다이 또는 바이켐 리조트 1~2박을 나누면 균형이 좋습니다. 이동을 줄이고 싶다면 야시장과 공항 접근성이 좋은 즈엉동·롱비치에 머무는 것도 충분합니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

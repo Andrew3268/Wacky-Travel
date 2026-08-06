@@ -1,0 +1,523 @@
+{
+  "purpose": "quiet-stay",
+  "head": {
+    "title": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교",
+    "description": "타이베이 조용한 숙소는 시먼딩이나 타이베이역 한복판보다 중산·쌍롄, 다안·융캉제처럼 도심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/taipei/quiet-stay/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교",
+      "description": "타이베이 조용한 숙소는 시먼딩이나 타이베이역 한복판보다 중산·쌍롄, 다안·융캉제처럼 도심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "url": "https://bestayable.com/destinations/taipei/quiet-stay/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교",
+      "description": "타이베이 조용한 숙소는 시먼딩이나 타이베이역 한복판보다 중산·쌍롄, 다안·융캉제처럼 도심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "타이베이",
+            "item": "https://bestayable.com/destinations/taipei/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "타이베이 조용한 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/taipei/quiet-stay/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "타이베이 조용한 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "중산·쌍롄"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "다안·융캉제"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "베이터우"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "베이먼 조용한 블록"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "타이베이 조용한 숙소는 어디부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "도심 접근을 유지하려면 중산·쌍롄, 산책과 카페 휴식을 원하면 다안·융캉제를 먼저 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "시먼딩에서도 조용한 숙소를 찾을 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "가능하지만 시먼딩 중심 거리 바로 앞보다는 베이먼 쪽이나 큰길에서 한 블록 들어간 호텔을 확인하는 편이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "다안은 첫 타이베이 여행에도 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MRT 접근이 좋아 첫 여행에도 무난합니다. 다만 공항 이동이 중요하면 타이베이역권과 시간을 비교하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "베이터우는 조용한 숙소로 좋은가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "온천과 휴식 중심이면 좋습니다. 대신 매일 시내 관광을 많이 한다면 이동 시간이 길게 느껴질 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이베이 조용한 호텔은 무엇을 확인해야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MRT 출구 거리, 대로변 차량 소음, 야시장과의 거리, 객실 방음 후기를 함께 확인하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "타이베이",
+      "href": "/destinations/taipei/",
+      "current": false
+    },
+    {
+      "label": "조용한 숙소",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "타이베이 숙소 가이드",
+    "title": "타이베이 조용한 숙소는 시먼딩 한복판에서 살짝 벗어나 보세요",
+    "description": "타이베이는 MRT가 촘촘해 중심에서 조금 벗어나도 이동이 크게 불편하지 않습니다. 쇼핑과 식당 접근을 유지하고 싶다면 중산·쌍롄, 공원 산책과 카페 중심의 차분한 체류를 원한다면 다안·융캉제를 함께 비교해보세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "quietAreaTitle",
+    "head": {
+      "kicker": "Quiet Choice",
+      "title": "도심 접근은 중산·쌍롄, 산책과 카페 휴식은 다안이 편합니다",
+      "titleId": "quietAreaTitle",
+      "description": "조용한 타이베이 숙소는 역 이름보다 출구 주변 분위기, 야시장·상권과의 거리, 늦은 밤 복귀 동선을 함께 보는 편이 좋습니다."
+    },
+    "ariaLabel": "타이베이 조용한 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "시먼딩보다 차분한 도심을 원한다면",
+        "title": "중산·쌍롄",
+        "lead": "타이베이역과 시먼딩 접근은 유지하면서 숙소 주변은 조금 더 정돈되어 식당, 카페, MRT 이동을 균형 있게 쓰기 좋습니다.",
+        "chipsAriaLabel": "중산·쌍롄 선택 포인트",
+        "chips": [
+          "MRT 접근",
+          "카페·식당",
+          "차분한 도심"
+        ],
+        "line": "첫 타이베이 여행이지만 시먼딩 한복판의 밤 분위기가 부담스럽다면 먼저 비교하기 좋습니다."
+      },
+      {
+        "label": "산책과 쉬는 시간이 중요하다면",
+        "title": "다안·융캉제",
+        "lead": "다안공원, 융캉제, 둥먼역 주변을 중심으로 조용한 카페와 산책 동선을 함께 잡기 좋습니다.",
+        "chipsAriaLabel": "다안·융캉제 선택 포인트",
+        "chips": [
+          "공원 산책",
+          "카페 거리",
+          "여유 체류"
+        ],
+        "line": "관광을 빡빡하게 돌기보다 낮에는 걷고 저녁에는 조용히 쉬고 싶을 때 잘 맞습니다."
+      }
+    ],
+    "support": {
+      "title": "보조 후보도 함께 비교하세요.",
+      "description": "베이터우는 온천과 휴식 중심 일정이라면 좋은 보조 후보입니다. 다만 시내 관광을 매일 많이 넣는다면 이동 시간을 함께 비교하세요."
+    }
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyZhongshanTitle",
+      "head": {
+        "kicker": "Why Zhongshan & Shuanglian",
+        "title": "중산·쌍롄은 도심 접근성과 조용함의 균형이 좋습니다",
+        "titleId": "whyZhongshanTitle",
+        "description": "타이베이역, 시먼딩, 닝샤야시장, 카페 동선을 편하게 쓰면서 숙소 주변은 조금 더 차분하게 잡고 싶은 여행에 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "MRT 이동이 단순합니다",
+          "description": "타이베이역, 시먼딩, 중산, 다안으로 연결하기 쉬워 일정이 넓게 퍼져도 부담이 적습니다."
+        },
+        {
+          "number": "02",
+          "title": "식사와 카페 선택지가 좋습니다",
+          "description": "숙소 주변에서 너무 번잡하지 않은 식당과 카페를 찾기 쉬워 저녁 복귀 후에도 편합니다."
+        },
+        {
+          "number": "03",
+          "title": "시먼딩보다 밤 분위기가 덜 부담스럽습니다",
+          "description": "핵심 번화가 한복판보다 숙소 주변 유동 인구와 소음이 덜할 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "첫 여행에도 무난합니다",
+          "description": "접근성, 편의시설, 조용함을 모두 크게 포기하지 않는 균형형 선택입니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyDaanTitle",
+      "head": {
+        "kicker": "Why Daan",
+        "title": "다안·융캉제는 산책과 카페 휴식에 잘 맞습니다",
+        "titleId": "whyDaanTitle",
+        "description": "숙소 주변 분위기까지 여행의 일부로 보고, 낮에는 걷고 저녁에는 조용히 쉬고 싶은 일정에 어울립니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "다안공원 산책이 편합니다",
+          "description": "아침이나 저녁에 가볍게 걷기 좋아 숙소 체류 시간이 더 여유롭게 느껴질 수 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "카페와 로컬 식당이 자연스럽습니다",
+          "description": "융캉제와 둥먼 주변을 이용하면 관광지 느낌보다 생활감 있는 식사 동선을 잡기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "밤 소음 부담이 줄어듭니다",
+          "description": "시먼딩이나 타이베이역 핵심 상권보다 숙소 주변 분위기가 차분하게 느껴질 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "공항 이동은 확인이 필요합니다",
+          "description": "도심 관광은 편하지만 도착일·귀국일에는 타이베이역권과 이동 시간을 비교하는 편이 좋습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "조용한 숙소가 고민된다면",
+    "title": "조용하게 머물기 좋은 타이베이 숙소 위치를 찾아보세요",
+    "description": "시먼딩의 활기, 중산의 편의성, 다안 주변의 차분함을 놓고 보면 원하는 여행 방식에 맞는 위치를 고르기 쉽습니다.",
+    "href": "/destinations/taipei/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "타이베이 조용한 호텔은 MRT 출구, 대로변, 야시장 거리까지 함께 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "조용한 숙소는 지역명만 보고 고르기보다 실제 객실 위치, 주변 도로, 밤 시간대 분위기를 함께 확인해야 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "대로변과 철도 소음",
+        "description": "역과 가까워도 큰길이나 철도 바로 옆이면 밤 소음이 느껴질 수 있습니다. 객실 방향과 방음 후기를 함께 확인하세요."
+      },
+      {
+        "title": "밤에 돌아오는 길",
+        "description": "너무 외진 곳은 조용해도 불편할 수 있습니다. 늦은 저녁 식사 후 숙소까지 걷는 길이 안전하고 단순한지 확인하세요."
+      },
+      {
+        "title": "식사와 편의시설 거리",
+        "description": "조용한 지역일수록 늦게 여는 식당이 적을 수 있습니다. 편의점, 카페, 간단한 식사 선택지가 주변에 있는지 보는 편이 좋습니다."
+      },
+      {
+        "title": "객실 방음 후기",
+        "description": "같은 지역이라도 호텔마다 체감이 다릅니다. 엘리베이터 옆 객실, 저층 객실, 도로 방향 객실 후기를 특히 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Stay Candidates",
+      "title": "차분하게 쉬고 싶을 때 비교할 만한 타이베이 숙소",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "중산·쌍롄 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-quiet-stay-1",
+        "image": {
+          "alt": "중산 조용한 블록 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도심 균형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "중산 조용한 블록 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-quiet-stay-1",
+          "text": "타이베이역과 시먼딩 접근은 유지하면서 숙소 주변은 차분하게 쓰고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-quiet-stay-2",
+        "image": {
+          "alt": "쌍롄·닝샤야시장 외곽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "식사 편의",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "쌍롄·닝샤야시장 외곽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-quiet-stay-2",
+          "text": "저녁 식사는 편하게 하고 숙소는 너무 번잡하지 않게 잡고 싶을 때 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-quiet-stay-3",
+        "image": {
+          "alt": "다안공원 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "공원 산책",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "다안공원 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-quiet-stay-3",
+          "text": "아침 산책과 조용한 카페 동선을 중요하게 보는 여행에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이베이-quiet-stay-4",
+        "image": {
+          "alt": "베이터우 온천 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "온천 휴식",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "베이터우 온천 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "타이베이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이베이-quiet-stay-4",
+          "text": "온천과 휴식이 목적이라면 시내 중심 숙소보다 만족도가 높을 수 있습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "첫 여행, 가성비, 근교 이동이면 조용한 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "타이베이 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/taipei/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 방문할 때 실패를 줄이는 중심 위치 선택"
+      },
+      {
+        "href": "/destinations/taipei/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 보는 실속형 선택"
+      },
+      {
+        "href": "/destinations/taipei/near-trip/",
+        "number": "03",
+        "title": "근교 여행 숙소",
+        "description": "근교 이동과 투어 출발 동선을 먼저 보는 선택"
+      },
+      {
+        "href": "/destinations/taipei/family-trip/",
+        "number": "04",
+        "title": "가족 여행 숙소",
+        "description": "아이·부모님 동선과 쉬는 시간을 함께 보는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "faqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "타이베이 조용한 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "faqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "타이베이 조용한 숙소는 어디부터 보면 좋나요?",
+        "answer": "도심 접근을 유지하려면 중산·쌍롄, 산책과 카페 휴식을 원하면 다안·융캉제를 먼저 비교하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "시먼딩에서도 조용한 숙소를 찾을 수 있나요?",
+        "answer": "가능하지만 시먼딩 중심 거리 바로 앞보다는 베이먼 쪽이나 큰길에서 한 블록 들어간 호텔을 확인하는 편이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "다안은 첫 타이베이 여행에도 괜찮나요?",
+        "answer": "MRT 접근이 좋아 첫 여행에도 무난합니다. 다만 공항 이동이 중요하면 타이베이역권과 시간을 비교하세요.",
+        "open": false
+      },
+      {
+        "question": "베이터우는 조용한 숙소로 좋은가요?",
+        "answer": "온천과 휴식 중심이면 좋습니다. 대신 매일 시내 관광을 많이 한다면 이동 시간이 길게 느껴질 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "타이베이 조용한 호텔은 무엇을 확인해야 하나요?",
+        "answer": "MRT 출구 거리, 대로변 차량 소음, 야시장과의 거리, 객실 방음 후기를 함께 확인하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

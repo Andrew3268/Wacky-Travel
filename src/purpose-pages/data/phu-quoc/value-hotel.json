@@ -1,0 +1,520 @@
+{
+  "purpose": "value-hotel",
+  "head": {
+    "title": "푸꾸옥 가성비 숙소 위치 추천 | 즈엉동·롱비치·옹랑 비교",
+    "description": "푸꾸옥 가성비 숙소는 리조트 가격만 보지 말고 야시장, 공항 이동, 식당·마사지, 북부·남부 투어 동선을 함께 봐야 합니다. 즈엉동·롱비치와 옹랑을 중심으로 실속 위치를 비교하세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/phu-quoc/value-hotel/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "푸꾸옥 가성비 숙소 위치 추천 | 즈엉동·롱비치·옹랑 비교",
+      "description": "푸꾸옥 가성비 숙소는 리조트 가격만 보지 말고 야시장, 공항 이동, 식당·마사지, 북부·남부 투어 동선을 함께 봐야 합니다. 즈엉동·롱비치와 옹랑을 중심으로 실속 위치를 비교하세요.",
+      "url": "https://bestayable.com/destinations/phu-quoc/value-hotel/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "푸꾸옥 가성비 숙소 위치 추천 | 즈엉동·롱비치·옹랑 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "푸꾸옥 가성비 숙소 위치 추천 | 즈엉동·롱비치·옹랑 비교",
+      "description": "푸꾸옥 가성비 숙소는 리조트 가격만 보지 말고 야시장, 공항 이동, 식당·마사지, 북부·남부 투어 동선을 함께 봐야 합니다. 즈엉동·롱비치와 옹랑을 중심으로 실속 위치를 비교하세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "푸꾸옥 가성비 숙소 위치 추천 | 즈엉동·롱비치·옹랑 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "푸꾸옥",
+            "item": "https://bestayable.com/destinations/phu-quoc/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "푸꾸옥 가성비 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/phu-quoc/value-hotel/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "푸꾸옥 가성비 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "즈엉동·롱비치"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "옹랑·끄어깐"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "롱비치·즈엉토"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "북부 바이다이"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "푸꾸옥 가성비 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "처음이거나 짧은 일정이라면 즈엉동·롱비치, 조용한 해변 휴식을 원한다면 옹랑·끄어깐부터 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "즈엉동은 너무 번잡하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "중심권이라 번잡할 수 있지만 식당, 마사지, 야시장 접근이 좋아 이동 비용을 줄이기 쉽습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "옹랑은 가성비 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "조용한 해변 체류를 원한다면 좋은 후보입니다. 다만 식당과 택시 이동은 미리 확인하는 편이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "푸꾸옥 리조트는 외곽이어도 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "숙소에서 쉬는 시간이 길다면 괜찮지만, 야시장과 투어를 자주 다니면 이동 비용이 늘 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "푸꾸옥 가성비 호텔에서 중요한 기준은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "야시장·식당 접근, 공항 이동, 투어 픽업, 셔틀과 택시 이용 가능성을 함께 보는 것이 중요합니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "푸꾸옥",
+      "href": "/destinations/phu-quoc/",
+      "current": false
+    },
+    {
+      "label": "푸꾸옥 가성비 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "푸꾸옥 숙소 가이드",
+    "title": "푸꾸옥 가성비 숙소는 리조트 가격보다 이동 방식을 먼저 보세요",
+    "description": "푸꾸옥은 예쁜 리조트가 많지만 숙소 위치가 멀면 식당, 마사지, 야시장, 투어 이동이 모두 불편해질 수 있습니다. 처음이거나 짧은 일정은 즈엉동·롱비치, 조용한 해변 체류와 가격 균형은 옹랑·끄어깐까지 함께 보는 편이 좋습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "valueAreaTitle",
+    "head": {
+      "kicker": "Value Choice",
+      "title": "편의시설은 즈엉동·롱비치, 조용한 해변 가성비는 옹랑이 편합니다",
+      "titleId": "valueAreaTitle",
+      "description": "푸꾸옥 가성비 숙소는 1박 요금보다 야시장, 공항, 식당, 투어 픽업까지의 이동 비용을 함께 계산해야 합니다."
+    },
+    "ariaLabel": "푸꾸옥 가성비 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "야시장과 식당, 공항 이동을 함께 본다면",
+        "title": "즈엉동·롱비치",
+        "lead": "공항과 야시장, 식당·마사지 동선을 함께 묶기 좋아 푸꾸옥에서 가장 무난한 실속형 숙소 후보입니다.",
+        "chipsAriaLabel": "즈엉동·롱비치 선택 포인트",
+        "chips": [
+          "야시장",
+          "공항 이동",
+          "식당 동선"
+        ],
+        "line": "처음 푸꾸옥이거나 짧은 일정이라면 먼저 비교하기 좋은 위치입니다."
+      },
+      {
+        "label": "조용한 해변과 숙박비 균형을 원한다면",
+        "title": "옹랑·끄어깐",
+        "lead": "중심가보다 차분하게 쉬기 좋고 리조트 가격 부담을 낮추면서 해변 분위기를 즐기기 좋은 후보입니다.",
+        "chipsAriaLabel": "옹랑·끄어깐 선택 포인트",
+        "chips": [
+          "조용한 해변",
+          "가격 균형",
+          "휴식 중심"
+        ],
+        "line": "식당 이동은 조금 감수해도 조용한 체류를 원한다면 함께 볼 만합니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyPrimaryTitle",
+      "head": {
+        "kicker": "Why Duong Dong & Long Beach",
+        "title": "편의시설과 이동 부담을 줄이려면 즈엉동·롱비치가 가장 현실적입니다",
+        "titleId": "whyPrimaryTitle",
+        "description": "즈엉동·롱비치는 공항, 야시장, 식당, 투어 픽업을 함께 보기 좋은 푸꾸옥 가성비 숙소의 기본 후보입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "공항 이동이 단순합니다",
+          "description": "첫날과 마지막 날 이동 시간이 짧아 짧은 일정에서 체감 효율이 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "야시장과 식당 동선이 좋습니다",
+          "description": "숙소 주변이나 가까운 거리에서 식사, 마사지, 쇼핑을 해결하기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 픽업 확인이 쉽습니다",
+          "description": "남부 케이블카, 북부 테마파크, 스노클링 투어 픽업 여부를 확인하기 편한 지역입니다."
+        },
+        {
+          "number": "04",
+          "title": "조용한 휴식은 옹랑과 비교하세요",
+          "description": "중심권은 편하지만 번잡하게 느껴질 수 있어 휴식 중심이면 북서쪽 해변도 함께 보세요."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whySecondaryTitle",
+      "head": {
+        "kicker": "Why Ong Lang",
+        "title": "조용한 해변 체류를 원한다면 옹랑·끄어깐도 실속 있습니다",
+        "titleId": "whySecondaryTitle",
+        "description": "옹랑·끄어깐은 중심가보다 차분한 분위기에서 해변 휴식을 챙기고 싶은 분께 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "숙소 주변 분위기가 차분합니다",
+          "description": "야시장 중심권보다 한적해 쉬는 시간을 길게 잡기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "리조트 가격을 조절하기 좋습니다",
+          "description": "남부·북부 고급 리조트가 부담될 때 해변 분위기를 유지하면서 예산을 맞추기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "휴식 중심 일정에 어울립니다",
+          "description": "숙소에 머무는 시간이 길고 바다를 천천히 즐기고 싶다면 만족도가 높습니다."
+        },
+        {
+          "number": "04",
+          "title": "식당과 이동은 미리 확인하세요",
+          "description": "중심권보다 이동 선택지가 적을 수 있어 셔틀, 그랩, 식당 접근성을 함께 봐야 합니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가성비가 고민된다면",
+    "title": "예산과 휴식 방식에 맞는 푸꾸옥 숙소 위치를 찾아보세요",
+    "description": "야시장 접근성, 해변 체류 시간, 리조트 시설, 이동 방식을 함께 보면 가격 대비 만족하기 좋은 위치를 찾기 쉽습니다.",
+    "href": "/destinations/phu-quoc/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "푸꾸옥 가성비 호텔은 숙박비보다 이동 비용을 함께 봐야 합니다",
+      "titleId": "bookingCheckTitle",
+      "description": "섬 여행은 숙소가 멀수록 택시비와 이동 시간이 늘어 실제 비용이 커질 수 있습니다."
+    },
+    "items": [
+      {
+        "title": "야시장·식당 접근",
+        "description": "숙소 주변에서 저녁 식사와 마사지가 가능한지 확인하면 이동 비용을 줄일 수 있습니다."
+      },
+      {
+        "title": "공항 이동 시간",
+        "description": "짧은 일정이라면 공항에서 숙소까지의 거리가 체감 가성비에 크게 영향을 줍니다."
+      },
+      {
+        "title": "투어 픽업 가능 여부",
+        "description": "북부·남부 투어가 있다면 호텔 픽업 가능 지역인지 먼저 확인하세요."
+      },
+      {
+        "title": "셔틀과 택시 이용",
+        "description": "외곽 리조트는 셔틀 여부와 택시 호출 가능성을 함께 확인하는 편이 좋습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "가격과 야시장·해변 동선을 함께 보기 좋은 푸꾸옥 숙소",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "즈엉동·롱비치 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-value-hotel-1",
+        "image": {
+          "alt": "즈엉동·야시장 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "첫 여행 실속형",
+        "nameEn": "DUONG DONG AREA",
+        "nameKo": "즈엉동·야시장 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "즈엉동 중심",
+          "가성비",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-value-hotel-1",
+          "text": "처음 푸꾸옥에서 식사와 이동 부담을 줄이고 싶은 일정에 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-value-hotel-2",
+        "image": {
+          "alt": "롱비치 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "해변 접근 실속형",
+        "nameEn": "LONG BEACH AREA",
+        "nameKo": "롱비치 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "롱비치 접근",
+          "가성비",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-value-hotel-2",
+          "text": "짧은 일정에서 바다와 편의시설을 함께 챙기고 싶을 때 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-value-hotel-3",
+        "image": {
+          "alt": "옹랑·끄어깐 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "조용한 해변형",
+        "nameEn": "ONG LANG AREA",
+        "nameKo": "옹랑·끄어깐 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "옹랑 휴식",
+          "가성비",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-value-hotel-3",
+          "text": "중심가보다 차분하게 쉬고 싶은 휴식 중심 일정에 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-푸꾸옥-value-hotel-4",
+        "image": {
+          "alt": "바이다이·그랜드월드 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "테마파크 일정형",
+        "nameEn": "BAI DAI AREA",
+        "nameKo": "바이다이·그랜드월드 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "북부 접근",
+          "가성비",
+          "푸꾸옥"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-푸꾸옥-value-hotel-4",
+          "text": "빈원더스와 그랜드월드 일정 비중이 높다면 함께 볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "야시장 중심과 리조트 휴식 중심은 예산 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "푸꾸옥 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/phu-quoc/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "즈엉동·롱비치 중심으로 처음 가는 일정에 맞춘 선택"
+      },
+      {
+        "href": "/destinations/phu-quoc/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "남부 케이블카·북부 테마파크 이동을 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/phu-quoc/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/phu-quoc/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 편하게 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "valueFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "푸꾸옥 가성비 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "valueFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "푸꾸옥 가성비 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "처음이거나 짧은 일정이라면 즈엉동·롱비치, 조용한 해변 휴식을 원한다면 옹랑·끄어깐부터 비교하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "즈엉동은 너무 번잡하지 않나요?",
+        "answer": "중심권이라 번잡할 수 있지만 식당, 마사지, 야시장 접근이 좋아 이동 비용을 줄이기 쉽습니다.",
+        "open": false
+      },
+      {
+        "question": "옹랑은 가성비 숙소로 괜찮나요?",
+        "answer": "조용한 해변 체류를 원한다면 좋은 후보입니다. 다만 식당과 택시 이동은 미리 확인하는 편이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "푸꾸옥 리조트는 외곽이어도 괜찮나요?",
+        "answer": "숙소에서 쉬는 시간이 길다면 괜찮지만, 야시장과 투어를 자주 다니면 이동 비용이 늘 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "푸꾸옥 가성비 호텔에서 중요한 기준은 무엇인가요?",
+        "answer": "야시장·식당 접근, 공항 이동, 투어 픽업, 셔틀과 택시 이용 가능성을 함께 보는 것이 중요합니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

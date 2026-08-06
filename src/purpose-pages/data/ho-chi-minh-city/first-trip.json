@@ -1,0 +1,447 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 호치민 여행 숙소 위치 추천 | 벤탄과 동커이 동선 비교",
+    "description": "첫 호치민 여행 숙소는 1군 안에서도 벤탄과 동커이를 나눠보는 것이 좋습니다. 시장·관광 동선, 동커이 산책, 밤 소음과 교통 체증까지 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/ho-chi-minh-city/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 호치민 여행 숙소 위치 추천 | 벤탄과 동커이 동선 비교",
+      "description": "첫 호치민 여행 숙소는 1군 안에서도 벤탄과 동커이를 나눠보는 것이 좋습니다. 시장·관광 동선, 동커이 산책, 밤 소음과 교통 체증까지 정리했습니다.",
+      "url": "https://bestayable.com/destinations/ho-chi-minh-city/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 호치민 여행 숙소 위치 추천 | 벤탄과 동커이 동선 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 호치민 여행 숙소 위치 추천 | 벤탄과 동커이 동선 비교",
+      "description": "첫 호치민 여행 숙소는 1군 안에서도 벤탄과 동커이를 나눠보는 것이 좋습니다. 시장·관광 동선, 동커이 산책, 밤 소음과 교통 체증까지 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 호치민 여행 숙소 위치 추천 | 벤탄과 동커이 동선 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "호치민",
+            "item": "https://bestayable.com/destinations/ho-chi-minh-city/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "첫 호치민 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/ho-chi-minh-city/first-trip/"
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "호치민",
+      "href": "/destinations/ho-chi-minh-city",
+      "current": false
+    },
+    {
+      "label": "첫 호치민 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "호치민 숙소 가이드",
+    "title": "호치민 첫 여행 숙소는 벤탄과 동커이 동선을 나눠보세요",
+    "description": "첫 호치민 여행은 1군 안에서도 벤탄, 동커이, 부이비엔의 분위기가 다릅니다. 시장과 대표 관광지를 짧게 묶고 싶다면 벤탄, 깔끔한 거리와 카페·마사지 동선을 중시한다면 동커이·응우옌후에부터 비교하면 쉽습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "시장·관광은 벤탄, 깔끔한 도심 산책은 동커이가 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "벤탄시장과 대표 명소를 짧게 묶고 싶다면 1군·벤탄, 정돈된 거리와 카페·마사지 동선을 중시한다면 동커이·응우옌후에부터 보면 됩니다."
+    },
+    "ariaLabel": "첫 호치민 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "대표 관광을 짧게 묶고 싶다면",
+        "title": "1군·벤탄",
+        "lead": "벤탄시장, 통일궁, 노트르담성당, 중앙우체국을 짧게 이어가기 쉬워 첫 호치민 일정의 기준점이 됩니다.",
+        "chipsAriaLabel": "1군·벤탄 선택 포인트",
+        "chips": [
+          "벤탄시장",
+          "대표 명소",
+          "짧은 일정"
+        ],
+        "line": "관광과 시장 쇼핑을 우선한다면 벤탄 주변이 가장 단순합니다."
+      },
+      {
+        "label": "깔끔한 도심이 좋다면",
+        "title": "동커이·응우옌후에",
+        "lead": "카페, 마사지, 강변 산책, 쇼핑몰을 차분한 도심 분위기 안에서 이어가기 좋습니다.",
+        "chipsAriaLabel": "동커이·응우옌후에 선택 포인트",
+        "chips": [
+          "카페",
+          "마사지",
+          "도심 산책"
+        ],
+        "line": "숙소 컨디션과 저녁 산책까지 보고 싶다면 동커이가 더 편합니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "firstTripWhyATitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "주요 관광지와 시장 동선을 묶는다면 1군·벤탄이 편합니다",
+        "titleId": "firstTripWhyATitle",
+        "description": "벤탄시장과 대표 명소를 짧은 이동 안에 묶고 싶다면 1군·벤탄 주변이 편합니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "대표 명소를 짧게 묶을 수 있습니다",
+          "description": "벤탄시장, 통일궁, 중앙우체국, 노트르담성당을 하루 안에 이어가기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 복귀 경로가 단순합니다",
+          "description": "식사와 마사지 후 택시로 돌아오기 쉽고, 처음 방문해도 위치를 파악하기 편합니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 픽업 확인이 쉽습니다",
+          "description": "메콩강, 구찌터널 등 근교 투어의 픽업 기준이 1군 호텔인 경우가 많습니다."
+        },
+        {
+          "number": "04",
+          "title": "짧은 일정에 특히 편합니다",
+          "description": "2박 3일처럼 시간이 짧다면 이동 범위를 줄여 대표 코스를 빠르게 묶기 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "firstTripWhyBTitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "호텔 컨디션과 차분한 도심 분위기를 원하면 동커이가 좋습니다",
+        "titleId": "firstTripWhyBTitle",
+        "description": "동커이·응우옌후에는 1군 중심 접근성을 유지하면서도 벤탄보다 더 정돈된 분위기를 기대하기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "도심 산책이 편합니다",
+          "description": "응우옌후에 광장, 동커이 거리, 강변 산책을 저녁 동선으로 자연스럽게 묶을 수 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "카페와 마사지 동선이 좋습니다",
+          "description": "쇼핑몰, 카페, 마사지, 식당을 숙소 주변에서 해결하기 쉬워 이동 피로가 적습니다."
+        },
+        {
+          "number": "03",
+          "title": "숙소 컨디션 선택지가 넓습니다",
+          "description": "고급 호텔과 깔끔한 도심형 호텔이 많아 커플·부모님 동반 일정에도 잘 맞습니다."
+        },
+        {
+          "number": "04",
+          "title": "시장 쇼핑이 많다면 벤탄도 함께 보세요",
+          "description": "벤탄시장과 로컬 쇼핑이 핵심이라면 동커이보다 벤탄 주변이 더 직관적입니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "아직 고민된다면",
+    "title": "1군 동선에 맞는 첫 호치민 숙소 위치를 찾아보세요",
+    "description": "벤탄시장, 동커이 거리, 카페와 맛집 동선을 함께 보면 처음 머물기 좋은 위치를 정하기 쉽습니다.",
+    "href": "/destinations/ho-chi-minh-city/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "firstTripBookingTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "호치민 호텔은 도보 이동, 교통 체증, 밤 소음을 함께 확인하세요",
+      "titleId": "firstTripBookingTitle",
+      "description": "1군 안에서도 도보 체감과 밤 분위기가 달라 실제 이동 경로를 함께 보는 것이 좋습니다."
+    },
+    "items": [
+      {
+        "title": "도보 이동이 실제로 쉬운가",
+        "description": "큰 도로와 오토바이 통행이 많아 지도상 가까워도 걷기 불편할 수 있습니다."
+      },
+      {
+        "title": "밤 소음이 부담스럽지 않은가",
+        "description": "부이비엔과 가까운 숙소는 밤 분위기가 강하므로 방음 후기를 확인하세요."
+      },
+      {
+        "title": "투어 픽업 구역에 포함되는가",
+        "description": "메콩강·구찌터널 투어를 이용한다면 호텔 픽업 여부를 먼저 확인하는 편이 좋습니다."
+      },
+      {
+        "title": "공항 이동 시간을 계산했는가",
+        "description": "떤선녓공항 이동은 교통 체증 영향을 크게 받으므로 출국 시간 기준으로 여유를 두세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "벤탄·동커이 중심으로 보기 좋은 호치민 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "1군·벤탄 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-first-trip-1",
+        "image": {
+          "alt": "실버랜드 벤탄 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "벤탄 중심형",
+        "nameEn": "Silverland Bến Thành",
+        "nameKo": "실버랜드 벤탄",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-first-trip-1",
+          "text": "벤탄시장과 1군 대표 일정을 짧게 묶고 싶은 첫 여행자에게 보기 비교해볼 만한 선택지입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-first-trip-2",
+        "image": {
+          "alt": "리버티 센트럴 사이공 시티포인트 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "동커이 접근형",
+        "nameEn": "Liberty Central Saigon Citypoint",
+        "nameKo": "리버티 센트럴 사이공 시티포인트",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-first-trip-2",
+          "text": "깔끔한 도심 분위기와 쇼핑·식사 이동을 함께 보고 싶을 때 비교하기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-first-trip-3",
+        "image": {
+          "alt": "오키즈 사이공 호텔 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "3군 안정형",
+        "nameEn": "Orchids Saigon Hotel",
+        "nameKo": "오키즈 사이공 호텔",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-first-trip-3",
+          "text": "1군 접근성과 차분한 숙소 주변 분위기를 함께 보고 싶을 때 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-first-trip-4",
+        "image": {
+          "alt": "이비스 사이공 에어포트 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "공항 실속형",
+        "nameEn": "ibis Saigon Airport",
+        "nameKo": "이비스 사이공 에어포트",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "4성급",
+          "첫 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-first-trip-4",
+          "text": "밤 도착이나 새벽 출국 일정에서 이동 피로를 줄이고 싶을 때 현실적입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "관광은 벤탄, 마사지·식당은 동커이, 야간 일정은 부이비엔 접근성을 보세요",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "호치민 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/ho-chi-minh-city/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/ho-chi-minh-city/near-trip/",
+        "number": "02",
+        "title": "근교 투어 숙소",
+        "description": "꾸찌터널·메콩델타 투어를 픽업 위치 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/ho-chi-minh-city/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/ho-chi-minh-city/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 늦은 시간에는 편히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "purposeFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "호치민 첫 여행 숙소, 벤탄과 동커이 중 어디가 좋을까요?",
+      "titleId": "purposeFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "호치민 처음이면 1군·벤탄 근처에 묵는 게 좋나요?",
+        "answer": "처음이라면 벤탄시장, 통일궁, 노트르담 대성당, 식당과 마사지 동선을 짧게 묶기 쉬운 1군·벤탄이 무난합니다. 다만 더 차분하고 깔끔한 분위기를 원한다면 동커이를 함께 비교하세요.",
+        "open": true
+      },
+      {
+        "question": "부이비엔 근처 숙소는 첫 여행자에게 괜찮나요?",
+        "answer": "부이비엔은 밤문화와 활기 있는 분위기를 원하면 맞을 수 있지만 소음과 혼잡이 큰 편입니다. 첫 여행이라면 중심부 바로 안쪽보다는 조금 떨어진 위치를 보는 것이 안전합니다.",
+        "open": false
+      },
+      {
+        "question": "동커이 지역은 벤탄보다 비싼 편인가요?",
+        "answer": "동커이는 호텔 컨디션과 도심 분위기가 좋아 가격대가 높게 느껴질 수 있습니다. 예산이 허용된다면 첫 여행자에게 편하고, 가성비를 더 중시한다면 벤탄 주변도 함께 보세요.",
+        "open": false
+      },
+      {
+        "question": "호치민은 택시 이동을 많이 고려해야 하나요?",
+        "answer": "호치민은 도보로 갈 수 있는 곳도 있지만 더위와 교통 체증 때문에 택시를 섞는 경우가 많습니다. 숙소를 고를 때 주요 일정까지의 거리뿐 아니라 이동 시간도 함께 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "호치민 2박 3일이면 어느 지역 숙소가 편한가요?",
+        "answer": "2박 3일이면 1군 안에서 한 곳에 묵는 것이 가장 단순합니다. 관광과 식당 중심이면 벤탄, 호텔 컨디션과 차분한 도심 분위기를 원하면 동커이를 우선해보세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

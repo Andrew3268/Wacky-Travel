@@ -1,0 +1,492 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교",
+    "description": "첫 다낭 여행 숙소는 미케비치·푸억미와 한강 동쪽·용다리부터 나눠보면 쉽습니다. 해변 산책, 한시장·용다리 야경, 호이안 이동까지 고려해 숙소 위치를 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/da-nang/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교",
+      "description": "첫 다낭 여행 숙소는 미케비치·푸억미와 한강 동쪽·용다리부터 나눠보면 쉽습니다. 해변 산책, 한시장·용다리 야경, 호이안 이동까지 고려해 숙소 위치를 정리했습니다.",
+      "url": "https://bestayable.com/destinations/da-nang/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교",
+      "description": "첫 다낭 여행 숙소는 미케비치·푸억미와 한강 동쪽·용다리부터 나눠보면 쉽습니다. 해변 산책, 한시장·용다리 야경, 호이안 이동까지 고려해 숙소 위치를 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "다낭",
+            "item": "https://bestayable.com/destinations/da-nang/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "첫 다낭 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/da-nang/first-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "첫 다낭 여행 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "미케비치·푸억미"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "논느억·오행산 리조트권"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "다낭 시내·한시장"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "한강 동쪽·용다리"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "다낭 북부·공항·기차역 주변"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "다낭 처음이면 미케비치와 한강 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "바다 산책과 해변 분위기, 식당·마사지 동선을 함께 원한다면 미케비치가 편합니다. 한시장, 용다리, 야경 중심의 시내 이동이 많다면 한강 동쪽이나 시내권도 좋은 선택입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "호이안도 갈 예정이면 어느 지역 숙소가 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "호이안까지 하루 일정으로 다녀올 계획이라면 미케비치와 한강 모두 무난합니다. 호이안 비중이 크다면 다낭 2박, 호이안 1박처럼 나누는 방법도 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "미케비치 숙소는 시내 이동이 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "택시를 이용하면 한시장이나 용다리까지 이동이 어렵지 않습니다. 다만 매일 시내를 자주 오갈 계획이라면 한강 동쪽이나 시내권을 함께 비교해보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "부모님과 다낭 여행이면 어느 지역이 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "이동을 줄이고 식당과 해변을 함께 보려면 미케비치·푸억미가 편합니다. 야경과 시장 이동을 중시한다면 한강 동쪽 숙소도 괜찮지만 택시 동선을 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "다낭 3박 4일이면 숙소를 나누는 게 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "일정이 다낭 중심이면 한 지역에 묵어도 충분합니다. 호이안 숙박이나 리조트 휴식을 따로 넣고 싶다면 다낭 해변 2박, 호이안 또는 리조트 1박처럼 나누는 것도 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "다낭",
+      "href": "/destinations/da-nang/",
+      "current": false
+    },
+    {
+      "label": "첫 다낭 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "다낭 숙소 가이드",
+    "title": "다낭 첫 여행 숙소는 미케비치와 한강 동선부터 나눠보세요",
+    "description": "첫 다낭 여행은 바다를 중심으로 보낼지, 한시장·용다리·야경을 자주 볼지에 따라 숙소 위치가 달라집니다. 해변 산책과 식당을 가까이 두고 싶다면 미케비치·푸억미, 시내 관광과 야경 동선이 중요하다면 한강 동쪽·용다리부터 비교하면 쉽습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "바다 산책은 미케비치, 한시장·야경은 한강 쪽이 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "해변에서 쉬는 시간이 많다면 미케비치·푸억미, 한시장·용다리·야경을 자주 볼 계획이라면 한강 동쪽을 먼저 보면 충분합니다."
+    },
+    "ariaLabel": "첫 다낭 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "바다를 자주 볼 거라면",
+        "title": "미케비치·푸억미",
+        "lead": "호텔에서 나와 해변 산책을 하고, 주변 식당과 카페까지 가볍게 묶기 좋은 위치입니다.",
+        "chipsAriaLabel": "미케비치·푸억미 선택 포인트",
+        "chips": [
+          "해변 산책",
+          "식당 동선",
+          "첫 여행"
+        ],
+        "line": "휴양 분위기와 시내 접근성을 함께 보고 싶다면 가장 무난합니다."
+      },
+      {
+        "label": "시내 관광이 많다면",
+        "title": "한강 동쪽·용다리",
+        "lead": "한시장, 용다리, 한강 야경을 자주 볼 일정이라면 택시 이동이 짧고 밤 동선도 단순합니다.",
+        "chipsAriaLabel": "한강 동쪽·용다리 선택 포인트",
+        "chips": [
+          "한시장",
+          "용다리",
+          "야경"
+        ],
+        "line": "바다보다 시내 관광과 야경이 중요하다면 한강 쪽이 더 편합니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "firstTripWhyATitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "바다 산책과 식당을 함께 원하면 미케비치·푸억미가 편합니다",
+        "titleId": "firstTripWhyATitle",
+        "description": "체크인 후 해변 산책, 식사, 마사지까지 숙소 주변에서 이어가기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "여행 분위기를 바로 느끼기 쉽습니다",
+          "description": "호텔에서 나와 바로 바다를 보고, 저녁에는 해변가 식당과 카페를 가볍게 묶기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 동선이 단순합니다",
+          "description": "식사와 마사지, 산책을 숙소 주변에서 해결하기 쉬워 밤에 택시를 여러 번 탈 필요가 줄어듭니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 픽업 확인이 쉽습니다",
+          "description": "바나힐, 호이안, 후에 투어가 미케비치 호텔을 픽업 구역으로 두는 경우가 많아 일정 확인이 편합니다."
+        },
+        {
+          "number": "04",
+          "title": "예산에 맞춰 조정하기 쉽습니다",
+          "description": "해변 바로 앞과 안쪽 골목을 나눠 보면 같은 미케비치라도 가격과 분위기를 조절하기 쉽습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "firstTripWhyBTitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "한시장·용다리·야경 중심이라면 한강 동쪽도 좋습니다",
+        "titleId": "firstTripWhyBTitle",
+        "description": "한시장, 용다리, 한강 야경을 자주 볼 계획이라면 한강 동쪽과 시내권도 좋은 선택입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "시내 이동이 짧아집니다",
+          "description": "한시장, 콩카페, 로컬 식당, 용다리 주변을 자주 오간다면 이동 시간이 짧게 느껴집니다."
+        },
+        {
+          "number": "02",
+          "title": "야경 후 복귀가 쉽습니다",
+          "description": "용다리와 한강 산책을 보고 숙소로 돌아오는 동선이 단순해 밤 일정이 부담스럽지 않습니다."
+        },
+        {
+          "number": "03",
+          "title": "택시비 부담을 줄이기 좋습니다",
+          "description": "해변과 시내를 모두 다녀야 하는 일정이라면 한강 동쪽이 중간 지점처럼 느껴질 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "해변 휴식이 우선이면 미케비치도 함께 보세요",
+          "description": "매일 바다 산책을 하고 싶다면 한강보다 미케비치 쪽이 더 자연스럽습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "아직 고민된다면",
+    "title": "미케비치·한시장 동선에 맞는 첫 다낭 숙소 위치를 찾아보세요",
+    "description": "해변에서 보내는 시간, 시내 식사, 호이안 이동까지 함께 보면 처음 머물기 좋은 위치를 정하기 쉽습니다.",
+    "href": "/destinations/da-nang/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "firstTripBookingTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "다낭 호텔은 해변 접근성, 택시 이동, 호이안 이동 시간을 확인하세요",
+      "titleId": "firstTripBookingTitle",
+      "description": "지역을 정했다면 실제 도보 경로와 택시 이동, 호이안 왕복 시간을 함께 보는 것이 좋습니다."
+    },
+    "items": [
+      {
+        "title": "해변까지 실제로 걷기 쉬운가",
+        "description": "지도상 거리는 가까워도 큰 도로를 건너야 할 수 있어 실제 도보 경로를 확인하세요."
+      },
+      {
+        "title": "한시장·용다리까지 얼마나 걸리는가",
+        "description": "시내 야경과 쇼핑을 자주 넣는다면 택시 이동 시간이 매일 누적됩니다."
+      },
+      {
+        "title": "호이안 일정이 있는가",
+        "description": "호이안을 밤까지 볼 계획이라면 다낭 왕복 대신 호이안 1박도 함께 비교해보세요."
+      },
+      {
+        "title": "호텔 주변 식당이 충분한가",
+        "description": "해변 리조트나 외곽 숙소는 주변 식당 선택지가 적을 수 있어 저녁 동선을 확인하는 편이 좋습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "first-tripHotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Stay Candidates",
+      "title": "미케비치·한강 중심으로 보기 좋은 다낭 숙소",
+      "titleId": "first-tripHotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "미케비치·한강 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-first-trip-1",
+        "image": {
+          "alt": "미케비치·푸억미 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "숙소 위치",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "미케비치·푸억미 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "추천 후보",
+          "첫 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-first-trip-1",
+          "text": "해변 산책과 식당, 마사지 동선을 함께 챙기고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-first-trip-2",
+        "image": {
+          "alt": "다낭 시내·한시장 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "숙소 위치",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "다낭 시내·한시장 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "추천 후보",
+          "첫 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-first-trip-2",
+          "text": "숙박비와 시장·카페 접근성을 함께 보고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-first-trip-3",
+        "image": {
+          "alt": "다낭 북부·공항·기차역 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "숙소 위치",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "다낭 북부·공항·기차역 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "추천 후보",
+          "첫 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-first-trip-3",
+          "text": "늦은 도착이나 이른 출국 전후 1박처럼 이동 목적이 분명할 때 비교하세요."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "first-tripOtherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "여행 스타일이 다르다면 이런 숙소도 함께 보세요",
+      "titleId": "first-tripOtherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "다낭 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/da-nang/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동비를 함께 줄이는 선택"
+      },
+      {
+        "href": "/destinations/da-nang/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "호이안·바나힐·후에 동선을 먼저 보는 선택"
+      },
+      {
+        "href": "/destinations/da-nang/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "아이와 부모님 동선을 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/da-nang/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "리조트 휴식과 차분한 해변을 우선한 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "first-tripFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "다낭 첫 여행 숙소, 미케비치와 한강 중 어디가 좋을까요?",
+      "titleId": "first-tripFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "다낭 처음이면 미케비치와 한강 중 어디가 좋나요?",
+        "answer": "바다 산책과 해변 분위기, 식당·마사지 동선을 함께 원한다면 미케비치가 편합니다. 한시장, 용다리, 야경 중심의 시내 이동이 많다면 한강 동쪽이나 시내권도 좋은 선택입니다.",
+        "open": true
+      },
+      {
+        "question": "호이안도 갈 예정이면 어느 지역 숙소가 편한가요?",
+        "answer": "호이안까지 하루 일정으로 다녀올 계획이라면 미케비치와 한강 모두 무난합니다. 호이안 비중이 크다면 다낭 2박, 호이안 1박처럼 나누는 방법도 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "미케비치 숙소는 시내 이동이 불편하지 않나요?",
+        "answer": "택시를 이용하면 한시장이나 용다리까지 이동이 어렵지 않습니다. 다만 매일 시내를 자주 오갈 계획이라면 한강 동쪽이나 시내권을 함께 비교해보세요.",
+        "open": false
+      },
+      {
+        "question": "부모님과 다낭 여행이면 어느 지역이 편한가요?",
+        "answer": "이동을 줄이고 식당과 해변을 함께 보려면 미케비치·푸억미가 편합니다. 야경과 시장 이동을 중시한다면 한강 동쪽 숙소도 괜찮지만 택시 동선을 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "다낭 3박 4일이면 숙소를 나누는 게 좋나요?",
+        "answer": "일정이 다낭 중심이면 한 지역에 묵어도 충분합니다. 호이안 숙박이나 리조트 휴식을 따로 넣고 싶다면 다낭 해변 2박, 호이안 또는 리조트 1박처럼 나누는 것도 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

@@ -1,0 +1,530 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 가오슝 여행 숙소 위치 추천 | 미려도와 중앙공원·산둬상권 비교",
+    "description": "첫 가오슝 여행 숙소는 미려도와 중앙공원·산둬상권부터 비교하면 쉽습니다. MRT 환승, 류허야시장, 쇼핑, 보얼예술특구 이동 기준으로 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/kaohsiung/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 가오슝 여행 숙소 위치 추천 | 미려도와 중앙공원·산둬상권 비교",
+      "description": "첫 가오슝 여행 숙소는 미려도와 중앙공원·산둬상권부터 비교하면 쉽습니다. MRT 환승, 류허야시장, 쇼핑, 보얼예술특구 이동 기준으로 정리했습니다.",
+      "url": "https://bestayable.com/destinations/kaohsiung/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 가오슝 여행 숙소 위치 추천 | 미려도와 중앙공원·산둬상권 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 가오슝 여행 숙소 위치 추천 | 미려도와 중앙공원·산둬상권 비교",
+      "description": "첫 가오슝 여행 숙소는 미려도와 중앙공원·산둬상권부터 비교하면 쉽습니다. MRT 환승, 류허야시장, 쇼핑, 보얼예술특구 이동 기준으로 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 가오슝 여행 숙소 위치 추천 | 미려도와 중앙공원·산둬상권 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "가오슝",
+            "item": "https://bestayable.com/destinations/kaohsiung/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "가오슝 첫 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/kaohsiung/first-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "가오슝 첫 여행 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "미려도·류허야시장"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "중앙공원·신주에장"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "산둬상권·85타워"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "옌청푸·보얼예술특구"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "쭤잉·한신아레나"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "시즈완·치진"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "가오슝 처음이면 미려도 근처에 묵는 게 가장 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "공항 이동과 MRT 환승, 류허야시장까지 함께 보려면 미려도가 가장 단순합니다. 다만 쇼핑과 도심 분위기를 더 원한다면 중앙공원, 보얼예술특구 중심이면 옌청푸도 함께 비교하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "류허야시장 근처 숙소는 밤에 시끄럽지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "야시장 가까운 숙소는 밤 시간대 소음과 혼잡이 있을 수 있습니다. 야시장 접근성을 원하되 조용함도 중요하다면 메인 거리에서 조금 떨어진 호텔을 보는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "보얼예술특구를 자주 갈 예정이면 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "보얼예술특구와 항구 산책, 옌청푸 카페를 자주 볼 계획이라면 옌청푸가 편합니다. 다만 공항 이동과 야시장 접근성은 미려도가 더 단순할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "가오슝공항에서 늦게 도착하면 어느 지역이 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "늦게 도착한다면 MRT 이동이 단순한 미려도나 중앙공원 주변이 편합니다. 체크인 시간이 늦을 수 있으니 호텔 프런트 운영 시간도 함께 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "가오슝 2박 3일이면 숙소를 옮길 필요가 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2박 3일이면 한 지역에 묵어도 충분합니다. MRT가 비교적 단순하므로 미려도나 중앙공원을 기준으로 잡고 보얼예술특구는 이동해서 다녀와도 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "가오슝",
+      "href": "/destinations/kaohsiung/",
+      "current": false
+    },
+    {
+      "label": "가오슝 첫 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "가오슝 숙소 가이드",
+    "title": "가오슝 첫 여행 숙소는 MRT 환승과 밤 동선으로 나눠보세요",
+    "description": "첫 가오슝 여행은 MRT만 잘 잡아도 공항, 야시장, 보얼예술특구, 항구 산책이 훨씬 편해집니다. 환승과 류허야시장을 가깝게 보려면 미려도, 쇼핑과 도심 산책을 자주 넣는다면 중앙공원·산둬상권부터 비교하면 쉽습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "MRT 환승·류허야시장은 미려도, 쇼핑·도심 산책은 중앙공원이 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "공항 이동과 MRT 환승, 류허야시장을 가깝게 두고 싶다면 미려도, 쇼핑과 도심 산책을 자주 넣는다면 중앙공원·산둬상권부터 보면 됩니다."
+    },
+    "ariaLabel": "첫 가오슝 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "환승과 야시장이 중요하다면",
+        "title": "미려도",
+        "lead": "MRT 환승이 쉽고 류허야시장을 가까이 두기 좋아 첫 가오슝 여행의 기준점으로 잡기 편합니다.",
+        "chipsAriaLabel": "미려도 선택 포인트",
+        "chips": [
+          "MRT 환승",
+          "류허야시장",
+          "공항 이동"
+        ],
+        "line": "공항 이동과 밤 먹거리까지 한 번에 보려면 미려도가 가장 단순합니다."
+      },
+      {
+        "label": "쇼핑과 도심 산책이 중요하다면",
+        "title": "중앙공원·산둬상권",
+        "lead": "쇼핑몰, 카페, 도심 산책을 함께 묶기 좋고 숙소 주변 분위기도 비교적 정돈되어 있습니다.",
+        "chipsAriaLabel": "중앙공원·산둬상권 선택 포인트",
+        "chips": [
+          "쇼핑",
+          "도심 산책",
+          "카페"
+        ],
+        "line": "야시장보다 쇼핑과 도심 분위기를 우선한다면 중앙공원·산둬 쪽이 잘 맞습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "firstTripWhyATitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "공항 이동과 야시장 동선을 묶는다면 미려도가 편합니다",
+        "titleId": "firstTripWhyATitle",
+        "description": "미려도는 MRT 환승과 류허야시장 접근성이 좋아 첫 가오슝 여행의 기준점이 되기 쉽습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "MRT 환승이 쉽습니다",
+          "description": "빨간선과 주황선을 함께 쓰기 좋아 공항, 시즈완, 보얼예술특구 이동을 나누기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "류허야시장이 가깝습니다",
+          "description": "저녁 식사와 간식을 숙소 주변에서 해결하기 좋아 밤 동선이 짧아집니다."
+        },
+        {
+          "number": "03",
+          "title": "처음에도 위치를 파악하기 쉽습니다",
+          "description": "가오슝 중심부 기준점으로 잡기 좋아 첫 방문자가 이동 방향을 이해하기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "짧은 일정에 무난합니다",
+          "description": "2박 3일처럼 시간이 짧다면 환승과 야시장을 함께 잡는 편이 편합니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "firstTripWhyBTitle",
+      "head": {
+        "kicker": "Why This Area",
+        "title": "쇼핑과 도심 산책이 많다면 중앙공원·산둬상권도 좋습니다",
+        "titleId": "firstTripWhyBTitle",
+        "description": "중앙공원과 산둬상권은 쇼핑, 카페, 도심 산책을 조금 더 차분하게 이어가기 좋은 위치입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "쇼핑 동선이 편합니다",
+          "description": "백화점과 쇼핑몰, 카페를 함께 보기 좋아 낮 일정과 저녁 산책이 자연스럽게 이어집니다."
+        },
+        {
+          "number": "02",
+          "title": "도심 분위기가 정돈되어 있습니다",
+          "description": "야시장 중심보다 거리 분위기가 차분해 호텔 컨디션을 함께 보기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "보얼예술특구 이동도 어렵지 않습니다",
+          "description": "MRT와 택시를 함께 쓰면 보얼예술특구, 항구 산책, 시즈완까지 이어가기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "야시장을 자주 간다면 미려도도 함께 보세요",
+          "description": "류허야시장과 환승을 자주 쓸 계획이라면 미려도가 더 단순할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "아직 고민된다면",
+    "title": "MRT와 항구 동선에 맞는 첫 가오슝 숙소 위치를 찾아보세요",
+    "description": "메이리다오역, 보얼예술특구, 리우허 야시장, 항구 산책 동선을 함께 보면 처음 머물기 좋은 위치를 정하기 쉽습니다.",
+    "href": "/destinations/kaohsiung/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "firstTripBookingTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "가오슝 호텔은 MRT역 거리, 야시장 소음, 항구 이동 시간을 확인하세요",
+      "titleId": "firstTripBookingTitle",
+      "description": "가오슝은 MRT가 편하지만 역 출구와 야시장 거리, 보얼예술특구 이동 시간이 숙소 선택에 영향을 줍니다."
+    },
+    "items": [
+      {
+        "title": "MRT역에서 실제로 가까운가",
+        "description": "한두 정거장 차이보다 역 출구까지 실제 도보 시간이 더 중요할 수 있습니다."
+      },
+      {
+        "title": "야시장 소음이 부담스럽지 않은가",
+        "description": "류허야시장 가까운 숙소는 편하지만 밤 소음 후기를 함께 확인하세요."
+      },
+      {
+        "title": "보얼예술특구까지 이동이 쉬운가",
+        "description": "보얼과 시즈완을 자주 볼 계획이라면 주황선 접근성이 좋은지 확인하세요."
+      },
+      {
+        "title": "공항 이동이 단순한가",
+        "description": "출국 시간이 이르다면 MRT나 택시 이동 시간이 짧은 지역이 편합니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "미려도·중앙공원 중심으로 보기 좋은 가오슝 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "미려도·류허야시장 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-first-trip-1",
+        "image": {
+          "alt": "호텔 두아 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도심 감각형",
+        "nameEn": "Hotel Dua",
+        "nameKo": "호텔 두아",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "역 가까움",
+          "첫 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-first-trip-1",
+          "text": "미려도와 중앙공원 사이에서 MRT 이동, 식사, 도심 산책을 균형 있게 잡고 싶은 첫 여행자에게 잘 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-first-trip-2",
+        "image": {
+          "alt": "그리트 인 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "실속 도심형",
+        "nameEn": "Greet Inn",
+        "nameKo": "그리트 인",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "밤 동선",
+          "첫 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-first-trip-2",
+          "text": "류허야시장과 도심 이동을 함께 보면서 숙박비 부담을 낮추고 싶은 일정에 알맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-first-trip-3",
+        "image": {
+          "alt": "카인드니스 호텔 중정 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "친절 서비스형",
+        "nameEn": "Kindness Hotel Jhong Jheng",
+        "nameKo": "카인드니스 호텔 중정",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "동선 균형",
+          "첫 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-first-trip-3",
+          "text": "처음 방문이라 숙소 주변 편의와 서비스 안정감을 함께 보고 싶을 때 비교하기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-first-trip-4",
+        "image": {
+          "alt": "호텔 인디고 가오슝 센트럴 파크 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "감성 중심형",
+        "nameEn": "Hotel Indigo Kaohsiung Central Park",
+        "nameKo": "호텔 인디고 가오슝 센트럴 파크",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "시내 중심",
+          "첫 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-first-trip-4",
+          "text": "쇼핑과 카페, 도심 산책을 일정에 많이 넣는다면 중앙공원 생활권의 장점이 살아납니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "야시장은 미려도, 쇼핑은 중앙공원, 보얼예술특구는 옌청푸를 보세요",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "가오슝 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/kaohsiung/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/kaohsiung/near-trip/",
+        "number": "02",
+        "title": "근교 이동 숙소",
+        "description": "타이난·타이중 이동을 출발역 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/kaohsiung/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/kaohsiung/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 밤에는 편히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "purposeFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "가오슝 첫 여행 숙소, 미려도와 중앙공원 중 어디가 좋을까요?",
+      "titleId": "purposeFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "가오슝 처음이면 미려도 근처에 묵는 게 가장 편한가요?",
+        "answer": "공항 이동과 MRT 환승, 류허야시장까지 함께 보려면 미려도가 가장 단순합니다. 다만 쇼핑과 도심 분위기를 더 원한다면 중앙공원, 보얼예술특구 중심이면 옌청푸도 함께 비교하세요.",
+        "open": true
+      },
+      {
+        "question": "류허야시장 근처 숙소는 밤에 시끄럽지 않나요?",
+        "answer": "야시장 가까운 숙소는 밤 시간대 소음과 혼잡이 있을 수 있습니다. 야시장 접근성을 원하되 조용함도 중요하다면 메인 거리에서 조금 떨어진 호텔을 보는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "보얼예술특구를 자주 갈 예정이면 어디가 좋나요?",
+        "answer": "보얼예술특구와 항구 산책, 옌청푸 카페를 자주 볼 계획이라면 옌청푸가 편합니다. 다만 공항 이동과 야시장 접근성은 미려도가 더 단순할 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "가오슝공항에서 늦게 도착하면 어느 지역이 편한가요?",
+        "answer": "늦게 도착한다면 MRT 이동이 단순한 미려도나 중앙공원 주변이 편합니다. 체크인 시간이 늦을 수 있으니 호텔 프런트 운영 시간도 함께 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "가오슝 2박 3일이면 숙소를 옮길 필요가 있나요?",
+        "answer": "2박 3일이면 한 지역에 묵어도 충분합니다. MRT가 비교적 단순하므로 미려도나 중앙공원을 기준으로 잡고 보얼예술특구는 이동해서 다녀와도 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

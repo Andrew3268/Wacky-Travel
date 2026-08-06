@@ -1,0 +1,520 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선",
+    "description": "오타루·비에이·후라노·조잔케이를 함께 보는 삿포로 여행은 숙소 주변 명소보다 JR 접근성, 투어 집결지, 눈길 이동을 먼저 확인해야 합니다. 삿포로역과 오도리 중 내 일정에 맞는 위치를 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/sapporo/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선",
+      "description": "오타루·비에이·후라노·조잔케이를 함께 보는 삿포로 여행은 숙소 주변 명소보다 JR 접근성, 투어 집결지, 눈길 이동을 먼저 확인해야 합니다. 삿포로역과 오도리 중 내 일정에 맞는 위치를 정리했습니다.",
+      "url": "https://bestayable.com/destinations/sapporo/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선",
+      "description": "오타루·비에이·후라노·조잔케이를 함께 보는 삿포로 여행은 숙소 주변 명소보다 JR 접근성, 투어 집결지, 눈길 이동을 먼저 확인해야 합니다. 삿포로역과 오도리 중 내 일정에 맞는 위치를 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "삿포로",
+            "item": "https://bestayable.com/destinations/sapporo/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "삿포로 근교 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/sapporo/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "삿포로 근교 여행 숙소 추천 호텔",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "삿포로역 주변 숙소"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "오도리역 주변 숙소"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "삿포로역 북쪽 숙소"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "오도리·스스키노 북쪽 숙소"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "삿포로 근교 여행 숙소는 삿포로역과 오도리 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "오타루 JR 이동과 비에이·후라노 투어가 많다면 삿포로역이 편하고, 시내 산책과 저녁 동선을 중시한다면 오도리·스스키노가 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오타루를 다녀오려면 삿포로역 숙소가 더 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대체로 삿포로역 접근성이 좋을수록 오타루 당일치기 출발과 복귀가 단순합니다. 겨울에는 역까지의 실내 이동 가능 여부도 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "비에이 투어가 있으면 어디에 묵는 것이 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "투어 집결지가 삿포로역 주변인 경우가 많아 삿포로역 접근성이 좋은 숙소가 편할 수 있습니다. 예약한 투어의 정확한 집결지를 먼저 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오도리 숙소도 근교 여행에 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "근교 일정이 1~2번이고 시내 관광 비중이 크다면 오도리도 좋습니다. 다만 아침 투어가 많으면 삿포로역 이동 시간을 함께 봐야 합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "조잔케이는 삿포로 시내 숙소에서 당일치기로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "가능하지만 온천 체류가 목적이라면 조잔케이 1박도 고려할 수 있습니다. 삿포로 시내 일정과 온천 휴식 비중에 따라 나누는 것이 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "삿포로",
+      "href": "/destinations/sapporo/",
+      "current": false
+    },
+    {
+      "label": "삿포로 근교 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "삿포로 숙소 가이드",
+    "title": "삿포로 근교 여행 숙소는 JR과 투어 집결지 기준으로 고르세요",
+    "description": "오타루, 비에이, 후라노, 조잔케이처럼 근교 일정이 들어가면 숙소 선택 기준이 달라집니다. 특히 겨울에는 지도상 거리보다 지하도 접근, 눈길 이동, 아침 투어 집결지까지의 실제 동선이 더 중요합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "오타루·비에이는 삿포로역, 근교 복귀 후 저녁 동선은 오도리·스스키노가 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "삿포로 근교 여행이 많은 일정은 모든 지역을 넓게 비교하기보다, JR 이동과 투어 집결지는 삿포로역을 우선하고, 근교에서 돌아온 뒤 저녁 식사와 산책까지 보면 오도리·스스키노 생활권을 보조 후보로 비교하면 됩니다."
+    },
+    "ariaLabel": "삿포로 근교 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "JR·투어 출발이 많다면",
+        "title": "삿포로역",
+        "lead": "오타루 JR 이동, 비에이·후라노 투어, 신치토세공항 이동을 함께 보기 좋아 아침 출발이 많은 일정에서 동선이 단순합니다.",
+        "chipsAriaLabel": "삿포로역 선택 포인트",
+        "chips": [
+          "오타루 JR",
+          "비에이 투어",
+          "공항철도"
+        ],
+        "line": "오타루를 다녀오거나 비에이·후라노 투어 집합이 빠른 날이 많다면 삿포로역부터 보는 편이 안전합니다."
+      },
+      {
+        "label": "근교 복귀 후 저녁을 중시한다면",
+        "title": "오도리·스스키노",
+        "lead": "오도리공원, 지하도, 스스키노 식당가를 함께 쓰기 좋아 근교에서 돌아온 뒤 저녁 식사와 숙소 복귀 동선을 짧게 만들기 좋습니다.",
+        "chipsAriaLabel": "오도리·스스키노 선택 포인트",
+        "chips": [
+          "지하도",
+          "저녁 동선",
+          "시내 산책"
+        ],
+        "line": "근교 일정이 1~2번이고 시내 체류 시간이 더 많다면 오도리·스스키노도 보조 후보로 충분히 비교할 만합니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyFirstTitle",
+      "head": {
+        "kicker": "Why Sapporo Station",
+        "title": "오타루 JR 이동과 비에이 투어가 있다면 삿포로역 접근성이 중요합니다",
+        "titleId": "whyFirstTitle",
+        "description": "삿포로역은 JR, 공항철도, 투어 집결지 접근을 함께 보기 좋아 근교 이동이 많은 일정에서 실패 가능성이 낮습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "오타루 JR 이동이 단순합니다",
+          "description": "오타루 당일치기는 삿포로역 접근성이 좋을수록 아침 출발과 저녁 복귀가 편해집니다."
+        },
+        {
+          "number": "02",
+          "title": "비에이·후라노 투어 집결이 쉽습니다",
+          "description": "겨울 비에이 투어나 후라노 일정은 아침 집합이 빠른 경우가 많아 호텔에서 집결지까지의 시간이 중요합니다."
+        },
+        {
+          "number": "03",
+          "title": "공항 이동까지 함께 보기 좋습니다",
+          "description": "신치토세공항에서 들어오거나 귀국일 이동이 있는 일정이라면 삿포로역 주변이 동선을 줄이기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "눈길 이동 부담을 줄일 수 있습니다",
+          "description": "겨울에는 짧은 거리도 피로가 커질 수 있어 역과 지하도 접근성이 숙소 만족도를 좌우합니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whySecondTitle",
+      "head": {
+        "kicker": "Why Odori",
+        "title": "근교 복귀 후 저녁 동선을 중시한다면 오도리·스스키노가 편합니다",
+        "titleId": "whySecondTitle",
+        "description": "오도리와 스스키노 생활권은 근교 출발지라기보다 복귀 후 식사, 쇼핑, 산책을 이어가기 쉬운 보조 후보입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "지하도와 시내 산책이 편합니다",
+          "description": "오도리 주변은 지하도와 중심 상권을 활용하기 좋아 날씨가 좋지 않은 날에도 이동 부담이 줄어듭니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 식사 선택지가 많습니다",
+          "description": "스스키노와 가까운 위치는 근교에서 돌아온 뒤 식사와 편의점, 숙소 복귀를 짧게 만들기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "삿포로 시내 관광을 묶기 쉽습니다",
+          "description": "오도리공원, 시계탑, 니조시장, 스스키노를 도보나 짧은 이동으로 이어가기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "아침 투어가 많다면 삿포로역도 보세요",
+          "description": "비에이·후라노 투어와 오타루 JR 이동이 많다면 오도리보다 삿포로역이 더 단순할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "오타루·비에이·후라노 일정에 맞는 숙소 위치를 찾아보세요",
+    "description": "투어 집결지와 JR 이용 여부에 따라 편한 위치가 달라집니다. 겨울철 동선까지 생각하면 삿포로역과 오도리 중 어느 쪽이 맞는지 더 분명해집니다.",
+    "href": "/destinations/sapporo/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "삿포로 근교 호텔은 지하도 접근, 투어 집결지, 눈길 이동을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "숙소 지역을 정했다면 목적지별 출발역, 투어 집결지, 늦은 복귀, 겨울 이동만 먼저 확인해도 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "가장 많이 갈 근교 목적지",
+        "description": "오타루, 비에이, 후라노, 조잔케이 중 반복되는 목적지가 어디인지 먼저 정리하세요."
+      },
+      {
+        "title": "투어 집결지까지 실제 이동 시간",
+        "description": "호텔에서 집합 장소까지 눈길을 걷는 시간과 지하도 이용 가능 여부를 확인하세요."
+      },
+      {
+        "title": "늦은 복귀 후 저녁 동선",
+        "description": "근교에서 돌아온 뒤 식사와 숙소 복귀가 한 번에 이어지는지 확인하세요."
+      },
+      {
+        "title": "공항철도와 캐리어 이동",
+        "description": "신치토세공항 이동이 짐을 든 상태에서도 단순한지 함께 보세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "근교 출발 동선까지 보기 좋은 삿포로 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "삿포로역·오도리·스스키노 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-near-trip-1",
+        "image": {
+          "alt": "삿포로역 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "삿포로역 중심",
+        "nameEn": "SAPPORO STATION AREA",
+        "nameKo": "삿포로역 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "JR·공항",
+          "근교 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-near-trip-1",
+          "text": "오타루 JR 이동과 신치토세공항 동선을 함께 보는 일정에 편합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-near-trip-2",
+        "image": {
+          "alt": "오도리역 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "오도리 중심",
+        "nameEn": "ODORI AREA",
+        "nameKo": "오도리역 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "지하도",
+          "근교 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-near-trip-2",
+          "text": "근교에서 돌아온 뒤 시내 산책과 저녁 식사를 이어가고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-near-trip-3",
+        "image": {
+          "alt": "삿포로역 북쪽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "삿포로역 북쪽",
+        "nameEn": "NORTH SAPPORO STATION AREA",
+        "nameKo": "삿포로역 북쪽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "투어 집결",
+          "근교 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-near-trip-3",
+          "text": "비에이·후라노 투어 집합과 JR 이동을 우선하는 일정에 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-near-trip-4",
+        "image": {
+          "alt": "오도리·스스키노 북쪽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "스스키노 북쪽",
+        "nameEn": "SUSUKINO NORTH AREA",
+        "nameKo": "오도리·스스키노 북쪽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "저녁 동선",
+          "근교 여행",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-near-trip-4",
+          "text": "근교에서 돌아온 뒤 식사와 숙소 복귀를 짧게 만들고 싶은 분께 편합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "시내 중심 여행과 근교 중심 여행은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "삿포로 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/sapporo/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에 맞춰 숙소 지역을 빠르게 좁히는 선택"
+      },
+      {
+        "href": "/destinations/sapporo/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/sapporo/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/sapporo/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "삿포로 근교 여행 숙소, 삿포로역과 오도리 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "삿포로 근교 여행 숙소는 삿포로역과 오도리 중 어디가 좋나요?",
+        "answer": "오타루 JR 이동과 비에이·후라노 투어가 많다면 삿포로역이 편하고, 시내 산책과 저녁 동선을 중시한다면 오도리·스스키노가 편합니다.",
+        "open": true
+      },
+      {
+        "question": "오타루를 다녀오려면 삿포로역 숙소가 더 편한가요?",
+        "answer": "대체로 삿포로역 접근성이 좋을수록 오타루 당일치기 출발과 복귀가 단순합니다. 겨울에는 역까지의 실내 이동 가능 여부도 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "비에이 투어가 있으면 어디에 묵는 것이 좋나요?",
+        "answer": "투어 집결지가 삿포로역 주변인 경우가 많아 삿포로역 접근성이 좋은 숙소가 편할 수 있습니다. 예약한 투어의 정확한 집결지를 먼저 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "오도리 숙소도 근교 여행에 괜찮나요?",
+        "answer": "근교 일정이 1~2번이고 시내 관광 비중이 크다면 오도리도 좋습니다. 다만 아침 투어가 많으면 삿포로역 이동 시간을 함께 봐야 합니다.",
+        "open": false
+      },
+      {
+        "question": "조잔케이는 삿포로 시내 숙소에서 당일치기로 괜찮나요?",
+        "answer": "가능하지만 온천 체류가 목적이라면 조잔케이 1박도 고려할 수 있습니다. 삿포로 시내 일정과 온천 휴식 비중에 따라 나누는 것이 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

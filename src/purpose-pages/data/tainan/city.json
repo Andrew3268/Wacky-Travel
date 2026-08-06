@@ -1,0 +1,14 @@
+{
+  "slug": "tainan",
+  "nameKo": "타이난",
+  "countryKo": "대만",
+  "assetsVersion": "20260806-frontend-v19",
+  "stylesheetPaths": [
+    "/assets/css/app.css",
+    "/assets/css/components.css",
+    "/assets/css/travel-core.css",
+    "/assets/css/travel-city.css",
+    "/assets/css/travel-purpose.css",
+    "/assets/css/site-header.css"
+  ]
+}

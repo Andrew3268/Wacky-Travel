@@ -153,24 +153,12 @@
       "current": true
     }
   ],
-  "mainClasses": [
-    "travel-page",
-    "wt-purpose-page",
-    "wt-purpose-page--family-trip",
-    "wt-purpose-page--fukuoka-unified"
-  ],
   "hero": {
     "kicker": "후쿠오카 숙소 가이드",
     "title": "후쿠오카 가족 여행 숙소는 이동 피로와 쉬는 시간을 함께 보세요",
     "description": "아이 또는 부모님과 함께하는 후쿠오카 여행은 숙소 주변 분위기보다 실제 이동 피로가 더 크게 느껴질 수 있습니다. 공항·기차·버스 이동이 많다면 하카타가 편하고, 오호리공원이나 모모치해변에서 천천히 쉬는 일정이라면 오호리·모모치도 함께 볼 만합니다."
   },
   "areaChoice": {
-    "classes": [
-      "wt-section",
-      "wt-family-area-choice",
-      "wt-first-area-choice",
-      "wt-area-choice--unified"
-    ],
     "ariaLabelledby": "familyAreaTitle",
     "head": {
       "kicker": "Family Choice",
@@ -181,10 +169,6 @@
     "ariaLabel": "후쿠오카 가족 여행 숙소 위치 선택",
     "choices": [
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--hakata"
-        ],
         "label": "이동을 줄이고 싶다면",
         "title": "하카타",
         "lead": "공항에서 들어오기 쉽고, JR 하카타역과 버스터미널을 함께 쓰기 좋아 아이·부모님·캐리어가 있는 일정에서 동선이 단순합니다.",
@@ -197,10 +181,6 @@
         "line": "짧은 일정이거나 유후인·다자이후·기타큐슈를 함께 본다면 하카타가 가장 무난합니다."
       },
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--ohori"
-        ],
         "label": "천천히 쉬고 싶다면",
         "title": "오호리·모모치",
         "lead": "오호리공원, 모모치해변, 후쿠오카타워 일정을 여유롭게 잡기 좋아 아이와 산책하거나 바다 분위기를 즐기기 좋습니다.",
@@ -212,14 +192,11 @@
         ],
         "line": "쇼핑보다 산책과 휴식이 중요하고 하루 일정을 느긋하게 잡는 가족에게 잘 맞습니다."
       }
-    ]
+    ],
+    "support": null
   },
   "reasons": [
     {
-      "classes": [
-        "wt-section",
-        "wt-section--soft"
-      ],
       "ariaLabelledby": "whyHakataTitle",
       "head": {
         "kicker": "Why Hakata",
@@ -251,9 +228,6 @@
       ]
     },
     {
-      "classes": [
-        "wt-section"
-      ],
       "ariaLabelledby": "whyOhoriTitle",
       "head": {
         "kicker": "Why Ohori & Momochi",
@@ -286,11 +260,6 @@
     }
   ],
   "survey": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-section--survey-cta"
-    ],
     "kicker": "가족 동선이 걱정된다면",
     "title": "가족과 머물기 편한 후쿠오카 숙소 위치를 찾아보세요",
     "description": "아이나 부모님과 함께라면 식사, 쇼핑, 쉬어가는 동선이 중요합니다. 가족 여행에 편한 숙소 위치를 찾는 데 도움이 됩니다.",
@@ -298,11 +267,6 @@
     "button": "내 여행에 맞는 숙소 위치 찾기"
   },
   "bookingChecks": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-firsttrip-before-booking"
-    ],
     "ariaLabelledby": "bookingCheckTitle",
     "head": {
       "kicker": "Before Booking",
@@ -330,9 +294,6 @@
     ]
   },
   "hotels": {
-    "classes": [
-      "wt-section"
-    ],
     "ariaLabelledby": "hotelTitle",
     "ariaHidden": "true",
     "adminOnly": true,
@@ -351,17 +312,18 @@
     "cards": [
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-1",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "더 블라썸 하카타 프리미어 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": ""
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "가족 동선",
         "nameEn": "The Blossom Hakata Premier",
@@ -372,29 +334,29 @@
           "가족 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "가족 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-1",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-family-trip-1",
           "text": "하카타역과 캐널시티 사이 동선을 활용하기 좋아 가족 일정의 이동 피로를 줄이기 쉽습니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-2",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "힐튼 후쿠오카 씨 호크 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "해변·공원",
         "nameEn": "Hilton Fukuoka Sea Hawk",
@@ -405,29 +367,29 @@
           "가족 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "가족 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-2",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-family-trip-2",
           "text": "모모치해변과 후쿠오카타워 일정을 여유롭게 잡고 싶은 가족 여행에 어울립니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-3",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "호텔 오쿠라 후쿠오카 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "부모님 동반",
         "nameEn": "Hotel Okura Fukuoka",
@@ -438,29 +400,29 @@
           "가족 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "가족 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-3",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-family-trip-3",
           "text": "지하철 접근성과 차분한 분위기를 함께 원하는 부모님 동반 여행에서 비교해볼 만합니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-4",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "미야코 호텔 하카타 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "공항 이동",
         "nameEn": "Miyako Hotel Hakata",
@@ -471,23 +433,18 @@
           "가족 여행",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "가족 여행",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-family-trip-4",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-family-trip-4",
           "text": "아이와 캐리어가 있는 일정에서 공항과 하카타역 이동을 단순하게 만들기 쉽습니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       }
     ]
   },
   "otherChoices": {
-    "classes": [
-      "wt-section",
-      "wt-firsttrip-other-choices"
-    ],
     "ariaLabelledby": "otherChoicesTitle",
     "head": {
       "kicker": "Other Choices",
@@ -524,11 +481,6 @@
     ]
   },
   "faq": {
-    "classes": [
-      "wt-section",
-      "wt-section--compact",
-      "wt-purpose-faq"
-    ],
     "ariaLabelledby": "familyFaqTitle",
     "head": {
       "kicker": "FAQ",
@@ -563,5 +515,6 @@
         "open": false
       }
     ]
-  }
+  },
+  "extraScripts": []
 }

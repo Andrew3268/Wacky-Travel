@@ -1526,79 +1526,6 @@ main.wt-purpose-page--quiet-stay .container {
 }
 }
 
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__topline {
-  order: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin: 0 0 13px;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__fit {
-  display: block;
-  width: auto;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: #475569;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: -0.025em;
-  word-break: keep-all;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__stars {
-  flex: 0 0 auto;
-  margin-left: auto;
-  color: #334155;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.025em;
-  white-space: nowrap;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list {
-  order: 6;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px 11px;
-  margin-top: 17px;
-  padding-top: 14px;
-  border-top: 1px solid #eef2f7;
-  color: #64748b;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: -0.025em;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list b {
-  color: #334155;
-  font-weight: 500;
-}
-
-@media (max-width: 520px) {
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__topline {
-  align-items: flex-start;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
-  white-space: normal;
-}
-}
 
 .wt-purpose-page .wt-hotel-card h3 {
   display: block;
@@ -1609,38 +1536,11 @@ main.wt-purpose-page--quiet-stay .container {
   white-space: nowrap;
 }
 
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__fit {
-  color: #1e40af;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 8px 12px;
-}
-
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-width: 0;
-  gap: 8px;
-  white-space: nowrap;
-}
-
-@media (max-width: 520px) {
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-card__score-list span {
-  white-space: nowrap;
-}
-}
 
 @media (max-width: 720px) {
 .wt-purpose-page .wt-hotel-grid,
 .wt-purpose-page #hotels .wt-hotel-grid,
-.wt-purpose-page--first-trip #hotels .wt-hotel-grid,
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-grid {
+.wt-purpose-page--first-trip #hotels .wt-hotel-grid {
   margin-right: -24px;
   padding-right: 24px;
   scroll-padding-right: 24px;
@@ -1648,8 +1548,7 @@ main.wt-purpose-page--quiet-stay .container {
 
 .wt-purpose-page .wt-hotel-grid::after,
 .wt-purpose-page #hotels .wt-hotel-grid::after,
-.wt-purpose-page--first-trip #hotels .wt-hotel-grid::after,
-.wt-purpose-page--fukuoka-first-trip #hotels .wt-hotel-grid::after {
+.wt-purpose-page--first-trip #hotels .wt-hotel-grid::after {
   content: "";
   flex: 0 0 16px;
 }
@@ -2304,17 +2203,6 @@ body.travel-purpose-body .wt-cta-band h2 {
   word-break: keep-all;
 }
 
-body.travel-purpose-body .wt-choice-card--hakata,
-body.travel-purpose-body .wt-choice-card--tenjin,
-body.travel-purpose-body .wt-choice-card--value-a,
-body.travel-purpose-body .wt-choice-card--value-b,
-body.travel-purpose-body .wt-choice-card--primary,
-body.travel-purpose-body .wt-choice-card--secondary,
-body.travel-purpose-body [class*="wt-choice-card--"] {
-  border-color: #e5e5e5 !important;
-  background: #fff !important;
-  background-image: none !important;
-}
 
 body.travel-purpose-body .wt-choice-card__label {
   margin-bottom: 2px !important;
@@ -3916,12 +3804,12 @@ body.travel-purpose-body .wt-section--faq {
   border-top: 0 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-other-choices {
   background: #f6f6f4 !important;
   border-top-color: #e8e8e4 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices .wt-section-head,
+body.travel-purpose-body .wt-purpose-page--first-trip .wt-purpose-other-choices .wt-section-head,
 body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-related-guides .wt-section-head {
   margin-bottom: 32px !important;
 }
@@ -4077,7 +3965,7 @@ body.travel-purpose-body .wt-firsttrip-guide:focus-visible {
 }
 
 @media (max-width: 767px) {
-body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices .wt-section-head,
+body.travel-purpose-body .wt-purpose-page--first-trip .wt-purpose-other-choices .wt-section-head,
 body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-related-guides .wt-section-head {
   margin-bottom: 26px !important;
 }
@@ -4136,7 +4024,7 @@ body.travel-purpose-body .wt-firsttrip-guide:focus-visible .wt-firsttrip-guide__
 }
 
 @media (max-width: 767px) {
-body.travel-purpose-body .wt-firsttrip-other-choices {
+body.travel-purpose-body .wt-purpose-other-choices {
   width: 100vw !important;
   max-width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
@@ -4244,7 +4132,7 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-more-ban
 }
 
 @media (max-width: 767px) {
-body.travel-purpose-body .wt-purpose-page--first-trip .wt-firsttrip-other-choices {
+body.travel-purpose-body .wt-purpose-page--first-trip .wt-purpose-other-choices {
   padding: 0 20px !important;
 }
 
@@ -4378,7 +4266,7 @@ body.travel-purpose-body .wt-purpose-page--first-trip #hotels .wt-hotel-section-
 }
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-other-choices {
   box-sizing: border-box !important;
   width: 100vw !important;
   max-width: 100vw !important;
@@ -4389,7 +4277,7 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices {
   border-top-color: #e8e8e4 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices > .container {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-other-choices > .container {
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: var(--container, 1180px) !important;
@@ -4397,7 +4285,7 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-other-choices > .contain
   margin-left: auto !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-grid {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-grid {
   counter-reset: firsttrip-booking-check;
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4406,7 +4294,7 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check
   border-bottom: 1px solid #111 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item {
   counter-increment: firsttrip-booking-check;
   position: relative !important;
   display: grid !important;
@@ -4422,15 +4310,15 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check
   transition: background-color .22s ease, color .22s ease !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:nth-child(odd) {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:nth-child(odd) {
   border-right: 1px solid #d8d8d3 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:nth-child(-n/**/+2) {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:nth-child(-n/**/+2) {
   border-bottom: 1px solid #d8d8d3 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item::before {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item::before {
   content: counter(firsttrip-booking-check, decimal-leading-zero);
   grid-column: 1 !important;
   grid-row: 1 / span 2 !important;
@@ -4449,7 +4337,7 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check
   transition: border-color .22s ease, color .22s ease !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item strong {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item strong {
   grid-column: 2 !important;
   display: block !important;
   width: auto !important;
@@ -4465,7 +4353,7 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check
   letter-spacing: -.04em !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item .wt-check-item__lead {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item .wt-check-item__lead {
   grid-column: 2 !important;
   display: block !important;
   margin: 0 !important;
@@ -4479,30 +4367,30 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check
 }
 
 @media (hover: hover) and (pointer: fine) {
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:hover {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:hover {
   background: #111 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:hover::before {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:hover::before {
   border-color: #fff !important;
   color: #fff !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:hover strong {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:hover strong {
   color: #fff !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:hover .wt-check-item__lead {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:hover .wt-check-item__lead {
   color: #cfcfcf !important;
 }
 }
 
 @media (max-width: 720px) {
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-grid {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-grid {
   grid-template-columns: 1fr !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item {
   grid-template-columns: 42px minmax(0, 1fr) !important;
   column-gap: 16px !important;
   min-height: 0 !important;
@@ -4511,1048 +4399,26 @@ body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check
   border-bottom: 1px solid #d8d8d3 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item:last-child {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item:last-child {
   border-bottom: 0 !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item::before {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item::before {
   width: 42px !important;
   height: 42px !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item strong {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item strong {
   margin-bottom: 9px !important;
   font-size: 16px !important;
 }
 
-body.travel-purpose-body .wt-purpose-page .wt-firsttrip-before-booking .wt-check-item .wt-check-item__lead {
+body.travel-purpose-body .wt-purpose-page .wt-purpose-before-booking .wt-check-item .wt-check-item__lead {
   font-size: 13px !important;
   line-height: 1.68 !important;
 }
 }
 
-@media (max-width: 720px) {
-body.travel-purpose-body
-  .wt-purpose-page--fukuoka-first-trip
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item,
-body.travel-purpose-body
-  .wt-purpose-page--fukuoka-first-trip
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item:nth-child(odd),
-body.travel-purpose-body
-  .wt-purpose-page--fukuoka-first-trip
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item:nth-child(even) {
-  border-right: none !important;
-  border-right-width: 0 !important;
-  border-right-style: none !important;
-  border-inline-end: none !important;
-}
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial {
-  background: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-section-head {
-  max-width: 800px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-area-choice-simple {
-  margin-top: 36px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main {
-  display: grid !important;
-  grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-  gap: 0 !important;
-  overflow: hidden !important;
-  background: #fff !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main > article.wt-choice-card {
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: minmax(0,1fr) auto !important;
-  grid-template-areas: "meta number" "title number" "lead lead" "chips chips" "line line" !important;
-  align-content: start !important;
-  gap: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 30px 34px 28px !important;
-  overflow: visible !important;
-  background: #fff !important;
-  color: #111 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  transform: none !important;
-  transition: background-color .18s ease !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main > article.wt-choice-card + article.wt-choice-card {
-  border-left: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card::before {
-  grid-area: number !important;
-  align-self: start !important;
-  content: "01" !important;
-  display: block !important;
-  margin: 2px 0 0 24px !important;
-  color: #9a9a94 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: .12em !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card:nth-child(2)::before {
-  content: "02" !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card::after {
-  content: none !important;
-  display: none !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__label {
-  grid-area: meta !important;
-  margin: 0 0 12px !important;
-  color: #666 !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  line-height: 1.45 !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card h3 {
-  grid-area: title !important;
-  margin: 0 !important;
-  color: #111 !important;
-  font-size: clamp(34px,4vw,52px) !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: -.055em !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__lead {
-  grid-area: lead !important;
-  max-width: 560px !important;
-  margin: 24px 0 0 !important;
-  color: #414141 !important;
-  font-size: 15px !important;
-  line-height: 1.75 !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__chips {
-  grid-area: chips !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 0 !important;
-  margin: 22px 0 0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__chips span {
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #111 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1.5 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__chips span + span::before {
-  content: "·" !important;
-  display: inline-block !important;
-  margin: 0 10px !important;
-  color: #aaa !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__line {
-  grid-area: line !important;
-  margin: 24px 0 0 !important;
-  padding: 18px 0 0 !important;
-  border-top: 1px solid #e1e1dc !important;
-  color: #656565 !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  line-height: 1.65 !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
-  display: grid !important;
-  grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-  gap: 0 !important;
-  margin-top: 36px !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #d7d7d2 !important;
-  background: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item {
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: 42px minmax(0,1fr) !important;
-  grid-template-areas: "num title" "num lead" !important;
-  align-content: start !important;
-  column-gap: 18px !important;
-  row-gap: 10px !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 28px 30px !important;
-  background: #fff !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item:nth-child(odd) {
-  border-right: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item:nth-child(-n/**/+2) {
-  border-bottom: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item::before {
-  grid-area: num !important;
-  content: counter(wtbooking,decimal-leading-zero) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 42px !important;
-  height: 42px !important;
-  background: #111 !important;
-  color: #fff !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  letter-spacing: .08em !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid {
-  counter-reset: wtbooking !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item {
-  counter-increment: wtbooking !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-item strong {
-  grid-area: title !important;
-  margin: 0 !important;
-  color: #111 !important;
-  font-size: 18px !important;
-  font-weight: 600 !important;
-  line-height: 1.45 !important;
-  letter-spacing: -.03em !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-item .wt-check-item__lead {
-  grid-area: lead !important;
-  margin: 0 !important;
-  color: #666 !important;
-  font-size: 14px !important;
-  line-height: 1.75 !important;
-  word-break: keep-all !important;
-}
-
-@media (hover:hover) and (pointer:fine) {
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main > article.wt-choice-card:hover,
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item:hover {
-  background: #f6f6f4 !important;
-}
-}
-
-@media (max-width:760px) {
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-area-choice-simple {
-  margin-top: 28px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main {
-  grid-template-columns: 1fr !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main > article.wt-choice-card {
-  padding: 26px 0 25px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-main > article.wt-choice-card + article.wt-choice-card {
-  border-left: 0 !important;
-  border-top: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card::before {
-  margin-left: 18px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card h3 {
-  font-size: 38px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__lead {
-  margin-top: 20px !important;
-  font-size: 15px !important;
-  line-height: 1.7 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__chips {
-  margin-top: 18px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-area-choice-editorial .wt-choice-card__line {
-  margin-top: 20px !important;
-  padding-top: 16px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
-  grid-template-columns: 1fr !important;
-  margin-top: 28px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item,
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item:nth-child(odd),
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item:nth-child(even) {
-  grid-template-columns: 38px minmax(0,1fr) !important;
-  column-gap: 15px !important;
-  padding: 23px 0 !important;
-  border-right: none !important;
-  border-right-width: 0 !important;
-  border-right-style: none !important;
-  border-inline-end: none !important;
-  border-bottom: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item:last-child {
-  border-bottom: 0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid > .wt-check-item::before {
-  width: 38px !important;
-  height: 38px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-item strong {
-  font-size: 17px !important;
-}
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial {
-  background: #fff !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-section-head {
-  max-width: 800px !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-area-choice-simple {
-  margin-top: 36px !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main {
-  display: grid !important;
-  grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-  gap: 0 !important;
-  overflow: hidden !important;
-  background: #fff !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main>article.wt-choice-card {
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: minmax(0,1fr) auto !important;
-  grid-template-areas: "meta number" "title number" "lead lead" "chips chips" "line line" !important;
-  align-content: start !important;
-  gap: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 30px 34px 28px !important;
-  background: #fff !important;
-  color: #111 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  transform: none !important;
-  transition: background-color .18s ease !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main>article.wt-choice-card+article.wt-choice-card {
-  border-left: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card:before {
-  grid-area: number !important;
-  align-self: start !important;
-  content: "01" !important;
-  display: block !important;
-  margin: 2px 0 0 24px !important;
-  color: #9a9a94 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: .12em !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card:nth-child(2):before {
-  content: "02" !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card:after {
-  content: none !important;
-  display: none !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card__label {
-  grid-area: meta !important;
-  margin: 0 0 12px !important;
-  color: #666 !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  line-height: 1.45 !important;
-  letter-spacing: 0 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card h3 {
-  grid-area: title !important;
-  margin: 0 !important;
-  color: #111 !important;
-  font-size: clamp(34px,4vw,52px) !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: -.055em !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card__lead {
-  grid-area: lead !important;
-  max-width: 560px !important;
-  margin: 24px 0 0 !important;
-  color: #414141 !important;
-  font-size: 15px !important;
-  line-height: 1.75 !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card__chips {
-  grid-area: chips !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 0 !important;
-  margin: 22px 0 0 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card__chips span {
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #111 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1.5 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card__chips span+span:before {
-  content: "·" !important;
-  display: inline-block !important;
-  margin: 0 10px !important;
-  color: #aaa !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-card__line {
-  grid-area: line !important;
-  margin: 24px 0 0 !important;
-  padding: 18px 0 0 !important;
-  border-top: 1px solid #e1e1dc !important;
-  color: #656565 !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  line-height: 1.65 !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-grid {
-  display: grid !important;
-  grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-  gap: 0 !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item {
-  position: relative !important;
-  padding: 28px 30px !important;
-  border: 0 !important;
-  border-bottom: 1px solid #d7d7d2 !important;
-  border-radius: 0 !important;
-  background: #fff !important;
-  box-shadow: none !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-child(odd) {
-  border-right: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-last-child(-n/**/+2) {
-  border-bottom: 0 !important;
-}
-
-@media (max-width:760px) {
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-area-choice-simple {
-  margin-top: 28px !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main {
-  grid-template-columns: 1fr !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main>article.wt-choice-card {
-  padding: 26px 0 25px !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-area-choice-editorial .wt-choice-main>article.wt-choice-card+article.wt-choice-card {
-  border-left: 0 !important;
-  border-top: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-grid {
-  grid-template-columns: 1fr !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item,
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-child(odd),
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-child(even) {
-  border-right: 0 !important;
-  border-inline-end: 0 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:nth-last-child(2) {
-  border-bottom: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-fukuoka-before-booking-editorial .wt-check-item:last-child {
-  border-bottom: 0 !important;
-}
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
-  counter-reset: firsttrip-booking-check !important;
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 !important;
-  margin-top: 0 !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #111 !important;
-  background: transparent !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item {
-  counter-increment: firsttrip-booking-check !important;
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: 48px minmax(0, 1fr) !important;
-  grid-template-areas: none !important;
-  align-content: start !important;
-  column-gap: 20px !important;
-  row-gap: 0 !important;
-  min-height: 190px !important;
-  margin: 0 !important;
-  padding: 28px 30px 30px !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  transition: background-color .22s ease, color .22s ease !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(odd) {
-  border-right: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(-n/**/+2) {
-  border-bottom: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-last-child(-n/**/+2) {
-  border-bottom: 0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item::before {
-  content: counter(firsttrip-booking-check, decimal-leading-zero) !important;
-  grid-column: 1 !important;
-  grid-row: 1 / span 2 !important;
-  grid-area: auto !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 48px !important;
-  height: 48px !important;
-  border: 1px solid #111 !important;
-  border-radius: 0 !important;
-  color: #111 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: .08em !important;
-  transition: border-color .22s ease, color .22s ease !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > strong {
-  grid-column: 2 !important;
-  grid-row: 1 !important;
-  grid-area: auto !important;
-  display: block !important;
-  width: auto !important;
-  margin: 1px 0 12px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #111 !important;
-  font-size: 18px !important;
-  font-weight: 600 !important;
-  line-height: 1.35 !important;
-  letter-spacing: -.04em !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > .wt-check-item__lead {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
-  grid-area: auto !important;
-  display: block !important;
-  margin: 0 !important;
-  color: #626262 !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 1.72 !important;
-  letter-spacing: -.025em !important;
-  word-break: keep-all !important;
-  transition: color .22s ease !important;
-}
-
-@media (max-width: 720px) {
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable {
-  grid-template-columns: 1fr !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item,
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(odd),
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-child(even),
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:nth-last-child(-n/**/+2) {
-  grid-template-columns: 42px minmax(0, 1fr) !important;
-  column-gap: 16px !important;
-  min-height: 0 !important;
-  padding: 22px 0 24px !important;
-  border-right: 0 !important;
-  border-right-width: 0 !important;
-  border-right-style: none !important;
-  border-inline-end: 0 !important;
-  border-bottom: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item:last-child {
-  border-bottom: 0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item::before {
-  width: 42px !important;
-  height: 42px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > strong {
-  margin-bottom: 9px !important;
-  font-size: 16px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page .wt-fukuoka-before-booking-editorial .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable > .wt-check-item > .wt-check-item__lead {
-  font-size: 13px !important;
-  line-height: 1.68 !important;
-}
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice {
-  background: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-section-head {
-  max-width: 600px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-area-choice-simple {
-  margin-top: 36px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 !important;
-  overflow: hidden !important;
-  background: #fff !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main > article.wt-choice-card {
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  grid-template-areas: "meta number"
-    "title number"
-    "lead lead"
-    "chips chips"
-    "line line" !important;
-  align-content: start !important;
-  gap: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 30px 34px 28px !important;
-  overflow: visible !important;
-  background: #fff !important;
-  color: #111 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  transform: none !important;
-  transition: background-color .18s ease !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main > article.wt-choice-card + article.wt-choice-card {
-  border-left: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card::before {
-  grid-area: number !important;
-  align-self: start !important;
-  content: "01" !important;
-  display: block !important;
-  margin: 2px 0 0 24px !important;
-  color: #9a9a94 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: .12em !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:nth-child(2)::before {
-  content: "02" !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card::after {
-  content: none !important;
-  display: none !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__label {
-  grid-area: meta !important;
-  margin: 0 0 12px !important;
-  color: #666 !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  line-height: 1.45 !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card h3 {
-  grid-area: title !important;
-  margin: 0 !important;
-  color: #111 !important;
-  font-size: clamp(34px, 4vw, 52px) !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: -.055em !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__lead {
-  grid-area: lead !important;
-  max-width: 560px !important;
-  margin: 24px 0 0 !important;
-  color: #414141 !important;
-  font-size: 15px !important;
-  line-height: 1.75 !important;
-  word-break: keep-all !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__chips {
-  grid-area: chips !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 0 !important;
-  margin: 22px 0 0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__chips span {
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #111 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1.5 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__chips span + span::before {
-  content: "·" !important;
-  display: inline-block !important;
-  margin: 0 10px !important;
-  color: #aaa !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__line {
-  grid-area: line !important;
-  margin: 24px 0 0 !important;
-  padding: 18px 0 0 !important;
-  border-top: 1px solid #e1e1dc !important;
-  color: #656565 !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  line-height: 1.65 !important;
-  word-break: keep-all !important;
-}
-
-@media (hover: hover) and (pointer: fine) {
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main > article.wt-choice-card:hover {
-  background: #f6f6f4 !important;
-  color: #111 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:hover::before,
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:hover .wt-choice-card__label,
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:hover h3,
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:hover .wt-choice-card__lead,
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:hover .wt-choice-card__chips span,
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card:hover .wt-choice-card__line {
-  color: inherit !important;
-}
-}
-
-@media (max-width: 760px) {
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-area-choice-simple {
-  margin-top: 28px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main {
-  grid-template-columns: 1fr !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main > article.wt-choice-card {
-  padding: 26px 0 25px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-main > article.wt-choice-card + article.wt-choice-card {
-  border-left: 0 !important;
-  border-top: 1px solid #d7d7d2 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card::before {
-  margin-left: 18px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card h3 {
-  font-size: 38px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__lead {
-  margin-top: 20px !important;
-  font-size: 15px !important;
-  line-height: 1.7 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__chips {
-  margin-top: 18px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-first-area-choice .wt-choice-card__line {
-  margin-top: 20px !important;
-  padding-top: 16px !important;
-}
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-grid {
-  counter-reset: firsttrip-booking-check;
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 !important;
-  border-top: 1px solid #111 !important;
-  border-bottom: 1px solid #111 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item {
-  counter-increment: firsttrip-booking-check;
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: 48px minmax(0, 1fr) !important;
-  align-content: start !important;
-  column-gap: 20px !important;
-  min-height: 190px !important;
-  padding: 28px 30px 30px !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  transition: background-color .22s ease, color .22s ease !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:nth-child(odd) {
-  border-right: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:nth-child(-n/**/+2) {
-  border-bottom: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item::before {
-  content: counter(firsttrip-booking-check, decimal-leading-zero);
-  grid-column: 1 !important;
-  grid-row: 1 / span 2 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 48px !important;
-  height: 48px !important;
-  border: 1px solid #111 !important;
-  border-radius: 0 !important;
-  color: #111 !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: .08em !important;
-  transition: border-color .22s ease, color .22s ease !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item strong {
-  grid-column: 2 !important;
-  display: block !important;
-  width: auto !important;
-  margin: 1px 0 12px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #111 !important;
-  font-size: 18px !important;
-  font-weight: 600 !important;
-  line-height: 1.35 !important;
-  letter-spacing: -.04em !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item .wt-check-item__lead {
-  grid-column: 2 !important;
-  display: block !important;
-  margin: 0 !important;
-  color: #626262 !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 1.72 !important;
-  letter-spacing: -.025em !important;
-  word-break: keep-all !important;
-  transition: color .22s ease !important;
-}
-
-@media (hover: hover) and (pointer: fine) {
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:hover {
-  background: #111 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:hover::before {
-  border-color: #fff !important;
-  color: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:hover strong {
-  color: #fff !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:hover .wt-check-item__lead {
-  color: #cfcfcf !important;
-}
-}
-
-@media (max-width: 720px) {
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-grid {
-  grid-template-columns: 1fr !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item {
-  grid-template-columns: 42px minmax(0, 1fr) !important;
-  column-gap: 16px !important;
-  min-height: 0 !important;
-  padding: 22px 0 24px !important;
-  border-right: 0 !important;
-  border-bottom: 1px solid #d8d8d3 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item:last-child {
-  border-bottom: 0 !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item::before {
-  width: 42px !important;
-  height: 42px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item strong {
-  margin-bottom: 9px !important;
-  font-size: 16px !important;
-}
-
-body.travel-purpose-body .wt-purpose-page--fukuoka-unified .wt-firsttrip-before-booking .wt-check-item .wt-check-item__lead {
-  font-size: 13px !important;
-  line-height: 1.68 !important;
-}
-}
-
-@media (max-width: 720px) {
-body.travel-purpose-body
-  .wt-purpose-page--fukuoka-unified
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item,
-body.travel-purpose-body
-  .wt-purpose-page--fukuoka-unified
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item:nth-child(odd),
-body.travel-purpose-body
-  .wt-purpose-page--fukuoka-unified
-  .wt-firsttrip-before-booking
-  .wt-check-grid.wt-check-grid--rich.wt-check-grid--readable
-  > .wt-check-item:nth-child(even) {
-  border-right: none !important;
-  border-right-width: 0 !important;
-  border-right-style: none !important;
-  border-inline-end: none !important;
-}
-}
 
 body.travel-purpose-body .wt-page-hero__content .wt-eyebrow,
 .wt-page-hero__content .wt-eyebrow {
@@ -6004,11 +4870,11 @@ body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-ca
   }
 
   body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover::before,
-  body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__label,
-  body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover h3,
-  body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__lead,
-  body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__chips span,
-  body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__line {
+body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__label,
+body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover h3,
+body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__lead,
+body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__chips span,
+body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-card:hover .wt-choice-card__line {
     color: inherit !important;
   }
 }

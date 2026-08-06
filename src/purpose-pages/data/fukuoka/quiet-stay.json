@@ -153,24 +153,12 @@
       "current": true
     }
   ],
-  "mainClasses": [
-    "travel-page",
-    "wt-purpose-page",
-    "wt-purpose-page--quiet-stay",
-    "wt-purpose-page--fukuoka-unified"
-  ],
   "hero": {
     "kicker": "후쿠오카 숙소 가이드",
     "title": "후쿠오카 조용한 숙소는 텐진·나카스에서 한 걸음 벗어나 보세요",
     "description": "후쿠오카는 도시가 크지 않아 중심부에서 조금만 벗어나도 숙소 주변 분위기가 달라집니다. 쇼핑과 식당 접근을 유지하고 싶다면 야쿠인·와타나베도리, 산책과 휴식 시간을 더 중요하게 본다면 오호리·모모치를 함께 비교해보세요."
   },
   "areaChoice": {
-    "classes": [
-      "wt-section",
-      "wt-quiet-area-choice",
-      "wt-first-area-choice",
-      "wt-area-choice--unified"
-    ],
     "ariaLabelledby": "quietAreaTitle",
     "head": {
       "kicker": "Quiet Choice",
@@ -181,10 +169,6 @@
     "ariaLabel": "후쿠오카 조용한 숙소 위치 선택",
     "choices": [
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--primary"
-        ],
         "label": "도심은 쓰되 번잡함은 줄이고 싶다면",
         "title": "야쿠인·와타나베도리",
         "lead": "텐진과 하카타 접근성을 유지하면서 숙소 주변은 조금 더 차분해져 식당, 카페, 밤 산책까지 무리 없이 이어가기 좋습니다.",
@@ -197,10 +181,6 @@
         "line": "쇼핑과 맛집을 포기하고 싶지 않지만 텐진 한복판 소음은 피하고 싶을 때 먼저 비교하기 좋습니다."
       },
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--secondary"
-        ],
         "label": "천천히 쉬는 일정이라면",
         "title": "오호리·모모치",
         "lead": "오호리공원, 모모치해변, 후쿠오카타워를 여유롭게 잡기 좋아 번화가보다 산책과 휴식이 중요한 여행에 잘 맞습니다.",
@@ -212,14 +192,11 @@
         ],
         "line": "일정을 빡빡하게 돌기보다 낮에는 산책하고 저녁에는 조용히 쉬고 싶다면 어울립니다."
       }
-    ]
+    ],
+    "support": null
   },
   "reasons": [
     {
-      "classes": [
-        "wt-section",
-        "wt-section--soft"
-      ],
       "ariaLabelledby": "whyYakuinTitle",
       "head": {
         "kicker": "Why Yakuin",
@@ -251,9 +228,6 @@
       ]
     },
     {
-      "classes": [
-        "wt-section"
-      ],
       "ariaLabelledby": "whyOhoriTitle",
       "head": {
         "kicker": "Why Ohori & Momochi",
@@ -286,11 +260,6 @@
     }
   ],
   "survey": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-section--survey-cta"
-    ],
     "kicker": "조용한 숙소가 고민된다면",
     "title": "조용하게 쉬기 좋은 후쿠오카 숙소 위치를 찾아보세요",
     "description": "나카스의 밤 분위기, 텐진의 편의성, 오호리공원 주변의 차분함을 놓고 보면 원하는 휴식 방식에 맞는 위치를 고르기 쉽습니다.",
@@ -298,11 +267,6 @@
     "button": "내 여행에 맞는 숙소 위치 찾기"
   },
   "bookingChecks": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-firsttrip-before-booking"
-    ],
     "ariaLabelledby": "bookingCheckTitle",
     "head": {
       "kicker": "Before Booking",
@@ -330,9 +294,6 @@
     ]
   },
   "hotels": {
-    "classes": [
-      "wt-section"
-    ],
     "ariaLabelledby": "hotelTitle",
     "ariaHidden": "true",
     "adminOnly": true,
@@ -351,17 +312,18 @@
     "cards": [
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-1",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "야쿠인·와타나베도리 숙소 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": ""
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "도심 균형",
         "nameEn": "CURATED HOTELS",
@@ -372,29 +334,29 @@
           "조용한 휴식",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "조용한 휴식",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-1",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-quiet-stay-1",
           "text": "텐진을 자주 오가면서 숙소 주변은 조금 더 조용하게 쓰고 싶을 때 좋습니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-2",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "오호리공원 주변 숙소 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "공원 산책",
         "nameEn": "CURATED HOTELS",
@@ -405,29 +367,29 @@
           "조용한 휴식",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "조용한 휴식",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-2",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-quiet-stay-2",
           "text": "아침 산책과 여유로운 저녁 시간을 중요하게 보는 여행에 어울립니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-3",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "모모치 해변권 숙소 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "해변 휴식",
         "nameEn": "CURATED HOTELS",
@@ -438,29 +400,29 @@
           "조용한 휴식",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "조용한 휴식",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-3",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-quiet-stay-3",
           "text": "숙소에서 쉬는 시간이 많고 해변 분위기를 함께 즐기고 싶을 때 좋습니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-4",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "하카타 조용한 블록 숙소 카드 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "이동 안정",
         "nameEn": "CURATED HOTELS",
@@ -471,23 +433,18 @@
           "조용한 휴식",
           "후쿠오카"
         ],
-        "grade": "추천 숙소",
-        "score": "조용한 휴식",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "purposeHotelSummary-후쿠오카-quiet-stay-4",
         "summary": {
           "id": "purposeHotelSummary-후쿠오카-quiet-stay-4",
           "text": "역 접근은 유지하되 대로변과 역 바로 앞 혼잡함을 줄이고 싶을 때 비교할 만합니다."
         },
-        "scoreHasIcon": false
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
       }
     ]
   },
   "otherChoices": {
-    "classes": [
-      "wt-section",
-      "wt-firsttrip-other-choices"
-    ],
     "ariaLabelledby": "otherChoicesTitle",
     "head": {
       "kicker": "Other Choices",
@@ -524,11 +481,6 @@
     ]
   },
   "faq": {
-    "classes": [
-      "wt-section",
-      "wt-section--compact",
-      "wt-purpose-faq"
-    ],
     "ariaLabelledby": "faqTitle",
     "head": {
       "kicker": "FAQ",
@@ -563,5 +515,6 @@
         "open": false
       }
     ]
-  }
+  },
+  "extraScripts": []
 }

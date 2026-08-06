@@ -1,0 +1,523 @@
+{
+  "purpose": "family-trip",
+  "head": {
+    "title": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교",
+    "description": "오사카 가족 여행 숙소는 USJ 일정, 교토·고베 이동, 공항 접근, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/osaka/family-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교",
+      "description": "오사카 가족 여행 숙소는 USJ 일정, 교토·고베 이동, 공항 접근, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
+      "url": "https://bestayable.com/destinations/osaka/family-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교",
+      "description": "오사카 가족 여행 숙소는 USJ 일정, 교토·고베 이동, 공항 접근, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "오사카",
+            "item": "https://bestayable.com/destinations/osaka/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "오사카 가족 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/osaka/family-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "오사카 가족 여행 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "우메다"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "오사카베이·유니버설시티"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "난바 외곽"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "혼마치"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "오사카 가족 여행 숙소는 우메다와 유니버설시티 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "교토·고베·공항 이동이 많다면 우메다가 편합니다. USJ 하루 일정이 길거나 아이가 어리다면 유니버설시티 주변도 좋은 후보입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "부모님과 함께 가면 오사카 숙소는 어디가 무난한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "부모님과 함께라면 환승이 적고 식사 선택지가 많은 우메다가 무난합니다. 다만 호텔이 어느 출구와 가까운지까지 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "아이와 함께라면 난바 숙소는 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "도톤보리와 식당 접근성은 좋지만 밤에는 붐빌 수 있습니다. 가족 여행이라면 난바 중심보다 난바 외곽이나 혼마치도 함께 비교해보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "USJ 근처에 묵으면 오사카 시내 관광이 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "USJ 일정이 하루 이상이면 편하지만, 난바·우메다·교토 이동이 많다면 매일 이동 시간이 늘 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오사카 가족 호텔은 무엇을 먼저 봐야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "객실 크기, 침대 구성, 역 출구와 엘리베이터 동선, 주변 식당과 편의점, 체크인 전후 짐 보관 가능 여부를 먼저 확인하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "오사카",
+      "href": "/destinations/osaka/",
+      "current": false
+    },
+    {
+      "label": "가족 여행이라면",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "오사카 숙소 가이드",
+    "title": "오사카 가족 여행 숙소는 USJ 일정과 이동 피로를 함께 보세요",
+    "description": "아이 또는 부모님과 함께하는 오사카 여행은 도톤보리와 쇼핑 동선만 보고 고르면 피곤해질 수 있습니다. 교토·고베·공항 이동이 많다면 우메다가 편하고, USJ 중심 일정이라면 오사카베이·유니버설시티를 함께 보는 편이 좋습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "familyAreaTitle",
+    "head": {
+      "kicker": "Family Choice",
+      "title": "근교·공항 이동은 우메다, USJ 중심이면 오사카베이·유니버설시티가 편합니다",
+      "titleId": "familyAreaTitle",
+      "description": "가족 여행은 “어디가 더 번화한가”보다 아이와 부모님의 이동 피로, 식사 선택지, 쉬는 시간을 기준으로 보는 편이 좋습니다."
+    },
+    "ariaLabel": "오사카 가족 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "이동을 줄이고 싶다면",
+        "title": "우메다",
+        "lead": "JR, 한큐, 한신, 지하철이 모이는 지역이라 교토·고베·공항 이동을 함께 보기 쉽고, 백화점과 식당 선택지도 넓습니다.",
+        "chipsAriaLabel": "우메다 선택 포인트",
+        "chips": [
+          "근교 이동",
+          "공항 접근",
+          "식사 선택지"
+        ],
+        "line": "부모님 동반이거나 교토·고베·나라를 함께 본다면 우메다가 가장 무난합니다."
+      },
+      {
+        "label": "USJ가 중심이라면",
+        "title": "오사카베이·유니버설시티",
+        "lead": "유니버설 스튜디오 재팬 일정이 길거나 아이가 놀이공원 이후 바로 쉬어야 한다면 복귀 동선이 짧아지는 장점이 있습니다.",
+        "chipsAriaLabel": "오사카베이·유니버설시티 선택 포인트",
+        "chips": [
+          "USJ 일정",
+          "해변 분위기",
+          "휴식 시간"
+        ],
+        "line": "USJ 하루를 길게 쓰거나 아이가 어리다면 유니버설시티 주변 숙소도 충분히 볼 만합니다."
+      }
+    ],
+    "support": {
+      "title": "난바는 보조 후보로 보면 좋습니다.",
+      "description": "도톤보리와 식당이 중심이면 편하지만, 밤에는 붐빌 수 있어 가족 여행이라면 역 출구와 골목 분위기를 함께 확인하세요."
+    }
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyATitle",
+      "head": {
+        "kicker": "Why Umeda",
+        "title": "부모님 동반이나 근교 일정이 많다면 우메다가 가장 단순합니다",
+        "titleId": "whyATitle",
+        "description": "가족 여행에서는 환승 한 번, 계단 한 번도 피로로 이어질 수 있어 출발과 복귀가 쉬운 위치가 유리합니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "공항과 근교 이동을 함께 보기 좋습니다",
+          "description": "간사이공항, 교토, 고베, 나라 이동을 한 번에 계획하기 좋아 이동일이 많은 가족 여행에 편합니다."
+        },
+        {
+          "number": "02",
+          "title": "식사와 쇼핑 선택지가 넓습니다",
+          "description": "백화점, 지하상가, 쇼핑몰이 많아 아이 컨디션이나 부모님 식사 시간에 맞춰 고르기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "비 오는 날 동선이 비교적 안정적입니다",
+          "description": "역과 상업시설이 이어진 구간이 많아 날씨가 좋지 않아도 이동 부담을 줄이기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "단점은 역 주변이 넓다는 점입니다",
+          "description": "우메다는 출구와 건물이 많아 호텔의 실제 출구 위치와 엘리베이터 동선을 먼저 확인하는 편이 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyBTitle",
+      "head": {
+        "kicker": "Why Osaka Bay",
+        "title": "아이와 USJ를 오래 즐긴다면 오사카베이·유니버설시티도 좋습니다",
+        "titleId": "whyBTitle",
+        "description": "오사카를 바쁘게 돌기보다 놀이공원과 숙소 휴식을 중심으로 잡을 때 어울리는 선택입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "USJ 이후 복귀가 쉽습니다",
+          "description": "하루 종일 걷는 일정 뒤에 숙소까지 이동 시간이 짧으면 아이와 부모님 모두 피로가 줄어듭니다."
+        },
+        {
+          "number": "02",
+          "title": "숙소에서 쉬는 시간을 만들기 좋습니다",
+          "description": "중간 휴식이나 이른 복귀가 필요한 가족에게는 도심보다 가까운 위치가 더 편하게 느껴질 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "베이권 분위기를 함께 즐기기 좋습니다",
+          "description": "오사카항, 덴포잔, 가이유칸 일정을 묶기 좋아 아이와 함께하는 하루 코스를 만들기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "단점은 도심 이동 시간입니다",
+          "description": "난바와 우메다 쇼핑, 교토·고베 이동이 많다면 매일 이동 시간이 늘 수 있어 일정 비중을 먼저 확인하세요."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가족 동선이 걱정된다면",
+    "title": "가족과 이동하기 편한 오사카 숙소 위치를 찾아보세요",
+    "description": "USJ, 도톤보리, 교토 일정이 있는지에 따라 가족이 움직이기 좋은 위치가 달라집니다. 하루 동선을 편하게 잡는 데 도움이 됩니다.",
+    "href": "/destinations/osaka/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "오사카 가족 호텔은 역 출구와 하루 이동 거리를 먼저 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "가족 여행은 지도상 거리보다 유모차, 캐리어, 식사 시간, 저녁 복귀 동선이 더 중요하게 느껴질 수 있습니다."
+    },
+    "items": [
+      {
+        "title": "객실 크기와 침대 구성",
+        "description": "트윈룸, 트리플룸, 커넥팅룸, 엑스트라베드 가능 여부와 캐리어를 펼 공간을 함께 확인하세요."
+      },
+      {
+        "title": "역 출구와 엘리베이터 동선",
+        "description": "유모차나 큰 캐리어가 있다면 “역 도보 몇 분”보다 계단, 횡단보도, 엘리베이터 위치가 더 중요합니다."
+      },
+      {
+        "title": "주변 식사와 편의점",
+        "description": "아이 컨디션이나 부모님 식사 시간을 고려해 호텔 주변 식당, 편의점, 조식 선택지를 확인하는 편이 좋습니다."
+      },
+      {
+        "title": "저녁 이후 소음과 복귀 동선",
+        "description": "번화가 중심은 편하지만 늦은 시간 소음이 있을 수 있으니 큰길 접근성과 골목 분위기를 함께 보세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "가족 동선과 객실 편의를 함께 보기 좋은 오사카 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "우메다·유니버설시티 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-family-trip-1",
+        "image": {
+          "alt": "호텔 한큐 레스파이어 오사카 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "이동 균형",
+        "nameEn": "Hotel Hankyu RESPIRE Osaka",
+        "nameKo": "호텔 한큐 레스파이어 오사카",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "우메다",
+          "가족 여행",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-family-trip-1",
+          "text": "우메다역과 상업시설 동선을 활용하기 좋아 가족 일정의 이동 피로를 줄이기 쉽습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-family-trip-2",
+        "image": {
+          "alt": "더 파크 프론트 호텔 앳 유니버설 스튜디오 재팬 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "USJ 일정",
+        "nameEn": "The Park Front Hotel at Universal Studios Japan",
+        "nameKo": "더 파크 프론트 호텔 앳 유니버설 스튜디오 재팬",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "유니버설시티",
+          "가족 여행",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-family-trip-2",
+          "text": "USJ 일정 이후 숙소 복귀를 짧게 만들고 싶은 가족 여행에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-family-trip-3",
+        "image": {
+          "alt": "미마루 오사카 난바 스테이션 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "객실 편의",
+        "nameEn": "MIMARU Osaka Namba Station",
+        "nameKo": "미마루 오사카 난바 스테이션",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "난바 외곽",
+          "가족 여행",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-family-trip-3",
+          "text": "여러 명이 함께 쓰기 좋은 객실 구성을 우선으로 보는 가족에게 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-family-trip-4",
+        "image": {
+          "alt": "도큐 스테이 오사카 혼마치 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "차분한 동선",
+        "nameEn": "Tokyu Stay Osaka Hommachi",
+        "nameKo": "도큐 스테이 오사카 혼마치",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "혼마치",
+          "가족 여행",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-family-trip-4",
+          "text": "난바와 우메다 사이에서 숙박비와 이동 균형을 함께 보기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가족 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "USJ 일정, 근교 이동, 예산에 따라 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "오사카 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/osaka/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "오사카가 처음일 때 먼저 비교하면 좋은 중심 구역"
+      },
+      {
+        "href": "/destinations/osaka/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/osaka/near-trip/",
+        "number": "03",
+        "title": "근교 여행 숙소",
+        "description": "당일치기와 외곽 이동을 출발 동선 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/osaka/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "familyFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "오사카 가족 여행 숙소는 어디부터 보면 좋을까요?",
+      "titleId": "familyFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "오사카 가족 여행 숙소는 우메다와 유니버설시티 중 어디가 좋나요?",
+        "answer": "교토·고베·공항 이동이 많다면 우메다가 편합니다. USJ 하루 일정이 길거나 아이가 어리다면 유니버설시티 주변도 좋은 후보입니다.",
+        "open": true
+      },
+      {
+        "question": "부모님과 함께 가면 오사카 숙소는 어디가 무난한가요?",
+        "answer": "부모님과 함께라면 환승이 적고 식사 선택지가 많은 우메다가 무난합니다. 다만 호텔이 어느 출구와 가까운지까지 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "아이와 함께라면 난바 숙소는 괜찮나요?",
+        "answer": "도톤보리와 식당 접근성은 좋지만 밤에는 붐빌 수 있습니다. 가족 여행이라면 난바 중심보다 난바 외곽이나 혼마치도 함께 비교해보세요.",
+        "open": false
+      },
+      {
+        "question": "USJ 근처에 묵으면 오사카 시내 관광이 불편하지 않나요?",
+        "answer": "USJ 일정이 하루 이상이면 편하지만, 난바·우메다·교토 이동이 많다면 매일 이동 시간이 늘 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "오사카 가족 호텔은 무엇을 먼저 봐야 하나요?",
+        "answer": "객실 크기, 침대 구성, 역 출구와 엘리베이터 동선, 주변 식당과 편의점, 체크인 전후 짐 보관 가능 여부를 먼저 확인하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

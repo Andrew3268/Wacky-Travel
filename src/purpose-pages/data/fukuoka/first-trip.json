@@ -153,23 +153,12 @@
       "current": true
     }
   ],
-  "mainClasses": [
-    "travel-page",
-    "wt-purpose-page",
-    "wt-purpose-page--first-trip",
-    "wt-purpose-page--fukuoka-first-trip"
-  ],
   "hero": {
     "kicker": "후쿠오카 숙소 가이드",
     "title": "후쿠오카 첫 여행 숙소는 하카타와 텐진에서 먼저 좁히세요",
     "description": "첫 후쿠오카 여행은 하카타와 텐진 중 어디를 더 자주 갈지 먼저 정하면 숙소 선택이 쉬워집니다. 공항·기차·버스 이동과 유후인·다자이후 일정을 함께 본다면 하카타가 편하고, 쇼핑과 식당, 카페 중심으로 움직인다면 텐진이 편합니다."
   },
   "areaChoice": {
-    "classes": [
-      "wt-section",
-      "wt-first-area-choice",
-      "wt-area-choice--unified"
-    ],
     "ariaLabelledby": "firstAreaTitle",
     "head": {
       "kicker": "Area Choice",
@@ -180,10 +169,6 @@
     "ariaLabel": "첫 후쿠오카 여행 숙소 위치 선택",
     "choices": [
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--hakata"
-        ],
         "label": "이동이 걱정된다면",
         "title": "하카타",
         "lead": "공항에서 들어오기 쉽고, JR 하카타역과 버스터미널을 함께 쓰기 좋아 처음이라면 가장 무난하게 고르기 좋은 위치입니다.",
@@ -196,10 +181,6 @@
         "line": "2박 3일 일정이거나 다자이후·유후인을 함께 본다면 하카타가 편합니다."
       },
       {
-        "classes": [
-          "wt-choice-card",
-          "wt-choice-card--tenjin"
-        ],
         "label": "도심을 즐기고 싶다면",
         "title": "텐진",
         "lead": "백화점, 지하상가, 다이묘·이마이즈미 카페 거리와 가까워 쇼핑하고 밥 먹고 카페까지 들르기 좋습니다.",
@@ -211,14 +192,11 @@
         ],
         "line": "숙소 주변에서 먹고 걷고 쇼핑하는 시간이 많다면 텐진이 더 편합니다."
       }
-    ]
+    ],
+    "support": null
   },
   "reasons": [
     {
-      "classes": [
-        "wt-section",
-        "wt-section--soft"
-      ],
       "ariaLabelledby": "whyHakataTitle",
       "head": {
         "kicker": "Why Hakata",
@@ -250,10 +228,6 @@
       ]
     },
     {
-      "classes": [
-        "wt-section",
-        "wt-section--soft"
-      ],
       "ariaLabelledby": "whyTenjinTitle",
       "head": {
         "kicker": "Why Tenjin",
@@ -286,11 +260,6 @@
     }
   ],
   "survey": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-section--survey-cta"
-    ],
     "kicker": "아직 고민된다면",
     "title": "하카타·텐진 동선에 맞는 첫 후쿠오카 숙소 위치를 찾아보세요",
     "description": "공항에서 시내로 들어오는 길, 도심 관광, 다자이후 일정까지 놓고 보면 처음 머물기 좋은 위치를 정하기 쉽습니다.",
@@ -298,11 +267,6 @@
     "button": "내 여행에 맞는 숙소 위치 찾기"
   },
   "bookingChecks": {
-    "classes": [
-      "wt-section",
-      "wt-section--soft",
-      "wt-firsttrip-before-booking"
-    ],
     "ariaLabelledby": "bookingCheckTitle",
     "head": {
       "kicker": "Before Booking",
@@ -330,9 +294,6 @@
     ]
   },
   "hotels": {
-    "classes": [
-      "wt-section"
-    ],
     "ariaLabelledby": "firstHotelTitle",
     "ariaHidden": "true",
     "adminOnly": true,
@@ -351,17 +312,18 @@
     "cards": [
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "미야코 호텔 하카타 객실",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": ""
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "하카타역 바로 앞",
         "nameEn": "Miyako Hotel Hakata",
@@ -372,29 +334,29 @@
           "공항 이동",
           "첫 여행"
         ],
-        "grade": "5성급",
-        "score": "4.7",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "",
         "summary": {
           "id": "",
           "text": ""
         },
-        "scoreHasIcon": true
+        "grade": "5성급",
+        "score": "4.7",
+        "scoreHasIcon": true,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "솔라리아 니시테츠 호텔 후쿠오카 카드 테스트 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "텐진 쇼핑 중심",
         "nameEn": "Solaria Nishitetsu Hotel Fukuoka",
@@ -405,29 +367,29 @@
           "쇼핑 동선",
           "맛집 접근"
         ],
-        "grade": "4성급",
-        "score": "4.6",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "",
         "summary": {
           "id": "",
           "text": ""
         },
-        "scoreHasIcon": true
+        "grade": "4성급",
+        "score": "4.6",
+        "scoreHasIcon": true,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "더 블라썸 하카타 프리미어 카드 테스트 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "하카타·기온 균형",
         "nameEn": "The Blossom Hakata Premier",
@@ -438,29 +400,29 @@
           "캐널시티",
           "동선 균형"
         ],
-        "grade": "등급 확인",
-        "score": "평점 확인",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "",
         "summary": {
           "id": "",
           "text": ""
         },
-        "scoreHasIcon": true
+        "grade": "등급 확인",
+        "score": "평점 확인",
+        "scoreHasIcon": true,
+        "cta": "잔여 객실 확인"
       },
       {
         "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
-        "target": "_blank",
         "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "",
         "image": {
-          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
-          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
           "alt": "더 라이블리 후쿠오카 하카타 카드 테스트 이미지",
-          "width": "360",
+          "decoding": "async",
+          "fetchpriority": "low",
           "height": "270",
           "loading": "lazy",
-          "decoding": "async",
-          "fetchpriority": "low"
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
         },
         "badge": "나카스 도보권",
         "nameEn": "The Lively Fukuoka Hakata",
@@ -471,23 +433,18 @@
           "저녁 동선",
           "도보 이동"
         ],
-        "grade": "3성급",
-        "score": "4.4",
-        "cta": "잔여 객실 확인",
-        "ariaDescribedby": "",
         "summary": {
           "id": "",
           "text": ""
         },
-        "scoreHasIcon": true
+        "grade": "3성급",
+        "score": "4.4",
+        "scoreHasIcon": true,
+        "cta": "잔여 객실 확인"
       }
     ]
   },
   "otherChoices": {
-    "classes": [
-      "wt-section",
-      "wt-firsttrip-other-choices"
-    ],
     "ariaLabelledby": "otherChoicesTitle",
     "head": {
       "kicker": "Other Choices",
@@ -524,11 +481,6 @@
     ]
   },
   "faq": {
-    "classes": [
-      "wt-section",
-      "wt-section--compact",
-      "wt-purpose-faq"
-    ],
     "ariaLabelledby": "firstTripFaqTitle",
     "head": {
       "kicker": "FAQ",
@@ -563,5 +515,6 @@
         "open": false
       }
     ]
-  }
+  },
+  "extraScripts": []
 }

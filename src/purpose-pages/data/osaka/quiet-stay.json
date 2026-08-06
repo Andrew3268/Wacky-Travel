@@ -1,0 +1,523 @@
+{
+  "purpose": "quiet-stay",
+  "head": {
+    "title": "오사카 조용한 숙소 위치 추천 | 혼마치·기타하마·나카노시마 비교",
+    "description": "오사카 조용한 숙소는 난바·도톤보리 한복판보다 혼마치·기타하마, 나카노시마처럼 중심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/osaka/quiet-stay/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "오사카 조용한 숙소 위치 추천 | 혼마치·기타하마·나카노시마 비교",
+      "description": "오사카 조용한 숙소는 난바·도톤보리 한복판보다 혼마치·기타하마, 나카노시마처럼 중심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "url": "https://bestayable.com/destinations/osaka/quiet-stay/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "오사카 조용한 숙소 위치 추천 | 혼마치·기타하마·나카노시마 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "오사카 조용한 숙소 위치 추천 | 혼마치·기타하마·나카노시마 비교",
+      "description": "오사카 조용한 숙소는 난바·도톤보리 한복판보다 혼마치·기타하마, 나카노시마처럼 중심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "오사카 조용한 숙소 위치 추천 | 혼마치·기타하마·나카노시마 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "오사카",
+            "item": "https://bestayable.com/destinations/osaka/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "오사카 조용한 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/osaka/quiet-stay/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "오사카 조용한 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "혼마치·기타하마"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "나카노시마"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "오사카성공원"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "난바 외곽"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "오사카 조용한 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "중심 이동을 유지하려면 혼마치·기타하마, 강변 분위기와 휴식감이 중요하면 나카노시마를 먼저 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "난바 근처에서도 조용한 숙소를 찾을 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "가능합니다. 다만 도톤보리 바로 앞보다 난바 외곽, 닛폰바시 외곽, 큰길에서 한 블록 들어간 호텔을 보는 편이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "우메다 근처는 조용한 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "근교 이동에는 편하지만 역 주변은 붐빌 수 있습니다. 우메다 바로 앞보다 나카쓰, 기타하마, 나카노시마 쪽까지 함께 비교해보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오사카 조용한 호텔은 무엇을 확인해야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대로변 차량 소음, 도톤보리와의 거리, 지하철 출구까지의 밤길, 객실 방음 후기를 함께 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "가족 여행에도 혼마치가 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "난바와 우메다를 모두 오가기 쉬워 가족 여행에도 무난합니다. 다만 아이와 오래 걷는 일정이라면 역 출구와 호텔 거리까지 꼭 확인하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "오사카",
+      "href": "/destinations/osaka/",
+      "current": false
+    },
+    {
+      "label": "조용한 숙소",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "오사카 숙소 가이드",
+    "title": "오사카 조용한 숙소는 난바 한복판보다 혼마치·기타하마를 먼저 보세요",
+    "description": "오사카는 먹거리와 쇼핑이 편한 만큼 밤 늦게까지 붐비는 구역도 많습니다. 도톤보리 접근성을 유지하고 싶다면 혼마치·기타하마, 강변 분위기와 차분한 휴식을 원한다면 나카노시마·오사카성공원 주변까지 함께 비교해보세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "quietAreaTitle",
+    "head": {
+      "kicker": "Quiet Choice",
+      "title": "도심 이동은 혼마치·기타하마, 여유 휴식은 나카노시마가 편합니다",
+      "titleId": "quietAreaTitle",
+      "description": "조용한 오사카 숙소는 난바와 우메다 사이에서 이동을 유지하되, 숙소 주변의 밤 분위기와 큰길 소음을 줄이는 것이 핵심입니다."
+    },
+    "ariaLabel": "오사카 조용한 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "난바와 우메다를 모두 쓰고 싶다면",
+        "title": "혼마치·기타하마",
+        "lead": "미도스지선과 사카이스지선 접근이 좋아 난바·우메다 이동을 유지하면서 숙소 주변은 비교적 차분하게 잡기 좋습니다.",
+        "chipsAriaLabel": "혼마치·기타하마 선택 포인트",
+        "chips": [
+          "난바 접근",
+          "우메다 접근",
+          "도심 균형"
+        ],
+        "line": "도톤보리 한복판의 소음은 피하고 싶지만 오사카 중심 동선은 포기하기 싫을 때 가장 먼저 볼 만합니다."
+      },
+      {
+        "label": "산책과 휴식을 더 원한다면",
+        "title": "나카노시마·오사카성공원",
+        "lead": "강변 산책, 미술관, 공원 일정을 여유롭게 넣기 좋아 번화가보다 차분한 오사카를 느끼고 싶은 여행에 잘 맞습니다.",
+        "chipsAriaLabel": "나카노시마·오사카성공원 선택 포인트",
+        "chips": [
+          "강변 산책",
+          "공원 일정",
+          "차분한 밤"
+        ],
+        "line": "쇼핑보다 휴식감이 중요하거나 커플·부모님 동반 여행이라면 만족도가 높을 수 있습니다."
+      }
+    ],
+    "support": {
+      "title": "보조 후보도 함께 비교하세요.",
+      "description": "난바 숙소를 고르더라도 도톤보리 바로 앞보다 닛폰바시 외곽이나 난바역 남쪽의 조용한 블록을 함께 보는 편이 좋습니다."
+    }
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyHonmachiTitle",
+      "head": {
+        "kicker": "Why Honmachi & Kitahama",
+        "title": "혼마치·기타하마는 중심 이동과 조용함의 균형이 좋습니다",
+        "titleId": "whyHonmachiTitle",
+        "description": "오사카를 처음 가도 이동이 어렵지 않으면서 번화가 한복판의 피로를 줄이고 싶은 여행에 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "난바와 우메다를 모두 오가기 쉽습니다",
+          "description": "한쪽 상권에만 치우치지 않아 쇼핑, 식사, 근교 이동을 섞은 일정에서 균형이 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "밤 분위기가 비교적 차분합니다",
+          "description": "도톤보리 중심부보다 숙소 주변이 덜 붐벼 저녁 이후 쉬는 시간이 편해질 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "비즈니스 호텔 선택지가 많습니다",
+          "description": "깔끔한 객실, 역 접근, 조식 여부를 기준으로 실속 있게 비교하기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "교토·고베 일정도 무난합니다",
+          "description": "우메다 접근성을 살릴 수 있어 JR·한큐·한신 이동이 필요한 일정에도 부담이 적습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyNakanoshimaTitle",
+      "head": {
+        "kicker": "Why Nakanoshima",
+        "title": "나카노시마·오사카성공원은 산책과 휴식이 필요한 여행에 좋습니다",
+        "titleId": "whyNakanoshimaTitle",
+        "description": "오사카를 바쁘게 돌아다니기보다 강변과 공원 분위기를 함께 즐기고 싶다면 좋은 대안입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "강변 산책이 자연스럽습니다",
+          "description": "도심 속에서도 물가와 공원 분위기를 느낄 수 있어 아침이나 저녁 시간을 차분하게 보내기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "번화가 피로가 줄어듭니다",
+          "description": "난바와 신사이바시의 혼잡함을 숙소까지 끌고 오지 않아 쉬는 시간이 더 편해질 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "우메다 접근도 크게 나쁘지 않습니다",
+          "description": "나카노시마와 기타하마 일대는 우메다 이동도 비교적 수월해 완전히 외곽으로 빠지는 부담이 적습니다."
+        },
+        {
+          "number": "04",
+          "title": "단점은 먹거리 즉시성입니다",
+          "description": "늦은 밤 간단히 먹을 곳은 난바보다 적을 수 있어 저녁 동선을 미리 정하는 편이 좋습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "조용한 숙소가 고민된다면",
+    "title": "번화가에서 조금 벗어나 쉬기 좋은 오사카 숙소 위치를 찾아보세요",
+    "description": "난바의 접근성, 혼마치의 차분함, 우메다의 교통 편의성을 놓고 보면 조용하면서도 일정이 불편하지 않은 위치를 찾기 좋습니다.",
+    "href": "/destinations/osaka/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "오사카 조용한 호텔은 도톤보리 거리, 대로변, 지하철 출구를 함께 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "조용한 숙소는 지역명만 보고 고르기보다 실제 객실 위치, 주변 도로, 밤 시간대 분위기를 함께 확인해야 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "대로변과 철도 소음",
+        "description": "역과 가까워도 큰길이나 철도 바로 옆이면 밤 소음이 느껴질 수 있습니다. 객실 방향과 방음 후기를 함께 확인하세요."
+      },
+      {
+        "title": "밤에 돌아오는 길",
+        "description": "너무 외진 곳은 조용해도 불편할 수 있습니다. 늦은 저녁 식사 후 숙소까지 걷는 길이 안전하고 단순한지 확인하세요."
+      },
+      {
+        "title": "식사와 편의시설 거리",
+        "description": "조용한 지역일수록 늦게 여는 식당이 적을 수 있습니다. 편의점, 카페, 간단한 식사 선택지가 주변에 있는지 보는 편이 좋습니다."
+      },
+      {
+        "title": "객실 방음 후기",
+        "description": "같은 지역이라도 호텔마다 체감이 다릅니다. 엘리베이터 옆 객실, 저층 객실, 도로 방향 객실 후기를 특히 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Stay Candidates",
+      "title": "조용하게 쉬고 싶을 때 비교할 만한 오사카 숙소",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "혼마치·기타하마 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-quiet-stay-1",
+        "image": {
+          "alt": "혼마치역 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도심 균형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "혼마치역 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-quiet-stay-1",
+          "text": "오사카 중심 이동은 유지하면서 숙소 주변은 차분하게 잡고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-quiet-stay-2",
+        "image": {
+          "alt": "기타하마역 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "강변 도심",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "기타하마역 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-quiet-stay-2",
+          "text": "강변 산책과 지하철 이동을 함께 보고 싶은 여행에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-quiet-stay-3",
+        "image": {
+          "alt": "나카노시마 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "강변 휴식",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "나카노시마 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-quiet-stay-3",
+          "text": "번화가보다 강변 분위기와 조용한 밤을 중요하게 보는 여행에 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-오사카-quiet-stay-4",
+        "image": {
+          "alt": "오사카성공원 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "공원 산책",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "오사카성공원 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "오사카"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-오사카-quiet-stay-4",
+          "text": "아침 산책과 여유로운 일정이 있는 여행에서 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "먹거리 중심, 근교 이동, 가족 여행이면 조용한 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "오사카 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/osaka/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 방문할 때 실패를 줄이는 중심 위치 선택"
+      },
+      {
+        "href": "/destinations/osaka/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 보는 실속형 선택"
+      },
+      {
+        "href": "/destinations/osaka/near-trip/",
+        "number": "03",
+        "title": "근교 여행 숙소",
+        "description": "근교 이동과 투어 출발 동선을 먼저 보는 선택"
+      },
+      {
+        "href": "/destinations/osaka/family-trip/",
+        "number": "04",
+        "title": "가족 여행 숙소",
+        "description": "아이·부모님 동선과 쉬는 시간을 함께 보는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "faqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "오사카 조용한 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "faqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "오사카 조용한 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "중심 이동을 유지하려면 혼마치·기타하마, 강변 분위기와 휴식감이 중요하면 나카노시마를 먼저 비교하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "난바 근처에서도 조용한 숙소를 찾을 수 있나요?",
+        "answer": "가능합니다. 다만 도톤보리 바로 앞보다 난바 외곽, 닛폰바시 외곽, 큰길에서 한 블록 들어간 호텔을 보는 편이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "우메다 근처는 조용한 숙소로 괜찮나요?",
+        "answer": "근교 이동에는 편하지만 역 주변은 붐빌 수 있습니다. 우메다 바로 앞보다 나카쓰, 기타하마, 나카노시마 쪽까지 함께 비교해보세요.",
+        "open": false
+      },
+      {
+        "question": "오사카 조용한 호텔은 무엇을 확인해야 하나요?",
+        "answer": "대로변 차량 소음, 도톤보리와의 거리, 지하철 출구까지의 밤길, 객실 방음 후기를 함께 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "가족 여행에도 혼마치가 괜찮나요?",
+        "answer": "난바와 우메다를 모두 오가기 쉬워 가족 여행에도 무난합니다. 다만 아이와 오래 걷는 일정이라면 역 출구와 호텔 거리까지 꼭 확인하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

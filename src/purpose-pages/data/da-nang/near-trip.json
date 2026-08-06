@@ -1,0 +1,510 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "다낭 근교 여행 숙소 위치 추천 | 바나힐·호이안 투어 동선",
+    "description": "바나힐·후에 투어와 호이안 야경을 함께 본다면 다낭 숙소는 픽업 가능 구역과 복귀 후 식사 동선이 중요합니다. 미케비치·푸억미와 논느억·오행산 리조트권을 비교해보세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/da-nang/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "다낭 근교 여행 숙소 위치 추천 | 바나힐·호이안 투어 동선",
+      "description": "바나힐·후에 투어와 호이안 야경을 함께 본다면 다낭 숙소는 픽업 가능 구역과 복귀 후 식사 동선이 중요합니다. 미케비치·푸억미와 논느억·오행산 리조트권을 비교해보세요.",
+      "url": "https://bestayable.com/destinations/da-nang/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "다낭 근교 여행 숙소 위치 추천 | 바나힐·호이안 투어 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "다낭 근교 여행 숙소 위치 추천 | 바나힐·호이안 투어 동선",
+      "description": "바나힐·후에 투어와 호이안 야경을 함께 본다면 다낭 숙소는 픽업 가능 구역과 복귀 후 식사 동선이 중요합니다. 미케비치·푸억미와 논느억·오행산 리조트권을 비교해보세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "다낭 근교 여행 숙소 위치 추천 | 바나힐·호이안 투어 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "다낭",
+            "item": "https://bestayable.com/destinations/da-nang/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "다낭 근교 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/da-nang/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "다낭 근교 여행 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "미케비치·푸억미"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "논느억·오행산"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "다낭 근교 여행 숙소는 미케비치와 논느억 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "바나힐·후에 투어 픽업과 해변 식사를 함께 보면 미케비치가 무난하고, 호이안 야경과 리조트 휴식이 중요하면 논느억·오행산이 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "호이안을 오래 볼 계획이면 숙소를 나눠야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "호이안 야경과 아침 산책까지 보고 싶다면 호이안 1박 또는 논느억 숙소를 함께 고려하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "바나힐 투어가 있으면 숙소 위치가 중요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "투어 픽업 가능 여부와 아침 출발 시간이 중요합니다. 숙소가 픽업 구역 밖이면 이동 피로가 커질 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "후에 당일치기는 어느 지역이 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "픽업 가능한 미케비치나 한강권이 무난합니다. 이동 시간이 길어 복귀 후 식사 동선도 함께 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "다낭 근교 일정이 많으면 해변 숙소가 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "미케비치도 투어 픽업이 가능한 경우가 많아 불편하지 않습니다. 다만 호이안 비중이 크면 남쪽 숙소가 더 편할 수 있습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "다낭",
+      "href": "/destinations/da-nang/",
+      "current": false
+    },
+    {
+      "label": "다낭 근교 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "다낭 숙소 가이드",
+    "title": "다낭 근교 여행 숙소는 투어 픽업과 호이안 복귀 동선으로 고르세요",
+    "description": "바나힐, 후에, 호이안처럼 외곽 일정이 들어가면 숙소 선택 기준이 달라집니다. 해변 분위기만 보지 말고 아침 픽업이 쉬운지, 밤에 돌아와 식사와 휴식을 이어가기 좋은지 함께 봐야 합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "바나힐·후에 투어는 미케비치, 호이안 야경은 논느억·오행산이 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "다낭 근교 여행은 목적지 방향이 서로 달라 모든 지역을 넓게 비교하기보다, 투어 픽업과 남쪽 이동 비중을 먼저 나누면 선택이 쉬워집니다."
+    },
+    "ariaLabel": "다낭 근교 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "투어 픽업과 해변 휴식을 함께 본다면",
+        "title": "미케비치·푸억미",
+        "lead": "바나힐·후에 투어 픽업을 받기 쉽고, 돌아온 뒤 해변 산책과 식사, 마사지까지 숙소 주변에서 이어가기 좋습니다.",
+        "chipsAriaLabel": "미케비치·푸억미 선택 포인트",
+        "chips": [
+          "바나힐 픽업",
+          "미케비치",
+          "저녁 식사"
+        ],
+        "line": "투어가 없는 날에도 바다와 식당을 가까이 두고 싶다면 미케비치·푸억미가 무난합니다."
+      },
+      {
+        "label": "호이안·오행산 비중이 높다면",
+        "title": "논느억·오행산",
+        "lead": "호이안 야경, 오행산, 리조트 휴식을 함께 넣는 일정이라면 다낭 남쪽에 머무는 편이 왕복 피로를 줄이기 쉽습니다.",
+        "chipsAriaLabel": "논느억·오행산 선택 포인트",
+        "chips": [
+          "호이안 방향",
+          "오행산",
+          "리조트"
+        ],
+        "line": "호이안을 늦게까지 보고 싶거나 가족과 여유 있게 쉬고 싶다면 논느억·오행산을 함께 보세요."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "why1Title",
+      "head": {
+        "kicker": "Why My Khe",
+        "title": "바나힐·후에 투어와 해변 휴식을 함께 보려면 미케비치가 무난합니다",
+        "titleId": "why1Title",
+        "description": "미케비치는 투어 픽업, 해변 휴식, 식사 동선을 함께 잡기 좋아 근교 일정과 시내 체류의 균형이 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "픽업 호텔을 찾기 쉽습니다",
+          "description": "바나힐·후에 투어는 이른 출발이 많아 숙소 앞 또는 가까운 지점 픽업 가능 여부가 중요합니다."
+        },
+        {
+          "number": "02",
+          "title": "복귀 후 식사 동선이 짧습니다",
+          "description": "긴 투어 후에는 호텔 주변에서 저녁과 마사지를 해결할 수 있는 위치가 만족도를 높입니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 없는 날도 지루하지 않습니다",
+          "description": "미케비치 산책, 카페, 해산물 식당을 가까이 두면 일정 사이사이에 쉬기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "호이안 중심이면 남쪽도 함께 보세요",
+          "description": "호이안 야경이 핵심이라면 미케비치보다 논느억이나 호이안 1박이 더 편할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "why2Title",
+      "head": {
+        "kicker": "Why Non Nuoc",
+        "title": "호이안 야경과 남쪽 동선이 많다면 논느억·오행산을 함께 보세요",
+        "titleId": "why2Title",
+        "description": "논느억·오행산은 다낭 도심보다 조용하고, 호이안 방향 이동과 리조트 휴식을 함께 잡기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "호이안 왕복 부담이 줄어듭니다",
+          "description": "야경까지 보고 늦게 돌아오는 일정이라면 남쪽 숙소가 체감 이동 시간을 줄여줍니다."
+        },
+        {
+          "number": "02",
+          "title": "오행산과 리조트를 묶기 좋습니다",
+          "description": "관광과 휴식의 비중이 비슷한 일정에서 하루를 덜 쪼개도 됩니다."
+        },
+        {
+          "number": "03",
+          "title": "가족 여행에 여유가 생깁니다",
+          "description": "아이와 함께라면 투어 다음날 수영장과 해변 중심으로 느슨하게 잡기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "시내 식사는 택시 이동을 고려하세요",
+          "description": "한시장이나 용다리 야경을 자주 볼 계획이라면 이동비와 시간을 함께 계산해야 합니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "바나힐·호이안 일정에 맞는 다낭 숙소 위치를 찾아보세요",
+    "description": "바나힐, 호이안, 후에 일정이 있다면 픽업 위치와 돌아오는 시간이 중요합니다. 해변과 시내 중 일정에 맞는 위치를 확인할 수 있습니다.",
+    "href": "/destinations/da-nang/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "다낭 근교 호텔은 픽업 가능 여부, 택시비, 복귀 후 식사 동선을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "지역을 정했다면 호텔 이름보다 투어 픽업 가능 여부, 늦은 복귀 후 주변 식당, 호이안 왕복 시간을 먼저 확인하세요."
+    },
+    "items": [
+      {
+        "title": "픽업 가능 구역",
+        "description": "예약 전 투어사 픽업 가능 호텔인지 확인하세요."
+      },
+      {
+        "title": "호이안 왕복 시간",
+        "description": "야경까지 볼 계획이라면 밤 복귀 시간을 넉넉하게 잡으세요."
+      },
+      {
+        "title": "복귀 후 식사",
+        "description": "긴 투어 뒤에도 주변에서 식사와 마사지를 해결할 수 있는지 보세요."
+      },
+      {
+        "title": "숙소 분리 여부",
+        "description": "3박 이상이면 다낭 2박과 호이안 1박처럼 나누는 방식도 현실적입니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "바나힐·호이안 일정까지 보기 좋은 다낭 숙소 위치",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "미케비치·푸억미 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-near-trip-1",
+        "image": {
+          "alt": "미케비치·푸억미 투어 픽업형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "미케비치 픽업형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "미케비치·푸억미 투어 픽업형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "투어·해변",
+          "근교 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-near-trip-1",
+          "text": "바나힐·후에 투어와 해변 휴식을 함께 넣는 일정에 무난합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-near-trip-2",
+        "image": {
+          "alt": "푸억미 중심 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "푸억미 식사 동선형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "푸억미 중심 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "식사·마사지",
+          "근교 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-near-trip-2",
+          "text": "투어 복귀 후 식사, 마사지, 편의점 동선을 짧게 만들기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-near-trip-3",
+        "image": {
+          "alt": "논느억·오행산 리조트 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "논느억 리조트형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "논느억·오행산 리조트 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "호이안 방향",
+          "근교 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-near-trip-3",
+          "text": "호이안 야경과 오행산, 리조트 휴식을 함께 보려는 일정에 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-다낭-near-trip-4",
+        "image": {
+          "alt": "한강 동쪽·용다리 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "한강 연결형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "한강 동쪽·용다리 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "시내 접근",
+          "근교 여행",
+          "다낭"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-다낭-near-trip-4",
+          "text": "투어와 시내 야경, 한시장 이동을 균형 있게 보고 싶을 때 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "해변 휴식과 근교 투어는 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "다낭 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/da-nang/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에서 가장 무난한 숙소 위치를 비교합니다."
+      },
+      {
+        "href": "/destinations/da-nang/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 줄이는 선택을 정리했습니다."
+      },
+      {
+        "href": "/destinations/da-nang/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택입니다."
+      },
+      {
+        "href": "/destinations/da-nang/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 차분히 쉬는 선택입니다."
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "다낭 근교 여행 숙소, 미케비치와 논느억 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "다낭 근교 여행 숙소는 미케비치와 논느억 중 어디가 좋나요?",
+        "answer": "바나힐·후에 투어 픽업과 해변 식사를 함께 보면 미케비치가 무난하고, 호이안 야경과 리조트 휴식이 중요하면 논느억·오행산이 편합니다.",
+        "open": true
+      },
+      {
+        "question": "호이안을 오래 볼 계획이면 숙소를 나눠야 하나요?",
+        "answer": "호이안 야경과 아침 산책까지 보고 싶다면 호이안 1박 또는 논느억 숙소를 함께 고려하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "바나힐 투어가 있으면 숙소 위치가 중요한가요?",
+        "answer": "투어 픽업 가능 여부와 아침 출발 시간이 중요합니다. 숙소가 픽업 구역 밖이면 이동 피로가 커질 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "후에 당일치기는 어느 지역이 편한가요?",
+        "answer": "픽업 가능한 미케비치나 한강권이 무난합니다. 이동 시간이 길어 복귀 후 식사 동선도 함께 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "다낭 근교 일정이 많으면 해변 숙소가 불편하지 않나요?",
+        "answer": "미케비치도 투어 픽업이 가능한 경우가 많아 불편하지 않습니다. 다만 호이안 비중이 크면 남쪽 숙소가 더 편할 수 있습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

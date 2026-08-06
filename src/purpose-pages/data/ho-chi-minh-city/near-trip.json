@@ -1,0 +1,510 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "호치민 근교 투어 숙소 위치 추천 | 꾸찌터널·메콩델타 픽업 동선",
+    "description": "꾸찌터널, 메콩델타, 무이네 일정이 있다면 호치민 숙소는 1군 픽업 가능 여부와 밤 복귀 동선을 먼저 봐야 합니다. 1군·벤탄과 동커이·응우옌후에를 비교해보세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/ho-chi-minh-city/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "호치민 근교 투어 숙소 위치 추천 | 꾸찌터널·메콩델타 픽업 동선",
+      "description": "꾸찌터널, 메콩델타, 무이네 일정이 있다면 호치민 숙소는 1군 픽업 가능 여부와 밤 복귀 동선을 먼저 봐야 합니다. 1군·벤탄과 동커이·응우옌후에를 비교해보세요.",
+      "url": "https://bestayable.com/destinations/ho-chi-minh-city/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "호치민 근교 투어 숙소 위치 추천 | 꾸찌터널·메콩델타 픽업 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "호치민 근교 투어 숙소 위치 추천 | 꾸찌터널·메콩델타 픽업 동선",
+      "description": "꾸찌터널, 메콩델타, 무이네 일정이 있다면 호치민 숙소는 1군 픽업 가능 여부와 밤 복귀 동선을 먼저 봐야 합니다. 1군·벤탄과 동커이·응우옌후에를 비교해보세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "호치민 근교 투어 숙소 위치 추천 | 꾸찌터널·메콩델타 픽업 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "호치민",
+            "item": "https://bestayable.com/destinations/ho-chi-minh-city/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "호치민 근교 투어 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/ho-chi-minh-city/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "호치민 근교 투어 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "1군·벤탄"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "동커이·응우옌후에"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "호치민 근교 투어 숙소는 1군이 가장 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "꾸찌터널·메콩델타 투어가 있다면 1군이 가장 단순합니다. 픽업과 밤 복귀 동선을 함께 잡기 쉽습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "벤탄과 동커이 중 어디가 더 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "투어 픽업과 예산을 중시하면 벤탄, 저녁 산책과 깔끔한 분위기를 중시하면 동커이가 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "메콩델타 투어 후 밤에 돌아오면 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "늦은 복귀가 많아 주변 식당과 택시 동선이 중요합니다. 숙소가 1군 안에 있으면 피로를 줄이기 쉽습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "무이네 1박 일정이 있으면 숙소를 어떻게 잡아야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "체크아웃 후 짐 보관과 투어 출발지 이동을 고려하세요. 1군 중심이나 차량 접근이 쉬운 숙소가 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "3군 숙소도 근교 투어에 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "3군은 가격과 분위기 면에서 장점이 있지만, 투어 픽업 가능 여부와 미팅 포인트 이동 시간을 반드시 확인해야 합니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "호치민",
+      "href": "/destinations/ho-chi-minh-city",
+      "current": false
+    },
+    {
+      "label": "호치민 근교 투어 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "호치민 숙소 가이드",
+    "title": "호치민 근교 투어 숙소는 1군 픽업과 밤 복귀 동선부터 보세요",
+    "description": "꾸찌터널, 메콩델타, 무이네처럼 외곽 일정이 들어가면 숙소 위치는 관광지와의 거리보다 투어 픽업, 교통 체증, 늦은 복귀 후 이동이 더 중요합니다. 처음이라면 1군 안에서 픽업과 저녁 동선을 함께 보는 편이 안전합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "꾸찌터널·메콩델타 투어는 1군, 저녁 도심 일정은 동커이가 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "호치민 근교 투어는 아침 출발과 교통 체증의 영향이 큽니다. 1군 중심에서 픽업 편의와 밤 복귀 후 식사 동선을 함께 비교하세요."
+    },
+    "ariaLabel": "호치민 근교 투어 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "픽업과 예산 균형이 중요하다면",
+        "title": "1군·벤탄",
+        "lead": "투어 픽업과 미팅 포인트를 찾기 쉽고, 벤탄시장·마사지·식당을 함께 묶기 좋아 처음 호치민에서 관리하기 쉬운 위치입니다.",
+        "chipsAriaLabel": "1군·벤탄 선택 포인트",
+        "chips": [
+          "투어 픽업",
+          "벤탄시장",
+          "마사지"
+        ],
+        "line": "꾸찌터널·메콩델타 투어가 있다면 1군·벤탄 주변을 먼저 보는 편이 단순합니다."
+      },
+      {
+        "label": "저녁 산책과 깔끔한 동선이라면",
+        "title": "동커이·응우옌후에",
+        "lead": "시청, 오페라하우스, 응우옌후에 보행자거리와 가까워 투어 후 저녁 식사와 산책을 부드럽게 이어가기 좋습니다.",
+        "chipsAriaLabel": "동커이·응우옌후에 선택 포인트",
+        "chips": [
+          "응우옌후에",
+          "오페라하우스",
+          "저녁 동선"
+        ],
+        "line": "숙소 주변 분위기와 밤 산책을 더 중요하게 본다면 동커이·응우옌후에가 편합니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "why1Title",
+      "head": {
+        "kicker": "Why District 1",
+        "title": "아침 출발 투어가 많다면 1군·벤탄 숙소가 가장 단순합니다",
+        "titleId": "why1Title",
+        "description": "1군·벤탄은 투어 픽업과 미팅 포인트, 식사와 마사지 동선을 함께 보기 쉬워 근교 투어 일정의 기본 위치입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "픽업 확인이 쉽습니다",
+          "description": "꾸찌터널과 메콩델타 투어는 1군 픽업을 기준으로 운영되는 경우가 많아 출발 동선이 단순합니다."
+        },
+        {
+          "number": "02",
+          "title": "교통 체증 리스크를 줄일 수 있습니다",
+          "description": "아침 이동 시간이 길어지는 도시라 호텔에서 미팅 지점까지의 거리가 중요합니다."
+        },
+        {
+          "number": "03",
+          "title": "복귀 후 식사 선택지가 많습니다",
+          "description": "늦게 돌아와도 벤탄 주변에는 식사와 마사지 선택지가 많습니다."
+        },
+        {
+          "number": "04",
+          "title": "소음과 골목 위치는 확인하세요",
+          "description": "저렴한 숙소일수록 대로변 소음이나 골목 접근성을 함께 봐야 합니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "why2Title",
+      "head": {
+        "kicker": "Why Dong Khoi",
+        "title": "투어 후 저녁 도심 산책까지 이어가려면 동커이·응우옌후에가 편합니다",
+        "titleId": "why2Title",
+        "description": "동커이와 응우옌후에는 1군 안에서도 분위기가 깔끔하고, 투어 후 저녁 일정까지 자연스럽게 이어가기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "밤 산책 동선이 좋습니다",
+          "description": "응우옌후에 보행자거리와 주요 레스토랑을 숙소 주변에서 해결하기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "부모님 동반에도 무난합니다",
+          "description": "호텔 밀집도와 도로 접근성이 좋아 택시 이동과 휴식 동선을 잡기 편합니다."
+        },
+        {
+          "number": "03",
+          "title": "시내 핵심 명소와 가깝습니다",
+          "description": "오페라하우스, 시청, 사이공강 주변을 짧은 이동으로 묶을 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "픽업 장소는 반드시 확인하세요",
+          "description": "일부 투어는 벤탄이나 특정 미팅 포인트 집합이라 도보 이동 시간이 생길 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "꾸찌터널·메콩델타 일정에 맞는 숙소 위치를 찾아보세요",
+    "description": "근교 투어가 있다면 픽업 위치와 저녁 복귀 동선이 중요합니다. 1군 일정까지 함께 고려해 편한 위치를 확인할 수 있습니다.",
+    "href": "/destinations/ho-chi-minh-city/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "호치민 근교 호텔은 픽업 가능 구역, 교통 체증, 밤 복귀 동선을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "숙소를 정하기 전 투어 픽업 장소, 아침 이동 시간, 늦은 복귀 후 식사와 택시 동선을 먼저 확인하세요."
+    },
+    "items": [
+      {
+        "title": "투어 픽업 장소",
+        "description": "호텔 픽업인지 벤탄·여행사 미팅 포인트 집합인지 확인하세요."
+      },
+      {
+        "title": "교통 체증 시간대",
+        "description": "아침 출발 투어는 호텔에서 미팅 지점까지의 실제 시간이 중요합니다."
+      },
+      {
+        "title": "밤 복귀 동선",
+        "description": "메콩델타 투어 후 식사와 숙소 복귀를 한 번에 해결할 수 있는지 보세요."
+      },
+      {
+        "title": "무이네 1박 일정",
+        "description": "캐리어 보관과 체크아웃 후 대기 공간을 미리 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "꾸찌터널·메콩델타 투어 전후로 보기 좋은 호치민 숙소 위치",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "1군·벤탄 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-near-trip-1",
+        "image": {
+          "alt": "1군·벤탄 픽업형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "1군 픽업형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "1군·벤탄 픽업형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "투어 중심",
+          "근교 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-near-trip-1",
+          "text": "꾸찌터널·메콩델타 투어가 많은 일정에서 출발 준비가 쉽습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-near-trip-2",
+        "image": {
+          "alt": "벤탄시장 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "벤탄 실속형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "벤탄시장 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "예산·식사",
+          "근교 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-near-trip-2",
+          "text": "식사와 마사지, 미팅 포인트 접근을 함께 보려는 일정에 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-near-trip-3",
+        "image": {
+          "alt": "동커이·응우옌후에 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "동커이 도심형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "동커이·응우옌후에 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "저녁 산책",
+          "근교 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-near-trip-3",
+          "text": "투어 후 저녁 도심 산책과 레스토랑 동선을 짧게 만들기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-호치민-near-trip-4",
+        "image": {
+          "alt": "사이공강·응우옌후에 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "1군 강변형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "사이공강·응우옌후에 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "택시 접근",
+          "근교 여행",
+          "호치민"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-호치민-near-trip-4",
+          "text": "부모님 동반이나 깔끔한 숙박 분위기를 원할 때 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "투어 중심과 도심 체류 중심은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "호치민 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/ho-chi-minh-city/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에서 가장 무난한 숙소 위치를 비교합니다."
+      },
+      {
+        "href": "/destinations/ho-chi-minh-city/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 줄이는 선택을 정리했습니다."
+      },
+      {
+        "href": "/destinations/ho-chi-minh-city/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택입니다."
+      },
+      {
+        "href": "/destinations/ho-chi-minh-city/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 차분히 쉬는 선택입니다."
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "호치민 근교 투어 숙소, 1군에 묵는 게 가장 편할까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "호치민 근교 투어 숙소는 1군이 가장 편한가요?",
+        "answer": "꾸찌터널·메콩델타 투어가 있다면 1군이 가장 단순합니다. 픽업과 밤 복귀 동선을 함께 잡기 쉽습니다.",
+        "open": true
+      },
+      {
+        "question": "벤탄과 동커이 중 어디가 더 좋나요?",
+        "answer": "투어 픽업과 예산을 중시하면 벤탄, 저녁 산책과 깔끔한 분위기를 중시하면 동커이가 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "메콩델타 투어 후 밤에 돌아오면 불편하지 않나요?",
+        "answer": "늦은 복귀가 많아 주변 식당과 택시 동선이 중요합니다. 숙소가 1군 안에 있으면 피로를 줄이기 쉽습니다.",
+        "open": false
+      },
+      {
+        "question": "무이네 1박 일정이 있으면 숙소를 어떻게 잡아야 하나요?",
+        "answer": "체크아웃 후 짐 보관과 투어 출발지 이동을 고려하세요. 1군 중심이나 차량 접근이 쉬운 숙소가 편합니다.",
+        "open": false
+      },
+      {
+        "question": "3군 숙소도 근교 투어에 괜찮나요?",
+        "answer": "3군은 가격과 분위기 면에서 장점이 있지만, 투어 픽업 가능 여부와 미팅 포인트 이동 시간을 반드시 확인해야 합니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

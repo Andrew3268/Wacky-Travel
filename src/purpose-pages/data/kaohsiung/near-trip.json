@@ -1,0 +1,510 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "가오슝 근교 여행 숙소 위치 추천 | 컨딩·불광산·치진섬 동선",
+    "description": "컨딩, 불광산, 타이난, 치진섬을 함께 본다면 가오슝 숙소는 HSR·MRT·페리 동선이 중요합니다. 쭤잉·가오슝역과 옌청푸·시즈완을 비교해보세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/kaohsiung/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "가오슝 근교 여행 숙소 위치 추천 | 컨딩·불광산·치진섬 동선",
+      "description": "컨딩, 불광산, 타이난, 치진섬을 함께 본다면 가오슝 숙소는 HSR·MRT·페리 동선이 중요합니다. 쭤잉·가오슝역과 옌청푸·시즈완을 비교해보세요.",
+      "url": "https://bestayable.com/destinations/kaohsiung/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "가오슝 근교 여행 숙소 위치 추천 | 컨딩·불광산·치진섬 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "가오슝 근교 여행 숙소 위치 추천 | 컨딩·불광산·치진섬 동선",
+      "description": "컨딩, 불광산, 타이난, 치진섬을 함께 본다면 가오슝 숙소는 HSR·MRT·페리 동선이 중요합니다. 쭤잉·가오슝역과 옌청푸·시즈완을 비교해보세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "가오슝 근교 여행 숙소 위치 추천 | 컨딩·불광산·치진섬 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "가오슝",
+            "item": "https://bestayable.com/destinations/kaohsiung/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "가오슝 근교 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/kaohsiung/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "가오슝 근교 여행 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "쭤잉·가오슝역"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "옌청푸·시즈완"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "가오슝 근교 여행 숙소는 쭤잉이 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "컨딩, 불광산, 타이난처럼 장거리 이동이 많다면 쭤잉·가오슝역권이 편합니다. 치진섬과 보얼예술특구 중심이면 옌청푸·시즈완이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "치진섬을 가려면 어디에 묵는 게 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "옌청푸나 시즈완 쪽이 페리 선착장 접근이 좋아 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "컨딩 당일치기는 숙소 위치가 중요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "이동 시간이 길어 출발지 접근이 중요합니다. 쭤잉이나 가오슝역권을 먼저 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "가오슝에서 타이난 당일치기도 가능한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "가능합니다. HSR이나 기차 이동을 고려하면 쭤잉·가오슝역 접근이 좋은 숙소가 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "보얼예술특구 근처에 묵으면 시내 이동이 불편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MRT와 경전철을 쓰면 주요 지역 이동이 가능합니다. 다만 장거리 이동이 많다면 역권과 비교하는 것이 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "가오슝",
+      "href": "/destinations/kaohsiung/",
+      "current": false
+    },
+    {
+      "label": "가오슝 근교 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "가오슝 숙소 가이드",
+    "title": "가오슝 근교 여행 숙소는 HSR·MRT·페리 동선을 나눠보세요",
+    "description": "가오슝은 컨딩, 불광산, 타이난, 치진섬처럼 방향이 다른 일정이 많습니다. 숙소를 고를 때는 번화가만 보지 말고 쭤잉 HSR, 가오슝역, MRT, 페리 접근을 함께 봐야 합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "컨딩·불광산은 쭤잉·가오슝역, 치진·보얼은 옌청푸·시즈완이 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "가오슝 근교 이동은 남쪽 장거리 이동과 항구·섬 이동으로 나뉩니다. 컨딩이나 불광산을 보면 쭤잉·가오슝역, 치진섬과 보얼예술특구를 보면 옌청푸·시즈완을 먼저 보세요."
+    },
+    "ariaLabel": "가오슝 근교 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "장거리 이동과 HSR을 함께 본다면",
+        "title": "쭤잉·가오슝역",
+        "lead": "컨딩, 불광산, 타이난 이동과 HSR·기차 접근을 함께 보기 좋아 근교 일정이 많은 여행의 출발 거점으로 좋습니다.",
+        "chipsAriaLabel": "쭤잉·가오슝역 선택 포인트",
+        "chips": [
+          "컨딩",
+          "불광산",
+          "HSR·기차"
+        ],
+        "line": "가오슝을 거점으로 남부 이동을 넓게 잡는다면 쭤잉·가오슝역을 먼저 비교하세요."
+      },
+      {
+        "label": "항구와 섬, 예술지구를 중심으로 본다면",
+        "title": "옌청푸·시즈완",
+        "lead": "치진섬, 보얼예술특구, 시즈완, 항구 야경을 묶기 좋아 짧은 이동으로 가오슝다운 분위기를 느끼기 쉽습니다.",
+        "chipsAriaLabel": "옌청푸·시즈완 선택 포인트",
+        "chips": [
+          "치진섬",
+          "보얼예술특구",
+          "항구 야경"
+        ],
+        "line": "컨딩보다 치진섬과 항구 산책 비중이 높다면 옌청푸·시즈완이 더 자연스럽습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "why1Title",
+      "head": {
+        "kicker": "Why Zuoying",
+        "title": "컨딩·불광산·타이난 이동은 쭤잉·가오슝역이 편합니다",
+        "titleId": "why1Title",
+        "description": "쭤잉·가오슝역권은 HSR, 기차, 장거리 버스 동선을 잡기 좋아 남부 근교 이동의 기준점이 됩니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "장거리 이동 출발이 쉽습니다",
+          "description": "컨딩이나 불광산처럼 이동 시간이 긴 일정에서 출발 준비를 단순하게 만들 수 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "타이난 당일 이동도 편합니다",
+          "description": "HSR이나 기차를 이용해 타이난을 함께 보는 일정에 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "도착·출발일 동선이 안정적입니다",
+          "description": "가오슝에 늦게 도착하거나 다음 도시로 이동하는 일정에도 관리하기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "항구 분위기는 보조 이동이 필요합니다",
+          "description": "치진섬이나 보얼을 자주 볼 계획이라면 옌청푸·시즈완과도 비교하세요."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "why2Title",
+      "head": {
+        "kicker": "Why Yanchengpu",
+        "title": "치진섬과 보얼예술특구를 중심으로 보면 옌청푸·시즈완이 좋습니다",
+        "titleId": "why2Title",
+        "description": "옌청푸·시즈완은 페리와 항구, 예술지구, 야경을 가까이 두고 움직일 수 있어 짧은 체류에도 만족도가 높습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "치진섬 이동이 가깝습니다",
+          "description": "페리 선착장 접근이 좋아 치진섬과 해산물, 해변 산책을 묶기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "보얼예술특구와 연결됩니다",
+          "description": "낮에는 전시와 골목, 저녁에는 항구 야경까지 이어가기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "도보 여행 만족도가 높습니다",
+          "description": "짧은 이동으로 가오슝의 항구 분위기를 느끼기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "컨딩 중심이면 역권을 보세요",
+          "description": "장거리 버스와 HSR 일정이 많다면 옌청푸보다 쭤잉·가오슝역권이 더 편할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "컨딩·치진섬 일정에 맞는 가오슝 숙소 위치를 찾아보세요",
+    "description": "컨딩, 불광산, 치진섬, 타이난 중 어디를 다녀오는지에 따라 편한 출발 위치와 복귀 동선이 달라집니다.",
+    "href": "/destinations/kaohsiung/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "가오슝 근교 호텔은 HSR역, 페리 접근, 밤 복귀 동선을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "장거리 이동과 항구 이동은 필요한 교통이 다릅니다. 숙소를 고르기 전 실제 출발역과 선착장을 확인하세요."
+    },
+    "items": [
+      {
+        "title": "HSR·기차 접근",
+        "description": "컨딩·타이난·다음 도시 이동이 있다면 쭤잉과 가오슝역 접근을 보세요."
+      },
+      {
+        "title": "페리 선착장 거리",
+        "description": "치진섬이 핵심이라면 시즈완 선착장까지의 이동이 중요합니다."
+      },
+      {
+        "title": "밤 복귀 동선",
+        "description": "항구 야경이나 야시장 후 숙소까지 돌아오기 쉬운지 확인하세요."
+      },
+      {
+        "title": "장거리 일정 피로도",
+        "description": "컨딩 당일치기는 이동 시간이 길어 숙소 위치가 체감 피로를 크게 바꿉니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "컨딩·불광산·치진섬 일정까지 보기 좋은 가오슝 숙소 위치",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "쭤잉역·가오슝역 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-near-trip-1",
+        "image": {
+          "alt": "쭤잉역 주변 이동형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "쭤잉 HSR형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "쭤잉역 주변 이동형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "장거리 이동",
+          "근교 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-near-trip-1",
+          "text": "컨딩, 불광산, 타이난 이동을 함께 잡는 일정에 편합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-near-trip-2",
+        "image": {
+          "alt": "가오슝역 주변 환승형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "가오슝역 환승형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "가오슝역 주변 환승형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "기차·MRT",
+          "근교 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-near-trip-2",
+          "text": "기차와 MRT, 시내 이동을 균형 있게 보려는 일정에 무난합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-near-trip-3",
+        "image": {
+          "alt": "옌청푸·보얼예술특구 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "옌청푸 항구형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "옌청푸·보얼예술특구 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "치진·보얼",
+          "근교 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-near-trip-3",
+          "text": "치진섬과 항구 야경, 예술지구 산책을 중심으로 보기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-가오슝-near-trip-4",
+        "image": {
+          "alt": "시즈완·하마싱 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "시즈완 페리형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "시즈완·하마싱 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "섬 이동",
+          "근교 여행",
+          "가오슝"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-가오슝-near-trip-4",
+          "text": "치진섬 페리와 해안 산책을 가까이 두고 싶은 일정에 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "장거리 이동과 항구 산책은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "가오슝 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/kaohsiung/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에서 가장 무난한 숙소 위치를 비교합니다."
+      },
+      {
+        "href": "/destinations/kaohsiung/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 줄이는 선택을 정리했습니다."
+      },
+      {
+        "href": "/destinations/kaohsiung/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택입니다."
+      },
+      {
+        "href": "/destinations/kaohsiung/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 차분히 쉬는 선택입니다."
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "가오슝 근교 여행 숙소, 쭤잉과 옌청푸 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "가오슝 근교 여행 숙소는 쭤잉이 좋나요?",
+        "answer": "컨딩, 불광산, 타이난처럼 장거리 이동이 많다면 쭤잉·가오슝역권이 편합니다. 치진섬과 보얼예술특구 중심이면 옌청푸·시즈완이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "치진섬을 가려면 어디에 묵는 게 좋나요?",
+        "answer": "옌청푸나 시즈완 쪽이 페리 선착장 접근이 좋아 편합니다.",
+        "open": false
+      },
+      {
+        "question": "컨딩 당일치기는 숙소 위치가 중요한가요?",
+        "answer": "이동 시간이 길어 출발지 접근이 중요합니다. 쭤잉이나 가오슝역권을 먼저 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "가오슝에서 타이난 당일치기도 가능한가요?",
+        "answer": "가능합니다. HSR이나 기차 이동을 고려하면 쭤잉·가오슝역 접근이 좋은 숙소가 편합니다.",
+        "open": false
+      },
+      {
+        "question": "보얼예술특구 근처에 묵으면 시내 이동이 불편한가요?",
+        "answer": "MRT와 경전철을 쓰면 주요 지역 이동이 가능합니다. 다만 장거리 이동이 많다면 역권과 비교하는 것이 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

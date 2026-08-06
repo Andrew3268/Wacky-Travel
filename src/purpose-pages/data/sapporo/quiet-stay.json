@@ -1,0 +1,523 @@
+{
+  "purpose": "quiet-stay",
+  "head": {
+    "title": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교",
+    "description": "삿포로 조용한 숙소는 스스키노 한복판보다 오도리 서쪽, 나카지마공원처럼 지하도 접근성과 저녁 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/sapporo/quiet-stay/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교",
+      "description": "삿포로 조용한 숙소는 스스키노 한복판보다 오도리 서쪽, 나카지마공원처럼 지하도 접근성과 저녁 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "url": "https://bestayable.com/destinations/sapporo/quiet-stay/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교",
+      "description": "삿포로 조용한 숙소는 스스키노 한복판보다 오도리 서쪽, 나카지마공원처럼 지하도 접근성과 저녁 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "삿포로",
+            "item": "https://bestayable.com/destinations/sapporo/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "삿포로 조용한 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/sapporo/quiet-stay/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "삿포로 조용한 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "오도리 서쪽"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "나카지마공원"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "삿포로역 북쪽"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "조잔케이 온천"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "삿포로 조용한 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "도심 이동과 지하도 접근을 유지하려면 오도리 서쪽, 저녁 휴식과 산책을 원하면 나카지마공원을 먼저 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "스스키노 근처 숙소도 조용할 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "가능하지만 스스키노 중심부는 밤에 활기찰 수 있습니다. 스스키노 바로 안쪽보다 나카지마공원이나 오도리 서쪽을 함께 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "겨울 삿포로에서는 조용함보다 무엇이 더 중요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "지하도 접근성과 역 출구에서 호텔까지의 거리도 중요합니다. 눈길 이동이 길면 조용해도 불편할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "삿포로역 근처는 조용한 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JR 이동이 많다면 좋습니다. 다만 역 남쪽보다 북쪽이나 큰길에서 조금 떨어진 곳을 함께 비교하면 더 차분할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "조잔케이는 조용한 숙소로 좋은 선택인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "온천과 휴식이 목적이면 좋습니다. 하지만 매일 시내 관광을 한다면 이동 시간이 길어질 수 있어 1박 정도로 나누는 것도 좋습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "삿포로",
+      "href": "/destinations/sapporo/",
+      "current": false
+    },
+    {
+      "label": "조용한 숙소",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "삿포로 숙소 가이드",
+    "title": "삿포로 조용한 숙소는 스스키노에서 살짝 떨어져 보세요",
+    "description": "삿포로는 겨울 눈길과 밤 소음까지 함께 봐야 숙소 선택이 편해집니다. 도심 이동과 지하도 접근을 유지하고 싶다면 오도리 서쪽, 저녁 이후 조용한 분위기를 더 원한다면 나카지마공원을 함께 비교해보세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "quietAreaTitle",
+    "head": {
+      "kicker": "Quiet Choice",
+      "title": "도심 이동은 오도리 서쪽, 저녁 휴식은 나카지마공원이 편합니다",
+      "titleId": "quietAreaTitle",
+      "description": "삿포로의 조용한 숙소는 번화가와의 거리뿐 아니라 겨울 이동, 지하도 접근성, 밤에 식사하고 돌아오는 길까지 함께 보는 편이 좋습니다."
+    },
+    "ariaLabel": "삿포로 조용한 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "중심 이동을 유지하고 싶다면",
+        "title": "오도리 서쪽",
+        "lead": "오도리공원과 지하도 동선을 활용하기 좋고, 스스키노 한복판보다 숙소 주변 분위기를 조금 더 차분하게 잡을 수 있습니다.",
+        "chipsAriaLabel": "오도리 서쪽 선택 포인트",
+        "chips": [
+          "오도리공원",
+          "지하도 접근",
+          "도심 균형"
+        ],
+        "line": "겨울 여행에서도 이동 부담을 줄이면서 번화가 소음은 피하고 싶을 때 먼저 비교하기 좋습니다."
+      },
+      {
+        "label": "저녁 이후 조용히 쉬고 싶다면",
+        "title": "나카지마공원",
+        "lead": "스스키노 접근은 유지하면서도 공원 주변 분위기가 더 차분해 산책과 휴식을 함께 원하는 여행에 잘 맞습니다.",
+        "chipsAriaLabel": "나카지마공원 선택 포인트",
+        "chips": [
+          "공원 산책",
+          "스스키노 접근",
+          "차분한 밤"
+        ],
+        "line": "먹거리 일정은 살리되 숙소에서는 조용히 쉬고 싶은 커플·부모님 동반 여행에 어울립니다."
+      }
+    ],
+    "support": {
+      "title": "보조 후보도 함께 비교하세요.",
+      "description": "삿포로역 북쪽은 이동 안정성이 좋고, 조잔케이는 온전히 쉬는 일정에 좋습니다. 다만 매일 시내 관광을 한다면 이동 시간을 먼저 비교하세요."
+    }
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyOdoriTitle",
+      "head": {
+        "kicker": "Why Odori West",
+        "title": "오도리 서쪽은 지하도 접근성과 조용함의 균형이 좋습니다",
+        "titleId": "whyOdoriTitle",
+        "description": "삿포로 도심을 편하게 쓰면서도 스스키노 중심부의 밤 분위기는 피하고 싶은 여행에 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "오도리공원을 기준으로 움직이기 쉽습니다",
+          "description": "축제, 공원 산책, 시내 관광을 한 번에 묶기 좋아 처음 삿포로를 방문해도 동선이 단순합니다."
+        },
+        {
+          "number": "02",
+          "title": "겨울 이동 부담이 줄어듭니다",
+          "description": "지하도와 지하철 접근을 잘 잡으면 눈길을 오래 걷는 부담을 줄일 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "스스키노보다 차분합니다",
+          "description": "저녁 식사 후 숙소로 돌아왔을 때 번화가 한복판보다 쉬는 분위기를 만들기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "삿포로역 접근도 무난합니다",
+          "description": "JR 근교 이동이 하루 정도 섞여 있어도 완전히 불편한 위치는 아닙니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyNakajimaTitle",
+      "head": {
+        "kicker": "Why Nakajima Park",
+        "title": "나카지마공원은 저녁 휴식과 산책을 함께 보기 좋습니다",
+        "titleId": "whyNakajimaTitle",
+        "description": "먹거리와 도심 접근은 유지하되 숙소 주변은 한결 조용하게 쓰고 싶은 여행에 어울립니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "공원 산책이 편합니다",
+          "description": "여행 중 잠깐 쉬거나 아침에 걷기 좋아 숙소 주변 시간을 편하게 만들 수 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "스스키노 접근을 유지할 수 있습니다",
+          "description": "저녁 식사와 술집 동선은 살리면서 숙소는 번화가에서 살짝 떨어뜨릴 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "커플·부모님 동반에 좋습니다",
+          "description": "밤 분위기가 너무 활기찬 곳보다 차분한 숙박 환경을 원하는 여행에 잘 맞습니다."
+        },
+        {
+          "number": "04",
+          "title": "겨울에는 출구 위치를 봐야 합니다",
+          "description": "눈이 많은 시기에는 지하철 출구와 호텔 사이 거리, 제설 상태를 함께 확인하는 편이 좋습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "조용한 숙소가 고민된다면",
+    "title": "조용하게 쉬기 좋은 삿포로 숙소 위치를 찾아보세요",
+    "description": "스스키노의 편의성, 오도리의 차분함, 삿포로역의 이동 편의성을 놓고 보면 내 여행에 맞는 위치를 찾기 좋습니다.",
+    "href": "/destinations/sapporo/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "삿포로 조용한 호텔은 지하도, 역 출구, 밤 소음을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "조용한 숙소는 지역명만 보고 고르기보다 실제 객실 위치, 주변 도로, 밤 시간대 분위기를 함께 확인해야 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "대로변과 철도 소음",
+        "description": "역과 가까워도 큰길이나 철도 바로 옆이면 밤 소음이 느껴질 수 있습니다. 객실 방향과 방음 후기를 함께 확인하세요."
+      },
+      {
+        "title": "밤에 돌아오는 길",
+        "description": "너무 외진 곳은 조용해도 불편할 수 있습니다. 늦은 저녁 식사 후 숙소까지 걷는 길이 안전하고 단순한지 확인하세요."
+      },
+      {
+        "title": "식사와 편의시설 거리",
+        "description": "조용한 지역일수록 늦게 여는 식당이 적을 수 있습니다. 편의점, 카페, 간단한 식사 선택지가 주변에 있는지 보는 편이 좋습니다."
+      },
+      {
+        "title": "객실 방음 후기",
+        "description": "같은 지역이라도 호텔마다 체감이 다릅니다. 엘리베이터 옆 객실, 저층 객실, 도로 방향 객실 후기를 특히 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Stay Candidates",
+      "title": "차분한 삿포로 여행에서 비교할 만한 숙소",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "오도리·나카지마공원 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-quiet-stay-1",
+        "image": {
+          "alt": "오도리 서쪽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도심 균형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "오도리 서쪽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-quiet-stay-1",
+          "text": "도심 이동을 유지하면서 스스키노 한복판은 피하고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-quiet-stay-2",
+        "image": {
+          "alt": "나카지마공원 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "공원 휴식",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "나카지마공원 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-quiet-stay-2",
+          "text": "스스키노 접근은 살리되 숙소 주변은 차분하게 쓰고 싶을 때 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-quiet-stay-3",
+        "image": {
+          "alt": "삿포로역 북쪽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "이동 안정",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "삿포로역 북쪽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-quiet-stay-3",
+          "text": "근교 이동이 많으면서 남쪽 번화가 소음은 줄이고 싶을 때 비교할 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-삿포로-quiet-stay-4",
+        "image": {
+          "alt": "조잔케이 온천 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "온천 휴식",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "조잔케이 온천 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "조용한 위치",
+          "조용한 휴식",
+          "삿포로"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-삿포로-quiet-stay-4",
+          "text": "하루 정도는 도심에서 벗어나 온천과 휴식을 중심으로 보내고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "조용한 휴식",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "겨울 여행, 먹거리 여행, 온천 휴식이면 조용한 지역 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "삿포로 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/sapporo/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 방문할 때 실패를 줄이는 중심 위치 선택"
+      },
+      {
+        "href": "/destinations/sapporo/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 보는 실속형 선택"
+      },
+      {
+        "href": "/destinations/sapporo/near-trip/",
+        "number": "03",
+        "title": "근교 여행 숙소",
+        "description": "근교 이동과 투어 출발 동선을 먼저 보는 선택"
+      },
+      {
+        "href": "/destinations/sapporo/family-trip/",
+        "number": "04",
+        "title": "가족 여행 숙소",
+        "description": "아이·부모님 동선과 쉬는 시간을 함께 보는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "faqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "삿포로 조용한 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "faqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "삿포로 조용한 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "도심 이동과 지하도 접근을 유지하려면 오도리 서쪽, 저녁 휴식과 산책을 원하면 나카지마공원을 먼저 비교하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "스스키노 근처 숙소도 조용할 수 있나요?",
+        "answer": "가능하지만 스스키노 중심부는 밤에 활기찰 수 있습니다. 스스키노 바로 안쪽보다 나카지마공원이나 오도리 서쪽을 함께 보세요.",
+        "open": false
+      },
+      {
+        "question": "겨울 삿포로에서는 조용함보다 무엇이 더 중요한가요?",
+        "answer": "지하도 접근성과 역 출구에서 호텔까지의 거리도 중요합니다. 눈길 이동이 길면 조용해도 불편할 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "삿포로역 근처는 조용한 숙소로 괜찮나요?",
+        "answer": "JR 이동이 많다면 좋습니다. 다만 역 남쪽보다 북쪽이나 큰길에서 조금 떨어진 곳을 함께 비교하면 더 차분할 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "조잔케이는 조용한 숙소로 좋은 선택인가요?",
+        "answer": "온천과 휴식이 목적이면 좋습니다. 하지만 매일 시내 관광을 한다면 이동 시간이 길어질 수 있어 1박 정도로 나누는 것도 좋습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

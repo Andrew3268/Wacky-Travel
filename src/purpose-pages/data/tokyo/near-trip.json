@@ -1,0 +1,520 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선",
+    "description": "하코네·후지·가마쿠라·디즈니 일정이 들어간 도쿄 여행은 숙소 주변 명소보다 출발역, 환승 수, 첫차·막차 동선을 먼저 확인해야 합니다. 신주쿠와 도쿄역권 중 내 일정에 맞는 위치를 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/tokyo/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선",
+      "description": "하코네·후지·가마쿠라·디즈니 일정이 들어간 도쿄 여행은 숙소 주변 명소보다 출발역, 환승 수, 첫차·막차 동선을 먼저 확인해야 합니다. 신주쿠와 도쿄역권 중 내 일정에 맞는 위치를 정리했습니다.",
+      "url": "https://bestayable.com/destinations/tokyo/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선",
+      "description": "하코네·후지·가마쿠라·디즈니 일정이 들어간 도쿄 여행은 숙소 주변 명소보다 출발역, 환승 수, 첫차·막차 동선을 먼저 확인해야 합니다. 신주쿠와 도쿄역권 중 내 일정에 맞는 위치를 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "도쿄",
+            "item": "https://bestayable.com/destinations/tokyo/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "도쿄 근교 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/tokyo/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "도쿄 근교 여행 숙소 추천 호텔",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "호텔 메트로폴리탄 도쿄 마루노우치"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "JR 호텔 블라썸 신주쿠"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "노가 호텔 우에노 도쿄"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "호텔 그레이스리 신주쿠"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "도쿄 근교 여행 숙소는 신주쿠와 도쿄역권 중 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "하코네·가마쿠라·후지 방향이 많다면 신주쿠가 편하고, 디즈니·신칸센·공항 이동이 중요하다면 도쿄역권이 편합니다. 가장 많이 이용할 출발역을 먼저 정리하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "하코네 일정이 있으면 신주쿠 숙소가 더 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대체로 신주쿠가 편합니다. 오다큐선과 고속버스 동선을 함께 볼 수 있어 하코네와 후지 방향 일정에 잘 맞습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "디즈니 일정이 있으면 도쿄역 근처가 유리한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "마이하마 방향 이동을 보기 쉬워 도쿄역권이 유리할 수 있습니다. 디즈니 후 늦게 복귀하는 날에는 호텔까지의 환승 수를 꼭 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "우에노 숙소는 근교 여행에 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "나리타공항, 닛코, 우에노·아사쿠사 일정을 함께 본다면 괜찮습니다. 다만 하코네 중심이라면 신주쿠를 함께 비교하는 편이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "근교 여행이 많아도 이케부쿠로 숙소가 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "도심 이동 중심이라면 괜찮지만 하코네·후지·디즈니처럼 방향이 다른 근교 일정이 많다면 출발역까지 이동이 늘어날 수 있습니다. 근교 일정이 많다면 신주쿠나 도쿄역권을 우선 비교하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "도쿄",
+      "href": "/destinations/tokyo/",
+      "current": false
+    },
+    {
+      "label": "도쿄 근교 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "도쿄 숙소 가이드",
+    "title": "도쿄 근교 여행 숙소는 목적지별 출발역부터 나눠보세요",
+    "description": "하코네, 후지·가와구치코, 가마쿠라, 디즈니처럼 도쿄 밖으로 나가는 일정이 들어가면 숙소 선택 기준이 달라집니다. 호텔 주변 명소보다 아침 출발역, 환승 횟수, 늦은 복귀 후 식사 동선까지 함께 보는 것이 중요합니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "하코네·후지 방향은 신주쿠, 디즈니·신칸센은 도쿄역권이 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "도쿄 근교 여행이 많은 일정은 모든 지역을 넓게 비교하기보다, 가장 자주 이용할 출발 방향을 기준으로 신주쿠와 도쿄역권을 먼저 나누면 선택이 쉬워집니다."
+    },
+    "ariaLabel": "도쿄 근교 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "서쪽·남쪽 근교라면",
+        "title": "신주쿠",
+        "lead": "오다큐, JR, 고속버스 선택지가 있어 하코네, 후지·가와구치코, 가마쿠라처럼 서쪽·남쪽 근교 일정과 버스투어 출발 동선을 잡기 좋습니다.",
+        "chipsAriaLabel": "신주쿠 선택 포인트",
+        "chips": [
+          "하코네",
+          "후지·가와구치코",
+          "고속버스"
+        ],
+        "line": "하코네·후지 방향 비중이 크거나 버스투어 집합이 있다면 신주쿠부터 보는 편이 안전합니다."
+      },
+      {
+        "label": "디즈니·신칸센 일정이라면",
+        "title": "도쿄역권",
+        "lead": "도쿄역과 긴자 주변은 신칸센, 마이하마 연결, 공항 이동을 함께 보기 좋아 디즈니와 장거리 이동이 섞인 일정에 편합니다.",
+        "chipsAriaLabel": "도쿄역권 선택 포인트",
+        "chips": [
+          "디즈니",
+          "신칸센",
+          "공항 동선"
+        ],
+        "line": "디즈니, 신칸센 이동, 공항 이동이나 귀국일 동선까지 함께 본다면 도쿄역권이 더 단순할 수 있습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyFirstTitle",
+      "head": {
+        "kicker": "Why Shinjuku",
+        "title": "하코네·후지·가마쿠라 방향이 많다면 신주쿠가 편합니다",
+        "titleId": "whyFirstTitle",
+        "description": "신주쿠는 오다큐, JR, 고속버스 동선을 함께 보기 좋아 도쿄 서쪽과 남쪽 근교, 버스투어 일정에서 실패 가능성이 낮습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "하코네 출발이 자연스럽습니다",
+          "description": "오다큐선을 이용하기 쉬워 하코네 프리패스나 로망스카 일정과 숙소 동선을 함께 맞추기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "후지·가와구치코 버스투어를 보기 좋습니다",
+          "description": "신주쿠 출발 고속버스와 투어 집합지가 많아 후지·가와구치코 방향 일정의 아침 이동 부담을 줄이기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "버스투어 집합지가 많습니다",
+          "description": "가마쿠라·에노시마도 JR과 환승 동선을 활용해 하루 일정으로 묶기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "밤에도 식사 선택지가 많습니다",
+          "description": "근교에서 늦게 돌아온 뒤 식사와 편의점, 숙소 복귀를 한 생활권 안에서 해결하기 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whySecondTitle",
+      "head": {
+        "kicker": "Why Tokyo Station",
+        "title": "디즈니·신칸센·공항 동선이 섞이면 도쿄역권이 단순합니다",
+        "titleId": "whySecondTitle",
+        "description": "도쿄역권은 장거리 철도, 마이하마 연결, 공항 이동을 함께 보기 좋아 첫날과 마지막 날까지 안정적인 선택입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "디즈니 이동을 보기 쉽습니다",
+          "description": "도쿄역에서 마이하마 방향으로 이어지는 동선을 잡기 쉬워 디즈니 일정이 있는 여행에 편합니다."
+        },
+        {
+          "number": "02",
+          "title": "신칸센 일정과 잘 맞습니다",
+          "description": "나고야, 교토, 오사카 등 장거리 이동이 섞인다면 도쿄역 접근성이 숙소 만족도를 크게 좌우합니다."
+        },
+        {
+          "number": "03",
+          "title": "긴자·마루노우치 저녁 동선이 깔끔합니다",
+          "description": "근교에서 돌아온 뒤 비교적 차분한 도심에서 식사와 쇼핑을 이어가기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "하코네가 중심이면 신주쿠도 보세요",
+          "description": "하코네와 후지 방향 비중이 크다면 도쿄역권보다 신주쿠가 더 단순할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "하코네·가마쿠라·디즈니 일정에 맞는 도쿄 숙소 위치를 찾아보세요",
+    "description": "도쿄는 목적지에 따라 편한 출발역이 다릅니다. 하루 이동 거리와 저녁 복귀 동선을 기준으로 무리 없는 위치를 확인할 수 있습니다.",
+    "href": "/destinations/tokyo/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "도쿄 근교 여행 호텔은 출발역, 환승 횟수, 첫차 시간을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "숙소 지역을 정했다면 목적지별 출발역, 환승 횟수, 늦은 복귀, 공항 이동만 먼저 확인해도 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "가장 많이 갈 근교 목적지",
+        "description": "하코네, 가마쿠라, 디즈니, 닛코 중 반복되는 목적지가 어디인지 먼저 정리하세요."
+      },
+      {
+        "title": "출발역까지 실제 이동 시간",
+        "description": "호텔에서 플랫폼까지 걸리는 시간과 환승 수를 함께 확인하는 것이 좋습니다."
+      },
+      {
+        "title": "첫차·막차와 늦은 복귀",
+        "description": "디즈니나 근교 투어 후 늦게 돌아와도 식사와 숙소 복귀가 부담 없는지 보세요."
+      },
+      {
+        "title": "공항과 귀국일 동선",
+        "description": "나리타·하네다 이동이 짐을 든 상태에서도 단순한지 함께 확인하세요."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "근교 출발 동선까지 보기 좋은 도쿄 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "신주쿠·도쿄역·우에노 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-near-trip-1",
+        "image": {
+          "alt": "호텔 메트로폴리탄 도쿄 마루노우치 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도쿄역 중심",
+        "nameEn": "Hotel Metropolitan Tokyo Marunouchi",
+        "nameKo": "호텔 메트로폴리탄 도쿄 마루노우치",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "디즈니·신칸센",
+          "근교 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-near-trip-1",
+          "text": "디즈니, 신칸센, 공항 이동을 함께 보는 일정에서 비교 가치가 있습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-near-trip-2",
+        "image": {
+          "alt": "JR 호텔 블라썸 신주쿠 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "신주쿠역 접근",
+        "nameEn": "JR Kyushu Hotel Blossom Shinjuku",
+        "nameKo": "JR 호텔 블라썸 신주쿠",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "하코네",
+          "근교 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-near-trip-2",
+          "text": "하코네와 후지 방향 이동, 신주쿠 저녁 동선을 함께 잡고 싶은 분께 편합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-near-trip-3",
+        "image": {
+          "alt": "노가 호텔 우에노 도쿄 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "우에노 접근",
+        "nameEn": "Nohga Hotel Ueno Tokyo",
+        "nameKo": "노가 호텔 우에노 도쿄",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "나리타·닛코",
+          "근교 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-near-trip-3",
+          "text": "나리타공항과 닛코·우에노 주변 일정을 함께 볼 때 비교하기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-near-trip-4",
+        "image": {
+          "alt": "호텔 그레이스리 신주쿠 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "신주쿠 중심",
+        "nameEn": "Hotel Gracery Shinjuku",
+        "nameKo": "호텔 그레이스리 신주쿠",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "투어 집합",
+          "근교 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-near-trip-4",
+          "text": "신주쿠 출발 투어와 늦은 저녁 복귀 동선을 짧게 만들고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "도심 중심 여행과 근교 중심 여행은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "도쿄 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/tokyo/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에 맞춰 숙소 지역을 빠르게 좁히는 선택"
+      },
+      {
+        "href": "/destinations/tokyo/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비만이 아니라 위치와 이동 시간까지 함께 보는 선택"
+      },
+      {
+        "href": "/destinations/tokyo/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/tokyo/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "도쿄 근교 여행 숙소, 신주쿠와 도쿄역권 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "도쿄 근교 여행 숙소는 신주쿠와 도쿄역권 중 어디가 좋나요?",
+        "answer": "하코네·가마쿠라·후지 방향이 많다면 신주쿠가 편하고, 디즈니·신칸센·공항 이동이 중요하다면 도쿄역권이 편합니다. 가장 많이 이용할 출발역을 먼저 정리하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "하코네 일정이 있으면 신주쿠 숙소가 더 편한가요?",
+        "answer": "대체로 신주쿠가 편합니다. 오다큐선과 고속버스 동선을 함께 볼 수 있어 하코네와 후지 방향 일정에 잘 맞습니다.",
+        "open": false
+      },
+      {
+        "question": "디즈니 일정이 있으면 도쿄역 근처가 유리한가요?",
+        "answer": "마이하마 방향 이동을 보기 쉬워 도쿄역권이 유리할 수 있습니다. 디즈니 후 늦게 복귀하는 날에는 호텔까지의 환승 수를 꼭 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "우에노 숙소는 근교 여행에 괜찮나요?",
+        "answer": "나리타공항, 닛코, 우에노·아사쿠사 일정을 함께 본다면 괜찮습니다. 다만 하코네 중심이라면 신주쿠를 함께 비교하는 편이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "근교 여행이 많아도 이케부쿠로 숙소가 괜찮나요?",
+        "answer": "도심 이동 중심이라면 괜찮지만 하코네·후지·디즈니처럼 방향이 다른 근교 일정이 많다면 출발역까지 이동이 늘어날 수 있습니다. 근교 일정이 많다면 신주쿠나 도쿄역권을 우선 비교하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

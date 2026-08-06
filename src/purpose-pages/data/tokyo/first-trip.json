@@ -1,0 +1,530 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교",
+    "description": "첫 도쿄 여행은 신주쿠와 긴자·도쿄역만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도심 이동은 신주쿠, 공항·JR 이동은 긴자·도쿄역이 편합니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/tokyo/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교",
+      "description": "첫 도쿄 여행은 신주쿠와 긴자·도쿄역만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도심 이동은 신주쿠, 공항·JR 이동은 긴자·도쿄역이 편합니다.",
+      "url": "https://bestayable.com/destinations/tokyo/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교",
+      "description": "첫 도쿄 여행은 신주쿠와 긴자·도쿄역만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도심 이동은 신주쿠, 공항·JR 이동은 긴자·도쿄역이 편합니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "도쿄",
+            "item": "https://bestayable.com/destinations/tokyo/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "도쿄가 처음이라면",
+            "item": "https://bestayable.com/destinations/tokyo/first-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "도쿄 첫 여행 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "신주쿠"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "시부야"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "긴자 & 도쿄역"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "우에노 & 아사쿠사"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "오다이바 & 도쿄베이"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "아카사카 & 롯폰기"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "도쿄 처음이면 신주쿠에 묵는 게 가장 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "신주쿠는 교통과 식당, 쇼핑 선택지가 많아 첫 여행자에게 무난합니다. 다만 긴자·도쿄역 일정이나 공항 이동을 우선한다면 도쿄역권, 전통 관광 중심이면 우에노·아사쿠사도 충분히 좋은 선택입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "하네다공항과 나리타공항 중 어디로 들어오느냐에 따라 숙소가 달라지나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네, 공항에 따라 편한 지역이 달라질 수 있습니다. 하네다는 시나가와·도쿄역·긴자권이 편하고, 나리타는 우에노·도쿄역·신주쿠 이동 방식을 비교해보는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "긴자·도쿄역 근처는 첫 여행자에게 너무 비싼가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "다른 지역보다 가격대가 높게 느껴질 수 있지만, 공항 이동과 깔끔한 거리 분위기, 도심 접근성을 중시한다면 만족도가 높을 수 있습니다. 예산이 부담된다면 우에노나 아사쿠사 쪽도 함께 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "우에노·아사쿠사는 첫 도쿄 여행 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "전통 관광, 가성비, 나리타공항 이동을 중시한다면 좋은 선택입니다. 다만 시부야·신주쿠 야간 일정이 많다면 매일 이동 시간이 길어질 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "3박 4일 도쿄 여행이면 숙소를 한 곳에 잡아도 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대부분은 한 곳에 잡아도 충분합니다. 다만 디즈니, 하코네, 요코하마 등 외곽 일정이 많다면 마지막 1박을 다른 권역으로 나누는 방법도 고려할 수 있습니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "도쿄",
+      "href": "/destinations/tokyo/",
+      "current": false
+    },
+    {
+      "label": "도쿄가 처음이라면",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "도쿄 숙소 가이드",
+    "title": "도쿄 첫 여행 숙소는 신주쿠와 도쿄역권부터 비교하세요",
+    "description": "첫 도쿄 여행은 보고 싶은 지역이 넓게 흩어지기 쉽습니다. 서쪽 도심과 쇼핑·저녁 일정이 많다면 신주쿠, 공항 이동과 JR 이동을 줄이고 싶다면 긴자·도쿄역부터 비교해보세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "도쿄 도심 이동은 신주쿠, 깔끔한 첫 일정은 도쿄역권이 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "서쪽 도심과 쇼핑·저녁 일정이 많다면 신주쿠, 공항 이동과 JR 이동·정돈된 도심 일정을 원한다면 긴자·도쿄역부터 보면 충분합니다."
+    },
+    "ariaLabel": "첫 도쿄 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "도심 이동을 넓게 쓰고 싶다면",
+        "title": "신주쿠",
+        "lead": "JR·지하철 노선이 많아 시부야, 하라주쿠, 도쿄 서쪽 일정을 넓게 묶기 좋습니다.",
+        "chipsAriaLabel": "신주쿠 선택 포인트",
+        "chips": [
+          "JR 노선",
+          "시부야",
+          "저녁 식사"
+        ],
+        "line": "처음이라 일정이 여러 방향으로 흩어진다면 신주쿠가 무난합니다."
+      },
+      {
+        "label": "공항·JR 이동을 줄이고 싶다면",
+        "title": "긴자·도쿄역",
+        "lead": "도쿄역과 긴자 주변은 공항 이동, 신칸센·JR 이동, 정돈된 도심 관광을 함께 잡기 좋습니다.",
+        "chipsAriaLabel": "긴자·도쿄역 선택 포인트",
+        "chips": [
+          "공항 이동",
+          "JR 이동",
+          "긴자"
+        ],
+        "line": "나리타·하네다 이동이나 근교 출발이 중요하다면 긴자·도쿄역을 함께 보세요."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyShinjukuTitle",
+      "head": {
+        "kicker": "Why Shinjuku",
+        "title": "여러 방향으로 움직인다면 신주쿠가 편합니다",
+        "titleId": "whyShinjukuTitle",
+        "description": "신주쿠는 도쿄 서쪽 도심과 주요 노선을 넓게 쓰기 좋아 첫 여행에서도 일정 조정이 쉽습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "대표 노선을 넓게 활용할 수 있습니다",
+          "description": "JR과 지하철을 함께 쓰기 좋아 시부야, 하라주쿠, 이케부쿠로, 도쿄 서쪽 일정을 묶기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁에도 식사 선택지가 많습니다",
+          "description": "늦은 시간까지 문 여는 식당과 쇼핑 공간이 많아 숙소 주변에서 하루를 마무리하기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "하루 동선을 유연하게 바꾸기 좋습니다",
+          "description": "날씨나 컨디션에 따라 서쪽 도심, 쇼핑, 야경 일정을 바꾸기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "짧은 일정에도 무난합니다",
+          "description": "2박 3일처럼 시간이 짧을수록 여러 노선을 한 번에 쓰는 위치가 편하게 느껴질 수 있습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyTokyoStationTitle",
+      "head": {
+        "kicker": "Why Ginza & Tokyo Station",
+        "title": "공항 이동과 JR 동선은 긴자·도쿄역이 편합니다",
+        "titleId": "whyTokyoStationTitle",
+        "description": "도쿄역과 긴자는 공항 이동, 신칸센·JR 이동, 정돈된 도심 관광을 함께 챙기고 싶을 때 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "공항 이동을 계산하기 쉽습니다",
+          "description": "나리타·하네다 이동을 함께 봐야 한다면 도쿄역과 긴자 주변이 동선 파악에 유리합니다."
+        },
+        {
+          "number": "02",
+          "title": "JR·신칸센 출발이 편합니다",
+          "description": "가마쿠라, 요코하마, 하코네처럼 도쿄 밖 일정을 넣는다면 도쿄역 접근성이 도움이 됩니다."
+        },
+        {
+          "number": "03",
+          "title": "도심 분위기가 차분합니다",
+          "description": "신주쿠보다 번잡함이 덜해 쇼핑과 식사를 조금 더 정돈된 분위기로 즐기기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "서쪽 일정이 많다면 신주쿠도 보세요",
+          "description": "시부야, 하라주쿠, 신주쿠 중심 일정이 많다면 긴자·도쿄역보다 신주쿠가 더 편할 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "아직 고민된다면",
+    "title": "공항 이동과 노선에 맞는 첫 도쿄 숙소 위치를 찾아보세요",
+    "description": "신주쿠, 우에노, 긴자, 아사쿠사는 이동 방식이 크게 다릅니다. 공항 도착 시간과 주요 일정을 기준으로 편한 위치를 찾을 수 있습니다.",
+    "href": "/destinations/tokyo/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "도쿄 호텔은 역 이름보다 노선과 환승 횟수를 먼저 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "지역을 정했다면 실제 이용할 노선, 환승 횟수, 공항 이동, 밤 동선만 먼저 확인해도 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "주로 쓸 노선이 가까운가",
+        "description": "도쿄는 같은 역 이름이어도 노선과 출구가 복잡합니다. 실제 이용할 노선을 먼저 보세요."
+      },
+      {
+        "title": "환승 횟수가 너무 많지 않은가",
+        "description": "숙박비가 저렴해도 매일 환승이 많아지면 첫 여행이 피곤해질 수 있습니다."
+      },
+      {
+        "title": "공항에서 호텔까지 이동이 쉬운가",
+        "description": "나리타·하네다에서 들어오는 첫날은 갈아타는 횟수와 도보 이동을 함께 확인하세요."
+      },
+      {
+        "title": "저녁 후 돌아오기 부담 없는가",
+        "description": "늦게까지 머물 지역과 숙소가 너무 멀면 밤 이동이 번거롭게 느껴질 수 있습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "firstHotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "신주쿠·긴자·도쿄역 중심으로 보기 좋은 호텔",
+      "titleId": "firstHotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "신주쿠·긴자·도쿄역 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-first-trip-1",
+        "image": {
+          "alt": "JR 호텔 블라썸 신주쿠 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "신주쿠역 접근",
+        "nameEn": "JR Kyushu Hotel Blossom Shinjuku",
+        "nameKo": "JR 호텔 블라썸 신주쿠",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "신주쿠 중심",
+          "첫 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-first-trip-1",
+          "text": "신주쿠역 생활권에서 주요 노선 접근성과 깔끔한 숙박을 중요하게 보는 분께 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-first-trip-2",
+        "image": {
+          "alt": "호텔 메트로폴리탄 도쿄 마루노우치 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "긴자 & 도쿄역 접근",
+        "nameEn": "Hotel Metropolitan Tokyo Marunouchi",
+        "nameKo": "호텔 메트로폴리탄 도쿄 마루노우치",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "JR 이동",
+          "첫 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-first-trip-2",
+          "text": "긴자 & 도쿄역 중심으로 귀국일과 근교 이동을 단순하게 만들고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-first-trip-3",
+        "image": {
+          "alt": "리치몬드 호텔 프리미어 아사쿠사 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "아사쿠사 중심",
+        "nameEn": "Richmond Hotel Premier Asakusa",
+        "nameKo": "리치몬드 호텔 프리미어 아사쿠사",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "아사쿠사",
+          "첫 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-first-trip-3",
+          "text": "아사쿠사와 스카이트리 동선을 여유롭게 즐기고 싶은 도쿄가 처음인 분께 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-도쿄-first-trip-4",
+        "image": {
+          "alt": "시부야 스트림 엑셀 호텔 도큐 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "시부야 중심",
+        "nameEn": "Shibuya Stream Excel Hotel Tokyu",
+        "nameKo": "시부야 스트림 엑셀 호텔 도큐",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "시부야 동선",
+          "첫 여행",
+          "도쿄"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-도쿄-first-trip-4",
+          "text": "시부야와 하라주쿠, 오모테산도 동선을 짧게 묶고 싶은 분께 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "첫 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "여행 스타일이 다르다면 이렇게 고르세요",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "도쿄 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/tokyo/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 같이 따져보는 선택"
+      },
+      {
+        "href": "/destinations/tokyo/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "요코하마·가마쿠라·디즈니 이동을 출발역을 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/tokyo/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/tokyo/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 밤에는 편히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "firstTripFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "도쿄 첫 여행 숙소, 신주쿠와 도쿄역 중 어디가 좋을까요?",
+      "titleId": "firstTripFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "도쿄 처음이면 신주쿠에 묵는 게 가장 좋나요?",
+        "answer": "신주쿠는 교통과 식당, 쇼핑 선택지가 많아 첫 여행자에게 무난합니다. 다만 긴자·도쿄역 일정이나 공항 이동을 우선한다면 도쿄역권, 전통 관광 중심이면 우에노·아사쿠사도 충분히 좋은 선택입니다.",
+        "open": true
+      },
+      {
+        "question": "하네다공항과 나리타공항 중 어디로 들어오느냐에 따라 숙소가 달라지나요?",
+        "answer": "네, 공항에 따라 편한 지역이 달라질 수 있습니다. 하네다는 시나가와·도쿄역·긴자권이 편하고, 나리타는 우에노·도쿄역·신주쿠 이동 방식을 비교해보는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "긴자·도쿄역 근처는 첫 여행자에게 너무 비싼가요?",
+        "answer": "다른 지역보다 가격대가 높게 느껴질 수 있지만, 공항 이동과 깔끔한 거리 분위기, 도심 접근성을 중시한다면 만족도가 높을 수 있습니다. 예산이 부담된다면 우에노나 아사쿠사 쪽도 함께 보세요.",
+        "open": false
+      },
+      {
+        "question": "우에노·아사쿠사는 첫 도쿄 여행 숙소로 괜찮나요?",
+        "answer": "전통 관광, 가성비, 나리타공항 이동을 중시한다면 좋은 선택입니다. 다만 시부야·신주쿠 야간 일정이 많다면 매일 이동 시간이 길어질 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "3박 4일 도쿄 여행이면 숙소를 한 곳에 잡아도 괜찮나요?",
+        "answer": "대부분은 한 곳에 잡아도 충분합니다. 다만 디즈니, 하코네, 요코하마 등 외곽 일정이 많다면 마지막 1박을 다른 권역으로 나누는 방법도 고려할 수 있습니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

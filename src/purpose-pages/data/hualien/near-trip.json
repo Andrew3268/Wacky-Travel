@@ -1,0 +1,510 @@
+{
+  "purpose": "near-trip",
+  "head": {
+    "title": "화렌 근교 여행 숙소 위치 추천 | 타로코·청수단애·치싱탄 동선",
+    "description": "타로코협곡, 청수단애, 치싱탄, 동부 해안을 함께 본다면 화렌 숙소는 투어 픽업과 역 접근, 밤 복귀 동선이 중요합니다. 화렌역과 동대문야시장·중산로를 비교해보세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/hualien/near-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "화렌 근교 여행 숙소 위치 추천 | 타로코·청수단애·치싱탄 동선",
+      "description": "타로코협곡, 청수단애, 치싱탄, 동부 해안을 함께 본다면 화렌 숙소는 투어 픽업과 역 접근, 밤 복귀 동선이 중요합니다. 화렌역과 동대문야시장·중산로를 비교해보세요.",
+      "url": "https://bestayable.com/destinations/hualien/near-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "화렌 근교 여행 숙소 위치 추천 | 타로코·청수단애·치싱탄 동선 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "화렌 근교 여행 숙소 위치 추천 | 타로코·청수단애·치싱탄 동선",
+      "description": "타로코협곡, 청수단애, 치싱탄, 동부 해안을 함께 본다면 화렌 숙소는 투어 픽업과 역 접근, 밤 복귀 동선이 중요합니다. 화렌역과 동대문야시장·중산로를 비교해보세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "화렌 근교 여행 숙소 위치 추천 | 타로코·청수단애·치싱탄 동선 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "화렌",
+            "item": "https://bestayable.com/destinations/hualien/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "화렌 근교 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/hualien/near-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "화렌 근교 여행 숙소 위치 추천",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "화렌역"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "동대문야시장·중산로"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "화렌 근교 여행 숙소는 화렌역이 가장 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "타로코 투어와 기차 이동이 핵심이라면 화렌역이 가장 단순합니다. 저녁 식사와 야시장 복귀를 중시하면 동대문야시장·중산로도 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타로코 투어가 있으면 숙소 픽업이 중요한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "중요합니다. 숙소 픽업인지 화렌역 미팅인지에 따라 아침 이동이 달라집니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "동대문야시장 근처에 묵으면 화렌역 이동이 불편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "택시나 버스로 이동할 수 있지만 이른 기차가 있다면 화렌역 주변이 더 안정적입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "청수단애나 치싱탄은 어디에서 가기 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "투어 또는 택시·전세차 이용이 많아 픽업 위치와 차량 비용을 먼저 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "화렌에서 숙소를 옮길 필요가 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대부분은 한 곳에 머물러도 됩니다. 다만 기차 이동이 이른 날과 야시장 중심 날의 우선순위에 따라 위치를 고르세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "화렌",
+      "href": "/destinations/hualien/",
+      "current": false
+    },
+    {
+      "label": "화렌 근교 여행 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "화렌 숙소 가이드",
+    "title": "화렌 근교 여행 숙소는 타로코 투어 픽업과 밤 복귀 동선으로 고르세요",
+    "description": "화렌은 타로코협곡, 청수단애, 치싱탄처럼 숙소 밖 이동이 많은 도시입니다. 숙소는 예쁜 골목보다 투어 픽업, 역 접근, 저녁 식사와 야시장 복귀 동선을 함께 보는 편이 현실적입니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "nearAreaTitle",
+    "head": {
+      "kicker": "Route Choice",
+      "title": "타로코·청수단애 투어는 화렌역, 저녁 복귀는 동대문야시장·중산로가 편합니다",
+      "titleId": "nearAreaTitle",
+      "description": "화렌 근교 여행은 대부분 투어 픽업이나 택시·전세차 이동이 중요합니다. 아침 출발과 다음 도시 이동은 화렌역, 밤 식사와 야시장은 동대문야시장·중산로를 먼저 비교하세요."
+    },
+    "ariaLabel": "화렌 근교 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "타로코 투어와 다음 도시 이동이 중요하다면",
+        "title": "화렌역",
+        "lead": "타로코협곡 투어 픽업, 기차 이동, 짐 보관을 함께 보기 좋아 화렌을 거점으로 움직이는 일정에 가장 단순합니다.",
+        "chipsAriaLabel": "화렌역 선택 포인트",
+        "chips": [
+          "타로코 픽업",
+          "기차 이동",
+          "짐 보관"
+        ],
+        "line": "타로코 투어가 핵심이거나 다음 도시로 기차 이동을 한다면 화렌역 주변을 먼저 보세요."
+      },
+      {
+        "label": "저녁 식사와 야시장 복귀가 중요하다면",
+        "title": "동대문야시장·중산로",
+        "lead": "근교 투어에서 돌아온 뒤 야시장, 식당, 산책을 숙소 주변에서 이어가기 좋아 저녁 만족도가 높습니다.",
+        "chipsAriaLabel": "동대문야시장·중산로 선택 포인트",
+        "chips": [
+          "동대문야시장",
+          "중산로",
+          "저녁 산책"
+        ],
+        "line": "저녁 시간을 편하게 보내고 싶다면 동대문야시장·중산로 주변을 함께 비교하세요."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "why1Title",
+      "head": {
+        "kicker": "Why Hualien Station",
+        "title": "타로코 투어와 기차 이동은 화렌역이 가장 단순합니다",
+        "titleId": "why1Title",
+        "description": "화렌역은 투어 픽업과 기차 이동, 짐 보관을 함께 관리하기 쉬워 근교 여행의 기준점이 됩니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "타로코 픽업을 잡기 쉽습니다",
+          "description": "투어사 미팅이나 픽업 지점이 역 주변에 잡히는 경우가 많아 아침 출발이 편합니다."
+        },
+        {
+          "number": "02",
+          "title": "기차 이동 전후가 안정적입니다",
+          "description": "타이베이, 타이둥 등 다음 도시 이동이 있다면 숙소와 역 거리가 중요합니다."
+        },
+        {
+          "number": "03",
+          "title": "짐 보관과 대기가 편합니다",
+          "description": "체크인 전후로 짐을 맡기고 투어나 시내 이동을 이어가기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "저녁 분위기는 보조 이동이 필요합니다",
+          "description": "야시장과 식당 중심으로 밤을 보내고 싶다면 동대문야시장·중산로도 함께 보세요."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "why2Title",
+      "head": {
+        "kicker": "Why Dongdamen",
+        "title": "투어 후 저녁 시간을 편하게 보내려면 동대문야시장·중산로가 좋습니다",
+        "titleId": "why2Title",
+        "description": "동대문야시장·중산로는 근교 투어 후 식사와 산책을 숙소 주변에서 이어가기 쉬운 위치입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "야시장 복귀가 쉽습니다",
+          "description": "타로코나 해안 투어 후 늦게 돌아와도 저녁 식사와 간식을 가까이에서 해결할 수 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "도심 산책이 자연스럽습니다",
+          "description": "중산로, 카페, 로컬 식당을 함께 둘러보기 좋아 짧은 체류에도 만족도가 높습니다."
+        },
+        {
+          "number": "03",
+          "title": "택시 이동 부담이 줄어듭니다",
+          "description": "저녁에 숙소까지 돌아오는 길이 짧으면 피로도가 줄어듭니다."
+        },
+        {
+          "number": "04",
+          "title": "기차 이동이 많으면 역도 보세요",
+          "description": "도착·출발 시간이 이르거나 늦다면 화렌역 주변이 더 안정적일 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "근교 일정이 있다면",
+    "title": "타로코·치싱탄 일정에 맞는 화렌 숙소 위치를 찾아보세요",
+    "description": "타로코 협곡, 청수단애, 치싱탄, 동부 해안 일정이 있다면 투어 픽업과 복귀 동선을 함께 보는 것이 좋습니다.",
+    "href": "/destinations/hualien/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "화렌 근교 호텔은 투어 픽업, 역 접근, 야시장 복귀 동선을 확인하세요",
+      "titleId": "bookingCheckTitle",
+      "description": "화렌은 대중교통보다 투어와 택시 의존도가 높을 수 있습니다. 픽업 장소와 저녁 복귀 동선을 먼저 보세요."
+    },
+    "items": [
+      {
+        "title": "투어 픽업 위치",
+        "description": "타로코 투어가 숙소 픽업인지 역 미팅인지 확인하세요."
+      },
+      {
+        "title": "기차역 접근",
+        "description": "도착·출발 시간이 이르거나 늦다면 역까지 이동이 쉬운지 보세요."
+      },
+      {
+        "title": "야시장 복귀",
+        "description": "동대문야시장 방문 후 숙소까지 도보나 택시가 편한지 확인하세요."
+      },
+      {
+        "title": "택시·전세차 비용",
+        "description": "청수단애나 동부 해안 이동은 차량 비용을 함께 계산하는 것이 좋습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "타로코·청수단애 일정까지 보기 좋은 화렌 숙소 위치",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "화렌역·동대문야시장 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-화렌-near-trip-1",
+        "image": {
+          "alt": "화렌역 주변 픽업형 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "화렌역 픽업형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "화렌역 주변 픽업형 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "타로코",
+          "근교 여행",
+          "화렌"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-화렌-near-trip-1",
+          "text": "타로코 투어와 기차 이동을 함께 관리하기 좋은 기본 위치입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-화렌-near-trip-2",
+        "image": {
+          "alt": "화렌역 도보권 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "역 앞 짐보관형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "화렌역 도보권 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "기차 이동",
+          "근교 여행",
+          "화렌"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-화렌-near-trip-2",
+          "text": "도착·출발 전후 짐 보관과 이동 대기를 줄이기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-화렌-near-trip-3",
+        "image": {
+          "alt": "동대문야시장 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "동대문야시장 복귀형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "동대문야시장 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "저녁 식사",
+          "근교 여행",
+          "화렌"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-화렌-near-trip-3",
+          "text": "투어 후 저녁 식사와 산책을 숙소 주변에서 이어가기 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-화렌-near-trip-4",
+        "image": {
+          "alt": "중산로·구시가지 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "중산로 도심형",
+        "nameEn": "CURATED HOTELS",
+        "nameKo": "중산로·구시가지 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "도심 산책",
+          "근교 여행",
+          "화렌"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-화렌-near-trip-4",
+          "text": "카페, 로컬 식당, 야시장 접근을 균형 있게 보고 싶을 때 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "근교 여행",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "타로코 투어와 야시장 중심 일정은 숙소 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "화렌 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/hualien/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에서 가장 무난한 숙소 위치를 비교합니다."
+      },
+      {
+        "href": "/destinations/hualien/value-hotel/",
+        "number": "02",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 줄이는 선택을 정리했습니다."
+      },
+      {
+        "href": "/destinations/hualien/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택입니다."
+      },
+      {
+        "href": "/destinations/hualien/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 차분히 쉬는 선택입니다."
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "nearFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "화렌 근교 여행 숙소, 화렌역과 동대문야시장 중 어디가 좋을까요?",
+      "titleId": "nearFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "화렌 근교 여행 숙소는 화렌역이 가장 편한가요?",
+        "answer": "타로코 투어와 기차 이동이 핵심이라면 화렌역이 가장 단순합니다. 저녁 식사와 야시장 복귀를 중시하면 동대문야시장·중산로도 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "타로코 투어가 있으면 숙소 픽업이 중요한가요?",
+        "answer": "중요합니다. 숙소 픽업인지 화렌역 미팅인지에 따라 아침 이동이 달라집니다.",
+        "open": false
+      },
+      {
+        "question": "동대문야시장 근처에 묵으면 화렌역 이동이 불편한가요?",
+        "answer": "택시나 버스로 이동할 수 있지만 이른 기차가 있다면 화렌역 주변이 더 안정적입니다.",
+        "open": false
+      },
+      {
+        "question": "청수단애나 치싱탄은 어디에서 가기 좋나요?",
+        "answer": "투어 또는 택시·전세차 이용이 많아 픽업 위치와 차량 비용을 먼저 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "화렌에서 숙소를 옮길 필요가 있나요?",
+        "answer": "대부분은 한 곳에 머물러도 됩니다. 다만 기차 이동이 이른 날과 야시장 중심 날의 우선순위에 따라 위치를 고르세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

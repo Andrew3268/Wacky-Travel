@@ -90,7 +90,7 @@
 <li><span aria-current="page">후쿠오카가 처음이라면</span></li>
 </ol>
 </nav>
-<main class="travel-page wt-purpose-page wt-purpose-page--first-trip wt-purpose-page--fukuoka-first-trip" data-purpose-template="fukuoka-v1">
+<main class="travel-page wt-purpose-page wt-purpose-page--first-trip wt-purpose-page--unified" data-city="fukuoka" data-purpose="first-trip" data-purpose-template="unified-v2">
 <section class="wt-page-hero">
 <div class="container">
 <div class="wt-page-hero__content">
@@ -100,7 +100,7 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="firstAreaTitle" class="wt-section wt-first-area-choice wt-area-choice--unified" id="area-compare">
+<section aria-labelledby="firstAreaTitle" class="wt-section wt-purpose-area-choice wt-area-choice--unified" id="area-compare">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Area Choice</div>
@@ -109,14 +109,14 @@
 </div>
 <div aria-label="첫 후쿠오카 여행 숙소 위치 선택" class="wt-area-choice-simple">
 <div class="wt-choice-main wt-choice-main--unified">
-<article class="wt-choice-card wt-choice-card--hakata">
+<article class="wt-choice-card" data-choice-index="1">
 <span class="wt-choice-card__label">이동이 걱정된다면</span>
 <h3>하카타</h3>
 <p class="wt-choice-card__lead">공항에서 들어오기 쉽고, JR 하카타역과 버스터미널을 함께 쓰기 좋아 처음이라면 가장 무난하게 고르기 좋은 위치입니다.</p>
 <div aria-label="하카타 선택 포인트" class="wt-choice-card__chips"><span>공항 이동</span><span>근교 출발</span><span>짧은 일정</span></div>
 <p class="wt-choice-card__line">2박 3일 일정이거나 다자이후·유후인을 함께 본다면 하카타가 편합니다.</p>
 </article>
-<article class="wt-choice-card wt-choice-card--tenjin">
+<article class="wt-choice-card" data-choice-index="2">
 <span class="wt-choice-card__label">도심을 즐기고 싶다면</span>
 <h3>텐진</h3>
 <p class="wt-choice-card__lead">백화점, 지하상가, 다이묘·이마이즈미 카페 거리와 가까워 쇼핑하고 밥 먹고 카페까지 들르기 좋습니다.</p>
@@ -124,10 +124,11 @@
 <p class="wt-choice-card__line">숙소 주변에서 먹고 걷고 쇼핑하는 시간이 많다면 텐진이 더 편합니다.</p>
 </article>
 </div>
+
 </div>
 </div>
 </section>
-<section aria-labelledby="whyHakataTitle" class="wt-section wt-section--soft">
+<section aria-labelledby="whyHakataTitle" class="wt-section wt-purpose-reason-section wt-section--soft" data-reason-index="1">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Why Hakata</div>
@@ -142,7 +143,7 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="whyTenjinTitle" class="wt-section wt-section--soft">
+<section aria-labelledby="whyTenjinTitle" class="wt-section wt-purpose-reason-section wt-section--soft" data-reason-index="2">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Why Tenjin</div>
@@ -169,7 +170,7 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="bookingCheckTitle" class="wt-section wt-section--soft wt-firsttrip-before-booking">
+<section aria-labelledby="bookingCheckTitle" class="wt-section wt-section--soft wt-purpose-before-booking">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Before Booking</div>
@@ -184,7 +185,7 @@
 </div>
 </div>
 </section>
-<section aria-hidden="true" aria-labelledby="firstHotelTitle" class="wt-section" data-admin-only hidden id="hotels">
+<section aria-hidden="true" aria-labelledby="firstHotelTitle" class="wt-section wt-purpose-hotels" data-admin-only hidden id="hotels">
 <div class="container">
 <div class="wt-hotel-section-head-row">
 <div class="wt-section-head">
@@ -262,7 +263,7 @@
 </div>
 </div>
 </section>
-<section aria-labelledby="otherChoicesTitle" class="wt-section wt-firsttrip-other-choices">
+<section aria-labelledby="otherChoicesTitle" class="wt-section wt-purpose-other-choices">
 <div class="container">
 <div class="wt-section-head">
 <div class="wt-section-kicker">Other Choices</div>

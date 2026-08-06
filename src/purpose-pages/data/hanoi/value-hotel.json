@@ -1,0 +1,520 @@
+{
+  "purpose": "value-hotel",
+  "head": {
+    "title": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교",
+    "description": "하노이 가성비 숙소는 올드쿼터 중심가만 보지 말고 외곽 골목과 동다·문묘·기차거리 권역을 함께 비교하세요. 도보 관광, 그랩 이동, 하롱베이 픽업까지 고려한 실속 위치를 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/hanoi/value-hotel/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교",
+      "description": "하노이 가성비 숙소는 올드쿼터 중심가만 보지 말고 외곽 골목과 동다·문묘·기차거리 권역을 함께 비교하세요. 도보 관광, 그랩 이동, 하롱베이 픽업까지 고려한 실속 위치를 정리했습니다.",
+      "url": "https://bestayable.com/destinations/hanoi/value-hotel/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교",
+      "description": "하노이 가성비 숙소는 올드쿼터 중심가만 보지 말고 외곽 골목과 동다·문묘·기차거리 권역을 함께 비교하세요. 도보 관광, 그랩 이동, 하롱베이 픽업까지 고려한 실속 위치를 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "하노이",
+            "item": "https://bestayable.com/destinations/hanoi/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "하노이 가성비 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/hanoi/value-hotel/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "하노이 가성비 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "올드쿼터 외곽"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "동다·문묘·기차거리"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "프렌치쿼터"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "서호 남쪽"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "하노이 가성비 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "도보 관광이 중요하면 올드쿼터 외곽, 숙박비와 로컬 동선의 균형을 더 본다면 동다·문묘·기차거리 주변부터 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "올드쿼터 안쪽은 피해야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "꼭 피할 필요는 없지만 골목 소음이 있을 수 있습니다. 가성비를 본다면 중심가 바로 안쪽보다 외곽 골목을 함께 보세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "동다·문묘·기차거리 주변은 관광하기 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "그랩을 자주 이용한다면 큰 부담은 아닙니다. 다만 매일 밤 호안끼엠 주변을 걸을 계획이라면 올드쿼터 외곽이 더 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "하롱베이 투어가 있으면 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "픽업 가능 숙소가 많은 올드쿼터 외곽이 무난합니다. 예약 전에 호텔 픽업 가능 여부를 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "하노이 가성비 호텔에서 가장 중요한 기준은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "밤 소음, 투어 픽업, 호안끼엠 접근, 객실 창문과 크기를 함께 확인하는 것이 중요합니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "하노이",
+      "href": "/destinations/hanoi/",
+      "current": false
+    },
+    {
+      "label": "하노이 가성비 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "하노이 숙소 가이드",
+    "title": "하노이 가성비 숙소는 올드쿼터 중심가 바로 밖까지 보세요",
+    "description": "하노이는 올드쿼터 안쪽이 편하지만 골목 소음과 가격이 부담될 수 있습니다. 도보 관광을 살리고 싶다면 올드쿼터 외곽, 숙박비와 로컬 동선 균형을 원한다면 동다·문묘·기차거리 권역까지 함께 비교하는 편이 좋습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "valueAreaTitle",
+    "head": {
+      "kicker": "Value Choice",
+      "title": "도보 관광은 올드쿼터 외곽, 숙박비 균형은 동다·문묘·기차거리가 편합니다",
+      "titleId": "valueAreaTitle",
+      "description": "하노이 가성비 숙소는 호안끼엠 호수와의 거리만 보지 말고 골목 소음, 그랩 이동, 하롱베이 픽업 가능 여부까지 함께 확인해야 합니다."
+    },
+    "ariaLabel": "하노이 가성비 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "호안끼엠과 올드쿼터를 걸어서 보고 싶다면",
+        "title": "올드쿼터 외곽",
+        "lead": "중심 골목의 분위기는 살리면서 숙박비와 소음 부담을 줄이기 좋아 첫 하노이 가성비 후보로 보기 좋습니다.",
+        "chipsAriaLabel": "올드쿼터 외곽 선택 포인트",
+        "chips": [
+          "도보 관광",
+          "호안끼엠",
+          "먹거리"
+        ],
+        "line": "야시장, 카페, 마사지 동선을 걸어서 해결하고 싶다면 먼저 비교할 만합니다."
+      },
+      {
+        "label": "숙박비와 로컬 동선을 함께 본다면",
+        "title": "동다·문묘·기차거리",
+        "lead": "올드쿼터 한복판보다 가격 부담을 낮추기 쉽고, 문묘·기차거리·로컬 식당 동선을 함께 보기 좋습니다.",
+        "chipsAriaLabel": "동다·문묘·기차거리 선택 포인트",
+        "chips": [
+          "문묘",
+          "기차거리",
+          "그랩 이동"
+        ],
+        "line": "도보 관광보다 예산과 로컬 동선, 그랩 이동 균형을 더 본다면 함께 비교하기 좋습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyPrimaryTitle",
+      "head": {
+        "kicker": "Why Old Quarter Edge",
+        "title": "하노이 분위기를 놓치고 싶지 않다면 올드쿼터 외곽이 현실적입니다",
+        "titleId": "whyPrimaryTitle",
+        "description": "올드쿼터 외곽은 도보 관광과 가격 균형을 함께 잡기 좋은 실속형 후보입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "호안끼엠까지 걷기 좋습니다",
+          "description": "호수, 성요셉성당, 카페, 마사지 동선을 짧게 이어가기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "중심 골목보다 부담이 덜할 수 있습니다",
+          "description": "야시장 한복판이나 맥주거리 주변보다 소음과 가격 부담이 낮은 선택지가 나올 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "하롱베이 픽업 확인이 쉽습니다",
+          "description": "투어 픽업 가능 숙소가 많아 아침 이동을 줄이기 좋습니다."
+        },
+        {
+          "number": "04",
+          "title": "숙박비를 더 낮추고 싶다면 동다와 비교하세요",
+          "description": "올드쿼터 외곽도 골목에 따라 밤 소음과 가격 차이가 있어 동다·문묘 주변까지 함께 보는 편이 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whySecondaryTitle",
+      "head": {
+        "kicker": "Why Ba Dinh",
+        "title": "숙박비와 로컬 동선을 더 본다면 동다·문묘·기차거리도 좋습니다",
+        "titleId": "whySecondaryTitle",
+        "description": "동다·문묘·기차거리 권역은 중심 관광지에서 크게 벗어나지 않으면서 숙박비와 로컬 동선 균형을 맞추기 좋은 위치입니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "숙박비 부담을 낮추기 쉽습니다",
+          "description": "올드쿼터 핵심 골목보다 가격 선택지가 넓어 예산형 일정에서 비교 가치가 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "문묘와 기차거리 동선이 좋습니다",
+          "description": "역사 명소와 로컬 식당, 하노이역 주변 동선을 함께 보기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "그랩 이동과 잘 맞습니다",
+          "description": "호안끼엠, 서호, 바딘 방향으로 그랩을 활용하면 이동 부담을 크게 줄일 수 있습니다."
+        },
+        {
+          "number": "04",
+          "title": "밤 도보 관광은 올드쿼터가 유리합니다",
+          "description": "저녁마다 호안끼엠 주변을 걸을 계획이라면 올드쿼터 외곽이 더 편합니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가성비가 고민된다면",
+    "title": "예산과 숙면 기준에 맞는 하노이 숙소 위치를 찾아보세요",
+    "description": "올드쿼터 중심만 고집하지 않아도 됩니다. 이동 편의성, 밤 분위기, 투어 픽업 위치를 함께 보면 만족하기 좋은 숙소 위치를 찾기 쉽습니다.",
+    "href": "/destinations/hanoi/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "하노이 가성비 호텔은 골목 소음과 투어 픽업을 함께 봐야 합니다",
+      "titleId": "bookingCheckTitle",
+      "description": "1박 요금이 낮아도 맥주거리 소음이나 픽업 불가 위치라면 실제 만족도가 낮아질 수 있습니다."
+    },
+    "items": [
+      {
+        "title": "밤 소음 후기",
+        "description": "올드쿼터는 골목마다 분위기가 달라서 야간 소음 후기를 꼭 확인하는 편이 좋습니다."
+      },
+      {
+        "title": "하롱베이 픽업 가능 여부",
+        "description": "하롱베이·닌빈 투어가 있다면 픽업 가능 지역인지 먼저 확인하세요."
+      },
+      {
+        "title": "호안끼엠까지 이동 방식",
+        "description": "도보로 다닐지, 그랩으로 이동할지에 따라 좋은 숙소 지역이 달라집니다."
+      },
+      {
+        "title": "객실 크기와 창문",
+        "description": "구도심 호텔은 방이 작거나 창문 구조가 아쉬울 수 있어 사진과 후기를 함께 봐야 합니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "가격과 도보·그랩 동선을 함께 보기 좋은 하노이 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "올드쿼터·동다 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-value-hotel-1",
+        "image": {
+          "alt": "올드쿼터 외곽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "도보 관광 실속형",
+        "nameEn": "OLD QUARTER EDGE",
+        "nameKo": "올드쿼터 외곽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "올드쿼터 외곽",
+          "가성비",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-value-hotel-1",
+          "text": "하노이 분위기를 느끼면서 중심 소음은 조금 줄이고 싶을 때 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-value-hotel-2",
+        "image": {
+          "alt": "동다·문묘·기차거리 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "조용한 실속형",
+        "nameEn": "BA DINH AREA",
+        "nameKo": "동다·문묘·기차거리 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "바딘 접근",
+          "가성비",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-value-hotel-2",
+          "text": "그랩 이동을 전제로 하면서 방 컨디션을 더 보고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-value-hotel-3",
+        "image": {
+          "alt": "프렌치쿼터 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "깔끔한 도심형",
+        "nameEn": "FRENCH QUARTER",
+        "nameKo": "프렌치쿼터 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "프렌치쿼터",
+          "가성비",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-value-hotel-3",
+          "text": "복잡한 골목보다 정돈된 분위기를 선호하는 분께 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-하노이-value-hotel-4",
+        "image": {
+          "alt": "서호 남쪽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "여유 체류형",
+        "nameEn": "WEST LAKE SOUTH",
+        "nameKo": "서호 남쪽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "서호 남쪽",
+          "가성비",
+          "하노이"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-하노이-value-hotel-4",
+          "text": "관광 중심보다 쉬는 시간을 더 중요하게 보는 일정에 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "도보 관광과 조용한 숙박은 예산 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "하노이 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/hanoi/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "올드쿼터와 프렌치쿼터 중심으로 처음 가는 일정에 맞춘 선택"
+      },
+      {
+        "href": "/destinations/hanoi/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "하롱베이·닌빈 투어 픽업 동선을 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/hanoi/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/hanoi/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 편하게 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "valueFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "하노이 가성비 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "valueFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "하노이 가성비 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "도보 관광이 중요하면 올드쿼터 외곽, 숙박비와 로컬 동선의 균형을 더 본다면 동다·문묘·기차거리 주변부터 비교하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "올드쿼터 안쪽은 피해야 하나요?",
+        "answer": "꼭 피할 필요는 없지만 골목 소음이 있을 수 있습니다. 가성비를 본다면 중심가 바로 안쪽보다 외곽 골목을 함께 보세요.",
+        "open": false
+      },
+      {
+        "question": "동다·문묘·기차거리 주변은 관광하기 불편하지 않나요?",
+        "answer": "그랩을 자주 이용한다면 큰 부담은 아닙니다. 다만 매일 밤 호안끼엠 주변을 걸을 계획이라면 올드쿼터 외곽이 더 편합니다.",
+        "open": false
+      },
+      {
+        "question": "하롱베이 투어가 있으면 어디가 좋나요?",
+        "answer": "픽업 가능 숙소가 많은 올드쿼터 외곽이 무난합니다. 예약 전에 호텔 픽업 가능 여부를 확인하세요.",
+        "open": false
+      },
+      {
+        "question": "하노이 가성비 호텔에서 가장 중요한 기준은 무엇인가요?",
+        "answer": "밤 소음, 투어 픽업, 호안끼엠 접근, 객실 창문과 크기를 함께 확인하는 것이 중요합니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

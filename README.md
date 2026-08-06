@@ -14,6 +14,34 @@ Be Stayable은 독립적으로 운영되는 여행 제휴마케팅/애드센스 
 도시 허브는 정적 HTML로 제공하고, Cloudflare Pages Functions + D1 + SSR은 게시글·국가 페이지·API에 사용하도록 구성되어 있습니다.
 
 
+
+## 도시 목적 페이지 공통 정적 템플릿
+
+15개 도시의 아래 5개 목적 페이지는 하나의 공통 렌더러와 도시별 JSON 데이터에서 정적 HTML로 생성합니다.
+
+```text
+first-trip
+value-hotel
+near-trip
+family-trip
+quiet-stay
+```
+
+- 공통 렌더러: `src/purpose-pages/render-purpose-page.mjs`
+- 도시별 원본 데이터: `src/purpose-pages/data/{city}/`
+- 정적 HTML 생성: `tools/build-purpose-pages.mjs`
+- 구조 검사: `tools/test-purpose-page-template.mjs`
+- 배포 결과: `public/destinations/{city}/{purpose}/index.html`
+
+`public/destinations/{city}/{purpose}/index.html`은 빌드 결과물이므로 직접 수정하지 않습니다. 문구·호텔·FAQ·메타데이터는 도시별 JSON에서 수정하고, 클래스와 섹션 구조는 공통 렌더러에서만 변경합니다.
+
+```bash
+npm run build:purpose-pages
+npm run check:purpose-page-template
+```
+
+브라우저에서는 JSON이나 템플릿을 불러오지 않습니다. Cloudflare Pages 배포 전에 75개의 완성된 정적 HTML을 생성하므로 페이지 요청 시 D1·Function·클라이언트 렌더링이 추가되지 않습니다.
+
 ## 출시 라우팅 수정
 
 - `functions/destinations/[slug].js` 동적 도시 라우트를 제거했습니다.
@@ -135,7 +163,7 @@ Cloudflare Pages에서 GitHub 저장소를 연결한 뒤 아래처럼 설정합�
 
 ```text
 Framework preset: None
-Build command: 비워두기
+Build command: npm run build
 Build output directory: public
 D1 binding name: TRAVEL_DB
 D1 database: wacky-travel-db
@@ -211,8 +239,14 @@ npm run check
 Cloudflare Pages의 권장 빌드 설정:
 
 ```text
-Build command: npm run check
+Build command: npm run build
 Build output directory: public
+```
+
+전체 회귀 검사는 Git 업로드 전 또는 배포 전 별도로 실행합니다.
+
+```bash
+npm run check
 ```
 
 배포 후 확인 주소:

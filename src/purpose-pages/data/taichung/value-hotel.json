@@ -1,0 +1,520 @@
+{
+  "purpose": "value-hotel",
+  "head": {
+    "title": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교",
+    "description": "타이중 가성비 숙소는 숙박비보다 택시비와 야시장 복귀 동선이 중요합니다. 구도심 일정은 타이중역·이중상권, 야시장 중심 일정은 펑지아를 중심으로 비교하세요.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/taichung/value-hotel/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교",
+      "description": "타이중 가성비 숙소는 숙박비보다 택시비와 야시장 복귀 동선이 중요합니다. 구도심 일정은 타이중역·이중상권, 야시장 중심 일정은 펑지아를 중심으로 비교하세요.",
+      "url": "https://bestayable.com/destinations/taichung/value-hotel/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교",
+      "description": "타이중 가성비 숙소는 숙박비보다 택시비와 야시장 복귀 동선이 중요합니다. 구도심 일정은 타이중역·이중상권, 야시장 중심 일정은 펑지아를 중심으로 비교하세요.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "타이중",
+            "item": "https://bestayable.com/destinations/taichung/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "타이중 가성비 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/taichung/value-hotel/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "타이중 가성비 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "타이중역·이중상권"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "펑지아"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "초오도"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "중구"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "타이중 가성비 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "구도심 관광과 기차 도착이 중요하다면 타이중역·이중상권, 야시장 중심 일정이라면 펑지아부터 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "펑지아는 가성비 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "야시장과 쇼핑 중심 일정이라면 좋습니다. 다만 구도심 관광이 많으면 이동 시간이 늘어날 수 있어 일정 비중을 먼저 봐야 합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이중역 근처는 너무 오래된 느낌이 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "숙소마다 차이가 큽니다. 역 접근성은 좋지만 객실 리뉴얼 여부와 방음 후기를 함께 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "타이중 가성비 호텔에서 가장 중요한 기준은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "숙박비, 택시비, 버스 접근성, 야시장 복귀 거리를 함께 보는 것이 중요합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "초오도 근처도 가성비 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "카페와 감성 상권을 즐기는 일정이라면 좋지만, 숙박비가 아주 낮은 지역은 아닐 수 있어 예산과 동선을 함께 비교하세요."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "타이중",
+      "href": "/destinations/taichung/",
+      "current": false
+    },
+    {
+      "label": "가성비를 원한다면",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "타이중 숙소 가이드",
+    "title": "타이중 가성비 숙소는 숙박비보다 택시비까지 함께 보세요",
+    "description": "타이중은 MRT만으로 모든 일정을 해결하기 어려워 숙박비가 저렴해도 택시비와 이동 시간이 늘어날 수 있습니다. 구도심 관광이 많다면 타이중역·이중상권, 야시장 중심이면 펑지아를 먼저 비교해보세요."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "valueAreaTitle",
+    "head": {
+      "kicker": "Value Choice",
+      "title": "구도심 동선은 타이중역·이중상권, 야시장 중심은 펑지아가 편합니다",
+      "titleId": "valueAreaTitle",
+      "description": "가성비 숙소는 숙박비만 낮은 곳보다 첫 이동, 택시비, 밤 복귀 동선을 함께 줄이는 위치가 더 현실적입니다."
+    },
+    "ariaLabel": "타이중 가성비 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "구도심 관광을 많이 본다면",
+        "title": "타이중역·이중상권",
+        "lead": "기차 도착, 타이중공원, 미야하라, 구도심 먹거리 동선을 묶기 좋아 첫 이동비를 줄이기 쉬운 위치입니다.",
+        "chipsAriaLabel": "타이중역·이중상권 선택 포인트",
+        "chips": [
+          "기차 도착",
+          "구도심",
+          "먹거리"
+        ],
+        "line": "첫날 도착과 시내 관광을 단순하게 만들고 싶다면 먼저 볼 만합니다."
+      },
+      {
+        "label": "야시장과 젊은 상권이 중심이라면",
+        "title": "펑지아",
+        "lead": "야시장, 쇼핑, 늦은 저녁 일정을 숙소 주변에서 해결하기 좋아 밤 동선이 짧아지는 위치입니다.",
+        "chipsAriaLabel": "펑지아 선택 포인트",
+        "chips": [
+          "야시장",
+          "쇼핑",
+          "저녁 복귀"
+        ],
+        "line": "시내 관광보다 야시장과 상권 체류 시간이 길다면 체감 만족도가 높습니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyATitle",
+      "head": {
+        "kicker": "Why Taichung Station",
+        "title": "택시비를 줄이고 싶다면 타이중역·이중상권이 현실적인 대안입니다",
+        "titleId": "whyATitle",
+        "description": "기차로 도착하고 구도심 명소를 많이 볼 일정이라면 첫 이동과 짐 이동을 단순하게 만들기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "도착 후 이동이 쉽습니다",
+          "description": "기차역 주변에 숙소를 잡으면 체크인 전후 캐리어 이동 부담을 줄이기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "구도심 명소를 묶기 좋습니다",
+          "description": "타이중공원, 미야하라, 제2시장 같은 구도심 일정을 짧은 이동으로 이어가기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "먹거리 접근성이 좋습니다",
+          "description": "이중상권과 구도심 식당을 함께 쓰기 쉬워 아침과 저녁 동선이 단순합니다."
+        },
+        {
+          "number": "04",
+          "title": "외곽 일정은 택시비를 비교하세요",
+          "description": "가오메이습지나 무지개마을처럼 떨어진 일정이 많다면 숙소비와 택시비를 함께 계산하는 편이 좋습니다."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whyBTitle",
+      "head": {
+        "kicker": "Why Fengjia",
+        "title": "밤 일정이 길다면 펑지아가 체감 가성비를 높여줍니다",
+        "titleId": "whyBTitle",
+        "description": "펑지아 야시장과 주변 상권을 길게 즐기는 일정이라면 숙소 주변에서 식사와 쇼핑을 끝낼 수 있어 편합니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "야시장 복귀가 편합니다",
+          "description": "저녁 시간을 펑지아에서 보내는 일정이라면 숙소까지 돌아오는 시간이 짧아집니다."
+        },
+        {
+          "number": "02",
+          "title": "숙박비 선택지가 다양합니다",
+          "description": "젊은 여행자와 친구 여행에 맞는 실속형 숙소가 많아 예산에 맞춰 고르기 좋습니다."
+        },
+        {
+          "number": "03",
+          "title": "늦은 식사와 간식 동선이 좋습니다",
+          "description": "밤까지 열리는 상권이 있어 저녁 이후 이동을 줄이고 숙소 주변에서 일정을 마무리하기 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "구도심 관광이 많다면 비교가 필요합니다",
+          "description": "낮 일정이 타이중역·구도심 위주라면 매번 이동 시간이 늘어날 수 있어 일정 비중을 먼저 봐야 합니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가성비가 고민된다면",
+    "title": "예산과 이동 방식에 맞는 타이중 숙소 위치를 찾아보세요",
+    "description": "숙박비만 낮추기보다 택시 이동, 야시장 접근성, 기차역 동선까지 살펴보면 실제로 만족하기 좋은 위치를 찾기 쉽습니다.",
+    "href": "/destinations/taichung/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "타이중 가성비 호텔은 숙박비와 이동비를 함께 보세요",
+      "titleId": "bookingCheckTitle",
+      "description": "지역을 정했다면 택시비, 버스 접근성, 야시장 복귀, 객실 컨디션을 함께 확인하는 편이 좋습니다."
+    },
+    "items": [
+      {
+        "title": "택시비까지 포함한 총비용",
+        "description": "숙박비가 낮아도 매일 택시 이동이 늘어나면 전체 비용이 올라갈 수 있습니다."
+      },
+      {
+        "title": "도착 교통과 체크인 동선",
+        "description": "기차나 버스로 도착하는 경우 숙소까지 캐리어 이동이 쉬운지 먼저 확인하세요."
+      },
+      {
+        "title": "야시장 복귀 거리",
+        "description": "밤 일정이 길다면 숙소 주변에서 복귀가 쉬운지가 만족도를 크게 좌우합니다."
+      },
+      {
+        "title": "객실 방음과 주변 소음",
+        "description": "야시장과 상권 근처는 편리하지만 소음 후기를 함께 보는 것이 좋습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "가격과 이동비를 함께 보기 좋은 타이중 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "이중상권·구도심 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-value-hotel-1",
+        "image": {
+          "alt": "라이 라이 호텔 타이중 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "이중상권 접근형",
+        "nameEn": "Lailai Hotel",
+        "nameKo": "라이 라이 호텔 타이중",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "구도심 실속",
+          "가성비",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-value-hotel-1",
+          "text": "숙박비와 로컬 상권 접근을 함께 보고 싶을 때 먼저 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-value-hotel-2",
+        "image": {
+          "alt": "인하우스 호텔 타이중 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "구도심 실속형",
+        "nameEn": "Inhouse Hotel Taichung",
+        "nameKo": "인하우스 호텔 타이중",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "가격 균형",
+          "가성비",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-value-hotel-2",
+          "text": "구도심 일정과 가격 균형을 함께 보면서 객실 분위기도 놓치고 싶지 않은 여행에 맞습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-value-hotel-3",
+        "image": {
+          "alt": "스테이 호텔 타이중 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "로컬 상권형",
+        "nameEn": "Stay Hotel Taichung",
+        "nameKo": "스테이 호텔 타이중",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "먹거리 동선",
+          "가성비",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-value-hotel-3",
+          "text": "먹거리와 상권 접근성을 남기면서 예산 부담을 줄이고 싶은 일정에 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-타이중-value-hotel-4",
+        "image": {
+          "alt": "타이중 박스 디자인 호텔 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "젊은 감성형",
+        "nameEn": "Taichung Box Design Hotel",
+        "nameKo": "타이중 박스 디자인 호텔",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "초실속 후보",
+          "가성비",
+          "타이중"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-타이중-value-hotel-4",
+          "text": "친구 여행이나 혼자 여행에서 숙박비를 아끼고 상권 분위기를 즐기기 좋은 숙소입니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "예산보다 일정 성격이 더 중요할 때도 있습니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "타이중 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/taichung/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "처음 가는 일정에 맞춰 가장 무난한 숙소 위치를 고르는 선택"
+      },
+      {
+        "href": "/destinations/taichung/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "근교 이동과 출발 동선을 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/taichung/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/taichung/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 조용히 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "valueFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "타이중 가성비 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "valueFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "타이중 가성비 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "구도심 관광과 기차 도착이 중요하다면 타이중역·이중상권, 야시장 중심 일정이라면 펑지아부터 비교하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "펑지아는 가성비 숙소로 괜찮나요?",
+        "answer": "야시장과 쇼핑 중심 일정이라면 좋습니다. 다만 구도심 관광이 많으면 이동 시간이 늘어날 수 있어 일정 비중을 먼저 봐야 합니다.",
+        "open": false
+      },
+      {
+        "question": "타이중역 근처는 너무 오래된 느낌이 있나요?",
+        "answer": "숙소마다 차이가 큽니다. 역 접근성은 좋지만 객실 리뉴얼 여부와 방음 후기를 함께 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "타이중 가성비 호텔에서 가장 중요한 기준은 무엇인가요?",
+        "answer": "숙박비, 택시비, 버스 접근성, 야시장 복귀 거리를 함께 보는 것이 중요합니다.",
+        "open": false
+      },
+      {
+        "question": "초오도 근처도 가성비 숙소로 괜찮나요?",
+        "answer": "카페와 감성 상권을 즐기는 일정이라면 좋지만, 숙박비가 아주 낮은 지역은 아닐 수 있어 예산과 동선을 함께 비교하세요.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}

@@ -1,0 +1,520 @@
+{
+  "purpose": "value-hotel",
+  "head": {
+    "title": "나트랑 가성비 숙소 위치 추천 | 시내 비치·혼총 비교",
+    "description": "나트랑 가성비 숙소는 바다 전망만 보지 말고 시내 비치 접근, 야시장·식당 동선, 혼총·팜반동 가격대를 함께 비교하세요. 가격과 해변 동선의 균형을 정리했습니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/nha-trang/value-hotel/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "나트랑 가성비 숙소 위치 추천 | 시내 비치·혼총 비교",
+      "description": "나트랑 가성비 숙소는 바다 전망만 보지 말고 시내 비치 접근, 야시장·식당 동선, 혼총·팜반동 가격대를 함께 비교하세요. 가격과 해변 동선의 균형을 정리했습니다.",
+      "url": "https://bestayable.com/destinations/nha-trang/value-hotel/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "나트랑 가성비 숙소 위치 추천 | 시내 비치·혼총 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "나트랑 가성비 숙소 위치 추천 | 시내 비치·혼총 비교",
+      "description": "나트랑 가성비 숙소는 바다 전망만 보지 말고 시내 비치 접근, 야시장·식당 동선, 혼총·팜반동 가격대를 함께 비교하세요. 가격과 해변 동선의 균형을 정리했습니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "나트랑 가성비 숙소 위치 추천 | 시내 비치·혼총 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "나트랑",
+            "item": "https://bestayable.com/destinations/nha-trang/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "나트랑 가성비 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/nha-trang/value-hotel/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "나트랑 가성비 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "시내·나트랑 비치"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "혼총·팜반동"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "쩐푸 해변 북쪽"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "빈펄 선착장 주변"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "나트랑 가성비 숙소는 어느 지역부터 보면 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "처음이라면 시내·나트랑 비치, 조용함과 가격 균형을 원한다면 혼총·팜반동부터 비교하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "나트랑은 오션뷰가 꼭 필요할까요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "오션뷰가 있으면 좋지만, 가성비를 본다면 해변 접근과 식당 동선이 더 중요할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "혼총은 시내와 멀지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "택시 이동이 필요할 수 있습니다. 야시장과 식당을 매일 갈 계획이라면 시내 비치가 더 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "나트랑 가성비 호텔에서 중요한 기준은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "해변과 시내 거리, 주변 식당, 투어 픽업, 밤 소음 후기를 함께 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "빈펄 일정이 있으면 어디가 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "빈펄 일정 비중이 높다면 선착장 주변도 함께 비교할 수 있습니다. 다만 시내 먹거리 중심이면 나트랑 비치 쪽이 편합니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "나트랑",
+      "href": "/destinations/nha-trang/",
+      "current": false
+    },
+    {
+      "label": "나트랑 가성비 숙소 위치 추천",
+      "href": "",
+      "current": true
+    }
+  ],
+  "hero": {
+    "kicker": "나트랑 숙소 가이드",
+    "title": "나트랑 가성비 숙소는 해변 접근과 시내 동선을 함께 보세요",
+    "description": "나트랑은 바다 전망이 좋아 보여도 시내 식당과 야시장 이동이 불편하면 매일 택시를 타게 됩니다. 처음이라면 시내·나트랑 비치, 조금 더 조용하고 가격을 낮추고 싶다면 혼총·팜반동까지 함께 비교하는 편이 좋습니다."
+  },
+  "areaChoice": {
+    "ariaLabelledby": "valueAreaTitle",
+    "head": {
+      "kicker": "Value Choice",
+      "title": "시내 편의는 나트랑 비치, 조용한 가격 균형은 혼총·팜반동이 편합니다",
+      "titleId": "valueAreaTitle",
+      "description": "나트랑 가성비 숙소는 오션뷰 여부보다 해변, 야시장, 식당, 마사지 동선을 얼마나 편하게 묶을 수 있는지가 중요합니다."
+    },
+    "ariaLabel": "나트랑 가성비 숙소 위치 선택",
+    "choices": [
+      {
+        "label": "야시장과 식당을 자주 간다면",
+        "title": "시내·나트랑 비치",
+        "lead": "해변과 식당, 마사지, 야시장 동선을 짧게 묶기 좋아 처음 나트랑 가성비 숙소로 가장 무난한 위치입니다.",
+        "chipsAriaLabel": "시내·나트랑 비치 선택 포인트",
+        "chips": [
+          "해변 접근",
+          "야시장",
+          "식당 동선"
+        ],
+        "line": "짧은 일정이거나 처음 나트랑이라면 먼저 비교하기 좋습니다."
+      },
+      {
+        "label": "조용하게 쉬고 가격을 낮추고 싶다면",
+        "title": "혼총·팜반동",
+        "lead": "시내 중심보다 한결 차분하고 숙박비 선택지가 나오는 편이라 해변 체류와 예산 균형을 맞추기 좋습니다.",
+        "chipsAriaLabel": "혼총·팜반동 선택 포인트",
+        "chips": [
+          "조용한 숙박",
+          "가격 균형",
+          "북쪽 해변"
+        ],
+        "line": "시내 번잡함이 부담스럽고 택시 이동을 감수할 수 있다면 좋은 후보입니다."
+      }
+    ],
+    "support": null
+  },
+  "reasons": [
+    {
+      "ariaLabelledby": "whyPrimaryTitle",
+      "head": {
+        "kicker": "Why Nha Trang Beach",
+        "title": "처음 나트랑이라면 시내·나트랑 비치가 가장 단순합니다",
+        "titleId": "whyPrimaryTitle",
+        "description": "시내·나트랑 비치는 해변과 먹거리, 마사지, 야시장 동선을 한 번에 묶기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "해변과 야시장을 함께 쓰기 좋습니다",
+          "description": "낮에는 해변, 저녁에는 야시장과 식당을 짧은 이동으로 이어갈 수 있습니다."
+        },
+        {
+          "number": "02",
+          "title": "식당과 마사지 선택지가 많습니다",
+          "description": "숙소 주변에서 대부분의 일정을 해결하기 쉬워 택시비를 줄일 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "투어 픽업 확인이 쉽습니다",
+          "description": "호핑투어나 머드스파 일정이 있다면 픽업 가능 여부를 확인하기 편한 지역입니다."
+        },
+        {
+          "number": "04",
+          "title": "조용함이 중요하면 혼총과 비교하세요",
+          "description": "시내 중심부는 밤에도 번잡할 수 있어 숙면을 중시한다면 북쪽 지역도 함께 보세요."
+        }
+      ]
+    },
+    {
+      "ariaLabelledby": "whySecondaryTitle",
+      "head": {
+        "kicker": "Why Hon Chong",
+        "title": "시내 가격과 소음이 부담된다면 혼총·팜반동도 좋습니다",
+        "titleId": "whySecondaryTitle",
+        "description": "혼총·팜반동은 해변 분위기를 유지하면서 조금 더 차분하게 쉬고 싶은 분께 잘 맞습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "숙소 주변이 비교적 차분합니다",
+          "description": "시내 중심보다 번잡함이 덜해 쉬는 시간을 챙기기 좋습니다."
+        },
+        {
+          "number": "02",
+          "title": "가격 선택지가 나올 수 있습니다",
+          "description": "시내 중심 오션뷰가 부담될 때 비슷한 예산으로 객실 컨디션을 비교하기 쉽습니다."
+        },
+        {
+          "number": "03",
+          "title": "북쪽 해변 산책이 좋습니다",
+          "description": "해변 분위기를 느끼면서 여유롭게 머무르기 좋은 구역입니다."
+        },
+        {
+          "number": "04",
+          "title": "야시장 중심 일정은 시내가 편합니다",
+          "description": "매일 시내 식당과 야시장을 오갈 계획이라면 이동 시간이 길게 느껴질 수 있습니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "kicker": "가성비가 고민된다면",
+    "title": "예산과 시내 동선에 맞는 나트랑 숙소 위치를 찾아보세요",
+    "description": "야시장과 식당을 자주 갈지, 조용한 해변 체류를 원할지에 따라 만족하기 좋은 위치가 달라집니다.",
+    "href": "/destinations/nha-trang/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "나트랑 가성비 호텔은 오션뷰보다 실제 동선이 중요합니다",
+      "titleId": "bookingCheckTitle",
+      "description": "바다 전망이 좋아도 식당과 야시장 접근이 불편하면 매일 이동 비용이 생길 수 있습니다."
+    },
+    "items": [
+      {
+        "title": "해변과 시내 거리",
+        "description": "해변과 가까워도 야시장·식당까지 이동이 불편하면 체감 만족도가 떨어질 수 있습니다."
+      },
+      {
+        "title": "주변 식당과 편의시설",
+        "description": "숙소 근처에서 식사와 편의점 이용이 가능한지 확인하면 이동 부담을 줄일 수 있습니다."
+      },
+      {
+        "title": "투어 픽업 가능 여부",
+        "description": "호핑투어나 머드스파 일정이 있다면 호텔 픽업 가능 지역인지 확인하세요."
+      },
+      {
+        "title": "밤 소음 후기",
+        "description": "시내 중심 숙소는 주변 음악이나 차량 소음이 있을 수 있어 후기를 함께 보는 편이 좋습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "ariaLabelledby": "hotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "가격과 해변·시내 동선을 함께 보기 좋은 나트랑 호텔",
+      "titleId": "hotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "나트랑 비치·혼총 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-value-hotel-1",
+        "image": {
+          "alt": "나트랑 비치 중심 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "첫 여행 실속형",
+        "nameEn": "NHA TRANG BEACH",
+        "nameKo": "나트랑 비치 중심 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "시내 비치",
+          "가성비",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-value-hotel-1",
+          "text": "처음 나트랑에서 먹거리와 해변을 모두 챙기고 싶은 일정에 좋습니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-value-hotel-2",
+        "image": {
+          "alt": "혼총·팜반동 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "조용한 해변형",
+        "nameEn": "HON CHONG AREA",
+        "nameKo": "혼총·팜반동 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "혼총 접근",
+          "가성비",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-value-hotel-2",
+          "text": "시내 번잡함을 줄이고 해변 분위기를 유지하고 싶을 때 어울립니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-value-hotel-3",
+        "image": {
+          "alt": "쩐푸 해변 북쪽 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "오션뷰 조절형",
+        "nameEn": "NORTH BEACH AREA",
+        "nameKo": "쩐푸 해변 북쪽 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "북쪽 해변",
+          "가성비",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-value-hotel-3",
+          "text": "중심가보다 조금 위쪽에서 숙박비를 조절하고 싶은 일정에 비교해볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "rel": "sponsored nofollow noopener",
+        "target": "_blank",
+        "ariaDescribedby": "purposeHotelSummary-나트랑-value-hotel-4",
+        "image": {
+          "alt": "빈펄 선착장 주변 숙소 카드 이미지",
+          "decoding": "async",
+          "fetchpriority": "low",
+          "height": "270",
+          "loading": "lazy",
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "width": "360"
+        },
+        "badge": "빈펄 일정형",
+        "nameEn": "VINPEARL PIER AREA",
+        "nameKo": "빈펄 선착장 주변 숙소",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "선착장 접근",
+          "가성비",
+          "나트랑"
+        ],
+        "summary": {
+          "id": "purposeHotelSummary-나트랑-value-hotel-4",
+          "text": "빈펄랜드나 섬 일정 비중이 높다면 함께 볼 만합니다."
+        },
+        "grade": "추천 숙소",
+        "score": "가성비",
+        "scoreHasIcon": false,
+        "cta": "잔여 객실 확인"
+      }
+    ]
+  },
+  "otherChoices": {
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "시내 먹거리와 조용한 해변 체류는 예산 기준이 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "나트랑 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/nha-trang/first-trip/",
+        "number": "01",
+        "title": "첫 여행 숙소",
+        "description": "시내·나트랑 비치 중심으로 처음 가는 일정에 맞춘 선택"
+      },
+      {
+        "href": "/destinations/nha-trang/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "빈펄·호핑투어·머드스파 이동을 중심으로 보는 선택"
+      },
+      {
+        "href": "/destinations/nha-trang/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 우선한 선택"
+      },
+      {
+        "href": "/destinations/nha-trang/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 유지하고 편하게 쉬는 선택"
+      }
+    ]
+  },
+  "faq": {
+    "ariaLabelledby": "valueFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "나트랑 가성비 숙소는 어느 지역부터 보면 좋을까요?",
+      "titleId": "valueFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "나트랑 가성비 숙소는 어느 지역부터 보면 좋나요?",
+        "answer": "처음이라면 시내·나트랑 비치, 조용함과 가격 균형을 원한다면 혼총·팜반동부터 비교하는 것이 좋습니다.",
+        "open": true
+      },
+      {
+        "question": "나트랑은 오션뷰가 꼭 필요할까요?",
+        "answer": "오션뷰가 있으면 좋지만, 가성비를 본다면 해변 접근과 식당 동선이 더 중요할 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "혼총은 시내와 멀지 않나요?",
+        "answer": "택시 이동이 필요할 수 있습니다. 야시장과 식당을 매일 갈 계획이라면 시내 비치가 더 편합니다.",
+        "open": false
+      },
+      {
+        "question": "나트랑 가성비 호텔에서 중요한 기준은 무엇인가요?",
+        "answer": "해변과 시내 거리, 주변 식당, 투어 픽업, 밤 소음 후기를 함께 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "빈펄 일정이 있으면 어디가 좋나요?",
+        "answer": "빈펄 일정 비중이 높다면 선착장 주변도 함께 비교할 수 있습니다. 다만 시내 먹거리 중심이면 나트랑 비치 쪽이 편합니다.",
+        "open": false
+      }
+    ]
+  },
+  "extraScripts": []
+}
