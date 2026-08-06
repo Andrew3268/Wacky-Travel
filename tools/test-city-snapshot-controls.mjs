@@ -14,6 +14,10 @@ for (const required of [
   "wt-city-snapshot__scroll-button--${isPrevious ? 'previous' : 'next'}",
   "grid.scrollBy({ left: -getSnapshotScrollStep(grid), behavior: 'smooth' })",
   "grid.scrollBy({ left: getSnapshotScrollStep(grid), behavior: 'smooth' })",
+  "controls.className = 'wt-city-snapshot__scroll-controls'",
+  "viewport.insertAdjacentElement('afterend', controls)",
+  "controls.append(previousButton, nextButton)",
+  "controls.hidden = !hasOverflow",
   "button.setAttribute('aria-label'",
   "document.createElementNS('http://www.w3.org/2000/svg', 'svg')",
   "icon.setAttribute('class', 'wt-city-snapshot__scroll-icon')",
@@ -25,10 +29,14 @@ for (const required of [
 
 for (const required of [
   '@media (min-width: 900px)',
+  '.wt-city-snapshot__scroll-controls',
+  'justify-content: flex-end',
+  'margin-top: 14px',
   '.wt-city-snapshot__scroll-icon',
   '.wt-city-snapshot__scroll-button[hidden]',
   '.wt-city-snapshot__scroll-button--previous',
-  '.wt-city-snapshot__scroll-button--next'
+  '.wt-city-snapshot__scroll-button--next',
+  'position: static'
 ]) {
   if (!css.includes(required)) errors.push(`Missing snapshot control CSS marker: ${required}`);
 }
@@ -41,14 +49,15 @@ for (const entry of fs.readdirSync(destinationsRoot, { withFileTypes: true })) {
   const html = fs.readFileSync(indexPath, 'utf8');
   if (!html.includes('wt-city-snapshot__grid')) continue;
   pageCount += 1;
-  if (!html.includes('/assets/js/area-tabs-scroll.js?v=20260805CitySnapshotControlsV2')) {
+  if (!html.includes('/assets/js/area-tabs-scroll.js?v=20260805CitySnapshotControlsV3')) {
     errors.push(`City snapshot page is missing the current control script version: ${entry.name}`);
   }
-  if (!html.includes('/assets/css/travel-city.css?v=20260805-frontend-v17')) {
+  if (!html.includes('/assets/css/travel-city.css?v=20260805-frontend-v18')) {
     errors.push(`City snapshot page is missing the cache-busted city stylesheet: ${entry.name}`);
   }
-  if (html.includes('/assets/css/travel-city.css?v=20260805-frontend-v16')) {
-    errors.push(`City snapshot page still references the stale immutable city stylesheet: ${entry.name}`);
+  if (html.includes('/assets/css/travel-city.css?v=20260805-frontend-v16') ||
+      html.includes('/assets/css/travel-city.css?v=20260805-frontend-v17')) {
+    errors.push(`City snapshot page still references a stale immutable city stylesheet: ${entry.name}`);
   }
 }
 

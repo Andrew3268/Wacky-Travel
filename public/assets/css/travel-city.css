@@ -6754,24 +6754,38 @@ body.travel-city-body .wt-city-hero__actions a[href="#hotel-posts"][hidden] {
 
 /* City snapshot desktop icon navigation */
 body.travel-city-body .wt-city-snapshot__viewport {
-  position: relative;
   width: 100%;
   max-width: 100%;
   min-width: 0;
 }
 
+body.travel-city-body .wt-city-snapshot__scroll-controls,
 body.travel-city-body .wt-city-snapshot__scroll-button {
   display: none;
 }
 
 @media (min-width: 900px) {
+  body.travel-city-body .wt-city-snapshot__scroll-controls {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  body.travel-city-body .wt-city-snapshot__scroll-controls[hidden],
+  body.travel-city-body .wt-city-snapshot__scroll-button[hidden] {
+    display: none !important;
+  }
+
   body.travel-city-body .wt-city-snapshot__scroll-button {
-    position: absolute;
-    top: 50%;
-    z-index: 4;
+    position: static;
     width: 46px;
     height: 46px;
     display: grid;
+    flex: 0 0 46px;
     place-items: center;
     padding: 0;
     border: 1px solid #111;
@@ -6780,12 +6794,8 @@ body.travel-city-body .wt-city-snapshot__scroll-button {
     color: #111;
     box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
     cursor: pointer;
-    transform: translateY(-50%);
+    transform: none;
     transition: background-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
-  }
-
-  body.travel-city-body .wt-city-snapshot__scroll-button[hidden] {
-    display: none !important;
   }
 
   body.travel-city-body .wt-city-snapshot__scroll-icon {
@@ -6800,14 +6810,6 @@ body.travel-city-body .wt-city-snapshot__scroll-button {
     pointer-events: none;
   }
 
-  body.travel-city-body .wt-city-snapshot__scroll-button--previous {
-    left: 14px;
-  }
-
-  body.travel-city-body .wt-city-snapshot__scroll-button--next {
-    right: 14px;
-  }
-
   body.travel-city-body .wt-city-snapshot__scroll-button:hover {
     background: #111;
     color: #fff;
@@ -6815,11 +6817,11 @@ body.travel-city-body .wt-city-snapshot__scroll-button {
   }
 
   body.travel-city-body .wt-city-snapshot__scroll-button--previous:hover {
-    transform: translate(-2px, -50%);
+    transform: translateX(-2px);
   }
 
   body.travel-city-body .wt-city-snapshot__scroll-button--next:hover {
-    transform: translate(2px, -50%);
+    transform: translateX(2px);
   }
 
   body.travel-city-body .wt-city-snapshot__scroll-button:focus-visible {

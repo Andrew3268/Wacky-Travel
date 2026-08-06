@@ -83,12 +83,13 @@
     return Math.max(1, card.getBoundingClientRect().width + gap);
   };
 
-  const updateSnapshotButtons = (grid, previousButton, nextButton) => {
+  const updateSnapshotButtons = (grid, controls, previousButton, nextButton) => {
     const maxScrollLeft = Math.max(0, grid.scrollWidth - grid.clientWidth);
     const hasOverflow = maxScrollLeft > 2;
     const atStart = grid.scrollLeft <= 2;
     const atEnd = maxScrollLeft - grid.scrollLeft <= 2;
 
+    controls.hidden = !hasOverflow;
     previousButton.hidden = !hasOverflow || atStart;
     previousButton.disabled = !hasOverflow || atStart;
     nextButton.hidden = !hasOverflow || atEnd;
@@ -110,11 +111,16 @@
     grid.parentNode.insertBefore(viewport, grid);
     viewport.appendChild(grid);
 
+    const controls = document.createElement('div');
+    controls.className = 'wt-city-snapshot__scroll-controls';
+    controls.setAttribute('aria-label', '숙소 선택 카드 이동');
+
     const previousButton = createSnapshotScrollButton('previous', grid.id);
     const nextButton = createSnapshotScrollButton('next', grid.id);
-    viewport.append(previousButton, nextButton);
+    controls.append(previousButton, nextButton);
+    viewport.insertAdjacentElement('afterend', controls);
 
-    const update = () => updateSnapshotButtons(grid, previousButton, nextButton);
+    const update = () => updateSnapshotButtons(grid, controls, previousButton, nextButton);
     let scrollFrame = 0;
 
     const scheduleUpdate = () => {
