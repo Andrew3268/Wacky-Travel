@@ -1,0 +1,567 @@
+{
+  "purpose": "first-trip",
+  "head": {
+    "title": "첫 후쿠오카 여행 숙소 위치 추천 | 하카타·텐진 비교",
+    "description": "첫 후쿠오카 여행은 하카타와 텐진만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 공항·근교 일정은 하카타, 쇼핑·맛집 중심 일정은 텐진이 편합니다.",
+    "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+    "themeColor": "#ffffff",
+    "canonical": "https://bestayable.com/destinations/fukuoka/first-trip/",
+    "og": {
+      "type": "website",
+      "siteName": "Be Stayable",
+      "title": "첫 후쿠오카 여행 숙소 위치 추천 | 하카타·텐진 비교",
+      "description": "첫 후쿠오카 여행은 하카타와 텐진만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 공항·근교 일정은 하카타, 쇼핑·맛집 중심 일정은 텐진이 편합니다.",
+      "url": "https://bestayable.com/destinations/fukuoka/first-trip/",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageWidth": "1200",
+      "imageHeight": "630",
+      "imageAlt": "첫 후쿠오카 여행 숙소 위치 추천 | 하카타·텐진 비교 대표 이미지",
+      "locale": "ko_KR"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "첫 후쿠오카 여행 숙소 위치 추천 | 하카타·텐진 비교",
+      "description": "첫 후쿠오카 여행은 하카타와 텐진만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 공항·근교 일정은 하카타, 쇼핑·맛집 중심 일정은 텐진이 편합니다.",
+      "image": "https://bestayable.com/assets/images/og-default.png",
+      "imageAlt": "첫 후쿠오카 여행 숙소 위치 추천 | 하카타·텐진 비교 대표 이미지"
+    },
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://bestayable.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "여행지",
+            "item": "https://bestayable.com/destinations/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "후쿠오카",
+            "item": "https://bestayable.com/destinations/fukuoka/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "첫 후쿠오카 여행 숙소 위치 추천",
+            "item": "https://bestayable.com/destinations/fukuoka/first-trip/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "첫 후쿠오카 여행 숙소 추천 구역",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "하카타"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "텐진"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "기온"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "나카스·카와바타"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "후쿠오카 처음이면 하카타와 텐진 중 어디가 더 편한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "공항 이동, 기차, 버스터미널, 유후인·다자이후 일정을 함께 본다면 하카타가 더 편합니다. 쇼핑과 맛집, 카페 중심으로 움직인다면 텐진이 더 편하게 느껴질 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "유후인 버스투어가 있으면 하카타에 묵는 게 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "유후인이나 다자이후처럼 버스·기차 이동이 많은 일정이라면 하카타 쪽이 동선이 단순합니다. 특히 이른 아침 출발이면 하카타역이나 버스터미널 가까운 숙소가 편합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "텐진 숙소는 공항 이동이 불편하지 않나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "텐진도 공항 이동이 크게 어렵지는 않습니다. 다만 첫날 짐이 많거나 늦게 도착한다면 하카타가 더 단순하게 느껴질 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "나카스 근처는 첫 여행 숙소로 괜찮나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "나카스는 저녁 식사와 야경, 포장마차 분위기를 즐기기 좋습니다. 다만 술집 거리와 가까운 숙소는 밤 소음이 있을 수 있어 객실 위치와 후기를 함께 확인하는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "후쿠오카 2박 3일이면 숙소를 옮길 필요가 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "2박 3일이면 보통 한 지역에만 묵어도 충분합니다. 공항과 근교 이동이 많으면 하카타, 쇼핑과 식당 중심이면 텐진부터 보면 됩니다."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "breadcrumbs": [
+    {
+      "label": "홈",
+      "href": "/",
+      "current": false
+    },
+    {
+      "label": "여행지",
+      "href": "/destinations/",
+      "current": false
+    },
+    {
+      "label": "후쿠오카",
+      "href": "/destinations/fukuoka/",
+      "current": false
+    },
+    {
+      "label": "후쿠오카가 처음이라면",
+      "href": "",
+      "current": true
+    }
+  ],
+  "mainClasses": [
+    "travel-page",
+    "wt-purpose-page",
+    "wt-purpose-page--first-trip",
+    "wt-purpose-page--fukuoka-first-trip"
+  ],
+  "hero": {
+    "kicker": "후쿠오카 숙소 가이드",
+    "title": "후쿠오카 첫 여행 숙소는 하카타와 텐진에서 먼저 좁히세요",
+    "description": "첫 후쿠오카 여행은 하카타와 텐진 중 어디를 더 자주 갈지 먼저 정하면 숙소 선택이 쉬워집니다. 공항·기차·버스 이동과 유후인·다자이후 일정을 함께 본다면 하카타가 편하고, 쇼핑과 식당, 카페 중심으로 움직인다면 텐진이 편합니다."
+  },
+  "areaChoice": {
+    "classes": [
+      "wt-section",
+      "wt-first-area-choice",
+      "wt-area-choice--unified"
+    ],
+    "ariaLabelledby": "firstAreaTitle",
+    "head": {
+      "kicker": "Area Choice",
+      "title": "공항·근교 이동은 하카타, 쇼핑·맛집은 텐진이 편합니다",
+      "titleId": "firstAreaTitle",
+      "description": "후쿠오카가 처음이라면 모든 지역을 한 번에 비교하지 않아도 됩니다. 공항 이동과 근교 일정이 많다면 하카타, 쇼핑과 맛집을 중심으로 움직인다면 텐진부터 보면 충분합니다."
+    },
+    "ariaLabel": "첫 후쿠오카 여행 숙소 위치 선택",
+    "choices": [
+      {
+        "classes": [
+          "wt-choice-card",
+          "wt-choice-card--hakata"
+        ],
+        "label": "이동이 걱정된다면",
+        "title": "하카타",
+        "lead": "공항에서 들어오기 쉽고, JR 하카타역과 버스터미널을 함께 쓰기 좋아 처음이라면 가장 무난하게 고르기 좋은 위치입니다.",
+        "chipsAriaLabel": "하카타 선택 포인트",
+        "chips": [
+          "공항 이동",
+          "근교 출발",
+          "짧은 일정"
+        ],
+        "line": "2박 3일 일정이거나 다자이후·유후인을 함께 본다면 하카타가 편합니다."
+      },
+      {
+        "classes": [
+          "wt-choice-card",
+          "wt-choice-card--tenjin"
+        ],
+        "label": "도심을 즐기고 싶다면",
+        "title": "텐진",
+        "lead": "백화점, 지하상가, 다이묘·이마이즈미 카페 거리와 가까워 쇼핑하고 밥 먹고 카페까지 들르기 좋습니다.",
+        "chipsAriaLabel": "텐진 선택 포인트",
+        "chips": [
+          "쇼핑",
+          "맛집",
+          "카페 동선"
+        ],
+        "line": "숙소 주변에서 먹고 걷고 쇼핑하는 시간이 많다면 텐진이 더 편합니다."
+      }
+    ]
+  },
+  "reasons": [
+    {
+      "classes": [
+        "wt-section",
+        "wt-section--soft"
+      ],
+      "ariaLabelledby": "whyHakataTitle",
+      "head": {
+        "kicker": "Why Hakata",
+        "title": "공항·기차·버스 이동이 많다면 하카타가 가장 편합니다",
+        "titleId": "whyHakataTitle",
+        "description": "하카타는 공항, 기차, 버스터미널 접근성이 좋아 처음 가는 일정에서도 동선이 단순합니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "대표 명소를 짧게 묶을 수 있습니다",
+          "description": "나카스, 캐널시티, 텐진, 고후쿠마치를 도보나 짧은 이동으로 이어가기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 후 돌아오기 쉽습니다",
+          "description": "저녁 식사와 야간 산책 후 숙소로 돌아오는 길이 단순해 처음 방문하는 분의 피로가 덜합니다."
+        },
+        {
+          "number": "03",
+          "title": "공항에서 들어오는 길이 단순합니다",
+          "description": "후쿠오카공항에서 하카타역으로 들어오는 일정이라면 첫날 체크인 동선이 비교적 쉽습니다."
+        },
+        {
+          "number": "04",
+          "title": "짧은 일정에 특히 편합니다",
+          "description": "2박 3일처럼 시간이 짧을수록 이동 시간을 줄이고 관광과 식사에 더 집중할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "classes": [
+        "wt-section",
+        "wt-section--soft"
+      ],
+      "ariaLabelledby": "whyTenjinTitle",
+      "head": {
+        "kicker": "Why Tenjin",
+        "title": "쇼핑과 맛집을 많이 볼 계획이라면 텐진이 편합니다",
+        "titleId": "whyTenjinTitle",
+        "description": "텐진은 백화점, 지하상가, 다이묘·이마이즈미 카페 거리까지 이어져 쇼핑과 맛집을 중심으로 움직이기 좋습니다."
+      },
+      "cards": [
+        {
+          "number": "01",
+          "title": "쇼핑과 카페 동선을 짧게 묶기 좋습니다",
+          "description": "백화점, 지하상가, 다이묘·이마이즈미 카페 거리를 한 번에 이어가기 쉽습니다."
+        },
+        {
+          "number": "02",
+          "title": "저녁 식사 후 복귀가 편합니다",
+          "description": "숙소 주변에서 식사와 산책을 해결하고 싶다면 후쿠오카 도심 분위기를 더 쉽게 느낄 수 있습니다."
+        },
+        {
+          "number": "03",
+          "title": "도심 분위기를 더 쉽게 느낄 수 있습니다",
+          "description": "쇼핑, 맛집, 카페를 하루 동선 안에 묶고 싶다면 텐진이 더 편합니다."
+        },
+        {
+          "number": "04",
+          "title": "근교 일정이 많다면 하카타와 비교하세요",
+          "description": "유후인·다자이후처럼 아침 출발 근교 일정이 많다면 텐진보다 하카타가 더 단순합니다."
+        }
+      ]
+    }
+  ],
+  "survey": {
+    "classes": [
+      "wt-section",
+      "wt-section--soft",
+      "wt-section--survey-cta"
+    ],
+    "kicker": "아직 고민된다면",
+    "title": "하카타·텐진 동선에 맞는 첫 후쿠오카 숙소 위치를 찾아보세요",
+    "description": "공항에서 시내로 들어오는 길, 도심 관광, 다자이후 일정까지 놓고 보면 처음 머물기 좋은 위치를 정하기 쉽습니다.",
+    "href": "/destinations/fukuoka/hotel-location-survey/",
+    "button": "내 여행에 맞는 숙소 위치 찾기"
+  },
+  "bookingChecks": {
+    "classes": [
+      "wt-section",
+      "wt-section--soft",
+      "wt-firsttrip-before-booking"
+    ],
+    "ariaLabelledby": "bookingCheckTitle",
+    "head": {
+      "kicker": "Before Booking",
+      "title": "후쿠오카 호텔은 지도 위치보다 실제 동선이 중요합니다",
+      "titleId": "bookingCheckTitle",
+      "description": "지역을 정했다면 공항 이동, 역 출구, 저녁 복귀, 가격 대비 이동 시간만 먼저 확인해도 실패 가능성이 줄어듭니다."
+    },
+    "items": [
+      {
+        "title": "공항에서 호텔까지 쉬운가",
+        "description": "첫날에는 짐을 들고 이동하므로 갈아타는 횟수와 도보 시간이 짧은 호텔이 편합니다."
+      },
+      {
+        "title": "역 출구에서 실제로 가까운가",
+        "description": "“역 근처”보다 실제 이용할 출구에서 호텔까지의 길과 횡단보도, 지하도 여부가 더 중요합니다."
+      },
+      {
+        "title": "저녁 후 돌아오기 부담 없는가",
+        "description": "나카스나 텐진에서 식사 후 숙소까지 걷기 쉬운지, 밤길이 번잡하지 않은지 함께 보세요."
+      },
+      {
+        "title": "저렴해도 이동 시간이 길지 않은가",
+        "description": "숙박비가 낮아도 매일 이동 시간이 길어지면 첫 여행이 아쉬울 수 있습니다."
+      }
+    ]
+  },
+  "hotels": {
+    "classes": [
+      "wt-section"
+    ],
+    "ariaLabelledby": "firstHotelTitle",
+    "ariaHidden": "true",
+    "adminOnly": true,
+    "hidden": true,
+    "head": {
+      "kicker": "Curated Hotels",
+      "title": "첫 후쿠오카 여행에서 먼저 보면 좋은 숙소 위치",
+      "titleId": "firstHotelTitle",
+      "description": ""
+    },
+    "more": {
+      "href": "#n",
+      "rel": "sponsored noopener",
+      "text": "하카타·나카스 숙소 더보기"
+    },
+    "cards": [
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "target": "_blank",
+        "rel": "sponsored nofollow noopener",
+        "image": {
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "alt": "미야코 호텔 하카타 객실",
+          "width": "360",
+          "height": "270",
+          "loading": "lazy",
+          "decoding": "async",
+          "fetchpriority": ""
+        },
+        "badge": "하카타역 바로 앞",
+        "nameEn": "Miyako Hotel Hakata",
+        "nameKo": "미야코 호텔 하카타",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "하카타역",
+          "공항 이동",
+          "첫 여행"
+        ],
+        "grade": "5성급",
+        "score": "4.7",
+        "cta": "잔여 객실 확인",
+        "ariaDescribedby": "",
+        "summary": {
+          "id": "",
+          "text": ""
+        },
+        "scoreHasIcon": true
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "target": "_blank",
+        "rel": "sponsored nofollow noopener",
+        "image": {
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "alt": "솔라리아 니시테츠 호텔 후쿠오카 카드 테스트 이미지",
+          "width": "360",
+          "height": "270",
+          "loading": "lazy",
+          "decoding": "async",
+          "fetchpriority": "low"
+        },
+        "badge": "텐진 쇼핑 중심",
+        "nameEn": "Solaria Nishitetsu Hotel Fukuoka",
+        "nameKo": "솔라리아 니시테츠 호텔 후쿠오카",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "텐진 중심",
+          "쇼핑 동선",
+          "맛집 접근"
+        ],
+        "grade": "4성급",
+        "score": "4.6",
+        "cta": "잔여 객실 확인",
+        "ariaDescribedby": "",
+        "summary": {
+          "id": "",
+          "text": ""
+        },
+        "scoreHasIcon": true
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "target": "_blank",
+        "rel": "sponsored nofollow noopener",
+        "image": {
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "alt": "더 블라썸 하카타 프리미어 카드 테스트 이미지",
+          "width": "360",
+          "height": "270",
+          "loading": "lazy",
+          "decoding": "async",
+          "fetchpriority": "low"
+        },
+        "badge": "하카타·기온 균형",
+        "nameEn": "The Blossom Hakata Premier",
+        "nameKo": "더 블라썸 하카타 프리미어",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "하카타·기온",
+          "캐널시티",
+          "동선 균형"
+        ],
+        "grade": "등급 확인",
+        "score": "평점 확인",
+        "cta": "잔여 객실 확인",
+        "ariaDescribedby": "",
+        "summary": {
+          "id": "",
+          "text": ""
+        },
+        "scoreHasIcon": true
+      },
+      {
+        "href": "https://www.agoda.com/partners/partnersearch.aspx?pcs=10&cid=1970112&hl=ko-kr&hid=11013",
+        "target": "_blank",
+        "rel": "sponsored nofollow noopener",
+        "image": {
+          "src": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270",
+          "srcset": "https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=360x270 1x, https://pix8.agoda.net/hotelImages/11013/3119094/c019f1beb13577e4923c96878db09fa5.png?ce=2&s=720x540 2x",
+          "alt": "더 라이블리 후쿠오카 하카타 카드 테스트 이미지",
+          "width": "360",
+          "height": "270",
+          "loading": "lazy",
+          "decoding": "async",
+          "fetchpriority": "low"
+        },
+        "badge": "나카스 도보권",
+        "nameEn": "The Lively Fukuoka Hakata",
+        "nameKo": "더 라이블리 후쿠오카 하카타",
+        "chipsAriaLabel": "숙소 추천 포인트",
+        "chips": [
+          "나카스",
+          "저녁 동선",
+          "도보 이동"
+        ],
+        "grade": "3성급",
+        "score": "4.4",
+        "cta": "잔여 객실 확인",
+        "ariaDescribedby": "",
+        "summary": {
+          "id": "",
+          "text": ""
+        },
+        "scoreHasIcon": true
+      }
+    ]
+  },
+  "otherChoices": {
+    "classes": [
+      "wt-section",
+      "wt-firsttrip-other-choices"
+    ],
+    "ariaLabelledby": "otherChoicesTitle",
+    "head": {
+      "kicker": "Other Choices",
+      "title": "일정이 다르면 숙소 선택도 달라집니다",
+      "titleId": "otherChoicesTitle",
+      "description": ""
+    },
+    "ariaLabel": "후쿠오카 여행 유형별 숙소 선택",
+    "items": [
+      {
+        "href": "/destinations/fukuoka/value-hotel/",
+        "number": "01",
+        "title": "가성비 숙소",
+        "description": "숙박비와 이동 시간을 함께 보고 싶을 때"
+      },
+      {
+        "href": "/destinations/fukuoka/near-trip/",
+        "number": "02",
+        "title": "근교 여행 숙소",
+        "description": "다자이후·이토시마·기타큐슈 이동이 많은 일정일 때"
+      },
+      {
+        "href": "/destinations/fukuoka/family-trip/",
+        "number": "03",
+        "title": "가족 여행 숙소",
+        "description": "동행자 컨디션과 이동 편의를 먼저 봐야 할 때"
+      },
+      {
+        "href": "/destinations/fukuoka/quiet-stay/",
+        "number": "04",
+        "title": "조용한 숙소",
+        "description": "중심 접근성은 챙기고 조용히 쉬고 싶을 때"
+      }
+    ]
+  },
+  "faq": {
+    "classes": [
+      "wt-section",
+      "wt-section--compact",
+      "wt-purpose-faq"
+    ],
+    "ariaLabelledby": "firstTripFaqTitle",
+    "head": {
+      "kicker": "FAQ",
+      "title": "후쿠오카 첫 여행 숙소, 하카타와 텐진 중 어디가 좋을까요?",
+      "titleId": "firstTripFaqTitle",
+      "description": ""
+    },
+    "items": [
+      {
+        "question": "후쿠오카 처음이면 하카타와 텐진 중 어디가 더 편한가요?",
+        "answer": "공항 이동, 기차, 버스터미널, 유후인·다자이후 일정을 함께 본다면 하카타가 더 편합니다. 쇼핑과 맛집, 카페 중심으로 움직인다면 텐진이 더 편하게 느껴질 수 있습니다.",
+        "open": true
+      },
+      {
+        "question": "유후인 버스투어가 있으면 하카타에 묵는 게 좋나요?",
+        "answer": "유후인이나 다자이후처럼 버스·기차 이동이 많은 일정이라면 하카타 쪽이 동선이 단순합니다. 특히 이른 아침 출발이면 하카타역이나 버스터미널 가까운 숙소가 편합니다.",
+        "open": false
+      },
+      {
+        "question": "텐진 숙소는 공항 이동이 불편하지 않나요?",
+        "answer": "텐진도 공항 이동이 크게 어렵지는 않습니다. 다만 첫날 짐이 많거나 늦게 도착한다면 하카타가 더 단순하게 느껴질 수 있습니다.",
+        "open": false
+      },
+      {
+        "question": "나카스 근처는 첫 여행 숙소로 괜찮나요?",
+        "answer": "나카스는 저녁 식사와 야경, 포장마차 분위기를 즐기기 좋습니다. 다만 술집 거리와 가까운 숙소는 밤 소음이 있을 수 있어 객실 위치와 후기를 함께 확인하는 것이 좋습니다.",
+        "open": false
+      },
+      {
+        "question": "후쿠오카 2박 3일이면 숙소를 옮길 필요가 있나요?",
+        "answer": "2박 3일이면 보통 한 지역에만 묵어도 충분합니다. 공항과 근교 이동이 많으면 하카타, 쇼핑과 식당 중심이면 텐진부터 보면 됩니다.",
+        "open": false
+      }
+    ]
+  }
+}
