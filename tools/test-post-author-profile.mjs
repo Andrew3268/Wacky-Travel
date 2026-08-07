@@ -5,9 +5,9 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260807-post-review-v21"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260807-post-layout-v22"/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
-assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{isRecommendedHotelReviewPost \? hotelFeatureBadgesHtml : ""\}\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
+assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{isRecommendedHotelReviewPost \? `<div class="post-hotel-feature-row">\$\{hotelFeatureBadgesHtml\}\$\{magazineAdminActionsHtml\}<\/div>` : ""\}\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
 assert.match(renderer, /class="post-author-profile__avatar"[^>]*>프로필<\/span>/);
 assert.match(renderer, /class="post-author-profile__body"/);
@@ -15,7 +15,7 @@ assert.match(renderer, /class="post-author-profile__name"[^>]*href="\/about\/"[^
 assert.match(renderer, /class="post-author-profile__meta"[^>]*>[\s\S]*?<time datetime="\$\{escapeHtml\(publishedIso \|\| ""\)\}">발행 \$\{escapeHtml\(publishedDate\)\}<\/time>[\s\S]*?post-author-profile__separator[\s\S]*?<time datetime="\$\{escapeHtml\(updatedIso \|\| ""\)\}">수정 \$\{escapeHtml\(updatedDate\)\}<\/time>/);
 
 const h1Index = renderer.indexOf('<h1 class="h1 post-title post-magazine-title"');
-const badgeIndex = renderer.indexOf('${isRecommendedHotelReviewPost ? hotelFeatureBadgesHtml : ""}', h1Index);
+const badgeIndex = renderer.indexOf('${isRecommendedHotelReviewPost ? `<div class="post-hotel-feature-row">${hotelFeatureBadgesHtml}${magazineAdminActionsHtml}</div>` : ""}', h1Index);
 const profileIndex = renderer.indexOf('${magazineAuthorProfileHtml}', badgeIndex);
 const coverIndex = renderer.indexOf('${coverImageHtml}', profileIndex);
 assert.ok(
@@ -26,12 +26,15 @@ assert.ok(
 
 assert.match(renderer, /isRecommendedHotelReviewPost \? \(row\.summary \|\| ""\) : \(row\.summary \|\| descriptionText \|\| ""\)/);
 assert.match(renderer, /class="wt-toc-floating-button" data-toc-floating/);
-assert.match(renderer, /guide-toc-floating\.js\?v=20260807-post-review-toc-v4/);
+assert.match(renderer, /isTop5SeriesPost \? `<script defer src="\/assets\/js\/guide-toc-floating\.js\?v=20260807-top5-toc-v5"><\/script>` : ""/);
 
 const appCss = fs.readFileSync("public/assets/css/app.css", "utf8");
 const floatingTocJs = fs.readFileSync("public/assets/js/guide-toc-floating.js", "utf8");
-assert.match(appCss, /body\.post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{[\s\S]*?font-size: 17px !important;[\s\S]*?border-top: 1px solid #ddd !important;[\s\S]*?border-bottom: 1px solid #ddd !important;/);
-assert.match(floatingTocJs, /body\.post-page-body--recommended-hotel-review \.post-toc/);
+const recommendedH3Rule = appCss.match(/body\.post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{([\s\S]*?)\}/)?.[1] || "";
+assert.match(recommendedH3Rule, /font-size: 17px !important;/);
+assert.match(recommendedH3Rule, /border-top: 1px solid #ddd !important;/);
+assert.match(recommendedH3Rule, /border-bottom: 1px solid #ddd !important;/);
+assert.match(floatingTocJs, /body\.post-page-body--top5-series \.post-toc/);
 assert.match(floatingTocJs, /postContent\.querySelectorAll\('h2\[id\], h3\[id\]'\)/);
 assert.match(css, /body\.post-page-body \.post-author-profile\{[\s\S]*?display:flex;[\s\S]*?align-items:center;[\s\S]*?width:100%;[\s\S]*?margin:20px 0;[\s\S]*?padding:10px;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
 assert.match(css, /body\.post-page-body \.post-author-profile__avatar\{[\s\S]*?width:42px;[\s\S]*?height:42px;[\s\S]*?border-radius:50%;/);
@@ -43,6 +46,12 @@ assert.match(css, /body\.post-page-body \.post-magazine-head--title \+ \.post-co
 assert.match(componentsCss, /body\.post-page-body \.breadcrumbs\.container\.breadcrumbs--post-page \{[\s\S]*?width: min\(100%, var\(--container\)\);/);
 assert.doesNotMatch(componentsCss, /breadcrumbs--post-page[\s\S]{0,240}calc\(100% - 32px\)/);
 assert.match(css, /p\.post-style-hotel-badges\{[\s\S]*?padding:10px 0;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
+
+assert.match(renderer, /const floatingTocButtonHtml = isTop5SeriesPost/);
+assert.doesNotMatch(renderer, /const floatingTocButtonHtml = isRecommendedHotelReviewPost/);
+assert.match(renderer, /\$\{!isRecommendedHotelReviewPost \? magazineAdminActionsHtml : ""\}/);
+assert.match(appCss, /post-hotel-feature-row\{[\s\S]*?justify-content: space-between;[\s\S]*?width: 100%;/);
+assert.match(appCss, /post-hotel-title-meta__item--pick,[\s\S]*?color: #666 !important;/);
 
 console.log("Post author profile check passed: H1 → hotel badges → author strip → cover, full-width breadcrumbs, 10px feature-badge padding.");
 

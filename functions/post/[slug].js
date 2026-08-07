@@ -4,7 +4,7 @@ import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260807-post-review-v21";
+const POST_RENDER_VERSION = "20260807-post-layout-v22";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -445,7 +445,7 @@ export async function onRequestGet(context) {
         (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : "",
         safeHotelPriceLink ? "post-page-body--has-mobile-hotel-cta" : ""
       ].filter(Boolean).join(" ");
-      const floatingTocButtonHtml = isRecommendedHotelReviewPost
+      const floatingTocButtonHtml = isTop5SeriesPost
         ? `<button aria-label="목차 메뉴 열기" class="wt-toc-floating-button" data-toc-floating type="button"><span aria-hidden="true" class="wt-toc-floating-icon"><span></span><span></span><span></span></span></button>`
         : "";
 
@@ -482,10 +482,10 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260806-frontend-v19" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260806-frontend-v19" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260806-frontend-v19" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260806-frontend-v19" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v20" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -526,7 +526,7 @@ export async function onRequestGet(context) {
             <div class="post-magazine-head post-magazine-head--title">
               ${hotelTitleMetaHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-              ${isRecommendedHotelReviewPost ? hotelFeatureBadgesHtml : ""}
+              ${isRecommendedHotelReviewPost ? `<div class="post-hotel-feature-row">${hotelFeatureBadgesHtml}${magazineAdminActionsHtml}</div>` : ""}
               ${magazineAuthorProfileHtml}
             </div>
             ${coverImageHtml}
@@ -535,7 +535,7 @@ export async function onRequestGet(context) {
                 ? (heroSummaryHtml ? `<div class="post-magazine-desc post-magazine-lead">${heroSummaryHtml}</div>` : "")
                 : hotelFeatureBadgesHtml}
               ${!isRecommendedHotelReviewPost && heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
-              ${magazineAdminActionsHtml}
+              ${!isRecommendedHotelReviewPost ? magazineAdminActionsHtml : ""}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
@@ -630,7 +630,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
-  ${isRecommendedHotelReviewPost ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260807-post-review-toc-v4"></script>` : ""}
+  ${isTop5SeriesPost ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260807-top5-toc-v5"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
 </body>
@@ -1425,9 +1425,9 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260806-frontend-v19" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260806-frontend-v19" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260806-frontend-v19" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v20" />
 </head>
 <body>
   ${topbar()}

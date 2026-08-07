@@ -5,9 +5,9 @@
   if (!button) return;
 
   const toc = document.querySelector('[data-guide-toc]')
-    || document.querySelector('body.post-page-body--recommended-hotel-review .post-toc');
+    || document.querySelector('body.post-page-body--top5-series .post-toc');
   const sourceNav = toc ? toc.querySelector('.wt-seo-toc, .post-toc__body, .post-toc__list') : null;
-  const postContent = document.querySelector('body.post-page-body--recommended-hotel-review .post-body .post-content');
+  const postContent = document.querySelector('body.post-page-body--top5-series .post-body .post-content');
 
   const panelId = 'wtFloatingTocPanel';
   const titleId = 'wtFloatingTocTitle';

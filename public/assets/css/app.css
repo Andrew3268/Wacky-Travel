@@ -8040,13 +8040,14 @@ body.post-page-body--hotel-review-magazine .post-body .post-content .post-h2-tex
 
 body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
   margin: 36px 0 20px;
-  padding: 16px 0;
+  padding: 10px 0;
   border: 0 !important;
-  border-top: 1px solid var(--hotel-review-ink) !important;
-  border-bottom: 1px solid var(--hotel-review-ink) !important;
+  border-top: 1px solid #ddd !important;
+  border-bottom: 1px solid #ddd !important;
   background: transparent !important;
   color: var(--hotel-review-ink) !important;
-  font-weight: 600;
+  font-size: 17px !important;
+  font-weight: 400 !important;
   line-height: 1.5;
   text-align: left;
 }
@@ -8278,11 +8279,6 @@ body.post-page-body--hotel-review-magazine .post-body .post-content h2 .post-h2-
   word-break: keep-all;
 }
 
-body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
-  padding: 10px 0 !important;
-  font-weight: 400!important;
-}
-
 
 /* ==========================================
    추천 호텔 리뷰 전용 섹션 라벨 최종 보완
@@ -8407,11 +8403,6 @@ body.post-page-body--hotel-review-magazine .post-body .post-content p:has(> stro
   word-break: keep-all;
 }
 
-body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
-  margin: 36px 0 20px 0 !important;
-  padding: 10px 0 !important;
-  font-weight: 400!important;
-}
 
 /* ==========================================
    추천 호텔 리뷰 전용 상단 키커 배치 보완
@@ -9044,6 +9035,27 @@ body.post-page-body .post-hotel-feature-badges{
   margin: 16px 0 0;
 }
 
+body.post-page-body--recommended-hotel-review .post-hotel-feature-row{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  margin: 20px 0 0;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-feature-row .post-hotel-feature-badges{
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-feature-row > .post-hero-admin-actions.post-admin-mini-actions{
+  flex: 0 0 auto;
+  margin: 0 !important;
+  justify-content: flex-end !important;
+}
+
 body.post-page-body .post-hotel-feature-badge{
   display: inline-flex;
   align-items: center;
@@ -9153,7 +9165,7 @@ body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-firs
 }
 
 body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-hotel-feature-badges{
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-head + .post-cover-wrap,
@@ -9174,7 +9186,7 @@ body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-mag
   }
 
   body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-hotel-feature-badges{
-    margin-top: 18px;
+    margin-top: 0;
   }
 
   body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-first .post-magazine-head + .post-cover-wrap,
@@ -9265,8 +9277,16 @@ body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-mag
   border-radius: 10px;
 }
 
+body.post-page-body .post-hotel-title-meta,
+body.post-page-body .post-hotel-title-meta__item,
+body.post-page-body .post-hotel-title-meta__item--pick,
+body.post-page-body .post-hotel-title-meta__item--location,
+body.post-page-body .post-hotel-title-meta__item--rating,
+body.post-page-body .post-hotel-title-meta__item + .post-hotel-title-meta__item::before{
+  color: #666 !important;
+}
+
 body.post-page-body .post-hotel-title-meta__item--pick{
-  color: #111;
   font-weight: 700;
 }
 
@@ -9379,30 +9399,3 @@ body.post-page-body .post-cover-wrap--agoda .post-cover-link:focus-visible{
 }
 
 
-/* 2026-08-07 추천 호텔 리뷰 보완
-   - H3 크기/구분선 색상 통일
-   - 모바일 고정 예약 CTA가 있을 때 목차 버튼 겹침 방지
-   - 목차 패널은 예약 CTA보다 위에서 열리도록 보정 */
-body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
-  font-size: 17px !important;
-  border-top: 1px solid #ddd !important;
-  border-bottom: 1px solid #ddd !important;
-}
-
-body.post-page-body--recommended-hotel-review .wt-toc-floating-button{
-  z-index: 1002;
-}
-
-body.post-page-body--recommended-hotel-review .wt-toc-floating-backdrop{
-  z-index: 1003;
-}
-
-body.post-page-body--recommended-hotel-review .wt-toc-floating-panel{
-  z-index: 1004;
-}
-
-@media (max-width: 767px){
-  body.post-page-body--recommended-hotel-review.post-page-body--has-mobile-hotel-cta .wt-toc-floating-button{
-    bottom: calc(82px + env(safe-area-inset-bottom));
-  }
-}
