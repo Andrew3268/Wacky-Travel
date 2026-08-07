@@ -5805,7 +5805,7 @@ html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-
   word-break: keep-all;
 }
 
-html body:not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3:not(.travel-card__title) {
+html body:not(.post-page-body):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h3:not(.travel-card__title) {
   font-size: 20px !important;
   line-height: 1.2 !important;
 }
