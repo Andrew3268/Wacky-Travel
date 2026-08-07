@@ -4884,7 +4884,7 @@ body.post-page-body .post-shell--guide-style .post-hero-product-title,
 body.post-page-body .post-hero-product-title,
 body.post-page-body .post-title,
 body.post-page-body .post-body-title{
-  color: var(--post-minimal-ink) !important;
+  color: var(--post-minimal-ink);
 }
 
 body.post-page-body .post-shell--guide-style .post-hero-subtitle,
@@ -4941,7 +4941,7 @@ body.post-page-body .post-shell--guide-style .post-h2-prefix{
 
 body.post-page-body .post-shell--guide-style .post-body .post-content h3{
   border-left-color: var(--post-minimal-ink);
-  color: var(--post-minimal-ink) !important;
+  color: var(--post-minimal-ink);
 }
 
 body.post-page-body .post-shell--guide-style .post-body .post-content h4{
@@ -4958,7 +4958,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content a,
 body.post-page-body .post-body .post-content a,
 body.post-page-body .post-body a[href^="/"],
 body.post-page-body .text-link{
-  color: var(--post-minimal-ink) !important;
+  color: var(--post-minimal-ink);
   text-decoration-color: rgba(16, 16, 16, 0.32);
 }
 
@@ -7198,7 +7198,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content h3{
   padding: 0;
   border: 0;
   background: transparent;
-  color: #111 !important;
+  color: #111;
   font-size: 18px;
   line-height: 1.32;
   letter-spacing: -0.045em;
@@ -8041,21 +8041,21 @@ body.post-page-body--hotel-review-magazine .post-body .post-content .post-h2-tex
 body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
   margin: 36px 0 20px;
   padding: 10px 0;
-  border: 0 !important;
-  border-top: 1px solid #ddd !important;
-  border-bottom: 1px solid #ddd !important;
-  background: transparent !important;
-  color: var(--hotel-review-ink) !important;
-  font-size: 17px !important;
-  font-weight: 400 !important;
+  border: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  color: var(--hotel-review-ink);
+  font-size: 17px;
+  font-weight: 400;
   line-height: 1.5;
   text-align: left;
 }
 
 body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3::before,
 body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3::after{
-  content: none !important;
-  display: none !important;
+  content: none;
+  display: none;
 }
 
 body.post-page-body--top5-series .post-body .post-content h3{
@@ -8085,6 +8085,10 @@ body.post-page-body--top5-series .post-body .post-content h3 .post-style-hotel-h
   height: 1px;
   background: currentColor;
   opacity: 0.35;
+}
+
+body.post-page-body--top5-series .post-body .post-content .post-style-hotel-image[data-floating-toc-section]{
+  scroll-margin-top: 24px;
 }
 
 body.post-page-body--top5-series .post-body .post-content .post-style-hotel-ending{
@@ -9052,8 +9056,8 @@ body.post-page-body--recommended-hotel-review .post-hotel-feature-row .post-hote
 
 body.post-page-body--recommended-hotel-review .post-hotel-feature-row > .post-hero-admin-actions.post-admin-mini-actions{
   flex: 0 0 auto;
-  margin: 0 !important;
-  justify-content: flex-end !important;
+  margin: 0;
+  justify-content: flex-end;
 }
 
 body.post-page-body .post-hotel-feature-badge{
@@ -9275,15 +9279,6 @@ body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-mag
   padding: 12px;
   border: 1px dashed var(--line, #dfe2e6);
   border-radius: 10px;
-}
-
-body.post-page-body .post-hotel-title-meta,
-body.post-page-body .post-hotel-title-meta__item,
-body.post-page-body .post-hotel-title-meta__item--pick,
-body.post-page-body .post-hotel-title-meta__item--location,
-body.post-page-body .post-hotel-title-meta__item--rating,
-body.post-page-body .post-hotel-title-meta__item + .post-hotel-title-meta__item::before{
-  color: #666 !important;
 }
 
 body.post-page-body .post-hotel-title-meta__item--pick{

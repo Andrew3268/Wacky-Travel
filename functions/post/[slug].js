@@ -4,7 +4,7 @@ import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260807-post-layout-v22";
+const POST_RENDER_VERSION = "20260807-post-layout-v23";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -482,10 +482,10 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v20" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v20" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v20" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v21" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v21" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v21" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v21" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -630,7 +630,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
-  ${isTop5SeriesPost ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260807-top5-toc-v5"></script>` : ""}
+  ${isTop5SeriesPost ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260807-top5-toc-v6"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
 </body>
@@ -1425,9 +1425,9 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v20" />
-  <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v20" />
-  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v20" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v21" />
+  <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v21" />
+  <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v21" />
 </head>
 <body>
   ${topbar()}

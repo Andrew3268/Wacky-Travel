@@ -63,7 +63,7 @@ for (const entry of fs.readdirSync(destinationsRoot, { withFileTypes: true })) {
   if (!html.includes('/assets/js/area-tabs-scroll.js?v=20260805CitySnapshotControlsV3')) {
     errors.push(`City snapshot page is missing the current control script version: ${entry.name}`);
   }
-  if (!html.includes('/assets/css/travel-city.css?v=20260807-frontend-v20')) {
+  if (!html.includes('/assets/css/travel-city.css?v=20260807-frontend-v21')) {
     errors.push(`City snapshot page is missing the cache-busted city stylesheet: ${entry.name}`);
   }
   if (html.includes('/assets/css/travel-city.css?v=20260805-frontend-v16') ||
