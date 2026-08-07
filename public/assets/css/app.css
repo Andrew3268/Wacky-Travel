@@ -4577,8 +4577,6 @@ select:focus{
   background: #F8FBFF !important;
 }
 
-.preview-body h3,
-.post-body .post-content h3,
 .post-body .post-content a,
 .preview-body a{
   color: #2563EB !important;

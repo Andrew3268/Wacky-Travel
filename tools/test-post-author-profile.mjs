@@ -5,7 +5,7 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260807-post-layout-v25"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260807-post-layout-v26"/);
 assert.match(renderer, /import \{ normalizeContentType \} from "\.\.\/\.\.\/lib\/travel\/travel-settings\.js";/);
 assert.match(renderer, /const contentType = normalizeContentType\(row\.content_type \|\| ""\);/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);

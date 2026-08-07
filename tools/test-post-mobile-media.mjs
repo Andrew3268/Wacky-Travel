@@ -34,6 +34,19 @@ assert.match(
 );
 assert.match(
   css,
+  /body\.post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{[^}]*color:\s*#333;[^}]*font-size:\s*17px;/
+);
+assert.doesNotMatch(
+  css,
+  /\.preview-body h3,\s*\.post-body \.post-content h3,\s*\.post-body \.post-content a,\s*\.preview-body a\{[^}]*color:\s*#2563EB\s*!important;/
+);
+assert.match(
+  css,
+  /\.post-body \.post-content a,\s*\.preview-body a\{[^}]*color:\s*#2563EB\s*!important;/
+);
+
+assert.match(
+  css,
   /@media \(max-width: 767px\) \{[\s\S]*?--post-page-gutter: 16px;/
 );
 assert.match(
