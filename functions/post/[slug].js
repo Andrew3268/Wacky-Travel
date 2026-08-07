@@ -4,7 +4,7 @@ import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
-const POST_RENDER_VERSION = "20260805-public-modified-date-v20";
+const POST_RENDER_VERSION = "20260807-post-review-v21";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -418,7 +418,9 @@ export async function onRequestGet(context) {
           </div>
         </div>
       `;
-      const heroSummaryText = String(row.summary || descriptionText || "").trim();
+      const heroSummaryText = String(
+        isRecommendedHotelReviewPost ? (row.summary || "") : (row.summary || descriptionText || "")
+      ).trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
       const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData, row.hotel_pick_label) : "";
       const hotelFeatureBadgesHtml = isHotelIntroPost ? renderHotelFeatureBadges(hotelHeroData) : "";
@@ -440,8 +442,12 @@ export async function onRequestGet(context) {
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
         isHotelIntroPost ? "post-page-body--hotel-intro" : "",
         isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
-        (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : ""
+        (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : "",
+        safeHotelPriceLink ? "post-page-body--has-mobile-hotel-cta" : ""
       ].filter(Boolean).join(" ");
+      const floatingTocButtonHtml = isRecommendedHotelReviewPost
+        ? `<button aria-label="목차 메뉴 열기" class="wt-toc-floating-button" data-toc-floating type="button"><span aria-hidden="true" class="wt-toc-floating-icon"><span></span><span></span><span></span></span></button>`
+        : "";
 
       const html = `<!doctype html>
 <html lang="ko">
@@ -520,6 +526,7 @@ export async function onRequestGet(context) {
             <div class="post-magazine-head post-magazine-head--title">
               ${hotelTitleMetaHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+              ${isRecommendedHotelReviewPost ? hotelFeatureBadgesHtml : ""}
               ${magazineAuthorProfileHtml}
             </div>
             ${coverImageHtml}
@@ -527,7 +534,7 @@ export async function onRequestGet(context) {
               ${isRecommendedHotelReviewPost
                 ? (heroSummaryHtml ? `<div class="post-magazine-desc post-magazine-lead">${heroSummaryHtml}</div>` : "")
                 : hotelFeatureBadgesHtml}
-              ${isRecommendedHotelReviewPost ? hotelFeatureBadgesHtml : (heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : "")}
+              ${!isRecommendedHotelReviewPost && heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
               ${magazineAdminActionsHtml}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
@@ -562,6 +569,7 @@ export async function onRequestGet(context) {
 
   ${footer(siteName)}
   ${mobileHotelAvailabilityCtaHtml}
+  ${floatingTocButtonHtml}
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -622,6 +630,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
+  ${isRecommendedHotelReviewPost ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260807-post-review-toc-v4"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
 </body>

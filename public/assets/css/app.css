@@ -9377,3 +9377,32 @@ body.post-page-body .post-cover-wrap--agoda .post-cover-link:focus-visible{
   outline-offset:3px;
   border-radius:inherit;
 }
+
+
+/* 2026-08-07 추천 호텔 리뷰 보완
+   - H3 크기/구분선 색상 통일
+   - 모바일 고정 예약 CTA가 있을 때 목차 버튼 겹침 방지
+   - 목차 패널은 예약 CTA보다 위에서 열리도록 보정 */
+body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
+  font-size: 17px !important;
+  border-top: 1px solid #ddd !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+body.post-page-body--recommended-hotel-review .wt-toc-floating-button{
+  z-index: 1002;
+}
+
+body.post-page-body--recommended-hotel-review .wt-toc-floating-backdrop{
+  z-index: 1003;
+}
+
+body.post-page-body--recommended-hotel-review .wt-toc-floating-panel{
+  z-index: 1004;
+}
+
+@media (max-width: 767px){
+  body.post-page-body--recommended-hotel-review.post-page-body--has-mobile-hotel-cta .wt-toc-floating-button{
+    bottom: calc(82px + env(safe-area-inset-bottom));
+  }
+}

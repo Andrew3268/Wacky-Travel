@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  const toc = document.querySelector('[data-guide-toc]');
   const button = document.querySelector('[data-toc-floating]');
+  if (!button) return;
 
-  if (!toc || !button) return;
-
-  const sourceNav = toc.querySelector('.wt-seo-toc');
-  if (!sourceNav) return;
+  const toc = document.querySelector('[data-guide-toc]')
+    || document.querySelector('body.post-page-body--recommended-hotel-review .post-toc');
+  const sourceNav = toc ? toc.querySelector('.wt-seo-toc, .post-toc__body, .post-toc__list') : null;
+  const postContent = document.querySelector('body.post-page-body--recommended-hotel-review .post-body .post-content');
 
   const panelId = 'wtFloatingTocPanel';
   const titleId = 'wtFloatingTocTitle';
@@ -40,7 +40,18 @@
 
   const panelNav = panel.querySelector('.wt-toc-floating-panel__nav');
   const closeButton = panel.querySelector('[data-toc-floating-close]');
-  const sourceLinks = Array.from(sourceNav.querySelectorAll('a[href^="#"]'));
+  let sourceLinks = sourceNav ? Array.from(sourceNav.querySelectorAll('a[href^="#"]')) : [];
+
+  if (!sourceLinks.length && postContent) {
+    sourceLinks = Array.from(postContent.querySelectorAll('h2[id], h3[id]')).map(function (heading) {
+      const link = document.createElement('a');
+      link.setAttribute('href', '#' + heading.id);
+      link.textContent = String(heading.textContent || '').replace(/\s+/g, ' ').trim();
+      return link;
+    }).filter(function (link) {
+      return link.textContent;
+    });
+  }
 
   sourceLinks.forEach(function (sourceLink) {
     const link = sourceLink.cloneNode(true);
@@ -48,7 +59,10 @@
     panelNav.appendChild(link);
   });
 
-  if (!panelNav.children.length) return;
+  if (!panelNav.children.length) {
+    button.hidden = true;
+    return;
+  }
 
   document.body.append(backdrop, panel);
 
@@ -63,7 +77,18 @@
 
   function getThreshold() {
     const extraOffset = Math.min(280, Math.max(160, window.innerHeight * 0.22));
-    return toc.offsetTop + toc.offsetHeight + extraOffset;
+    if (toc) {
+      const tocRect = toc.getBoundingClientRect();
+      return window.scrollY + tocRect.bottom + extraOffset;
+    }
+
+    const anchor = document.querySelector('.post-magazine-hero') || postContent;
+    if (anchor) {
+      const anchorRect = anchor.getBoundingClientRect();
+      return window.scrollY + anchorRect.bottom + extraOffset;
+    }
+
+    return Math.max(320, window.innerHeight * 0.75);
   }
 
   function updateButton() {
