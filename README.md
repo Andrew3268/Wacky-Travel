@@ -31,6 +31,7 @@ quiet-stay
 - 도시별 원본 데이터: `src/purpose-pages/data/{city}/`
 - 정적 HTML 생성: `tools/build-purpose-pages.mjs`
 - 구조 검사: `tools/test-purpose-page-template.mjs`
+- 공통 자산 설정: `src/purpose-pages/config.mjs`
 - 배포 결과: `public/destinations/{city}/{purpose}/index.html`
 
 `public/destinations/{city}/{purpose}/index.html`은 빌드 결과물이므로 직접 수정하지 않습니다. 문구·호텔·FAQ·메타데이터는 도시별 JSON에서 수정하고, 클래스와 섹션 구조는 공통 렌더러에서만 변경합니다.
@@ -356,28 +357,3 @@ npm run d1:migrate:status-normalization:remote
 - 도시 스냅샷 좌우 아이콘 버튼은 카드 영역과 겹치지 않도록 그리드 아래 오른쪽의 별도 컨트롤 영역에 배치합니다.
 - D1 변경은 없습니다.
 
-## 후쿠오카 여행 목적 페이지 정적 템플릿
-
-후쿠오카의 아래 5개 페이지는 빌드 시 공통 템플릿으로 생성됩니다.
-
-- `/destinations/fukuoka/first-trip/`
-- `/destinations/fukuoka/value-hotel/`
-- `/destinations/fukuoka/near-trip/`
-- `/destinations/fukuoka/family-trip/`
-- `/destinations/fukuoka/quiet-stay/`
-
-관리 원본:
-
-- 공통 렌더러: `src/purpose-pages/render-purpose-page.mjs`
-- 도시 공통 데이터: `src/purpose-pages/data/fukuoka/city.json`
-- 페이지별 데이터: `src/purpose-pages/data/fukuoka/*.json`
-
-생성 명령:
-
-```bash
-npm run build:purpose-pages
-```
-
-생성 결과는 기존과 동일하게 `public/destinations/fukuoka/<page-type>/index.html`에 저장되는 완성된 정적 HTML입니다. 브라우저에서 JSON을 가져오거나 요청 시 Function/D1을 실행하지 않으므로 페이지 제공 방식과 속도 특성은 기존 정적 페이지와 같습니다.
-
-`npm run check`는 배포 검사 전에 위 5개 정적 페이지를 다시 생성하고 공통 섹션 순서와 필수 클래스가 일치하는지 검사합니다. 생성된 `public` HTML을 직접 수정하면 다음 검사에서 데이터 원본 기준으로 덮어쓰므로 콘텐츠 수정은 `src/purpose-pages/data/fukuoka/`에서 해야 합니다.

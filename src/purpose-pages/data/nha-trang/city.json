@@ -1,14 +1,5 @@
 {
   "slug": "nha-trang",
   "nameKo": "나트랑",
-  "countryKo": "베트남",
-  "assetsVersion": "20260806-frontend-v19",
-  "stylesheetPaths": [
-    "/assets/css/app.css",
-    "/assets/css/components.css",
-    "/assets/css/travel-core.css",
-    "/assets/css/travel-city.css",
-    "/assets/css/travel-purpose.css",
-    "/assets/css/site-header.css"
-  ]
+  "countryKo": "베트남"
 }

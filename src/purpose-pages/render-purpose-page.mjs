@@ -1,3 +1,5 @@
+import { purposePageConfig } from './config.mjs';
+
 const escapeHtml = (value = '') => String(value)
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -16,8 +18,8 @@ function attrs(values = {}) {
 
 function renderHead(city, page) {
   const { head } = page;
-  const styles = city.stylesheetPaths
-    .map((href) => `<link href="${escapeHtml(href)}?v=${escapeHtml(city.assetsVersion)}" rel="stylesheet"/>`)
+  const styles = purposePageConfig.stylesheetPaths
+    .map((href) => `<link href="${escapeHtml(href)}?v=${escapeHtml(purposePageConfig.assetsVersion)}" rel="stylesheet"/>`)
     .join('\n');
   const schemas = head.structuredData
     .map((schema) => `<script type="application/ld+json">${escapeJsonForHtml(schema)}</script>`)
@@ -311,7 +313,7 @@ function renderBodyScripts(page) {
     .map((script) => `<script${script.defer ? ' defer' : ''} src="${escapeHtml(script.src)}"></script>`)
     .join('\n');
   return `${extras ? `${extras}\n` : ''}<script src="/assets/js/admin-ui.js"></script>
-<script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>`;
+<script defer src="/assets/js/site-header.js?v=${escapeHtml(purposePageConfig.siteHeaderScriptVersion)}"></script>`;
 }
 
 export function renderPurposePage({ city, page }) {
