@@ -9,6 +9,13 @@ import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
 const ARCHIVE_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/$/;
+const DESTINATION_ROOT_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/$/;
+
+const STATIC_DESTINATION_SLUGS = new Set(
+  STATIC_ROUTES
+    .map((route) => route.match(DESTINATION_ROOT_ROUTE_PATTERN)?.[1] || "")
+    .filter(Boolean)
+);
 
 function xmlEscape(value) {
   return String(value || "")
@@ -179,7 +186,7 @@ export async function onRequestGet({ env, request }) {
 
   destinations.forEach((item) => {
     const slug = String(item.slug || "").trim();
-    if (!slug) return;
+    if (!slug || !STATIC_DESTINATION_SLUGS.has(slug)) return;
     addUrl(urlMap, {
       loc: `${origin}/destinations/${encodeURIComponent(slug)}/`,
       lastmod: item.updated_at
