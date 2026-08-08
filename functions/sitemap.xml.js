@@ -219,7 +219,6 @@ export async function onRequestGet({ env, request }) {
     })
     .sort((a, b) => a.loc.localeCompare(b.loc, "en"));
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<!-- bestayable-sitemap-version: ${SITEMAP_VERSION} -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `<lastmod>${xmlEscape(item.lastmod)}</lastmod>` : ""}</url>`).join("\n")}
 </urlset>`;
