@@ -8,6 +8,7 @@ import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified
 
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
+const SITEMAP_VERSION = "2026-08-08-draft-block-v3";
 
 // Pages still being prepared. Keep them out of search discovery until they are ready.
 const SEARCH_BLOCKED_ROUTES = new Set([
@@ -205,8 +206,20 @@ export async function onRequestGet({ env, request }) {
     });
   });
 
-  const urls = Array.from(urlMap.values()).sort((a, b) => a.loc.localeCompare(b.loc, "en"));
+  // Final denylist guard. Even if a future source accidentally adds a blocked URL
+  // to urlMap, it is removed again immediately before XML serialization.
+  const urls = Array.from(urlMap.values())
+    .filter((item) => {
+      try {
+        const pathname = normalizePagePath(new URL(item.loc).pathname);
+        return !SEARCH_BLOCKED_ROUTES.has(pathname);
+      } catch {
+        return false;
+      }
+    })
+    .sort((a, b) => a.loc.localeCompare(b.loc, "en"));
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- bestayable-sitemap-version: ${SITEMAP_VERSION} -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `<lastmod>${xmlEscape(item.lastmod)}</lastmod>` : ""}</url>`).join("\n")}
 </urlset>`;
@@ -216,10 +229,11 @@ ${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `
       "content-type": "application/xml; charset=utf-8",
       // Keep sitemap responses fresh after deployments. This avoids browsers/CDNs
       // continuing to show removed URLs from an older sitemap response.
-      "cache-control": "no-store, max-age=0",
+      "cache-control": "no-store, no-cache, max-age=0, must-revalidate",
       "cdn-cache-control": "no-store",
       "cloudflare-cdn-cache-control": "no-store",
-      "x-robots-tag": "noindex"
+      "x-robots-tag": "noindex",
+      "x-bestayable-sitemap-version": SITEMAP_VERSION
     }
   });
 }

@@ -40,6 +40,8 @@ for (const route of blockedRoutes) {
 
 const sitemapResponse = await getSitemap({ env: {}, request: new Request("https://bestayable.com/sitemap.xml") });
 const sitemap = await sitemapResponse.text();
+assert(sitemap.includes("bestayable-sitemap-version: 2026-08-08-draft-block-v3"), "sitemap deployment version marker missing");
+assert.equal(sitemapResponse.headers.get("x-bestayable-sitemap-version"), "2026-08-08-draft-block-v3", "sitemap version response header missing");
 for (const route of blockedRoutes) {
   assert(!sitemap.includes(`https://bestayable.com${route}`), `${route} unexpectedly present in sitemap`);
 }

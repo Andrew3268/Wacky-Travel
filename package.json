@@ -52,7 +52,7 @@
     "check:city-snapshot-controls": "node ./tools/test-city-snapshot-controls.mjs",
     "build:purpose-pages": "node ./tools/build-purpose-pages.mjs",
     "check:purpose-page-template": "node ./tools/test-purpose-page-template.mjs",
-    "build": "npm run build:purpose-pages",
+    "build": "npm run build:purpose-pages && npm run seo:routes && npm run routes:functions",
     "predev": "npm run build:purpose-pages",
     "check:sitemap-destination-roots": "node ./tools/test-sitemap-destination-roots.mjs",
     "check:draft-search-blocking": "node ./tools/test-draft-search-blocking.mjs"
