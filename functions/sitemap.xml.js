@@ -8,6 +8,12 @@ import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified
 
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
+
+// Pages still being prepared. Keep them out of search discovery until they are ready.
+const SEARCH_BLOCKED_ROUTES = new Set([
+  "/hotel-promotions/",
+  "/travel-by-mood/ocean-rest/"
+]);
 const ARCHIVE_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/$/;
 
 function xmlEscape(value) {
@@ -127,6 +133,7 @@ function collectConditionalRouteAvailability(posts = [], destinations = []) {
 }
 
 function shouldIncludeStaticRoute(route, availability) {
+  if (SEARCH_BLOCKED_ROUTES.has(route)) return false;
   if (route === OCEAN_REST_ROUTE) return availability.oceanRestAvailable;
   if (ARCHIVE_ROUTE_PATTERN.test(route)) return availability.availableArchiveRoutes.has(route);
   return true;

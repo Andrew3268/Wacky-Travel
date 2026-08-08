@@ -45,6 +45,14 @@
   Cache-Control: no-store
   X-Robots-Tag: noindex, follow, noarchive
 
+/hotel-promotions/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/travel-by-mood/ocean-rest/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
 /agoda-card-discount/*
   Cache-Control: public, max-age=0, must-revalidate
 

@@ -1,0 +1,47 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { onRequestGet as getRobots } from "../functions/robots.txt.js";
+import { onRequestGet as getSitemap } from "../functions/sitemap.xml.js";
+import { STATIC_ROUTES } from "../lib/seo/static-routes.js";
+
+const blockedRoutes = [
+  "/hotel-promotions/",
+  "/travel-by-mood/ocean-rest/"
+];
+
+for (const route of blockedRoutes) {
+  assert(!STATIC_ROUTES.includes(route), `${route} must not be in STATIC_ROUTES`);
+}
+
+const [hotelHtml, oceanHtml, headersText] = await Promise.all([
+  readFile(new URL("../public/hotel-promotions/index.html", import.meta.url), "utf8"),
+  readFile(new URL("../public/travel-by-mood/ocean-rest/index.html", import.meta.url), "utf8"),
+  readFile(new URL("../public/_headers", import.meta.url), "utf8")
+]);
+
+for (const [route, html] of [
+  [blockedRoutes[0], hotelHtml],
+  [blockedRoutes[1], oceanHtml]
+]) {
+  assert(/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)
+    || /<meta\b[^>]*content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html), `${route} missing noindex meta`);
+  assert(/nofollow/i.test(html), `${route} missing nofollow meta`);
+}
+
+assert(headersText.includes("/hotel-promotions/*"), "hotel-promotions X-Robots-Tag rule missing");
+assert(headersText.includes("/travel-by-mood/ocean-rest/*"), "ocean-rest X-Robots-Tag rule missing");
+
+const request = new Request("https://bestayable.com/robots.txt");
+const robotsResponse = await getRobots({ env: {}, request });
+const robots = await robotsResponse.text();
+for (const route of blockedRoutes) {
+  assert(robots.includes(`Disallow: ${route}`), `${route} missing from robots.txt Disallow`);
+}
+
+const sitemapResponse = await getSitemap({ env: {}, request: new Request("https://bestayable.com/sitemap.xml") });
+const sitemap = await sitemapResponse.text();
+for (const route of blockedRoutes) {
+  assert(!sitemap.includes(`https://bestayable.com${route}`), `${route} unexpectedly present in sitemap`);
+}
+
+console.log("Draft search blocking: OK");

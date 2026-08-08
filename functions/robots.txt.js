@@ -5,6 +5,8 @@ export async function onRequestGet({ env, request }) {
   const body = `User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /hotel-promotions/
+Disallow: /travel-by-mood/ocean-rest/
 
 Sitemap: ${origin}/sitemap.xml
 `;
