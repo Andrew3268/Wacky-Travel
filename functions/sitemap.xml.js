@@ -9,13 +9,6 @@ import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
 const ARCHIVE_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/$/;
-const DESTINATION_ROOT_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/$/;
-
-const STATIC_DESTINATION_SLUGS = new Set(
-  STATIC_ROUTES
-    .map((route) => route.match(DESTINATION_ROOT_ROUTE_PATTERN)?.[1] || "")
-    .filter(Boolean)
-);
 
 function xmlEscape(value) {
   return String(value || "")
@@ -184,13 +177,16 @@ export async function onRequestGet({ env, request }) {
 
 
 
+  // Destination root URLs are sourced only from STATIC_ROUTES.
+  // D1 may contain published destination records whose static page does not exist;
+  // those records must never create a new sitemap URL. D1 is used only to attach
+  // lastmod to a destination URL that has already been admitted by STATIC_ROUTES.
   destinations.forEach((item) => {
     const slug = String(item.slug || "").trim();
-    if (!slug || !STATIC_DESTINATION_SLUGS.has(slug)) return;
-    addUrl(urlMap, {
-      loc: `${origin}/destinations/${encodeURIComponent(slug)}/`,
-      lastmod: item.updated_at
-    });
+    if (!slug) return;
+    const loc = `${origin}/destinations/${encodeURIComponent(slug)}/`;
+    if (!urlMap.has(loc)) return;
+    addUrl(urlMap, { loc, lastmod: item.updated_at });
   });
 
   posts.forEach((item) => {
@@ -211,7 +207,11 @@ ${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `
   return new Response(xml, {
     headers: {
       "content-type": "application/xml; charset=utf-8",
-      "cache-control": "public, max-age=900, s-maxage=900",
+      // Keep sitemap responses fresh after deployments. This avoids browsers/CDNs
+      // continuing to show removed URLs from an older sitemap response.
+      "cache-control": "no-store, max-age=0",
+      "cdn-cache-control": "no-store",
+      "cloudflare-cdn-cache-control": "no-store",
       "x-robots-tag": "noindex"
     }
   });
