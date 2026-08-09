@@ -26,7 +26,11 @@ assert.match(
 
 assert.match(
   travelCoreCss,
-  /html body:not\(\.wt-mobile-heading-noop-a\):not\(\.wt-mobile-heading-noop-b\):not\(\.wt-mobile-heading-noop-c\):not\(\.wt-mobile-heading-noop-d\) h1 \{[^}]*line-height: 1\.4;/
+  /html body:not\(\.travel-home-body\):not\(\.wt-mobile-heading-noop-a\):not\(\.wt-mobile-heading-noop-b\):not\(\.wt-mobile-heading-noop-c\):not\(\.wt-mobile-heading-noop-d\) h1 \{[^}]*font-size: 25px !important;[^}]*line-height: 1\.4;/
+);
+assert.match(
+  fs.readFileSync("public/assets/css/travel-home.css", "utf8"),
+  /@media \(max-width: 767px\) \{[\s\S]*?body\.travel-home-body main\.travel-page\.travel-home > \.wthome-hero #wthomeHeroTitle \{[^}]*font-size: 40px;/
 );
 assert.match(
   travelCoreCss,
