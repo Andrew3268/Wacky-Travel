@@ -4104,6 +4104,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero {
   padding: 34px 0 70px;
   background: #fff;
   border: 0;
+  border-bottom: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
 }
@@ -4145,11 +4146,11 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
 
 body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
   max-width: 880px;
-  margin: 100px 0 0;
+  margin: 15px 0 0;
   padding: 0;
   color: #080808;
   font-size: clamp(60px, 6vw, 84px);
-  line-height: 1.08;
+  line-height: 1.2;
   font-weight: 600;
   letter-spacing: -0.065em;
   text-align: left;
@@ -4191,7 +4192,6 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
     max-width: 760px;
-    margin-top: 84px;
     font-size: clamp(54px, 6.2vw, 68px);
   }
 
@@ -4226,9 +4226,7 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
     max-width: 100%;
-    margin-top: 56px;
-    font-size: clamp(38px, 11.2vw, 48px);
-    line-height: 1.1;
+    font-size: 40px;
     letter-spacing: -0.06em;
   }
 
@@ -4255,11 +4253,6 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow::before {
     flex-basis: 30px;
     width: 30px;
-  }
-
-  body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
-    margin-top: 48px;
-    font-size: 36px;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc {
