@@ -5,7 +5,7 @@ import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumn
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260809-post-layout-v27";
+const POST_RENDER_VERSION = "20260809-post-layout-v28";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -38,21 +38,29 @@ function normalizeHotelKeyPoints(value = []) {
   const input = new Map((Array.isArray(source) ? source : []).map((item) => [String(item?.key || "").trim(), String(item?.text || "").replace(/\s+/g, " ").trim()]));
   return HOTEL_KEY_POINT_OPTIONS.map(([key, label]) => ({ key, label, text: input.get(key) || "" })).filter((item) => item.text);
 }
-function renderHotelKeyPointIcon(key = "", className = "") {
-  const normalizedClassName = String(className || "").trim();
-  const classAttr = normalizedClassName ? ` class="${normalizedClassName}"` : "";
+function renderHotelKeyPointIcon(key = "") {
   switch (String(key || "").trim()) {
     case "attractions":
-      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-5.5-5.3-5.5-10.3A5.5 5.5 0 1 1 17.5 10.7C17.5 15.7 12 21 12 21Z"></path><circle cx="12" cy="10.5" r="2.2"></circle></svg>`;
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 28.4S25 20.2 25 11.8a9 9 0 1 0-18 0c0 8.4 9 16.6 9 16.6Z"></path><circle cx="16" cy="11.8" r="3.2"></circle></svg>`;
     case "transport":
-      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="3.5" width="12" height="14" rx="3"></rect><path d="M8.5 14.5h7"></path><path d="M9 19.5 7.5 21"></path><path d="M15 19.5 16.5 21"></path><circle cx="9" cy="11" r=".9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="11" r=".9" fill="currentColor" stroke="none"></circle></svg>`;
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M10 4.5h12a4.5 4.5 0 0 1 4.5 4.5v10a6.5 6.5 0 0 1-6.5 6.5h-8A6.5 6.5 0 0 1 5.5 19V9A4.5 4.5 0 0 1 10 4.5Z"></path><path d="M6 11.3h20M6 18.5h20M16 5v6.3"></path><circle cx="11" cy="21.8" r="1.55" fill="currentColor" stroke="none"></circle><circle cx="21" cy="21.8" r="1.55" fill="currentColor" stroke="none"></circle><path d="m11.5 25.3-4.2 4.2M20.5 25.3l4.2 4.2"></path></svg>`;
     case "dining_shopping":
-      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 8h10l-1 10.5a1.5 1.5 0 0 1-1.5 1.4h-5A1.5 1.5 0 0 1 8 18.5L7 8Z"></path><path d="M9.5 8V6.8A2.5 2.5 0 0 1 12 4.3a2.5 2.5 0 0 1 2.5 2.5V8"></path></svg>`;
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M7.2 11h17.6l1.45 14.2a2.55 2.55 0 0 1-2.54 2.8H8.29a2.55 2.55 0 0 1-2.54-2.8L7.2 11Z"></path><path d="M11.2 14V9.2a4.8 4.8 0 0 1 9.6 0V14"></path></svg>`;
     case "signature":
-      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="8" cy="8.5" r="2.2"></circle><circle cx="16" cy="8.5" r="2.2"></circle><circle cx="12" cy="12.5" r="2.2"></circle><path d="M4.8 19.2c.6-2.3 2.4-3.7 4.7-3.7"></path><path d="M14.5 15.5c2.3 0 4.1 1.4 4.7 3.7"></path><path d="M8.2 19.7c.8-2.8 2.8-4.3 5.8-4.3"></path></svg>`;
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="9" cy="6.8" r="3"></circle><circle cx="23" cy="6.8" r="3"></circle><circle cx="16" cy="13.2" r="2.5"></circle><path d="M4.5 27.5v-10c0-4 1.9-6.4 4.5-6.4s4.5 2.4 4.5 6.4v1.8M27.5 27.5v-10c0-4-1.9-6.4-4.5-6.4s-4.5 2.4-4.5 6.4v1.8"></path><path d="M12.7 28v-7.7c0-2.7 1.25-4.3 3.3-4.3s3.3 1.6 3.3 4.3V28M9.7 17.5l3.2 2.4M22.3 17.5l-3.2 2.4"></path></svg>`;
     default:
-      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle></svg>`;
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="11"></circle></svg>`;
   }
+}
+
+function orderHotelKeyPointsForDisplay(items = []) {
+  const order = new Map([
+    ["attractions", 0],
+    ["dining_shopping", 1],
+    ["transport", 2],
+    ["signature", 3]
+  ]);
+  return [...items].sort((a, b) => (order.get(a?.key) ?? 99) - (order.get(b?.key) ?? 99));
 }
 
 
@@ -519,10 +527,10 @@ export async function onRequestGet(context) {
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v24" />
-  <link rel="stylesheet" href="/assets/css/hotel-key-points.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v24" />
+  <link rel="stylesheet" href="/assets/css/hotel-key-points-v2.css?v=20260807-frontend-v24" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -901,7 +909,7 @@ function renderHotelTitleMeta(hotelHeroData = null, hotelPickLabel = "") {
 
 
 function renderHotelKeyPoints(hotelHeroData = null) {
-  const items = normalizeHotelKeyPoints(hotelHeroData?.hotel?.key_points_json || []);
+  const items = orderHotelKeyPointsForDisplay(normalizeHotelKeyPoints(hotelHeroData?.hotel?.key_points_json || []));
   if (!items.length) return "";
   return `
     <section class="post-hotel-key-points" aria-labelledby="postHotelKeyPointsTitle">
