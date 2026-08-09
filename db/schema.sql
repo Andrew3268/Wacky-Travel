@@ -147,6 +147,7 @@ CREATE TABLE IF NOT EXISTS hotels (
   star_rating TEXT DEFAULT '',
   guest_rating TEXT DEFAULT '',
   badges_json TEXT DEFAULT '[]',
+  key_points_json TEXT DEFAULT '[]',
   price_level TEXT DEFAULT '',
   summary TEXT DEFAULT '',
   meta_description TEXT DEFAULT '',

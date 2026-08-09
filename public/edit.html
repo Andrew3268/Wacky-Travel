@@ -13,6 +13,7 @@
 <link href="/assets/css/app.css?v=20260807-frontend-v24" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260807-frontend-v24" rel="stylesheet"/>
 <link href="/assets/css/style-hotel-editor.css?v=20260807-frontend-v24" rel="stylesheet"/>
+<link href="/assets/css/hotel-key-points.css?v=20260807-frontend-v24" rel="stylesheet"/>
 <link href="/assets/css/public-modified-date-editor.css?v=20260807-frontend-v24" rel="stylesheet"/>
 <meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="글 수정 | Be Stayable" property="og:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." property="og:description"/><meta content="https://bestayable.com/edit.html" property="og:url"/><meta content="https://bestayable.com/assets/images/og-default.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="글 수정 | Be Stayable 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 수정 | Be Stayable" name="twitter:title"/><meta content="비스테이어블 콘텐츠를 수정하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/og-default.png" name="twitter:image"/><meta content="글 수정 | Be Stayable 대표 이미지" name="twitter:image:alt"/></head>
 <body>
@@ -275,6 +276,34 @@
 
 
 
+
+
+            <div class="card editor-option-card editor-hotel-key-points-card" hidden aria-hidden="true">
+              <div class="section-heading" style="margin-bottom:12px;">
+                <div>
+                  <div class="h2">핵심 포인트 요약</div>
+                  <p class="small">추천 호텔 리뷰의 메인 이미지 바로 아래에 표시할 핵심 정보를 선택해 입력합니다.</p>
+                </div>
+              </div>
+              <div class="editor-hotel-key-points-editor">
+                <div class="editor-hotel-key-point-item">
+                  <label class="editor-hotel-key-point-toggle"><input type="checkbox" name="hotelKeyPoint" value="attractions" data-hotel-key-point-toggle="attractions" /><span>명소 접근성</span></label>
+                  <div class="editor-hotel-key-point-input" data-hotel-key-point-input="attractions" hidden><input class="input" id="heroKeyPointAttractions" placeholder="예: 용다리 도보 12분 · 한시장 차량 5분" /></div>
+                </div>
+                <div class="editor-hotel-key-point-item">
+                  <label class="editor-hotel-key-point-toggle"><input type="checkbox" name="hotelKeyPoint" value="transport" data-hotel-key-point-toggle="transport" /><span>대중교통</span></label>
+                  <div class="editor-hotel-key-point-input" data-hotel-key-point-input="transport" hidden><input class="input" id="heroKeyPointTransport" placeholder="예: 버스 정류장 도보 3분 · 공항 차량 15분" /></div>
+                </div>
+                <div class="editor-hotel-key-point-item">
+                  <label class="editor-hotel-key-point-toggle"><input type="checkbox" name="hotelKeyPoint" value="dining_shopping" data-hotel-key-point-toggle="dining_shopping" /><span>맛집 및 쇼핑</span></label>
+                  <div class="editor-hotel-key-point-input" data-hotel-key-point-input="dining_shopping" hidden><input class="input" id="heroKeyPointDiningShopping" placeholder="예: 빈컴플라자 도보 2분 · 주변 식당 선택지 다양" /></div>
+                </div>
+                <div class="editor-hotel-key-point-item">
+                  <label class="editor-hotel-key-point-toggle"><input type="checkbox" name="hotelKeyPoint" value="signature" data-hotel-key-point-toggle="signature" /><span>호텔 시그니처</span></label>
+                  <div class="editor-hotel-key-point-input" data-hotel-key-point-input="signature" hidden><input class="input" id="heroKeyPointSignature" placeholder="예: 한강 전망과 넓은 객실이 핵심 특징" /></div>
+                </div>
+              </div>
+            </div>
 
             <div class="card editor-option-card editor-hotel-curation-card" hidden aria-hidden="true">
               <div class="section-heading section-heading--split" style="margin-bottom:12px;">
@@ -1017,6 +1046,6 @@
   <script src="/assets/js/site-search.js" defer></script>
   <script src="/assets/js/cover-image-source.js?v=20260731-cover-source-v1" defer></script>
   <script src="/assets/js/style-hotel-editor.js?v=20260803-style-hotel-editor-v6" defer></script>
-  <script src="/assets/js/edit.js?v=20260805-public-modified-v8" defer></script>
+  <script src="/assets/js/edit.js?v=20260809-hotel-key-points-v9" defer></script>
 </body>
 </html>

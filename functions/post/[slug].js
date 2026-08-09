@@ -5,7 +5,7 @@ import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumn
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260807-post-layout-v26";
+const POST_RENDER_VERSION = "20260809-post-layout-v27";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -21,6 +21,23 @@ const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "커플 여행 최적",
   "호캉스 최적"
  ]);
+
+
+const HOTEL_KEY_POINT_OPTIONS = Object.freeze([
+  ["attractions", "명소 접근성"],
+  ["transport", "대중교통"],
+  ["dining_shopping", "맛집 및 쇼핑"],
+  ["signature", "호텔 시그니처"]
+]);
+
+function normalizeHotelKeyPoints(value = []) {
+  let source = value;
+  if (!Array.isArray(source)) {
+    try { source = JSON.parse(String(source || "[]")); } catch (_) { source = []; }
+  }
+  const input = new Map((Array.isArray(source) ? source : []).map((item) => [String(item?.key || "").trim(), String(item?.text || "").replace(/\s+/g, " ").trim()]));
+  return HOTEL_KEY_POINT_OPTIONS.map(([key, label]) => ({ key, label, text: input.get(key) || "" })).filter((item) => item.text);
+}
 
 function normalizeHotelPickLabel(value = "") {
   const label = String(value || "").replace(/\s+/g, " ").trim().slice(0, 30);
@@ -425,6 +442,7 @@ export async function onRequestGet(context) {
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
       const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData, row.hotel_pick_label) : "";
       const hotelFeatureBadgesHtml = isHotelIntroPost ? renderHotelFeatureBadges(hotelHeroData) : "";
+      const hotelKeyPointsHtml = isHotelIntroPost ? renderHotelKeyPoints(hotelHeroData) : "";
       const hotelPriceLink = isRecommendedHotelReviewPost
         ? String(hotelHeroData?.links?.find((item) => String(item?.provider || "") === "hero_price")?.affiliate_url || "").trim()
         : "";
@@ -484,6 +502,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260807-frontend-v24" />
+  <link rel="stylesheet" href="/assets/css/hotel-key-points.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v24" />
@@ -531,6 +550,7 @@ export async function onRequestGet(context) {
               ${magazineAuthorProfileHtml}
             </div>
             ${coverImageHtml}
+            ${hotelKeyPointsHtml}
             <div class="post-magazine-head post-magazine-head--details">
               ${isRecommendedHotelReviewPost
                 ? (heroSummaryHtml ? `<div class="post-magazine-desc post-magazine-lead">${heroSummaryHtml}</div>` : "")
@@ -694,6 +714,13 @@ async function getHotelHeroData(db, row = {}, postSlug = "") {
 
     if (!hotel) return null;
 
+    try {
+      const keyPointRow = await db.prepare(`SELECT key_points_json FROM hotels WHERE slug = ? LIMIT 1`).bind(hotelSlug).first();
+      hotel.key_points_json = String(keyPointRow?.key_points_json || "[]");
+    } catch (_) {
+      hotel.key_points_json = "[]";
+    }
+
     const linkRows = await db.prepare(`
       SELECT provider, label, affiliate_url, button_text, sort_order
       FROM hotel_affiliate_links
@@ -853,6 +880,25 @@ function renderHotelTitleMeta(hotelHeroData = null, hotelPickLabel = "") {
   return items.length
     ? `<div class="post-hotel-title-meta" aria-label="호텔 기본 정보">${items.join("")}</div>`
     : "";
+}
+
+
+function renderHotelKeyPoints(hotelHeroData = null) {
+  const items = normalizeHotelKeyPoints(hotelHeroData?.hotel?.key_points_json || []);
+  if (!items.length) return "";
+  return `
+    <section class="post-hotel-key-points" aria-labelledby="postHotelKeyPointsTitle">
+      <h2 id="postHotelKeyPointsTitle" class="post-hotel-key-points__title">핵심 포인트 요약</h2>
+      <div class="post-hotel-key-points__grid">
+        ${items.map((item) => `
+          <div class="post-hotel-key-point">
+            <strong class="post-hotel-key-point__label">${escapeHtml(item.label)}</strong>
+            <span class="post-hotel-key-point__text">${escapeHtml(item.text)}</span>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function renderHotelFeatureBadges(hotelHeroData = null) {
