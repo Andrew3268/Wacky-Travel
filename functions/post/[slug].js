@@ -5,7 +5,7 @@ import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumn
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260809-post-layout-v28";
+const POST_RENDER_VERSION = "20260809-post-layout-v29";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -530,7 +530,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v24" />
-  <link rel="stylesheet" href="/assets/css/hotel-key-points-v2.css?v=20260807-frontend-v24" />
+  <link rel="stylesheet" href="/assets/css/hotel-key-points-v3.css?v=20260807-frontend-v24" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }

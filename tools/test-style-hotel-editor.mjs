@@ -143,7 +143,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260809-post-layout-v28"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260809-post-layout-v29"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");
