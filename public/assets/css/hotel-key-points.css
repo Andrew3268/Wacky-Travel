@@ -26,77 +26,118 @@
 body.post-page-body--recommended-hotel-review .post-cover-wrap:has(+ .post-hotel-key-points){
   margin-bottom:0 !important;
 }
-body.post-page-body--recommended-hotel-review .post-hotel-key-points{
+body.post-page-body--recommended-hotel-review .post-hotel-key-points,
+.preview-hotel-key-points{
   box-sizing:border-box;
   width:100%;
   margin:0;
-  padding:28px 0 30px;
-  border-bottom:1px solid var(--hotel-review-line,#e5e5e5);
+  padding:28px 34px;
+  border:1px solid #dddddd;
+  border-radius:24px;
+  background:#f8f8f8;
 }
-body.post-page-body--recommended-hotel-review .post-hotel-key-points__title{
-  margin:0 0 16px;
+body.post-page-body--recommended-hotel-review .post-hotel-key-points{
+  margin:0 0 30px;
+}
+body.post-page-body--recommended-hotel-review .post-hotel-key-points__title,
+.preview-hotel-key-points h2{
+  margin:0 0 22px;
   padding:0;
   border:0;
   color:#111;
-  font-size:20px;
-  line-height:1.4;
-  font-weight:700;
-}
-body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:0;
-  border-top:1px solid var(--hotel-review-line,#e5e5e5);
-  border-left:1px solid var(--hotel-review-line,#e5e5e5);
-}
-body.post-page-body--recommended-hotel-review .post-hotel-key-point{
-  min-width:0;
-  display:grid;
-  gap:6px;
-  padding:16px 18px;
-  border-right:1px solid var(--hotel-review-line,#e5e5e5);
-  border-bottom:1px solid var(--hotel-review-line,#e5e5e5);
-}
-body.post-page-body--recommended-hotel-review .post-hotel-key-point__label{
-  color:#111;
-  font-size:14px;
-  line-height:1.4;
-  font-weight:700;
-}
-body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
-  color:#555;
-  font-size:14px;
-  line-height:1.65;
-  overflow-wrap:anywhere;
-}
-.preview-hotel-key-points{
-  padding:20px;
-  border-bottom:1px solid #e5e5e5;
-}
-.preview-hotel-key-points h2{
-  margin:0 0 12px;
   font-size:18px;
+  line-height:1.4;
+  font-weight:800;
+  letter-spacing:-0.02em;
 }
+body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid,
 .preview-hotel-key-points__grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  border-top:1px solid #e5e5e5;
-  border-left:1px solid #e5e5e5;
+  gap:18px 32px;
 }
+body.post-page-body--recommended-hotel-review .post-hotel-key-point,
 .preview-hotel-key-point{
-  display:grid;
-  gap:5px;
-  padding:12px;
-  border-right:1px solid #e5e5e5;
-  border-bottom:1px solid #e5e5e5;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
-.preview-hotel-key-point strong{font-size:13px;}
-.preview-hotel-key-point span{font-size:13px;line-height:1.55;color:#555;}
+body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon,
+.preview-hotel-key-point__icon{
+  flex:0 0 31px;
+  width:31px;
+  height:31px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#111;
+}
+body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon svg,
+.preview-hotel-key-point__icon svg{
+  width:100%;
+  height:100%;
+  display:block;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+body.post-page-body--recommended-hotel-review .post-hotel-key-point__text,
+.preview-hotel-key-point span{
+  min-width:0;
+  color:#111;
+  font-size:15px;
+  line-height:1.55;
+  font-weight:600;
+  letter-spacing:-0.01em;
+  overflow-wrap:anywhere;
+  word-break:keep-all;
+}
+.post-hotel-key-point__sr-only,
+.preview-hotel-key-point__sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
 @media (max-width:700px){
   .editor-hotel-key-points-editor{grid-template-columns:1fr;}
-  body.post-page-body--recommended-hotel-review .post-hotel-key-points{padding:22px 0 24px;}
-  body.post-page-body--recommended-hotel-review .post-hotel-key-points__title{font-size:18px;margin-bottom:12px;}
-  body.post-page-body--recommended-hotel-review .post-hotel-key-point{padding:13px 12px;}
-  body.post-page-body--recommended-hotel-review .post-hotel-key-point__label,
-  body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{font-size:13px;}
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points,
+  .preview-hotel-key-points{
+    padding:20px 18px;
+    border-radius:20px;
+  }
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points__title,
+  .preview-hotel-key-points h2{
+    margin-bottom:16px;
+    font-size:17px;
+  }
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid,
+  .preview-hotel-key-points__grid{
+    gap:14px 18px;
+  }
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point,
+  .preview-hotel-key-point{
+    gap:10px;
+    align-items:flex-start;
+  }
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon,
+  .preview-hotel-key-point__icon{
+    flex-basis:26px;
+    width:26px;
+    height:26px;
+  }
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__text,
+  .preview-hotel-key-point span{
+    font-size:14px;
+    line-height:1.5;
+  }
 }

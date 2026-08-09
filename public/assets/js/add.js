@@ -241,6 +241,23 @@ function normalizeHotelKeyPoints(value = []) {
   const byKey = new Map((Array.isArray(source) ? source : []).map((item) => [String(item?.key || "").trim(), String(item?.text || "").trim()]));
   return HOTEL_KEY_POINT_OPTIONS.map((item) => ({ ...item, text: byKey.get(item.key) || "" })).filter((item) => item.text);
 }
+function renderHotelKeyPointIcon(key = "", className = "") {
+  const normalizedClassName = String(className || "").trim();
+  const classAttr = normalizedClassName ? ` class="${normalizedClassName}"` : "";
+  switch (String(key || "").trim()) {
+    case "attractions":
+      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-5.5-5.3-5.5-10.3A5.5 5.5 0 1 1 17.5 10.7C17.5 15.7 12 21 12 21Z"></path><circle cx="12" cy="10.5" r="2.2"></circle></svg>`;
+    case "transport":
+      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="3.5" width="12" height="14" rx="3"></rect><path d="M8.5 14.5h7"></path><path d="M9 19.5 7.5 21"></path><path d="M15 19.5 16.5 21"></path><circle cx="9" cy="11" r=".9" fill="currentColor" stroke="none"></circle><circle cx="15" cy="11" r=".9" fill="currentColor" stroke="none"></circle></svg>`;
+    case "dining_shopping":
+      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 8h10l-1 10.5a1.5 1.5 0 0 1-1.5 1.4h-5A1.5 1.5 0 0 1 8 18.5L7 8Z"></path><path d="M9.5 8V6.8A2.5 2.5 0 0 1 12 4.3a2.5 2.5 0 0 1 2.5 2.5V8"></path></svg>`;
+    case "signature":
+      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="8" cy="8.5" r="2.2"></circle><circle cx="16" cy="8.5" r="2.2"></circle><circle cx="12" cy="12.5" r="2.2"></circle><path d="M4.8 19.2c.6-2.3 2.4-3.7 4.7-3.7"></path><path d="M14.5 15.5c2.3 0 4.1 1.4 4.7 3.7"></path><path d="M8.2 19.7c.8-2.8 2.8-4.3 5.8-4.3"></path></svg>`;
+    default:
+      return `<svg${classAttr} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"></circle></svg>`;
+  }
+}
+
 
 function syncHotelKeyPointInputVisibility(toggle) {
   if (!toggle) return;
@@ -3363,7 +3380,7 @@ function renderPreviewHotelKeyPoints(value = []) {
     <section class="preview-hotel-key-points" aria-label="핵심 포인트 요약">
       <h2>핵심 포인트 요약</h2>
       <div class="preview-hotel-key-points__grid">
-        ${items.map((item) => `<div class="preview-hotel-key-point"><strong>${escapeHtml(item.label)}</strong><span>${escapeHtml(item.text)}</span></div>`).join("")}
+        ${items.map((item) => `<div class="preview-hotel-key-point" aria-label="${escapeHtml(item.label)}: ${escapeHtml(item.text)}"><span class="preview-hotel-key-point__icon" aria-hidden="true">${renderHotelKeyPointIcon(item.key)}</span><span class="preview-hotel-key-point__sr-only">${escapeHtml(item.label)}</span><span>${escapeHtml(item.text)}</span></div>`).join("")}
       </div>
     </section>
   `;
