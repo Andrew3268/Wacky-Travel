@@ -9172,7 +9172,7 @@ body.post-page-body--recommended-hotel-review .post-magazine-hero--decision-firs
 }
 
 body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-magazine-hero--decision-first{
-  margin-bottom: 44px;
+  margin-bottom: 0;
 }
 
 @media (max-width: 767px){
@@ -9192,7 +9192,7 @@ body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-mag
   }
 
   body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-magazine-hero--decision-first{
-    margin-bottom: 36px;
+    margin-bottom: 0;
   }
 }
 

@@ -1,0 +1,239 @@
+/* 추천 호텔 리뷰: 핵심 포인트 요약 */
+.editor-hotel-key-points-editor{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.editor-hotel-key-point-item{
+  min-width:0;
+  padding:14px;
+  border:1px solid var(--line,#e3e5e8);
+  border-radius:10px;
+  background:#fff;
+}
+.editor-hotel-key-point-toggle{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+.editor-hotel-key-point-toggle input{margin:0;}
+.editor-hotel-key-point-input{margin-top:10px;}
+.editor-hotel-key-point-input[hidden]{display:none;}
+
+/*
+ * 공개 글 / 에디터 미리보기 공통 디자인
+ * 기준: 첨부 레퍼런스의 흰색 라운드 박스 + 비대칭 2열 + 선형 아이콘
+ */
+body.post-page-body--recommended-hotel-review .post-cover-wrap:has(+ .post-hotel-key-points){
+  margin-bottom:0 !important;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-points,
+.preview-hotel-key-points{
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  margin:24px 0 30px;
+  padding:15px;
+  border:1px solid #dedede;
+  border-radius:19px;
+  background:#fff;
+  box-shadow:none;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-points__title,
+.preview-hotel-key-points h2{
+  margin:0 0 15px;
+  padding:0;
+  border:0;
+  background:none;
+  color:#111;
+  font-size:20px;
+  line-height:1.35;
+  font-weight:400;
+  letter-spacing:-0.035em;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid,
+.preview-hotel-key-points__grid{
+  display:grid;
+  grid-template-columns:minmax(0,36%) minmax(0,1fr);
+  column-gap:0;
+  row-gap:15px;
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-point,
+.preview-hotel-key-point{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:1px;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon,
+.preview-hotel-key-point__icon{
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#111;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon svg,
+.preview-hotel-key-point__icon svg{
+  display:block;
+  width:25px;
+  height:25px;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.15;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  vector-effect:non-scaling-stroke;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-point__text,
+.preview-hotel-key-point__text{
+  min-width:0;
+  color:#111;
+  font-size:17px;
+  line-height:1.5;
+  font-weight:400;
+  letter-spacing:-0.025em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+
+.post-hotel-key-point__sr-only,
+.preview-hotel-key-point__sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* 에디터 미리보기의 기존 범용 스타일보다 우선 적용 */
+.preview-hotel-key-points{
+  text-align:left;
+}
+.preview-hotel-key-points h2{
+  color:#111 !important;
+}
+.preview-hotel-key-point__text{
+  color:#111 !important;
+}
+
+body.post-page-body--recommended-hotel-review .post-hotel-key-points,
+body.post-page-body--recommended-hotel-review .post-hotel-key-points *{
+  font-weight:400;
+}
+
+/* 추천 호텔 리뷰: 메인 히어로와 핵심 포인트 사이 추가 하단 여백 제거 */
+body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-magazine-hero--decision-first{
+  margin-bottom:0;
+}
+
+@media (max-width:700px){
+  .editor-hotel-key-points-editor{
+    grid-template-columns:1fr;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points,
+  .preview-hotel-key-points{
+    margin:20px 0 26px;
+    padding:15px;
+    border-radius:16px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points__title,
+  .preview-hotel-key-points h2{
+    margin-bottom:15px;
+    font-size:17px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid,
+  .preview-hotel-key-points__grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:0;
+    row-gap:15px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point,
+  .preview-hotel-key-point{
+    align-items:flex-start;
+    gap:1px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon,
+  .preview-hotel-key-point__icon{
+    flex-basis:27px;
+    width:27px;
+    height:27px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon svg,
+  .preview-hotel-key-point__icon svg{
+    width:25px;
+    height:25px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__text,
+  .preview-hotel-key-point__text{
+    font-size:14px;
+    line-height:1.5;
+  }
+}
+
+@media (max-width:420px){
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points,
+  .preview-hotel-key-points{
+    padding:15px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid,
+  .preview-hotel-key-points__grid{
+    column-gap:0;
+    row-gap:15px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point,
+  .preview-hotel-key-point{
+    gap:1px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon,
+  .preview-hotel-key-point__icon{
+    flex-basis:25px;
+    width:25px;
+    height:25px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon svg,
+  .preview-hotel-key-point__icon svg{
+    width:25px;
+    height:25px;
+  }
+
+  body.post-page-body--recommended-hotel-review .post-hotel-key-point__text,
+  .preview-hotel-key-point__text{
+    font-size:13px;
+  }
+}

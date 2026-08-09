@@ -530,7 +530,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/components.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260807-frontend-v24" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260807-frontend-v24" />
-  <link rel="stylesheet" href="/assets/css/hotel-key-points-v3.css?v=20260807-frontend-v24" />
+  <link rel="stylesheet" href="/assets/css/hotel-key-points-v4.css?v=20260807-frontend-v24" />
   <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
