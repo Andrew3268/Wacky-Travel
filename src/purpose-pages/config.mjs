@@ -1,5 +1,5 @@
 export const purposePageConfig = Object.freeze({
-  assetsVersion: '20260807-frontend-v24',
+  assetsVersion: '20260809-frontend-v25',
   stylesheetPaths: Object.freeze([
     '/assets/css/app.css',
     '/assets/css/components.css',
