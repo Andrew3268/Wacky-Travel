@@ -55,8 +55,8 @@ const editJs = read("public/assets/js/edit.js");
 const settingsLoadIndex = editJs.indexOf("await loadTravelSettings(loadedDestinationSlug");
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
-assert.match(read("public/add.html"), /add\.js\?v=20260809-hotel-key-points-v8/);
-assert.match(read("public/edit.html"), /edit\.js\?v=20260809-hotel-key-points-v10/);
+assert.match(read("public/add.html"), /add\.js\?v=20260809-hotel-key-points-v9/);
+assert.match(read("public/edit.html"), /edit\.js\?v=20260809-hotel-key-points-v11/);
 
 const api = sandbox.window.StyleHotelEditor;
 assert.ok(api, "StyleHotelEditor API missing");
@@ -143,7 +143,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260809-post-layout-v29"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260809-post-layout-v30"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");

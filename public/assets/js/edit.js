@@ -467,7 +467,7 @@ function renderHotelKeyPointIcon(key = "") {
     case "dining_shopping":
       return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M7.2 11h17.6l1.45 14.2a2.55 2.55 0 0 1-2.54 2.8H8.29a2.55 2.55 0 0 1-2.54-2.8L7.2 11Z"></path><path d="M11.2 14V9.2a4.8 4.8 0 0 1 9.6 0V14"></path></svg>`;
     case "signature":
-      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="9" cy="6.8" r="3"></circle><circle cx="23" cy="6.8" r="3"></circle><circle cx="16" cy="13.2" r="2.5"></circle><path d="M4.5 27.5v-10c0-4 1.9-6.4 4.5-6.4s4.5 2.4 4.5 6.4v1.8M27.5 27.5v-10c0-4-1.9-6.4-4.5-6.4s-4.5 2.4-4.5 6.4v1.8"></path><path d="M12.7 28v-7.7c0-2.7 1.25-4.3 3.3-4.3s3.3 1.6 3.3 4.3V28M9.7 17.5l3.2 2.4M22.3 17.5l-3.2 2.4"></path></svg>`;
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 4.2c.9 5.3 3.3 7.7 8.6 8.6-5.3.9-7.7 3.3-8.6 8.6-.9-5.3-3.3-7.7-8.6-8.6 5.3-.9 7.7-3.3 8.6-8.6Z"></path><path d="M25.2 3.8c.35 2.15 1.35 3.15 3.5 3.5-2.15.35-3.15 1.35-3.5 3.5-.35-2.15-1.35-3.15-3.5-3.5 2.15-.35 3.15-1.35 3.5-3.5Z"></path><path d="M7.2 21.2c.45 2.7 1.7 3.95 4.4 4.4-2.7.45-3.95 1.7-4.4 4.4-.45-2.7-1.7-3.95-4.4-4.4 2.7-.45 3.95-1.7 4.4-4.4Z"></path></svg>`;
     default:
       return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="11"></circle></svg>`;
   }
