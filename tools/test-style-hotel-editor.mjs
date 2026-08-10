@@ -55,8 +55,21 @@ const editJs = read("public/assets/js/edit.js");
 const settingsLoadIndex = editJs.indexOf("await loadTravelSettings(loadedDestinationSlug");
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
-assert.match(read("public/add.html"), /add\.js\?v=20260809-hotel-key-points-v9/);
-assert.match(read("public/edit.html"), /edit\.js\?v=20260809-hotel-key-points-v11/);
+assert.match(read("public/add.html"), /add\.js\?v=20260810-hotel-key-points-v10/);
+assert.match(read("public/edit.html"), /edit\.js\?v=20260810-hotel-key-points-v12/);
+for (const file of ["public/add.html", "public/edit.html"]) {
+  const html = read(file);
+  assert.match(html, /data-hotel-key-point-toggle="airport"/);
+  assert.match(html, /id="heroKeyPointAirport"/);
+}
+for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
+  const js = read(file);
+  assert.match(js, /key: "airport", label: "공항 접근성", inputId: "heroKeyPointAirport"/);
+  assert.match(js, /case "airport":/);
+}
+for (const file of ["functions/api/posts.js", "functions/api/posts/[slug].js", "functions/post/[slug].js"]) {
+  assert.match(read(file), /\["airport", "공항 접근성"\]/);
+}
 
 const api = sandbox.window.StyleHotelEditor;
 assert.ok(api, "StyleHotelEditor API missing");
@@ -143,7 +156,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260809-post-layout-v30"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260810-post-layout-v31"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");
@@ -153,6 +166,10 @@ assert.doesNotMatch(appCss, /여행 스타일별 호텔 추천: 호텔별 성급
 assert.match(appCss, /p:not\(\.post-style-hotel-badges\)/);
 assert.match(appCss, /p:has\(> strong:first-child:last-child\):has\(\+ h2\) \+ h2\{[\s\S]*?margin: 0 0 10px !important;/);
 assert.match(travelCoreCss, /post-style-hotel-meta__item--rating\{[\s\S]*?gap:1px;/);
+assert.match(travelCoreCss, /post-page-body--recommended-hotel-review \.post-hotel-key-points__grid\{[\s\S]*?grid-template-columns:minmax\(0,50%\) minmax\(0,1fr\);/);
+assert.equal((travelCoreCss.match(/post-page-body--recommended-hotel-review \.post-hotel-key-point__text\{[\s\S]*?font-size:15px;/g) || []).length, 3);
+assert.match(appCss, /\.post-body \.post-content \.table-wrap\{[\s\S]*?overflow-x: hidden;/);
+assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content table\{[\s\S]*?min-width: 0;[\s\S]*?table-layout: fixed;/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta > \.post-style-hotel-meta__item\{[^}]*border/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item--rating\{[^}]*border/);
 assert.match(travelCoreCss, /post-style-hotel-meta__item--rating > span\{[\s\S]*?color:inherit;/);

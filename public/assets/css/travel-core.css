@@ -9281,7 +9281,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-key-points__title{
 }
 body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid{
   display:grid;
-  grid-template-columns:minmax(0,36%) minmax(0,1fr);
+  grid-template-columns:minmax(0,50%) minmax(0,1fr);
   column-gap:0;
   row-gap:5px;
   margin:0;
@@ -9322,7 +9322,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-key-point__icon svg{
 body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
   min-width:0;
   color:#111;
-  font-size:17px;
+  font-size:15px;
   line-height:1.5;
   font-weight:400;
   letter-spacing:-0.025em;
@@ -9369,7 +9369,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
     height:25px;
   }
   body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
-    font-size:14px;
+    font-size:15px;
     line-height:1.5;
   }
 }
@@ -9395,7 +9395,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
     height:25px;
   }
   body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
-    font-size:13px;
+    font-size:15px;
   }
 }
 

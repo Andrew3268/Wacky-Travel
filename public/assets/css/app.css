@@ -1505,8 +1505,8 @@ select:focus{
 .preview-body .table-wrap,
 .post-body .post-content .table-wrap{
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: auto;
   margin: 28px 0 36px;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
@@ -1515,9 +1515,9 @@ select:focus{
 .post-body table,
 .preview-body table{
   overflow: hidden;
-  width: max-content;
-  min-width: 100%;
-  table-layout: auto;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   margin: 0;
@@ -1529,9 +1529,9 @@ select:focus{
   line-height: 1.65;
 }
 .post-body .post-content table{
-  width: max-content;
-  min-width: 100%;
-  table-layout: auto;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   margin: 0;
@@ -1549,9 +1549,9 @@ select:focus{
   color: #111827;
   font-weight: 500;
   text-align: left;
-  white-space: nowrap;
+  white-space: normal;
   word-break: keep-all;
-  overflow-wrap: normal;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid #e5e7eb;
 }
 .post-body table th,
@@ -1562,6 +1562,9 @@ select:focus{
 .post-body .post-content table td{
   padding: 13px 15px;
   vertical-align: top;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   border-right: 1px solid #eef2f7;
 }
 .post-body .post-content table th:last-child,
@@ -3728,7 +3731,7 @@ body.post-page-body .post-inline-image__link{
   .post-body table,
 .preview-body table,
 .post-body .post-content table{
-    min-width: 620px;
+    min-width: 0;
     font-size: 14px;
   }
   .post-body table th,
@@ -4293,8 +4296,9 @@ body.post-page-body .post-inline-image__link{
 
 .post-shell--guide-style .post-body table,
 .post-shell--guide-style .post-body .post-content table{
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background: #fff;
@@ -7379,7 +7383,7 @@ body.post-page-body .post-shell--guide-style .post-body .table-wrap,
 body.post-page-body .post-shell--guide-style .post-body .post-content .table-wrap{
   width: 100%;
   margin: 34px 0 46px;
-  overflow-x: auto;
+  overflow-x: hidden;
   border: 1px solid var(--wt-line);
   border-radius: var(--wt-radius-xl);
   background: #fff;
@@ -7388,7 +7392,8 @@ body.post-page-body .post-shell--guide-style .post-body .post-content .table-wra
 body.post-page-body .post-shell--guide-style .post-body table,
 body.post-page-body .post-shell--guide-style .post-body .post-content table{
   width: 100%;
-  min-width: 760px;
+  min-width: 0;
+  table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
   background: #fff;
@@ -7407,6 +7412,9 @@ body.post-page-body .post-shell--guide-style .post-body .post-content table td{
   color: #4f5157;
   text-align: left;
   vertical-align: top;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 body.post-page-body .post-shell--guide-style .post-body table th,

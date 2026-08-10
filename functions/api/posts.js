@@ -47,6 +47,7 @@ const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
 const HOTEL_KEY_POINT_OPTIONS = Object.freeze([
   ["attractions", "명소 접근성"],
   ["transport", "대중교통"],
+  ["airport", "공항 접근성"],
   ["dining_shopping", "맛집 및 쇼핑"],
   ["signature", "호텔 시그니처"]
 ]);

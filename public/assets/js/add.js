@@ -221,6 +221,7 @@ function renderPreviewCoverImage(coverData, altText = "") {
 const HOTEL_KEY_POINT_OPTIONS = Object.freeze([
   { key: "attractions", label: "명소 접근성", inputId: "heroKeyPointAttractions" },
   { key: "transport", label: "대중교통", inputId: "heroKeyPointTransport" },
+  { key: "airport", label: "공항 접근성", inputId: "heroKeyPointAirport" },
   { key: "dining_shopping", label: "맛집 및 쇼핑", inputId: "heroKeyPointDiningShopping" },
   { key: "signature", label: "호텔 시그니처", inputId: "heroKeyPointSignature" }
 ]);
@@ -247,6 +248,8 @@ function renderHotelKeyPointIcon(key = "") {
       return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 28.4S25 20.2 25 11.8a9 9 0 1 0-18 0c0 8.4 9 16.6 9 16.6Z"></path><circle cx="16" cy="11.8" r="3.2"></circle></svg>`;
     case "transport":
       return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M10 4.5h12a4.5 4.5 0 0 1 4.5 4.5v10a6.5 6.5 0 0 1-6.5 6.5h-8A6.5 6.5 0 0 1 5.5 19V9A4.5 4.5 0 0 1 10 4.5Z"></path><path d="M6 11.3h20M6 18.5h20M16 5v6.3"></path><circle cx="11" cy="21.8" r="1.55" fill="currentColor" stroke="none"></circle><circle cx="21" cy="21.8" r="1.55" fill="currentColor" stroke="none"></circle><path d="m11.5 25.3-4.2 4.2M20.5 25.3l4.2 4.2"></path></svg>`;
+    case "airport":
+      return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M28 15.2 18.5 11V5.8a2.5 2.5 0 0 0-5 0V11L4 15.2v2.6l9.5-1.8v6.2l-3.2 2.1v2l5.7-1.3 5.7 1.3v-2l-3.2-2.1V16l9.5 1.8v-2.6Z"></path></svg>`;
     case "dining_shopping":
       return `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M7.2 11h17.6l1.45 14.2a2.55 2.55 0 0 1-2.54 2.8H8.29a2.55 2.55 0 0 1-2.54-2.8L7.2 11Z"></path><path d="M11.2 14V9.2a4.8 4.8 0 0 1 9.6 0V14"></path></svg>`;
     case "signature":
@@ -261,7 +264,8 @@ function orderHotelKeyPointsForDisplay(items = []) {
     ["attractions", 0],
     ["dining_shopping", 1],
     ["transport", 2],
-    ["signature", 3]
+    ["airport", 3],
+    ["signature", 4]
   ]);
   return [...items].sort((a, b) => (order.get(a?.key) ?? 99) - (order.get(b?.key) ?? 99));
 }
