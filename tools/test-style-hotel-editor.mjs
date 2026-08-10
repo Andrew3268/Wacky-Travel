@@ -157,7 +157,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260810-post-layout-v32"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260810-post-layout-v33"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");
@@ -179,11 +179,11 @@ assert.match(travelCoreCss, /p\.post-style-hotel-badges\{[\s\S]*?margin:0 0 25px
 assert.match(travelCoreCss, /post-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta > \.preview-style-hotel-meta__item\{[^}]*border/);
 assert.match(editorCss, /preview-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
-assert.match(appCss, /post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{[\s\S]*?margin: 0;[\s\S]*?margin-block: 0;[\s\S]*?padding: 0;[\s\S]*?padding-block: 0;[\s\S]*?border: 0;[\s\S]*?border-top: 0;[\s\S]*?border-bottom: 0;[\s\S]*?font-size: 17px;/);
-assert.match(appCss, /post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3::before\{[\s\S]*?flex: 0 0 34px;[\s\S]*?height: 1px;[\s\S]*?background: #666;/);
+assert.match(appCss, /post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{[\s\S]*?margin: 0;[\s\S]*?margin-block: 0;[\s\S]*?padding: 10px 0;[\s\S]*?padding-block: 10px;[\s\S]*?border: 0;[\s\S]*?border-top: 0;[\s\S]*?border-bottom: 0;[\s\S]*?font-size: 17px;/);
+assert.match(appCss, /post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3::before\{[\s\S]*?flex: 0 0 34px;[\s\S]*?height: 1px;[\s\S]*?margin-bottom: 0;[\s\S]*?background: #666;/);
 const postRendererSource = read("functions/post/[slug].js");
-assert.match(postRendererSource, /POST_RENDER_VERSION = "20260810-post-layout-v32"/);
-assert.equal((postRendererSource.match(/app\.css\?v=20260810-frontend-v32/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
+assert.match(postRendererSource, /POST_RENDER_VERSION = "20260810-post-layout-v33"/);
+assert.equal((postRendererSource.match(/app\.css\?v=20260810-frontend-v33/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
 assert.match(appCss, /post-page-body--top5-series \.post-body \.post-content h3\{[\s\S]*?flex-wrap: nowrap;[\s\S]*?border: 0;[\s\S]*?font-size: 18px;[\s\S]*?white-space: nowrap;/);
 assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content h3\{[\s\S]*?margin: 30px 0 14px;[\s\S]*?font-size: 18px;/);
 assert.match(appCss, /@media \(max-width: 720px\)\{[\s\S]*?body\.post-page-body \.post-shell--guide-style \.post-body \.post-content h3\{[\s\S]*?margin-top: 30px;[\s\S]*?font-size: 18px;/);

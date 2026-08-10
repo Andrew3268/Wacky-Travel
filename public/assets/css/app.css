@@ -8048,8 +8048,8 @@ body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .po
   margin: 0;
   margin-block: 0;
   margin-inline: 0;
-  padding: 0;
-  padding-block: 0;
+  padding: 10px 0;
+  padding-block: 10px;
   padding-inline: 0;
   border: 0;
   border-top: 0;
@@ -8071,6 +8071,7 @@ body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .po
   flex: 0 0 34px;
   width: 34px;
   height: 1px;
+  margin-bottom: 0;
   background: #666;
 }
 
