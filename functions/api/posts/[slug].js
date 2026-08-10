@@ -381,11 +381,25 @@ async function syncHotelHeroData(db, body = {}, { destinationSlug = "", regionSl
   return hotelSlug;
 }
 
+function isMissingHotelHeroColumnError(error) {
+  return /no such column:\s*(?:hotels\.)?(?:name_en|area|star_rating|guest_rating|badges_json|key_points_json|price_level|region_slug|region_name)/i.test(String(error?.message || error || ""));
+}
+
 async function getHotelHeroData(db, hotelSlug = "") {
   const slug = String(hotelSlug || "").trim();
   if (!slug) return null;
-  await ensureHotelColumns(db);
-  const hotel = await db.prepare(`SELECT slug, name, name_en, area, star_rating, guest_rating, badges_json, key_points_json, price_level FROM hotels WHERE slug = ?`).bind(slug).first();
+
+  const selectHotel = () => db.prepare(`SELECT slug, name, name_en, area, star_rating, guest_rating, badges_json, key_points_json, price_level FROM hotels WHERE slug = ?`).bind(slug).first();
+  let hotel;
+  try {
+    hotel = await selectHotel();
+  } catch (error) {
+    // 정상 운영 DB의 읽기 경로에서는 스키마 변경을 수행하지 않는다.
+    // 구버전 DB에서 실제로 컬럼 누락이 확인될 때만 1회 보정 후 재조회한다.
+    if (!isMissingHotelHeroColumnError(error)) throw error;
+    await ensureHotelColumns(db);
+    hotel = await selectHotel();
+  }
   if (!hotel) return null;
   const links = await db.prepare(`
     SELECT provider, affiliate_url
@@ -409,16 +423,12 @@ async function getHotelHeroData(db, hotelSlug = "") {
   };
 }
 
-export async function onRequestGet({ env, params, request }) {
-  await ensurePostRegionColumns(env.TRAVEL_DB);
-  const admin = await requireAdmin(env, request);
-  if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
-  const slug = decodeURIComponent(String(params.slug || ""));
-  if (!slug) {
-    return okJson({ message: "slug가 필요합니다." }, { status: 400 });
-  }
+function isMissingPostEditColumnError(error) {
+  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json)/i.test(String(error?.message || error || ""));
+}
 
-  const row = await env.TRAVEL_DB.prepare(`
+async function selectPostForEdit(db, slug) {
+  const selectRow = () => db.prepare(`
     SELECT
       slug,
       title,
@@ -457,6 +467,27 @@ export async function onRequestGet({ env, params, request }) {
     FROM posts
     WHERE slug = ?
   `).bind(slug).first();
+
+  try {
+    return await selectRow();
+  } catch (error) {
+    // GET fast path: 정상 스키마에서는 PRAGMA / ALTER / CREATE INDEX를 전혀 실행하지 않는다.
+    // 실제 구버전 DB 컬럼 누락 오류일 때만 기존 보정 로직을 실행하고 한 번 재시도한다.
+    if (!isMissingPostEditColumnError(error)) throw error;
+    await ensurePostRegionColumns(db);
+    return await selectRow();
+  }
+}
+
+export async function onRequestGet({ env, params, request }) {
+  const admin = await requireAdmin(env, request);
+  if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
+  const slug = decodeURIComponent(String(params.slug || ""));
+  if (!slug) {
+    return okJson({ message: "slug가 필요합니다." }, { status: 400 });
+  }
+
+  const row = await selectPostForEdit(env.TRAVEL_DB, slug);
 
   if (!row) {
     return okJson({ message: "not_found" }, { status: 404 });

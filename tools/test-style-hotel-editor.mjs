@@ -52,11 +52,12 @@ assert.match(editorCode, /위치 최고, 조식 맛집, 쾌적한 객실/);
 assert.match(editorCode, /maxlength="120"/);
 
 const editJs = read("public/assets/js/edit.js");
-const settingsLoadIndex = editJs.indexOf("await loadTravelSettings(loadedDestinationSlug");
+const settingsLoadIndex = editJs.indexOf("loadTravelSettings(\n      loadedDestinationSlug");
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
+assert.match(editJs, /await Promise\.all\(\[/, "edit auxiliary data must load in parallel");
 assert.match(read("public/add.html"), /add\.js\?v=20260810-hotel-key-points-v10/);
-assert.match(read("public/edit.html"), /edit\.js\?v=20260810-hotel-key-points-v12/);
+assert.match(read("public/edit.html"), /edit\.js\?v=20260810-edit-load-speed-v13/);
 for (const file of ["public/add.html", "public/edit.html"]) {
   const html = read(file);
   assert.match(html, /data-hotel-key-point-toggle="airport"/);

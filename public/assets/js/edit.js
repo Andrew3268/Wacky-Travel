@@ -631,6 +631,7 @@ let countryItems = [];
 let destinationItems = [];
 let regionItems = [];
 let recommendationCategoryItems = [];
+let travelSettingsDataPromise = null;
 
 function normalizeContentType(value) {
   const raw = String(value || "").replace(/\s+/g, " ").trim();
@@ -892,27 +893,46 @@ async function requestTravelSettingsApi(method = "GET", payload = null) {
   return json;
 }
 
-async function loadTravelSettings(selectedDestinationSlug = "", selectedContentType = "", selectedRegionSlug = "", selectedRecommendationCategorySlug = "") {
-  try {
-    const json = await requestTravelSettingsApi("GET");
-    travelContentTypeItems = Array.isArray(json.content_types) && json.content_types.length ? json.content_types : [...DEFAULT_TRAVEL_CONTENT_TYPES];
-    countryItems = Array.isArray(json.countries) ? json.countries : [];
-    destinationItems = Array.isArray(json.destinations) ? json.destinations : [];
-    regionItems = Array.isArray(json.regions) ? json.regions : [];
-    recommendationCategoryItems = Array.isArray(json.recommendation_categories) ? json.recommendation_categories : [];
+function fetchTravelSettingsData({ force = false } = {}) {
+  if (!force && travelSettingsDataPromise) return travelSettingsDataPromise;
+  travelSettingsDataPromise = requestTravelSettingsApi("GET").catch((error) => {
+    travelSettingsDataPromise = null;
+    throw error;
+  });
+  return travelSettingsDataPromise;
+}
 
-    const selectedDestination = destinationItems.find((item) => String(item.slug || "") === String(selectedDestinationSlug || ""));
-    const selectedCountrySlug = selectedDestination ? getCountrySlugFromDestination(selectedDestination) : String($("country")?.value || "").trim();
-    renderContentTypeOptions(selectedContentType || $("content_type")?.value || "");
-    renderCountryOptions(selectedCountrySlug);
-    renderDestinationOptions(selectedDestinationSlug);
-    renderRegionOptions(selectedRegionSlug || $("region_slug")?.value || "");
-    renderRecommendationCategoryOptions(selectedRecommendationCategorySlug || $("recommendationCategorySlug")?.value || "");
-    renderTravelSettingsManager();
-    updateTravelPlacementStatus();
-    syncHotelHeroCardVisibility();
-    syncRecommendationCategoryCardVisibility();
-    renderPreview();
+function applyTravelSettingsData(json = {}, selectedDestinationSlug = "", selectedContentType = "", selectedRegionSlug = "", selectedRecommendationCategorySlug = "", { renderManager = false } = {}) {
+  travelContentTypeItems = Array.isArray(json.content_types) && json.content_types.length ? json.content_types : [...DEFAULT_TRAVEL_CONTENT_TYPES];
+  countryItems = Array.isArray(json.countries) ? json.countries : [];
+  destinationItems = Array.isArray(json.destinations) ? json.destinations : [];
+  regionItems = Array.isArray(json.regions) ? json.regions : [];
+  recommendationCategoryItems = Array.isArray(json.recommendation_categories) ? json.recommendation_categories : [];
+
+  const selectedDestination = destinationItems.find((item) => String(item.slug || "") === String(selectedDestinationSlug || ""));
+  const selectedCountrySlug = selectedDestination ? getCountrySlugFromDestination(selectedDestination) : String($("country")?.value || "").trim();
+  renderContentTypeOptions(selectedContentType || $("content_type")?.value || "");
+  renderCountryOptions(selectedCountrySlug);
+  renderDestinationOptions(selectedDestinationSlug);
+  renderRegionOptions(selectedRegionSlug || $("region_slug")?.value || "");
+  renderRecommendationCategoryOptions(selectedRecommendationCategorySlug || $("recommendationCategorySlug")?.value || "");
+  if (renderManager) renderTravelSettingsManager();
+  updateTravelPlacementStatus();
+  syncHotelHeroCardVisibility();
+  syncRecommendationCategoryCardVisibility();
+}
+
+async function loadTravelSettings(selectedDestinationSlug = "", selectedContentType = "", selectedRegionSlug = "", selectedRecommendationCategorySlug = "", options = {}) {
+  try {
+    const json = await (options.prefetchedPromise || fetchTravelSettingsData({ force: options.force === true }));
+    applyTravelSettingsData(
+      json,
+      selectedDestinationSlug,
+      selectedContentType,
+      selectedRegionSlug,
+      selectedRecommendationCategorySlug,
+      { renderManager: options.renderManager === true }
+    );
   } catch (error) {
     const statusEl = $("travelPlacementStatus");
     if (statusEl) statusEl.textContent = error.message || "여행 노출 설정을 불러오지 못했습니다.";
@@ -1058,7 +1078,13 @@ function closeTravelSettingsModal() {
 }
 
 async function afterTravelSettingsChanged(message, selectedDestinationSlug = $("destination_slug")?.value || "", selectedContentType = $("content_type")?.value || "") {
-  await loadTravelSettings(selectedDestinationSlug, selectedContentType, $("region_slug")?.value || "", $("recommendationCategorySlug")?.value || "");
+  await loadTravelSettings(
+    selectedDestinationSlug,
+    selectedContentType,
+    $("region_slug")?.value || "",
+    $("recommendationCategorySlug")?.value || "",
+    { force: true, renderManager: true }
+  );
   setTravelSettingsStatus(message);
   handleRealtimeChange();
 }
@@ -3779,6 +3805,7 @@ function setPreviewDevice(device) {
 // Hotel curation taxonomy (Travel by Mood)
 let hotelCurationItems = [];
 let hotelCurationLoadSequence = 0;
+let hotelCurationDataPromise = null;
 function getCheckedCurationValues(){
   return Array.from(document.querySelectorAll('input[name="travelMoodSlug"]:checked'))
     .map((input)=>String(input.value||"").trim())
@@ -3800,13 +3827,25 @@ function renderHotelCurationOptions(selectedMood=[]){
   setCheckedCurationValues(selectedMood);
   el.querySelectorAll('input[name="travelMoodSlug"]').forEach((input)=>input.addEventListener('change',handleRealtimeChange));
 }
-async function loadHotelCurationItems(selectedMood=[]){
-  const sequence=++hotelCurationLoadSequence;
-  try{
+function fetchHotelCurationItemsData({force=false}={}){
+  if(!force&&hotelCurationDataPromise)return hotelCurationDataPromise;
+  hotelCurationDataPromise=(async()=>{
     const r=await fetch(`/api/curation-items?ts=${Date.now()}`,{credentials:"same-origin",cache:"no-store"});
     const j=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(j?.message||"큐레이션 항목을 불러오지 못했습니다.");
+    return Array.isArray(j.items)?j.items:[];
+  })().catch((error)=>{
+    hotelCurationDataPromise=null;
+    throw error;
+  });
+  return hotelCurationDataPromise;
+}
+async function loadHotelCurationItems(selectedMood=[],options={}){
+  const sequence=++hotelCurationLoadSequence;
+  try{
+    const items=await(options.prefetchedPromise||fetchHotelCurationItemsData({force:options.force===true}));
     if(sequence!==hotelCurationLoadSequence)return;
-    hotelCurationItems=Array.isArray(j.items)?j.items:[];
+    hotelCurationItems=Array.isArray(items)?items:[];
     renderHotelCurationOptions(selectedMood);
   }catch(e){
     if(sequence===hotelCurationLoadSequence)console.warn("큐레이션 항목을 불러오지 못했습니다.",e);
@@ -3820,7 +3859,7 @@ function syncHotelCurationCardVisibility(){
   });
 }
 function initHotelCurationEditor(){
-  loadHotelCurationItems();
+  // edit 페이지의 load()가 글/여행 설정과 함께 큐레이션 데이터를 병렬로 1회 로드한다.
   syncHotelCurationCardVisibility();
   $('content_type')?.addEventListener('change',syncHotelCurationCardVisibility);
 }
@@ -3850,6 +3889,13 @@ async function load() {
   }
 
   if (statusEl) statusEl.textContent = "불러오는 중…";
+
+  // 서로 의존하지 않는 초기 데이터를 동시에 요청해 네트워크 waterfall을 제거한다.
+  const travelSettingsPrefetch = fetchTravelSettingsData();
+  const hotelCurationPrefetch = fetchHotelCurationItemsData();
+  // post 응답을 기다리는 동안 보조 요청이 먼저 실패해도 unhandled rejection이 발생하지 않게 핸들러를 즉시 연결한다.
+  travelSettingsPrefetch.catch(() => {});
+  hotelCurationPrefetch.catch(() => {});
 
   const res = await fetch(`/api/posts/${encodeURIComponent(slug)}`);
   const json = await res.json().catch(() => ({}));
@@ -3894,8 +3940,6 @@ async function load() {
   if ($("faq_md")) $("faq_md").value = item.faq_md || "";
   applyHotelHeroFormData(item.hotel_hero || {});
   applyHotelPickFormData({ price_level: item.hotel_pick_label || "" });
-  await loadHotelCurationItems(item.mood_tags || []);
-  syncHotelCurationCardVisibility();
 
   let tags = [];
   try { tags = JSON.parse(item.tags_json || "[]"); } catch {}
@@ -3905,7 +3949,18 @@ async function load() {
     $("viewBtn").href = `/post/${encodeURIComponent($("slug").value)}/${previewSuffix}`;
   }
 
-  await loadTravelSettings(loadedDestinationSlug, loadedContentType, loadedRegionSlug, loadedRecommendationCategorySlug);
+  await Promise.all([
+    loadHotelCurationItems(item.mood_tags || [], { prefetchedPromise: hotelCurationPrefetch }),
+    loadTravelSettings(
+      loadedDestinationSlug,
+      loadedContentType,
+      loadedRegionSlug,
+      loadedRecommendationCategorySlug,
+      { prefetchedPromise: travelSettingsPrefetch }
+    )
+  ]);
+  syncHotelCurationCardVisibility();
+
   // 여행 설정이 content_type 옵션을 최종 렌더링한 뒤 기존 호텔 세트를 복원해야
   // edit 페이지에서도 이미지·본문·버튼·마무리 입력값이 정확히 표시된다.
   window.StyleHotelEditor?.loadFromContent(loadedEditorContentMd, loadedContentType);
