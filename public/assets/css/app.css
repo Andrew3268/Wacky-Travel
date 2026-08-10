@@ -3971,8 +3971,6 @@ body.post-page-body .post-inline-image__link{
 .post-body h2::before,
 .post-body .post-content h2::before,
 .preview-body h2::before,
-.post-body h3::before,
-.post-body .post-content h3::before,
 .preview-body h3::before,
 .post-body h2::after,
 .post-body .post-content h2::after,
@@ -8044,11 +8042,12 @@ body.post-page-body--hotel-review-magazine .post-body .post-content .post-h2-tex
 }
 
 body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3{
-  margin: 36px 0 20px;
-  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
   border: 0;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
   background: transparent;
   color: #333;
   font-size: 17px;
@@ -8057,7 +8056,15 @@ body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .po
   text-align: left;
 }
 
-body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3::before,
+body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3::before{
+  content: "";
+  display: block;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 1px;
+  background: #666;
+}
+
 body.post-page-body--hotel-review-magazine:not(.post-page-body--top5-series) .post-body .post-content h3::after{
   content: none;
   display: none;
