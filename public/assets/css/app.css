@@ -7205,7 +7205,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content h3{
   font-weight: 600;
 }
 
-body.post-page-body .post-shell--guide-style .post-body .post-content h3::before{
+body.post-page-body:not(.post-page-body--hotel-review-magazine) .post-shell--guide-style .post-body .post-content h3::before{
   content: "";
   display: block;
   width: 38px;
@@ -7769,7 +7769,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content ol{
     font-size: 18px;
   }
 
-  body.post-page-body .post-shell--guide-style .post-body .post-content h3::before{
+  body.post-page-body:not(.post-page-body--hotel-review-magazine) .post-shell--guide-style .post-body .post-content h3::before{
     width: 32px;
     height: 4px;
     margin-bottom: 12px;
