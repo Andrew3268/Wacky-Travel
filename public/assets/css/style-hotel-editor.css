@@ -294,31 +294,31 @@
 
 .preview-body--top5-series h3{
   display:flex;
-  flex-wrap:nowrap;
   align-items:center;
-  gap:14px;
-  width:fit-content;
-  max-width:100%;
-  margin:30px 0 16px;
-  padding:0;
+  gap:10px;
+  margin:0;
+  margin-block:0;
+  margin-inline:0;
+  padding:10px 0;
+  padding-block:10px;
+  padding-inline:0;
   border:0;
+  border-radius:0;
   background:transparent;
-  color:#111;
-  font-size:18px;
-  font-weight:600;
-  line-height:1.45;
+  color:#333;
+  font-size:17px;
+  font-weight:400;
+  line-height:1.5;
   text-align:left;
-  white-space:nowrap;
 }
 
 .preview-body--top5-series h3 .post-style-hotel-h3-line{
   display:block;
-  flex:0 1 140px;
-  width:clamp(64px,12vw,140px);
-  min-width:56px;
+  flex:0 0 34px;
+  width:34px;
   height:1px;
-  background:currentColor;
-  opacity:.35;
+  margin-bottom:0;
+  background:#666;
 }
 
 .preview-body--top5-series .preview-style-hotel-ending{

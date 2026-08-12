@@ -3578,10 +3578,12 @@ function markdownToHtml(md, options = {}) {
       }
       const headingText = normalizeArticleHeadingText(level, headingMatch[2].trim());
       const headingId = buildHeadingSlug(headingText, slugCounts);
-      const styleHotelH3Line = level === 3 && options.styleHotelSeries === true
+      const hotelMagazineH3Line = level === 3 && (
+        options.styleHotelSeries === true || options.hotelReviewSectionImageAnchor === true
+      )
         ? '<span class="post-style-hotel-h3-line" aria-hidden="true"></span>'
         : "";
-      pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${renderHeadingText(level, headingText)}${styleHotelH3Line}</h${level}>`);
+      pushContentBlock(`<h${level} id="${escapeHtml(headingId)}">${hotelMagazineH3Line}${renderHeadingText(level, headingText)}</h${level}>`);
       if (level === 2 && pendingStyleHotelHeadingData) {
         const badgesHtml = renderStyleHotelPreviewBadges(pendingStyleHotelHeadingData);
         if (badgesHtml) pushContentBlock(badgesHtml);

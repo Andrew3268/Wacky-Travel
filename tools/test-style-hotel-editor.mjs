@@ -138,7 +138,7 @@ assert.match(html, /post-hotel-section-label post-section-label--after-image|pos
 assert.match(html, /post-style-hotel-image-badge[^>]*>에디터 픽<\/span>/);
 assert.match(html, /<section class="post-style-hotel-ending">[\s\S]*어떤 호텔을 고를까[\s\S]*<\/section>/);
 assert.match(html, /post-style-hotel-meta/);
-assert.match(html, /<h3[^>]*>추천 객실 타입<span class="post-style-hotel-h3-line" aria-hidden="true"><\/span><\/h3>/);
+assert.match(html, /<h3[^>]*><span class="post-style-hotel-h3-line" aria-hidden="true"><\/span>추천 객실 타입<\/h3>/);
 assert.match(html, />5성급</);
 assert.match(html, /post-style-hotel-meta__separator[^>]*>\|<\/span>/);
 assert.match(html, />★<\/span>9\.0\+</);
@@ -157,7 +157,7 @@ for (const file of ["public/assets/js/add.js", "public/assets/js/edit.js"]) {
 }
 assert.match(read("public/assets/js/edit.js"), /StyleHotelEditor\?\.loadFromContent/);
 assert.match(read("functions/post/[slug].js"), /stripStyleHotelTokens/);
-assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260810-post-layout-v33"/);
+assert.match(read("functions/post/[slug].js"), /POST_RENDER_VERSION = "20260812-post-layout-v34"/);
 assert.match(read("lib/posts/renderer.js"), /data\.buttonText \|\| "잔여 객실 확인"/);
 
 const appCss = read("public/assets/css/app.css");
@@ -179,16 +179,16 @@ assert.match(travelCoreCss, /p\.post-style-hotel-badges\{[\s\S]*?margin:0 0 25px
 assert.match(travelCoreCss, /post-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta > \.preview-style-hotel-meta__item\{[^}]*border/);
 assert.match(editorCss, /preview-style-hotel-badges__separator\{[\s\S]*?margin:0 9px;/);
-assert.match(appCss, /post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{[\s\S]*?margin: 0;[\s\S]*?margin-block: 0;[\s\S]*?padding: 10px 0;[\s\S]*?padding-block: 10px;[\s\S]*?border: 0;[\s\S]*?border-top: 0;[\s\S]*?border-bottom: 0;[\s\S]*?font-size: 17px;/);
-assert.match(appCss, /post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3::before\{[\s\S]*?flex: 0 0 34px;[\s\S]*?height: 1px;[\s\S]*?margin-bottom: 0;[\s\S]*?background: #666;/);
+assert.match(appCss, /post-page-body--hotel-review-magazine \.post-body \.post-content h3\{[\s\S]*?margin: 0;[\s\S]*?margin-block: 0;[\s\S]*?padding: 10px 0;[\s\S]*?padding-block: 10px;[\s\S]*?border: 0;[\s\S]*?border-top: 0;[\s\S]*?border-bottom: 0;[\s\S]*?font-size: 17px;/);
+assert.match(appCss, /post-page-body--hotel-review-magazine \.post-body \.post-content h3 \.post-style-hotel-h3-line\{[\s\S]*?flex: 0 0 34px;[\s\S]*?height: 1px;[\s\S]*?margin-bottom: 0;[\s\S]*?background: #666;/);
 const postRendererSource = read("functions/post/[slug].js");
-assert.match(postRendererSource, /POST_RENDER_VERSION = "20260810-post-layout-v33"/);
-assert.equal((postRendererSource.match(/app\.css\?v=20260810-frontend-v33/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
-assert.match(appCss, /post-page-body--top5-series \.post-body \.post-content h3\{[\s\S]*?flex-wrap: nowrap;[\s\S]*?border: 0;[\s\S]*?font-size: 18px;[\s\S]*?white-space: nowrap;/);
+assert.match(postRendererSource, /POST_RENDER_VERSION = "20260812-post-layout-v34"/);
+assert.equal((postRendererSource.match(/app\.css\?v=20260812-frontend-v34/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
+assert.doesNotMatch(appCss, /post-page-body--top5-series \.post-body \.post-content h3\{/);
 assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content h3\{[\s\S]*?margin: 30px 0 14px;[\s\S]*?font-size: 18px;/);
 assert.match(appCss, /@media \(max-width: 720px\)\{[\s\S]*?body\.post-page-body \.post-shell--guide-style \.post-body \.post-content h3\{[\s\S]*?margin-top: 30px;[\s\S]*?font-size: 18px;/);
 assert.match(appCss, /post-style-hotel-ending\{[\s\S]*?border-top: 1px solid/);
-assert.match(editorCss, /preview-body--top5-series h3\{[\s\S]*?flex-wrap:nowrap;[\s\S]*?border:0;[\s\S]*?font-size:18px;[\s\S]*?white-space:nowrap;/);
+assert.match(editorCss, /preview-body--top5-series h3\{[\s\S]*?gap:10px;[\s\S]*?padding:10px 0;[\s\S]*?border:0;[\s\S]*?font-size:17px;/);
 assert.match(editorCss, /preview-style-hotel-ending\{[\s\S]*?border-top:1px solid/);
 assert.match(editorCss, /style-hotel-badge-fields\{[\s\S]*?grid-template-columns:minmax\(0,7fr\) minmax\(0,3fr\)/);
 assert.doesNotMatch(editorCss, /preview-style-hotel-meta__item--rating\{[^}]*border/);
@@ -201,4 +201,4 @@ assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item\{[^}]*padding:/)
 assert.doesNotMatch(appCss, /body\.post-page-body \.post-inline-image__img\{[^}]*border:/);
 assert.doesNotMatch(travelCoreCss, /post-style-hotel-meta__item--badge/);
 
-console.log("Style hotel editor check passed: 1-7 sets, star/rating separator, badges below H2, legacy lead list removal, and image → metadata → markdown → button → bordered ending order, plus top5 H3 title line.");
+console.log("Style hotel editor check passed: 1-7 sets, star/rating separator, badges below H2, legacy lead list removal, and image → metadata → markdown → button → bordered ending order, plus unified leading H3 title line.");

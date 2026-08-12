@@ -5,7 +5,7 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260810-post-layout-v33"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260812-post-layout-v34"/);
 assert.match(renderer, /import \{ normalizeContentType \} from "\.\.\/\.\.\/lib\/travel\/travel-settings\.js";/);
 assert.match(renderer, /const contentType = normalizeContentType\(row\.content_type \|\| ""\);/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
@@ -32,7 +32,7 @@ assert.match(renderer, /isTop5SeriesPost \? `<script defer src="\/assets\/js\/gu
 
 const appCss = fs.readFileSync("public/assets/css/app.css", "utf8");
 const floatingTocJs = fs.readFileSync("public/assets/js/guide-toc-floating.js", "utf8");
-const recommendedH3Rule = appCss.match(/body\.post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{([\s\S]*?)\}/)?.[1] || "";
+const recommendedH3Rule = appCss.match(/body\.post-page-body--hotel-review-magazine \.post-body \.post-content h3\{([\s\S]*?)\}/)?.[1] || "";
 assert.match(recommendedH3Rule, /font-size: 17px;/);
 assert.match(recommendedH3Rule, /color: #333;/);
 assert.match(recommendedH3Rule, /padding: 10px 0;/);
