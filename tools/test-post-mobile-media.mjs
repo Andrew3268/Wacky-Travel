@@ -38,7 +38,15 @@ assert.match(
 );
 assert.match(
   css,
-  /body\.post-page-body--hotel-review-magazine:not\(\.post-page-body--top5-series\) \.post-body \.post-content h3\{[^}]*color:\s*#333;[^}]*font-size:\s*17px;/
+  /body\.post-page-body--hotel-review-magazine \.post-body \.post-content h3\{[^}]*color:\s*#333;[^}]*font-size:\s*17px;/
+);
+assert.match(
+  css,
+  /body\.post-page-body--hotel-review-magazine \.post-body \.post-content h3 \.post-style-hotel-h3-line\{[^}]*width:\s*34px;[^}]*height:\s*1px;[^}]*background:\s*#666;/
+);
+assert.match(
+  css,
+  /body\.post-page-body--hotel-review-magazine \.post-body \.post-content h3::before,[\s\S]*?h3::after\{[^}]*content:\s*none;[^}]*display:\s*none;/
 );
 assert.doesNotMatch(
   css,

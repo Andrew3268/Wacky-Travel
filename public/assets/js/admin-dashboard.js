@@ -12,7 +12,11 @@ function formatNumber(value) {
 }
 
 function formatDate(value) {
-  return value ? String(value).slice(0, 10) : '-';
+  return value ? String(value).slice(0, 10).replaceAll('-', '.') : '-';
+}
+
+function getStatusLabel(status) {
+  return String(status || '').toLowerCase() === 'draft' ? '초안' : '발행';
 }
 
 async function initDashboard() {
@@ -20,53 +24,91 @@ async function initDashboard() {
   const totalEl = document.getElementById('dashboardTotalCount');
   const publishedEl = document.getElementById('dashboardPublishedCount');
   const draftEl = document.getElementById('dashboardDraftCount');
+  const latestListEl = document.getElementById('dashboardLatestList');
   const popularListEl = document.getElementById('dashboardPopularList');
   const recentListEl = document.getElementById('dashboardRecentList');
-  const indexSidebarAdToggleEl = document.getElementById('indexSidebarAdToggle');
-  const indexSidebarAdStatusEl = document.getElementById('indexSidebarAdStatus');
+  const tabButtons = Array.from(document.querySelectorAll('[data-dashboard-content-tab]'));
+  const tabPanels = Array.from(document.querySelectorAll('[data-dashboard-content-panel]'));
 
-  if (!totalEl || !publishedEl || !draftEl || !popularListEl || !recentListEl) {
+  if (!totalEl || !publishedEl || !draftEl || !latestListEl || !popularListEl || !recentListEl) {
     console.error('대시보드 필수 요소를 찾을 수 없습니다.');
     return;
   }
 
-  function renderIndexSidebarAdToggle(isEnabled) {
-    if (!indexSidebarAdToggleEl || !indexSidebarAdStatusEl) return;
-    indexSidebarAdToggleEl.disabled = false;
-    indexSidebarAdToggleEl.textContent = isEnabled ? '사이드바 광고 끄기' : '사이드바 광고 켜기';
-    indexSidebarAdToggleEl.classList.toggle('btn--brand', !isEnabled);
-    indexSidebarAdStatusEl.textContent = isEnabled ? '현재 켜짐' : '현재 꺼짐';
+  function activateTab(tabKey) {
+    const safeKey = tabKey === 'popular' ? 'popular' : 'latest';
+    tabButtons.forEach((button) => {
+      const active = button.dataset.dashboardContentTab === safeKey;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', active ? 'true' : 'false');
+      button.tabIndex = active ? 0 : -1;
+    });
+    tabPanels.forEach((panel) => {
+      panel.hidden = panel.dataset.dashboardContentPanel !== safeKey;
+    });
+  }
+
+  tabButtons.forEach((button, index) => {
+    button.addEventListener('click', () => activateTab(button.dataset.dashboardContentTab));
+    button.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+      event.preventDefault();
+      const offset = event.key === 'ArrowRight' ? 1 : -1;
+      const nextIndex = (index + offset + tabButtons.length) % tabButtons.length;
+      tabButtons[nextIndex]?.focus();
+      activateTab(tabButtons[nextIndex]?.dataset.dashboardContentTab);
+    });
+  });
+
+  function postActions(item) {
+    return `
+      <div class="post-admin-mini-actions dashboard-post-actions" aria-label="글 관리">
+        <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(item.slug)}">수정</a>
+        <button class="post-admin-mini-btn post-admin-mini-btn--danger js-delete-post" type="button" data-slug="${escapeHtml(item.slug)}" data-title="${escapeHtml(item.title)}" data-delete-redirect="reload">삭제</button>
+      </div>`;
+  }
+
+  function renderLatestList(items) {
+    latestListEl.innerHTML = items.length
+      ? items.map((item) => `
+          <li class="dashboard-post-list__item">
+            <div class="dashboard-post-list__main">
+              <div class="dashboard-post-list__title-row">
+                <a href="/post/${encodeURIComponent(item.slug)}/" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>
+                <span class="dashboard-status-label${item.status === 'draft' ? ' is-draft' : ''}">${getStatusLabel(item.status)}</span>
+              </div>
+              <div class="dashboard-post-list__meta">작성 ${escapeHtml(formatDate(item.published_at))} · 최근 수정 ${escapeHtml(formatDate(item.updated_at))}</div>
+              ${postActions(item)}
+            </div>
+          </li>`).join('')
+      : '<li class="dashboard-post-list__empty small">최근 작성된 글이 없습니다.</li>';
   }
 
   function renderPopularList(popular) {
     popularListEl.innerHTML = popular.length
-      ? popular.map((item, index) => {
-          const publishedAt = formatDate(item.published_at);
-          const updatedAt = formatDate(item.updated_at);
-          return `
-          <li class="dashboard-popular__item">
-            <div class="dashboard-popular__main">
-              <a href="/post/${encodeURIComponent(item.slug)}/" target="_blank" rel="noopener noreferrer">${index + 1}. ${escapeHtml(item.title)}</a>
-              <div class="dashboard-popular__meta">작성 ${escapeHtml(publishedAt)} · 수정 ${escapeHtml(updatedAt)}</div>
-              <div class="post-admin-mini-actions dashboard-post-actions" aria-label="글 관리">
-                <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(item.slug)}">수정</a>
-                <button class="post-admin-mini-btn post-admin-mini-btn--danger js-delete-post" type="button" data-slug="${escapeHtml(item.slug)}" data-title="${escapeHtml(item.title)}" data-delete-redirect="reload">삭제</button>
-              </div>
+      ? popular.map((item, index) => `
+          <li class="dashboard-post-list__item dashboard-popular__item">
+            <span class="dashboard-popular__rank" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+            <div class="dashboard-post-list__main dashboard-popular__main">
+              <a href="/post/${encodeURIComponent(item.slug)}/" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>
+              <div class="dashboard-post-list__meta dashboard-popular__meta">작성 ${escapeHtml(formatDate(item.published_at))} · 최근 수정 ${escapeHtml(formatDate(item.updated_at))}</div>
+              ${postActions(item)}
             </div>
-            <span class="dashboard-popular__views">조회수 ${formatNumber(item.view_count)}</span>
-          </li>
-        `}).join('')
-      : '<li class="small">표시할 인기글이 없습니다.</li>';
+            <span class="dashboard-popular__views">${formatNumber(item.view_count)}회</span>
+          </li>`).join('')
+      : '<li class="dashboard-post-list__empty small">표시할 인기글이 없습니다.</li>';
   }
 
   function renderRecentList(items) {
     recentListEl.innerHTML = items.length
       ? items.map((item) => `
           <li class="dashboard-recent__item">
-            <a href="/edit.html?slug=${encodeURIComponent(item.slug)}">${escapeHtml(item.title)}</a>
-            <span class="dashboard-recent__meta">${item.status === 'draft' ? '초안' : '발행'}</span>
-          </li>
-        `).join('')
+            <div class="dashboard-recent__main">
+              <a href="/edit.html?slug=${encodeURIComponent(item.slug)}">${escapeHtml(item.title)}</a>
+              <span class="dashboard-recent__date">${escapeHtml(formatDate(item.updated_at))}</span>
+            </div>
+            <span class="dashboard-status-label${item.status === 'draft' ? ' is-draft' : ''}">${getStatusLabel(item.status)}</span>
+          </li>`).join('')
       : '<li class="small">최근 수정 글이 없습니다.</li>';
   }
 
@@ -94,22 +136,17 @@ async function initDashboard() {
       totalEl.textContent = formatNumber(counts.total || 0);
       publishedEl.textContent = formatNumber(counts.published || 0);
       draftEl.textContent = formatNumber(counts.draft || 0);
+      renderLatestList(Array.isArray(data.latest) ? data.latest : []);
       renderPopularList(Array.isArray(data.popular) ? data.popular : []);
       renderRecentList(Array.isArray(data.recent) ? data.recent : []);
-      renderIndexSidebarAdToggle(Boolean(data.settings?.index_sidebar_ad_enabled));
-      indexSidebarAdEnabled = Boolean(data.settings?.index_sidebar_ad_enabled);
     } catch (err) {
       console.error(err);
       totalEl.textContent = '-';
       publishedEl.textContent = '-';
       draftEl.textContent = '-';
-      popularListEl.innerHTML = '<li class="small">글 목록 정보를 불러오지 못했습니다.</li>';
-      recentListEl.innerHTML = '<li class="small">최근 글을 불러오지 못했습니다.</li>';
-      if (indexSidebarAdStatusEl) indexSidebarAdStatusEl.textContent = '설정 확인 실패';
-      if (indexSidebarAdToggleEl) {
-        indexSidebarAdToggleEl.disabled = true;
-        indexSidebarAdToggleEl.textContent = '설정 확인 실패';
-      }
+      latestListEl.innerHTML = '<li class="dashboard-post-list__empty small">최근 작성글을 불러오지 못했습니다.</li>';
+      popularListEl.innerHTML = '<li class="dashboard-post-list__empty small">인기글을 불러오지 못했습니다.</li>';
+      recentListEl.innerHTML = '<li class="small">최근 수정 글을 불러오지 못했습니다.</li>';
     }
   }
 
@@ -151,30 +188,8 @@ async function initDashboard() {
     });
   });
 
-  let indexSidebarAdEnabled = false;
+  activateTab('latest');
   await refreshDashboard();
-
-  indexSidebarAdToggleEl?.addEventListener('click', async () => {
-    const nextValue = !indexSidebarAdEnabled;
-    indexSidebarAdToggleEl.disabled = true;
-    indexSidebarAdToggleEl.textContent = '저장 중…';
-    try {
-      const res = await fetch('/api/site-settings', {
-        method: 'PUT',
-        credentials: 'same-origin',
-        cache: 'no-store',
-        headers: { 'content-type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ index_sidebar_ad_enabled: nextValue })
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json?.message || `저장 실패 (${res.status})`);
-      indexSidebarAdEnabled = Boolean(json?.settings?.index_sidebar_ad_enabled);
-      renderIndexSidebarAdToggle(indexSidebarAdEnabled);
-    } catch (err) {
-      alert(err?.message || '광고 표시 설정 저장 중 오류가 발생했습니다.');
-      renderIndexSidebarAdToggle(indexSidebarAdEnabled);
-    }
-  });
 
   window.addEventListener('pageshow', refreshDashboard);
   window.addEventListener('focus', refreshDashboard);

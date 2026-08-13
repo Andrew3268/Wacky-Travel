@@ -428,7 +428,7 @@ export async function onRequestGet({ env, request }) {
   const baseBind = [...binds];
   const statusCountWhereSql = admin ? "" : whereSql;
   const statusCountBinds = admin ? [] : [...binds];
-  const [itemsRows, countRow, categoryRows, popularRows, statusRows, settingsRows] = await Promise.all([
+  const [itemsRows, countRow, categoryRows, popularRows, statusRows] = await Promise.all([
     loadPostListItems(env.TRAVEL_DB, itemsSql, [...baseBind, perPage, offset]),
     env.TRAVEL_DB.prepare(countSql).bind(...binds).first(),
     env.TRAVEL_DB.prepare(`
@@ -451,8 +451,7 @@ export async function onRequestGet({ env, request }) {
       FROM posts
       ${statusCountWhereSql}
       GROUP BY status
-    `).bind(...statusCountBinds).all(),
-    env.TRAVEL_DB.prepare(`SELECT key, value FROM site_settings WHERE key = 'index_sidebar_ad_enabled'`).all()
+    `).bind(...statusCountBinds).all()
   ]);
 
   const total = Number(countRow?.total || 0);
@@ -484,9 +483,6 @@ export async function onRequestGet({ env, request }) {
       next_page: page < totalPages ? page + 1 : null
     },
     sidebar: {
-      settings: {
-        index_sidebar_ad_enabled: (settingsRows.results || []).some((row) => row.key === "index_sidebar_ad_enabled" && String(row.value) === "1")
-      },
       counts: {
         total,
         published: statusMap.get("published") || 0,

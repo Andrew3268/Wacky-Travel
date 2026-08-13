@@ -1,21 +1,6 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 
 
-async function ensureSiteSettings(db) {
-  await db.prepare(`
-    CREATE TABLE IF NOT EXISTS site_settings (
-      key TEXT PRIMARY KEY,
-      value TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    )
-  `).run();
-
-  await db.prepare(`
-    INSERT OR IGNORE INTO site_settings (key, value, updated_at)
-    VALUES ('index_sidebar_ad_enabled', '0', ?)
-  `).bind(new Date().toISOString()).run();
-}
-
 export async function onRequestGet({ env, request }) {
   const admin = await requireAdmin(env, request);
   if (!admin) {
@@ -25,8 +10,7 @@ export async function onRequestGet({ env, request }) {
     });
   }
 
-  await ensureSiteSettings(env.TRAVEL_DB);
-  const [countsRow, statusRows, popularRows, recentRows, settingsRows] = await Promise.all([
+  const [countsRow, statusRows, popularRows, latestRows, recentRows] = await Promise.all([
     env.TRAVEL_DB.prepare(`
       SELECT COUNT(*) AS total
       FROM posts
@@ -46,10 +30,15 @@ export async function onRequestGet({ env, request }) {
     env.TRAVEL_DB.prepare(`
       SELECT slug, title, status, updated_at, published_at
       FROM posts
+      ORDER BY published_at DESC, updated_at DESC
+      LIMIT 10
+    `).all(),
+    env.TRAVEL_DB.prepare(`
+      SELECT slug, title, status, updated_at, published_at
+      FROM posts
       ORDER BY updated_at DESC, published_at DESC
       LIMIT 5
-    `).all(),
-    env.TRAVEL_DB.prepare(`SELECT key, value FROM site_settings WHERE key = 'index_sidebar_ad_enabled'`).all()
+    `).all()
   ]);
 
   const statusMap = new Map((statusRows?.results || []).map((row) => [
@@ -60,9 +49,6 @@ export async function onRequestGet({ env, request }) {
   return okJson({
     ok: true,
     generated_at: new Date().toISOString(),
-    settings: {
-      index_sidebar_ad_enabled: (settingsRows.results || []).some((row) => row.key === "index_sidebar_ad_enabled" && String(row.value) === "1")
-    },
     counts: {
       total: Number(countsRow?.total || 0),
       published: statusMap.get("published") || 0,
@@ -72,6 +58,13 @@ export async function onRequestGet({ env, request }) {
       slug: row.slug,
       title: row.title,
       view_count: Number(row.view_count || 0),
+      updated_at: row.updated_at,
+      published_at: row.published_at
+    })),
+    latest: (latestRows.results || []).map((row) => ({
+      slug: row.slug,
+      title: row.title,
+      status: String(row.status || "published").trim().toLowerCase(),
       updated_at: row.updated_at,
       published_at: row.published_at
     })),

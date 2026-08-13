@@ -715,7 +715,6 @@ function buildPostsHeroNav(categories = []) {
   const postsCategoriesCloseEl = $('#postsCategoriesClose');
   const postsPopularEl = $('#postsPopular');
   const mobileSiteCategoryBarEl = $('#mobileSiteCategoryBar');
-  const indexSidebarAdEl = document.querySelector('[data-index-sidebar-ad]');
 
   const postsHomeHeroEl = $('#postsHomeHero');
 
@@ -869,13 +868,6 @@ function buildPostsHeroNav(categories = []) {
     const counts = sidebarData.counts || {};
     const categories = Array.isArray(sidebarData.categories) ? sidebarData.categories : [];
     const popular = Array.isArray(sidebarData.popular) ? sidebarData.popular : [];
-    const settings = sidebarData.settings || {};
-    const showIndexSidebarAd = Boolean(settings.index_sidebar_ad_enabled);
-
-    if (indexSidebarAdEl) {
-      indexSidebarAdEl.hidden = !showIndexSidebarAd;
-    }
-
     if (postsSummaryEl) {
       postsSummaryEl.innerHTML = [
         formatCountLabel(Number(counts.total || 0), safeStatus === 'draft' ? '초안 글' : '전체 글'),

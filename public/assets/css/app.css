@@ -698,14 +698,6 @@ select:focus{
   color: #174C78;
   border-color: rgba(96,165,250,.22);
 }
-.posts-sidebar__ad-shell{
-  padding: 18px;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  background: #fff;
-  min-height: 300px;
-  contain: layout paint;
-}
 .posts-sidebar__popular-shell{
   padding: 18px;
   border: 1px solid var(--border);
@@ -5484,14 +5476,14 @@ body.post-page-body .post-affiliate-card::before{
 ========================================================= */
 .admin-items-shell,
 .admin-hub-shell{
-  --admin-bg: #f8fbff;
+  --admin-bg: #ffffff;
   --admin-card: #ffffff;
-  --admin-line: rgba(16, 42, 69, 0.09);
-  --admin-soft-line: rgba(37, 99, 235, 0.11);
-  --admin-muted: #667085;
-  --admin-title: #102A45;
-  --admin-blue: #2563EB;
-  --admin-blue-dark: #174C78;
+  --admin-line: rgba(17, 17, 17, 0.10);
+  --admin-soft-line: rgba(17, 17, 17, 0.12);
+  --admin-muted: #737373;
+  --admin-title: #111111;
+  --admin-blue: #111111;
+  --admin-blue-dark: #111111;
   max-width: 1180px;
   padding-top: clamp(18px, 3vw, 32px) !important;
   padding-bottom: clamp(48px, 7vw, 84px) !important;
@@ -5510,9 +5502,9 @@ body.post-page-body .post-affiliate-card::before{
   overflow: hidden;
   padding: clamp(26px, 4vw, 42px) !important;
   background:
-    radial-gradient(circle at 86% 14%, rgba(125, 211, 252, 0.20), transparent 26rem),
-    linear-gradient(135deg, #ffffff 0%, #fbfdff 48%, #eef7ff 100%) !important;
-  border-color: rgba(37, 99, 235, 0.10) !important;
+    radial-gradient(circle at 86% 14%, rgba(17, 17, 17, 0.04), transparent 26rem),
+    linear-gradient(135deg, #ffffff 0%, #fafafa 48%, #f3f3f3 100%) !important;
+  border-color: rgba(17, 17, 17, 0.10) !important;
 }
 
 .admin-items-hero::after,
@@ -5524,7 +5516,7 @@ body.post-page-body .post-affiliate-card::before{
   width: 260px;
   height: 260px;
   border-radius: 999px;
-  background: rgba(37, 99, 235, 0.065);
+  background: rgba(17, 17, 17, 0.065);
   pointer-events: none;
 }
 
@@ -5542,9 +5534,9 @@ body.post-page-body .post-affiliate-card::before{
   width: fit-content;
   padding: 7px 12px;
   border-radius: 999px;
-  background: #eef7ff !important;
+  background: #f3f3f3 !important;
   color: var(--admin-blue-dark) !important;
-  border: 1px solid rgba(37, 99, 235, 0.14) !important;
+  border: 1px solid rgba(17, 17, 17, 0.14) !important;
   font-size: 12px;
   letter-spacing: .02em;
 }
@@ -5589,7 +5581,7 @@ body.post-page-body .post-affiliate-card::before{
   align-content: center;
   gap: 8px;
   padding: 20px;
-  border: 1px solid rgba(37, 99, 235, 0.11);
+  border: 1px solid rgba(17, 17, 17, 0.11);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.76);
 }
@@ -5626,9 +5618,9 @@ body.post-page-body .post-affiliate-card::before{
   display: grid;
   gap: 9px;
   padding: 20px;
-  border: 1px solid rgba(37, 99, 235, 0.10);
+  border: 1px solid rgba(17, 17, 17, 0.10);
   border-radius: 24px;
-  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  background: linear-gradient(180deg, #ffffff, #fafafa);
 }
 
 .admin-page-guide-card span{
@@ -5637,7 +5629,7 @@ body.post-page-body .post-affiliate-card::before{
   width: 36px;
   height: 36px;
   border-radius: 999px;
-  background: #eef7ff;
+  background: #f3f3f3;
   color: var(--admin-blue-dark);
   font-size: 12px;
   font-weight: 500;
@@ -5683,7 +5675,7 @@ body.post-page-body .post-affiliate-card::before{
 
 .admin-items-nav a:first-child,
 .admin-hub-nav a:first-child{
-  background: #174c78 !important;
+  background: #111111 !important;
   color: #ffffff !important;
 }
 
@@ -5692,9 +5684,9 @@ body.post-page-body .post-affiliate-card::before{
   margin: 18px 0 !important;
   min-height: 0 !important;
   padding: 13px 16px !important;
-  border: 1px solid rgba(37, 99, 235, 0.10) !important;
+  border: 1px solid rgba(17, 17, 17, 0.10) !important;
   border-radius: 18px !important;
-  background: #f8fbff !important;
+  background: #f7f7f7 !important;
   color: #475467 !important;
 }
 
@@ -5771,9 +5763,9 @@ body.post-page-body .post-affiliate-card::before{
 .category-manager__create,
 .admin-hub-edit-section{
   padding: 18px;
-  border: 1px solid rgba(37, 99, 235, 0.09);
+  border: 1px solid rgba(17, 17, 17, 0.09);
   border-radius: 22px;
-  background: #f8fbff;
+  background: #f7f7f7;
 }
 
 .category-manager__create-row,
@@ -5826,14 +5818,14 @@ body.post-page-body .post-affiliate-card::before{
 }
 
 .admin-country-tab.is-active{
-  border-color: rgba(37, 99, 235, 0.35);
-  background: #eff6ff;
-  color: #174c78;
+  border-color: rgba(17, 17, 17, 0.35);
+  background: #f5f5f5;
+  color: #111111;
 }
 
 .admin-country-tab.is-active span{
   background: #dbeafe;
-  color: #174c78;
+  color: #111111;
 }
 
 .category-manager__list,
@@ -5895,9 +5887,9 @@ body.post-page-body .post-affiliate-card::before{
 .admin-items-future-card{
   min-height: 128px;
   padding: 20px !important;
-  border: 1px solid rgba(37, 99, 235, 0.10) !important;
+  border: 1px solid rgba(17, 17, 17, 0.10) !important;
   border-radius: 22px !important;
-  background: linear-gradient(180deg, #ffffff, #f8fbff) !important;
+  background: linear-gradient(180deg, #ffffff, #f7f7f7) !important;
 }
 
 .admin-items-future-card strong{
@@ -5913,9 +5905,9 @@ body.post-page-body .post-affiliate-card::before{
 .admin-hub-featured-head,
 .admin-hub-toolbar{
   padding: 18px;
-  border: 1px solid rgba(37, 99, 235, 0.09);
+  border: 1px solid rgba(17, 17, 17, 0.09);
   border-radius: 22px;
-  background: #f8fbff;
+  background: #f7f7f7;
 }
 
 .admin-hub-featured-head .home-destination-count{
@@ -5925,7 +5917,7 @@ body.post-page-body .post-affiliate-card::before{
   min-height: 42px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: #eef7ff;
+  background: #f3f3f3;
   color: var(--admin-blue-dark) !important;
   font-weight: 500;
 }
@@ -5934,7 +5926,7 @@ body.post-page-body .post-affiliate-card::before{
   max-height: 430px !important;
   border: 1px solid rgba(16, 42, 69, 0.08);
   border-radius: 22px;
-  background: #fbfdff;
+  background: #fafafa;
 }
 
 .home-destination-option{
@@ -5946,7 +5938,7 @@ body.post-page-body .post-affiliate-card::before{
 }
 
 .home-destination-option.is-selected{
-  border-color: rgba(37, 99, 235, 0.28) !important;
+  border-color: rgba(17, 17, 17, 0.28) !important;
   background: #f5f9ff !important;
 }
 
@@ -5996,7 +5988,7 @@ body.post-page-body .post-affiliate-card::before{
 .admin-hub-city-card__badges i{
   border: 0 !important;
   border-radius: 999px !important;
-  background: #eef7ff !important;
+  background: #f3f3f3 !important;
   color: var(--admin-blue-dark) !important;
   font-size: 11px !important;
   font-weight: 500;
@@ -6021,8 +6013,8 @@ body.post-page-body .post-affiliate-card::before{
 .category-manager__empty{
   padding: 20px !important;
   border-radius: 20px !important;
-  background: #f8fbff !important;
-  border: 1px dashed rgba(37, 99, 235, 0.16) !important;
+  background: #f7f7f7 !important;
+  border: 1px dashed rgba(17, 17, 17, 0.16) !important;
   color: var(--admin-muted) !important;
   line-height: 1.65;
 }
@@ -6036,7 +6028,7 @@ body.post-page-body .post-affiliate-card::before{
   padding: 6px !important;
   border: 1px solid rgba(16, 42, 69, 0.08);
   border-radius: 24px;
-  background: #fbfdff;
+  background: #fafafa;
 }
 
 .admin-hub-city-card{
@@ -6045,8 +6037,8 @@ body.post-page-body .post-affiliate-card::before{
 }
 
 .admin-hub-city-card.is-selected{
-  border-color: rgba(37, 99, 235, 0.36) !important;
-  background: #eef7ff !important;
+  border-color: rgba(17, 17, 17, 0.36) !important;
+  background: #f3f3f3 !important;
 }
 
 .admin-hub-city-card__main{
@@ -6065,7 +6057,7 @@ body.post-page-body .post-affiliate-card::before{
 .admin-hub-edit-form{
   gap: 20px !important;
   padding: clamp(20px, 3vw, 28px) !important;
-  border: 1px solid rgba(37, 99, 235, 0.11) !important;
+  border: 1px solid rgba(17, 17, 17, 0.11) !important;
   border-radius: 26px !important;
   background: #ffffff !important;
 }
@@ -6111,7 +6103,7 @@ body.post-page-body .post-affiliate-card::before{
 
 .admin-items-shell .btn--brand,
 .admin-hub-shell .btn--brand{
-  background: linear-gradient(135deg, #174C78 0%, #2563EB 100%) !important;
+  background: linear-gradient(135deg, #111111 0%, #111111 100%) !important;
   border-color: transparent !important;
 }
 
@@ -6207,8 +6199,8 @@ body.post-page-body .post-affiliate-card::before{
 }
 
 .admin-items-status{
-  background: #f8fbff !important;
-  border-color: rgba(37, 99, 235, 0.12) !important;
+  background: #f7f7f7 !important;
+  border-color: rgba(17, 17, 17, 0.12) !important;
   color: #344054 !important;
 }
 
@@ -6246,8 +6238,8 @@ body.post-page-body .post-affiliate-card::before{
 }
 
 .admin-hub-status{
-  background: #f8fbff !important;
-  border-color: rgba(37, 99, 235, 0.12) !important;
+  background: #f7f7f7 !important;
+  border-color: rgba(17, 17, 17, 0.12) !important;
   color: #344054 !important;
 }
 
@@ -6309,8 +6301,8 @@ body.post-page-body .post-affiliate-card::before{
 }
 
 .admin-hub-status.is-info{
-  background: #eff6ff !important;
-  border-color: rgba(37, 99, 235, 0.20) !important;
+  background: #f5f5f5 !important;
+  border-color: rgba(17, 17, 17, 0.20) !important;
   color: #1d4ed8 !important;
 }
 
@@ -6428,7 +6420,7 @@ body.post-page-body .post-affiliate-card::before{
   width: 100%;
   padding: 10px 12px;
   border-radius: 16px;
-  background: #f8fbff;
+  background: #f7f7f7;
   color: #667085;
 }
 
@@ -6490,13 +6482,13 @@ b{
 .admin-items-overview__stat:hover,
 .admin-items-overview__stat:focus-visible{
   transform: translateY(-2px);
-  border-color: rgba(37, 99, 235, 0.28);
+  border-color: rgba(17, 17, 17, 0.28);
   background: #ffffff;
   box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
 }
 
 .admin-items-overview__stat:focus-visible{
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), 0 18px 38px rgba(15, 23, 42, 0.10);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.14), 0 18px 38px rgba(15, 23, 42, 0.10);
 }
 
 .admin-items-overview__stat:active{
@@ -6508,7 +6500,7 @@ b{
   align-items: center;
   width: fit-content;
   margin-top: 2px;
-  color: #2563eb;
+  color: #111111;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -6531,12 +6523,12 @@ b{
 
 @keyframes adminItemsPanelPulse {
   0%{
-    border-color: rgba(37, 99, 235, 0.46);
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.22), 0 20px 48px rgba(15, 23, 42, 0.08);
+    border-color: rgba(17, 17, 17, 0.46);
+    box-shadow: 0 0 0 0 rgba(17, 17, 17, 0.22), 0 20px 48px rgba(15, 23, 42, 0.08);
   }
   45%{
-    border-color: rgba(37, 99, 235, 0.34);
-    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.10), 0 20px 48px rgba(15, 23, 42, 0.08);
+    border-color: rgba(17, 17, 17, 0.34);
+    box-shadow: 0 0 0 8px rgba(17, 17, 17, 0.10), 0 20px 48px rgba(15, 23, 42, 0.08);
   }
   100%{
     border-color: rgba(16, 42, 69, 0.08);
@@ -6556,7 +6548,7 @@ b{
 
   .admin-items-panel.is-scroll-highlighted{
     animation: none;
-    border-color: rgba(37, 99, 235, 0.36);
+    border-color: rgba(17, 17, 17, 0.36);
   }
 }
 
@@ -6569,7 +6561,7 @@ b{
   padding: 10px;
   border: 1px solid rgba(16, 42, 69, 0.08);
   border-radius: 20px;
-  background: #f8fbff;
+  background: #f7f7f7;
 }
 
 .admin-items-section-nav__link{
@@ -6578,7 +6570,7 @@ b{
   justify-content: center;
   min-height: 36px;
   padding: 8px 12px;
-  border: 1px solid rgba(37, 99, 235, 0.10);
+  border: 1px solid rgba(17, 17, 17, 0.10);
   border-radius: 999px;
   background: #ffffff;
   color: #344054;
@@ -6591,8 +6583,8 @@ b{
 
 .admin-items-section-nav__link:hover,
 .admin-items-section-nav__link:focus-visible{
-  border-color: rgba(37, 99, 235, 0.28);
-  color: #174c78;
+  border-color: rgba(17, 17, 17, 0.28);
+  color: #111111;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
   transform: translateY(-1px);
   outline: none;
@@ -6601,7 +6593,7 @@ b{
 .admin-items-section-nav__link::after{
   content: "↓";
   margin-left: 6px;
-  color: #2563eb;
+  color: #111111;
   font-size: 12px;
   line-height: 1;
 }
@@ -6642,14 +6634,14 @@ a.dashboard-stat.dashboard-stat--link{
 a.dashboard-stat.dashboard-stat--link:hover,
 a.dashboard-stat.dashboard-stat--link:focus-visible{
   transform: translateY(-2px);
-  border-color: rgba(37, 99, 235, 0.28);
+  border-color: rgba(17, 17, 17, 0.28);
   background: #fff;
   box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
 }
 
 a.dashboard-stat.dashboard-stat--link:focus-visible{
   outline: none;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), 0 18px 38px rgba(15, 23, 42, 0.10);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.14), 0 18px 38px rgba(15, 23, 42, 0.10);
 }
 
 a.dashboard-stat.dashboard-stat--link:active{
@@ -6661,7 +6653,7 @@ a.dashboard-stat.dashboard-stat--link:active{
   align-items: center;
   width: fit-content;
   margin-top: 8px;
-  color: #2563eb;
+  color: #111111;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -6683,9 +6675,9 @@ a.dashboard-stat.dashboard-stat--link:active{
 }
 
 .admin-post-status-tab.is-active{
-  border-color: rgba(37, 99, 235, 0.38);
-  background: linear-gradient(180deg,#fff 0%,#eff6ff 100%);
-  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.10);
+  border-color: rgba(17, 17, 17, 0.38);
+  background: linear-gradient(180deg,#fff 0%,#f5f5f5 100%);
+  box-shadow: 0 14px 34px rgba(17, 17, 17, 0.10);
 }
 
 .admin-post-list-panel__head{
@@ -6710,8 +6702,8 @@ a.dashboard-stat.dashboard-stat--link:active{
 }
 
 .admin-post-list-search:focus{
-  border-color: rgba(37, 99, 235, 0.45);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+  border-color: rgba(17, 17, 17, 0.45);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.10);
   outline: none;
 }
 
@@ -6762,7 +6754,7 @@ a.dashboard-stat.dashboard-stat--link:active{
 
 .admin-post-list-title:hover,
 .admin-post-list-title:focus-visible{
-  color: #2563eb;
+  color: #111111;
   text-decoration: underline;
   text-underline-offset: 3px;
 }

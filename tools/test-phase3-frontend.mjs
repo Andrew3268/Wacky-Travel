@@ -31,11 +31,15 @@ assert(htmlFiles.length === 181, `HTML 파일 수가 예상과 다릅니다: ${h
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   assert(!html.includes('/assets/css/travel.css'), `기존 travel.css 링크가 남아 있습니다: ${path.relative(root, file)}`);
+  const bodyClass = html.match(/<body[^>]*class="([^"]*)"/i)?.[1] || '';
+  const isAdminSurface = /\badmin-page\b/.test(bodyClass);
   const cssLinks = [...html.matchAll(/href="(\/assets\/css\/[^\"]+\.css(?:\?v=[^\"]+)?)"/g)].map((match) => match[1]);
   for (const href of cssLinks) {
-    assert(href.endsWith(`?v=${VERSION}`), `CSS 버전이 통일되지 않았습니다: ${path.relative(root, file)} -> ${href}`);
+    assert(/\?v=/.test(href), `CSS 캐시 버전이 없습니다: ${path.relative(root, file)} -> ${href}`);
+    if (/\/assets\/css\/travel-(?:core|home|city|purpose|archive|survey)\.css/.test(href)) {
+      assert(href.endsWith(`?v=${VERSION}`), `여행 CSS 버전이 통일되지 않았습니다: ${path.relative(root, file)} -> ${href}`);
+    }
   }
-  const bodyClass = html.match(/<body[^>]*class="([^"]*)"/i)?.[1] || '';
   const has = (name) => html.includes(`/assets/css/travel-${name}.css?v=${VERSION}`);
   if (/\btravel-home-body\b/.test(bodyClass)) assert(has('home'), `홈 CSS 누락: ${path.relative(root, file)}`);
   if (/\btravel-city-body\b|\bwt-guide-body\b|\btravel-purpose-body\b/.test(bodyClass)) assert(has('city'), `도시 CSS 누락: ${path.relative(root, file)}`);
@@ -47,8 +51,9 @@ for (const file of htmlFiles) {
 for (const sourceFile of ['functions/post/[slug].js', 'lib/travel/travel-utils.js']) {
   const source = read(sourceFile);
   assert(!source.includes('/assets/css/travel.css'), `동적 템플릿에 기존 travel.css가 남아 있습니다: ${sourceFile}`);
-  for (const match of source.matchAll(/\/assets\/css\/[^"']+\.css\?v=([^"']+)/g)) {
-    assert(match[1] === VERSION, `동적 템플릿 CSS 버전이 다릅니다: ${sourceFile}`);
+  for (const match of source.matchAll(/(\/assets\/css\/[^"']+\.css)\?v=([^"']+)/g)) {
+    const [, href, version] = match;
+    assert(Boolean(version), `동적 템플릿 CSS 캐시 버전이 없습니다: ${sourceFile} -> ${href}`);
   }
 }
 

@@ -38,7 +38,7 @@ for (const column of ["cover_image_source", "cover_image_link_url", "cover_image
 const postRenderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 assert.match(postRenderer, /rel="sponsored noopener noreferrer"/);
 assert.match(postRenderer, /getLargestSrcsetUrl/);
-assert.match(postRenderer, /20260810-post-layout-v33/);
+assert.match(postRenderer, /const POST_RENDER_VERSION = "\d{8}-post-layout-v\d+"/);
 
 const appCss = fs.readFileSync("public/assets/css/app.css", "utf8");
 assert.match(

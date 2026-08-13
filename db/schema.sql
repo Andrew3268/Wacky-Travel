@@ -224,9 +224,6 @@ CREATE TABLE IF NOT EXISTS site_settings (
 );
 
 INSERT OR IGNORE INTO site_settings (key, value, updated_at)
-VALUES ('index_sidebar_ad_enabled', '0', datetime('now'));
-
-INSERT OR IGNORE INTO site_settings (key, value, updated_at)
 VALUES ('site_name', 'Be Stayable', datetime('now'));
 
 INSERT OR IGNORE INTO site_settings (key, value, updated_at)
