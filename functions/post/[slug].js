@@ -1573,14 +1573,12 @@ function footer(siteName) {
     <div class="wtpromo-footer__inner wtpromo-container">
       <div>
         <div class="wtpromo-footer-brand">${escapeHtml(siteName)}</div>
-        <p class="wtpromo-footer-copy">© 2026 ${escapeHtml(siteName)}<br />예약 전 가격, 취소 조건, 세금 포함 여부를 다시 확인하세요.</p>
+        <p class="wtpromo-footer-copy">© 2026 ${escapeHtml(siteName)}. All rights reserved.</p>
       </div>
       <nav class="wtpromo-footer-links" aria-label="하단 메뉴">
         <a href="/about/">소개</a>
-        <a href="/about/#editorial-policy">편집 원칙</a>
-<a href="/privacy-policy/">개인정보 처리방침</a>
+        <a href="/privacy-policy/">개인정보 처리방침</a>
         <a href="/destinations/">여행지</a>
-        <a href="/hotel-promotions/">호텔 프로모션</a>
         <a href="/search/">검색</a>
       </nav>
     </div>
