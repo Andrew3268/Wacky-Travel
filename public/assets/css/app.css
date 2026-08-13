@@ -8987,7 +8987,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-title-meta{
   gap: 0;
   margin: 0 0 11px;
   color: #666;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.015em;
@@ -9022,10 +9022,7 @@ body.post-page-body .post-hotel-title-meta__star{
 }
 
 body.post-page-body .post-hotel-feature-badges{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 16px 0 0;
+  display: none;
 }
 
 body.post-page-body--recommended-hotel-review .post-hotel-feature-row{
@@ -9268,10 +9265,6 @@ body.post-page-body--recommended-hotel-review .post-shell--guide-style .post-mag
   padding: 12px;
   border: 1px dashed var(--line, #dfe2e6);
   border-radius: 10px;
-}
-
-body.post-page-body .post-hotel-title-meta__item--pick{
-  font-weight: 700;
 }
 
 @media (max-width: 700px){

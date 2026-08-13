@@ -5,11 +5,11 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260812-post-layout-v34"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260813-post-layout-v37"/);
 assert.match(renderer, /import \{ normalizeContentType \} from "\.\.\/\.\.\/lib\/travel\/travel-settings\.js";/);
 assert.match(renderer, /const contentType = normalizeContentType\(row\.content_type \|\| ""\);/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
-assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{isRecommendedHotelReviewPost \? `<div class="post-hotel-feature-row">\$\{hotelFeatureBadgesHtml\}\$\{magazineAdminActionsHtml\}<\/div>` : ""\}\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
+assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{isRecommendedHotelReviewPost \? magazineAdminActionsHtml : ""\}\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
 assert.match(renderer, /class="post-author-profile__avatar"[^>]*>프로필<\/span>/);
 assert.match(renderer, /class="post-author-profile__body"/);
@@ -17,12 +17,12 @@ assert.match(renderer, /class="post-author-profile__name"[^>]*href="\/about\/"[^
 assert.match(renderer, /class="post-author-profile__meta"[^>]*>[\s\S]*?<time datetime="\$\{escapeHtml\(publishedIso \|\| ""\)\}">발행 \$\{escapeHtml\(publishedDate\)\}<\/time>[\s\S]*?post-author-profile__separator[\s\S]*?<time datetime="\$\{escapeHtml\(updatedIso \|\| ""\)\}">수정 \$\{escapeHtml\(updatedDate\)\}<\/time>/);
 
 const h1Index = renderer.indexOf('<h1 class="h1 post-title post-magazine-title"');
-const badgeIndex = renderer.indexOf('${isRecommendedHotelReviewPost ? `<div class="post-hotel-feature-row">${hotelFeatureBadgesHtml}${magazineAdminActionsHtml}</div>` : ""}', h1Index);
-const profileIndex = renderer.indexOf('${magazineAuthorProfileHtml}', badgeIndex);
+const adminActionsIndex = renderer.indexOf('${isRecommendedHotelReviewPost ? magazineAdminActionsHtml : ""}', h1Index);
+const profileIndex = renderer.indexOf('${magazineAuthorProfileHtml}', adminActionsIndex);
 const coverIndex = renderer.indexOf('${coverImageHtml}', profileIndex);
 assert.ok(
-  h1Index >= 0 && badgeIndex > h1Index && profileIndex > badgeIndex && coverIndex > profileIndex,
-  "H1 → hotel feature badges → author profile → cover order must be preserved"
+  h1Index >= 0 && adminActionsIndex > h1Index && profileIndex > adminActionsIndex && coverIndex > profileIndex,
+  "H1 → admin actions → author profile → cover order must be preserved"
 );
 
 
@@ -63,8 +63,13 @@ assert.match(renderer, /\$\{!isRecommendedHotelReviewPost \? magazineAdminAction
 assert.match(appCss, /post-hotel-feature-row\{[\s\S]*?justify-content: space-between;[\s\S]*?width: 100%;/);
 assert.match(appCss, /body\.post-page-body--hotel-intro \.post-hotel-title-meta,[\s\S]*?color: #666;/);
 assert.doesNotMatch(appCss, /post-hotel-title-meta[\s\S]{0,500}color: #666 !important;/);
+assert.match(appCss, /body\.post-page-body--hotel-intro \.post-hotel-title-meta,[\s\S]*?font-size: 16px;/);
+assert.match(appCss, /body\.post-page-body \.post-hotel-feature-badges\{[\s\S]*?display: none;/);
+assert.doesNotMatch(appCss, /body\.post-page-body \.post-hotel-title-meta__item--pick\{[^}]*font-weight:/);
+assert.doesNotMatch(renderer, /renderHotelFeatureBadges/);
+assert.doesNotMatch(renderer, /hotelFeatureBadgesHtml/);
 
-console.log("Post author profile check passed: H1 → hotel badges → author strip → cover, full-width breadcrumbs, 10px feature-badge padding.");
+console.log("Post author profile check passed: public hotel feature badges hidden, 16px hotel meta, pick weight override removed.");
 
 assert.match(renderer, /const authorName = "Be Stayable Editor";/);
 assert.match(renderer, /const authorUrl = `\$\{origin\}\/about\/`;/);

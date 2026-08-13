@@ -5,7 +5,7 @@ import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumn
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260812-post-layout-v35";
+const POST_RENDER_VERSION = "20260813-post-layout-v37";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -470,7 +470,6 @@ export async function onRequestGet(context) {
       ).trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
       const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData, row.hotel_pick_label) : "";
-      const hotelFeatureBadgesHtml = isHotelIntroPost ? renderHotelFeatureBadges(hotelHeroData) : "";
       const hotelKeyPointsHtml = isHotelIntroPost ? renderHotelKeyPoints(hotelHeroData) : "";
       const hotelPriceLink = isRecommendedHotelReviewPost
         ? String(hotelHeroData?.links?.find((item) => String(item?.provider || "") === "hero_price")?.affiliate_url || "").trim()
@@ -530,7 +529,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260812-frontend-v35" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260813-frontend-v37" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260810-frontend-v30" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
@@ -574,7 +573,7 @@ export async function onRequestGet(context) {
             <div class="post-magazine-head post-magazine-head--title">
               ${hotelTitleMetaHtml}
               <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
-              ${isRecommendedHotelReviewPost ? `<div class="post-hotel-feature-row">${hotelFeatureBadgesHtml}${magazineAdminActionsHtml}</div>` : ""}
+              ${isRecommendedHotelReviewPost ? magazineAdminActionsHtml : ""}
               ${magazineAuthorProfileHtml}
             </div>
             ${coverImageHtml}
@@ -582,7 +581,7 @@ export async function onRequestGet(context) {
             <div class="post-magazine-head post-magazine-head--details">
               ${isRecommendedHotelReviewPost
                 ? (heroSummaryHtml ? `<div class="post-magazine-desc post-magazine-lead">${heroSummaryHtml}</div>` : "")
-                : hotelFeatureBadgesHtml}
+                : ""}
               ${!isRecommendedHotelReviewPost && heroSummaryHtml ? `<div class="post-magazine-desc">${heroSummaryHtml}</div>` : ""}
               ${!isRecommendedHotelReviewPost ? magazineAdminActionsHtml : ""}
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
@@ -930,16 +929,6 @@ function renderHotelKeyPoints(hotelHeroData = null) {
   `;
 }
 
-function renderHotelFeatureBadges(hotelHeroData = null) {
-  const hotel = hotelHeroData?.hotel || null;
-  const badges = buildHeroBadges({}, hotel);
-  if (!badges.length) return "";
-  return `
-    <div class="post-hotel-feature-badges" aria-label="호텔 핵심 특징">
-      ${badges.map((badge) => `<span class="post-hotel-feature-badge">${escapeHtml(badge)}</span>`).join("")}
-    </div>
-  `;
-}
 
 function normalizeHotelGuestRatingLabel(value = "") {
   const raw = String(value || "").trim().replace(/^평점\s*/i, "");
@@ -1501,7 +1490,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260812-frontend-v35" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260813-frontend-v37" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 </head>
