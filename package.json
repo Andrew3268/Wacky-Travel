@@ -21,7 +21,7 @@
     "seo:audit": "node ./tools/seo-audit.mjs",
     "check:syntax": "node ./tools/syntax-check.mjs",
     "check:admin-ui": "node ./tools/test-admin-ui.mjs",
-    "check": "npm run build:purpose-pages && npm run check:purpose-page-template && npm run seo:normalize && npm run routes:functions && npm run seo:routes && npm run seo:audit && npm run check:sitemap-destination-roots && npm run check:index-inline && npm run check:static-destinations && npm run check:cover-image-source && npm run check:inline-agoda-images && npm run check:post-mobile-media && npm run check:city-admin-hero-button && npm run check:city-content-performance && npm run check:destination-content-api && npm run check:phase1-performance && npm run check:phase2-performance && npm run check:phase3-frontend && npm run check:style-hotel-editor && npm run check:post-author-profile && npm run check:travel-tip-post && npm run check:public-modified-date && npm run check:city-snapshot-controls && npm run check:draft-search-blocking && npm run check:edit-load-performance && npm run check:admin-ui && npm run check:syntax",
+    "check": "npm run build:purpose-pages && npm run check:purpose-page-template && npm run seo:normalize && npm run routes:functions && npm run seo:routes && npm run seo:audit && npm run check:sitemap-destination-roots && npm run check:index-inline && npm run check:static-destinations && npm run check:cover-image-source && npm run check:inline-agoda-images && npm run check:post-mobile-media && npm run check:city-admin-hero-button && npm run check:city-content-performance && npm run check:destination-content-api && npm run check:phase1-performance && npm run check:phase2-performance && npm run check:phase3-frontend && npm run check:style-hotel-editor && npm run check:post-author-profile && npm run check:travel-tip-post && npm run check:faq-markdown && npm run check:public-modified-date && npm run check:city-snapshot-controls && npm run check:draft-search-blocking && npm run check:edit-load-performance && npm run check:admin-ui && npm run check:syntax",
     "predeploy": "npm run check",
     "d1:migrate:recommendation-category-names": "wrangler d1 execute wacky-travel-db --file=./db/migrations/012_recommendation_category_names.sql",
     "d1:migrate:recommendation-category-names:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/012_recommendation_category_names.sql",
@@ -62,7 +62,8 @@
     "check:sitemap-destination-roots": "node ./tools/test-sitemap-destination-roots.mjs",
     "check:draft-search-blocking": "node ./tools/test-draft-search-blocking.mjs",
     "check:edit-load-performance": "node ./tools/test-edit-load-performance.mjs",
-    "check:travel-tip-post": "node ./tools/test-travel-tip-post.mjs"
+    "check:travel-tip-post": "node ./tools/test-travel-tip-post.mjs",
+    "check:faq-markdown": "node ./tools/test-faq-markdown.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"

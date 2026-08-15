@@ -2259,33 +2259,45 @@ function parseFaqMarkdown(raw) {
   const items = [];
   let current = null;
 
-  for (const rawLine of lines) {
-    const line = rawLine.trimEnd();
-    const trimmed = line.trim();
-    const questionMatch = trimmed.match(/^(?:#{1,6}\s*)?(?:Q|질문)\s*[.:：]?\s*(.+)$/i);
-
-    if (questionMatch) {
-      if (current && current.question && current.answerLines.some((entry) => entry.trim())) {
-        items.push({
-          question: current.question.trim(),
-          answerMd: current.answerLines.join("\n").trim()
-        });
-      }
-      current = { question: questionMatch[1].trim(), answerLines: [] };
-      continue;
-    }
-
-    if (!current) continue;
-    current.answerLines.push(line);
-  }
-
-  if (current && current.question && current.answerLines.some((entry) => entry.trim())) {
+  const pushCurrent = () => {
+    if (!current || !current.question || !current.answerLines.some((entry) => entry.trim())) return;
     items.push({
       question: current.question.trim(),
       answerMd: current.answerLines.join("\n").trim()
     });
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trimEnd();
+    const trimmed = line.trim();
+    const prefixedQuestionMatch = trimmed.match(/^(?:#{1,6}\s*)?(?:Q|질문)\s*[.:：]?\s*(.+)$/i);
+    const markdownHeadingMatch = trimmed.match(/^#{1,6}\s+(.+)$/);
+    const questionText = prefixedQuestionMatch?.[1] || markdownHeadingMatch?.[1] || "";
+
+    if (questionText) {
+      pushCurrent();
+      current = {
+        question: String(questionText).replace(/^(?:Q|질문)\s*[.:：]?\s*/i, "").trim(),
+        answerLines: []
+      };
+      continue;
+    }
+
+    if (!current) continue;
+
+    // 기존 Q:/A: 입력 방식도 지원하되 A:/답변: 표식은 실제 답변에 노출하지 않는다.
+    if (!current.answerLines.some((entry) => entry.trim())) {
+      const answerPrefixMatch = line.match(/^\s*(?:A|답변)\s*[.:：]\s*(.*)$/i);
+      if (answerPrefixMatch) {
+        current.answerLines.push(answerPrefixMatch[1]);
+        continue;
+      }
+    }
+
+    current.answerLines.push(line);
   }
 
+  pushCurrent();
   return items.slice(0, 8);
 }
 

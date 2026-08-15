@@ -56,8 +56,8 @@ const settingsLoadIndex = editJs.indexOf("loadTravelSettings(\n      loadedDesti
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
 assert.match(editJs, /await Promise\.all\(\[/, "edit auxiliary data must load in parallel");
-assert.match(read("public/add.html"), /add\.js\?v=20260815-travel-tip-v11/);
-assert.match(read("public/edit.html"), /edit\.js\?v=20260815-travel-tip-v14/);
+assert.match(read("public/add.html"), /add\.js\?v=20260815-faq-v12/);
+assert.match(read("public/edit.html"), /edit\.js\?v=20260815-faq-v15/);
 for (const file of ["public/add.html", "public/edit.html"]) {
   const html = read(file);
   assert.match(html, /data-hotel-key-point-toggle="airport"/);
