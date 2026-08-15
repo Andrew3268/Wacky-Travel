@@ -1075,9 +1075,12 @@ body.admin-editor-page .preview-body--travel-tip .post-toc__body{
 }
 body.admin-editor-page .preview-body--travel-tip .post-toc__list,
 body.admin-editor-page .preview-body--travel-tip .post-toc__list--plain{
-  gap: 2px;
+  gap: 5px;
   margin: 0 !important;
   padding: 2px 0 0;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc ul{
+  padding-left: 0 !important;
 }
 body.admin-editor-page .preview-body--travel-tip .post-toc__item a{
   display: block;
