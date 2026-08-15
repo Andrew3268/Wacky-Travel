@@ -3485,10 +3485,10 @@ function renderPreview() {
           <h2>자주 묻는 질문</h2>
           <div class="preview-faq__list">
             ${faqItems.map((item) => `
-              <article class="preview-faq__item">
-                <h3>Q. ${escapeHtml(item.question)}</h3>
+              <details class="preview-faq__item">
+                <summary class="preview-faq__question"><span>${escapeHtml(item.question)}</span></summary>
                 <div class="preview-faq__answer">${markdownToHtml(item.answerMd)}</div>
-              </article>
+              </details>
             `).join("")}
           </div>
         </section>

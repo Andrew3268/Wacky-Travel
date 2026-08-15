@@ -45,10 +45,23 @@ for (const [file, nextMarker] of targets) {
 
 for (const html of ["public/add.html", "public/edit.html"]) {
   const source = read(html);
-  assert.match(source, /placeholder="### 질문을 입력하세요/);
-  assert.match(source, /권장 형식:[\s\S]*?### 질문[\s\S]*?Q:[\s\S]*?A:/);
+  assert.match(source, /placeholder="### 질문을 입력하세요[\s\S]*?질문에 대한 답변을 입력하세요\./);
+  assert.match(source, /입력 방법:[\s\S]*?<code>###<\/code>[\s\S]*?Q:[\s\S]*?A:/);
 }
 
-assert.match(read("functions/post/[slug].js"), /class="card post-faq__item"/);
+const postSource = read("functions/post/[slug].js");
+assert.match(postSource, /<details class="post-faq__item">/);
+assert.match(postSource, /<summary class="post-faq__question">/);
+assert.doesNotMatch(postSource, /<article class="card post-faq__item">/);
 
-console.log("FAQ markdown check passed: H3-style questions and legacy Q/A input both parse consistently in public render and editor previews.");
+const appCss = read("public/assets/css/app.css");
+assert.match(appCss, /body\.post-page-body \.post-faq > h2\{[\s\S]*?font-size: 30px;/);
+assert.match(appCss, /body\.post-page-body \.post-faq__question::after\{[\s\S]*?content: "\+";/);
+assert.match(appCss, /body\.post-page-body \.post-faq__item\[open\] > \.post-faq__question::after\{[\s\S]*?content: "−";/);
+
+for (const editor of [read("public/assets/js/add.js"), read("public/assets/js/edit.js")]) {
+  assert.match(editor, /<details class="preview-faq__item">/);
+  assert.match(editor, /<summary class="preview-faq__question">/);
+}
+
+console.log("FAQ markdown check passed: supported input formats parse consistently and public/editor FAQ output uses the minimal accordion UI.");
