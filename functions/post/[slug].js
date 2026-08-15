@@ -5,7 +5,7 @@ import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumn
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260815-post-layout-v38";
+const POST_RENDER_VERSION = "20260815-post-layout-v39";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -535,7 +535,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260815-travel-tip-v38" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260815-travel-tip-v39" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260810-frontend-v30" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
@@ -1496,7 +1496,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260815-travel-tip-v38" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260815-travel-tip-v39" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 </head>

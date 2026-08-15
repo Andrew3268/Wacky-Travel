@@ -47,6 +47,12 @@ assert.match(postRenderer, /travel_tip: "여행 꿀팁"/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-shell\.post-shell--guide-style\{\s*padding-top: 40px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc\{[\s\S]*?border-top: 1px solid #111;[\s\S]*?border-radius: 0;[\s\S]*?background: #fff;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__index\{\s*display: none !important;/);
+assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__summary\{[\s\S]*?padding: 17px 10px;/);
+assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__body\{[\s\S]*?padding: 6px 10px 12px;/);
+assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__item a\{[\s\S]*?padding: 8px 0;[\s\S]*?border: 0;/);
+assert.doesNotMatch(appCss, /body\.post-page-body--travel-tip \.post-toc__item a\{[^}]*background\s*:/);
+assert.doesNotMatch(appCss, /body\.post-page-body--travel-tip \.post-toc__item a:hover\{[^}]*background\s*:/);
+assert.match(appCss, /@media \(min-width: 768px\)\{[\s\S]*?body\.post-page-body--travel-tip \.post-shell--guide-style \.post-body \.post-content h2\{\s*font-size: 30px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.wt-toc-floating-button\{[\s\S]*?color: #111;/);
 
 for (const editor of [addJs, editJs]) {

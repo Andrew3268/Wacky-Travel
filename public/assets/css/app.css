@@ -9560,7 +9560,7 @@ body.post-page-body--travel-tip .post-toc{
 
 body.post-page-body--travel-tip .post-toc__summary{
   min-height: 58px;
-  padding: 17px 0;
+  padding: 17px 10px;
 }
 
 body.post-page-body--travel-tip .post-toc__title{
@@ -9602,7 +9602,7 @@ body.post-page-body--travel-tip .post-toc:not([open]) .post-toc__summary-meta::a
 }
 
 body.post-page-body--travel-tip .post-toc__body{
-  padding: 0 0 14px;
+  padding: 6px 10px 12px;
   border-top: 1px solid #ededed;
 }
 
@@ -9611,17 +9611,15 @@ body.post-page-body--travel-tip .post-toc__list--plain{
   display: grid;
   gap: 0;
   margin: 0 !important;
-  padding: 8px 0 0;
+  padding: 4px 0 0;
   list-style: none;
 }
 
 body.post-page-body--travel-tip .post-toc__item a{
   display: block;
-  padding: 12px 0;
+  padding: 8px 0;
   border: 0;
-  border-bottom: 1px solid #f0f0f0;
   border-radius: 0;
-  background: transparent;
   color: #222;
   font-size: 15px;
   font-weight: 400;
@@ -9629,20 +9627,21 @@ body.post-page-body--travel-tip .post-toc__item a{
   text-decoration: none;
 }
 
-body.post-page-body--travel-tip .post-toc__item:last-child a{
-  border-bottom: 0;
+body.post-page-body--travel-tip .post-toc__item a:hover{
+  color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
-body.post-page-body--travel-tip .post-toc__item a:hover,
 body.post-page-body--travel-tip .post-toc__item a:focus-visible{
-  padding-left: 8px;
-  background: #fafafa;
   color: #000;
-  outline: none;
+  outline: 1px solid #111;
+  outline-offset: 2px;
 }
 
 body.post-page-body--travel-tip .post-toc__item--h3{
-  margin-left: 18px !important;
+  margin-left: 14px !important;
   font-size: 14px;
 }
 
@@ -9665,6 +9664,12 @@ body.post-page-body--travel-tip .wt-toc-floating-button.is-open{
   color: #fff;
 }
 
+@media (min-width: 768px){
+  body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content h2{
+    font-size: 30px;
+  }
+}
+
 @media (max-width: 767px){
   body.post-page-body--travel-tip .post-shell.post-shell--guide-style{
     padding-top: 40px;
@@ -9677,11 +9682,15 @@ body.post-page-body--travel-tip .wt-toc-floating-button.is-open{
 
   body.post-page-body--travel-tip .post-toc__summary{
     min-height: 54px;
-    padding: 15px 0;
+    padding: 15px 10px;
+  }
+
+  body.post-page-body--travel-tip .post-toc__body{
+    padding: 5px 10px 10px;
   }
 
   body.post-page-body--travel-tip .post-toc__item a{
-    padding: 11px 0;
+    padding: 8px 0;
     font-size: 14.5px;
   }
 }
