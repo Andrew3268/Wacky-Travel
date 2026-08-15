@@ -5,7 +5,7 @@ const renderer = fs.readFileSync("functions/post/[slug].js", "utf8");
 const css = fs.readFileSync("public/assets/css/travel-core.css", "utf8");
 const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8");
 
-assert.match(renderer, /POST_RENDER_VERSION = "20260813-post-layout-v37"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260815-post-layout-v38"/);
 assert.match(renderer, /import \{ normalizeContentType \} from "\.\.\/\.\.\/lib\/travel\/travel-settings\.js";/);
 assert.match(renderer, /const contentType = normalizeContentType\(row\.content_type \|\| ""\);/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
@@ -26,9 +26,9 @@ assert.ok(
 );
 
 
-assert.match(renderer, /isRecommendedHotelReviewPost \? \(row\.summary \|\| ""\) : \(row\.summary \|\| descriptionText \|\| ""\)/);
+assert.match(renderer, /\(isRecommendedHotelReviewPost \|\| isTravelTipPost\)[\s\S]*?\? \(row\.summary \|\| ""\)[\s\S]*?: \(row\.summary \|\| descriptionText \|\| ""\)/);
 assert.match(renderer, /class="wt-toc-floating-button" data-toc-floating/);
-assert.match(renderer, /isTop5SeriesPost \? `<script defer src="\/assets\/js\/guide-toc-floating\.js\?v=20260807-top5-toc-v6"><\/script>` : ""/);
+assert.match(renderer, /shouldEnableFloatingToc \? `<script defer src="\/assets\/js\/guide-toc-floating\.js\?v=20260815-post-toc-v7"><\/script>` : ""/);
 
 const appCss = fs.readFileSync("public/assets/css/app.css", "utf8");
 const floatingTocJs = fs.readFileSync("public/assets/js/guide-toc-floating.js", "utf8");
@@ -57,7 +57,8 @@ assert.match(componentsCss, /body\.post-page-body \.breadcrumbs\.container\.brea
 assert.doesNotMatch(componentsCss, /breadcrumbs--post-page[\s\S]{0,240}calc\(100% - 32px\)/);
 assert.match(css, /p\.post-style-hotel-badges\{[\s\S]*?padding:10px 0;[\s\S]*?border-top:1px solid #ccc;[\s\S]*?border-bottom:1px solid #ccc;/);
 
-assert.match(renderer, /const floatingTocButtonHtml = isTop5SeriesPost/);
+assert.match(renderer, /const shouldEnableFloatingToc = isTop5SeriesPost \|\| isTravelTipPost;/);
+assert.match(renderer, /const floatingTocButtonHtml = shouldEnableFloatingToc/);
 assert.doesNotMatch(renderer, /const floatingTocButtonHtml = isRecommendedHotelReviewPost/);
 assert.match(renderer, /\$\{!isRecommendedHotelReviewPost \? magazineAdminActionsHtml : ""\}/);
 assert.match(appCss, /post-hotel-feature-row\{[\s\S]*?justify-content: space-between;[\s\S]*?width: 100%;/);

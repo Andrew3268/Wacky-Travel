@@ -5,7 +5,7 @@ import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumn
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260813-post-layout-v37";
+const POST_RENDER_VERSION = "20260815-post-layout-v38";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -228,6 +228,7 @@ export async function onRequestGet(context) {
       const isHotelIntroPost = contentType === "hotel_intro";
       const isRecommendedHotelReviewPost = isHotelIntroPost || categoryName === "추천 호텔 리뷰";
       const isTop5SeriesPost = contentType === "top5_series";
+      const isTravelTipPost = contentType === "travel_tip";
       const hotelHeroData = isHotelIntroPost ? await getHotelHeroData(env.TRAVEL_DB, row, slug) : null;
       const destinationData = row.destination_slug
         ? await env.TRAVEL_DB.prepare(`
@@ -248,6 +249,7 @@ export async function onRequestGet(context) {
         isRecommendedHotelReviewPost,
         useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
         styleHotelSeries: isTop5SeriesPost,
+        tocNumbered: !isTravelTipPost,
         origin
       });
       const faqSectionHtml = renderFaqSection(faqItems, origin);
@@ -466,7 +468,9 @@ export async function onRequestGet(context) {
         </div>
       `;
       const heroSummaryText = String(
-        isRecommendedHotelReviewPost ? (row.summary || "") : (row.summary || descriptionText || "")
+        (isRecommendedHotelReviewPost || isTravelTipPost)
+          ? (row.summary || "")
+          : (row.summary || descriptionText || "")
       ).trim();
       const heroSummaryHtml = heroSummaryText ? renderMarkdown(heroSummaryText, { origin }) : "";
       const hotelTitleMetaHtml = isHotelIntroPost ? renderHotelTitleMeta(hotelHeroData, row.hotel_pick_label) : "";
@@ -487,12 +491,14 @@ export async function onRequestGet(context) {
       const bodyClassName = [
         "post-page-body",
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
+        isTravelTipPost ? "post-page-body--travel-tip" : "",
         isHotelIntroPost ? "post-page-body--hotel-intro" : "",
         isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
         (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : "",
         safeHotelPriceLink ? "post-page-body--has-mobile-hotel-cta" : ""
       ].filter(Boolean).join(" ");
-      const floatingTocButtonHtml = isTop5SeriesPost
+      const shouldEnableFloatingToc = isTop5SeriesPost || isTravelTipPost;
+      const floatingTocButtonHtml = shouldEnableFloatingToc
         ? `<button aria-label="목차 메뉴 열기" class="wt-toc-floating-button" data-toc-floating type="button"><span aria-hidden="true" class="wt-toc-floating-icon"><span></span><span></span><span></span></span></button>`
         : "";
 
@@ -529,7 +535,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260813-frontend-v37" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260815-travel-tip-v38" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260810-frontend-v30" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
@@ -678,7 +684,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
-  ${isTop5SeriesPost ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260807-top5-toc-v6"></script>` : ""}
+  ${shouldEnableFloatingToc ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260815-post-toc-v7"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
 </body>
@@ -1028,7 +1034,7 @@ function formatContentTypeLabel(value = "") {
   const labels = {
     top5_series: "여행 스타일별 호텔 추천",
     hotel_intro: "호텔 소개",
-    travel_tip: "여행이 쉬워지는 작은 팁",
+    travel_tip: "여행 꿀팁",
     guide: "가이드"
   };
   return labels[raw] || raw;
@@ -1168,7 +1174,7 @@ function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0,
     if (block.type !== "toc") return block;
     return {
       ...block,
-      html: tocItems.length ? renderTocHtml(tocItems, block.mode || "h2") : ""
+      html: tocItems.length ? renderTocHtml(tocItems, block.mode || "h2", { numbered: options.tocNumbered !== false }) : ""
     };
   });
 
@@ -1490,7 +1496,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260813-frontend-v37" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260815-travel-tip-v38" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 </head>

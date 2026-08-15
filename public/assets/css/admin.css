@@ -1038,3 +1038,48 @@ body.admin-page .wtpromo-footer-copy{
     gap: 5px;
   }
 }
+
+
+/* Travel tip editor preview: mirror the public black-and-white TOC. */
+body.admin-editor-page .preview-body--travel-tip .post-toc--plain{
+  margin: 28px 0 36px;
+  border: 0;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #dcdcdc;
+  border-radius: 0;
+  background: #fff;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc__summary{
+  padding: 16px 0;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc__title,
+body.admin-editor-page .preview-body--travel-tip .post-toc__text{
+  color: #111;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc__summary-meta::after,
+body.admin-editor-page .preview-body--travel-tip .post-toc:not([open]) .post-toc__summary-meta::after{
+  min-width: 28px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #d8d8d8;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc__summary-meta::after{ content: "−"; }
+body.admin-editor-page .preview-body--travel-tip .post-toc:not([open]) .post-toc__summary-meta::after{ content: "+"; }
+body.admin-editor-page .preview-body--travel-tip .post-toc__body{
+  padding: 0 0 12px;
+  border-top: 1px solid #ededed;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc__item a{
+  display: block;
+  padding: 11px 0;
+  border-radius: 0;
+  border-bottom: 1px solid #f0f0f0;
+  background: transparent;
+  color: #222;
+}
+body.admin-editor-page .preview-body--travel-tip .post-toc__item:last-child a{ border-bottom: 0; }
+body.admin-editor-page .preview-body--travel-tip .post-toc__index{ display: none !important; }

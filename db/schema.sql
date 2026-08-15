@@ -257,7 +257,7 @@ INSERT OR IGNORE INTO content_types (slug, label, description, sort_order, is_ac
 VALUES
   ('top5_series', '여행 스타일별 호텔 추천', '여행 스타일에 맞춰 호텔을 비교해볼 수 있는 추천 콘텐츠', 1, 1, datetime('now'), datetime('now')),
   ('hotel_intro', '추천 호텔 리뷰', '호텔 하나를 차분히 살펴보는 소개 콘텐츠', 2, 1, datetime('now'), datetime('now')),
-  ('travel_tip', '여행이 쉬워지는 작은 팁', '여행 준비와 이동에 도움이 되는 작은 팁', 3, 1, datetime('now'), datetime('now'));
+  ('travel_tip', '여행 꿀팁', '여행 준비와 이동에 도움이 되는 작은 팁', 3, 1, datetime('now'), datetime('now'));
 
 INSERT OR IGNORE INTO countries (slug, name, sort_order, is_active, created_at, updated_at)
 VALUES

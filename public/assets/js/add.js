@@ -359,7 +359,7 @@ function shouldShowInarticleAdsInEditor() {
 const DEFAULT_TRAVEL_CONTENT_TYPES = [
   { slug: "top5_series", label: "여행 스타일별 호텔 추천", description: "여행 스타일에 맞춰 호텔을 비교해볼 수 있는 추천 콘텐츠" },
   { slug: "hotel_intro", label: "추천 호텔 리뷰", description: "호텔 하나를 차분히 살펴보는 소개 콘텐츠" },
-  { slug: "travel_tip", label: "여행이 쉬워지는 작은 팁", description: "여행 준비와 이동에 도움이 되는 작은 팁" }
+  { slug: "travel_tip", label: "여행 꿀팁", description: "여행 준비와 이동에 도움이 되는 작은 팁" }
 ];
 
 const TRAVEL_CONTENT_TYPE_ALIASES = {
@@ -1845,12 +1845,14 @@ function extractTocItems(md, mode = "h2") {
   return items;
 }
 
-function renderTocHtml(items, mode = "h2") {
+function renderTocHtml(items, mode = "h2", options = {}) {
   if (!items.length) return "";
   const includeH3 = mode === "h2,h3";
+  const numbered = options.numbered !== false;
   let h2Count = 0;
   let h3Count = 0;
   const numberedItems = items.map((item) => {
+    if (!numbered) return { ...item, indexLabel: "" };
     if (item.level === 2) {
       h2Count += 1;
       h3Count = 0;
@@ -1859,9 +1861,10 @@ function renderTocHtml(items, mode = "h2") {
     h3Count += 1;
     return { ...item, indexLabel: `${Math.max(h2Count, 1)}.${h3Count}` };
   });
+  const listTag = numbered ? "ol" : "ul";
 
   return `
-    <details class="post-toc">
+    <details class="post-toc${numbered ? "" : " post-toc--plain"}">
       <summary class="post-toc__summary">
         <span class="post-toc__summary-main">
           <span class="post-toc__title">목차</span>
@@ -1869,16 +1872,16 @@ function renderTocHtml(items, mode = "h2") {
         <span class="post-toc__summary-meta" aria-hidden="true"></span>
       </summary>
       <div class="post-toc__body">
-        <ol class="post-toc__list${includeH3 ? " post-toc__list--with-h3" : ""}">
+        <${listTag} class="post-toc__list${includeH3 ? " post-toc__list--with-h3" : ""}${numbered ? "" : " post-toc__list--plain"}">
           ${numberedItems.map((item) => `
             <li class="post-toc__item post-toc__item--h${item.level}">
               <a href="#${escapeHtml(item.id)}">
-                <span class="post-toc__index">${escapeHtml(item.indexLabel)}</span>
+                ${numbered ? `<span class="post-toc__index">${escapeHtml(item.indexLabel)}</span>` : ""}
                 <span class="post-toc__text">${escapeHtml(item.text)}</span>
               </a>
             </li>
           `).join("")}
-        </ol>
+        </${listTag}>
       </div>
     </details>
   `;
@@ -3235,7 +3238,7 @@ function markdownToHtml(md, options = {}) {
     if (tocMode) {
       closeLists();
       closeQuote();
-      pushContentBlock(tocItems.length ? renderTocHtml(tocItems, tocMode) : renderPreviewTocPlaceholder(tocMode));
+      pushContentBlock(tocItems.length ? renderTocHtml(tocItems, tocMode, { numbered: ($("content_type")?.value || "") !== "travel_tip" }) : renderPreviewTocPlaceholder(tocMode));
       continue;
     }
 
@@ -3464,7 +3467,7 @@ function renderPreview() {
         ${summary ? `<div class="preview-summary preview-summary--markdown">${markdownToHtml(summary)}</div>` : ""}
         ${tags.length ? `<div class="row">${tags.map((tag) => `<span class="tag-chip">#${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
       </header>
-      <section class="preview-body${($("content_type")?.value || "") === "top5_series" ? " preview-body--top5-series" : ""}">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta, hotelReviewSectionImageAnchor: ($("content_type")?.value || "") === "hotel_intro", styleHotelSeries: ($("content_type")?.value || "") === "top5_series" })}</section>
+      <section class="preview-body${($("content_type")?.value || "") === "top5_series" ? " preview-body--top5-series" : ""}${($("content_type")?.value || "") === "travel_tip" ? " preview-body--travel-tip" : ""}">${markdownToHtml(contentMd, { adPositions: previewAdPositions, showAds: showPreviewAds, inlineImages, affiliates: affiliateMeta, affiliateCta: affiliateCtaMeta, hotelReviewSectionImageAnchor: ($("content_type")?.value || "") === "hotel_intro", styleHotelSeries: ($("content_type")?.value || "") === "top5_series" })}</section>
       ${faqItems.length ? `
         <section class="preview-faq" aria-label="자주 묻는 질문">
           <h2>자주 묻는 질문</h2>

@@ -44,7 +44,7 @@
   function getContentTypeLabel(value) {
     const raw = String(value || '').trim();
     const map = {
-      travel_tip: '여행 팁',
+      travel_tip: '여행 꿀팁',
       hotel_review: '호텔 리뷰',
       hotel_recommendation: '호텔 추천',
       destination_guide: '여행 가이드',
