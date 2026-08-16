@@ -3713,6 +3713,7 @@ function renderPreview() {
   const coverData = collectCoverImageFormData();
   const coverImage = coverData.ok ? coverData.image : "";
   const coverImageAlt = $("cover_image_alt")?.value.trim() || "";
+  const affiliateDisclosure = $("affiliate_disclosure")?.value.trim() || "";
   const contentMd = stripLsiKeywordsTokenLines($("content_md").value || "");
   const inlineImages = collectInlineImageFormData();
   const affiliateMeta = collectAffiliateFormData();
@@ -3747,6 +3748,7 @@ function renderPreview() {
 
       <div class="preview-post-card">
       ${coverImage ? renderPreviewCoverImage(coverData, coverImageAlt || `${title} 대표 이미지`) : ""}
+      ${affiliateDisclosure ? `<p class="post-affiliate-disclosure preview-affiliate-disclosure">${escapeHtml(affiliateDisclosure)}</p>` : ""}
       ${isHotelIntroContentSelected() ? renderPreviewHotelKeyPoints(hotelHero.key_points || []) : ""}
       <header class="preview-article__head">
         <div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
@@ -3937,6 +3939,7 @@ async function load() {
   renderContentTypeOptions(loadedContentType);
   $("meta_description").value = item.meta_description || "";
   $("summary").value = item.summary || "";
+  if ($("affiliate_disclosure")) $("affiliate_disclosure").value = item.affiliate_disclosure || "";
   if (window.CoverImageSourceUtils) {
     window.CoverImageSourceUtils.apply(item);
   } else {
@@ -4072,6 +4075,7 @@ async function save() {
     cover_image_source: coverData.source,
     cover_image_link_url: coverData.link,
     cover_image_srcset: coverData.srcset,
+    affiliate_disclosure: $("affiliate_disclosure")?.value.trim() || "",
     focus_keyword: $("focusKeyword")?.value.trim() || "",
     longtail_keywords: parseKeywords($("longtailKeywords")?.value || ""),
     seo_keywords: {
@@ -4156,7 +4160,7 @@ const inlineImageFieldIds = [
   }).flat()
 ];
 
-["title", "meta_description", "summary", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "agoda_image_html", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelPickCustomText", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelPriceUrl", "heroKeyPointAttractions", "heroKeyPointTransport", "heroKeyPointDiningShopping", "heroKeyPointSignature", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
+["title", "meta_description", "summary", "affiliate_disclosure", "content_md", "faq_md", "focusKeyword", "longtailKeywords", "lsiKeywords", "cover_image", "agoda_image_html", "cover_image_alt", "tags", "content_type", "country", "destination_slug", "region_slug", "recommendationCategorySlug", "heroHotelPickCustomText", "heroHotelName", "heroHotelNameEn", "heroHotelLocationType", "heroHotelStarRating", "heroHotelPriceUrl", "heroKeyPointAttractions", "heroKeyPointTransport", "heroKeyPointDiningShopping", "heroKeyPointSignature", ...inlineImageFieldIds, "affiliateImageUrl1", "affiliateLinkUrl1", "affiliateProductName1", "affiliateCurrentPrice1", "affiliateSalePrice1", "affiliateDiscountRate1", "affiliateButtonText1", "affiliatePosition1", "affiliateImageUrl2", "affiliateLinkUrl2", "affiliateProductName2", "affiliateCurrentPrice2", "affiliateSalePrice2", "affiliateDiscountRate2", "affiliateButtonText2", "affiliatePosition2", "affiliateImageUrl3", "affiliateLinkUrl3", "affiliateProductName3", "affiliateCurrentPrice3", "affiliateSalePrice3", "affiliateDiscountRate3", "affiliateButtonText3", "affiliatePosition3", "affiliateImageUrl4", "affiliateLinkUrl4", "affiliateProductName4", "affiliateCurrentPrice4", "affiliateSalePrice4", "affiliateDiscountRate4", "affiliateButtonText4", "affiliatePosition4", "affiliateImageUrl5", "affiliateLinkUrl5", "affiliateProductName5", "affiliateCurrentPrice5", "affiliateSalePrice5", "affiliateDiscountRate5", "affiliateButtonText5", "affiliatePosition5", "affiliateCtaButtonText", "affiliateCtaLinkUrl", "affiliateCtaPosition"].forEach((id) => {
   const el = $(id);
   if (el) el.addEventListener("input", handleRealtimeChange);
   if (el && (el.tagName === "SELECT" || el.type === "checkbox")) el.addEventListener("change", handleRealtimeChange);

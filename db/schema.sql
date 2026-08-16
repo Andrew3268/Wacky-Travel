@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS posts (
   situation_tags_json TEXT DEFAULT '[]',
   hotel_slug TEXT DEFAULT '',
   affiliate_enabled INTEGER DEFAULT 0,
+  affiliate_disclosure TEXT DEFAULT '',
   search_intent TEXT DEFAULT '',
   published_at TEXT NOT NULL,
   content_modified_at TEXT DEFAULT '',

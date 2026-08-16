@@ -2,6 +2,7 @@ import { okJson, getAdminSession, requireAdmin } from "../_utils.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../lib/posts/cover-image.js";
 import { ensurePublicModifiedDateColumn, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
+import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../lib/posts/affiliate-disclosure.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -98,6 +99,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
+  await ensureAffiliateDisclosureColumn(db);
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -255,11 +257,15 @@ async function loadPostListItems(db, sql, binds = []) {
   try {
     return await db.prepare(sql).bind(...binds).all();
   } catch (error) {
-    if (!isMissingPublicModifiedColumnError(error)) throw error;
-    const fallbackSql = sql.replace(
-      "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
-      "published_at AS content_modified_at"
-    );
+    const message = String(error?.message || error || "");
+    const missingAffiliateDisclosure = /no such column:\s*(?:posts\.)?affiliate_disclosure/i.test(message);
+    if (!isMissingPublicModifiedColumnError(error) && !missingAffiliateDisclosure) throw error;
+    const fallbackSql = sql
+      .replace(
+        "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
+        "published_at AS content_modified_at"
+      )
+      .replace("      affiliate_disclosure,", "      '' AS affiliate_disclosure,");
     return db.prepare(fallbackSql).bind(...binds).all();
   }
 }
@@ -411,6 +417,7 @@ export async function onRequestGet({ env, request }) {
       (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
       (SELECT h.name_en FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name_en,
       affiliate_enabled,
+      affiliate_disclosure,
       search_intent,
       status,
       view_count,
@@ -543,6 +550,7 @@ export async function onRequestPost({ env, request }) {
   const situationTags = Array.isArray(body.situation_tags) ? [...new Set(body.situation_tags.map(slugifyValue).filter(Boolean))] : [];
   let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
+  const affiliateDisclosure = normalizeAffiliateDisclosure(body.affiliate_disclosure);
   const searchIntent = String(body.search_intent || "").trim();
 
   if (!slug || !title || !contentMd) {
@@ -587,12 +595,13 @@ export async function onRequestPost({ env, request }) {
       situation_tags_json,
       hotel_slug,
       affiliate_enabled,
+      affiliate_disclosure,
       search_intent,
       status,
       published_at,
       content_modified_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -622,6 +631,7 @@ export async function onRequestPost({ env, request }) {
       situation_tags_json = excluded.situation_tags_json,
       hotel_slug = excluded.hotel_slug,
       affiliate_enabled = excluded.affiliate_enabled,
+      affiliate_disclosure = excluded.affiliate_disclosure,
       search_intent = excluded.search_intent,
       status = excluded.status,
       published_at = excluded.published_at,
@@ -657,6 +667,7 @@ export async function onRequestPost({ env, request }) {
     JSON.stringify(situationTags),
     hotelSlug,
     affiliateEnabled,
+    affiliateDisclosure,
     searchIntent,
     status,
     now,

@@ -2,6 +2,7 @@ import { okJson, requireAdmin } from "../../_utils.js";
 import { normalizeContentType } from "../../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../../lib/posts/cover-image.js";
 import { ensurePublicModifiedDateColumn } from "../../../lib/posts/public-modified-date.js";
+import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../../lib/posts/affiliate-disclosure.js";
 
 
 function normalizeStatusValue(value = "published") {
@@ -238,6 +239,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
+  await ensureAffiliateDisclosureColumn(db);
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -424,7 +426,7 @@ async function getHotelHeroData(db, hotelSlug = "") {
 }
 
 function isMissingPostEditColumnError(error) {
-  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json)/i.test(String(error?.message || error || ""));
+  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json|affiliate_disclosure)/i.test(String(error?.message || error || ""));
 }
 
 async function selectPostForEdit(db, slug) {
@@ -459,6 +461,7 @@ async function selectPostForEdit(db, slug) {
       situation_tags_json,
       hotel_slug,
       affiliate_enabled,
+      affiliate_disclosure,
       search_intent,
       status,
       published_at,
@@ -564,6 +567,7 @@ export async function onRequestPut({ env, params, request }) {
   const situationTags = Array.isArray(body.situation_tags) ? [...new Set(body.situation_tags.map(slugifyValue).filter(Boolean))] : [];
   let hotelSlug = body.hotel_slug === undefined ? null : String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
+  const affiliateDisclosure = normalizeAffiliateDisclosure(body.affiliate_disclosure);
   const searchIntent = String(body.search_intent || "").trim();
 
   if (!title || !contentMd) {
@@ -670,6 +674,7 @@ export async function onRequestPut({ env, params, request }) {
       situation_tags_json = ?,
       hotel_slug = ?,
       affiliate_enabled = ?,
+      affiliate_disclosure = ?,
       search_intent = ?,
       status = ?,
       published_at = ?,
@@ -705,6 +710,7 @@ export async function onRequestPut({ env, params, request }) {
     JSON.stringify(situationTags),
     hotelSlug,
     affiliateEnabled,
+    affiliateDisclosure,
     searchIntent,
     status,
     publishedAt,

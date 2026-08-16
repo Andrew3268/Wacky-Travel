@@ -3,9 +3,10 @@ import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTo
 import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
+import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissingAffiliateDisclosureColumnError } from "../../lib/posts/affiliate-disclosure.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260816-post-layout-v43";
+const POST_RENDER_VERSION = "20260816-post-layout-v44";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -103,6 +104,7 @@ async function loadPostRow(db, slug, requestedStatus) {
       hotel_slug,
       hotel_pick_label,
       affiliate_enabled,
+      affiliate_disclosure,
       search_intent,
       published_at,
       COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at,
@@ -111,29 +113,32 @@ async function loadPostRow(db, slug, requestedStatus) {
     WHERE slug = ? AND status = ?
   `;
 
-  const fallbackDateSql = sql.replace(
-    "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
-    "published_at AS content_modified_at"
-  );
+  const fallbackLegacySql = sql
+    .replace(
+      "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
+      "published_at AS content_modified_at"
+    )
+    .replace("      affiliate_disclosure,", "      '' AS affiliate_disclosure,");
 
   try {
     return await db.prepare(sql).bind(slug, requestedStatus).first();
   } catch (error) {
     if (isMissingPublicModifiedColumnError(error)) {
-      return db.prepare(fallbackDateSql).bind(slug, requestedStatus).first();
+      return db.prepare(fallbackLegacySql).bind(slug, requestedStatus).first();
     }
-    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error)) throw error;
+    if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error) && !isMissingAffiliateDisclosureColumnError(error)) throw error;
     try {
       await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run();
     } catch (migrationError) {
       if (!/duplicate column name/i.test(String(migrationError?.message || migrationError || ""))) throw migrationError;
     }
     await ensureCoverImageColumns(db);
+    await ensureAffiliateDisclosureColumn(db);
     try {
       return await db.prepare(sql).bind(slug, requestedStatus).first();
     } catch (retryError) {
       if (!isMissingPublicModifiedColumnError(retryError)) throw retryError;
-      return db.prepare(fallbackDateSql).bind(slug, requestedStatus).first();
+      return db.prepare(fallbackLegacySql).bind(slug, requestedStatus).first();
     }
   }
 }
@@ -441,6 +446,10 @@ export async function onRequestGet(context) {
         </figure>
         `
         : "";
+      const affiliateDisclosure = normalizeAffiliateDisclosure(row.affiliate_disclosure);
+      const affiliateDisclosureHtml = affiliateDisclosure
+        ? `<p class="post-affiliate-disclosure" role="note">${escapeHtml(affiliateDisclosure)}</p>`
+        : "";
       const heroInfoHtml = isHotelIntroPost && !isRecommendedHotelReviewPost ? renderProductStyleHeroInfo({
           row,
           slug,
@@ -535,7 +544,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260816-post-responsive-v45" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260816-post-affiliate-v46" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260816-post-mobile-v31" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
@@ -583,6 +592,7 @@ export async function onRequestGet(context) {
               ${magazineAuthorProfileHtml}
             </div>
             ${coverImageHtml}
+            ${affiliateDisclosureHtml}
             ${hotelKeyPointsHtml}
             <div class="post-magazine-head post-magazine-head--details">
               ${isRecommendedHotelReviewPost
@@ -1510,7 +1520,7 @@ function renderNotFound(slug) {
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260816-post-responsive-v45" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260816-post-affiliate-v46" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 </head>

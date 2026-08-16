@@ -1094,3 +1094,30 @@ body.admin-editor-page .preview-body--travel-tip .post-toc__item a{
   line-height: 1.5;
 }
 body.admin-editor-page .preview-body--travel-tip .post-toc__index{ display: none !important; }
+
+/* Post add/edit: 제휴마케팅 안내 문구 */
+body.admin-editor-page .editor-affiliate-disclosure-card{
+  display:grid;
+  gap:10px;
+}
+body.admin-editor-page .editor-affiliate-disclosure-card > .small{
+  margin:0;
+}
+body.admin-editor-page .editor-affiliate-disclosure-card label{
+  display:grid;
+  gap:6px;
+}
+body.admin-editor-page .editor-affiliate-disclosure-card textarea{
+  min-height:96px;
+  resize:vertical;
+}
+body.admin-editor-page .preview-affiliate-disclosure{
+  margin:10px 0 18px;
+  padding:0;
+  color:#6b6b6b;
+  font-size:12px;
+  font-weight:400;
+  line-height:1.65;
+  white-space:pre-line;
+  word-break:keep-all;
+}
