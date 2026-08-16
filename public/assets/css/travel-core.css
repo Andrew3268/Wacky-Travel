@@ -9226,7 +9226,6 @@ body.post-page-body .post-magazine-head--details{
     max-width:none;
     margin-left:calc(var(--post-page-gutter) * -1);
     margin-right:calc(var(--post-page-gutter) * -1);
-    border-radius:0;
   }
 
   body.post-page-body .post-body .post-content figure.post-inline-image .post-inline-image__caption{

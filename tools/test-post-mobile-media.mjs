@@ -63,7 +63,7 @@ assert.match(
 );
 assert.match(
   travelCoreCss,
-  /@media \(max-width:767px\)\{[\s\S]*?post-magazine-hero\{[^}]*overflow:visible;[\s\S]*?post-magazine-hero > \.post-cover-wrap,[\s\S]*?figure\.post-inline-image\{[^}]*box-sizing:border-box;[^}]*width:calc\(100% \+ \(var\(--post-page-gutter\) \* 2\)\);[^}]*margin-left:calc\(var\(--post-page-gutter\) \* -1\);[^}]*margin-right:calc\(var\(--post-page-gutter\) \* -1\);[^}]*border-radius:0;/
+  /@media \(max-width:767px\)\{[\s\S]*?post-magazine-hero\{[^}]*overflow:visible;[\s\S]*?post-magazine-hero > \.post-cover-wrap,[\s\S]*?figure\.post-inline-image\{[^}]*box-sizing:border-box;[^}]*width:calc\(100% \+ \(var\(--post-page-gutter\) \* 2\)\);[^}]*margin-left:calc\(var\(--post-page-gutter\) \* -1\);[^}]*margin-right:calc\(var\(--post-page-gutter\) \* -1\);/
 );
 assert.match(
   travelCoreCss,
