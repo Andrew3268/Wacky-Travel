@@ -76,7 +76,16 @@ assert.match(
 
 assert.match(
   css,
-  /@media \(max-width: 767px\) \{[\s\S]*?body\.post-page-body \.post-shell--guide-style \.post-hero--product \.post-cover-wrap,[\s\S]*?body\.post-page-body \.post-cover-wrap\{[^}]*height: auto !important;[^}]*min-height: 0 !important;[^}]*aspect-ratio: auto !important;[\s\S]*?body\.post-page-body \.post-cover,[\s\S]*?body\.post-page-body \.post-cover-wrap img\{[^}]*height: auto !important;[^}]*max-height: none !important;[^}]*object-fit: contain !important;/
+  /@media \(max-width: 1024px\) \{[\s\S]*?body\.post-page-body \.post-shell--guide-style \.post-hero--product \.post-cover-wrap,[\s\S]*?body\.post-page-body \.post-cover-wrap\{[^}]*height: auto;[^}]*min-height: 0;[^}]*aspect-ratio: auto;[\s\S]*?body\.post-page-body \.post-cover,[\s\S]*?body\.post-page-body \.post-cover-wrap img\{[^}]*height: auto;[^}]*max-height: none;[^}]*object-fit: contain;/
+);
+const tabletCoverMedia = css.match(
+  /\/\* 태블릿·모바일 Post 대표 이미지:[\s\S]*?@media \(max-width: 1024px\) \{[\s\S]*?object-fit: contain;[\s\S]*?\n\}/
+)?.[0] || "";
+assert.ok(tabletCoverMedia, "tablet/mobile post cover media rule must exist");
+assert.equal(
+  tabletCoverMedia.includes("!important"),
+  false,
+  "tablet/mobile post cover sizing should not require !important"
 );
 
 assert.match(
