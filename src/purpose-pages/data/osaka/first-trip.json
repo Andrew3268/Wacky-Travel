@@ -12,9 +12,9 @@
       "title": "첫 오사카 여행 숙소 위치 추천 | 난바·우메다 비교",
       "description": "첫 오사카 여행은 난바와 우메다만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도톤보리·먹거리 중심은 난바, 교토·고베·USJ 이동이 많다면 우메다가 편합니다.",
       "url": "https://bestayable.com/destinations/osaka/first-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "첫 오사카 여행 숙소 위치 추천 | 난바·우메다 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "첫 오사카 여행 숙소 위치 추천 | 난바·우메다 비교",
       "description": "첫 오사카 여행은 난바와 우메다만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도톤보리·먹거리 중심은 난바, 교토·고베·USJ 이동이 많다면 우메다가 편합니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "첫 오사카 여행 숙소 위치 추천 | 난바·우메다 비교 대표 이미지"
     },
     "structuredData": [

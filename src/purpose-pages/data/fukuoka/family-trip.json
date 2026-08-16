@@ -12,9 +12,9 @@
       "title": "후쿠오카 가족 여행 숙소 위치 추천 | 하카타·오호리·모모치 비교",
       "description": "후쿠오카 가족 여행 숙소는 아이와 부모님 동선, 공항 이동, 객실 구조, 식사 선택지, 공원·해변 산책까지 함께 보고 고르는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/fukuoka/family-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "후쿠오카 가족 여행 숙소 위치 추천 | 하카타·오호리·모모치 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "후쿠오카 가족 여행 숙소 위치 추천 | 하카타·오호리·모모치 비교",
       "description": "후쿠오카 가족 여행 숙소는 아이와 부모님 동선, 공항 이동, 객실 구조, 식사 선택지, 공원·해변 산책까지 함께 보고 고르는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "후쿠오카 가족 여행 숙소 위치 추천 | 하카타·오호리·모모치 비교 대표 이미지"
     },
     "structuredData": [

@@ -12,9 +12,9 @@
       "title": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교",
       "description": "하노이 가성비 숙소는 올드쿼터 중심가만 보지 말고 외곽 골목과 동다·문묘·기차거리 권역을 함께 비교하세요. 도보 관광, 그랩 이동, 하롱베이 픽업까지 고려한 실속 위치를 정리했습니다.",
       "url": "https://bestayable.com/destinations/hanoi/value-hotel/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교",
       "description": "하노이 가성비 숙소는 올드쿼터 중심가만 보지 말고 외곽 골목과 동다·문묘·기차거리 권역을 함께 비교하세요. 도보 관광, 그랩 이동, 하롱베이 픽업까지 고려한 실속 위치를 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "하노이 가성비 숙소 위치 추천 | 올드쿼터 외곽·동다 비교 대표 이미지"
     },
     "structuredData": [

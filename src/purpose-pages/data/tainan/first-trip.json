@@ -12,9 +12,9 @@
       "title": "첫 타이난 여행 숙소 위치 추천 | 타이난역·중서구와 신농제 비교",
       "description": "첫 타이난 여행 숙소는 타이난역·중서구와 신농제·국화거리부터 비교하면 쉽습니다. 구도심 먹거리, 골목 산책, 안핑 이동, 야시장 접근성까지 정리했습니다.",
       "url": "https://bestayable.com/destinations/tainan/first-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "첫 타이난 여행 숙소 위치 추천 | 타이난역·중서구와 신농제 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "첫 타이난 여행 숙소 위치 추천 | 타이난역·중서구와 신농제 비교",
       "description": "첫 타이난 여행 숙소는 타이난역·중서구와 신농제·국화거리부터 비교하면 쉽습니다. 구도심 먹거리, 골목 산책, 안핑 이동, 야시장 접근성까지 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "첫 타이난 여행 숙소 위치 추천 | 타이난역·중서구와 신농제 비교 대표 이미지"
     },
     "structuredData": [

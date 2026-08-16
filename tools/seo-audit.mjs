@@ -168,7 +168,7 @@ for (const file of htmlFiles) {
 
   for (const match of html.matchAll(/<(?:script|img|source|link)\b[^>]*\b(?:src|href)=(["'])(.*?)\1/gi)) {
     const value = match[2].trim();
-    if (!/^\/(?:assets|img)\//.test(value) && value !== "/favicon.ico") continue;
+    if (!/^\/(?:assets|img)\//.test(value) && !value.startsWith("/favicon.ico")) continue;
     const pathname = new URL(value, "https://audit.invalid").pathname;
     try { await fs.access(localFileFor(pathname)); }
     catch { errors.push(`${route}: 존재하지 않는 로컬 자산 ${value}`); }

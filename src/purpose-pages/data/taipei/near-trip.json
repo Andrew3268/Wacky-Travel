@@ -12,9 +12,9 @@
       "title": "타이베이 근교 여행 숙소 위치 추천 | 지우펀·스펀·예류·단수이 동선",
       "description": "지우펀, 스펀, 예류, 단수이, 베이터우를 함께 본다면 타이베이 숙소는 기차·버스·MRT 출발 동선이 중요합니다. 타이베이역과 중산·쌍롄을 비교해보세요.",
       "url": "https://bestayable.com/destinations/taipei/near-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이베이 근교 여행 숙소 위치 추천 | 지우펀·스펀·예류·단수이 동선 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이베이 근교 여행 숙소 위치 추천 | 지우펀·스펀·예류·단수이 동선",
       "description": "지우펀, 스펀, 예류, 단수이, 베이터우를 함께 본다면 타이베이 숙소는 기차·버스·MRT 출발 동선이 중요합니다. 타이베이역과 중산·쌍롄을 비교해보세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이베이 근교 여행 숙소 위치 추천 | 지우펀·스펀·예류·단수이 동선 대표 이미지"
     },
     "structuredData": [

@@ -12,9 +12,9 @@
       "title": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교",
       "description": "타이중 가성비 숙소는 숙박비보다 택시비와 야시장 복귀 동선이 중요합니다. 구도심 일정은 타이중역·이중상권, 야시장 중심 일정은 펑지아를 중심으로 비교하세요.",
       "url": "https://bestayable.com/destinations/taichung/value-hotel/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교",
       "description": "타이중 가성비 숙소는 숙박비보다 택시비와 야시장 복귀 동선이 중요합니다. 구도심 일정은 타이중역·이중상권, 야시장 중심 일정은 펑지아를 중심으로 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이중 가성비 숙소 추천 | 타이중역·이중상권·펑지아 비교 대표 이미지"
     },
     "structuredData": [

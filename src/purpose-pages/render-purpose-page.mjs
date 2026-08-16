@@ -29,7 +29,7 @@ function renderHead(city, page) {
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta charset="utf-8"/>
 <title>${escapeHtml(head.title)}</title>
-<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/favicon.ico?v=20260817-brand-v1" rel="icon" sizes="any"/>
 ${styles}
 ${schemas}
 <meta content="${escapeHtml(head.description)}" name="description"/>

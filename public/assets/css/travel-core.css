@@ -9127,21 +9127,13 @@ body.post-page-body .post-author-profile{
 }
 
 body.post-page-body .post-author-profile__avatar{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  display:block;
   width:42px;
   height:42px;
   flex:0 0 42px;
   overflow:hidden;
   border-radius:50%;
-  background:#111;
-  color:#fff;
-  font-size:10px;
-  font-weight:600;
-  line-height:1;
-  letter-spacing:-0.03em;
-  text-align:center;
+  object-fit:cover;
 }
 
 body.post-page-body .post-author-profile__body{
@@ -9198,7 +9190,6 @@ body.post-page-body .post-magazine-head--details{
     width:38px;
     height:38px;
     flex-basis:38px;
-    font-size:9px;
   }
 
   body.post-page-body .post-author-profile__name{

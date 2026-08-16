@@ -12,9 +12,9 @@
       "title": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교",
       "description": "첫 타이중 여행 숙소는 타이중역과 펑지아부터 비교하면 쉽습니다. 기차 도착, 미야하라·구도심, 펑지아 야시장, 택시 이동 기준으로 정리했습니다.",
       "url": "https://bestayable.com/destinations/taichung/first-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교",
       "description": "첫 타이중 여행 숙소는 타이중역과 펑지아부터 비교하면 쉽습니다. 기차 도착, 미야하라·구도심, 펑지아 야시장, 택시 이동 기준으로 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "첫 타이중 여행 숙소 위치 추천 | 타이중역과 펑지아 비교 대표 이미지"
     },
     "structuredData": [

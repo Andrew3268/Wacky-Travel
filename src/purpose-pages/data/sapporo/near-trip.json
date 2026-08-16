@@ -12,9 +12,9 @@
       "title": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선",
       "description": "오타루·비에이·후라노·조잔케이를 함께 보는 삿포로 여행은 숙소 주변 명소보다 JR 접근성, 투어 집결지, 눈길 이동을 먼저 확인해야 합니다. 삿포로역과 오도리 중 내 일정에 맞는 위치를 정리했습니다.",
       "url": "https://bestayable.com/destinations/sapporo/near-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선",
       "description": "오타루·비에이·후라노·조잔케이를 함께 보는 삿포로 여행은 숙소 주변 명소보다 JR 접근성, 투어 집결지, 눈길 이동을 먼저 확인해야 합니다. 삿포로역과 오도리 중 내 일정에 맞는 위치를 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "삿포로 근교 여행 숙소 위치 추천 | 오타루·비에이·후라노 출발 동선 대표 이미지"
     },
     "structuredData": [

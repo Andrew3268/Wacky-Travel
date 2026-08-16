@@ -12,9 +12,9 @@
       "title": "후쿠오카 가성비 숙소 위치 추천 | 기온·고후쿠마치·야쿠인 비교",
       "description": "후쿠오카 가성비 숙소는 최저가보다 동선이 중요합니다. 하카타·나카스 접근이 좋은 기온·고후쿠마치, 텐진 주변을 편하게 쓰는 야쿠인·와타나베도리를 중심으로 비교하세요.",
       "url": "https://bestayable.com/destinations/fukuoka/value-hotel/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "후쿠오카 가성비 숙소 위치 추천 | 기온·고후쿠마치·야쿠인 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "후쿠오카 가성비 숙소 위치 추천 | 기온·고후쿠마치·야쿠인 비교",
       "description": "후쿠오카 가성비 숙소는 최저가보다 동선이 중요합니다. 하카타·나카스 접근이 좋은 기온·고후쿠마치, 텐진 주변을 편하게 쓰는 야쿠인·와타나베도리를 중심으로 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "후쿠오카 가성비 숙소 위치 추천 | 기온·고후쿠마치·야쿠인 비교 대표 이미지"
     },
     "structuredData": [

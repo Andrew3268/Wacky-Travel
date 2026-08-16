@@ -12,9 +12,9 @@
       "title": "가오슝 조용한 숙소 위치 추천 | 옌청푸·시즈완·아이허 비교",
       "description": "가오슝 조용한 숙소는 미려도나 류허야시장 한복판보다 옌청푸·보얼예술특구, 시즈완·아이허처럼 산책과 도심 접근을 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/kaohsiung/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "가오슝 조용한 숙소 위치 추천 | 옌청푸·시즈완·아이허 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "가오슝 조용한 숙소 위치 추천 | 옌청푸·시즈완·아이허 비교",
       "description": "가오슝 조용한 숙소는 미려도나 류허야시장 한복판보다 옌청푸·보얼예술특구, 시즈완·아이허처럼 산책과 도심 접근을 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "가오슝 조용한 숙소 위치 추천 | 옌청푸·시즈완·아이허 비교 대표 이미지"
     },
     "structuredData": [

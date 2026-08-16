@@ -12,9 +12,9 @@
       "title": "타이중 근교 여행 숙소 위치 추천 | 르웨탄·가오메이습지·루강 동선",
       "description": "르웨탄, 가오메이습지, 루강을 함께 본다면 타이중 숙소는 버스 출발지와 밤 복귀 동선이 중요합니다. 타이중역과 펑지아·차오마를 비교해보세요.",
       "url": "https://bestayable.com/destinations/taichung/near-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이중 근교 여행 숙소 위치 추천 | 르웨탄·가오메이습지·루강 동선 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이중 근교 여행 숙소 위치 추천 | 르웨탄·가오메이습지·루강 동선",
       "description": "르웨탄, 가오메이습지, 루강을 함께 본다면 타이중 숙소는 버스 출발지와 밤 복귀 동선이 중요합니다. 타이중역과 펑지아·차오마를 비교해보세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이중 근교 여행 숙소 위치 추천 | 르웨탄·가오메이습지·루강 동선 대표 이미지"
     },
     "structuredData": [

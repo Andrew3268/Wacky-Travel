@@ -12,9 +12,9 @@
       "title": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교",
       "description": "삿포로 조용한 숙소는 스스키노 한복판보다 오도리 서쪽, 나카지마공원처럼 지하도 접근성과 저녁 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/sapporo/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교",
       "description": "삿포로 조용한 숙소는 스스키노 한복판보다 오도리 서쪽, 나카지마공원처럼 지하도 접근성과 저녁 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "삿포로 조용한 숙소 위치 추천 | 오도리 서쪽·나카지마공원 비교 대표 이미지"
     },
     "structuredData": [

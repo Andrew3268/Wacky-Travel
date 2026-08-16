@@ -12,9 +12,9 @@
       "title": "도쿄 가족 여행 숙소 위치 추천 | 우에노·아사쿠사·도쿄역 비교",
       "description": "도쿄 가족 여행 숙소는 환승 수, 공항 이동, 디즈니·오다이바 일정, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/tokyo/family-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "도쿄 가족 여행 숙소 위치 추천 | 우에노·아사쿠사·도쿄역 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "도쿄 가족 여행 숙소 위치 추천 | 우에노·아사쿠사·도쿄역 비교",
       "description": "도쿄 가족 여행 숙소는 환승 수, 공항 이동, 디즈니·오다이바 일정, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "도쿄 가족 여행 숙소 위치 추천 | 우에노·아사쿠사·도쿄역 비교 대표 이미지"
     },
     "structuredData": [

@@ -12,9 +12,9 @@
       "title": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교",
       "description": "타이중 조용한 숙소는 펑지아나 이중상권 한복판보다 시정부·국립가극원, 심계신촌·초오도처럼 이동과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/taichung/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교",
       "description": "타이중 조용한 숙소는 펑지아나 이중상권 한복판보다 시정부·국립가극원, 심계신촌·초오도처럼 이동과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이중 조용한 숙소 위치 추천 | 시정부·심계신촌·초오도 비교 대표 이미지"
     },
     "structuredData": [

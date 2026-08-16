@@ -12,9 +12,9 @@
       "title": "오사카 근교 여행 숙소 위치 추천 | 교토·고베·나라 출발 동선",
       "description": "교토·고베·나라를 함께 보는 오사카 여행은 호텔 주변 명소보다 매일 이용할 출발역, 환승 수, 늦은 복귀 동선을 먼저 확인해야 합니다. 우메다와 난바 중 내 일정에 맞는 위치를 정리했습니다.",
       "url": "https://bestayable.com/destinations/osaka/near-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "오사카 근교 여행 숙소 위치 추천 | 교토·고베·나라 출발 동선 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "오사카 근교 여행 숙소 위치 추천 | 교토·고베·나라 출발 동선",
       "description": "교토·고베·나라를 함께 보는 오사카 여행은 호텔 주변 명소보다 매일 이용할 출발역, 환승 수, 늦은 복귀 동선을 먼저 확인해야 합니다. 우메다와 난바 중 내 일정에 맞는 위치를 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "오사카 근교 여행 숙소 위치 추천 | 교토·고베·나라 출발 동선 대표 이미지"
     },
     "structuredData": [

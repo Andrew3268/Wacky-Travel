@@ -12,9 +12,9 @@
       "title": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교",
       "description": "첫 다낭 여행 숙소는 미케비치·푸억미와 한강 동쪽·용다리부터 나눠보면 쉽습니다. 해변 산책, 한시장·용다리 야경, 호이안 이동까지 고려해 숙소 위치를 정리했습니다.",
       "url": "https://bestayable.com/destinations/da-nang/first-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교",
       "description": "첫 다낭 여행 숙소는 미케비치·푸억미와 한강 동쪽·용다리부터 나눠보면 쉽습니다. 해변 산책, 한시장·용다리 야경, 호이안 이동까지 고려해 숙소 위치를 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "첫 다낭 여행 숙소 위치 추천 | 미케비치와 한강 동선 비교 대표 이미지"
     },
     "structuredData": [

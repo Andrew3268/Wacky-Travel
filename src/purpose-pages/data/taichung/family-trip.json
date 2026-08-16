@@ -12,9 +12,9 @@
       "title": "타이중 가족 여행 숙소 위치 추천 | 타이중역·시정부·펑지아 비교",
       "description": "타이중 가족 여행 숙소는 택시 승하차, 객실 면적, 조식, 야시장 복귀 동선을 함께 봐야 합니다. 타이중역과 시정부·국립가극원을 중심으로 비교하세요.",
       "url": "https://bestayable.com/destinations/taichung/family-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이중 가족 여행 숙소 위치 추천 | 타이중역·시정부·펑지아 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이중 가족 여행 숙소 위치 추천 | 타이중역·시정부·펑지아 비교",
       "description": "타이중 가족 여행 숙소는 택시 승하차, 객실 면적, 조식, 야시장 복귀 동선을 함께 봐야 합니다. 타이중역과 시정부·국립가극원을 중심으로 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이중 가족 여행 숙소 위치 추천 | 타이중역·시정부·펑지아 비교 대표 이미지"
     },
     "structuredData": [

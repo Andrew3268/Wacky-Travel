@@ -6,7 +6,7 @@ import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../l
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissingAffiliateDisclosureColumnError } from "../../lib/posts/affiliate-disclosure.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260816-post-layout-v44";
+const POST_RENDER_VERSION = "20260817-post-brand-v45";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -290,7 +290,7 @@ export async function onRequestGet(context) {
       const versionedCoverImage = coverImageSource === "agoda" ? rawCoverImage : appendImageVersion(rawCoverImage, row.updated_at);
       const coverImageSrcset = coverImageSource === "agoda" ? safeCoverData.srcset : "";
       const coverImageLinkUrl = coverImageSource === "agoda" ? safeCoverData.link : "";
-      const ogImage = (coverImageSource === "agoda" ? getLargestSrcsetUrl(coverImageSrcset, versionedCoverImage) : versionedCoverImage) || `${origin}/assets/images/logo.png`;
+      const ogImage = (coverImageSource === "agoda" ? getLargestSrcsetUrl(coverImageSrcset, versionedCoverImage) : versionedCoverImage) || `${origin}/assets/images/open-graph-image.webp`;
       const coverImageAltText = String(safeCoverData.alt || `${titleText} 대표 이미지`).trim();
 
       const publicModifiedAt = getPublicModifiedAt(row);
@@ -300,7 +300,7 @@ export async function onRequestGet(context) {
       const updatedIso = toIso(publicModifiedAt);
       const authorCardHtml = `
         <div class="post-author-card" aria-label="작성자 정보">
-          <img class="post-author-card__avatar" src="/assets/images/favicon-32x32.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+          <img class="post-author-card__avatar" src="/assets/images/profile.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
           <div class="post-author-card__body">
             <div class="post-author-card__name"><a href="/about/" rel="author">${escapeHtml(authorName)}</a></div>
             <div class="post-author-card__meta">
@@ -465,7 +465,7 @@ export async function onRequestGet(context) {
       const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
       const magazineAuthorProfileHtml = `
         <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" itemid="${escapeHtml(authorId)}" aria-label="작성자 및 글 날짜">
-          <span class="post-author-profile__avatar" aria-hidden="true">프로필</span>
+          <img class="post-author-profile__avatar" src="/assets/images/profile.png" alt="" width="42" height="42" loading="lazy" decoding="async" />
           <div class="post-author-profile__body">
             <a class="post-author-profile__name" itemprop="url" href="/about/" rel="author"><span itemprop="name">${escapeHtml(authorName)}</span></a>
             <div class="post-author-profile__meta" aria-label="글 발행 및 수정 날짜">
@@ -520,10 +520,7 @@ export async function onRequestGet(context) {
   <meta name="description" content="${escapeHtml(descriptionText)}" />
   <meta name="robots" content="${escapeHtml(robotsContent)}" />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico?v=20260817-brand-v1" sizes="any" />
   <meta name="author" content="${escapeHtml(authorName)}" />
   <link rel="canonical" href="${escapeHtml(canonical.toString())}" />
   ${agodaConnectionHints}
@@ -546,7 +543,7 @@ export async function onRequestGet(context) {
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260816-post-affiliate-v46" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260816-post-mobile-v31" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260817-post-brand-v32" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 <style>
     .post-body,
@@ -1515,10 +1512,7 @@ function renderNotFound(slug) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>글을 찾을 수 없습니다</title>
   <meta name="robots" content="noindex,nofollow" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico?v=20260817-brand-v1" sizes="any" />
   <meta name="theme-color" content="#2563EB" />
   <link rel="stylesheet" href="/assets/css/app.css?v=20260816-post-affiliate-v46" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260809-frontend-v29" />

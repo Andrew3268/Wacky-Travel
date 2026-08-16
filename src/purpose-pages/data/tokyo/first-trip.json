@@ -12,9 +12,9 @@
       "title": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교",
       "description": "첫 도쿄 여행은 신주쿠와 긴자·도쿄역만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도심 이동은 신주쿠, 공항·JR 이동은 긴자·도쿄역이 편합니다.",
       "url": "https://bestayable.com/destinations/tokyo/first-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교",
       "description": "첫 도쿄 여행은 신주쿠와 긴자·도쿄역만 먼저 비교해도 숙소 위치를 쉽게 좁힐 수 있습니다. 도심 이동은 신주쿠, 공항·JR 이동은 긴자·도쿄역이 편합니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "첫 도쿄 여행 숙소 위치 추천 | 신주쿠·긴자·도쿄역 비교 대표 이미지"
     },
     "structuredData": [

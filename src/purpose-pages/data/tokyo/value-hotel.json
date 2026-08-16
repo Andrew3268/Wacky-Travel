@@ -12,9 +12,9 @@
       "title": "도쿄 가성비 숙소 위치 추천 | 우에노·아사쿠사·이케부쿠로 비교",
       "description": "도쿄 가성비 숙소는 숙박비만 낮추기보다 공항 이동, 환승 횟수, 주요 일정까지 함께 봐야 합니다. 우에노·아사쿠사와 이케부쿠로를 중심으로 가격과 동선 균형을 비교하세요.",
       "url": "https://bestayable.com/destinations/tokyo/value-hotel/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "도쿄 가성비 숙소 위치 추천 | 우에노·아사쿠사·이케부쿠로 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "도쿄 가성비 숙소 위치 추천 | 우에노·아사쿠사·이케부쿠로 비교",
       "description": "도쿄 가성비 숙소는 숙박비만 낮추기보다 공항 이동, 환승 횟수, 주요 일정까지 함께 봐야 합니다. 우에노·아사쿠사와 이케부쿠로를 중심으로 가격과 동선 균형을 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "도쿄 가성비 숙소 위치 추천 | 우에노·아사쿠사·이케부쿠로 비교 대표 이미지"
     },
     "structuredData": [

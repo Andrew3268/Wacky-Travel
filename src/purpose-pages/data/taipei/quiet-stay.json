@@ -12,9 +12,9 @@
       "title": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교",
       "description": "타이베이 조용한 숙소는 시먼딩이나 타이베이역 한복판보다 중산·쌍롄, 다안·융캉제처럼 도심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/taipei/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교",
       "description": "타이베이 조용한 숙소는 시먼딩이나 타이베이역 한복판보다 중산·쌍롄, 다안·융캉제처럼 도심 접근성과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이베이 조용한 숙소 위치 추천 | 중산·쌍롄·다안 비교 대표 이미지"
     },
     "structuredData": [

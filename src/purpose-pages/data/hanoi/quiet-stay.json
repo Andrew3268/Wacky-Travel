@@ -12,9 +12,9 @@
       "title": "하노이 조용한 숙소 위치 추천 | 프렌치쿼터·서호·타이호·바딘 비교",
       "description": "하노이 조용한 숙소는 올드쿼터 한복판보다 프렌치쿼터·오페라하우스, 서호·타이호·바딘처럼 소음과 차량 이동을 함께 고려할 수 있는 지역을 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/hanoi/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "하노이 조용한 숙소 위치 추천 | 프렌치쿼터·서호·타이호·바딘 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "하노이 조용한 숙소 위치 추천 | 프렌치쿼터·서호·타이호·바딘 비교",
       "description": "하노이 조용한 숙소는 올드쿼터 한복판보다 프렌치쿼터·오페라하우스, 서호·타이호·바딘처럼 소음과 차량 이동을 함께 고려할 수 있는 지역을 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "하노이 조용한 숙소 위치 추천 | 프렌치쿼터·서호·타이호·바딘 비교 대표 이미지"
     },
     "structuredData": [

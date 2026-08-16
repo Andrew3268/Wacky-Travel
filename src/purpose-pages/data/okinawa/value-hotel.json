@@ -12,9 +12,9 @@
       "title": "오키나와 가성비 숙소 위치 추천 | 나하·차탄·기노완 비교",
       "description": "오키나와 가성비 숙소는 숙박비뿐 아니라 렌터카 여부, 주차비, 해변 접근성, 북부 이동 시간을 함께 봐야 합니다. 나하와 차탄·기노완을 중심으로 가격과 여행 방식을 비교하세요.",
       "url": "https://bestayable.com/destinations/okinawa/value-hotel/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "오키나와 가성비 숙소 위치 추천 | 나하·차탄·기노완 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "오키나와 가성비 숙소 위치 추천 | 나하·차탄·기노완 비교",
       "description": "오키나와 가성비 숙소는 숙박비뿐 아니라 렌터카 여부, 주차비, 해변 접근성, 북부 이동 시간을 함께 봐야 합니다. 나하와 차탄·기노완을 중심으로 가격과 여행 방식을 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "오키나와 가성비 숙소 위치 추천 | 나하·차탄·기노완 비교 대표 이미지"
     },
     "structuredData": [

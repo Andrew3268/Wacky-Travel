@@ -12,9 +12,9 @@
       "title": "첫 하노이 여행 숙소 위치 추천 | 올드쿼터와 프렌치쿼터 비교",
       "description": "첫 하노이 여행 숙소는 호안끼엠·올드쿼터의 편리함과 소음을 함께 봐야 합니다. 먹거리, 카페, 투어 픽업, 프렌치쿼터 숙소 컨디션까지 비교했습니다.",
       "url": "https://bestayable.com/destinations/hanoi/first-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "첫 하노이 여행 숙소 위치 추천 | 올드쿼터와 프렌치쿼터 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "첫 하노이 여행 숙소 위치 추천 | 올드쿼터와 프렌치쿼터 비교",
       "description": "첫 하노이 여행 숙소는 호안끼엠·올드쿼터의 편리함과 소음을 함께 봐야 합니다. 먹거리, 카페, 투어 픽업, 프렌치쿼터 숙소 컨디션까지 비교했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "첫 하노이 여행 숙소 위치 추천 | 올드쿼터와 프렌치쿼터 비교 대표 이미지"
     },
     "structuredData": [

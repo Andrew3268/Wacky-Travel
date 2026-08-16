@@ -12,9 +12,9 @@
       "title": "삿포로 가성비 숙소 위치 추천 | 오도리·나카지마공원 비교",
       "description": "삿포로 가성비 숙소는 숙박비만 보지 말고 지하도 접근, 겨울 이동, 투어 집결지까지 함께 확인해야 합니다. 오도리와 나카지마공원 주변을 중심으로 가격과 동선을 비교하세요.",
       "url": "https://bestayable.com/destinations/sapporo/value-hotel/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "삿포로 가성비 숙소 위치 추천 | 오도리·나카지마공원 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "삿포로 가성비 숙소 위치 추천 | 오도리·나카지마공원 비교",
       "description": "삿포로 가성비 숙소는 숙박비만 보지 말고 지하도 접근, 겨울 이동, 투어 집결지까지 함께 확인해야 합니다. 오도리와 나카지마공원 주변을 중심으로 가격과 동선을 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "삿포로 가성비 숙소 위치 추천 | 오도리·나카지마공원 비교 대표 이미지"
     },
     "structuredData": [

@@ -12,9 +12,9 @@
       "title": "타이난 조용한 숙소 위치 추천 | 공자묘·안핑·운하 비교",
       "description": "타이난 조용한 숙소는 야시장이나 번잡한 먹거리 골목보다 공자묘·하야시백화점, 안핑·운하처럼 산책과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/tainan/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "타이난 조용한 숙소 위치 추천 | 공자묘·안핑·운하 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "타이난 조용한 숙소 위치 추천 | 공자묘·안핑·운하 비교",
       "description": "타이난 조용한 숙소는 야시장이나 번잡한 먹거리 골목보다 공자묘·하야시백화점, 안핑·운하처럼 산책과 휴식 분위기를 함께 볼 수 있는 지역을 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "타이난 조용한 숙소 위치 추천 | 공자묘·안핑·운하 비교 대표 이미지"
     },
     "structuredData": [

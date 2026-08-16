@@ -12,9 +12,9 @@
       "title": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선",
       "description": "하코네·후지·가마쿠라·디즈니 일정이 들어간 도쿄 여행은 숙소 주변 명소보다 출발역, 환승 수, 첫차·막차 동선을 먼저 확인해야 합니다. 신주쿠와 도쿄역권 중 내 일정에 맞는 위치를 정리했습니다.",
       "url": "https://bestayable.com/destinations/tokyo/near-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선",
       "description": "하코네·후지·가마쿠라·디즈니 일정이 들어간 도쿄 여행은 숙소 주변 명소보다 출발역, 환승 수, 첫차·막차 동선을 먼저 확인해야 합니다. 신주쿠와 도쿄역권 중 내 일정에 맞는 위치를 정리했습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "도쿄 근교 여행 숙소 위치 추천 | 하코네·후지·디즈니 출발 동선 대표 이미지"
     },
     "structuredData": [

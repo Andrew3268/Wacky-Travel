@@ -12,9 +12,9 @@
       "title": "가오슝 가족 여행 숙소 위치 추천 | 미려도·산둬상권·쭤잉 비교",
       "description": "가오슝 가족 여행 숙소는 MRT 환승, 호텔 컨디션, 야시장 소음, 쇼핑·식사 동선을 함께 봐야 합니다. 미려도·중앙공원과 산둬상권을 중심으로 비교하세요.",
       "url": "https://bestayable.com/destinations/kaohsiung/family-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "가오슝 가족 여행 숙소 위치 추천 | 미려도·산둬상권·쭤잉 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "가오슝 가족 여행 숙소 위치 추천 | 미려도·산둬상권·쭤잉 비교",
       "description": "가오슝 가족 여행 숙소는 MRT 환승, 호텔 컨디션, 야시장 소음, 쇼핑·식사 동선을 함께 봐야 합니다. 미려도·중앙공원과 산둬상권을 중심으로 비교하세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "가오슝 가족 여행 숙소 위치 추천 | 미려도·산둬상권·쭤잉 비교 대표 이미지"
     },
     "structuredData": [

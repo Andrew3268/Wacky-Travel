@@ -12,9 +12,9 @@
       "title": "후쿠오카 조용한 숙소 위치 추천 | 야쿠인·오호리·모모치 비교",
       "description": "후쿠오카 조용한 숙소는 텐진·나카스 한복판보다 야쿠인·와타나베도리, 오호리·모모치처럼 중심에서 한 걸음 떨어진 지역을 함께 비교하는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/fukuoka/quiet-stay/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "후쿠오카 조용한 숙소 위치 추천 | 야쿠인·오호리·모모치 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "후쿠오카 조용한 숙소 위치 추천 | 야쿠인·오호리·모모치 비교",
       "description": "후쿠오카 조용한 숙소는 텐진·나카스 한복판보다 야쿠인·와타나베도리, 오호리·모모치처럼 중심에서 한 걸음 떨어진 지역을 함께 비교하는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "후쿠오카 조용한 숙소 위치 추천 | 야쿠인·오호리·모모치 비교 대표 이미지"
     },
     "structuredData": [

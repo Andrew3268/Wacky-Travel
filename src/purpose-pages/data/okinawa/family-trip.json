@@ -12,9 +12,9 @@
       "title": "오키나와 가족 여행 숙소 위치 추천 | 나하·차탄·온나손 비교",
       "description": "오키나와 가족 여행 숙소는 렌터카 여부, 해변 접근, 리조트 휴식, 공항 이동, 주차비까지 함께 보고 고르는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/okinawa/family-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "오키나와 가족 여행 숙소 위치 추천 | 나하·차탄·온나손 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "오키나와 가족 여행 숙소 위치 추천 | 나하·차탄·온나손 비교",
       "description": "오키나와 가족 여행 숙소는 렌터카 여부, 해변 접근, 리조트 휴식, 공항 이동, 주차비까지 함께 보고 고르는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "오키나와 가족 여행 숙소 위치 추천 | 나하·차탄·온나손 비교 대표 이미지"
     },
     "structuredData": [

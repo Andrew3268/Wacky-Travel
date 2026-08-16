@@ -12,9 +12,9 @@
       "title": "푸꾸옥 액티비티 숙소 위치 추천 | 북부 테마파크·남부 케이블카 동선",
       "description": "푸꾸옥에서 빈원더스, 사파리, 그랜드월드, 혼똔 케이블카, 남부 섬투어를 계획한다면 숙소는 북부와 남부 방향을 먼저 나눠야 합니다. 간다우·바이다이·그랜드월드와 바이켐·안터이를 비교해보세요.",
       "url": "https://bestayable.com/destinations/phu-quoc/near-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "푸꾸옥 액티비티 숙소 위치 추천 | 북부 테마파크·남부 케이블카 동선 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "푸꾸옥 액티비티 숙소 위치 추천 | 북부 테마파크·남부 케이블카 동선",
       "description": "푸꾸옥에서 빈원더스, 사파리, 그랜드월드, 혼똔 케이블카, 남부 섬투어를 계획한다면 숙소는 북부와 남부 방향을 먼저 나눠야 합니다. 간다우·바이다이·그랜드월드와 바이켐·안터이를 비교해보세요.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "푸꾸옥 액티비티 숙소 위치 추천 | 북부 테마파크·남부 케이블카 동선 대표 이미지"
     },
     "structuredData": [

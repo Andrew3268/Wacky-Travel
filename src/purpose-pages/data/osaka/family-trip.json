@@ -12,9 +12,9 @@
       "title": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교",
       "description": "오사카 가족 여행 숙소는 USJ 일정, 교토·고베 이동, 공항 접근, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
       "url": "https://bestayable.com/destinations/osaka/family-trip/",
-      "image": "https://bestayable.com/assets/images/og-default.png",
-      "imageWidth": "1200",
-      "imageHeight": "630",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
+      "imageWidth": "600",
+      "imageHeight": "315",
       "imageAlt": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교 대표 이미지",
       "locale": "ko_KR"
     },
@@ -22,7 +22,7 @@
       "card": "summary_large_image",
       "title": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교",
       "description": "오사카 가족 여행 숙소는 USJ 일정, 교토·고베 이동, 공항 접근, 객실 구조, 식사 선택지까지 함께 보고 고르는 것이 좋습니다.",
-      "image": "https://bestayable.com/assets/images/og-default.png",
+      "image": "https://bestayable.com/assets/images/open-graph-image.webp",
       "imageAlt": "오사카 가족 여행 숙소 위치 추천 | 우메다·유니버설시티 비교 대표 이미지"
     },
     "structuredData": [
