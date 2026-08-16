@@ -74,4 +74,14 @@ assert.match(
   /body\.post-page-body \.post-cover,[\s\S]*?body\.post-page-body \.post-body \.post-content img\{[^}]*border-radius:0;/
 );
 
+assert.match(
+  css,
+  /@media \(max-width: 767px\) \{[\s\S]*?body\.post-page-body \.post-shell--guide-style \.post-hero--product \.post-cover-wrap,[\s\S]*?body\.post-page-body \.post-cover-wrap\{[^}]*height: auto !important;[^}]*min-height: 0 !important;[^}]*aspect-ratio: auto !important;[\s\S]*?body\.post-page-body \.post-cover,[\s\S]*?body\.post-page-body \.post-cover-wrap img\{[^}]*height: auto !important;[^}]*max-height: none !important;[^}]*object-fit: contain !important;/
+);
+
+assert.match(
+  travelCoreCss,
+  /@media \(max-width:767px\)\{[\s\S]*?body\.post-page-body--recommended-hotel-review \.post-hotel-key-points__grid\{[^}]*grid-template-columns:minmax\(0,1fr\);/
+);
+
 console.log("Post mobile image/table/full-bleed/radius/badge/H1 check passed");

@@ -9341,7 +9341,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
   border:0;
 }
 
-@media (max-width:700px){
+@media (max-width:767px){
   body.post-page-body--recommended-hotel-review .post-hotel-key-points{
     margin:20px 0 26px;
     padding:15px;
@@ -9352,7 +9352,7 @@ body.post-page-body--recommended-hotel-review .post-hotel-key-point__text{
     font-size:17px;
   }
   body.post-page-body--recommended-hotel-review .post-hotel-key-points__grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:minmax(0,1fr);
     column-gap:0;
     row-gap:10px;
   }
