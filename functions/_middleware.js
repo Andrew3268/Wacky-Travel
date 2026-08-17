@@ -121,13 +121,15 @@ function buildTrailingSlashRedirect(url, siteOrigin, method) {
   return Response.redirect(target, 308);
 }
 
-function resolveRobotsDirective(url, status, dynamicIndexable = null) {
+export function resolveRobotsDirective(url, status, dynamicIndexable = null) {
   const path = url.pathname;
   if (status >= 400) return NOINDEX_PRIVATE;
   if (/^\/post\/[^/]+\/?$/.test(path) && ["1", "true", "draft"].includes(String(url.searchParams.get("preview") || "").trim().toLowerCase())) return NOINDEX_PRIVATE;
   if (isPrivatePath(path)) return NOINDEX_PRIVATE;
   if (path === "/search/" || path === "/search") return NOINDEX_FOLLOW;
-  if (dynamicIndexable === false) return NOINDEX_FOLLOW;
+  if ((path === "/travel-by-mood/ocean-rest/" || path === "/travel-by-mood/ocean-rest") && dynamicIndexable === false) {
+    return NOINDEX_FOLLOW;
+  }
 
   const duplicateParams = (
     (path === "/" && ["category", "tag", "status", "page"].some((key) => url.searchParams.has(key)))
@@ -190,7 +192,10 @@ async function loadDynamicPageState(env, pathname) {
     const archiveData = await loadArchiveData(env, path);
     return {
       archiveData,
-      indexable: archiveData ? archiveData.total > 0 : null
+      // These are permanent city landing pages. Their clean URLs must remain
+      // indexable even before the first matching post is published. Post count
+      // controls only the archive contents, not the page's robots directive.
+      indexable: true
     };
   }
 

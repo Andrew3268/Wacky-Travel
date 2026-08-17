@@ -1,21 +1,16 @@
 import { STATIC_ROUTES } from "../lib/seo/static-routes.js";
 import { getSiteOrigin, normalizePagePath } from "../lib/seo/site-url.js";
-import {
-  getHotelPostGroup,
-  postBelongsToDestination
-} from "./api/destination-posts.js";
 import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified-date.js";
 
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
-const SITEMAP_VERSION = "2026-08-08-draft-block-v3";
+const SITEMAP_VERSION = "2026-08-17-archive-index-v4";
 
 // Pages still being prepared. Keep them out of search discovery until they are ready.
 const SEARCH_BLOCKED_ROUTES = new Set([
   "/hotel-promotions/",
   "/travel-by-mood/ocean-rest/"
 ]);
-const ARCHIVE_ROUTE_PATTERN = /^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/$/;
 
 function xmlEscape(value) {
   return String(value || "")
@@ -89,46 +84,8 @@ function isOceanRestPost(post = {}) {
     && parseJsonArray(post.mood_tags_json).includes("ocean-rest");
 }
 
-function collectArchiveDestinations(destinations = []) {
-  const map = new Map();
-
-  destinations.forEach((destination) => {
-    const slug = String(destination.slug || "").trim();
-    if (slug) map.set(slug, destination);
-  });
-
-  STATIC_ROUTES.forEach((route) => {
-    const match = route.match(ARCHIVE_ROUTE_PATTERN);
-    if (!match || map.has(match[1])) return;
-    map.set(match[1], { slug: match[1], name: match[1], city: match[1] });
-  });
-
-  return Array.from(map.values());
-}
-
-function collectConditionalRouteAvailability(posts = [], destinations = []) {
-  const availableArchiveRoutes = new Set();
-  const archiveDestinations = collectArchiveDestinations(destinations);
-
-  archiveDestinations.forEach((destination) => {
-    let hasHotelReviews = false;
-    let hasHotelRecommendations = false;
-
-    for (const post of posts) {
-      if (!postBelongsToDestination(post, destination)) continue;
-      const group = getHotelPostGroup(post);
-      if (group === "hotel_intro") hasHotelReviews = true;
-      if (group === "top5_series") hasHotelRecommendations = true;
-      if (hasHotelReviews && hasHotelRecommendations) break;
-    }
-
-    const slug = String(destination.slug || "").trim();
-    if (hasHotelReviews) availableArchiveRoutes.add(`/destinations/${slug}/hotels/`);
-    if (hasHotelRecommendations) availableArchiveRoutes.add(`/destinations/${slug}/hotel-recommendations/`);
-  });
-
+function collectConditionalRouteAvailability(posts = []) {
   return {
-    availableArchiveRoutes,
     oceanRestAvailable: posts.filter(isOceanRestPost).length >= OCEAN_REST_MIN_PUBLISHED_POSTS
   };
 }
@@ -136,7 +93,10 @@ function collectConditionalRouteAvailability(posts = [], destinations = []) {
 function shouldIncludeStaticRoute(route, availability) {
   if (SEARCH_BLOCKED_ROUTES.has(route)) return false;
   if (route === OCEAN_REST_ROUTE) return availability.oceanRestAvailable;
-  if (ARCHIVE_ROUTE_PATTERN.test(route)) return availability.availableArchiveRoutes.has(route);
+
+  // /hotels/ and /hotel-recommendations/ are permanent, canonical city landing
+  // pages. Keep every static archive URL in the sitemap regardless of the
+  // current D1 post count so sitemap and robots signals never conflict.
   return true;
 }
 
@@ -175,7 +135,7 @@ export async function onRequestGet({ env, request }) {
     `)
   ]);
 
-  const conditionalAvailability = collectConditionalRouteAvailability(posts, destinations);
+  const conditionalAvailability = collectConditionalRouteAvailability(posts);
   const urlMap = new Map();
 
   STATIC_ROUTES.forEach((route) => {
