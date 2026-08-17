@@ -126,6 +126,7 @@ export function resolveRobotsDirective(url, status, dynamicIndexable = null) {
   if (status >= 400) return NOINDEX_PRIVATE;
   if (/^\/post\/[^/]+\/?$/.test(path) && ["1", "true", "draft"].includes(String(url.searchParams.get("preview") || "").trim().toLowerCase())) return NOINDEX_PRIVATE;
   if (isPrivatePath(path)) return NOINDEX_PRIVATE;
+  if (/^\/naver[a-z0-9]+\.html$/i.test(path)) return NOINDEX_FOLLOW;
   if (path === "/search/" || path === "/search") return NOINDEX_FOLLOW;
   if ((path === "/travel-by-mood/ocean-rest/" || path === "/travel-by-mood/ocean-rest") && dynamicIndexable === false) {
     return NOINDEX_FOLLOW;

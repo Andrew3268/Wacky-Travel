@@ -1,10 +1,10 @@
-import { STATIC_ROUTES } from "../lib/seo/static-routes.js";
+import { STATIC_ROUTES, STATIC_ROUTE_LASTMOD } from "../lib/seo/static-routes.js";
 import { getSiteOrigin, normalizePagePath } from "../lib/seo/site-url.js";
 import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified-date.js";
 
 const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
-const SITEMAP_VERSION = "2026-08-17-archive-index-v4";
+const SITEMAP_VERSION = "2026-08-17-crawl-discovery-v5";
 
 // Pages still being prepared. Keep them out of search discovery until they are ready.
 const SEARCH_BLOCKED_ROUTES = new Set([
@@ -140,7 +140,10 @@ export async function onRequestGet({ env, request }) {
 
   STATIC_ROUTES.forEach((route) => {
     if (!shouldIncludeStaticRoute(route, conditionalAvailability)) return;
-    addUrl(urlMap, { loc: `${origin}${normalizePagePath(route)}` });
+    addUrl(urlMap, {
+      loc: `${origin}${normalizePagePath(route)}`,
+      lastmod: STATIC_ROUTE_LASTMOD[route] || ""
+    });
   });
 
 

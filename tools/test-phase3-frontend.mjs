@@ -22,7 +22,7 @@ function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full);
-    else if (entry.isFile() && entry.name.endsWith('.html')) htmlFiles.push(full);
+    else if (entry.isFile() && entry.name.endsWith('.html') && !/^naver[a-z0-9]+\.html$/i.test(entry.name)) htmlFiles.push(full);
   }
 }
 walk(path.join(root, 'public'));

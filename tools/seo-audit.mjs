@@ -75,7 +75,10 @@ const descriptionMap = new Map();
 for (const file of htmlFiles) {
   const html = await fs.readFile(file, "utf8");
   const route = routeFor(file);
-  const noindex = isNoindex(html) || route.startsWith("/admin/") || ["/404.html", "/add.html", "/edit.html"].includes(route);
+  const noindex = isNoindex(html)
+    || route.startsWith("/admin/")
+    || ["/404.html", "/add.html", "/edit.html"].includes(route)
+    || /^\/naver[a-z0-9]+\.html$/i.test(route);
   if (!noindex) staticIndexable.push(route);
 
   const jsonScripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];

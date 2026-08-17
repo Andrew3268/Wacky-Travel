@@ -45,6 +45,10 @@
   Cache-Control: no-store
   X-Robots-Tag: noindex, follow, noarchive
 
+/naverb605bc5dcef125158051eb5ac0d186f5.html
+  Cache-Control: public, max-age=3600
+  X-Robots-Tag: noindex, follow, noarchive
+
 /hotel-promotions/*
   Cache-Control: no-store
   X-Robots-Tag: noindex, nofollow, noarchive, nosnippet

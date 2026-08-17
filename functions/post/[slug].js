@@ -6,7 +6,7 @@ import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../l
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissingAffiliateDisclosureColumnError } from "../../lib/posts/affiliate-disclosure.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260817-post-brand-v45";
+const POST_RENDER_VERSION = "20260817-post-layout-v46";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
