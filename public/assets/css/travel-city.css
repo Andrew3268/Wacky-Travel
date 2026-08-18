@@ -6826,3 +6826,49 @@ body.travel-city-body .wt-city-snapshot__scroll-button {
     outline-offset: 3px;
   }
 }
+
+
+/* 20260818: Travel Contents / City Guide visual separation */
+body.travel-city-body #travel-contents {
+  padding-bottom: clamp(88px, 9vw, 128px) !important;
+}
+
+body.travel-city-body #travel-contents:not([hidden]) + .wt-city-start-guides {
+  padding-top: clamp(82px, 8vw, 112px) !important;
+}
+
+/* Match the Travel Contents arrow to the City Guide arrow. */
+body.travel-city-body #travel-contents .travel-list__arrow {
+  justify-self: end;
+  color: #111;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+
+body.travel-city-body #travel-contents .travel-list__item:hover .travel-list__arrow,
+body.travel-city-body #travel-contents .travel-list__link:focus-visible .travel-list__arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 767px) {
+  body.travel-city-body #travel-contents {
+    padding-bottom: 72px !important;
+  }
+
+  body.travel-city-body #travel-contents:not([hidden]) + .wt-city-start-guides {
+    padding-top: 72px !important;
+  }
+
+  body.travel-city-body .wt-city-start-guides .wt-section-title {
+    font-size: 22px !important;
+    font-weight: 400;
+    line-height: 1.2;
+    word-break: keep-all;
+  }
+
+  body.travel-city-body #travel-contents .travel-list__arrow {
+    font-size: 21px;
+  }
+}

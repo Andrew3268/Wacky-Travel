@@ -94,7 +94,8 @@ function createDb() {
   if (response.status !== 200 || !data.ok || data.authenticated) throw new Error('일반 사용자 Travel Contents 공개 응답이 실패했습니다.');
   if (!data.html.includes('후쿠오카 공개 여행 가이드')) throw new Error('발행된 Travel Contents가 일반 사용자 응답에 없습니다.');
   if (data.html.includes('후쿠오카 식도락 가이드') || data.html.includes('?preview=1')) throw new Error('초안 Travel Contents가 일반 사용자에게 노출됐습니다.');
-  if (!data.html.includes('color:#111;font-size:28px;font-weight:600')) throw new Error('Travel Contents 화살표 디자인 변경이 누락됐습니다.');
+  if (!data.html.includes('class="travel-list__arrow"') || data.html.includes('travel-list__arrow" style=')) throw new Error('Travel Contents 화살표가 CSS 클래스 기반으로 출력되지 않습니다.');
+  if (data.html.includes('2026-07-30') || /travel-card__meta[^>]*>\s*<span>/.test(data.html)) throw new Error('발행 Travel Contents에 날짜가 출력되고 있습니다.');
   if (db.calls.length !== 1) throw new Error(`공개 Travel Contents 요청의 DB 조회가 1회가 아닙니다: ${db.calls.length}`);
   if (!String(response.headers.get('cache-control')).includes('public, max-age=60')) throw new Error('공개 Travel Contents 캐시 헤더가 누락됐습니다.');
 }

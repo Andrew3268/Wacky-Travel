@@ -547,16 +547,15 @@ function renderTravelPostItem(post = {}) {
   const href = isDraft
     ? `/post/${encodeURIComponent(slug)}/?preview=1`
     : `/post/${encodeURIComponent(slug)}/`;
-  const meta = formatDate(post.content_modified_at || post.published_at);
   const label = isDraft ? `${post.title || "여행 글"} 초안 미리보기` : `${post.title || "여행 글"} 읽기`;
   return `<article class="travel-list__item${isDraft ? " travel-list__item--draft" : ""}" data-post-status="${isDraft ? "draft" : "published"}">
     <a class="travel-list__link" href="${href}" aria-label="${escapeHtml(label)}">
       <div class="travel-list__content">
         <h4>${escapeHtml(post.title || "여행 콘텐츠")}</h4>
-        <div class="travel-card__meta">${isDraft ? '<span class="travel-card__draft-badge">초안</span>' : ""}${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</div>
+        ${isDraft ? '<div class="travel-card__meta"><span class="travel-card__draft-badge">초안</span></div>' : ""}
       </div>
       <div class="travel-list__actions" aria-hidden="true">
-        <span class="travel-list__arrow" style="color:#111;font-size:28px;font-weight:600;line-height:1">→</span>
+        <span class="travel-list__arrow">→</span>
       </div>
     </a>
     ${renderPostAdminActions(post)}

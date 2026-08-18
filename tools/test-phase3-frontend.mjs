@@ -4,6 +4,7 @@ import vm from 'node:vm';
 
 const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
+const CITY_MAIN_CSS_VERSION = '20260818-city-travel-v3';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const assert = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -37,10 +38,15 @@ for (const file of htmlFiles) {
   for (const href of cssLinks) {
     assert(/\?v=/.test(href), `CSS 캐시 버전이 없습니다: ${path.relative(root, file)} -> ${href}`);
     if (/\/assets\/css\/travel-(?:core|home|city|purpose|archive|survey)\.css/.test(href)) {
-      assert(href.endsWith(`?v=${VERSION}`), `여행 CSS 버전이 통일되지 않았습니다: ${path.relative(root, file)} -> ${href}`);
+      const isCityMainStylesheet = html.includes('data-city-post-root') && /\/assets\/css\/travel-city\.css/.test(href);
+      const expectedVersion = isCityMainStylesheet ? CITY_MAIN_CSS_VERSION : VERSION;
+      assert(href.endsWith(`?v=${expectedVersion}`), `여행 CSS 버전이 통일되지 않았습니다: ${path.relative(root, file)} -> ${href}`);
     }
   }
-  const has = (name) => html.includes(`/assets/css/travel-${name}.css?v=${VERSION}`);
+  const has = (name) => {
+    const version = name === 'city' && html.includes('data-city-post-root') ? CITY_MAIN_CSS_VERSION : VERSION;
+    return html.includes(`/assets/css/travel-${name}.css?v=${version}`);
+  };
   if (/\btravel-home-body\b/.test(bodyClass)) assert(has('home'), `홈 CSS 누락: ${path.relative(root, file)}`);
   if (/\btravel-city-body\b|\bwt-guide-body\b|\btravel-purpose-body\b/.test(bodyClass)) assert(has('city'), `도시 CSS 누락: ${path.relative(root, file)}`);
   if (/\btravel-purpose-body\b/.test(bodyClass)) assert(has('purpose'), `목적별 CSS 누락: ${path.relative(root, file)}`);

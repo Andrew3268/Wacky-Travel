@@ -31,10 +31,14 @@ for (const file of cityPages) {
   if (travelSection.includes('data-admin-city-content="section"')) {
     throw new Error(`Travel Contents에 관리자 전용 마커가 남아 있습니다: ${path.relative(root, file)}`);
   }
+  const travelTitle = html.match(/<h2[^>]*TravelContentsTitle[^>]*>([^<]+)<\/h2>/)?.[1] || '';
+  if (!/여행을 더 쉽게 만드는 꿀팁$/.test(travelTitle)) {
+    throw new Error(`Travel Contents 제목이 꿀팁 문구로 통일되지 않았습니다: ${path.relative(root, file)} -> ${travelTitle}`);
+  }
   if (!html.includes('/assets/js/posts.js?v=20260818CityContentPublicTravelV2')) {
     throw new Error(`도시 콘텐츠 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/css/travel-core.css?v=20260809-frontend-v29') || !html.includes('/assets/css/travel-city.css?v=20260809-frontend-v29')) {
+  if (!html.includes('/assets/css/travel-core.css?v=20260809-frontend-v29') || !html.includes('/assets/css/travel-city.css?v=20260818-city-travel-v3')) {
     throw new Error(`도시 CSS 분리 파일 또는 통합 캐시 버전이 누락되었습니다: ${path.relative(root, file)}`);
   }
 }
