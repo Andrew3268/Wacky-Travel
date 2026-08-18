@@ -24,8 +24,15 @@ for (const file of cityPages) {
   if (/data-admin-city-content="hotel-button"|href="#hotel-posts"[^>]*>추천 호텔</.test(html)) {
     throw new Error(`비로그인 정적 HTML에 추천 호텔 버튼이 남아 있습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/js/posts.js?v=20260802CityContentUnifiedV1')) {
-    throw new Error(`관리자 버튼 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
+  const travelSection = html.match(/<section[^>]*id="travel-contents"[^>]*>/)?.[0] || '';
+  if (!travelSection || !travelSection.includes('data-city-public-content="travel"')) {
+    throw new Error(`Travel Contents 공개 조건 마커가 없습니다: ${path.relative(root, file)}`);
+  }
+  if (travelSection.includes('data-admin-city-content="section"')) {
+    throw new Error(`Travel Contents에 관리자 전용 마커가 남아 있습니다: ${path.relative(root, file)}`);
+  }
+  if (!html.includes('/assets/js/posts.js?v=20260818CityContentPublicTravelV2')) {
+    throw new Error(`도시 콘텐츠 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
   if (!html.includes('/assets/css/travel-core.css?v=20260809-frontend-v29') || !html.includes('/assets/css/travel-city.css?v=20260809-frontend-v29')) {
     throw new Error(`도시 CSS 분리 파일 또는 통합 캐시 버전이 누락되었습니다: ${path.relative(root, file)}`);
@@ -50,9 +57,15 @@ for (const required of [
   "button.dataset.adminCityContent = 'hotel-button';",
   "button.textContent = '추천 호텔';",
   'const loadCityContent = async () =>',
+  "type: 'travel_content',",
+  'includeDrafts: false',
   "type: 'all',",
   'includeDrafts: true',
-  'if (!data?.ok || !data?.authenticated)',
+  'const [publicTravelData, adminData] = await Promise.all',
+  "root.dataset.includeDrafts = '0';",
+  "root.dataset.includeDrafts = '1';",
+  "section.hidden = !hasHtml;",
+  "section.setAttribute('aria-hidden', hasHtml ? 'false' : 'true');",
   "window.addEventListener('pageshow', (event) =>",
   'if (!event.persisted) return;',
   'void loadCityContent();'
@@ -62,14 +75,20 @@ for (const required of [
   }
 }
 
-const cityRuntimeStart = postsJs.indexOf('/* CITY_HOTEL_PICKS_RUNTIME_V6_UNIFIED_REQUEST */');
+const cityRuntimeStart = postsJs.indexOf('/* CITY_CONTENT_RUNTIME_V7_PUBLIC_TRAVEL_ADMIN_HOTELS */');
 const cityRuntimeEnd = postsJs.indexOf('\n(function () {', cityRuntimeStart);
 const cityRuntime = postsJs.slice(cityRuntimeStart, cityRuntimeEnd > cityRuntimeStart ? cityRuntimeEnd : undefined);
 if (cityRuntime.includes('/api/admin/session')) {
   throw new Error('도시 콘텐츠가 별도 관리자 세션 API를 먼저 호출하고 있습니다.');
 }
 if ((cityRuntime.match(/type: 'all'/g) || []).length !== 1) {
-  throw new Error('도시 초기 콘텐츠 통합 요청이 정확히 한 번 정의되어야 합니다.');
+  throw new Error('관리자 Hotel Picks 통합 요청이 정확히 한 번 정의되어야 합니다.');
+}
+if (!cityRuntime.includes("const adminOnlySections = Array.from(document.querySelectorAll('#hotel-posts'));")) {
+  throw new Error('Travel Contents가 관리자 전용 섹션 목록에서 제거되지 않았습니다.');
+}
+if (!cityRuntime.includes("publicTravelPromise") || !cityRuntime.includes("includeDrafts: false")) {
+  throw new Error('일반 사용자용 Travel Contents 공개 요청이 없습니다.');
 }
 
 const sessionApi = fs.readFileSync(path.join(root, 'functions', 'api', 'admin', 'session.js'), 'utf8');
@@ -83,4 +102,4 @@ for (const required of [
   }
 }
 
-console.log(`도시 메인 관리자 전용 추천 호텔 버튼 fail-closed 검사 통과: ${cityPages.length}개`);
+console.log(`도시 메인 Travel Contents 공개/Hotel Picks 관리자 전용 검사 통과: ${cityPages.length}개`);

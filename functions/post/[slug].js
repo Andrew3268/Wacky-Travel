@@ -7,7 +7,7 @@ import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissin
 import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content-link-settings.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260818-post-layout-v47";
+const POST_RENDER_VERSION = "20260818-post-layout-v48";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -313,10 +313,10 @@ export async function onRequestGet(context) {
               <time datetime="${escapeHtml(updatedIso || "")}">수정 ${escapeHtml(updatedDate)}</time>
             </div>
           </div>
-          <div class="post-author-card__actions post-admin-mini-actions" aria-label="글 관리" data-admin-only hidden>
+          ${isDraftPreview ? `<div class="post-author-card__actions post-admin-mini-actions" aria-label="글 관리">
             <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
             <button id="deletePostBtn" class="post-admin-mini-btn post-admin-mini-btn--danger" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(titleText)}">삭제</button>
-          </div>
+          </div>` : ""}
         </div>
       `;
 
@@ -466,7 +466,7 @@ export async function onRequestGet(context) {
           updatedDateText: formatKoreanDate(publicModifiedAt) || updatedDate,
           showKicker: true
         }) : "";
-      const magazineAdminActionsHtml = renderPostAdminActions(slug, titleText);
+      const magazineAdminActionsHtml = isDraftPreview ? renderPostAdminActions(slug, titleText) : "";
       const magazineAuthorProfileHtml = `
         <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" itemid="${escapeHtml(authorId)}" aria-label="작성자 및 글 날짜">
           <img class="post-author-profile__avatar" src="/assets/images/profile.png" alt="" width="42" height="42" loading="lazy" decoding="async" />
@@ -955,7 +955,7 @@ function normalizeHotelGuestRatingLabel(value = "") {
 
 function renderPostAdminActions(slug = "", titleText = "") {
   return `
-      <div class="post-hero-admin-actions post-admin-mini-actions" aria-label="글 관리" data-admin-only hidden>
+      <div class="post-hero-admin-actions post-admin-mini-actions" aria-label="글 관리">
         <a class="post-admin-mini-btn" href="/edit.html?slug=${encodeURIComponent(slug)}">수정</a>
         <button id="deletePostBtn" class="post-admin-mini-btn post-admin-mini-btn--danger" type="button" data-slug="${escapeHtml(slug)}" data-title="${escapeHtml(titleText)}">삭제</button>
       </div>

@@ -280,12 +280,12 @@ function buildPostsHeroNav(categories = []) {
 }
 
 
-/* CITY_HOTEL_PICKS_RUNTIME_V6_UNIFIED_REQUEST */
+/* CITY_CONTENT_RUNTIME_V7_PUBLIC_TRAVEL_ADMIN_HOTELS */
 (async function () {
   const cityPostRoots = Array.from(document.querySelectorAll('[data-city-post-root]'));
   const cityTravelRoots = Array.from(document.querySelectorAll('[data-city-travel-root]'));
   const hotelHeroActionGroups = Array.from(document.querySelectorAll('body.travel-city-body .wt-city-hero__actions'));
-  const adminOnlySections = Array.from(document.querySelectorAll('#hotel-posts, #travel-contents'));
+  const adminOnlySections = Array.from(document.querySelectorAll('#hotel-posts'));
   const HOTEL_HERO_BUTTON_SELECTOR = '[data-admin-city-content="hotel-button"], a[href="#hotel-posts"]';
 
   const setAdminSectionsVisible = (visible) => {
@@ -319,7 +319,7 @@ function buildPostsHeroNav(categories = []) {
     else removeHotelHeroButtons();
   };
 
-  // 관리자 전용 섹션은 인증된 통합 콘텐츠 응답을 받기 전까지 항상 숨깁니다.
+  // Hotel Picks는 관리자 인증 전까지 숨기고, Travel Contents는 공개 글이 있을 때만 별도로 노출합니다.
   setAdminSectionsVisible(false);
   setHotelHeroButtonsVisible(false);
   if (!cityPostRoots.length && !cityTravelRoots.length) return;
@@ -576,8 +576,12 @@ function buildPostsHeroNav(categories = []) {
         footer.hidden = true;
       }
     }
-    if (section) section.hidden = !hasHtml;
+    if (section) {
+      section.hidden = !hasHtml;
+      section.setAttribute('aria-hidden', hasHtml ? 'false' : 'true');
+    }
     root.hidden = !hasHtml;
+    root.setAttribute('aria-hidden', hasHtml ? 'false' : 'true');
   };
 
   let loadSequence = 0;
@@ -596,38 +600,69 @@ function buildPostsHeroNav(categories = []) {
       root.querySelectorAll('[data-city-post-grid]').forEach((grid) => grid.setAttribute('aria-busy', 'true'));
     });
 
-    const data = await fetchJson(buildDestinationPostUrl({
-      destination,
-      type: 'all',
-      hotelLimit,
-      travelLimit,
-      includeDrafts: true
-    }), { ok: false, authenticated: false, groups: {} });
+    // 일반 방문자는 발행된 Travel Contents만 조회합니다. 콘텐츠가 0개면 섹션 전체를 계속 숨깁니다.
+    const publicTravelPromise = cityTravelRoots.length
+      ? fetchJson(buildDestinationPostUrl({
+          destination,
+          type: 'travel_content',
+          limit: travelLimit,
+          includeDrafts: false
+        }), {
+          ok: false,
+          authenticated: false,
+          html: '',
+          hasMore: false,
+          nextOffset: 0
+        })
+      : Promise.resolve({ ok: true, html: '', hasMore: false, nextOffset: 0 });
 
+    // 기존 Hotel Picks와 초안 미리보기는 관리자에게만 유지합니다.
+    const adminContentPromise = cityPostRoots.length
+      ? fetchJson(buildDestinationPostUrl({
+          destination,
+          type: 'all',
+          hotelLimit,
+          travelLimit,
+          includeDrafts: true
+        }), { ok: false, authenticated: false, groups: {} })
+      : Promise.resolve({ ok: false, authenticated: false, groups: {} });
+
+    const [publicTravelData, adminData] = await Promise.all([publicTravelPromise, adminContentPromise]);
     if (sequence !== loadSequence) return false;
-    if (!data?.ok || !data?.authenticated) {
+
+    cityTravelRoots.forEach((root) => {
+      root.dataset.includeDrafts = '0';
+      applyTravelGroupData(root, publicTravelData?.ok ? publicTravelData : {});
+    });
+
+    if (!adminData?.ok || !adminData?.authenticated) {
       cityPostRoots.forEach((root) => {
         root.querySelectorAll('[data-city-post-grid]').forEach((grid) => grid.removeAttribute('aria-busy'));
       });
-      return false;
+      return Boolean(publicTravelData?.ok);
     }
 
     setAdminSectionsVisible(true);
     setHotelHeroButtonsVisible(true);
-    if (data.uses_agoda_images
-      || itemsUseAgodaImages(data?.groups?.top5_series?.items)
-      || itemsUseAgodaImages(data?.groups?.hotel_intro?.items)) {
+    if (adminData.uses_agoda_images
+      || itemsUseAgodaImages(adminData?.groups?.top5_series?.items)
+      || itemsUseAgodaImages(adminData?.groups?.hotel_intro?.items)) {
       ensureAgodaImageConnectionHints();
     }
 
     cityPostRoots.forEach((root) => {
       const results = [
-        applyHotelGroupData(root, 'top5_series', data?.groups?.top5_series),
-        applyHotelGroupData(root, 'hotel_intro', data?.groups?.hotel_intro)
+        applyHotelGroupData(root, 'top5_series', adminData?.groups?.top5_series),
+        applyHotelGroupData(root, 'hotel_intro', adminData?.groups?.hotel_intro)
       ];
       updateHotelSectionVisibility(root, results);
     });
-    cityTravelRoots.forEach((root) => applyTravelGroupData(root, data?.groups?.travel_content));
+
+    // 관리자는 기존처럼 Travel Contents 초안까지 함께 확인할 수 있습니다.
+    cityTravelRoots.forEach((root) => {
+      root.dataset.includeDrafts = '1';
+      applyTravelGroupData(root, adminData?.groups?.travel_content);
+    });
     return true;
   };
 
@@ -661,12 +696,13 @@ function buildPostsHeroNav(categories = []) {
 
       moreButton.dataset.loading = '1';
       moreButton.textContent = '불러오는 중...';
+      const includeDrafts = root.dataset.includeDrafts === '1';
       const data = await fetchJson(buildDestinationPostUrl({
         destination,
         type: 'travel_content',
         offset,
         limit,
-        includeDrafts: true
+        includeDrafts
       }), {
         ok: false,
         authenticated: false,
@@ -674,9 +710,7 @@ function buildPostsHeroNav(categories = []) {
         hasMore: false,
         nextOffset: offset
       });
-      if (!data?.ok || !data?.authenticated) {
-        setAdminSectionsVisible(false);
-        setHotelHeroButtonsVisible(false);
+      if (!data?.ok || (includeDrafts && !data?.authenticated)) {
         return;
       }
       if (String(data.html || '').trim()) list.insertAdjacentHTML('beforeend', data.html);

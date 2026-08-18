@@ -27,6 +27,7 @@ assert(addJs.includes("content_link_settings: window.PostLinkManager?.getSetting
 assert(editJs.includes("content_link_settings: window.PostLinkManager?.getSettings?.() || []"), "edit: 링크 설정 저장 payload가 없습니다.");
 assert(editJs.includes("PostLinkManager?.setSettings"), "edit: 기존 링크 설정 복원 로직이 없습니다.");
 assert(linkManagerJs.includes("일반 링크") && linkManagerJs.includes("제휴 링크"), "링크 유형 선택 UI가 없습니다.");
+assert(linkManagerJs.includes('return "affiliate";\n  }\n\n  function render()'), "새 외부 링크의 기본값이 제휴 링크가 아닙니다.");
 assert(schema.includes("content_link_settings_json TEXT DEFAULT '[]'"), "DB 스키마에 링크 설정 컬럼이 없습니다.");
 assert(createApi.includes("content_link_settings_json"), "신규 글 API가 링크 설정을 저장하지 않습니다.");
 assert(editApi.includes("content_link_settings_json"), "글 수정 API가 링크 설정을 저장/조회하지 않습니다.");

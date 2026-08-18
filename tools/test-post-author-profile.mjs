@@ -8,6 +8,9 @@ const componentsCss = fs.readFileSync("public/assets/css/components.css", "utf8"
 assert.match(renderer, /POST_RENDER_VERSION = "\d{8}-post-layout-v\d+"/);
 assert.match(renderer, /import \{ normalizeContentType \} from "\.\.\/\.\.\/lib\/travel\/travel-settings\.js";/);
 assert.match(renderer, /const contentType = normalizeContentType\(row\.content_type \|\| ""\);/);
+assert.match(renderer, /const magazineAdminActionsHtml = isDraftPreview \? renderPostAdminActions\(slug, titleText\) : "";/);
+assert.match(renderer, /\$\{isDraftPreview \? `<div class="post-author-card__actions post-admin-mini-actions"[\s\S]*?` : ""\}/);
+assert.doesNotMatch(renderer, /class="post-hero-admin-actions post-admin-mini-actions"[^>]*data-admin-only/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{isRecommendedHotelReviewPost \? magazineAdminActionsHtml : ""\}\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
 assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);

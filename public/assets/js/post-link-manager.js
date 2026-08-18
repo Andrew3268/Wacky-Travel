@@ -81,7 +81,7 @@
     for (const [key, type] of state.settings.entries()) {
       if (key.split("\n")[0] === normalizeUrl(url)) return type;
     }
-    return "normal";
+    return "affiliate";
   }
 
   function render() {

@@ -26,6 +26,14 @@ function createDb() {
       recommendation_category_slug: '', recommendation_category_name: '', recommendation_category_description: '',
       hotel_pick_label: '', hotel_slug: '', hotel_name: '', hotel_location_type: '', hotel_star_rating: '',
       status: 'draft', updated_at: '2026-07-31T00:00:00Z', published_at: '2026-07-31T00:00:00Z'
+    },
+    {
+      slug: 'fukuoka-published-guide', title: '후쿠오카 공개 여행 가이드', category: '', summary: '공개 여행 콘텐츠',
+      cover_image: '', cover_image_alt: '', cover_image_source: 'r2', cover_image_link_url: '', cover_image_srcset: '',
+      tags_json: '[]', content_type: 'travel_tip', destination_slug: 'fukuoka', region_slug: '', region_name: '',
+      recommendation_category_slug: '', recommendation_category_name: '', recommendation_category_description: '',
+      hotel_pick_label: '', hotel_slug: '', hotel_name: '', hotel_location_type: '', hotel_star_rating: '',
+      status: 'published', updated_at: '2026-07-30T00:00:00Z', published_at: '2026-07-30T00:00:00Z'
     }
   ];
 
@@ -46,7 +54,7 @@ function createDb() {
           return null;
         },
         async all() {
-          if (sql.includes('FROM posts p')) return { results: rows };
+          if (sql.includes('FROM posts p')) return { results: sql.includes("p.status = 'published'") ? rows.filter((row) => row.status === 'published') : rows };
           return { results: [] };
         },
         async run() {
@@ -79,10 +87,24 @@ function createDb() {
 
 {
   const db = createDb();
+  const request = new Request('https://bestayable.com/api/destination-posts?destination=fukuoka&type=travel_content&limit=5');
+  const response = await onRequestGet({ env: { TRAVEL_DB: db }, request });
+  const data = await response.json();
+
+  if (response.status !== 200 || !data.ok || data.authenticated) throw new Error('일반 사용자 Travel Contents 공개 응답이 실패했습니다.');
+  if (!data.html.includes('후쿠오카 공개 여행 가이드')) throw new Error('발행된 Travel Contents가 일반 사용자 응답에 없습니다.');
+  if (data.html.includes('후쿠오카 식도락 가이드') || data.html.includes('?preview=1')) throw new Error('초안 Travel Contents가 일반 사용자에게 노출됐습니다.');
+  if (!data.html.includes('color:#111;font-size:28px;font-weight:600')) throw new Error('Travel Contents 화살표 디자인 변경이 누락됐습니다.');
+  if (db.calls.length !== 1) throw new Error(`공개 Travel Contents 요청의 DB 조회가 1회가 아닙니다: ${db.calls.length}`);
+  if (!String(response.headers.get('cache-control')).includes('public, max-age=60')) throw new Error('공개 Travel Contents 캐시 헤더가 누락됐습니다.');
+}
+
+{
+  const db = createDb();
   const request = new Request('https://bestayable.com/api/destination-posts?destination=fukuoka&type=all&include_drafts=1');
   const response = await onRequestGet({ env: { TRAVEL_DB: db }, request });
   if (response.status !== 401) throw new Error('비로그인 통합 요청이 차단되지 않았습니다.');
   if (db.calls.length !== 0) throw new Error('비로그인 요청에서 불필요한 D1 조회가 발생했습니다.');
 }
 
-console.log('도시 통합 콘텐츠 API 기능/DB 호출 수 검사 통과');
+console.log('도시 콘텐츠 API 공개 Travel Contents/관리자 초안 기능 검사 통과');

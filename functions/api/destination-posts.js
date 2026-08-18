@@ -556,7 +556,7 @@ function renderTravelPostItem(post = {}) {
         <div class="travel-card__meta">${isDraft ? '<span class="travel-card__draft-badge">초안</span>' : ""}${meta ? `<span>${escapeHtml(meta)}</span>` : ""}</div>
       </div>
       <div class="travel-list__actions" aria-hidden="true">
-        <span class="travel-list__arrow">→</span>
+        <span class="travel-list__arrow" style="color:#111;font-size:28px;font-weight:600;line-height:1">→</span>
       </div>
     </a>
     ${renderPostAdminActions(post)}
