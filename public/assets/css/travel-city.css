@@ -6864,7 +6864,7 @@ body.travel-city-body #travel-contents .travel-list__link:focus-visible .travel-
   body.travel-city-body .wt-city-start-guides .wt-section-title {
     font-size: 22px !important;
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.4;
     word-break: keep-all;
   }
 
@@ -6877,4 +6877,10 @@ body.travel-city-body #travel-contents .travel-list__link:focus-visible .travel-
 body.travel-city-body h2 {
   font-weight: 400 !important;
   line-height: 1.4 !important;
+}
+
+@media (min-width: 768px) {
+  body.travel-city-body h2 {
+    font-size: 30px !important;
+  }
 }

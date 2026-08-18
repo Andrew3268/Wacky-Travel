@@ -193,6 +193,18 @@ if (pageCount !== 75) {
 const cssPath = path.join(root, 'public', 'assets', 'css', 'travel-purpose.css');
 const css = fs.readFileSync(cssPath, 'utf8');
 const cssBytes = Buffer.byteLength(css);
+const purposeHeadingRule = css.match(/body\.travel-purpose-body \.wt-section-title,\s*body\.travel-purpose-body \.wt-purpose-page \.wt-section-title,\s*body\.travel-purpose-body \.wt-cta-band h2\s*\{([\s\S]*?)\}/)?.[1] || '';
+if (!purposeHeadingRule) {
+  errors.push('Purpose section-title/CTA H2 rule missing');
+} else {
+  if (/font-weight\s*:/.test(purposeHeadingRule)) errors.push('Purpose section-title/CTA H2 rule must not declare font-weight');
+  if (!/font-size\s*:\s*30px/.test(purposeHeadingRule)) errors.push('Purpose section-title/CTA H2 desktop size must be 30px');
+}
+
+if (!/@media \(min-width: 768px\)\s*\{[\s\S]*?body\.travel-purpose-body h2\s*\{[\s\S]*?font-size\s*:\s*30px !important;[\s\S]*?\}[\s\S]*?\}/.test(css)) {
+  errors.push('Purpose desktop H2 30px unification rule missing');
+}
+
 
 for (const marker of [
   'Unified destination purpose choice layout — Fukuoka first-trip reference',

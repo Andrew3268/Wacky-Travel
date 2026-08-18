@@ -676,9 +676,8 @@ body.travel-purpose-body .wt-section-title,
 body.travel-purpose-body .wt-purpose-page .wt-section-title,
 body.travel-purpose-body .wt-cta-band h2{
   color: #050505 !important;
-  font-size: 40px;
-  font-weight: 600 !important;
-  line-height: 1.2;
+  font-size: 30px;
+  line-height: 1.4;
   letter-spacing: -0.045em !important;
   word-break: keep-all;
 }
@@ -1100,8 +1099,8 @@ body.travel-purpose-body .wt-section--survey-cta .wt-cta-band h2{
   max-width: 670px !important;
   margin: 0 !important;
   color: #111 !important;
-  font-size: 40px;
-  line-height: 1.2;
+  font-size: 30px;
+  line-height: 1.4;
   letter-spacing: -.055em !important;
   word-break: keep-all;
 }
@@ -2130,4 +2129,10 @@ body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-ca
 body.travel-purpose-body h2 {
   font-weight: 400 !important;
   line-height: 1.4 !important;
+}
+
+@media (min-width: 768px) {
+  body.travel-purpose-body h2 {
+    font-size: 30px !important;
+  }
 }
