@@ -19,7 +19,10 @@ function attrs(values = {}) {
 function renderHead(city, page) {
   const { head } = page;
   const styles = purposePageConfig.stylesheetPaths
-    .map((href) => `<link href="${escapeHtml(href)}?v=${escapeHtml(purposePageConfig.assetsVersion)}" rel="stylesheet"/>`)
+    .map((href) => {
+      const version = purposePageConfig.stylesheetVersions?.[href] || purposePageConfig.assetsVersion;
+      return `<link href="${escapeHtml(href)}?v=${escapeHtml(version)}" rel="stylesheet"/>`;
+    })
     .join('\n');
   const schemas = head.structuredData
     .map((schema) => `<script type="application/ld+json">${escapeJsonForHtml(schema)}</script>`)

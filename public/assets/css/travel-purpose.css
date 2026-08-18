@@ -2125,3 +2125,9 @@ body.travel-purpose-body .wt-purpose-page .wt-area-choice--unified .wt-choice-ca
     padding-top: 16px !important;
   }
 }
+
+/* Destination purpose pages: keep every H2 at the same editorial weight and line-height. */
+body.travel-purpose-body h2 {
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+}

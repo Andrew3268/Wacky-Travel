@@ -178,7 +178,8 @@ for (const city of cities) {
       }
     }
 
-    const purposeStylesheet = `/assets/css/travel-purpose.css?v=${purposePageConfig.assetsVersion}`;
+    const purposeStylesheetVersion = purposePageConfig.stylesheetVersions?.['/assets/css/travel-purpose.css'] || purposePageConfig.assetsVersion;
+    const purposeStylesheet = `/assets/css/travel-purpose.css?v=${purposeStylesheetVersion}`;
     if (!html.includes(purposeStylesheet)) {
       errors.push(`${relative}: current purpose stylesheet version missing (${purposeStylesheet})`);
     }

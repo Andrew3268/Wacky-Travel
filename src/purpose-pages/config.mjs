@@ -1,5 +1,8 @@
 export const purposePageConfig = Object.freeze({
   assetsVersion: '20260809-frontend-v29',
+  stylesheetVersions: Object.freeze({
+    '/assets/css/travel-purpose.css': '20260818-destination-h2-v4',
+  }),
   stylesheetPaths: Object.freeze([
     '/assets/css/app.css',
     '/assets/css/components.css',

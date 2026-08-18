@@ -6872,3 +6872,9 @@ body.travel-city-body #travel-contents .travel-list__link:focus-visible .travel-
     font-size: 21px;
   }
 }
+
+/* Destination main pages: keep every H2 at the same editorial weight and line-height. */
+body.travel-city-body h2 {
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+}
