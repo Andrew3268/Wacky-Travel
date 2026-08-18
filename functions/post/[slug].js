@@ -4,9 +4,10 @@ import { buildImageAttrs } from "../../lib/image-utils.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissingAffiliateDisclosureColumnError } from "../../lib/posts/affiliate-disclosure.js";
+import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content-link-settings.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260817-post-layout-v46";
+const POST_RENDER_VERSION = "20260818-post-layout-v47";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -105,6 +106,7 @@ async function loadPostRow(db, slug, requestedStatus) {
       hotel_pick_label,
       affiliate_enabled,
       affiliate_disclosure,
+      content_link_settings_json,
       search_intent,
       published_at,
       COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at,
@@ -118,12 +120,13 @@ async function loadPostRow(db, slug, requestedStatus) {
       "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
       "published_at AS content_modified_at"
     )
-    .replace("      affiliate_disclosure,", "      '' AS affiliate_disclosure,");
+    .replace("      affiliate_disclosure,", "      '' AS affiliate_disclosure,")
+    .replace("      content_link_settings_json,", "      '[]' AS content_link_settings_json,");
 
   try {
     return await db.prepare(sql).bind(slug, requestedStatus).first();
   } catch (error) {
-    if (isMissingPublicModifiedColumnError(error)) {
+    if (isMissingPublicModifiedColumnError(error) || isMissingContentLinkSettingsColumnError(error)) {
       return db.prepare(fallbackLegacySql).bind(slug, requestedStatus).first();
     }
     if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error) && !isMissingAffiliateDisclosureColumnError(error)) throw error;
@@ -137,7 +140,7 @@ async function loadPostRow(db, slug, requestedStatus) {
     try {
       return await db.prepare(sql).bind(slug, requestedStatus).first();
     } catch (retryError) {
-      if (!isMissingPublicModifiedColumnError(retryError)) throw retryError;
+      if (!isMissingPublicModifiedColumnError(retryError) && !isMissingContentLinkSettingsColumnError(retryError)) throw retryError;
       return db.prepare(fallbackLegacySql).bind(slug, requestedStatus).first();
     }
   }
@@ -255,6 +258,7 @@ export async function onRequestGet(context) {
         useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
         styleHotelSeries: isTop5SeriesPost,
         tocNumbered: !isTravelTipPost,
+        contentLinkSettings: row.content_link_settings_json || "[]",
         origin
       });
       const faqSectionHtml = renderFaqSection(faqItems, origin);
@@ -1171,7 +1175,8 @@ function buildArticleBodyHtml(contentMd, adHtmlList = [], contentTextLength = 0,
     origin: options.origin || DEFAULT_SITE_ORIGIN,
     hotelReviewSectionImageAnchor: options.useUnifiedHotelSectionHeading === true,
     hotelSectionHeadingClasses: options.useUnifiedHotelSectionHeading === true,
-    styleHotelSeries: options.styleHotelSeries === true
+    styleHotelSeries: options.styleHotelSeries === true,
+    contentLinkSettings: options.contentLinkSettings || []
   });
   if (!blocks.length) return "";
 

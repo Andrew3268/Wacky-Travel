@@ -21,7 +21,7 @@
     "seo:audit": "node ./tools/seo-audit.mjs",
     "check:syntax": "node ./tools/syntax-check.mjs",
     "check:admin-ui": "node ./tools/test-admin-ui.mjs",
-    "check": "npm run build:purpose-pages && npm run check:purpose-page-template && npm run seo:normalize && npm run routes:functions && npm run seo:routes && npm run seo:audit && npm run check:sitemap-destination-roots && npm run check:index-inline && npm run check:static-destinations && npm run check:cover-image-source && npm run check:inline-agoda-images && npm run check:post-mobile-media && npm run check:city-admin-hero-button && npm run check:city-content-performance && npm run check:destination-content-api && npm run check:phase1-performance && npm run check:phase2-performance && npm run check:phase3-frontend && npm run check:style-hotel-editor && npm run check:post-author-profile && npm run check:travel-tip-post && npm run check:faq-markdown && npm run check:public-modified-date && npm run check:city-snapshot-controls && npm run check:draft-search-blocking && npm run check:search-console-noindex && npm run check:search-console-discovered && npm run check:edit-load-performance && npm run check:admin-ui && npm run check:post-affiliate-disclosure && npm run check:syntax",
+    "check": "npm run build:purpose-pages && npm run check:purpose-page-template && npm run seo:normalize && npm run routes:functions && npm run seo:routes && npm run seo:audit && npm run check:sitemap-destination-roots && npm run check:index-inline && npm run check:static-destinations && npm run check:cover-image-source && npm run check:inline-agoda-images && npm run check:post-mobile-media && npm run check:city-admin-hero-button && npm run check:city-content-performance && npm run check:destination-content-api && npm run check:phase1-performance && npm run check:phase2-performance && npm run check:phase3-frontend && npm run check:style-hotel-editor && npm run check:post-author-profile && npm run check:travel-tip-post && npm run check:faq-markdown && npm run check:public-modified-date && npm run check:city-snapshot-controls && npm run check:draft-search-blocking && npm run check:search-console-noindex && npm run check:search-console-discovered && npm run check:edit-load-performance && npm run check:admin-ui && npm run check:post-affiliate-disclosure && npm run check:post-content-link-manager && npm run check:syntax",
     "predeploy": "npm run check",
     "d1:migrate:recommendation-category-names": "wrangler d1 execute wacky-travel-db --file=./db/migrations/012_recommendation_category_names.sql",
     "d1:migrate:recommendation-category-names:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/012_recommendation_category_names.sql",
@@ -68,7 +68,10 @@
     "check:faq-markdown": "node ./tools/test-faq-markdown.mjs",
     "check:post-affiliate-disclosure": "node ./tools/test-post-affiliate-disclosure.mjs",
     "check:search-console-noindex": "node ./tools/test-search-console-noindex.mjs",
-    "check:search-console-discovered": "node ./tools/test-search-console-discovered.mjs"
+    "check:search-console-discovered": "node ./tools/test-search-console-discovered.mjs",
+    "d1:migrate:post-content-link-settings": "wrangler d1 execute wacky-travel-db --file=./db/migrations/022_post_content_link_settings.sql",
+    "d1:migrate:post-content-link-settings:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/022_post_content_link_settings.sql",
+    "check:post-content-link-manager": "node ./tools/test-post-content-link-manager.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"

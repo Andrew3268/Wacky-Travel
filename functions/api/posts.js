@@ -3,6 +3,7 @@ import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../lib/posts/cover-image.js";
 import { ensurePublicModifiedDateColumn, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../lib/posts/affiliate-disclosure.js";
+import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn } from "../../lib/posts/content-link-settings.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -100,6 +101,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
   await ensureAffiliateDisclosureColumn(db);
+  await ensureContentLinkSettingsColumn(db);
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_region_slug ON posts(region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_destination_region ON posts(destination_slug, region_slug)`).run(); } catch (_) {}
   try { await db.prepare(`CREATE INDEX IF NOT EXISTS idx_posts_recommendation_category ON posts(recommendation_category_slug)`).run(); } catch (_) {}
@@ -551,6 +553,7 @@ export async function onRequestPost({ env, request }) {
   let hotelSlug = String(body.hotel_slug || "").trim();
   const affiliateEnabled = body.affiliate_enabled === true || body.affiliate_enabled === 1 || body.affiliate_enabled === "1" ? 1 : 0;
   const affiliateDisclosure = normalizeAffiliateDisclosure(body.affiliate_disclosure);
+  const contentLinkSettings = normalizeContentLinkSettings(body.content_link_settings || body.content_link_settings_json || []);
   const searchIntent = String(body.search_intent || "").trim();
 
   if (!slug || !title || !contentMd) {
@@ -596,12 +599,13 @@ export async function onRequestPost({ env, request }) {
       hotel_slug,
       affiliate_enabled,
       affiliate_disclosure,
+      content_link_settings_json,
       search_intent,
       status,
       published_at,
       content_modified_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -632,6 +636,7 @@ export async function onRequestPost({ env, request }) {
       hotel_slug = excluded.hotel_slug,
       affiliate_enabled = excluded.affiliate_enabled,
       affiliate_disclosure = excluded.affiliate_disclosure,
+      content_link_settings_json = excluded.content_link_settings_json,
       search_intent = excluded.search_intent,
       status = excluded.status,
       published_at = excluded.published_at,
@@ -668,6 +673,7 @@ export async function onRequestPost({ env, request }) {
     hotelSlug,
     affiliateEnabled,
     affiliateDisclosure,
+    JSON.stringify(contentLinkSettings),
     searchIntent,
     status,
     now,

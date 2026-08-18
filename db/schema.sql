@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS posts (
   hotel_slug TEXT DEFAULT '',
   affiliate_enabled INTEGER DEFAULT 0,
   affiliate_disclosure TEXT DEFAULT '',
+  content_link_settings_json TEXT DEFAULT '[]',
   search_intent TEXT DEFAULT '',
   published_at TEXT NOT NULL,
   content_modified_at TEXT DEFAULT '',

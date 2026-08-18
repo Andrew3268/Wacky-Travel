@@ -2905,7 +2905,12 @@ function inlineFormat(text) {
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(/`(.+?)`/g, "<code>$1</code>")
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, linkUrl) => {
+      const rawText = String(linkText || "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+      const rawUrl = String(linkUrl || "").replace(/&amp;/g, "&");
+      const attrs = window.PostLinkManager?.buildAnchorAttributes?.(rawText, rawUrl) || ' target="_blank" rel="noopener"';
+      return `<a href="${linkUrl}"${attrs}>${linkText}</a>`;
+    });
 }
 
 function normalizeArticleHeadingText(level, text = "") {
@@ -3619,6 +3624,7 @@ async function save() {
     cover_image_link_url: coverData.link,
     cover_image_srcset: coverData.srcset,
     affiliate_disclosure: $("affiliate_disclosure")?.value.trim() || "",
+    content_link_settings: window.PostLinkManager?.getSettings?.() || [],
     focus_keyword: $("focusKeyword")?.value.trim() || "",
     longtail_keywords: parseKeywords($("longtailKeywords")?.value || ""),
     seo_keywords: {
@@ -3741,6 +3747,8 @@ $("previewBackdrop")?.addEventListener("click", closePreview);
 document.querySelectorAll("[data-preview-width]").forEach((button) => {
   button.addEventListener("click", () => setPreviewDevice(button.dataset.previewWidth || "pc"));
 });
+
+document.addEventListener("content-link-settings-change", handleRealtimeChange);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") { closePreview(); closeTravelSettingsModal(); }
