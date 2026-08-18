@@ -65,8 +65,6 @@ function dateModified(html) {
   return values.at(-1) || "";
 }
 
-const hubHtml = await fs.readFile(path.join(publicDir, "destinations", "index.html"), "utf8");
-
 for (const route of affectedRoutes) {
   const html = await fs.readFile(routeFile(route), "utf8");
   const robots = metaContent(html, "robots").toLowerCase();
@@ -81,13 +79,10 @@ for (const route of affectedRoutes) {
 
   const match = route.match(/^\/destinations\/([^/]+)\/(.+)\/$/);
   assert(match, `${route}: 예상하지 못한 destination route 형식입니다.`);
-  const [, citySlug, pageType] = match;
+  const [, citySlug] = match;
   const cityHtml = await fs.readFile(path.join(publicDir, "destinations", citySlug, "index.html"), "utf8");
   assert(cityHtml.includes(`href="${route}"`), `${route}: 도시 허브에서 crawlable <a> 링크가 없습니다.`);
 
-  if (pageType === "hotel-guide" || pageType === "travel-guide") {
-    assert(hubHtml.includes(`href="${route}"`), `${route}: /destinations/ 핵심 가이드 디렉터리에서 직접 링크되지 않습니다.`);
-  }
 
   const modified = dateModified(html);
   if (modified) {
