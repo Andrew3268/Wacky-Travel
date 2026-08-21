@@ -35,10 +35,10 @@ for (const file of cityPages) {
   if (!/여행을 더 쉽게 만드는 꿀팁$/.test(travelTitle)) {
     throw new Error(`Travel Contents 제목이 꿀팁 문구로 통일되지 않았습니다: ${path.relative(root, file)} -> ${travelTitle}`);
   }
-  if (!html.includes('/assets/js/posts.js?v=20260818CityContentPublicTravelV2')) {
+  if (!html.includes('/assets/js/posts.js?v=20260821ArchiveIndexThresholdV3')) {
     throw new Error(`도시 콘텐츠 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/css/travel-core.css?v=20260809-frontend-v29') || !html.includes('/assets/css/travel-city.css?v=20260818-destination-h2-v5')) {
+  if (!html.includes('/assets/css/travel-core.css?v=20260821-seo-author-v30') || !html.includes('/assets/css/travel-city.css?v=20260818-destination-h2-v5')) {
     throw new Error(`도시 CSS 분리 파일 또는 통합 캐시 버전이 누락되었습니다: ${path.relative(root, file)}`);
   }
 }
@@ -65,7 +65,10 @@ for (const required of [
   'includeDrafts: false',
   "type: 'all',",
   'includeDrafts: true',
-  'const [publicTravelData, adminData] = await Promise.all',
+  'const [publicContentData, adminData] = await Promise.all',
+  'const ARCHIVE_MIN_PUBLISHED_POSTS = 5;',
+  'const renderPublicArchiveLinks = (destination, groups = {}) =>',
+  'renderPublicArchiveLinks(destination, publicGroups);',
   "root.dataset.includeDrafts = '0';",
   "root.dataset.includeDrafts = '1';",
   "section.hidden = !hasHtml;",
@@ -85,14 +88,18 @@ const cityRuntime = postsJs.slice(cityRuntimeStart, cityRuntimeEnd > cityRuntime
 if (cityRuntime.includes('/api/admin/session')) {
   throw new Error('도시 콘텐츠가 별도 관리자 세션 API를 먼저 호출하고 있습니다.');
 }
-if ((cityRuntime.match(/type: 'all'/g) || []).length !== 1) {
-  throw new Error('관리자 Hotel Picks 통합 요청이 정확히 한 번 정의되어야 합니다.');
+if ((cityRuntime.match(/type: 'all'/g) || []).length !== 2) {
+  throw new Error('공개 콘텐츠 통합 요청과 관리자 Hotel Picks 통합 요청이 각각 한 번씩 정의되어야 합니다.');
 }
 if (!cityRuntime.includes("const adminOnlySections = Array.from(document.querySelectorAll('#hotel-posts'));")) {
   throw new Error('Travel Contents가 관리자 전용 섹션 목록에서 제거되지 않았습니다.');
 }
-if (!cityRuntime.includes("publicTravelPromise") || !cityRuntime.includes("includeDrafts: false")) {
-  throw new Error('일반 사용자용 Travel Contents 공개 요청이 없습니다.');
+if (!cityRuntime.includes("publicContentPromise") || !cityRuntime.includes("includeDrafts: false")) {
+  throw new Error('일반 사용자용 공개 콘텐츠 통합 요청이 없습니다.');
+}
+if (!cityRuntime.includes('Number(groups?.top5_series?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS')
+  || !cityRuntime.includes('Number(groups?.hotel_intro?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS')) {
+  throw new Error('5개 이상일 때만 archive 링크를 노출하는 기준이 누락되었습니다.');
 }
 
 const sessionApi = fs.readFileSync(path.join(root, 'functions', 'api', 'admin', 'session.js'), 'utf8');

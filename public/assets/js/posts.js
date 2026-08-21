@@ -432,6 +432,32 @@ function buildPostsHeroNav(categories = []) {
     hotel_intro: '추천 호텔 리뷰 더 보기 →'
   };
 
+  const ARCHIVE_MIN_PUBLISHED_POSTS = 5;
+
+  const renderPublicArchiveLinks = (destination, groups = {}) => {
+    const host = document.querySelector('.wt-city-start-guides .container');
+    if (!host) return;
+
+    host.querySelectorAll('[data-public-archive-links]').forEach((node) => node.remove());
+    const archive = CITY_ARCHIVES[destination] || {};
+    const links = [];
+
+    if (Number(groups?.top5_series?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS && archive.top5_series) {
+      links.push(`<a href="${escapeHtml(archive.top5_series)}">호텔 추천 글 전체 보기</a>`);
+    }
+    if (Number(groups?.hotel_intro?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS && archive.hotel_intro) {
+      links.push(`<a href="${escapeHtml(archive.hotel_intro)}">추천 호텔 리뷰 전체 보기</a>`);
+    }
+    if (!links.length) return;
+
+    const nav = document.createElement('nav');
+    nav.className = 'wt-city-archive-links';
+    nav.dataset.publicArchiveLinks = '1';
+    nav.setAttribute('aria-label', '호텔 콘텐츠 전체 보기');
+    nav.innerHTML = links.join('');
+    host.appendChild(nav);
+  };
+
   const fetchJson = async (url, fallback) => {
     try {
       const response = await fetch(url, {
@@ -600,21 +626,21 @@ function buildPostsHeroNav(categories = []) {
       root.querySelectorAll('[data-city-post-grid]').forEach((grid) => grid.setAttribute('aria-busy', 'true'));
     });
 
-    // 일반 방문자는 발행된 Travel Contents만 조회합니다. 콘텐츠가 0개면 섹션 전체를 계속 숨깁니다.
-    const publicTravelPromise = cityTravelRoots.length
+    // 일반 방문자는 공개 글을 한 번에 조회합니다. Travel Contents는 기존처럼 노출하고,
+    // 호텔 archive는 각 유형이 5개 이상일 때만 도시 허브에 crawlable 링크를 추가합니다.
+    const publicContentPromise = (cityTravelRoots.length || cityPostRoots.length)
       ? fetchJson(buildDestinationPostUrl({
           destination,
-          type: 'travel_content',
-          limit: travelLimit,
+          type: 'all',
+          hotelLimit: 1,
+          travelLimit,
           includeDrafts: false
         }), {
           ok: false,
           authenticated: false,
-          html: '',
-          hasMore: false,
-          nextOffset: 0
+          groups: {}
         })
-      : Promise.resolve({ ok: true, html: '', hasMore: false, nextOffset: 0 });
+      : Promise.resolve({ ok: true, authenticated: false, groups: {} });
 
     // 기존 Hotel Picks와 초안 미리보기는 관리자에게만 유지합니다.
     const adminContentPromise = cityPostRoots.length
@@ -627,19 +653,23 @@ function buildPostsHeroNav(categories = []) {
         }), { ok: false, authenticated: false, groups: {} })
       : Promise.resolve({ ok: false, authenticated: false, groups: {} });
 
-    const [publicTravelData, adminData] = await Promise.all([publicTravelPromise, adminContentPromise]);
+    const [publicContentData, adminData] = await Promise.all([publicContentPromise, adminContentPromise]);
     if (sequence !== loadSequence) return false;
+
+    const publicGroups = publicContentData?.ok ? (publicContentData.groups || {}) : {};
+    const publicTravelData = publicGroups.travel_content || {};
+    renderPublicArchiveLinks(destination, publicGroups);
 
     cityTravelRoots.forEach((root) => {
       root.dataset.includeDrafts = '0';
-      applyTravelGroupData(root, publicTravelData?.ok ? publicTravelData : {});
+      applyTravelGroupData(root, publicTravelData);
     });
 
     if (!adminData?.ok || !adminData?.authenticated) {
       cityPostRoots.forEach((root) => {
         root.querySelectorAll('[data-city-post-grid]').forEach((grid) => grid.removeAttribute('aria-busy'));
       });
-      return Boolean(publicTravelData?.ok);
+      return Boolean(publicContentData?.ok);
     }
 
     setAdminSectionsVisible(true);

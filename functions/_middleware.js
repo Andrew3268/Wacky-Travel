@@ -15,6 +15,7 @@ const INDEX_ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, ma
 const NOINDEX_FOLLOW = "noindex, follow, noarchive";
 const NOINDEX_PRIVATE = "noindex, nofollow, noarchive, nosnippet";
 const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
+const ARCHIVE_MIN_PUBLISHED_POSTS = 5;
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -131,6 +132,12 @@ export function resolveRobotsDirective(url, status, dynamicIndexable = null) {
   if ((path === "/travel-by-mood/ocean-rest/" || path === "/travel-by-mood/ocean-rest") && dynamicIndexable === false) {
     return NOINDEX_FOLLOW;
   }
+  if (/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/?$/.test(path) && dynamicIndexable === false) {
+    return NOINDEX_FOLLOW;
+  }
+  if (/^\/destinations\/[^/]+\/hotel-location-survey\/?$/.test(path)) {
+    return NOINDEX_FOLLOW;
+  }
 
   const duplicateParams = (
     (path === "/" && ["category", "tag", "status", "page"].some((key) => url.searchParams.has(key)))
@@ -193,10 +200,7 @@ async function loadDynamicPageState(env, pathname) {
     const archiveData = await loadArchiveData(env, path);
     return {
       archiveData,
-      // These are permanent city landing pages. Their clean URLs must remain
-      // indexable even before the first matching post is published. Post count
-      // controls only the archive contents, not the page's robots directive.
-      indexable: true
+      indexable: Number(archiveData?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS
     };
   }
 
@@ -335,6 +339,9 @@ async function loadArchiveData(env, pathname) {
     return null;
   }
 }
+
+
+
 
 
 class ArchiveFilterHandler {
