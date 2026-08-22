@@ -82,9 +82,12 @@ for (const file of htmlFiles) {
   if (!noindex) staticIndexable.push(route);
 
   const jsonScripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const schemas = [];
   for (const match of jsonScripts) {
     try {
       const parsed = JSON.parse(match[1].trim());
+      if (Array.isArray(parsed)) schemas.push(...parsed.filter((item) => item && typeof item === "object"));
+      else if (parsed && typeof parsed === "object") schemas.push(parsed);
       const stack = [parsed];
       while (stack.length) {
         const current = stack.pop();
@@ -95,6 +98,67 @@ for (const file of htmlFiles) {
         }
       }
     } catch (error) { errors.push(`${route}: JSON-LD 문법 오류 (${error.message})`); }
+  }
+
+  const schemaByType = (type) => schemas.find((schema) => schema?.["@type"] === type) || null;
+  const requireSchema = (type, message = type) => {
+    const schema = schemaByType(type);
+    if (!schema) errors.push(`${route}: ${message} 구조화 데이터 누락`);
+    return schema;
+  };
+
+  if (route === "/") {
+    const website = requireSchema("WebSite");
+    const organization = requireSchema("Organization");
+    if (website?.["@id"] !== `${SITE_ORIGIN}/#website`) errors.push(`${route}: WebSite @id 불일치`);
+    if (organization?.["@id"] !== `${SITE_ORIGIN}/#organization`) errors.push(`${route}: Organization @id 불일치`);
+  }
+
+  if (route === "/destinations/") {
+    requireSchema("CollectionPage");
+    requireSchema("BreadcrumbList");
+    const itemList = requireSchema("ItemList");
+    if (!Array.isArray(itemList?.itemListElement) || itemList.itemListElement.length < 1) errors.push(`${route}: 여행지 ItemList가 비어 있음`);
+  }
+
+  const cityRootMatch = route.match(/^\/destinations\/([^/]+)\/$/);
+  if (cityRootMatch) {
+    requireSchema("WebPage");
+    requireSchema("BreadcrumbList");
+    requireSchema("ItemList");
+    const destination = requireSchema("TouristDestination");
+    if (destination && Object.prototype.hasOwnProperty.call(destination, "inLanguage")) errors.push(`${route}: TouristDestination에 허용되지 않는 inLanguage 사용`);
+    if (destination?.["@id"] !== `${SITE_ORIGIN}${route}#destination`) errors.push(`${route}: TouristDestination @id 불일치`);
+  }
+
+  const purposeMatch = route.match(/^\/destinations\/[^/]+\/(first-trip|value-hotel|near-trip|family-trip|quiet-stay)\/$/);
+  if (purposeMatch) {
+    const webPage = requireSchema("WebPage");
+    requireSchema("BreadcrumbList");
+    const itemList = requireSchema("ItemList");
+    const faqPage = requireSchema("FAQPage");
+    if (!Array.isArray(itemList?.itemListElement) || itemList.itemListElement.length < 1) errors.push(`${route}: 목적 페이지 ItemList가 비어 있음`);
+    if (!Array.isArray(faqPage?.mainEntity) || faqPage.mainEntity.length < 1) errors.push(`${route}: 목적 페이지 FAQPage가 비어 있음`);
+    if (webPage?.["@id"] !== `${SITE_ORIGIN}${route}#webpage`) errors.push(`${route}: 목적 페이지 WebPage @id 불일치`);
+  }
+
+  const guideMatch = route.match(/^\/destinations\/[^/]+\/(hotel-guide|travel-guide)\/$/);
+  if (guideMatch) {
+    const article = requireSchema("Article");
+    const webPage = requireSchema("WebPage");
+    requireSchema("BreadcrumbList");
+    if (!/^\d{4}-\d{2}-\d{2}/.test(String(article?.datePublished || ""))) errors.push(`${route}: Article datePublished 누락/형식 오류`);
+    if (!/^\d{4}-\d{2}-\d{2}/.test(String(article?.dateModified || ""))) errors.push(`${route}: Article dateModified 누락/형식 오류`);
+    if (article?.publisher?.["@id"] !== `${SITE_ORIGIN}/#organization`) errors.push(`${route}: Article publisher @id 불일치`);
+    if (Number(article?.publisher?.logo?.width) !== 520 || Number(article?.publisher?.logo?.height) !== 520) errors.push(`${route}: Article publisher 로고 크기 불일치`);
+    if (article?.mainEntityOfPage?.["@id"] !== `${SITE_ORIGIN}${route}#webpage`) errors.push(`${route}: Article → WebPage 연결 불일치`);
+    if (webPage?.mainEntity?.["@id"] !== `${SITE_ORIGIN}${route}#article`) errors.push(`${route}: WebPage → Article 연결 불일치`);
+  }
+
+  const archiveMatch = route.match(/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/$/);
+  if (archiveMatch) {
+    requireSchema("CollectionPage");
+    requireSchema("BreadcrumbList");
   }
 
   if (!noindex) {
@@ -199,9 +263,18 @@ for (const file of sourceFiles) {
   }
 }
 
-if (!(await fs.readFile(path.join(root, "functions", "_middleware.js"), "utf8")).includes("JsonLdHandler")) {
-  errors.push("functions/_middleware.js: JSON-LD 절대 URL 변환 처리 누락");
-}
+const middlewareSource = await fs.readFile(path.join(root, "functions", "_middleware.js"), "utf8");
+const utilsSource = await fs.readFile(path.join(root, "functions", "_utils.js"), "utf8");
+const postSource = await fs.readFile(path.join(root, "functions", "post", "[slug].js"), "utf8");
+if (!middlewareSource.includes("JsonLdHandler")) errors.push("functions/_middleware.js: JSON-LD 절대 URL 변환 처리 누락");
+if (!middlewareSource.includes("ArchiveStructuredDataHandler")) errors.push("functions/_middleware.js: 동적 호텔 목록 ItemList 구조화 데이터 처리 누락");
+if (!/JSON\.stringify\(obj\)\.replace\(\/<\/g, ["']\\\\u003c["']\)/.test(utilsSource)) errors.push("functions/_utils.js: JSON-LD < 이스케이프 처리 누락");
+if (!postSource.includes('const articleId = `${canonical.toString()}#article`;')) errors.push("functions/post/[slug].js: BlogPosting @id 연결 누락");
+if (!postSource.includes('const webPageId = `${canonical.toString()}#webpage`;')) errors.push("functions/post/[slug].js: WebPage @id 연결 누락");
+if (!postSource.includes('"@id": organizationId')) errors.push("functions/post/[slug].js: publisher Organization @id 연결 누락");
+if (!/width:\s*520,[\s\S]*?height:\s*520/.test(postSource)) errors.push("functions/post/[slug].js: publisher 로고 실제 크기 520x520 미반영");
+if (!postSource.includes("buildHotelAboutJsonLd")) errors.push("functions/post/[slug].js: 호텔 리뷰 BlogPosting.about Hotel 연결 누락");
+if (/itemscope itemtype="https:\/\/schema\.org\/BlogPosting"/.test(postSource)) errors.push("functions/post/[slug].js: BlogPosting microdata 중복 사용");
 
 console.log(`SEO audit: HTML ${htmlFiles.length}개, 색인 가능 정적 경로 ${discovered.length}개, 오류 ${errors.length}개, 경고 ${warnings.length}개`);
 for (const warning of warnings) console.warn(`WARN ${warning}`);

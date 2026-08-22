@@ -9,6 +9,107 @@ const escapeHtml = (value = '') => String(value)
 
 const escapeJsonForHtml = (value) => JSON.stringify(value).replaceAll('<', '\\u003c');
 
+const SITE_ORIGIN = 'https://bestayable.com';
+const WEBSITE_ID = `${SITE_ORIGIN}/#website`;
+
+function absolutePageUrl(value = '', fallback = '/') {
+  const raw = String(value || '').trim();
+  if (!raw) return `${SITE_ORIGIN}${fallback}`;
+  try { return new URL(raw, SITE_ORIGIN).toString(); } catch { return `${SITE_ORIGIN}${fallback}`; }
+}
+
+function ensurePurposeStructuredData(city, page) {
+  const canonical = absolutePageUrl(page?.head?.canonical || '', '/');
+  const schemas = Array.isArray(page?.head?.structuredData)
+    ? page.head.structuredData.map((schema) => structuredClone(schema))
+    : [];
+  const byType = new Map();
+  for (const schema of schemas) {
+    const type = schema && typeof schema === 'object' ? schema['@type'] : '';
+    if (type && !byType.has(type)) byType.set(type, schema);
+  }
+
+  let breadcrumb = byType.get('BreadcrumbList');
+  if (!breadcrumb) {
+    const items = Array.isArray(page?.breadcrumbs) ? page.breadcrumbs : [];
+    breadcrumb = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: String(item?.label || '').trim(),
+        item: item?.current ? canonical : absolutePageUrl(item?.href || '/', '/')
+      }))
+    };
+    schemas.push(breadcrumb);
+    byType.set('BreadcrumbList', breadcrumb);
+  }
+  breadcrumb['@id'] = `${canonical}#breadcrumb`;
+
+  let itemList = byType.get('ItemList');
+  if (!itemList) {
+    const choices = Array.isArray(page?.areaChoice?.choices) ? page.areaChoice.choices : [];
+    if (choices.length) {
+      itemList = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: String(page?.areaChoice?.head?.title || `${city?.name || ''} 숙소 추천 구역`).trim(),
+        itemListElement: choices.map((choice, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: String(choice?.title || choice?.label || '').trim()
+        }))
+      };
+      schemas.push(itemList);
+      byType.set('ItemList', itemList);
+    }
+  }
+  if (itemList) {
+    itemList['@id'] = `${canonical}#itemlist`;
+    itemList.url = itemList.url || canonical;
+  }
+
+  let faqPage = byType.get('FAQPage');
+  const faqItems = Array.isArray(page?.faq?.items) ? page.faq.items : [];
+  if (!faqPage && faqItems.length) {
+    faqPage = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: String(item?.question || '').trim(),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: String(item?.answer || '').trim()
+        }
+      }))
+    };
+    schemas.push(faqPage);
+    byType.set('FAQPage', faqPage);
+  }
+  if (faqPage) faqPage['@id'] = `${canonical}#faq`;
+
+  let webPage = byType.get('WebPage');
+  if (!webPage) {
+    webPage = {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage'
+    };
+    schemas.unshift(webPage);
+  }
+  webPage['@id'] = `${canonical}#webpage`;
+  webPage.url = canonical;
+  webPage.name = String(page?.head?.title || page?.hero?.title || '').trim();
+  webPage.description = String(page?.head?.description || '').trim();
+  webPage.inLanguage = 'ko-KR';
+  webPage.isPartOf = { '@id': WEBSITE_ID };
+  webPage.breadcrumb = { '@id': breadcrumb['@id'] };
+  if (itemList) webPage.mainEntity = { '@id': itemList['@id'] };
+
+  return schemas;
+}
+
 function attrs(values = {}) {
   return Object.entries(values)
     .filter(([, value]) => value !== '' && value !== null && value !== undefined && value !== false)
@@ -24,7 +125,7 @@ function renderHead(city, page) {
       return `<link href="${escapeHtml(href)}?v=${escapeHtml(version)}" rel="stylesheet"/>`;
     })
     .join('\n');
-  const schemas = head.structuredData
+  const schemas = ensurePurposeStructuredData(city, page)
     .map((schema) => `<script type="application/ld+json">${escapeJsonForHtml(schema)}</script>`)
     .join('\n');
 

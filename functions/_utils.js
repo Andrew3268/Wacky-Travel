@@ -8,7 +8,7 @@ export function escapeHtml(s = "") {
 }
 
 export function jsonld(obj) {
-  return `<script type="application/ld+json">${JSON.stringify(obj)}</script>`;
+  return `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
 }
 
 export function okJson(data, init = {}) {

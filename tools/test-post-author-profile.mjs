@@ -13,10 +13,12 @@ assert.match(renderer, /\$\{isDraftPreview \? `<div class="post-author-card__act
 assert.doesNotMatch(renderer, /class="post-hero-admin-actions post-admin-mini-actions"[^>]*data-admin-only/);
 assert.match(renderer, /class="post-magazine-head post-magazine-head--title"/);
 assert.match(renderer, /<h1 class="h1 post-title post-magazine-title"[^>]*>[\s\S]*?<\/h1>\s*\$\{isRecommendedHotelReviewPost \? magazineAdminActionsHtml : ""\}\s*\$\{magazineAuthorProfileHtml\}\s*<\/div>\s*\$\{coverImageHtml\}/);
-assert.match(renderer, /class="post-author-profile"[^>]*itemprop="author"/);
+assert.match(renderer, /class="post-author-profile"/);
+assert.doesNotMatch(renderer, /class="post-shell post-shell--guide-style"[^>]*itemscope/);
+assert.doesNotMatch(renderer, /itemprop="headline"|itemprop="articleBody"|<meta itemprop="(?:headline|description|author|datePublished|dateModified|mainEntityOfPage|image)"/);
 assert.match(renderer, /<img class="post-author-profile__avatar" src="\/assets\/images\/profile\.png"[^>]*\/>/);
 assert.match(renderer, /class="post-author-profile__body"/);
-assert.match(renderer, /class="post-author-profile__name"[^>]*href="\/about\/"[^>]*rel="author"[^>]*><span itemprop="name">\$\{escapeHtml\(authorName\)\}<\/span><\/a>/);
+assert.match(renderer, /class="post-author-profile__name"[^>]*href="\/about\/"[^>]*rel="author"[^>]*><span>\$\{escapeHtml\(authorName\)\}<\/span><\/a>/);
 assert.match(renderer, /class="post-author-profile__meta"[^>]*>[\s\S]*?<time datetime="\$\{escapeHtml\(publishedIso \|\| ""\)\}">발행 \$\{escapeHtml\(publishedDate\)\}<\/time>[\s\S]*?post-author-profile__separator[\s\S]*?<time datetime="\$\{escapeHtml\(updatedIso \|\| ""\)\}">수정 \$\{escapeHtml\(updatedDate\)\}<\/time>/);
 
 const h1Index = renderer.indexOf('<h1 class="h1 post-title post-magazine-title"');
@@ -75,6 +77,16 @@ assert.doesNotMatch(renderer, /hotelFeatureBadgesHtml/);
 
 console.log("Post author profile check passed: public hotel feature badges hidden, 16px hotel meta, pick weight override removed.");
 
+
+assert.match(renderer, /const organizationId = `\$\{origin\}\/#organization`;/);
+assert.match(renderer, /const websiteId = `\$\{origin\}\/#website`;/);
+assert.match(renderer, /const webPageId = `\$\{canonical\.toString\(\)\}#webpage`;/);
+assert.match(renderer, /const articleId = `\$\{canonical\.toString\(\)\}#article`;/);
+assert.match(renderer, /"@id": articleId,[\s\S]*?mainEntityOfPage:[\s\S]*?"@id": webPageId/);
+assert.match(renderer, /publisher:[\s\S]*?"@id": organizationId[\s\S]*?width: 520,[\s\S]*?height: 520/);
+assert.match(renderer, /"@type": "WebPage",[\s\S]*?"@id": webPageId[\s\S]*?mainEntity:[\s\S]*?"@id": articleId/);
+assert.match(renderer, /function buildHotelAboutJsonLd[\s\S]*?"@type": "Hotel"[\s\S]*?"@id": `\$\{canonicalUrl\}#hotel`/);
+assert.match(renderer, /\.\.\.\(hotelAboutJsonLd \? \{ about: hotelAboutJsonLd \} : \{\}\)/);
 assert.match(renderer, /const authorName = "Be Stayable Editor";/);
 assert.match(renderer, /const authorUrl = `\$\{origin\}\/about\/`;/);
 assert.match(renderer, /"@id": authorId,[\s\S]*?name: authorName,[\s\S]*?url: authorUrl/);

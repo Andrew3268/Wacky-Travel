@@ -210,6 +210,10 @@ export async function onRequestGet(context) {
       const authorName = "Be Stayable Editor";
       const authorUrl = `${origin}/about/`;
       const authorId = `${origin}/about/#author`;
+      const organizationId = `${origin}/#organization`;
+      const websiteId = `${origin}/#website`;
+      const webPageId = `${canonical.toString()}#webpage`;
+      const articleId = `${canonical.toString()}#article`;
       const faqItems = parseFaqMarkdown(row.faq_md || "");
       const relatedRows = row.category
         ? (await env.TRAVEL_DB.prepare(`
@@ -333,6 +337,7 @@ export async function onRequestGet(context) {
       const breadcrumbJsonLd = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
+        "@id": `${canonical.toString()}#breadcrumb`,
         itemListElement: breadcrumbItems.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -341,12 +346,14 @@ export async function onRequestGet(context) {
         }))
       };
 
+      const hotelAboutJsonLd = buildHotelAboutJsonLd(hotelHeroData?.hotel || null, canonical.toString());
+
       const blogPostingJsonLd = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
+        "@id": articleId,
         mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": canonical.toString()
+          "@id": webPageId
         },
         headline: titleText,
         description: descriptionText,
@@ -359,12 +366,14 @@ export async function onRequestGet(context) {
         },
         publisher: {
           "@type": "Organization",
+          "@id": organizationId,
           name: siteName,
+          url: `${origin}/`,
           logo: {
             "@type": "ImageObject",
             url: `${origin}/assets/images/logo.png`,
-            width: 512,
-            height: 512
+            width: 520,
+            height: 520
           }
         },
         datePublished: publishedIso || row.published_at || "",
@@ -372,20 +381,26 @@ export async function onRequestGet(context) {
         url: canonical.toString(),
         inLanguage: "ko-KR",
         articleSection: row.category || "블로그",
-        wordCount: stripMarkdown(cleanContentMd).split(/\s+/).filter(Boolean).length
+        wordCount: stripMarkdown(cleanContentMd).split(/\s+/).filter(Boolean).length,
+        ...(hotelAboutJsonLd ? { about: hotelAboutJsonLd } : {})
       };
 
       const webPageJsonLd = {
         "@context": "https://schema.org",
         "@type": "WebPage",
+        "@id": webPageId,
         name: pageTitle,
         url: canonical.toString(),
         description: descriptionText,
         inLanguage: "ko-KR",
         isPartOf: {
-          "@type": "WebSite",
-          name: siteName,
-          url: `${origin}/`
+          "@id": websiteId
+        },
+        breadcrumb: {
+          "@id": breadcrumbJsonLd["@id"]
+        },
+        mainEntity: {
+          "@id": articleId
         }
       };
 
@@ -393,6 +408,7 @@ export async function onRequestGet(context) {
         ? {
             "@context": "https://schema.org",
             "@type": "FAQPage",
+            "@id": `${canonical.toString()}#faq`,
             inLanguage: "ko-KR",
             mainEntity: faqItems.map((item) => ({
               "@type": "Question",
@@ -468,10 +484,10 @@ export async function onRequestGet(context) {
         }) : "";
       const magazineAdminActionsHtml = isDraftPreview ? renderPostAdminActions(slug, titleText) : "";
       const magazineAuthorProfileHtml = `
-        <div class="post-author-profile" itemprop="author" itemscope itemtype="https://schema.org/Person" itemid="${escapeHtml(authorId)}" aria-label="작성자 및 글 날짜">
+        <div class="post-author-profile" aria-label="작성자 및 글 날짜">
           <img class="post-author-profile__avatar" src="/assets/images/profile.png" alt="" width="42" height="42" loading="lazy" decoding="async" />
           <div class="post-author-profile__body">
-            <a class="post-author-profile__name" itemprop="url" href="/about/" rel="author"><span itemprop="name">${escapeHtml(authorName)}</span></a>
+            <a class="post-author-profile__name" href="/about/" rel="author"><span>${escapeHtml(authorName)}</span></a>
             <div class="post-author-profile__meta" aria-label="글 발행 및 수정 날짜">
               <time datetime="${escapeHtml(publishedIso || "")}">발행 ${escapeHtml(publishedDate)}</time>
               <span class="post-author-profile__separator" aria-hidden="true">·</span>
@@ -582,13 +598,13 @@ export async function onRequestGet(context) {
     ${draftPreviewBannerHtml}
     ${breadcrumbHtml}
 
-    <article class="post-shell post-shell--guide-style" itemscope itemtype="https://schema.org/BlogPosting">
+    <article class="post-shell post-shell--guide-style">
       <div class="post-grid">
         <div class="post-main">
           <header class="card post-hero post-hero--product post-magazine-hero${isRecommendedHotelReviewPost ? " post-magazine-hero--decision-first" : ""}">
             <div class="post-magazine-head post-magazine-head--title">
               ${hotelTitleMetaHtml}
-              <h1 class="h1 post-title post-magazine-title" itemprop="headline">${escapeHtml(titleText)}</h1>
+              <h1 class="h1 post-title post-magazine-title">${escapeHtml(titleText)}</h1>
               ${isRecommendedHotelReviewPost ? magazineAdminActionsHtml : ""}
               ${magazineAuthorProfileHtml}
             </div>
@@ -604,17 +620,10 @@ export async function onRequestGet(context) {
               ${heroInfoHtml ? `<div class="post-magazine-hotel-panel">${heroInfoHtml}</div>` : ""}
             </div>
 
-            <meta itemprop="headline" content="${escapeHtml(titleText)}" />
-            <meta itemprop="description" content="${escapeHtml(descriptionText)}" />
-            <meta itemprop="author" content="${escapeHtml(authorName)}" />
-            <meta itemprop="datePublished" content="${escapeHtml(publishedIso || "")}" />
-            <meta itemprop="dateModified" content="${escapeHtml(updatedIso || "")}" />
-            <meta itemprop="mainEntityOfPage" content="${escapeHtml(canonical.toString())}" />
-            <meta itemprop="image" content="${escapeHtml(ogImage)}" />
           </header>
 
           <section class="card post-body" aria-label="본문">
-            <div class="post-content" itemprop="articleBody">
+            <div class="post-content">
               ${bodyHtml}
             </div>
             ${faqSectionHtml}
@@ -837,6 +846,31 @@ async function getHotelHeroRow(db, hotelSlug) {
   }
 }
 
+function buildHotelAboutJsonLd(hotel = null, canonicalUrl = "") {
+  if (!hotel || typeof hotel !== "object") return null;
+  const name = String(hotel.name || "").trim();
+  if (!name) return null;
+  const address = [hotel.address, hotel.destination_city, hotel.destination_country]
+    .map((value) => String(value || "").trim())
+    .filter(Boolean);
+  const entity = {
+    "@type": "Hotel",
+    "@id": `${canonicalUrl}#hotel`,
+    name,
+    alternateName: String(hotel.name_en || "").trim() || undefined,
+    description: String(hotel.summary || "").trim() || undefined,
+    address: address.length ? {
+      "@type": "PostalAddress",
+      streetAddress: String(hotel.address || "").trim() || undefined,
+      addressLocality: String(hotel.destination_city || "").trim() || undefined,
+      addressCountry: String(hotel.destination_country || "").trim() || undefined
+    } : undefined,
+    checkinTime: String(hotel.checkin_time || "").trim() || undefined,
+    checkoutTime: String(hotel.checkout_time || "").trim() || undefined
+  };
+  return Object.fromEntries(Object.entries(entity).filter(([, value]) => value !== undefined));
+}
+
 function renderProductStyleHeroKicker({ row = {}, hotel = null } = {}) {
   const eyebrowItems = buildHeroEyebrowItems(row, hotel);
   if (!eyebrowItems.length) return "";
@@ -880,8 +914,6 @@ function renderProductStyleHeroInfo({ row = {}, slug = "", titleText = "", categ
 
       ${ctaHtml}
 
-      <meta itemprop="datePublished" content="${escapeHtml(publishedIso || "")}" />
-      <meta itemprop="dateModified" content="${escapeHtml(updatedIso || "")}" />
     </div>
   `;
 }

@@ -80,6 +80,10 @@ export async function onRequest(context) {
       .on("[data-archive-count]", new ArchiveCountHandler(archiveData))
       .on(".wt-city-archive-summary", new ArchiveSummaryHandler(archiveData));
 
+    if (Number(archiveData.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS) {
+      rewriter.on("head", new ArchiveStructuredDataHandler(archiveData, canonical, siteOrigin));
+    }
+
     if (archiveData.type === "hotel_intro") {
       rewriter.on("[data-region-filter]", new ArchiveFilterHandler(archiveData, "region"));
     } else {
@@ -333,6 +337,10 @@ async function loadArchiveData(env, pathname) {
       destinationName: String(destination.name || destination.city || destinationSlug),
       total: items.length,
       filters,
+      schemaItems: items.map((post) => ({
+        slug: String(post.slug || "").trim(),
+        title: String(post.title || post.hotel_name || "").trim()
+      })).filter((item) => item.slug && item.title),
       html: items.map((post) => renderHotelPostCard(post, DEFAULT_CONTENT_TYPES)).join("")
     };
   } catch {
@@ -414,6 +422,36 @@ function absolutizeJsonLd(value, origin) {
     return absoluteSiteUrl(value, origin);
   }
   return value;
+}
+
+class ArchiveStructuredDataHandler {
+  constructor(data, canonical, origin) {
+    this.data = data;
+    this.canonical = canonical;
+    this.origin = origin;
+  }
+  element(element) {
+    const items = Array.isArray(this.data.schemaItems) ? this.data.schemaItems : [];
+    if (!items.length) return;
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "@id": `${this.canonical}#itemlist`,
+      url: this.canonical,
+      name: this.data.type === "hotel_intro"
+        ? `${this.data.destinationName} 추천 호텔 리뷰`
+        : `${this.data.destinationName} 호텔 추천 글`,
+      numberOfItems: items.length,
+      itemListElement: items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.title,
+        url: `${this.origin}/post/${encodeURIComponent(item.slug)}/`
+      }))
+    };
+    const json = JSON.stringify(schema).replace(/</g, "\\u003c");
+    element.append(`<script type="application/ld+json">${json}</script>`, { html: true });
+  }
 }
 
 class ArchiveGridHandler {
