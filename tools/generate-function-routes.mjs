@@ -8,6 +8,8 @@ const destinationDir = path.join(root, "public", "destinations");
 const outputFile = path.join(root, "public", "_routes.json");
 
 const include = [
+  "/",
+  "/destinations/",
   "/api/*",
   "/post/*",
   "/img/*",

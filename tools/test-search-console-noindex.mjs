@@ -24,6 +24,32 @@ assert.equal(
   "Internal search must remain noindex"
 );
 
+assert.equal(
+  resolveRobotsDirective(new URL("https://bestayable.com/"), 200, null),
+  INDEX,
+  "Canonical homepage must remain indexable"
+);
+assert.equal(
+  resolveRobotsDirective(new URL("https://bestayable.com/?category=hotel"), 200, null),
+  NOINDEX,
+  "Homepage category query variants must be noindex"
+);
+assert.equal(
+  resolveRobotsDirective(new URL("https://bestayable.com/destinations/"), 200, null),
+  INDEX,
+  "Canonical destinations directory must remain indexable"
+);
+assert.equal(
+  resolveRobotsDirective(new URL("https://bestayable.com/destinations/?survey=1"), 200, null),
+  NOINDEX,
+  "Destinations survey query mode must be noindex"
+);
+
+const routesConfig = JSON.parse(await readFile(new URL("../public/_routes.json", import.meta.url), "utf8"));
+assert(routesConfig.include.includes("/"), "Homepage must invoke Pages Functions so query noindex is applied");
+assert(routesConfig.include.includes("/destinations/"), "Destinations root must invoke Pages Functions so survey noindex is applied");
+
+
 for (const route of affectedArchiveRoutes) {
   assert.equal(
     resolveRobotsDirective(new URL(`https://bestayable.com${route}`), 200, false),

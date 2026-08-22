@@ -34,8 +34,9 @@ assert(headersText.includes("/travel-by-mood/ocean-rest/*"), "ocean-rest X-Robot
 const request = new Request("https://bestayable.com/robots.txt");
 const robotsResponse = await getRobots({ env: {}, request });
 const robots = await robotsResponse.text();
+assert(robots.includes("Disallow: /api/"), "/api/ must remain blocked in robots.txt");
 for (const route of blockedRoutes) {
-  assert(robots.includes(`Disallow: ${route}`), `${route} missing from robots.txt Disallow`);
+  assert(!robots.includes(`Disallow: ${route}`), `${route} must remain crawlable so noindex/index directives can be observed`);
 }
 
 const sitemapResponse = await getSitemap({ env: {}, request: new Request("https://bestayable.com/sitemap.xml") });

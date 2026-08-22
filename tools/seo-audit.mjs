@@ -254,13 +254,43 @@ const sourceFiles = (await walk(root)).filter((file) => /\.(?:js|mjs|html|toml|t
 for (const file of sourceFiles) {
   const rel = path.relative(root, file).split(path.sep).join("/");
   const text = await fs.readFile(file, "utf8");
-  if (/https:\/\/[a-z0-9.-]+\.pages\.dev/i.test(text)) {
+  if (/https:\/\/[a-z0-9.-]+\.pages\.dev/i.test(text) && rel !== "tools/setup-pages-dev-bulk-redirect.mjs") {
     errors.push(`${rel}: Cloudflare Pages 임시 도메인 하드코딩 발견`);
   }
   for (const match of text.matchAll(/["'](\/post\/[a-z0-9][a-z0-9-]*)(["'])/gi)) {
     const candidate = match[1];
     if (!candidate.endsWith("/")) errors.push(`${rel}: 후행 슬래시 없는 게시물 URL ${candidate}`);
   }
+}
+
+
+const robotsSource = await fs.readFile(path.join(root, "functions", "robots.txt.js"), "utf8");
+if (!robotsSource.includes("Disallow: /api/")) errors.push("functions/robots.txt.js: /api/ Disallow 누락");
+if (/Disallow:\s*\/hotel-promotions\//.test(robotsSource)) errors.push("functions/robots.txt.js: hotel-promotions는 noindex로 제어해야 하며 robots.txt에서 차단하면 안 됨");
+if (/Disallow:\s*\/travel-by-mood\/ocean-rest\//.test(robotsSource)) errors.push("functions/robots.txt.js: ocean-rest는 조건부 index 페이지이므로 robots.txt에서 차단하면 안 됨");
+
+const routesConfig = JSON.parse(await fs.readFile(path.join(publicDir, "_routes.json"), "utf8"));
+if (!routesConfig.include?.includes("/")) errors.push("public/_routes.json: 홈 query noindex 적용을 위한 / Functions route 누락");
+if (!routesConfig.include?.includes("/destinations/")) errors.push("public/_routes.json: /destinations/?survey=1 noindex 적용을 위한 route 누락");
+
+const packageJson = JSON.parse(await fs.readFile(path.join(root, "package.json"), "utf8"));
+if (!String(packageJson.scripts?.build || "").includes("npm run seo:normalize")) errors.push("package.json: build 파이프라인에 seo:normalize 누락");
+if (!packageJson.scripts?.["cloudflare:pages-dev-redirect"]) errors.push("package.json: pages.dev Bulk Redirect 설정 스크립트 누락");
+
+for (const name of ["first-trip", "near-trip", "family-trip", "quiet-stay"]) {
+  const sourcePath = path.join(root, "src", "purpose-pages", "data", "ho-chi-minh-city", `${name}.json`);
+  const data = JSON.parse(await fs.readFile(sourcePath, "utf8"));
+  const serialized = JSON.stringify(data);
+  if (serialized.includes('"href":"/destinations/ho-chi-minh-city"')) errors.push(`${path.relative(root, sourcePath)}: 도시 breadcrumb 후행 슬래시 누락`);
+}
+
+const redirectCsv = await fs.readFile(path.join(root, "cloudflare", "pages-dev-to-custom-domain.csv"), "utf8");
+if (!redirectCsv.includes("wacky-travel.pages.dev,https://bestayable.com,301,TRUE,TRUE,TRUE,TRUE")) {
+  errors.push("cloudflare/pages-dev-to-custom-domain.csv: pages.dev -> bestayable.com 301 Bulk Redirect 설정 불일치");
+}
+const redirectSetupSource = await fs.readFile(path.join(root, "tools", "setup-pages-dev-bulk-redirect.mjs"), "utf8");
+for (const required of ["status_code: 301", "include_subdomains: true", "subpath_matching: true", "preserve_query_string: true", "preserve_path_suffix: true"]) {
+  if (!redirectSetupSource.includes(required)) errors.push(`tools/setup-pages-dev-bulk-redirect.mjs: Bulk Redirect 옵션 누락 (${required})`);
 }
 
 const middlewareSource = await fs.readFile(path.join(root, "functions", "_middleware.js"), "utf8");

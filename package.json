@@ -59,7 +59,7 @@
     "check:city-snapshot-controls": "node ./tools/test-city-snapshot-controls.mjs",
     "build:purpose-pages": "node ./tools/build-purpose-pages.mjs",
     "check:purpose-page-template": "node ./tools/test-purpose-page-template.mjs",
-    "build": "npm run build:purpose-pages && npm run seo:routes && npm run routes:functions",
+    "build": "npm run build:purpose-pages && npm run seo:normalize && npm run seo:routes && npm run routes:functions",
     "predev": "npm run build:purpose-pages",
     "check:sitemap-destination-roots": "node ./tools/test-sitemap-destination-roots.mjs",
     "check:draft-search-blocking": "node ./tools/test-draft-search-blocking.mjs",
@@ -73,7 +73,8 @@
     "d1:migrate:post-content-link-settings:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/022_post_content_link_settings.sql",
     "check:post-content-link-manager": "node ./tools/test-post-content-link-manager.mjs",
     "check:guide-author-profile": "node ./tools/test-guide-author-profile.mjs",
-    "check:static-internal-slashes": "node ./tools/test-static-internal-slashes.mjs"
+    "check:static-internal-slashes": "node ./tools/test-static-internal-slashes.mjs",
+    "cloudflare:pages-dev-redirect": "node ./tools/setup-pages-dev-bulk-redirect.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"
