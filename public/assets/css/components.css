@@ -1333,9 +1333,9 @@ b{
   font-weight: 600;
   line-height: 1.35;
 }
-.wtpromo-footer-copy{
+.wtpromo-footer .wtpromo-footer-copy{
   margin: 8px 0 0;
-  color: #777;
+  color: #666;
   font-size: 12px;
   line-height: 1.65;
 }

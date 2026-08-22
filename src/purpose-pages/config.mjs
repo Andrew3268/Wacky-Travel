@@ -1,6 +1,7 @@
 export const purposePageConfig = Object.freeze({
   assetsVersion: '20260809-frontend-v29',
   stylesheetVersions: Object.freeze({
+    '/assets/css/components.css': '20260822-a11y-v1',
     '/assets/css/travel-core.css': '20260821-seo-author-v30',
     '/assets/css/travel-purpose.css': '20260818-destination-h2-v5',
   }),
