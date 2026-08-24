@@ -120,7 +120,14 @@ function isSchemaError(error) {
   return message.includes("no such table") || message.includes("no such column");
 }
 
-export async function onRequestGet({ env }) {
+export async function onRequestGet({ env, request }) {
+  if (!await requireAdmin(env, request)) {
+    return okJson({ message: "관리자 로그인이 필요합니다." }, {
+      status: 401,
+      headers: { "cache-control": "private, no-store" }
+    });
+  }
+
   try {
     return okJson({ items: await list(env.TRAVEL_DB) }, { headers: { "cache-control": "private, no-store" } });
   } catch (error) {

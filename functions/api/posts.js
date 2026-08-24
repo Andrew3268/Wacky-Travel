@@ -305,7 +305,7 @@ export async function onRequestGet({ env, request }) {
   const includeDraftsIfAdmin = requestedStatus === "published"
     && ["1", "true", "yes", "on"].includes(String(url.searchParams.get("include_drafts_if_admin") || "").trim().toLowerCase());
   const adminRequested = ["1", "true", "yes"].includes(String(url.searchParams.get("admin") || "").trim().toLowerCase());
-  const requiresAdmin = adminRequested || requestedStatus !== "published";
+  const requiresAdmin = adminRequested || requestedStatus !== "published" || Boolean(moodTag);
   const shouldCheckAdmin = requiresAdmin || includeDraftsIfAdmin;
   const admin = shouldCheckAdmin ? await getAdminSession(env, request) : null;
 
@@ -413,7 +413,7 @@ export async function onRequestGet({ env, request }) {
       recommendation_category_name,
       recommendation_category_description,
       hotel_pick_label,
-      mood_tags_json,
+      ${admin ? "mood_tags_json," : ""}
       situation_tags_json,
       hotel_slug,
       (SELECT h.name FROM hotels h WHERE h.slug = posts.hotel_slug LIMIT 1) AS hotel_name,
@@ -472,17 +472,19 @@ export async function onRequestGet({ env, request }) {
       ? { "cache-control": "public, max-age=30, s-maxage=60" }
       : { "cache-control": "private, no-store" });
 
+  const responseFilters = {
+    status: safeStatus,
+    category,
+    tag,
+    situation_tag: situationTag,
+    content_type: contentTypes.join(","),
+    q: query
+  };
+  if (admin) responseFilters.mood_tag = moodTag;
+
   return okJson({
     items: itemsRows.results || [],
-    filters: {
-      status: safeStatus,
-      category,
-      tag,
-      mood_tag: moodTag,
-      situation_tag: situationTag,
-      content_type: contentTypes.join(","),
-      q: query
-    },
+    filters: responseFilters,
     pagination: {
       page,
       per_page: perPage,
