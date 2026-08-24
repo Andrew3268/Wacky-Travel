@@ -66,7 +66,7 @@ for (const slug of citySlugs) {
   }
 }
 
-for (const required of ["/api/*", "/post/*", "/img/*", "/robots.txt", "/sitemap.xml", "/travel-by-mood/ocean-rest/*"]) {
+for (const required of ["/api/*", "/post/*", "/img/*", "/robots.txt", "/sitemap.xml"]) {
   if (!routes.include?.includes(required)) errors.push(`필수 동적 경로 누락: ${required}`);
 }
 

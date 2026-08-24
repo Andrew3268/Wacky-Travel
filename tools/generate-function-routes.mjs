@@ -29,7 +29,6 @@ for (const entry of entries.filter((item) => item.isDirectory()).sort((a, b) => 
   }
 }
 
-include.push("/travel-by-mood/ocean-rest/*");
 
 if (include.length > 100) {
   throw new Error(`_routes.json rule limit exceeded: ${include.length}`);

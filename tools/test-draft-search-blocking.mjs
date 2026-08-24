@@ -5,23 +5,20 @@ import { onRequestGet as getSitemap } from "../functions/sitemap.xml.js";
 import { STATIC_ROUTES } from "../lib/seo/static-routes.js";
 
 const blockedRoutes = [
-  "/hotel-promotions/",
-  "/travel-by-mood/ocean-rest/"
+  "/hotel-promotions/"
 ];
 
 for (const route of blockedRoutes) {
   assert(!STATIC_ROUTES.includes(route), `${route} must not be in STATIC_ROUTES`);
 }
 
-const [hotelHtml, oceanHtml, headersText] = await Promise.all([
+const [hotelHtml, headersText] = await Promise.all([
   readFile(new URL("../public/hotel-promotions/index.html", import.meta.url), "utf8"),
-  readFile(new URL("../public/travel-by-mood/ocean-rest/index.html", import.meta.url), "utf8"),
   readFile(new URL("../public/_headers", import.meta.url), "utf8")
 ]);
 
 for (const [route, html] of [
-  [blockedRoutes[0], hotelHtml],
-  [blockedRoutes[1], oceanHtml]
+  [blockedRoutes[0], hotelHtml]
 ]) {
   assert(/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)
     || /<meta\b[^>]*content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html), `${route} missing noindex meta`);
@@ -29,7 +26,6 @@ for (const [route, html] of [
 }
 
 assert(headersText.includes("/hotel-promotions/*"), "hotel-promotions X-Robots-Tag rule missing");
-assert(headersText.includes("/travel-by-mood/ocean-rest/*"), "ocean-rest X-Robots-Tag rule missing");
 
 const request = new Request("https://bestayable.com/robots.txt");
 const robotsResponse = await getRobots({ env: {}, request });

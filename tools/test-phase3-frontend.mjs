@@ -5,7 +5,7 @@ import vm from 'node:vm';
 const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
 const TRAVEL_CORE_CSS_VERSION = '20260821-seo-author-v30';
-const HOME_CSS_VERSION = '20260824-hero-eyebrow-v1';
+const HOME_CSS_VERSION = '20260825-remove-travel-mood-v1';
 const CITY_MAIN_CSS_VERSION = '20260818-destination-h2-v5';
 const PURPOSE_PAGE_CSS_VERSION = '20260818-destination-h2-v5';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
@@ -30,7 +30,7 @@ function walk(dir) {
   }
 }
 walk(path.join(root, 'public'));
-assert(htmlFiles.length === 181, `HTML 파일 수가 예상과 다릅니다: ${htmlFiles.length}`);
+assert(htmlFiles.length === 180, `HTML 파일 수가 예상과 다릅니다: ${htmlFiles.length}`);
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');

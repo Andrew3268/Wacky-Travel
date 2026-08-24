@@ -3,15 +3,12 @@ import { getSiteOrigin, normalizePagePath } from "../lib/seo/site-url.js";
 import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified-date.js";
 import { getHotelPostGroup } from "./api/destination-posts.js";
 
-const OCEAN_REST_ROUTE = "/travel-by-mood/ocean-rest/";
-const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
 const ARCHIVE_MIN_PUBLISHED_POSTS = 5;
 const SITEMAP_VERSION = "2026-08-21-index-quality-v6";
 
 // Pages still being prepared. Keep them out of search discovery until they are ready.
 const SEARCH_BLOCKED_ROUTES = new Set([
-  "/hotel-promotions/",
-  "/travel-by-mood/ocean-rest/"
+  "/hotel-promotions/"
 ]);
 
 function xmlEscape(value) {
@@ -71,21 +68,6 @@ async function safeAllWithPublicModifiedFallback(db, sql) {
   }
 }
 
-function parseJsonArray(value = "") {
-  if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
-  try {
-    const parsed = JSON.parse(String(value || "[]"));
-    return Array.isArray(parsed) ? parsed.map((item) => String(item || "").trim()).filter(Boolean) : [];
-  } catch {
-    return [];
-  }
-}
-
-function isOceanRestPost(post = {}) {
-  return String(post.content_type || "").trim() === "hotel_intro"
-    && parseJsonArray(post.mood_tags_json).includes("ocean-rest");
-}
-
 function isSearchBlockedRoute(route = "") {
   const path = normalizePagePath(route);
   return SEARCH_BLOCKED_ROUTES.has(path)
@@ -112,15 +94,11 @@ function collectConditionalRouteAvailability(posts = []) {
       lastmod: candidateLastmod > previous.lastmod ? candidateLastmod : previous.lastmod
     });
   }
-  return {
-    oceanRestAvailable: posts.filter(isOceanRestPost).length >= OCEAN_REST_MIN_PUBLISHED_POSTS,
-    archiveStats
-  };
+  return { archiveStats };
 }
 
 function shouldIncludeStaticRoute(route, availability) {
   if (isSearchBlockedRoute(route)) return false;
-  if (route === OCEAN_REST_ROUTE) return availability.oceanRestAvailable;
   if (/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/$/.test(route)) {
     return Number(availability.archiveStats.get(route)?.count || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS;
   }
@@ -144,7 +122,6 @@ export async function onRequestGet({ env, request }) {
         recommendation_category_name,
         recommendation_category_description,
         hotel_slug,
-        mood_tags_json,
         updated_at,
         published_at,
         COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at

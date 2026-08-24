@@ -267,7 +267,6 @@ for (const file of sourceFiles) {
 const robotsSource = await fs.readFile(path.join(root, "functions", "robots.txt.js"), "utf8");
 if (!robotsSource.includes("Disallow: /api/")) errors.push("functions/robots.txt.js: /api/ Disallow 누락");
 if (/Disallow:\s*\/hotel-promotions\//.test(robotsSource)) errors.push("functions/robots.txt.js: hotel-promotions는 noindex로 제어해야 하며 robots.txt에서 차단하면 안 됨");
-if (/Disallow:\s*\/travel-by-mood\/ocean-rest\//.test(robotsSource)) errors.push("functions/robots.txt.js: ocean-rest는 조건부 index 페이지이므로 robots.txt에서 차단하면 안 됨");
 
 const routesConfig = JSON.parse(await fs.readFile(path.join(publicDir, "_routes.json"), "utf8"));
 if (!routesConfig.include?.includes("/")) errors.push("public/_routes.json: 홈 query noindex 적용을 위한 / Functions route 누락");

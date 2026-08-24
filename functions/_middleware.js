@@ -14,7 +14,6 @@ import { DEFAULT_CONTENT_TYPES } from "../lib/travel/travel-settings.js";
 const INDEX_ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 const NOINDEX_FOLLOW = "noindex, follow, noarchive";
 const NOINDEX_PRIVATE = "noindex, nofollow, noarchive, nosnippet";
-const OCEAN_REST_MIN_PUBLISHED_POSTS = 5;
 const ARCHIVE_MIN_PUBLISHED_POSTS = 5;
 
 export async function onRequest(context) {
@@ -133,9 +132,6 @@ export function resolveRobotsDirective(url, status, dynamicIndexable = null) {
   if (isPrivatePath(path)) return NOINDEX_PRIVATE;
   if (/^\/naver[a-z0-9]+\.html$/i.test(path)) return NOINDEX_FOLLOW;
   if (path === "/search/" || path === "/search") return NOINDEX_FOLLOW;
-  if ((path === "/travel-by-mood/ocean-rest/" || path === "/travel-by-mood/ocean-rest") && dynamicIndexable === false) {
-    return NOINDEX_FOLLOW;
-  }
   if (/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/?$/.test(path) && dynamicIndexable === false) {
     return NOINDEX_FOLLOW;
   }
@@ -208,35 +204,7 @@ async function loadDynamicPageState(env, pathname) {
     };
   }
 
-  if (path === "/travel-by-mood/ocean-rest/" || path === "/travel-by-mood/ocean-rest") {
-    const total = await loadOceanRestPostCount(env);
-    return {
-      archiveData: null,
-      indexable: total !== null && total >= OCEAN_REST_MIN_PUBLISHED_POSTS
-    };
-  }
-
   return { archiveData: null, indexable: null };
-}
-
-async function loadOceanRestPostCount(env) {
-  if (!env?.TRAVEL_DB) return null;
-  try {
-    const row = await env.TRAVEL_DB.prepare(`
-      SELECT COUNT(*) AS total
-      FROM posts
-      WHERE status = 'published'
-        AND TRIM(COALESCE(content_type, '')) = 'hotel_intro'
-        AND EXISTS (
-          SELECT 1
-          FROM json_each(COALESCE(mood_tags_json, '[]'))
-          WHERE TRIM(json_each.value) = 'ocean-rest'
-        )
-    `).first();
-    return Number(row?.total || 0);
-  } catch {
-    return null;
-  }
 }
 
 async function loadArchiveData(env, pathname) {

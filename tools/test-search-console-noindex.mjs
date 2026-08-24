@@ -146,10 +146,5 @@ assert(thresholdSitemap.includes("https://bestayable.com/destinations/hanoi/hote
 assert(!thresholdSitemap.includes("https://bestayable.com/destinations/hanoi/hotel-recommendations/"), "4 recommendation posts must not admit Hanoi /hotel-recommendations/");
 assert(thresholdSitemap.includes("https://bestayable.com/destinations/osaka/hotel-recommendations/"), "5 recommendation posts must admit Osaka /hotel-recommendations/ to sitemap");
 
-assert.equal(
-  resolveRobotsDirective(new URL("https://bestayable.com/travel-by-mood/ocean-rest/"), 200, false),
-  NOINDEX,
-  "Draft/conditional ocean-rest page must retain its intentional noindex behavior"
-);
 
 console.log("Search Console noindex/index threshold policy: OK");
