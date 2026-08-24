@@ -5,6 +5,7 @@ import vm from 'node:vm';
 const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
 const TRAVEL_CORE_CSS_VERSION = '20260821-seo-author-v30';
+const HOME_CSS_VERSION = '20260824-hero-eyebrow-v1';
 const CITY_MAIN_CSS_VERSION = '20260818-destination-h2-v5';
 const PURPOSE_PAGE_CSS_VERSION = '20260818-destination-h2-v5';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
@@ -43,24 +44,29 @@ for (const file of htmlFiles) {
       const isCityMainStylesheet = html.includes('data-city-post-root') && /\/assets\/css\/travel-city\.css/.test(href);
       const isPurposePageStylesheet = /\btravel-purpose-body\b/.test(bodyClass) && /\/assets\/css\/travel-purpose\.css/.test(href);
       const isTravelCoreStylesheet = /\/assets\/css\/travel-core\.css/.test(href);
+      const isHomeStylesheet = /\/assets\/css\/travel-home\.css/.test(href);
       const expectedVersion = isTravelCoreStylesheet
         ? TRAVEL_CORE_CSS_VERSION
-        : isCityMainStylesheet
-          ? CITY_MAIN_CSS_VERSION
-          : isPurposePageStylesheet
-            ? PURPOSE_PAGE_CSS_VERSION
-            : VERSION;
+        : isHomeStylesheet
+          ? HOME_CSS_VERSION
+          : isCityMainStylesheet
+            ? CITY_MAIN_CSS_VERSION
+            : isPurposePageStylesheet
+              ? PURPOSE_PAGE_CSS_VERSION
+              : VERSION;
       assert(href.endsWith(`?v=${expectedVersion}`), `여행 CSS 버전이 통일되지 않았습니다: ${path.relative(root, file)} -> ${href}`);
     }
   }
   const has = (name) => {
     const version = name === 'core'
       ? TRAVEL_CORE_CSS_VERSION
-      : name === 'city' && html.includes('data-city-post-root')
-        ? CITY_MAIN_CSS_VERSION
-        : name === 'purpose' && /\btravel-purpose-body\b/.test(bodyClass)
-          ? PURPOSE_PAGE_CSS_VERSION
-          : VERSION;
+      : name === 'home'
+        ? HOME_CSS_VERSION
+        : name === 'city' && html.includes('data-city-post-root')
+          ? CITY_MAIN_CSS_VERSION
+          : name === 'purpose' && /\btravel-purpose-body\b/.test(bodyClass)
+            ? PURPOSE_PAGE_CSS_VERSION
+            : VERSION;
     return html.includes(`/assets/css/travel-${name}.css?v=${version}`);
   };
   if (/\btravel-home-body\b/.test(bodyClass)) assert(has('home'), `홈 CSS 누락: ${path.relative(root, file)}`);

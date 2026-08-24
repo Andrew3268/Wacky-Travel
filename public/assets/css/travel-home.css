@@ -4125,23 +4125,12 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
   max-width: 100%;
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 22px;
   color: #4b4b4b;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1.45;
   font-weight: 400;
   letter-spacing: -0.035em;
   word-break: keep-all;
-}
-
-body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow::before {
-  content: "";
-  flex: 0 0 60px;
-  width: 60px;
-  height: 1.5px;
-  background: #191919;
 }
 
 body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
@@ -4180,16 +4169,6 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
     padding-right: clamp(32px, 5vw, 56px);
   }
 
-  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow {
-    gap: 20px;
-    font-size: 18px;
-  }
-
-  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow::before {
-    flex-basis: 52px;
-    width: 52px;
-  }
-
   body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
     max-width: 760px;
     font-size: clamp(54px, 6.2vw, 68px);
@@ -4212,16 +4191,8 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow {
-    gap: 14px;
-    font-size: 15px;
     line-height: 1.5;
     letter-spacing: -0.03em;
-  }
-
-  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow::before {
-    flex-basis: 36px;
-    width: 36px;
-    height: 1px;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero #wthomeHeroTitle {
@@ -4243,16 +4214,6 @@ body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__
   body.travel-home-body main.travel-page.travel-home > .wthome-hero > .wthome-hero__inner {
     padding-left: 16px;
     padding-right: 16px;
-  }
-
-  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow {
-    gap: 12px;
-    font-size: 14px;
-  }
-
-  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow::before {
-    flex-basis: 30px;
-    width: 30px;
   }
 
   body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc {
