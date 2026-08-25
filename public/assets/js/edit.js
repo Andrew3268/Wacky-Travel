@@ -3192,7 +3192,7 @@ function inlineFormat(text) {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, linkUrl) => {
       const rawText = String(linkText || "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
       const rawUrl = String(linkUrl || "").replace(/&amp;/g, "&");
-      const attrs = window.PostLinkManager?.buildAnchorAttributes?.(rawText, rawUrl) || ' target="_blank" rel="noopener"';
+      const attrs = window.PostLinkManager?.buildAnchorAttributes?.(rawText, rawUrl) || ' class="post-content-link post-content-link--normal" target="_blank" rel="noopener"';
       return `<a href="${linkUrl}"${attrs}>${linkText}</a>`;
     });
 }

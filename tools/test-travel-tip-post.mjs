@@ -50,10 +50,14 @@ assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__index\{\s*dis
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__summary\{[\s\S]*?padding: 17px 10px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__body\{[\s\S]*?padding: 5px 10px 10px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__item a\{[\s\S]*?margin: 0;[\s\S]*?padding: 7px 0;[\s\S]*?background: transparent;/);
-assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content a:not\(\[href\^="#"\]\),\s*body\.post-page-body \.post-body \.post-content a:not\(\[href\^="#"\]\)\{[\s\S]*?background: #000;/);
+assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content a\.post-content-link--affiliate,[\s\S]*?background: #000;/);
+assert.match(appCss, /a\.post-content-link--normal,[\s\S]*?border-bottom: 1px dotted currentColor;[\s\S]*?background: transparent;/);
+assert.match(appCss, /a\.post-content-link--normal::after,[\s\S]*?content: "↗";/);
 assert.doesNotMatch(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content a,\s*body\.post-page-body \.post-body \.post-content a\{[\s\S]*?background: #000;/);
 assert.doesNotMatch(appCss, /body\.post-page-body--travel-tip \.post-toc__item a:hover\{[^}]*background\s*:/);
-assert.match(appCss, /@media \(max-width: 767px\) \{[\s\S]*?\.post-content a:not\(\[href\^="#"\]\):not\(\.post-inline-image__link\)[\s\S]*?width: 100%;[\s\S]*?box-sizing: border-box;[\s\S]*?text-align: center;/);
+assert.match(appCss, /@media \(max-width: 767px\) \{[\s\S]*?a\.post-content-link--affiliate[\s\S]*?width: 100%;[\s\S]*?box-sizing: border-box;[\s\S]*?text-align: center;/);
+assert.match(appCss, /body\.post-page-body--travel-tip \.post-shell--guide-style \.post-body table,[\s\S]*?preview-body--travel-tip table\{\s*table-layout: auto;/);
+assert.match(appCss, /body\.post-page-body:not\(\.post-page-body--hotel-review-magazine\) \.post-shell--guide-style \.post-body \.post-content h3::before\{[^}]*height: 1px;/);
 assert.match(appCss, /@media \(min-width: 768px\)\{[\s\S]*?body\.post-page-body--travel-tip \.post-shell--guide-style \.post-body \.post-content h2\{\s*font-size: 30px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.wt-toc-floating-button\{[\s\S]*?color: #111;/);
 

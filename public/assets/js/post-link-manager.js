@@ -179,8 +179,8 @@
   function buildAnchorAttributes(text = "", url = "") {
     const type = getType(text, url);
     if (type === "internal") return "";
-    if (type === "affiliate") return ' target="_blank" rel="sponsored nofollow noopener"';
-    return ' target="_blank" rel="noopener"';
+    if (type === "affiliate") return ' class="post-content-link post-content-link--affiliate" target="_blank" rel="sponsored nofollow noopener"';
+    return ' class="post-content-link post-content-link--normal" target="_blank" rel="noopener"';
   }
 
   window.PostLinkManager = {

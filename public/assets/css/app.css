@@ -7197,7 +7197,7 @@ body.post-page-body:not(.post-page-body--hotel-review-magazine) .post-shell--gui
   content: "";
   display: block;
   width: 38px;
-  height: 5px;
+  height: 1px;
   margin: 0 0 14px;
   border-radius: 999px;
   background: #111;
@@ -7269,11 +7269,62 @@ body.post-page-body--top5-series .post-shell--guide-style .post-body .post-conte
   display: block;
 }
 
-body.post-page-body .post-shell--guide-style .post-body .post-content a:not([href^="#"]),
-body.post-page-body .post-body .post-content a:not([href^="#"]){
+body.post-page-body .post-shell--guide-style .post-body .post-content a.post-content-link--affiliate,
+body.post-page-body .post-body .post-content a.post-content-link--affiliate{
   display: inline-block;
   margin-top: 10px;
   padding: 13px 30px;
+  background: #000;
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content a.post-content-link--normal,
+body.post-page-body .post-body .post-content a.post-content-link--normal,
+.preview-body a.post-content-link--normal{
+  display: inline;
+  margin: 0;
+  padding: 0 0 1px;
+  border: 0;
+  border-bottom: 1px dotted currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: #333 !important;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content a.post-content-link--normal::after,
+body.post-page-body .post-body .post-content a.post-content-link--normal::after,
+.preview-body a.post-content-link--normal::after{
+  content: "↗";
+  display: inline-block;
+  margin-left: 0.24em;
+  font-size: 0.78em;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transform: translateY(-0.04em);
+}
+
+body.post-page-body .post-shell--guide-style .post-body .post-content a.post-content-link--normal:hover,
+body.post-page-body .post-shell--guide-style .post-body .post-content a.post-content-link--normal:focus-visible,
+body.post-page-body .post-body .post-content a.post-content-link--normal:hover,
+body.post-page-body .post-body .post-content a.post-content-link--normal:focus-visible,
+.preview-body a.post-content-link--normal:hover,
+.preview-body a.post-content-link--normal:focus-visible{
+  border-bottom-style: solid;
+  color: #111 !important;
+  outline: none;
+}
+
+.preview-body a.post-content-link--affiliate{
+  display: inline-block;
+  margin-top: 10px;
+  padding: 13px 30px;
+  border: 0;
   background: #000;
   color: #fff !important;
   font-weight: 600;
@@ -7717,8 +7768,8 @@ body.post-page-body .btn.post-related__more-btn{
     min-width: 0;
   }
 
-  body.post-page-body .post-shell--guide-style .post-body .post-content a:not([href^="#"]):not(.post-inline-image__link),
-  body.post-page-body .post-body .post-content a:not([href^="#"]):not(.post-inline-image__link){
+  body.post-page-body .post-shell--guide-style .post-body .post-content a.post-content-link--affiliate,
+  body.post-page-body .post-body .post-content a.post-content-link--affiliate{
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -7760,7 +7811,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content ol{
 
   body.post-page-body:not(.post-page-body--hotel-review-magazine) .post-shell--guide-style .post-body .post-content h3::before{
     width: 32px;
-    height: 4px;
+    height: 1px;
     margin-bottom: 12px;
   }
 
@@ -9915,4 +9966,21 @@ body.post-page-body .post-cover-wrap + .post-affiliate-disclosure{
   body.post-page-body .post-cover-wrap + .post-affiliate-disclosure{
     margin-top:-10px;
   }
+}
+
+
+/* Travel tip tables: size columns from their content instead of forcing equal widths. */
+body.post-page-body--travel-tip .post-shell--guide-style .post-body table,
+body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content table,
+.preview-body--travel-tip table{
+  table-layout: auto;
+}
+
+body.post-page-body--travel-tip .post-shell--guide-style .post-body table th,
+body.post-page-body--travel-tip .post-shell--guide-style .post-body table td,
+body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content table th,
+body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content table td,
+.preview-body--travel-tip table th,
+.preview-body--travel-tip table td{
+  width: auto;
 }
