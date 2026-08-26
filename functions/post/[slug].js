@@ -7,7 +7,7 @@ import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissin
 import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content-link-settings.js";
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
-const POST_RENDER_VERSION = "20260827-post-layout-v51";
+const POST_RENDER_VERSION = "20260827-post-layout-v52";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -561,7 +561,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260827-post-ui-v49" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260827-post-ui-v50" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260817-post-brand-v32" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
@@ -1551,7 +1551,7 @@ function renderNotFound(slug) {
   <meta name="robots" content="noindex,nofollow" />
   <link rel="icon" href="/favicon.ico?v=20260817-brand-v1" sizes="any" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260827-post-ui-v49" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260827-post-ui-v50" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 </head>

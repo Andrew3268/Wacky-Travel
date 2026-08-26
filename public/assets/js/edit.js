@@ -3212,6 +3212,34 @@ function renderSeoChecklist(activeGroupKey) {
   }).join("");
 }
 
+function normalizeFencedCodeLanguage(value = "") {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_+#.-]/g, "")
+    .slice(0, 32);
+}
+
+function parseFencedCodeOpen(line = "") {
+  const match = String(line || "").trim().match(/^(`{3,})\s*([A-Za-z0-9_+#.-]*)\s*$/);
+  if (!match) return null;
+  return {
+    fenceLength: match[1].length,
+    language: normalizeFencedCodeLanguage(match[2] || "")
+  };
+}
+
+function isFencedCodeClose(line = "", fenceLength = 3) {
+  const match = String(line || "").trim().match(/^(`{3,})\s*$/);
+  return Boolean(match && match[1].length >= Math.max(3, Number(fenceLength) || 3));
+}
+
+function renderFencedCodeHtml(lines = [], language = "") {
+  const normalizedLanguage = normalizeFencedCodeLanguage(language);
+  const languageClass = normalizedLanguage ? ` class="language-${escapeHtml(normalizedLanguage)}"` : "";
+  return `<pre class="post-code-block"><code${languageClass}>${escapeHtml(lines.join("\n"))}</code></pre>`;
+}
+
 function inlineFormat(text) {
   return escapeHtml(text)
     .replace(/\n/g, "<br />")
@@ -3478,6 +3506,8 @@ function markdownToHtml(md, options = {}) {
   let pendingStyleHotelHeadingData = null;
   let skipStyleHotelLeadList = false;
   let styleHotelEndingOpen = false;
+  let activeCodeFence = null;
+  let fencedCodeLines = [];
 
   function maybeInsertAd() {
     while (options.showAds && adPointer < adPositions.length && adPositions[adPointer] === contentBlockCount) {
@@ -3519,10 +3549,18 @@ function markdownToHtml(md, options = {}) {
     activeAffiliateCtaItems = [];
   }
 
+  function flushFencedCode() {
+    if (!activeCodeFence) return;
+    pushContentBlock(renderFencedCodeHtml(fencedCodeLines, activeCodeFence.language));
+    activeCodeFence = null;
+    fencedCodeLines = [];
+  }
+
 
   function isMarkdownBlockStartAt(index) {
     const value = String(lines[index] || "").trim();
     if (!value) return true;
+    if (parseFencedCodeOpen(value)) return true;
     if (parseStyleHotelImageToken(value) || parseStyleHotelButtonToken(value) || STYLE_HOTEL_ENDING_TOKEN_RE.test(value)) return true;
     if (parseTocModeFromLine(value)) return true;
     if (/^!\[[^\]]*\]\([^)]+\)$/.test(value)) return true;
@@ -3538,6 +3576,24 @@ function markdownToHtml(md, options = {}) {
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
     const rawLine = lines[lineIndex];
     const line = rawLine.trim();
+
+    if (activeCodeFence) {
+      if (isFencedCodeClose(line, activeCodeFence.fenceLength)) {
+        flushFencedCode();
+      } else {
+        fencedCodeLines.push(rawLine);
+      }
+      continue;
+    }
+
+    const codeFenceOpen = parseFencedCodeOpen(line);
+    if (codeFenceOpen) {
+      closeLists();
+      closeQuote();
+      activeCodeFence = codeFenceOpen;
+      fencedCodeLines = [];
+      continue;
+    }
 
     if (!line) {
       closeLists();
@@ -3728,6 +3784,7 @@ function markdownToHtml(md, options = {}) {
     lineIndex = paragraphIndex - 1;
   }
 
+  flushFencedCode();
   closeLists();
   closeQuote();
   maybeInsertAffiliateCtaAtSectionEnd();

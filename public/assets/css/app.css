@@ -1585,6 +1585,39 @@ select:focus{
   border-radius: 8px;
   font-size: .92em;
 }
+
+.post-body .post-content .post-code-block,
+.preview-body .post-code-block,
+.preview-summary--markdown .post-code-block,
+.preview-faq__answer .post-code-block{
+  max-width: 100%;
+  margin: 22px 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre;
+  tab-size: 2;
+  -webkit-overflow-scrolling: touch;
+}
+.post-body .post-content .post-code-block code,
+.preview-body .post-code-block code,
+.preview-summary--markdown .post-code-block code,
+.preview-faq__answer .post-code-block code{
+  display: block;
+  min-width: max-content;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  white-space: inherit;
+}
 .preview-body a{
   color: #1d4ed8;
   text-decoration: underline;

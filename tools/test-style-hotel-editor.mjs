@@ -56,8 +56,8 @@ const settingsLoadIndex = editJs.indexOf("loadTravelSettings(\n      loadedDesti
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
 assert.match(editJs, /await Promise\.all\(\[/, "edit auxiliary data must load in parallel");
-assert.match(read("public/add.html"), /add\.js\?v=20260827-editor-v4/);
-assert.match(read("public/edit.html"), /edit\.js\?v=20260827-editor-v4/);
+assert.match(read("public/add.html"), /add\.js\?v=20260827-editor-v5/);
+assert.match(read("public/edit.html"), /edit\.js\?v=20260827-editor-v5/);
 for (const file of ["public/add.html", "public/edit.html"]) {
   const html = read(file);
   assert.match(html, /data-hotel-key-point-toggle="airport"/);
@@ -183,7 +183,7 @@ assert.match(appCss, /post-page-body--hotel-review-magazine \.post-body \.post-c
 assert.match(appCss, /post-page-body--hotel-review-magazine \.post-body \.post-content h3 \.post-style-hotel-h3-line\{[\s\S]*?flex: 0 0 34px;[\s\S]*?height: 1px;[\s\S]*?margin-bottom: 0;[\s\S]*?background: #666;/);
 const postRendererSource = read("functions/post/[slug].js");
 assert.match(postRendererSource, /POST_RENDER_VERSION = "\d{8}-post-layout-v\d+"/);
-assert.equal((postRendererSource.match(/app\.css\?v=20260827-post-ui-v49/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
+assert.equal((postRendererSource.match(/app\.css\?v=20260827-post-ui-v50/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
 assert.doesNotMatch(appCss, /post-page-body--top5-series \.post-body \.post-content h3\{/);
 assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content h3\{[\s\S]*?margin: 30px 0 14px;[\s\S]*?font-size: 18px;/);
 assert.match(appCss, /body\.post-page-body--hotel-intro \.post-hotel-title-meta,[\s\S]*?font-size: 16px;/);
