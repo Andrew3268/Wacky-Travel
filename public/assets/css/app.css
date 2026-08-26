@@ -1590,20 +1590,42 @@ select:focus{
 .preview-body .post-code-block,
 .preview-summary--markdown .post-code-block,
 .preview-faq__answer .post-code-block{
+  width: 100%;
   max-width: 100%;
-  margin: 22px 0;
-  padding: 16px 18px;
+  box-sizing: border-box;
+  margin: 28px 0 32px;
+  padding: 20px 22px;
   overflow-x: auto;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  background: #f8fafc;
-  color: #0f172a;
+  border: 1px solid #e2e0da;
+  border-radius: 12px;
+  background: #f7f7f4;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.035);
+  color: #292b2f;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.78;
+  letter-spacing: -0.008em;
   white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
   tab-size: 2;
+  scrollbar-width: thin;
+  scrollbar-color: #c9c7c0 transparent;
   -webkit-overflow-scrolling: touch;
+}
+.post-body .post-content .post-code-block::-webkit-scrollbar,
+.preview-body .post-code-block::-webkit-scrollbar,
+.preview-summary--markdown .post-code-block::-webkit-scrollbar,
+.preview-faq__answer .post-code-block::-webkit-scrollbar{
+  height: 7px;
+}
+.post-body .post-content .post-code-block::-webkit-scrollbar-thumb,
+.preview-body .post-code-block::-webkit-scrollbar-thumb,
+.preview-summary--markdown .post-code-block::-webkit-scrollbar-thumb,
+.preview-faq__answer .post-code-block::-webkit-scrollbar-thumb{
+  border-radius: 999px;
+  background: #c9c7c0;
 }
 .post-body .post-content .post-code-block code,
 .preview-body .post-code-block code,
@@ -1612,11 +1634,25 @@ select:focus{
   display: block;
   min-width: max-content;
   padding: 0;
+  border: 0;
   border-radius: 0;
   background: transparent;
   color: inherit;
   font: inherit;
+  letter-spacing: inherit;
   white-space: inherit;
+}
+@media (max-width: 767px){
+  .post-body .post-content .post-code-block,
+  .preview-body .post-code-block,
+  .preview-summary--markdown .post-code-block,
+  .preview-faq__answer .post-code-block{
+    margin: 22px 0 26px;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.72;
+  }
 }
 .preview-body a{
   color: #1d4ed8;
@@ -7306,6 +7342,7 @@ body.post-page-body .post-shell--guide-style .post-body .post-content a.post-con
 body.post-page-body .post-body .post-content a.post-content-link--affiliate{
   display: inline-block;
   margin-top: 10px;
+  margin-bottom: 2em;
   padding: 13px 30px;
   background: #000;
   color: #fff !important;
@@ -7356,6 +7393,7 @@ body.post-page-body .post-body .post-content a.post-content-link--normal:focus-v
 .preview-body a.post-content-link--affiliate{
   display: inline-block;
   margin-top: 10px;
+  margin-bottom: 2em;
   padding: 13px 30px;
   border: 0;
   background: #000;

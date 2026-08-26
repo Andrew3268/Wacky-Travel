@@ -50,7 +50,7 @@ assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__index\{\s*dis
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__summary\{[\s\S]*?padding: 17px 10px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__body\{[\s\S]*?padding: 5px 10px 10px;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__item a\{[\s\S]*?margin: 0;[\s\S]*?padding: 7px 0;[\s\S]*?background: transparent;/);
-assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content a\.post-content-link--affiliate,[\s\S]*?background: #000;/);
+assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content a\.post-content-link--affiliate,[\s\S]*?margin-bottom: 2em;[\s\S]*?background: #000;/);
 assert.match(appCss, /a\.post-content-link--normal,[\s\S]*?border-bottom: 1px dotted currentColor;[\s\S]*?background: transparent;/);
 assert.match(appCss, /a\.post-content-link--normal::after,[\s\S]*?content: "↗";/);
 assert.doesNotMatch(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content a,\s*body\.post-page-body \.post-body \.post-content a\{[\s\S]*?background: #000;/);

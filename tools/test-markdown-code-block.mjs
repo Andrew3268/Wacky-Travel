@@ -47,5 +47,9 @@ const css = fs.readFileSync("public/assets/css/app.css", "utf8");
 assert.match(css, /\.post-code-block/);
 assert.match(css, /overflow-x:\s*auto/);
 assert.match(css, /white-space:\s*pre/);
+assert.match(css, /background:\s*#f7f7f4/);
+assert.match(css, /border:\s*1px solid #e2e0da/);
+assert.match(css, /box-shadow:\s*0 8px 24px rgba\(17, 24, 39, 0\.035\)/);
+assert.match(css, /scrollbar-color:\s*#c9c7c0 transparent/);
 
 console.log("Markdown fenced code block check passed: public post and Add/Edit preview preserve code, escape HTML, and support optional language classes.");
