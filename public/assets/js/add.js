@@ -1,5 +1,33 @@
 const $ = (id) => document.getElementById(id);
 
+
+function setupEditorActionDock() {
+  const actions = document.querySelector(".editor-page-actions");
+  const head = document.querySelector(".editor-page-head");
+  const sidebar = document.querySelector(".editor-sidebar");
+  if (!actions || !head || !sidebar) return;
+
+  const homeMarker = document.createComment("editor-page-actions-home");
+  actions.parentNode?.insertBefore(homeMarker, actions);
+  const desktopMedia = window.matchMedia("(min-width: 980px)");
+
+  const syncPosition = () => {
+    if (desktopMedia.matches) {
+      if (actions.parentElement !== sidebar) sidebar.prepend(actions);
+      actions.classList.add("editor-page-actions--sidebar");
+      return;
+    }
+    if (homeMarker.parentNode && actions.parentNode !== homeMarker.parentNode) {
+      homeMarker.parentNode.insertBefore(actions, homeMarker.nextSibling);
+    }
+    actions.classList.remove("editor-page-actions--sidebar");
+  };
+
+  syncPosition();
+  if (typeof desktopMedia.addEventListener === "function") desktopMedia.addEventListener("change", syncPosition);
+  else desktopMedia.addListener?.(syncPosition);
+}
+
 function slugify(str) {
   return String(str || "")
     .trim()
@@ -3141,6 +3169,29 @@ function renderStyleHotelPreviewImage(data = {}) {
   return `<figure class="preview-inline-image style-hotel-preview-image"><img ${renderOptimizedImageAttrs(imageUrl, { widths: [480, 768, 960, 1200], sizes: "(max-width: 760px) 100vw, 760px", fallbackWidth: 960, fit: "scale-down", quality: 85 })} alt="${escapeHtml(alt)}" loading="lazy" decoding="async">${renderStyleHotelPreviewImageBadge(data)}</figure>${renderStyleHotelPreviewMeta(data)}`;
 }
 
+
+const MARKDOWN_CALLOUT_TITLE_RE = /^(📌|💡|⚠️|⚠|📝|🔎)\s+(.+)$/u;
+const MARKDOWN_CHECK_LINE_RE = /^(✅|✔️|✔|☑️|❌)\s*(.+)$/u;
+
+function matchMarkdownCalloutTitle(line = "") {
+  return String(line || "").trim().match(MARKDOWN_CALLOUT_TITLE_RE);
+}
+
+function matchMarkdownCheckLine(line = "") {
+  return String(line || "").trim().match(MARKDOWN_CHECK_LINE_RE);
+}
+
+function renderPreviewMarkdownCallout(titleMatch, bodyLines = []) {
+  if (!titleMatch || !bodyLines.length) return "";
+  const marker = titleMatch[1] || "";
+  const title = titleMatch[2] || "";
+  return `<aside class="post-markdown-callout" role="note"><div class="post-markdown-callout__title"><span class="post-markdown-callout__marker" aria-hidden="true">${escapeHtml(marker)}</span><span>${inlineFormat(title)}</span></div><div class="post-markdown-callout__body">${bodyLines.map((item) => `<div class="post-markdown-callout__line">${inlineFormat(item)}</div>`).join("")}</div></aside>`;
+}
+
+function renderPreviewMarkdownCheckLines(items = []) {
+  return `<div class="post-markdown-checklines">${items.map((item) => `<div class="post-markdown-checklines__item"><span class="post-markdown-checklines__marker" aria-hidden="true">${escapeHtml(item.marker)}</span><span>${inlineFormat(item.text)}</span></div>`).join("")}</div>`;
+}
+
 function markdownToHtml(md, options = {}) {
   const inlineImages = options.inlineImages || parseInlineImageMetaFromMarkdown(md);
   const affiliates = options.affiliates || parseAffiliateMetaFromMarkdown(md);
@@ -3211,6 +3262,45 @@ function markdownToHtml(md, options = {}) {
     if (!line) {
       closeLists();
       closeQuote();
+      continue;
+    }
+
+    const calloutTitle = matchMarkdownCalloutTitle(line);
+    if (calloutTitle) {
+      let bodyIndex = lineIndex + 1;
+      while (bodyIndex < lines.length && !String(lines[bodyIndex] || "").trim()) bodyIndex += 1;
+      const bodyLines = [];
+      let rowIndex = bodyIndex;
+      while (rowIndex < lines.length) {
+        const bodyLine = String(lines[rowIndex] || "").trim();
+        if (!bodyLine) break;
+        if (/^(#{2,6})\s+/.test(bodyLine) || /^>\s?/.test(bodyLine) || /^[-*]\s+/.test(bodyLine) || /^\d+\.\s+/.test(bodyLine)) break;
+        bodyLines.push(bodyLine);
+        rowIndex += 1;
+      }
+      if (bodyLines.length) {
+        closeLists();
+        closeQuote();
+        pushContentBlock(renderPreviewMarkdownCallout(calloutTitle, bodyLines));
+        lineIndex = rowIndex - 1;
+        continue;
+      }
+    }
+
+    const checkLine = matchMarkdownCheckLine(line);
+    if (checkLine) {
+      const items = [];
+      let rowIndex = lineIndex;
+      while (rowIndex < lines.length) {
+        const matched = matchMarkdownCheckLine(lines[rowIndex]);
+        if (!matched) break;
+        items.push({ marker: matched[1] || "", text: matched[2] || "" });
+        rowIndex += 1;
+      }
+      closeLists();
+      closeQuote();
+      pushContentBlock(renderPreviewMarkdownCheckLines(items));
+      lineIndex = rowIndex - 1;
       continue;
     }
 
@@ -3734,6 +3824,7 @@ $("addAffiliateItemBtn")?.addEventListener("click", () => { addAffiliateItemCard
 document.querySelectorAll("[data-affiliate-remove]").forEach((button) => {
   button.addEventListener("click", () => { removeAffiliateItemCard(Number(button.dataset.affiliateRemove || "0")); handleRealtimeChange(); });
 });
+setupEditorActionDock();
 if ($("saveBtn")) $("saveBtn").addEventListener("click", save);
 bindTravelSettingsManagerEvents();
 $("enableToc")?.addEventListener("change", applyTocControls);
