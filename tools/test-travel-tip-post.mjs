@@ -73,24 +73,26 @@ console.log("Travel tip post check passed: renamed type, numberless monochrome T
 
 
 const rendererSource = read("lib/posts/renderer.js");
-const calloutHtml = renderMarkdown(`📌 핵심 선택 기준\n\n후쿠오카 시내 이동 → 시티 패스\n버스 중심 규슈 여행 → 산큐패스\nJR 중심 장거리 이동 → JR 큐슈 레일패스\n관광지 입장·체험 → 규슈 펀패스`);
-assert.match(calloutHtml, /class="post-markdown-callout"/);
-assert.match(calloutHtml, /post-markdown-callout__title[\s\S]*핵심 선택 기준/);
-assert.match(calloutHtml, /post-markdown-callout__line">후쿠오카 시내 이동 → 시티 패스/);
-assert.match(calloutHtml, /post-markdown-callout__line">관광지 입장·체험 → 규슈 펀패스/);
-assert.match(rendererSource, /MARKDOWN_CALLOUT_TITLE_RE/);
+const softBreakHtml = renderMarkdown(`📌 핵심 선택 기준\n\n후쿠오카 시내 이동 → 시티 패스\n버스 중심 규슈 여행 → 산큐패스\nJR 중심 장거리 이동 → JR 큐슈 레일패스\n관광지 입장·체험 → 규슈 펀패스`);
+assert.match(softBreakHtml, /<p>📌 핵심 선택 기준<\/p>/);
+assert.match(softBreakHtml, /후쿠오카 시내 이동 → 시티 패스<br \/>버스 중심 규슈 여행 → 산큐패스<br \/>JR 중심 장거리 이동 → JR 큐슈 레일패스<br \/>관광지 입장·체험 → 규슈 펀패스/);
+assert.doesNotMatch(softBreakHtml, /post-markdown-callout|post-markdown-checklines/);
+assert.doesNotMatch(rendererSource, /MARKDOWN_CALLOUT_TITLE_RE|MARKDOWN_CHECK_LINE_RE|renderMarkdownCallout|renderMarkdownCheckLines/);
 
 const checkHtml = renderMarkdown(`✅ 시세 범위를 알고 가기\n✅ 제품 상태와 중량을 직접 확인하기\n✅ 여러 개를 살 때는 총액으로 흥정하기`);
-assert.match(checkHtml, /class="post-markdown-checklines"/);
-assert.equal((checkHtml.match(/post-markdown-checklines__item/g) || []).length, 3);
+assert.match(checkHtml, /✅ 시세 범위를 알고 가기<br \/>✅ 제품 상태와 중량을 직접 확인하기<br \/>✅ 여러 개를 살 때는 총액으로 흥정하기/);
+assert.doesNotMatch(checkHtml, /post-markdown-checklines/);
 
 const componentsCss = read("public/assets/css/components.css");
 for (const source of [addJs, editJs]) {
   assert.match(source, /function setupEditorActionDock\(\)/);
   assert.match(source, /sidebar\.prepend\(actions\)/);
   assert.match(source, /editor-page-actions--sidebar/);
-  assert.match(source, /MARKDOWN_CALLOUT_TITLE_RE/);
+  assert.match(source, /function isMarkdownBlockStartAt\(index\)/);
+  assert.match(source, /paragraphLines\.join\("\\n"\)/);
+  assert.doesNotMatch(source, /MARKDOWN_CALLOUT_TITLE_RE|MARKDOWN_CHECK_LINE_RE|renderPreviewMarkdownCallout|renderPreviewMarkdownCheckLines/);
 }
 assert.match(componentsCss, /\.editor-sidebar \.editor-page-actions--sidebar\{[\s\S]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 assert.match(componentsCss, /editor-page-actions--sidebar \.btn\{[\s\S]*font-size:12\.5px/);
-assert.match(appCss, /post-markdown-callout\{[\s\S]*border-left:3px solid #1f2937/);
+assert.doesNotMatch(appCss, /post-markdown-callout|post-markdown-checklines/);
+

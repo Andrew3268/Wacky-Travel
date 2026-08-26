@@ -3214,6 +3214,7 @@ function renderSeoChecklist(activeGroupKey) {
 
 function inlineFormat(text) {
   return escapeHtml(text)
+    .replace(/\n/g, "<br />")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(/`(.+?)`/g, "<code>$1</code>")
@@ -3454,27 +3455,6 @@ function renderStyleHotelPreviewImage(data = {}) {
 }
 
 
-const MARKDOWN_CALLOUT_TITLE_RE = /^(📌|💡|⚠️|⚠|📝|🔎)\s+(.+)$/u;
-const MARKDOWN_CHECK_LINE_RE = /^(✅|✔️|✔|☑️|❌)\s*(.+)$/u;
-
-function matchMarkdownCalloutTitle(line = "") {
-  return String(line || "").trim().match(MARKDOWN_CALLOUT_TITLE_RE);
-}
-
-function matchMarkdownCheckLine(line = "") {
-  return String(line || "").trim().match(MARKDOWN_CHECK_LINE_RE);
-}
-
-function renderPreviewMarkdownCallout(titleMatch, bodyLines = []) {
-  if (!titleMatch || !bodyLines.length) return "";
-  const marker = titleMatch[1] || "";
-  const title = titleMatch[2] || "";
-  return `<aside class="post-markdown-callout" role="note"><div class="post-markdown-callout__title"><span class="post-markdown-callout__marker" aria-hidden="true">${escapeHtml(marker)}</span><span>${inlineFormat(title)}</span></div><div class="post-markdown-callout__body">${bodyLines.map((item) => `<div class="post-markdown-callout__line">${inlineFormat(item)}</div>`).join("")}</div></aside>`;
-}
-
-function renderPreviewMarkdownCheckLines(items = []) {
-  return `<div class="post-markdown-checklines">${items.map((item) => `<div class="post-markdown-checklines__item"><span class="post-markdown-checklines__marker" aria-hidden="true">${escapeHtml(item.marker)}</span><span>${inlineFormat(item.text)}</span></div>`).join("")}</div>`;
-}
 
 function markdownToHtml(md, options = {}) {
   const inlineImages = options.inlineImages || parseInlineImageMetaFromMarkdown(md);
@@ -3539,6 +3519,22 @@ function markdownToHtml(md, options = {}) {
     activeAffiliateCtaItems = [];
   }
 
+
+  function isMarkdownBlockStartAt(index) {
+    const value = String(lines[index] || "").trim();
+    if (!value) return true;
+    if (parseStyleHotelImageToken(value) || parseStyleHotelButtonToken(value) || STYLE_HOTEL_ENDING_TOKEN_RE.test(value)) return true;
+    if (parseTocModeFromLine(value)) return true;
+    if (/^!\[[^\]]*\]\([^)]+\)$/.test(value)) return true;
+    if (/^(#{2,6})\s+/.test(value) || /^>\s?/.test(value) || /^[-*]\s+/.test(value) || /^\d+\.\s+/.test(value)) return true;
+    if (
+      value.includes("|") &&
+      index + 1 < lines.length &&
+      isMarkdownTableSeparatorRow(String(lines[index + 1] || "").trim())
+    ) return true;
+    return false;
+  }
+
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
     const rawLine = lines[lineIndex];
     const line = rawLine.trim();
@@ -3546,45 +3542,6 @@ function markdownToHtml(md, options = {}) {
     if (!line) {
       closeLists();
       closeQuote();
-      continue;
-    }
-
-    const calloutTitle = matchMarkdownCalloutTitle(line);
-    if (calloutTitle) {
-      let bodyIndex = lineIndex + 1;
-      while (bodyIndex < lines.length && !String(lines[bodyIndex] || "").trim()) bodyIndex += 1;
-      const bodyLines = [];
-      let rowIndex = bodyIndex;
-      while (rowIndex < lines.length) {
-        const bodyLine = String(lines[rowIndex] || "").trim();
-        if (!bodyLine) break;
-        if (/^(#{2,6})\s+/.test(bodyLine) || /^>\s?/.test(bodyLine) || /^[-*]\s+/.test(bodyLine) || /^\d+\.\s+/.test(bodyLine)) break;
-        bodyLines.push(bodyLine);
-        rowIndex += 1;
-      }
-      if (bodyLines.length) {
-        closeLists();
-        closeQuote();
-        pushContentBlock(renderPreviewMarkdownCallout(calloutTitle, bodyLines));
-        lineIndex = rowIndex - 1;
-        continue;
-      }
-    }
-
-    const checkLine = matchMarkdownCheckLine(line);
-    if (checkLine) {
-      const items = [];
-      let rowIndex = lineIndex;
-      while (rowIndex < lines.length) {
-        const matched = matchMarkdownCheckLine(lines[rowIndex]);
-        if (!matched) break;
-        items.push({ marker: matched[1] || "", text: matched[2] || "" });
-        rowIndex += 1;
-      }
-      closeLists();
-      closeQuote();
-      pushContentBlock(renderPreviewMarkdownCheckLines(items));
-      lineIndex = rowIndex - 1;
       continue;
     }
 
@@ -3761,7 +3718,14 @@ function markdownToHtml(md, options = {}) {
 
     closeLists();
     closeQuote();
-    pushContentBlock(`<p>${inlineFormat(line)}</p>`);
+    const paragraphLines = [line];
+    let paragraphIndex = lineIndex + 1;
+    while (paragraphIndex < lines.length && !isMarkdownBlockStartAt(paragraphIndex)) {
+      paragraphLines.push(String(lines[paragraphIndex] || "").trim());
+      paragraphIndex += 1;
+    }
+    pushContentBlock(`<p>${inlineFormat(paragraphLines.join("\n"))}</p>`);
+    lineIndex = paragraphIndex - 1;
   }
 
   closeLists();
