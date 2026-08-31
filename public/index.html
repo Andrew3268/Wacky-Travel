@@ -19,7 +19,7 @@
 <link href="/assets/css/app.css?v=20260809-frontend-v29" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260822-a11y-v1" rel="stylesheet"/>
 <link href="/assets/css/travel-core.css?v=20260821-seo-author-v30" rel="stylesheet"/>
-<link href="/assets/css/travel-home.css?v=20260825-remove-travel-mood-v1" rel="stylesheet"/>
+<link href="/assets/css/travel-home.css?v=20260831-destination-hub-v1" rel="stylesheet"/>
 <link href="/assets/css/hotel-promotions.css?v=20260809-frontend-v29" rel="stylesheet"/>
 <link href="/assets/css/site-header.css?v=20260809-frontend-v29" rel="stylesheet"/>
 <meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." name="description"/><meta content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" name="robots"/><meta content="#ffffff" name="theme-color"/><link href="https://bestayable.com/" rel="canonical"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="Be Stayable | 여행지·호텔 추천 블로그" property="og:title"/><meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." property="og:description"/><meta content="https://bestayable.com/" property="og:url"/><meta content="https://bestayable.com/assets/images/open-graph-image.webp" property="og:image"/><meta content="600" property="og:image:width"/><meta content="315" property="og:image:height"/><meta content="Be Stayable | 여행지·호텔 추천 블로그 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="Be Stayable | 여행지·호텔 추천 블로그" name="twitter:title"/><meta content="여행지 정보, 호텔 추천, 여행 준비 팁과 예약 전 체크포인트를 쉽게 비교하는 여행 블로그입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/open-graph-image.webp" name="twitter:image"/><meta content="Be Stayable | 여행지·호텔 추천 블로그 대표 이미지" name="twitter:image:alt"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://bestayable.com/#website","url":"https://bestayable.com/","name":"Be Stayable","inLanguage":"ko-KR","publisher":{"@id":"https://bestayable.com/#organization"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://bestayable.com/#organization","name":"Be Stayable","url":"https://bestayable.com/","logo":{"@type":"ImageObject","url":"https://bestayable.com/assets/images/logo.png","width":520,"height":520}}</script></head>
@@ -78,68 +78,56 @@
     <p class="wthome-hero__desc">여행 목적과 위치, 숙소의 특징을 비교해<br/>내 여행에 더 잘 맞는 호텔을 찾아보세요.</p>
   </div>
 </section>
-<section class="container travel-section travel-section--destination-hub">
-<div class="section-heading section-heading--split">
-<div>
-<p class="eyebrow">Popular Destinations</p>
-<h2>지금 많이 찾는 여행지</h2>
-</div>
-<a aria-label="여행지 더 보기" class="text-link destinations-view-all-link" href="/destinations/">
-<span class="destinations-view-all-label">더 보기</span>
-<span aria-hidden="true" class="destinations-view-all-icon">
-<svg focusable="false" viewbox="0 0 20 20">
-<path d="M7.5 4.5 12.5 10l-5 5.5"></path>
-</svg>
-</span>
-</a>
-</div>
-<div aria-label="인기 도시 5개" class="home-mood-grid" id="homeDestinations">
-<article class="home-mood-card home-mood-card--featured is-loading">
-<img alt="후쿠오카 여행 대표 이미지" class="home-mood-card__image" decoding="async" fetchpriority="high" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" height="1000" loading="eager" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp" width="1400"/>
-<a aria-label="후쿠오카 여행지 보기" class="home-mood-card__link" href="/destinations/fukuoka/">
-<span aria-hidden="true" class="home-mood-card__arrow">→</span>
-<div class="home-mood-card__meta"><span>JAPAN</span></div>
-<h3 class="home-mood-card__title">후쿠오카</h3>
-<p class="home-mood-card__desc">하카타와 텐진을 중심으로 맛집과 쇼핑을 편하게 즐기는 도심 여행.</p>
-</a>
-</article>
-<article class="home-mood-card is-loading">
-<img alt="타이베이 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/taipei_index.webp" width="1000"/>
-<a aria-label="타이베이 여행지 보기" class="home-mood-card__link" href="/destinations/taipei/">
-<span aria-hidden="true" class="home-mood-card__arrow">→</span>
-<div class="home-mood-card__meta"><span>TAIWAN</span></div>
-<h3 class="home-mood-card__title">타이베이</h3>
-<p class="home-mood-card__desc">야시장과 골목, 편리한 교통을 따라 즐기는 도시 여행.</p>
-</a>
-</article>
-<article class="home-mood-card is-loading">
-<img alt="오사카 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/osaka_index.webp" width="1000"/>
-<a aria-label="오사카 여행지 보기" class="home-mood-card__link" href="/destinations/osaka/">
-<span aria-hidden="true" class="home-mood-card__arrow">→</span>
-<div class="home-mood-card__meta"><span>JAPAN</span></div>
-<h3 class="home-mood-card__title">오사카</h3>
-<p class="home-mood-card__desc">먹거리와 쇼핑, 근교 이동이 편한 활기찬 도시 여행.</p>
-</a>
-</article>
-<article class="home-mood-card is-loading">
-<img alt="나트랑 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/nhatrang_index.webp" width="1000"/>
-<a aria-label="나트랑 여행지 보기" class="home-mood-card__link" href="/destinations/nha-trang/">
-<span aria-hidden="true" class="home-mood-card__arrow">→</span>
-<div class="home-mood-card__meta"><span>VIETNAM</span></div>
-<h3 class="home-mood-card__title">나트랑</h3>
-<p class="home-mood-card__desc">리조트와 바다에서 느긋하게 보내는 휴양 여행.</p>
-</a>
-</article>
-<article class="home-mood-card is-loading">
-<img alt="다낭 여행 대표 이미지" class="home-mood-card__image" decoding="async" height="760" onload="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-loaded')" onerror="this.closest('article')?.classList.remove('is-loading');this.classList.add('is-image-error')" loading="lazy" src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/danang_index.webp" width="1000"/>
-<a aria-label="다낭 여행지 보기" class="home-mood-card__link" href="/destinations/da-nang/">
-<span aria-hidden="true" class="home-mood-card__arrow">→</span>
-<div class="home-mood-card__meta"><span>VIETNAM</span></div>
-<h3 class="home-mood-card__title">다낭</h3>
-<p class="home-mood-card__desc">미케비치와 도심을 함께 즐기기 좋은 균형 잡힌 여행.</p>
-</a>
-</article>
-</div>
+<section class="container travel-section travel-section--destination-hub" aria-labelledby="destinationHubTitle">
+  <div class="destination-hub__head">
+    <div class="destination-hub__heading-copy">
+      <h2 class="destination-hub__heading" id="destinationHubTitle">인기 여행지</h2>
+      <p class="destination-hub__sub">숙소 선택이 어려운 여행지부터 먼저 둘러보세요.</p>
+    </div>
+    <a class="destination-hub__more" href="/destinations/" aria-label="전체 여행지 보기">전체보기</a>
+  </div>
+
+  <div class="destination-hub__rail" aria-label="인기 여행지 5개">
+    <a class="destination-hub-card" href="/destinations/fukuoka/" aria-label="후쿠오카 여행지 보기">
+      <span class="destination-hub-card__media">
+        <img src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/fukuoka_index.webp" alt="후쿠오카 여행 대표 이미지" width="1400" height="1000" loading="eager" fetchpriority="high" decoding="async" />
+      </span>
+      <span class="destination-hub-card__name">후쿠오카</span>
+      <span class="destination-hub-card__meta">가성비 여행</span>
+    </a>
+
+    <a class="destination-hub-card" href="/destinations/taipei/" aria-label="타이베이 여행지 보기">
+      <span class="destination-hub-card__media">
+        <img src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/taipei_index.webp" alt="타이베이 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
+      </span>
+      <span class="destination-hub-card__name">타이베이</span>
+      <span class="destination-hub-card__meta">도심 여행 추천</span>
+    </a>
+
+    <a class="destination-hub-card" href="/destinations/osaka/" aria-label="오사카 여행지 보기">
+      <span class="destination-hub-card__media">
+        <img src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/osaka_index.webp" alt="오사카 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
+      </span>
+      <span class="destination-hub-card__name">오사카</span>
+      <span class="destination-hub-card__meta">첫 여행 추천</span>
+    </a>
+
+    <a class="destination-hub-card" href="/destinations/nha-trang/" aria-label="나트랑 여행지 보기">
+      <span class="destination-hub-card__media">
+        <img src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/nhatrang_index.webp" alt="나트랑 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
+      </span>
+      <span class="destination-hub-card__name">나트랑</span>
+      <span class="destination-hub-card__meta">휴양 숙소 추천</span>
+    </a>
+
+    <a class="destination-hub-card" href="/destinations/da-nang/" aria-label="다낭 여행지 보기">
+      <span class="destination-hub-card__media">
+        <img src="https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/danang_index.webp" alt="다낭 여행 대표 이미지" width="1000" height="760" loading="lazy" decoding="async" />
+      </span>
+      <span class="destination-hub-card__name">다낭</span>
+      <span class="destination-hub-card__meta">휴양 숙소 추천</span>
+    </a>
+  </div>
 </section>
 <section aria-labelledby="featuredTitle" class="wtpromo-section wtpromo-container wtpromo-home-featured" hidden aria-hidden="true" data-admin-home-promotion>
 <div class="section-heading section-heading--split">
