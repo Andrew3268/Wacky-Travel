@@ -1,0 +1,23 @@
+Bestayable /img 이미지 프록시 반응형 리사이징 업데이트
+
+변경 사항
+- functions/img/[encoded].js: w/width, q/quality, fit, format 파라미터 처리
+- Cloudflare fetch cf.image를 사용한 실제 이미지 리사이징/품질 변환
+- format=auto 요청 시 Accept 헤더에 따라 AVIF/WebP 선택
+- 변환별 캐시 키 정규화 및 1년 immutable 캐시 유지
+- 변환 실패 시 원본 이미지 fallback
+- lib/image-utils.js: R2 /img URL에 w/q/fit/format 파라미터 생성
+- public/assets/js/posts.js, add.js, edit.js: 동일 로직 반영
+- R2 이미지도 srcset 생성 활성화
+
+대표 이미지 예시
+/img/<encoded>?w=480&q=82&fit=cover&format=auto 480w
+/img/<encoded>?w=768&q=82&fit=cover&format=auto 768w
+/img/<encoded>?w=960&q=82&fit=cover&format=auto 960w
+/img/<encoded>?w=1200&q=82&fit=cover&format=auto 1200w
+
+검증
+- Image proxy transform mock test 통과
+- npm run check 전체 통과
+- SEO audit 오류 0 / 경고 0
+- JavaScript syntax check 116 files 통과

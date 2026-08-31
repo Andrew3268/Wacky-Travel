@@ -2203,9 +2203,8 @@ function buildImageProxyUrl(src = "") {
 function canUseCloudflareImageTransform(absolute = "") {
   const normalized = unwrapCfImageUrl(absolute);
 
-  // /img/*는 R2 이미지 캐시용 Pages Function 프록시 경로입니다.
-  // 이 경로를 /cdn-cgi/image 원본으로 다시 넣으면 배포 환경에서 404가 발생할 수 있어
-  // R2 이미지는 프록시 캐시만 사용하고 Cloudflare 이미지 변환은 적용하지 않습니다.
+  // /img/*는 Pages Function 프록시 내부에서 직접 Image Resizing을 수행합니다.
+  // 이 경로를 /cdn-cgi/image 원본으로 다시 감싸지 않고 w/q 파라미터를 사용합니다.
   if (isImageProxyUrl(normalized)) return false;
 
   const srcHost = getImageHostname(normalized);
@@ -2216,6 +2215,23 @@ function canUseCloudflareImageTransform(absolute = "") {
   return getImageBaseDomain(srcHost) === getImageBaseDomain(originHost);
 }
 
+function buildImageProxyTransformUrl(deliveryUrl = "", options = {}) {
+  if (!isImageProxyUrl(deliveryUrl)) return deliveryUrl;
+  try {
+    const url = new URL(deliveryUrl, window.location.origin);
+    const config = { format: "auto", quality: 82, ...options };
+    const width = Number.parseInt(config.width, 10);
+    const quality = Number.parseInt(config.quality, 10);
+    if (Number.isFinite(width) && width > 0) url.searchParams.set("w", String(width));
+    if (Number.isFinite(quality) && quality > 0) url.searchParams.set("q", String(quality));
+    if (config.fit) url.searchParams.set("fit", String(config.fit));
+    if (config.format) url.searchParams.set("format", String(config.format));
+    return url.toString();
+  } catch (_) {
+    return deliveryUrl;
+  }
+}
+
 function buildCfImageUrl(src = "", options = {}) {
   const raw = String(src || "").trim();
   const absolute = absolutizeImageUrl(raw);
@@ -2223,8 +2239,9 @@ function buildCfImageUrl(src = "", options = {}) {
   if (/^(data|blob):/i.test(absolute)) return absolute;
   const deliveryUrl = buildImageProxyUrl(absolute);
   if (!deliveryUrl) return "";
-  if (!canUseCloudflareImageTransform(deliveryUrl)) return deliveryUrl;
   const config = { format: "auto", quality: 82, ...options };
+  if (isImageProxyUrl(deliveryUrl)) return buildImageProxyTransformUrl(deliveryUrl, config);
+  if (!canUseCloudflareImageTransform(deliveryUrl)) return deliveryUrl;
   const params = Object.entries(config)
     .filter(([, value]) => value !== null && value !== undefined && value !== "")
     .map(([key, value]) => `${key}=${value}`)
@@ -2238,7 +2255,7 @@ function buildImageAttrs(src = "", config = {}) {
   const baseOptions = { fit: config.fit || "scale-down", format: config.format || "auto", quality: config.quality || 82 };
   const absolute = absolutizeImageUrl(src);
   const deliveryUrl = buildImageProxyUrl(absolute);
-  const transformed = canUseCloudflareImageTransform(deliveryUrl);
+  const transformed = isImageProxyUrl(deliveryUrl) || canUseCloudflareImageTransform(deliveryUrl);
   const srcset = transformed ? normalized.map((width) => `${buildCfImageUrl(src, { ...baseOptions, width })} ${width}w`).join(", ") : "";
   const fallbackWidth = config.fallbackWidth || normalized[Math.min(1, normalized.length - 1)] || 640;
   return {
