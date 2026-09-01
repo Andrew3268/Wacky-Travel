@@ -143,7 +143,7 @@ body.admin-page .hero-title{
 
 body.admin-page .hero-title{
   margin: 8px 0 10px;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: 45px;
   font-weight: 500;
 }
 
@@ -974,7 +974,7 @@ body.admin-page .wtpromo-footer-copy{
   }
 
   body.admin-page .hero-title{
-    font-size: 32px;
+    font-size: 45px;
   }
 
   body.admin-page .dashboard-stats,

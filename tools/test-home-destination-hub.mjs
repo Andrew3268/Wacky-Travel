@@ -19,7 +19,7 @@ assert(section.includes('>전체보기</a>'), 'Destination hub all-destinations 
 assert((section.match(/class="destination-hub-card"/g) || []).length === 5, 'Destination hub must contain 5 destination cards.');
 assert(!section.includes('home-mood-card'), 'Legacy home mood card markup remains in destination hub.');
 assert(!section.includes('Popular Destinations'), 'Legacy eyebrow remains in destination hub.');
-assert(html.includes('travel-home.css?v=20260831-destination-hub-v1'), 'Destination hub stylesheet cache version was not updated.');
+assert(html.includes('travel-home.css?v=20260901-heading-v1'), 'Destination hub stylesheet cache version was not updated.');
 
 for (const slug of ['fukuoka', 'taipei', 'osaka', 'nha-trang', 'da-nang']) {
   assert(section.includes(`/destinations/${slug}/`), `Destination link missing: ${slug}`);

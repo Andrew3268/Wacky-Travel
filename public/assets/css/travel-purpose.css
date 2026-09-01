@@ -16,7 +16,7 @@
 }
 
 .wt-purpose-page .wt-page-hero h1{
-  font-size: clamp(2.05rem, 9.5vw, 2.8rem);
+  font-size: 45px;
   line-height: 1.2;
   word-break: keep-all;
 }
@@ -644,7 +644,7 @@ body.travel-purpose-body .wt-page-hero h1,
 body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
   max-width: 980px !important;
   color: #050505 !important;
-  font-size: clamp(42px, 5vw, 56px) !important;
+  font-size: 45px;
   font-weight: 600 !important;
   line-height: 1.2;
   letter-spacing: -0.045em !important;
@@ -783,7 +783,7 @@ body.travel-purpose-body .wt-purpose-page .wt-page-hero{
 
 body.travel-purpose-body .wt-page-hero h1,
 body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
-  font-size: clamp(36px, 10vw, 46px) !important;
+  font-size: 45px;
   line-height: 1.2;
   word-break: keep-all;
 }
@@ -2135,4 +2135,10 @@ body.travel-purpose-body h2 {
   body.travel-purpose-body h2 {
     font-size: 30px !important;
   }
+}
+
+
+/* 2026-09-01: unified page heading typography */
+body.travel-purpose-body .wt-page-hero__content > .wt-city-kicker {
+  font-size: 20px;
 }

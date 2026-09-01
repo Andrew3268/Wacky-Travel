@@ -1,0 +1,17 @@
+Bestayable Typography Update - 2026-09-01
+
+1. Main home hero H1 (#wthomeHeroTitle): 55px
+2. All other H1 headings: 45px
+3. wt-city-kicker immediately above city/purpose H1: 20px
+4. Removed wt-city-kicker::before decorative effect
+5. Removed unnecessary !important from H1 font-size declarations (42 -> 0)
+6. Updated CSS cache-busting version: 20260901-heading-v1
+7. Added tools/test-heading-typography.mjs regression test
+8. No database migration required
+
+Validation:
+- Heading typography check passed (84 normalized font-size declarations)
+- JavaScript syntax check passed: 117 files
+- SEO audit: 0 errors, 0 warnings
+- Purpose pages: 75 pages across 15 cities generated and checked
+- All substantive npm run check stages passed; the combined command exceeded the execution time only while entering the final syntax stage. The final syntax check was then run independently and passed.

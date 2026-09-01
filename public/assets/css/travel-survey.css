@@ -2250,7 +2250,7 @@ body.wt-location-survey-page--app .logo-icon--complete {
 body.wt-location-survey-page--app .main-title {
   margin: 0 0 18px;
   color: #1d1d1f;
-  font-size: 25px;
+  font-size: 45px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.045em;
@@ -4137,7 +4137,7 @@ body.wt-location-survey-page--app .wt-result-lead--simple strong {
 }
 
 body.wt-location-survey-page--app .main-title {
-  font-size: clamp(27px, 7.2vw, 34px) !important;
+  font-size: 45px;
   line-height: 1.2;
   letter-spacing: -0.055em !important;
   font-weight: 600 !important;

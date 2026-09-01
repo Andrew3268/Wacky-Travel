@@ -4,10 +4,11 @@ import vm from 'node:vm';
 
 const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
-const TRAVEL_CORE_CSS_VERSION = '20260821-seo-author-v30';
-const HOME_CSS_VERSION = '20260831-destination-hub-v1';
-const CITY_MAIN_CSS_VERSION = '20260818-destination-h2-v5';
-const PURPOSE_PAGE_CSS_VERSION = '20260818-destination-h2-v5';
+const TRAVEL_CORE_CSS_VERSION = '20260901-heading-v1';
+const HOME_CSS_VERSION = '20260901-heading-v1';
+const CITY_MAIN_CSS_VERSION = '20260901-heading-v1';
+const PURPOSE_PAGE_CSS_VERSION = '20260901-heading-v1';
+const SURVEY_CSS_VERSION = '20260901-heading-v1';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const assert = (condition, message) => {
   if (!condition) throw new Error(message);
@@ -49,11 +50,13 @@ for (const file of htmlFiles) {
         ? TRAVEL_CORE_CSS_VERSION
         : isHomeStylesheet
           ? HOME_CSS_VERSION
-          : isCityMainStylesheet
+          : /\/assets\/css\/travel-city\.css/.test(href)
             ? CITY_MAIN_CSS_VERSION
             : isPurposePageStylesheet
               ? PURPOSE_PAGE_CSS_VERSION
-              : VERSION;
+              : /\/assets\/css\/travel-survey\.css/.test(href)
+                ? SURVEY_CSS_VERSION
+                : VERSION;
       assert(href.endsWith(`?v=${expectedVersion}`), `여행 CSS 버전이 통일되지 않았습니다: ${path.relative(root, file)} -> ${href}`);
     }
   }
@@ -62,11 +65,13 @@ for (const file of htmlFiles) {
       ? TRAVEL_CORE_CSS_VERSION
       : name === 'home'
         ? HOME_CSS_VERSION
-        : name === 'city' && html.includes('data-city-post-root')
+        : name === 'city'
           ? CITY_MAIN_CSS_VERSION
           : name === 'purpose' && /\btravel-purpose-body\b/.test(bodyClass)
             ? PURPOSE_PAGE_CSS_VERSION
-            : VERSION;
+            : name === 'survey'
+              ? SURVEY_CSS_VERSION
+              : VERSION;
     return html.includes(`/assets/css/travel-${name}.css?v=${version}`);
   };
   if (/\btravel-home-body\b/.test(bodyClass)) assert(has('home'), `홈 CSS 누락: ${path.relative(root, file)}`);

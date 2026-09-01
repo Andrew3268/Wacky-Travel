@@ -561,9 +561,9 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260827-post-ui-v51" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260901-heading-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260817-post-brand-v32" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260901-heading-v1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 <style>
     .post-body,
@@ -1551,7 +1551,7 @@ function renderNotFound(slug) {
   <meta name="robots" content="noindex,nofollow" />
   <link rel="icon" href="/favicon.ico?v=20260817-brand-v1" sizes="any" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260827-post-ui-v51" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260901-heading-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 </head>

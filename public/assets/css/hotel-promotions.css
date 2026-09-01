@@ -70,7 +70,7 @@ body.wtpromo-page a{ -webkit-tap-highlight-color: transparent; }
     .wtpromo-hero h1{
       max-width: 760px;
       margin: 0;
-      font-size: clamp(43px, 6.5vw, 78px);
+      font-size: 45px;
       line-height:1.2;
       letter-spacing: -.065em;
       font-weight: 600;
@@ -658,7 +658,7 @@ body.wtpromo-page a{ -webkit-tap-highlight-color: transparent; }
     @media (max-width: 760px) {
       .wtpromo-container{ width: min(100% - 28px, var(--max)); }
       .wtpromo-hero{ padding: 52px 0 30px; }
-      .wtpromo-hero h1{ font-size: clamp(42px, 13vw, 62px);
+      .wtpromo-hero h1{ font-size: 45px;
   word-break: keep-all; }
       .wtpromo-hero__desc{ margin-top: 22px; font-size: 16px; }
       .wtpromo-hero__summary{ grid-template-columns: 1fr; gap: 0; }
@@ -901,7 +901,7 @@ body.travel-home-body .wtpromo-home-tool-section > .wtpromo-container{
 @media (min-width: 1024px) {
   body.wtpromo-page .wtpromo-hero h1,
   .wtpromo-hero h1 {
-    font-size: 56px !important;
+    font-size: 45px;
     line-height:1.2;
     color: #000 !important;
   word-break: keep-all;
