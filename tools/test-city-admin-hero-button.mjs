@@ -38,7 +38,7 @@ for (const file of cityPages) {
   if (!html.includes('/assets/js/posts.js?v=20260821ArchiveIndexThresholdV3')) {
     throw new Error(`도시 콘텐츠 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
-  if (!html.includes('/assets/css/travel-core.css?v=20260901-heading-v1') || !html.includes('/assets/css/travel-city.css?v=20260901-heading-v1')) {
+  if (!html.includes('/assets/css/travel-core.css?v=20260901-travel-contents-v1') || !html.includes('/assets/css/travel-city.css?v=20260901-travel-contents-v1')) {
     throw new Error(`도시 CSS 분리 파일 또는 통합 캐시 버전이 누락되었습니다: ${path.relative(root, file)}`);
   }
 }

@@ -742,7 +742,7 @@ body {
   transition: transform .18s ease, border-color .18s ease;
 }
 
-.travel-list__item:hover {
+.travel-list:not(.travel-list--destination) .travel-list__item:hover {
   transform: translateY(-2px);
   border-color: rgba(35,104,255,.16);
 }
@@ -2090,7 +2090,7 @@ body::after {
   background: #ffffff;
 }
 
-.travel-list__item:hover {
+.travel-list:not(.travel-list--destination) .travel-list__item:hover {
   border-color: rgba(37, 99, 235, 0.2);
 }
 
@@ -2465,12 +2465,6 @@ body::after {
   transform: none;
 }
 
-.travel-list--destination .travel-list__item:hover {
-  border: 0;
-  background: rgba(37, 99, 235, 0.07);
-  transform: none;
-}
-
 .travel-list--destination .travel-list__link {
   display: flex;
   align-items: center;
@@ -2562,10 +2556,10 @@ body::after {
 }
 
 .travel-content-section--plain {
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  padding: 0 !important;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
 }
 
 .hotel-tabs__button .hotel-tabs__count[hidden] {
@@ -3084,7 +3078,6 @@ body::after {
 
 .btn--brand,
 .affiliate-btn,
-.hotel-load-more,
 .hotel-tabs__button.is-active,
 .wthome-search__button,
 .wtsr-search__button,
@@ -3114,11 +3107,10 @@ body::after {
 }
 
 .travel-card:hover,
-.travel-list__item:hover,
+.travel-list:not(.travel-list--destination) .travel-list__item:hover,
 .country-destination-group__add:hover,
 .country-destination-group__manage:hover,
-.destination-chip:hover,
-.travel-list--destination .travel-list__item:hover {
+.destination-chip:hover {
   border-color: rgba(37, 99, 235, 0.22) !important;
   background: #F8FBFF !important;
 }

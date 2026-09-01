@@ -563,7 +563,7 @@ export async function onRequestGet(context) {
 
   <link rel="stylesheet" href="/assets/css/app.css?v=20260901-heading-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
-  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260901-heading-v1" />
+  <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260901-travel-contents-v1" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260809-frontend-v29" />
 <style>
     .post-body,

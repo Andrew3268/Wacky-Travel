@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const VERSION = '20260901-heading-v1';
+const TRAVEL_CONTENTS_VERSION = '20260901-travel-contents-v1';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const errors = [];
 
@@ -100,7 +101,8 @@ const versionedFiles = [
 for (const relative of versionedFiles) {
   const html = read(relative);
   for (const match of html.matchAll(/\/assets\/css\/(app|travel-core|travel-city|travel-home|travel-purpose|travel-survey)\.css\?v=([^"']+)/g)) {
-    if (match[2] !== VERSION) errors.push(`${relative}: stale changed CSS version ${match[0]}`);
+    const expectedVersion = ['travel-core', 'travel-city'].includes(match[1]) ? TRAVEL_CONTENTS_VERSION : VERSION;
+    if (match[2] !== expectedVersion) errors.push(`${relative}: stale changed CSS version ${match[0]}`);
   }
 }
 
