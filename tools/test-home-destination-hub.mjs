@@ -21,8 +21,22 @@ assert(!section.includes('home-mood-card'), 'Legacy home mood card markup remain
 assert(!section.includes('Popular Destinations'), 'Legacy eyebrow remains in destination hub.');
 assert(html.includes('travel-home.css?v=20260901-h2-v2'), 'Destination hub stylesheet cache version was not updated.');
 
-for (const slug of ['fukuoka', 'taipei', 'osaka', 'nha-trang', 'da-nang']) {
-  assert(section.includes(`/destinations/${slug}/`), `Destination link missing: ${slug}`);
+
+const expectedDestinationImages = {
+  fukuoka: 'https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/Fukuoka.webp',
+  taipei: 'https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/Taipei.webp',
+  osaka: 'https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/Osaka.webp',
+  'nha-trang': 'https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/Nha%20Trang.webp',
+  'da-nang': 'https://pub-9f3e642a431d47f7a45cc1c9dc62db2a.r2.dev/Da%20Nang.webp',
+};
+
+for (const [slug, imageUrl] of Object.entries(expectedDestinationImages)) {
+  assert(section.includes(`href="/destinations/${slug}/"`), `Destination link missing: ${slug}`);
+  assert(section.includes(`data-original-src="${imageUrl}"`), `Destination image source missing: ${slug}`);
+}
+
+for (const legacyImage of ['fukuoka_index.webp', 'taipei_index.webp', 'osaka_index.webp', 'nhatrang_index.webp', 'danang_index.webp']) {
+  assert(!section.includes(legacyImage), `Legacy destination image remains: ${legacyImage}`);
 }
 
 for (const token of [
