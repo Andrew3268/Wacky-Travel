@@ -6,8 +6,8 @@ const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
 const TRAVEL_CORE_CSS_VERSION = '20260901-h2-v2';
 const HOME_CSS_VERSION = '20260901-h2-v2';
-const CITY_MAIN_CSS_VERSION = '20260901-h2-v2';
-const PURPOSE_PAGE_CSS_VERSION = '20260901-h2-v2';
+const CITY_MAIN_CSS_VERSION = '20260901-destination-heading-v1';
+const PURPOSE_PAGE_CSS_VERSION = '20260901-destination-heading-v1';
 const SURVEY_CSS_VERSION = '20260901-h2-v2';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const assert = (condition, message) => {

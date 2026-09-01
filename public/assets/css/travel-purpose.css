@@ -2155,3 +2155,11 @@ body.travel-purpose-body .wt-page-hero__content > .wt-city-kicker {
     font-size: 25px;
   }
 }
+
+/* 2026-09-01: destination purpose hero tablet/mobile typography */
+@media (max-width: 1024px) {
+  body.travel-purpose-body .wt-page-hero h1,
+  body.travel-purpose-body .wt-purpose-page .wt-page-hero h1 {
+    font-size: 30px;
+  }
+}

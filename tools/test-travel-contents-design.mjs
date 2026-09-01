@@ -5,7 +5,8 @@ const root = process.cwd();
 const destinationsRoot = path.join(root, 'public', 'destinations');
 const cityCssPath = path.join(root, 'public', 'assets', 'css', 'travel-city.css');
 const coreCssPath = path.join(root, 'public', 'assets', 'css', 'travel-core.css');
-const VERSION = '20260901-h2-v2';
+const CORE_VERSION = '20260901-h2-v2';
+const CITY_VERSION = '20260901-destination-heading-v1';
 const errors = [];
 
 const cityPages = fs.readdirSync(destinationsRoot, { withFileTypes: true })
@@ -23,8 +24,13 @@ for (const { city, file } of cityPages) {
   if (!html.includes('id="travel-contents"')) errors.push(`${city}: #travel-contents 섹션이 없습니다.`);
   if (!html.includes('class="travel-content-section travel-content-section--plain"')) errors.push(`${city}: plain Travel Contents 구조가 없습니다.`);
   if (!html.includes('class="travel-list travel-list--destination"')) errors.push(`${city}: destination travel list가 없습니다.`);
-  if (!html.includes(`/assets/css/travel-core.css?v=${VERSION}`)) errors.push(`${city}: travel-core CSS 캐시 버전이 최신이 아닙니다.`);
-  if (!html.includes(`/assets/css/travel-city.css?v=${VERSION}`)) errors.push(`${city}: travel-city CSS 캐시 버전이 최신이 아닙니다.`);
+  const travelHeading = html.match(/<section[^>]*id="travel-contents"[^>]*>[\s\S]*?<div class="travel-content-sections"/)?.[0] || '';
+  if (!/<div class="section-heading">\s*<p class="wt-city-kicker">Travel Contents<\/p>\s*<h2[^>]*TravelContentsTitle[^>]*>[\s\S]*?<\/h2>\s*<\/div>/s.test(travelHeading)) {
+    errors.push(`${city}: Travel Contents heading이 공통 section-heading 직접 자식 구조가 아닙니다.`);
+  }
+  if (travelHeading.includes('section-heading--split')) errors.push(`${city}: Travel Contents heading에 전용 split modifier가 남아 있습니다.`);
+  if (!html.includes(`/assets/css/travel-core.css?v=${CORE_VERSION}`)) errors.push(`${city}: travel-core CSS 캐시 버전이 최신이 아닙니다.`);
+  if (!html.includes(`/assets/css/travel-city.css?v=${CITY_VERSION}`)) errors.push(`${city}: travel-city CSS 캐시 버전이 최신이 아닙니다.`);
 }
 
 const cityCss = fs.readFileSync(cityCssPath, 'utf8');
@@ -60,6 +66,9 @@ if (/\.travel-content-section--plain\s*\{[^}]*!important/s.test(coreCss)) {
 }
 if (/!important/.test(sectionCss)) {
   errors.push('새 Travel Contents 디자인 블록에 !important를 사용했습니다.');
+}
+if (/body\.travel-city-body #travel-contents \.section-heading \.wt-city-kicker\s*\{/.test(sectionCss)) {
+  errors.push('Travel Contents heading kicker 전용 스타일이 남아 있어 공통 heading과 다릅니다.');
 }
 
 if (errors.length) {

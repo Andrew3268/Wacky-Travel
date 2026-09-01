@@ -3,7 +3,8 @@ import path from 'node:path';
 
 const root = process.cwd();
 const VERSION = '20260901-h2-v2';
-const TRAVEL_CONTENTS_VERSION = '20260901-h2-v2';
+const CITY_VERSION = '20260901-destination-heading-v1';
+const PURPOSE_VERSION = '20260901-destination-heading-v1';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const errors = [];
 
@@ -30,12 +31,13 @@ for (const relative of cssFiles) {
     const isHeadingRule = /h1/i.test(selector) || headingClassSelectors.some((token) => selector.includes(token) && !/\bh2\b/i.test(selector));
     if (!isHeadingRule || !/font-size\s*:/i.test(body)) continue;
 
-    const expected = selector.includes('#wthomeHeroTitle') ? '55px' : '45px';
+    const isResponsiveDestinationHero = /(?:wt-city-hero|wt-page-hero)[^,{}]*h1/i.test(selector);
+    const allowed = selector.includes('#wthomeHeroTitle') ? ['55px'] : isResponsiveDestinationHero ? ['45px', '30px'] : ['45px'];
     const declarations = [...body.matchAll(/font-size\s*:\s*([^;}]*)/gi)].map((item) => item[1].trim());
     normalizedRuleCount += declarations.length;
     for (const declaration of declarations) {
-      if (declaration !== expected) {
-        errors.push(`${relative}: ${selector} font-size must be ${expected}, received ${declaration}`);
+      if (!allowed.includes(declaration)) {
+        errors.push(`${relative}: ${selector} font-size must be ${allowed.join(' or ')}, received ${declaration}`);
       }
       if (/!important/i.test(declaration)) {
         errors.push(`${relative}: ${selector} font-size must not use !important`);
@@ -70,6 +72,21 @@ if (!/\.wt-city-hero__content\s*>\s*\.wt-city-kicker\s*\{[^{}]*font-size\s*:\s*2
 }
 if (!/\.wt-page-hero__content\s*>\s*\.wt-city-kicker\s*\{[^{}]*font-size\s*:\s*20px\s*;/s.test(purposeCss)) {
   errors.push('Purpose hero kicker 20px rule is missing.');
+}
+
+const cityResponsiveMarker = cityCss.indexOf('/* 2026-09-01: destination hero tablet/mobile typography */');
+const cityResponsiveCss = cityResponsiveMarker >= 0 ? cityCss.slice(cityResponsiveMarker) : '';
+if (!/@media\s*\(max-width:\s*1024px\)/.test(cityResponsiveCss) || !/body\.travel-city-body \.wt-city-hero h1\s*\{[^{}]*font-size\s*:\s*30px\s*;/s.test(cityResponsiveCss)) {
+  errors.push('City main H1 must be 30px at tablet/mobile widths.');
+}
+if (!/body\.travel-city-body \.wt-city-hero__content > \.wt-city-kicker\s*\{[^{}]*font-size\s*:\s*16px\s*;/s.test(cityResponsiveCss)) {
+  errors.push('City hero kicker must be 16px at tablet/mobile widths.');
+}
+
+const purposeResponsiveMarker = purposeCss.indexOf('/* 2026-09-01: destination purpose hero tablet/mobile typography */');
+const purposeResponsiveCss = purposeResponsiveMarker >= 0 ? purposeCss.slice(purposeResponsiveMarker) : '';
+if (!/@media\s*\(max-width:\s*1024px\)/.test(purposeResponsiveCss) || !/body\.travel-purpose-body \.wt-purpose-page \.wt-page-hero h1\s*\{[^{}]*font-size\s*:\s*30px\s*;/s.test(purposeResponsiveCss)) {
+  errors.push('Purpose page H1 must be 30px at tablet/mobile widths.');
 }
 
 
@@ -160,7 +177,11 @@ const versionedFiles = [
 for (const relative of versionedFiles) {
   const html = read(relative);
   for (const match of html.matchAll(/\/assets\/css\/(app|travel-core|travel-city|travel-home|travel-purpose|travel-survey)\.css\?v=([^"']+)/g)) {
-    const expectedVersion = ['travel-core', 'travel-city'].includes(match[1]) ? TRAVEL_CONTENTS_VERSION : VERSION;
+    const expectedVersion = match[1] === 'travel-city'
+      ? CITY_VERSION
+      : match[1] === 'travel-purpose'
+        ? PURPOSE_VERSION
+        : VERSION;
     if (match[2] !== expectedVersion) errors.push(`${relative}: stale changed CSS version ${match[0]}`);
   }
 }
