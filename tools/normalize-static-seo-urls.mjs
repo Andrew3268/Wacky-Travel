@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isPageLikePath, normalizePagePath } from "../lib/seo/site-url.js";
 import { STATIC_ROUTE_LASTMOD } from "../lib/seo/static-routes.js";
+import { injectGoogleTagIntoHead, isGoogleAnalyticsEligiblePath } from "../lib/analytics/google-tag.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -510,6 +511,9 @@ function normalizeHtml(html, route) {
   output = ensureStaticStructuredData(output, route);
   output = ensureGuideAuthorMeta(output, route);
   output = injectGuideAuthorProfile(output, route);
+  if (isGoogleAnalyticsEligiblePath(route)) {
+    output = injectGoogleTagIntoHead(output);
+  }
   return output;
 }
 

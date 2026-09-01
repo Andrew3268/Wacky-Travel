@@ -1,4 +1,5 @@
 import { purposePageConfig } from './config.mjs';
+import { GOOGLE_TAG_HTML } from '../../lib/analytics/google-tag.js';
 
 const escapeHtml = (value = '') => String(value)
   .replaceAll('&', '&amp;')
@@ -157,6 +158,7 @@ ${schemas}
 <meta content="${escapeHtml(head.twitter.imageAlt)}" name="twitter:image:alt"/>
 <link href="//pix8.agoda.net" rel="dns-prefetch"/>
 <link crossorigin="anonymous" href="https://pix8.agoda.net" rel="preconnect"/>
+${GOOGLE_TAG_HTML}
 </head>`;
 }
 
