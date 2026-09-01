@@ -475,3 +475,10 @@ p,
 strong {
   word-break: keep-all;
 }
+
+/* 2026-09-01: search overlay mobile H2 normalization */
+@media (max-width: 767px) {
+  html body .home-search-overlay[data-site-search-overlay="main"] .home-search-overlay__content h2 {
+    font-size: 25px;
+  }
+}

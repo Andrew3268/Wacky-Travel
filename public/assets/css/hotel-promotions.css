@@ -994,3 +994,12 @@ strong {
   background: currentColor;
 }
 /* End BESTAYABLE_PROMOTION_HERO_SPACING_V17 */
+
+/* 2026-09-01: promotions mobile H2 normalization */
+@media (max-width: 767px) {
+  .wtpromo-section-heading h2,
+  .wtpromo-tool-card h2,
+  .wtpromo-tool-card--home h2 {
+    font-size: 25px;
+  }
+}

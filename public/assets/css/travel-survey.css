@@ -5349,3 +5349,13 @@ body.wt-location-survey-page--app .tab-btn[hidden],
 body.wt-location-survey-page--app #relatedPostSection[hidden] {
   display: none !important;
 }
+
+/* 2026-09-01: survey mobile H2 normalization */
+@media (max-width: 767px) {
+  body.wt-location-survey-page--app h2.wt-question-title,
+  body.wt-location-survey-page--app h2.main-title,
+  body.wt-location-survey-page--app h2.loading-text,
+  body.wt-location-survey-page--app h2.result-destination {
+    font-size: 25px;
+  }
+}

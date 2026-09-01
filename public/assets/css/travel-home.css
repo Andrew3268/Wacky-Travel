@@ -4359,3 +4359,12 @@ body.travel-home-body main.travel-page.travel-home > .container.travel-section.t
     border-radius: 22px !important;
   }
 }
+
+/* 2026-09-01: home mobile H2 normalization */
+@media (max-width: 767px) {
+  body.travel-home-body main.travel-page h2,
+  body.travel-home-body h2.wt-section-title,
+  body.travel-home-body h2.destination-hub__heading {
+    font-size: 25px;
+  }
+}

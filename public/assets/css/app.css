@@ -8319,7 +8319,7 @@ body.post-page-body--hotel-review-magazine .post-body .post-content h2{
   border: 0 !important;
   background: transparent !important;
   color: var(--hotel-review-ink) !important;
-  font-size: 1.25rem !important;
+  font-size: 1.25rem;
   font-weight: 600!important;
   line-height: 1.2;
   letter-spacing: -0.03em !important;
@@ -8938,7 +8938,7 @@ body.post-page-body .post-body .post-content p.post-hotel-section-label + h2.pos
   border: 0 !important;
   background: transparent !important;
   color: var(--hotel-review-ink, #111111) !important;
-  font-size: 1.25rem !important;
+  font-size: 1.25rem;
   font-weight: 600 !important;
   line-height: 1.2;
   letter-spacing: -0.03em !important;
@@ -10054,4 +10054,24 @@ body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-conten
 .preview-body--travel-tip table th,
 .preview-body--travel-tip table td{
   width: auto;
+}
+
+/* 2026-09-01: mobile H2 normalization */
+@media (max-width: 767px) {
+  h2,
+  .preview-body h2,
+  .post-body .post-content h2,
+  .post-shell--guide-style .post-body .post-content h2,
+  .post-search-overlay__content h2,
+  body.post-page-body .post-shell--guide-style .post-body .post-content h2,
+  body.post-page-body .post-faq > h2,
+  body.post-page-body h2.post-section-title,
+  body.post-page-body .post-search-overlay__content h2,
+  body.post-page-body--hotel-review-magazine .post-body .post-content h2,
+  body.post-page-body .post-body .post-content p.post-hotel-section-label + h2.post-hotel-section-title,
+  .preview-hotel-key-points h2,
+  body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content h2,
+  .preview-faq h2 {
+    font-size: 25px;
+  }
 }

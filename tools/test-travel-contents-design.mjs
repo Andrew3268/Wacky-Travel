@@ -5,7 +5,7 @@ const root = process.cwd();
 const destinationsRoot = path.join(root, 'public', 'destinations');
 const cityCssPath = path.join(root, 'public', 'assets', 'css', 'travel-city.css');
 const coreCssPath = path.join(root, 'public', 'assets', 'css', 'travel-core.css');
-const VERSION = '20260901-travel-contents-v1';
+const VERSION = '20260901-h2-v2';
 const errors = [];
 
 const cityPages = fs.readdirSync(destinationsRoot, { withFileTypes: true })
@@ -39,7 +39,7 @@ for (const required of [
   'grid-template-columns: 56px minmax(0, 1fr) 42px;',
   'border-top: 1px solid #e9eaec;',
   'border-bottom: 1px solid #e9eaec;',
-  'font-size: 45px;',
+  'font-size: 30px;',
   'font-size: 19px;',
   'transition: none;'
 ]) {

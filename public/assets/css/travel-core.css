@@ -9499,3 +9499,20 @@ body.wt-guide-body .post-author-profile__separator{
     border-radius:10px;
   }
 }
+
+/* 2026-09-01: global travel mobile H2 normalization */
+@media (max-width: 767px) {
+  .section-heading h2,
+  .travel-card h2,
+  .content-card h2,
+  .side-card h2,
+  .wtsr-summary h2,
+  .wt-cta-band h2,
+  .wt-city-page .section-heading h2,
+  .wt-city-snapshot__heading h2,
+  .wtsr-page .wtsr-summary h2,
+  .wtsr-page .wtsr-popular-section h2,
+  body.post-page-body--recommended-hotel-review h2.post-hotel-key-points__title {
+    font-size: 25px;
+  }
+}

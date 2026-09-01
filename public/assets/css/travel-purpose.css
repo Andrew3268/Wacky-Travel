@@ -2133,7 +2133,7 @@ body.travel-purpose-body h2 {
 
 @media (min-width: 768px) {
   body.travel-purpose-body h2 {
-    font-size: 30px !important;
+    font-size: 30px;
   }
 }
 
@@ -2141,4 +2141,17 @@ body.travel-purpose-body h2 {
 /* 2026-09-01: unified page heading typography */
 body.travel-purpose-body .wt-page-hero__content > .wt-city-kicker {
   font-size: 20px;
+}
+
+/* 2026-09-01: purpose mobile H2 normalization */
+@media (max-width: 767px) {
+  body.travel-purpose-body h2,
+  body.travel-purpose-body h2.wt-section-title,
+  body.travel-purpose-body .wt-purpose-page h2.wt-section-title,
+  body.travel-purpose-body .wt-cta-band h2,
+  body.travel-purpose-body .wt-purpose-page .wt-section--survey-cta .wt-cta-band h2,
+  body.travel-purpose-body .wt-section--survey-cta .wt-cta-band h2,
+  body.travel-purpose-body main.travel-page.wt-purpose-page h2 {
+    font-size: 25px;
+  }
 }

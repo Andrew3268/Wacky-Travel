@@ -201,8 +201,12 @@ if (!purposeHeadingRule) {
   if (!/font-size\s*:\s*30px/.test(purposeHeadingRule)) errors.push('Purpose section-title/CTA H2 desktop size must be 30px');
 }
 
-if (!/@media \(min-width: 768px\)\s*\{[\s\S]*?body\.travel-purpose-body h2\s*\{[\s\S]*?font-size\s*:\s*30px !important;[\s\S]*?\}[\s\S]*?\}/.test(css)) {
+const purposeDesktopH2Rule = css.match(/@media \(min-width: 768px\)\s*\{[\s\S]*?body\.travel-purpose-body h2\s*\{([\s\S]*?)\}[\s\S]*?\}/)?.[1] || '';
+if (!purposeDesktopH2Rule || !/font-size\s*:\s*30px\s*;/.test(purposeDesktopH2Rule)) {
   errors.push('Purpose desktop H2 30px unification rule missing');
+}
+if (/font-size\s*:[^;]*!important/.test(purposeDesktopH2Rule)) {
+  errors.push('Purpose desktop H2 font-size must not use !important');
 }
 
 
