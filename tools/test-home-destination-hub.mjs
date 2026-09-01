@@ -19,7 +19,7 @@ assert(section.includes('>전체보기</a>'), 'Destination hub all-destinations 
 assert((section.match(/class="destination-hub-card"/g) || []).length === 5, 'Destination hub must contain 5 destination cards.');
 assert(!section.includes('home-mood-card'), 'Legacy home mood card markup remains in destination hub.');
 assert(!section.includes('Popular Destinations'), 'Legacy eyebrow remains in destination hub.');
-assert(html.includes('travel-home.css?v=20260901-h2-v2'), 'Destination hub stylesheet cache version was not updated.');
+assert(html.includes('travel-home.css?v=20260901-h1-v1'), 'Destination hub stylesheet cache version was not updated.');
 
 
 const expectedDestinationImages = {

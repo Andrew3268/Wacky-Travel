@@ -30,7 +30,7 @@ assert.match(
 );
 assert.match(
   fs.readFileSync("public/assets/css/travel-home.css", "utf8"),
-  /@media \(max-width: 767px\) \{[\s\S]*?body\.travel-home-body main\.travel-page\.travel-home > \.wthome-hero #wthomeHeroTitle \{[^}]*font-size: 55px;/
+  /@media \(max-width: 767px\) \{[\s\S]*?body\.travel-home-body main\.travel-page\.travel-home > \.wthome-hero #wthomeHeroTitle \{[^}]*font-size: 40px;/
 );
 assert.match(
   travelCoreCss,

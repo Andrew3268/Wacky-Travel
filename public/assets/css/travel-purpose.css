@@ -16,7 +16,7 @@
 }
 
 .wt-purpose-page .wt-page-hero h1{
-  font-size: 45px;
+  font-size: 30px;
   line-height: 1.2;
   word-break: keep-all;
 }
@@ -642,12 +642,12 @@ body.travel-purpose-body .wt-section-kicker{
 
 body.travel-purpose-body .wt-page-hero h1,
 body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
-  max-width: 980px !important;
-  color: #050505 !important;
-  font-size: 45px;
-  font-weight: 600 !important;
+  max-width: 980px;
+  color: #050505;
+  font-size: 40px;
+  font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.045em !important;
+  letter-spacing: -0.045em;
   word-break: keep-all;
 }
 
@@ -783,7 +783,7 @@ body.travel-purpose-body .wt-purpose-page .wt-page-hero{
 
 body.travel-purpose-body .wt-page-hero h1,
 body.travel-purpose-body .wt-purpose-page .wt-page-hero h1{
-  font-size: 45px;
+  font-size: 40px;
   line-height: 1.2;
   word-break: keep-all;
 }

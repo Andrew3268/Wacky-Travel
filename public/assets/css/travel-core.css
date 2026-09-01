@@ -8744,15 +8744,21 @@ body.wt-guide-body.wt-city-hotel-guide-page :is(.wt-city-guide-snapshot__grid ar
 }
 
 @media (min-width: 1024px) {
-body.travel-city-body .wt-city-hero h1,
-  body.travel-purpose-body .wt-city-hero h1,
-  body.travel-archive-body .wt-city-hero h1,
+  body.travel-city-body .wt-city-hero h1,
   body[class*="travel-city-body"] .wt-city-hero h1 {
-  font-size: 45px;
-  line-height: 1.2;
-  color: #000 !important;
-  word-break: keep-all;
-}
+    font-size: 40px;
+    line-height: 1.2;
+    color: #000;
+    word-break: keep-all;
+  }
+
+  body.travel-purpose-body .wt-city-hero h1,
+  body.travel-archive-body .wt-city-hero h1 {
+    font-size: 45px;
+    line-height: 1.2;
+    color: #000 !important;
+    word-break: keep-all;
+  }
 }
 
 p,

@@ -3,8 +3,9 @@ import path from 'node:path';
 
 const root = process.cwd();
 const VERSION = '20260901-h2-v2';
-const CITY_VERSION = '20260901-destination-heading-v1';
-const PURPOSE_VERSION = '20260901-destination-heading-v1';
+const HOME_VERSION = '20260901-h1-v1';
+const CITY_VERSION = '20260901-h1-v1';
+const PURPOSE_VERSION = '20260901-h1-v1';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const errors = [];
 
@@ -31,8 +32,16 @@ for (const relative of cssFiles) {
     const isHeadingRule = /h1/i.test(selector) || headingClassSelectors.some((token) => selector.includes(token) && !/\bh2\b/i.test(selector));
     if (!isHeadingRule || !/font-size\s*:/i.test(body)) continue;
 
+    const isCityMainHero = /body\.travel-city-body(?:--[\w-]+)? \.wt-city-hero h1/i.test(selector);
+    const isPurposeHero = /body\.travel-purpose-body[^,{}]*\.wt-page-hero h1/i.test(selector);
     const isResponsiveDestinationHero = /(?:wt-city-hero|wt-page-hero)[^,{}]*h1/i.test(selector);
-    const allowed = selector.includes('#wthomeHeroTitle') ? ['55px'] : isResponsiveDestinationHero ? ['45px', '30px'] : ['45px'];
+    const allowed = selector.includes('#wthomeHeroTitle')
+      ? ['55px', '40px']
+      : (isCityMainHero || isPurposeHero)
+        ? ['40px', '30px']
+        : isResponsiveDestinationHero
+          ? ['45px', '30px']
+          : ['45px'];
     const declarations = [...body.matchAll(/font-size\s*:\s*([^;}]*)/gi)].map((item) => item[1].trim());
     normalizedRuleCount += declarations.length;
     for (const declaration of declarations) {
@@ -55,8 +64,11 @@ const homeHeroRules = [...homeCss.matchAll(/body\.travel-home-body[^{}]*#wthomeH
 if (homeHeroRules.length < 3) {
   errors.push(`Home hero title rule count is unexpectedly low: ${homeHeroRules.length}`);
 }
+const homeHeroSizes = homeHeroRules.flatMap(([, body]) => [...body.matchAll(/font-size\s*:\s*([^;}]*)/gi)].map((match) => match[1].trim()));
+if (homeHeroSizes.filter((size) => size === '55px').length < 2 || homeHeroSizes.filter((size) => size === '40px').length !== 1) {
+  errors.push(`Home hero H1 must be 55px on desktop/tablet and 40px on mobile: ${homeHeroSizes.join(', ')}`);
+}
 for (const [, body] of homeHeroRules) {
-  if (!/font-size\s*:\s*55px\s*;/i.test(body)) errors.push('Home hero H1 must be 55px in every breakpoint.');
   if (/font-size\s*:[^;]*!important/i.test(body)) errors.push('Home hero H1 font-size must not use !important.');
 }
 
@@ -67,6 +79,22 @@ if (/wt-city-kicker::before/i.test(coreCss)) {
 
 const cityCss = read('public/assets/css/travel-city.css');
 const purposeCss = read('public/assets/css/travel-purpose.css');
+
+const cityDesktopH1Rules = [...cityCss.matchAll(/body\.travel-city-body(?:--fukuoka)? \.wt-city-hero h1\s*\{([^{}]*)\}/g)];
+if (!cityDesktopH1Rules.some(([, body]) => /font-size\s*:\s*40px\s*;/i.test(body))) {
+  errors.push('City main H1 desktop size must be 40px.');
+}
+for (const [, body] of cityDesktopH1Rules) {
+  if (/!important/i.test(body)) errors.push('City main hero H1 rule must not use !important.');
+}
+
+const purposeHeroRules = [...purposeCss.matchAll(/body\.travel-purpose-body \.wt-page-hero h1,\s*body\.travel-purpose-body \.wt-purpose-page \.wt-page-hero h1\s*\{([^{}]*)\}/g)];
+if (!purposeHeroRules.some(([, body]) => /font-size\s*:\s*40px\s*;/i.test(body))) {
+  errors.push('Purpose page H1 desktop size must be 40px.');
+}
+for (const [, body] of purposeHeroRules) {
+  if (/!important/i.test(body)) errors.push('Purpose hero H1 rule must not use !important.');
+}
 if (!/\.wt-city-hero__content\s*>\s*\.wt-city-kicker\s*\{[^{}]*font-size\s*:\s*20px\s*;/s.test(cityCss)) {
   errors.push('City hero kicker 20px rule is missing.');
 }
@@ -181,7 +209,9 @@ for (const relative of versionedFiles) {
       ? CITY_VERSION
       : match[1] === 'travel-purpose'
         ? PURPOSE_VERSION
-        : VERSION;
+        : match[1] === 'travel-home'
+          ? HOME_VERSION
+          : VERSION;
     if (match[2] !== expectedVersion) errors.push(`${relative}: stale changed CSS version ${match[0]}`);
   }
 }
