@@ -108,4 +108,30 @@ function createDb() {
   if (db.calls.length !== 0) throw new Error('비로그인 요청에서 불필요한 D1 조회가 발생했습니다.');
 }
 
+
+{
+  const db = createDb();
+  const request = new Request('https://bestayable.com/api/destination-posts?destination=fukuoka&type=all&include_drafts_if_admin=1');
+  const response = await onRequestGet({ env: { TRAVEL_DB: db }, request });
+  const data = await response.json();
+
+  if (response.status !== 200 || !data.ok || data.authenticated) throw new Error('비로그인 선택적 관리자 조회가 조용히 종료되지 않았습니다.');
+  if (db.calls.length !== 0) throw new Error(`비로그인 선택적 관리자 조회에서 불필요한 D1 조회가 발생했습니다: ${db.calls.length}`);
+  if (!String(response.headers.get('cache-control')).includes('private, no-store')) throw new Error('선택적 관리자 조회의 캐시 차단이 누락됐습니다.');
+}
+
+{
+  const db = createDb();
+  const request = new Request('https://bestayable.com/api/destination-posts?destination=fukuoka&type=all&include_drafts_if_admin=1&hotel_limit=6&travel_limit=5', {
+    headers: { cookie: 'admin_session=test-token' }
+  });
+  const response = await onRequestGet({ env: { TRAVEL_DB: db }, request });
+  const data = await response.json();
+
+  if (response.status !== 200 || !data.ok || !data.authenticated) throw new Error('로그인 관리자 선택적 초안 조회가 실패했습니다.');
+  if (!data.groups.top5_series.html.includes('?preview=1') || !data.groups.travel_content.html.includes('?preview=1')) {
+    throw new Error('로그인 관리자 선택적 조회에서 초안이 누락됐습니다.');
+  }
+}
+
 console.log('도시 콘텐츠 API 공개 Travel Contents/관리자 초안 기능 검사 통과');

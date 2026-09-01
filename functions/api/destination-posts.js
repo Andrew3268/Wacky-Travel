@@ -1,4 +1,4 @@
-import { escapeHtml, okJson, requireAdmin } from "../_utils.js";
+import { escapeHtml, getAdminSession, okJson, requireAdmin } from "../_utils.js";
 import { formatDate } from "../../lib/travel/travel-utils.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { normalizeCoverImageSource, normalizeCoverImageSrcset } from "../../lib/posts/cover-image.js";
@@ -161,6 +161,7 @@ export async function onRequestGet({ env, request }) {
   const destinationSlug = decodeURIComponent(String(url.searchParams.get("destination") || "")).trim().toLowerCase();
   const requestedType = normalizeRequestedType(url.searchParams.get("type"));
   const wantsDrafts = isTruthyParam(url.searchParams.get("include_drafts"));
+  const wantsDraftsIfAdmin = isTruthyParam(url.searchParams.get("include_drafts_if_admin"));
   const regionSlug = String(url.searchParams.get("region") || url.searchParams.get("region_slug") || "").trim();
   const recommendationCategorySlug = String(url.searchParams.get("category") || url.searchParams.get("recommendation_category") || url.searchParams.get("recommendation_category_slug") || "").trim();
   const offset = Math.max(0, Number.parseInt(url.searchParams.get("offset") || "0", 10) || 0);
@@ -179,6 +180,7 @@ export async function onRequestGet({ env, request }) {
   }
 
   let admin = null;
+  let includeDrafts = false;
   if (wantsDrafts) {
     admin = await requireAdmin(env, request);
     if (!admin) {
@@ -187,13 +189,33 @@ export async function onRequestGet({ env, request }) {
         headers: privateNoStoreHeaders()
       });
     }
+    includeDrafts = true;
+  } else if (wantsDraftsIfAdmin) {
+    admin = await getAdminSession(env, request);
+    if (!admin) {
+      // 공개 도시 페이지의 관리자 기능 감지용 요청입니다.
+      // 비로그인 사용자는 실패(401) 응답을 만들지 않고, 데이터 조회 없이 조용히 종료합니다.
+      return okJson({
+        ok: true,
+        authenticated: false,
+        destination: destinationSlug,
+        region: regionSlug,
+        recommendation_category: recommendationCategorySlug,
+        groups: {},
+        html: "",
+        items: [],
+        hasMore: false,
+        nextOffset: offset
+      }, { headers: privateNoStoreHeaders() });
+    }
+    includeDrafts = true;
   }
 
-  const responseHeaders = wantsDrafts ? privateNoStoreHeaders() : publicCacheHeaders();
+  const responseHeaders = includeDrafts ? privateNoStoreHeaders() : publicCacheHeaders();
   const postRows = await loadDestinationPostRows(env.TRAVEL_DB, destinationSlug, {
     regionSlug,
     recommendationCategorySlug,
-    includeDrafts: wantsDrafts
+    includeDrafts
   });
 
   const grouped = {

@@ -35,7 +35,7 @@ for (const file of cityPages) {
   if (!/여행을 더 쉽게 만드는 꿀팁$/.test(travelTitle)) {
     throw new Error(`Travel Contents 제목이 꿀팁 문구로 통일되지 않았습니다: ${path.relative(root, file)} -> ${travelTitle}`);
   }
-  if (!html.includes('/assets/js/posts.js?v=20260821ArchiveIndexThresholdV3')) {
+  if (!html.includes('/assets/js/posts.js?v=20260901OptionalAdminDraftV1')) {
     throw new Error(`도시 콘텐츠 런타임 캐시 버전이 갱신되지 않았습니다: ${path.relative(root, file)}`);
   }
   if (!html.includes('/assets/css/travel-core.css?v=20260901-h2-v2') || !html.includes('/assets/css/travel-city.css?v=20260901-destination-heading-v1')) {
@@ -64,7 +64,8 @@ for (const required of [
   "type: 'travel_content',",
   'includeDrafts: false',
   "type: 'all',",
-  'includeDrafts: true',
+  'includeDraftsIfAdmin: true',
+  "params.set('include_drafts_if_admin', '1')",
   'const [publicContentData, adminData] = await Promise.all',
   'const ARCHIVE_MIN_PUBLISHED_POSTS = 5;',
   'const renderPublicArchiveLinks = (destination, groups = {}) =>',
@@ -87,6 +88,9 @@ const cityRuntimeEnd = postsJs.indexOf('\n(function () {', cityRuntimeStart);
 const cityRuntime = postsJs.slice(cityRuntimeStart, cityRuntimeEnd > cityRuntimeStart ? cityRuntimeEnd : undefined);
 if (cityRuntime.includes('/api/admin/session')) {
   throw new Error('도시 콘텐츠가 별도 관리자 세션 API를 먼저 호출하고 있습니다.');
+}
+if (/includeDrafts:\s*true/.test(cityRuntime.match(/const adminContentPromise[\s\S]*?const \[publicContentData, adminData\]/)?.[0] || '')) {
+  throw new Error('비로그인에서도 401을 만드는 include_drafts=1 초기 요청이 남아 있습니다.');
 }
 if ((cityRuntime.match(/type: 'all'/g) || []).length !== 2) {
   throw new Error('공개 콘텐츠 통합 요청과 관리자 Hotel Picks 통합 요청이 각각 한 번씩 정의되어야 합니다.');

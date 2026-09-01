@@ -496,7 +496,8 @@ function buildPostsHeroNav(categories = []) {
     limit = 6,
     hotelLimit = 6,
     travelLimit = 5,
-    includeDrafts = false
+    includeDrafts = false,
+    includeDraftsIfAdmin = false
   }) => {
     const params = new URLSearchParams({
       destination: String(destination || ''),
@@ -509,6 +510,7 @@ function buildPostsHeroNav(categories = []) {
       params.set('travel_limit', String(Math.max(1, Number(travelLimit || 5))));
     }
     if (includeDrafts) params.set('include_drafts', '1');
+    if (includeDraftsIfAdmin) params.set('include_drafts_if_admin', '1');
     return '/api/destination-posts?' + params.toString();
   };
 
@@ -666,7 +668,7 @@ function buildPostsHeroNav(categories = []) {
           type: 'all',
           hotelLimit,
           travelLimit,
-          includeDrafts: true
+          includeDraftsIfAdmin: true
         }), { ok: false, authenticated: false, groups: {} })
       : Promise.resolve({ ok: false, authenticated: false, groups: {} });
 
