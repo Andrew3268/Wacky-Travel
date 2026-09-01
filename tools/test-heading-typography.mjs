@@ -3,9 +3,10 @@ import path from 'node:path';
 
 const root = process.cwd();
 const VERSION = '20260901-h2-v2';
+const CORE_VERSION = '20260901-h1-cascade-v2';
 const HOME_VERSION = '20260901-h1-v1';
-const CITY_VERSION = '20260901-h1-v1';
-const PURPOSE_VERSION = '20260901-h1-v1';
+const CITY_VERSION = '20260901-h1-cascade-v2';
+const PURPOSE_VERSION = '20260901-h1-cascade-v2';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const errors = [];
 
@@ -73,6 +74,14 @@ for (const [, body] of homeHeroRules) {
 }
 
 const coreCss = read('public/assets/css/travel-core.css');
+const legacyMobileH1Selector = /html\s+body([^{}]*)\s+h1\s*\{[^{}]*font-size\s*:\s*45px/s;
+const legacyMobileH1Match = coreCss.match(legacyMobileH1Selector);
+if (legacyMobileH1Match) {
+  const selectorTail = legacyMobileH1Match[1];
+  if (!selectorTail.includes(':not(.travel-city-body)') || !selectorTail.includes(':not(.travel-purpose-body)')) {
+    errors.push('Global mobile H1 rule must exclude travel-city-body and travel-purpose-body so it cannot override destination hero sizes.');
+  }
+}
 if (/wt-city-kicker::before/i.test(coreCss)) {
   errors.push('wt-city-kicker::before decoration still exists in travel-core.css.');
 }
@@ -205,13 +214,15 @@ const versionedFiles = [
 for (const relative of versionedFiles) {
   const html = read(relative);
   for (const match of html.matchAll(/\/assets\/css\/(app|travel-core|travel-city|travel-home|travel-purpose|travel-survey)\.css\?v=([^"']+)/g)) {
-    const expectedVersion = match[1] === 'travel-city'
-      ? CITY_VERSION
-      : match[1] === 'travel-purpose'
-        ? PURPOSE_VERSION
-        : match[1] === 'travel-home'
-          ? HOME_VERSION
-          : VERSION;
+    const expectedVersion = match[1] === 'travel-core'
+      ? CORE_VERSION
+      : match[1] === 'travel-city'
+        ? CITY_VERSION
+        : match[1] === 'travel-purpose'
+          ? PURPOSE_VERSION
+          : match[1] === 'travel-home'
+            ? HOME_VERSION
+            : VERSION;
     if (match[2] !== expectedVersion) errors.push(`${relative}: stale changed CSS version ${match[0]}`);
   }
 }

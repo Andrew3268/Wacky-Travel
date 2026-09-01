@@ -26,7 +26,7 @@ assert.match(
 
 assert.match(
   travelCoreCss,
-  /html body:not\(\.travel-home-body\):not\(\.wt-mobile-heading-noop-a\):not\(\.wt-mobile-heading-noop-b\):not\(\.wt-mobile-heading-noop-c\):not\(\.wt-mobile-heading-noop-d\) h1 \{[^}]*font-size: 45px;[^}]*line-height: 1\.4;/
+  /html body:not\(\.travel-home-body\):not\(\.travel-city-body\):not\(\.travel-purpose-body\):not\(\.wt-mobile-heading-noop-a\):not\(\.wt-mobile-heading-noop-b\):not\(\.wt-mobile-heading-noop-c\):not\(\.wt-mobile-heading-noop-d\) h1 \{[^}]*font-size: 45px;[^}]*line-height: 1\.4;/
 );
 assert.match(
   fs.readFileSync("public/assets/css/travel-home.css", "utf8"),
