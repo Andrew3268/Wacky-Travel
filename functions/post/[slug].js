@@ -563,7 +563,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260901-h2-v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260903-post-h1-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260901-h1-cascade-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
@@ -1553,7 +1553,7 @@ function renderNotFound(slug) {
   <meta name="robots" content="noindex,nofollow" />
   <link rel="icon" href="/favicon.ico?v=20260817-brand-v1" sizes="any" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260901-h2-v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260903-post-h1-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   ${GOOGLE_TAG_HTML}

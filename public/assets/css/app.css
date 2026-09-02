@@ -10075,3 +10075,16 @@ body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-conten
     font-size: 25px;
   }
 }
+
+/* 2026-09-03: post H1 responsive typography */
+@media (max-width: 1023px) {
+  body.post-page-body .post-title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  body.post-page-body .post-title {
+    font-size: 27px;
+  }
+}

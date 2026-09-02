@@ -183,7 +183,7 @@ assert.match(appCss, /post-page-body--hotel-review-magazine \.post-body \.post-c
 assert.match(appCss, /post-page-body--hotel-review-magazine \.post-body \.post-content h3 \.post-style-hotel-h3-line\{[\s\S]*?flex: 0 0 34px;[\s\S]*?height: 1px;[\s\S]*?margin-bottom: 0;[\s\S]*?background: #666;/);
 const postRendererSource = read("functions/post/[slug].js");
 assert.match(postRendererSource, /POST_RENDER_VERSION = "\d{8}-post-layout-v\d+"/);
-assert.equal((postRendererSource.match(/app\.css\?v=20260901-h2-v2/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
+assert.equal((postRendererSource.match(/app\.css\?v=20260903-post-h1-v1/g) || []).length, 2, "post render paths must both bust the immutable app.css cache");
 assert.doesNotMatch(appCss, /post-page-body--top5-series \.post-body \.post-content h3\{/);
 assert.match(appCss, /body\.post-page-body \.post-shell--guide-style \.post-body \.post-content h3\{[\s\S]*?margin: 30px 0 14px;[\s\S]*?font-size: 18px;/);
 assert.match(appCss, /body\.post-page-body--hotel-intro \.post-hotel-title-meta,[\s\S]*?font-size: 16px;/);

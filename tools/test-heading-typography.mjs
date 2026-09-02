@@ -73,6 +73,23 @@ for (const [, body] of homeHeroRules) {
   if (/font-size\s*:[^;]*!important/i.test(body)) errors.push('Home hero H1 font-size must not use !important.');
 }
 
+const appCssForPostH1 = read('public/assets/css/app.css');
+const postH1Marker = appCssForPostH1.indexOf('/* 2026-09-03: post H1 responsive typography */');
+if (postH1Marker < 0) {
+  errors.push('Post H1 responsive typography marker is missing.');
+} else {
+  const postH1Css = appCssForPostH1.slice(postH1Marker);
+  if (!/@media\s*\(max-width:\s*1023px\)[\s\S]*?body\.post-page-body \.post-title\s*\{[^{}]*font-size\s*:\s*30px\s*;/s.test(postH1Css)) {
+    errors.push('Post H1 tablet size must be 30px at <=1023px.');
+  }
+  if (!/@media\s*\(max-width:\s*767px\)[\s\S]*?body\.post-page-body \.post-title\s*\{[^{}]*font-size\s*:\s*27px\s*;/s.test(postH1Css)) {
+    errors.push('Post H1 mobile size must be 27px at <=767px.');
+  }
+  for (const match of postH1Css.matchAll(/body\.post-page-body \.post-title\s*\{([^{}]*)\}/g)) {
+    if (/font-size\s*:[^;}]*!important/i.test(match[1])) errors.push('Post H1 responsive font-size must not use !important.');
+  }
+}
+
 const coreCss = read('public/assets/css/travel-core.css');
 const legacyMobileH1Selector = /html\s+body([^{}]*)\s+h1\s*\{[^{}]*font-size\s*:\s*45px/s;
 const legacyMobileH1Match = coreCss.match(legacyMobileH1Selector);
