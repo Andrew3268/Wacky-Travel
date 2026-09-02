@@ -4,7 +4,7 @@ import vm from 'node:vm';
 
 const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
-const TRAVEL_CORE_CSS_VERSION = '20260901-h1-cascade-v2';
+const TRAVEL_CORE_CSS_VERSION = '20260903-h1-scope-v3';
 const HOME_CSS_VERSION = '20260901-h1-v1';
 const CITY_MAIN_CSS_VERSION = '20260901-h1-cascade-v2';
 const PURPOSE_PAGE_CSS_VERSION = '20260901-h1-cascade-v2';

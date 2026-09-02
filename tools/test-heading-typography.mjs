@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const VERSION = '20260901-h2-v2';
-const CORE_VERSION = '20260901-h1-cascade-v2';
+const CORE_VERSION = '20260903-h1-scope-v3';
 const HOME_VERSION = '20260901-h1-v1';
 const CITY_VERSION = '20260901-h1-cascade-v2';
 const PURPOSE_VERSION = '20260901-h1-cascade-v2';
@@ -91,13 +91,16 @@ if (postH1Marker < 0) {
 }
 
 const coreCss = read('public/assets/css/travel-core.css');
-const legacyMobileH1Selector = /html\s+body([^{}]*)\s+h1\s*\{[^{}]*font-size\s*:\s*45px/s;
-const legacyMobileH1Match = coreCss.match(legacyMobileH1Selector);
-if (legacyMobileH1Match) {
-  const selectorTail = legacyMobileH1Match[1];
-  if (!selectorTail.includes(':not(.travel-city-body)') || !selectorTail.includes(':not(.travel-purpose-body)')) {
-    errors.push('Global mobile H1 rule must exclude travel-city-body and travel-purpose-body so it cannot override destination hero sizes.');
-  }
+const fallbackMobileH1Rule = /body:where\(:not\(\.travel-home-body\):not\(\.travel-city-body\):not\(\.travel-purpose-body\):not\(\.post-page-body\)\) h1\s*\{([^{}]*)\}/s;
+const fallbackMobileH1Match = coreCss.match(fallbackMobileH1Rule);
+if (!fallbackMobileH1Match) {
+  errors.push('Low-specificity fallback mobile H1 rule is missing or does not exclude post-page-body.');
+} else {
+  if (!/font-size\s*:\s*45px\s*;/i.test(fallbackMobileH1Match[1])) errors.push('Fallback mobile H1 must remain 45px for non-special pages.');
+  if (/!important/i.test(fallbackMobileH1Match[1])) errors.push('Fallback mobile H1 must not use !important.');
+}
+if (/html\s+body[^{}]*wt-mobile-heading-noop-[a-d][^{}]*h1\s*\{/i.test(coreCss)) {
+  errors.push('High-specificity noop-based global H1 selector must not remain.');
 }
 if (/wt-city-kicker::before/i.test(coreCss)) {
   errors.push('wt-city-kicker::before decoration still exists in travel-core.css.');

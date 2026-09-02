@@ -5,7 +5,7 @@ const root = process.cwd();
 const destinationsRoot = path.join(root, 'public', 'destinations');
 const cityCssPath = path.join(root, 'public', 'assets', 'css', 'travel-city.css');
 const coreCssPath = path.join(root, 'public', 'assets', 'css', 'travel-core.css');
-const CORE_VERSION = '20260901-h1-cascade-v2';
+const CORE_VERSION = '20260903-h1-scope-v3';
 const CITY_VERSION = '20260901-h1-cascade-v2';
 const errors = [];
 

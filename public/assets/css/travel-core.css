@@ -5791,7 +5791,8 @@ body.travel-archive-body main.travel-page.wt-city-archive-page .wt-city-dynamic-
 }
 
 @media (max-width: 767px) {
-html body:not(.travel-home-body):not(.travel-city-body):not(.travel-purpose-body):not(.wt-mobile-heading-noop-a):not(.wt-mobile-heading-noop-b):not(.wt-mobile-heading-noop-c):not(.wt-mobile-heading-noop-d) h1 {
+/* Keep the fallback mobile H1 rule low-specificity and out of page-specific layouts. */
+body:where(:not(.travel-home-body):not(.travel-city-body):not(.travel-purpose-body):not(.post-page-body)) h1 {
   font-size: 45px;
   line-height: 1.4;
   word-break: keep-all;
