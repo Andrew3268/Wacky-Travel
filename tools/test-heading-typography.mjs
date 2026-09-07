@@ -36,13 +36,16 @@ for (const relative of cssFiles) {
     const isCityMainHero = /body\.travel-city-body(?:--[\w-]+)? \.wt-city-hero h1/i.test(selector);
     const isPurposeHero = /body\.travel-purpose-body[^,{}]*\.wt-page-hero h1/i.test(selector);
     const isResponsiveDestinationHero = /(?:wt-city-hero|wt-page-hero)[^,{}]*h1/i.test(selector);
+    const isGuideHero = /body\.wt-guide-body[^,{}]*(?:wt-city-guide-hero|wt-page-hero)[^,{}]*h1/i.test(selector);
     const allowed = selector.includes('#wthomeHeroTitle')
       ? ['55px', '40px']
       : (isCityMainHero || isPurposeHero)
         ? ['40px', '30px']
-        : isResponsiveDestinationHero
-          ? ['45px', '30px']
-          : ['45px'];
+        : isGuideHero
+          ? ['45px', '27px']
+          : isResponsiveDestinationHero
+            ? ['45px', '30px']
+            : ['45px'];
     const declarations = [...body.matchAll(/font-size\s*:\s*([^;}]*)/gi)].map((item) => item[1].trim());
     normalizedRuleCount += declarations.length;
     for (const declaration of declarations) {

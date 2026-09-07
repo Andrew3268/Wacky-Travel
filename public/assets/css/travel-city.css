@@ -7167,3 +7167,35 @@ body.travel-city-body .wt-city-hero__content > .wt-city-kicker {
     font-size: 16px;
   }
 }
+
+/* 2026-09-07: guide container width + responsive H1 normalization */
+body.wt-guide-body .breadcrumbs.container {
+  box-sizing: border-box;
+  width: min(calc(100% - 40px), 800px);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body.wt-guide-body main.travel-page.wt-city-guide-page .container,
+body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .container,
+body.wt-guide-body main.travel-page.wt-city-travel-guide-page .container,
+body.wt-guide-body .wt-city-guide-hero.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1180px) {
+  body.wt-guide-body .wt-city-guide-hero h1,
+  body.wt-guide-body .wt-page-hero h1,
+  body.wt-guide-body main.travel-page.wt-city-hotel-guide-page .wt-city-guide-hero h1,
+  body.wt-guide-body main.travel-page.wt-city-travel-guide-page .wt-city-guide-hero h1 {
+    font-size: 27px;
+  }
+}
+
