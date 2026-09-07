@@ -9670,6 +9670,17 @@ body.post-page-body--travel-tip .post-shell.post-shell--guide-style{
   padding-top: 40px;
 }
 
+/* Travel tip post: the first H2 starts without the section divider or outer margin. */
+body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content h2.post-h2--travel-tip-first{
+  margin: 0;
+  border-top: 0;
+}
+
+body.post-page-body--travel-tip .post-shell--guide-style .post-body .post-content .post-h2-anchor:has(h2.post-h2--travel-tip-first){
+  margin-top: 0;
+  border-top: 0;
+}
+
 body.post-page-body--travel-tip .post-toc{
   max-width: 780px;
   margin: 30px 0 40px;

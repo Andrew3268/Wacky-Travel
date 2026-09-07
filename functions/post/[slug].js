@@ -258,7 +258,7 @@ export async function onRequestGet(context) {
       const shouldShowSidebarAd = !isDraftPreview && toBool(row.enable_sidebar_ad, false);
       const shouldShowInarticleAds = !isDraftPreview && toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
-      const bodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
+      const renderedBodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
         useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
         styleHotelSeries: isTop5SeriesPost,
@@ -266,6 +266,13 @@ export async function onRequestGet(context) {
         contentLinkSettings: row.content_link_settings_json || "[]",
         origin
       });
+      const bodyHtml = isTravelTipPost
+        ? renderedBodyHtml.replace(/<h2\b[^>]*>/i, (tag) => (
+            tag.includes('class="')
+              ? tag.replace('class="', 'class="post-h2--travel-tip-first ')
+              : tag.replace('<h2', '<h2 class="post-h2--travel-tip-first"')
+          ))
+        : renderedBodyHtml;
       const faqSectionHtml = renderFaqSection(faqItems, origin);
       const relatedPostsHtml = renderRelatedPostsSection(relatedRows, row.category);
       const popularPostsHtml = renderPopularPosts(popularRows);
@@ -563,7 +570,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260903-post-h1-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />

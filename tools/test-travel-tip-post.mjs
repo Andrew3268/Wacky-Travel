@@ -36,6 +36,7 @@ assert.match(numberedToc, />1\.<\/span>/);
 
 assert.match(postRenderer, /const isTravelTipPost = contentType === "travel_tip";/);
 assert.match(postRenderer, /tocNumbered: !isTravelTipPost/);
+assert.match(postRenderer, /post-h2--travel-tip-first/);
 assert.match(postRenderer, /isTravelTipPost \? "post-page-body--travel-tip" : ""/);
 assert.match(postRenderer, /const shouldEnableFloatingToc = isTop5SeriesPost \|\| isTravelTipPost;/);
 assert.match(postRenderer, /shouldEnableFloatingToc \? `<script defer src="\/assets\/js\/guide-toc-floating\.js\?v=20260815-post-toc-v7"><\/script>` : ""/);
@@ -45,6 +46,7 @@ assert.match(postRenderer, /\$\{faqSectionHtml\}/);
 assert.match(postRenderer, /travel_tip: "여행 꿀팁"/);
 
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-shell\.post-shell--guide-style\{\s*padding-top: 40px;/);
+assert.match(appCss, /body\.post-page-body--travel-tip \.post-shell--guide-style \.post-body \.post-content h2\.post-h2--travel-tip-first\{[\s\S]*?margin: 0;[\s\S]*?border-top: 0;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc\{[\s\S]*?border-top: 1px solid #111;[\s\S]*?border-radius: 0;[\s\S]*?background: #fff;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__index\{\s*display: none !important;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__summary\{[\s\S]*?padding: 17px 10px;/);
