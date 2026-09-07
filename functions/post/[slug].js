@@ -570,7 +570,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v1" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />

@@ -3040,8 +3040,8 @@ main.travel-page.wt-city-travel-guide-page .wt-city-guide-related--visible.conta
   position: relative !important;
   z-index: 1;
   clear: both;
-  width: min(100% - 40px, 1120px);
-  max-width: 1120px !important;
+  width: min(100% - 40px, 800px);
+  max-width: 800px !important;
   margin-top: clamp(28px, 4vw, 52px) !important;
   margin-right: auto !important;
   margin-bottom: clamp(42px, 6vw, 76px) !important;
@@ -4966,14 +4966,14 @@ body.wt-guide-body .wt-city-guide-hero.container,
 body.wt-guide-body .wt-city-guide-snapshot.container,
 body.wt-guide-body .wt-city-guide-survey-panel.container,
 body.wt-guide-body .wt-city-guide-layout.container,
-body.wt-guide-body .wt-city-guide-related.container,
-body.wt-guide-body .footer.container {
+body.wt-guide-body .wt-city-guide-related.container {
   box-sizing: border-box !important;
   width: calc(100% - 32px);
-  max-width: 1120px !important;
+  max-width: 800px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
 
 body.wt-guide-body .wt-city-guide-article {
   max-width: 960px !important;
@@ -5070,7 +5070,16 @@ body.wt-guide-body .wt-city-guide-hero.container,
 body.wt-guide-body .wt-city-guide-snapshot.container,
 body.wt-guide-body .wt-city-guide-survey-panel.container,
 body.wt-guide-body .wt-city-guide-layout.container,
-body.wt-guide-body .wt-city-guide-related.container,
+body.wt-guide-body .wt-city-guide-related.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 body.wt-guide-body .footer.container {
   box-sizing: border-box;
   width: 100%;
@@ -5586,7 +5595,7 @@ body.wt-guide-body .wt-city-guide-layout.container,
 body.wt-guide-body .wt-city-guide-related.container {
   box-sizing: border-box;
   width: 100%;
-  max-width: var(--container);
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   padding-left: clamp(48px, 7vw, 76px);
@@ -5681,7 +5690,7 @@ body.wt-guide-body main.travel-page.wt-city-guide-page > .wt-city-guide-hero.con
 body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .wt-city-guide-hero.container:first-child,
 body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .wt-city-guide-hero.container:first-child {
   padding-top: 30px;
-  padding-bottom: clamp(56px, 7vw, 92px) !important;
+  padding-bottom: 10px !important;
   background: #ffffff !important;
 }
 
@@ -5761,7 +5770,7 @@ body.wt-guide-body main.travel-page.wt-city-guide-page > .wt-city-guide-hero.con
 body.wt-guide-body main.travel-page.wt-city-hotel-guide-page > .wt-city-guide-hero.container:first-child,
 body.wt-guide-body main.travel-page.wt-city-travel-guide-page > .wt-city-guide-hero.container:first-child {
   padding-top: 30px;
-  padding-bottom: 52px !important;
+  padding-bottom: 10px !important;
 }
 
 body.wt-guide-body .wt-city-guide-hero__inner {
@@ -6180,7 +6189,14 @@ body.wt-guide-body.wt-city-hotel-guide-page {
 }
 
 body.wt-guide-body.wt-city-travel-guide-page main.travel-page .container,
-body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container,
+body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container {
+  box-sizing: border-box;
+  width: min(calc(100% - 32px), 800px);
+  max-width: 800px;
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
 body.wt-guide-body.wt-city-travel-guide-page .footer.container,
 body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
   box-sizing: border-box;
@@ -6192,11 +6208,18 @@ body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
 
 @media (min-width: 768px) and (max-width: 1180px) {
 body.wt-guide-body.wt-city-travel-guide-page main.travel-page .container,
-body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container,
+body.wt-guide-body.wt-city-hotel-guide-page main.travel-page .container {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+  padding-left: clamp(32px, 5vw, 56px);
+  padding-right: clamp(32px, 5vw, 56px);
+}
+
 body.wt-guide-body.wt-city-travel-guide-page .footer.container,
 body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
   width: 100%;
-  max-width: var(--container);
+  max-width: 1120px;
   margin-inline: auto;
   padding-left: clamp(32px, 5vw, 56px);
   padding-right: clamp(32px, 5vw, 56px);
@@ -6206,8 +6229,7 @@ body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
 body.wt-guide-body.wt-city-travel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero),
 body.wt-guide-body.wt-city-hotel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero) {
   padding-top: 30px !important;
-  padding-bottom: clamp(38px, 6vw, 72px) !important;
-  border-bottom: 1px solid var(--wt-guide-line) !important;
+  padding-bottom: 10px;
   background: #fff !important;
 }
 
@@ -6319,7 +6341,7 @@ body.wt-guide-body.wt-city-hotel-guide-page .footer.container {
 body.wt-guide-body.wt-city-travel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero),
 body.wt-guide-body.wt-city-hotel-guide-page main.travel-page > :is(.wt-city-guide-hero, .wt-page-hero) {
   padding-top: 30px;
-  padding-bottom: 34px !important;
+  padding-bottom: 10px;
 }
 
 body.wt-guide-body.wt-city-travel-guide-page :is(.wt-city-guide-hero h1, .wt-page-hero h1),
@@ -6420,8 +6442,8 @@ body.wt-guide-body main.travel-page .wt-city-guide-related.container {
   grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr) !important;
   align-items: start !important;
   gap: clamp(28px, 5vw, 72px) !important;
-  width: min(calc(100% - 32px), var(--container));
-  max-width: var(--container);
+  width: min(calc(100% - 32px), 800px);
+  max-width: 800px;
   margin: clamp(52px, 7vw, 92px) auto !important;
   padding: clamp(34px, 5vw, 62px) 0 !important;
   overflow: visible !important;
