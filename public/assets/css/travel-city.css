@@ -4387,7 +4387,7 @@ body.wt-guide-body .wt-city-kicker {
 
 body.wt-guide-body .wt-city-guide-hero,
 body.wt-guide-body .wt-page-hero {
-  padding: clamp(42px, 7vw, 86px) 0 clamp(34px, 5vw, 64px) !important;
+  padding-block: clamp(42px, 7vw, 86px) clamp(34px, 5vw, 64px) !important;
   background: #fff !important;
 }
 
