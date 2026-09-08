@@ -52,6 +52,40 @@ function parseKeywords(raw) {
     .filter((item, index, arr) => arr.indexOf(item) === index);
 }
 
+const AFFILIATE_DISCLOSURE_PRESETS = Object.freeze({
+  klook: "이 글에는 클룩 제휴 링크가 포함되어 있습니다. 링크를 통한 예약은 콘텐츠 제작에 큰 힘이 되며, 구매자 추가 비용은 없습니다.",
+  tripcom: "이 글에는 트립닷컴 제휴 링크가 포함되어 있습니다. 링크를 통한 예약은 콘텐츠 제작에 큰 힘이 되며, 구매자 추가 비용은 없습니다."
+});
+
+function syncAffiliateDisclosurePresetState() {
+  const currentValue = String($("affiliate_disclosure")?.value || "").trim();
+  document.querySelectorAll("[data-affiliate-disclosure-preset]").forEach((button) => {
+    const presetKey = String(button.dataset.affiliateDisclosurePreset || "");
+    button.setAttribute("aria-pressed", AFFILIATE_DISCLOSURE_PRESETS[presetKey] === currentValue ? "true" : "false");
+  });
+}
+
+function bindAffiliateDisclosurePresets() {
+  const textarea = $("affiliate_disclosure");
+  if (!textarea) return;
+
+  document.querySelectorAll("[data-affiliate-disclosure-preset]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const presetKey = String(button.dataset.affiliateDisclosurePreset || "");
+      const presetText = AFFILIATE_DISCLOSURE_PRESETS[presetKey];
+      if (!presetText) return;
+      textarea.value = presetText;
+      textarea.dispatchEvent(new Event("input", { bubbles: true }));
+      syncAffiliateDisclosurePresetState();
+      textarea.focus();
+      textarea.setSelectionRange?.(textarea.value.length, textarea.value.length);
+    });
+  });
+
+  textarea.addEventListener("input", syncAffiliateDisclosurePresetState);
+  syncAffiliateDisclosurePresetState();
+}
+
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -3857,6 +3891,7 @@ document.querySelectorAll('input[name="heroHotelBadge"]').forEach((input) => {
   input.addEventListener("change", handleRealtimeChange);
 });
 bindHotelPickControls();
+bindAffiliateDisclosurePresets();
 window.CoverImageSourceUtils?.bind(handleRealtimeChange);
 $("addAffiliateItemBtn")?.addEventListener("click", () => { addAffiliateItemCard(); handleRealtimeChange(); });
 document.querySelectorAll("[data-affiliate-remove]").forEach((button) => {

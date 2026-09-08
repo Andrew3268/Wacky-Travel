@@ -6913,7 +6913,7 @@ body.travel-city-body #travel-contents .travel-list--destination .travel-list__l
   display: grid;
   grid-template-columns: 10px minmax(0, 1fr) 42px;
   align-items: center;
-  gap: 0;
+  gap: 1px;
   width: 100%;
   min-height: 96px;
   padding: 20px 4px;
@@ -7070,7 +7070,7 @@ body.travel-city-body main.travel-page.wt-city-page h2 {
 
   body.travel-city-body #travel-contents .travel-list--destination .travel-list__link {
     grid-template-columns: 10px minmax(0, 1fr) 42px;
-    gap: 0;
+    gap: 1px;
     min-height: 84px;
     padding: 16px 0;
   }
@@ -7129,7 +7129,7 @@ body.travel-city-body main.travel-page.wt-city-page h2 {
 
   body.travel-city-body #travel-contents .travel-list--destination .travel-list__link {
     grid-template-columns: 10px minmax(0, 1fr) 42px;
-    gap: 0;
+    gap: 1px;
   }
 
   body.travel-city-body #travel-contents .travel-list--destination .travel-list__actions {

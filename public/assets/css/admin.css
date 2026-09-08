@@ -1107,6 +1107,22 @@ body.admin-editor-page .editor-affiliate-disclosure-card label{
   display:grid;
   gap:6px;
 }
+body.admin-editor-page .editor-affiliate-disclosure-presets{
+  display:grid;
+  gap:7px;
+}
+body.admin-editor-page .editor-affiliate-disclosure-preset-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+body.admin-editor-page .editor-affiliate-disclosure-preset{
+  min-width:88px;
+}
+body.admin-editor-page .editor-affiliate-disclosure-preset[aria-pressed="true"]{
+  background:var(--admin-ink);
+  color:#fff;
+}
 body.admin-editor-page .editor-affiliate-disclosure-card textarea{
   min-height:96px;
   resize:vertical;

@@ -5,7 +5,7 @@ const root = process.cwd();
 const VERSION = '20260901-h2-v2';
 const CORE_VERSION = '20260903-h1-scope-v3';
 const HOME_VERSION = '20260901-h1-v1';
-const CITY_VERSION = '20260908-travel-number-spacing-v2';
+const CITY_VERSION = '20260908-travel-list-gap1-v3';
 const PURPOSE_VERSION = '20260901-h1-cascade-v2';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const errors = [];

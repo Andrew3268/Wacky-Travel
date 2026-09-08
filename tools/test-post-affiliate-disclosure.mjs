@@ -21,6 +21,14 @@ for (const html of [addHtml, editHtml]) {
 }
 
 assert.match(addJs, /affiliate_disclosure:\s*\$\("affiliate_disclosure"\)/);
+assert.match(addHtml, /data-affiliate-disclosure-preset="klook"/);
+assert.match(addHtml, /data-affiliate-disclosure-preset="tripcom"/);
+assert.match(addHtml, />클룩<\/button>/);
+assert.match(addHtml, />트립닷컴<\/button>/);
+assert.match(addJs, /이 글에는 클룩 제휴 링크가 포함되어 있습니다\. 링크를 통한 예약은 콘텐츠 제작에 큰 힘이 되며, 구매자 추가 비용은 없습니다\./);
+assert.match(addJs, /이 글에는 트립닷컴 제휴 링크가 포함되어 있습니다\. 링크를 통한 예약은 콘텐츠 제작에 큰 힘이 되며, 구매자 추가 비용은 없습니다\./);
+assert.match(addJs, /bindAffiliateDisclosurePresets/);
+assert.match(addJs, /textarea\.dispatchEvent\(new Event\("input"/);
 assert.match(editJs, /affiliate_disclosure:\s*\$\("affiliate_disclosure"\)/);
 assert.match(editJs, /item\.affiliate_disclosure/);
 assert.match(addJs, /preview-affiliate-disclosure/);

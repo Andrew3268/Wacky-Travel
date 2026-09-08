@@ -56,7 +56,7 @@ const settingsLoadIndex = editJs.indexOf("loadTravelSettings(\n      loadedDesti
 const editorRestoreIndex = editJs.indexOf("StyleHotelEditor?.loadFromContent(loadedEditorContentMd", settingsLoadIndex);
 assert.ok(settingsLoadIndex >= 0 && editorRestoreIndex > settingsLoadIndex, "edit restore must run after travel settings are loaded");
 assert.match(editJs, /await Promise\.all\(\[/, "edit auxiliary data must load in parallel");
-assert.match(read("public/add.html"), /add\.js\?v=20260827-editor-v5/);
+assert.match(read("public/add.html"), /add\.js\?v=20260908-affiliate-presets-v1/);
 assert.match(read("public/edit.html"), /edit\.js\?v=20260827-editor-v5/);
 for (const file of ["public/add.html", "public/edit.html"]) {
   const html = read(file);
