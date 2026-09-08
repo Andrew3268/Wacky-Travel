@@ -6,7 +6,7 @@ const destinationsRoot = path.join(root, 'public', 'destinations');
 const cityCssPath = path.join(root, 'public', 'assets', 'css', 'travel-city.css');
 const coreCssPath = path.join(root, 'public', 'assets', 'css', 'travel-core.css');
 const CORE_VERSION = '20260903-h1-scope-v3';
-const CITY_VERSION = '20260908-travel-list-gap1-v3';
+const CITY_VERSION = '20260908-travel-list-gap-responsive-v4';
 const errors = [];
 
 const cityPages = fs.readdirSync(destinationsRoot, { withFileTypes: true })
@@ -43,7 +43,7 @@ for (const required of [
   'counter-increment: travel-content-item;',
   'content: counter(travel-content-item, decimal-leading-zero);',
   'grid-template-columns: 10px minmax(0, 1fr) 42px;',
-  'gap: 1px;',
+  'gap: 5px;',
   'padding-inline-start: 12px;',
   'font-variant-numeric: tabular-nums;',
   'border-top: 1px solid #e9eaec;',
@@ -72,6 +72,10 @@ if (/!important/.test(sectionCss)) {
 }
 if (/body\.travel-city-body #travel-contents \.section-heading \.wt-city-kicker\s*\{/.test(sectionCss)) {
   errors.push('Travel Contents heading kicker 전용 스타일이 남아 있어 공통 heading과 다릅니다.');
+}
+
+if (!/@media \(max-width: 767px\)[\s\S]*?travel-list--destination \.travel-list__link \{[\s\S]*?gap: 10px;/.test(sectionCss)) {
+  errors.push('Travel Contents 모바일 gap 10px 규칙이 없습니다.');
 }
 
 if (errors.length) {

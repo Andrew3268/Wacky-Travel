@@ -47,7 +47,7 @@ for (const file of guideFiles) {
   if (!html.includes('class="breadcrumbs container"')) {
     errors.push(`${path.relative(root, file)}: breadcrumbs container missing.`);
   }
-  if (!html.includes('/assets/css/travel-city.css?v=20260908-travel-list-gap1-v3')) {
+  if (!html.includes('/assets/css/travel-city.css?v=20260908-travel-list-gap-responsive-v4')) {
     errors.push(`${path.relative(root, file)}: guide CSS cache version is stale.`);
   }
 }
