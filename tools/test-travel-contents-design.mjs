@@ -6,7 +6,7 @@ const destinationsRoot = path.join(root, 'public', 'destinations');
 const cityCssPath = path.join(root, 'public', 'assets', 'css', 'travel-city.css');
 const coreCssPath = path.join(root, 'public', 'assets', 'css', 'travel-core.css');
 const CORE_VERSION = '20260903-h1-scope-v3';
-const CITY_VERSION = '20260901-h1-cascade-v2';
+const CITY_VERSION = '20260907-guide-width-800-v1';
 const errors = [];
 
 const cityPages = fs.readdirSync(destinationsRoot, { withFileTypes: true })

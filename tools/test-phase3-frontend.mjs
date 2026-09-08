@@ -6,7 +6,8 @@ const root = process.cwd();
 const VERSION = '20260809-frontend-v29';
 const TRAVEL_CORE_CSS_VERSION = '20260903-h1-scope-v3';
 const HOME_CSS_VERSION = '20260901-h1-v1';
-const CITY_MAIN_CSS_VERSION = '20260901-h1-cascade-v2';
+const CITY_MAIN_CSS_VERSION = '20260907-guide-width-800-v1';
+const GUIDE_CSS_VERSION = '20260908-guide-alignment-v3';
 const PURPOSE_PAGE_CSS_VERSION = '20260901-h1-cascade-v2';
 const SURVEY_CSS_VERSION = '20260901-h2-v2';
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
@@ -42,7 +43,7 @@ for (const file of htmlFiles) {
   for (const href of cssLinks) {
     assert(/\?v=/.test(href), `CSS 캐시 버전이 없습니다: ${path.relative(root, file)} -> ${href}`);
     if (/\/assets\/css\/travel-(?:core|home|city|purpose|archive|survey)\.css/.test(href)) {
-      const isCityMainStylesheet = html.includes('data-city-post-root') && /\/assets\/css\/travel-city\.css/.test(href);
+      const isGuidePage = /\bwt-guide-body\b/.test(bodyClass);
       const isPurposePageStylesheet = /\btravel-purpose-body\b/.test(bodyClass) && /\/assets\/css\/travel-purpose\.css/.test(href);
       const isTravelCoreStylesheet = /\/assets\/css\/travel-core\.css/.test(href);
       const isHomeStylesheet = /\/assets\/css\/travel-home\.css/.test(href);
@@ -51,7 +52,7 @@ for (const file of htmlFiles) {
         : isHomeStylesheet
           ? HOME_CSS_VERSION
           : /\/assets\/css\/travel-city\.css/.test(href)
-            ? CITY_MAIN_CSS_VERSION
+            ? (isGuidePage ? GUIDE_CSS_VERSION : CITY_MAIN_CSS_VERSION)
             : isPurposePageStylesheet
               ? PURPOSE_PAGE_CSS_VERSION
               : /\/assets\/css\/travel-survey\.css/.test(href)
@@ -66,7 +67,7 @@ for (const file of htmlFiles) {
       : name === 'home'
         ? HOME_CSS_VERSION
         : name === 'city'
-          ? CITY_MAIN_CSS_VERSION
+          ? (/\bwt-guide-body\b/.test(bodyClass) ? GUIDE_CSS_VERSION : CITY_MAIN_CSS_VERSION)
           : name === 'purpose' && /\btravel-purpose-body\b/.test(bodyClass)
             ? PURPOSE_PAGE_CSS_VERSION
             : name === 'survey'

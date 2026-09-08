@@ -250,6 +250,56 @@ for (const relative of versionedFiles) {
   }
 }
 
+
+// 2026-09-08: site-wide responsive heading policy.
+const RESPONSIVE_TYPOGRAPHY_VERSION = '20260908-global-type-v1';
+const responsiveTypographyCss = read('public/assets/css/responsive-typography.css');
+const responsivePolicyChecks = [
+  [/@media\s*\(min-width:\s*768px\)\s*and\s*\(max-width:\s*1024px\)[\s\S]*?html body h1\s*\{[^{}]*font-size\s*:\s*27px\s*!important\s*;/s, 'Tablet H1 must be 27px from 768px through 1024px.'],
+  [/@media\s*\(min-width:\s*768px\)\s*and\s*\(max-width:\s*1024px\)[\s\S]*?html body h2\s*\{[^{}]*font-size\s*:\s*23px\s*!important\s*;/s, 'Tablet H2 must be 23px from 768px through 1024px.'],
+  [/@media\s*\(min-width:\s*768px\)\s*and\s*\(max-width:\s*1024px\)[\s\S]*?html body h3\s*\{[^{}]*font-size\s*:\s*20px\s*!important\s*;/s, 'Tablet H3 must be 20px from 768px through 1024px.'],
+  [/@media\s*\(max-width:\s*767px\)[\s\S]*?html body h1\s*\{[^{}]*font-size\s*:\s*25px\s*!important\s*;/s, 'Mobile H1 must be 25px at 767px and below.'],
+  [/@media\s*\(max-width:\s*767px\)[\s\S]*?html body h2\s*\{[^{}]*font-size\s*:\s*22px\s*!important\s*;/s, 'Mobile H2 must be 22px at 767px and below.'],
+  [/@media\s*\(max-width:\s*767px\)[\s\S]*?html body h3\s*\{[^{}]*font-size\s*:\s*19px\s*!important\s*;/s, 'Mobile H3 must be 19px at 767px and below.'],
+];
+for (const [pattern, message] of responsivePolicyChecks) {
+  if (!pattern.test(responsiveTypographyCss)) errors.push(message);
+}
+
+const responsiveImportantCount = (responsiveTypographyCss.match(/!important/g) || []).length;
+if (responsiveImportantCount !== 6) {
+  errors.push(`Responsive typography policy must keep !important usage limited to the six heading-size invariants; found ${responsiveImportantCount}.`);
+}
+
+const publicHtmlFiles = [];
+const walkHtml = (dir) => {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const absolute = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkHtml(absolute);
+    else if (entry.isFile() && entry.name.endsWith('.html')) publicHtmlFiles.push(absolute);
+  }
+};
+walkHtml(path.join(root, 'public'));
+for (const absolute of publicHtmlFiles) {
+  const html = fs.readFileSync(absolute, 'utf8');
+  const relative = path.relative(root, absolute).replaceAll('\\', '/');
+  if (!/<h1\b/i.test(html)) continue;
+  const expected = `/assets/css/responsive-typography.css?v=${RESPONSIVE_TYPOGRAPHY_VERSION}`;
+  if (!html.includes(expected)) errors.push(`${relative}: global responsive typography stylesheet is missing or stale.`);
+}
+
+const dynamicPostRenderer = read('functions/post/[slug].js');
+const dynamicResponsiveLinks = dynamicPostRenderer.match(new RegExp(`/assets/css/responsive-typography\\.css\\?v=${RESPONSIVE_TYPOGRAPHY_VERSION}`, 'g')) || [];
+if (dynamicResponsiveLinks.length < 2) {
+  errors.push(`Dynamic post renderer must include responsive typography in both HTML templates; found ${dynamicResponsiveLinks.length}.`);
+}
+
+const purposeConfig = read('src/purpose-pages/config.mjs');
+if (!purposeConfig.includes(`'/assets/css/responsive-typography.css': '${RESPONSIVE_TYPOGRAPHY_VERSION}'`)
+  || !purposeConfig.includes("'/assets/css/responsive-typography.css',")) {
+  errors.push('Purpose page renderer config must load the global responsive typography stylesheet last.');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);

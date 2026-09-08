@@ -1,0 +1,54 @@
+/* =========================================================
+   Be Stayable global responsive typography policy
+   2026-09-08
+
+   Desktop typography remains page-specific.
+   Tablet/mobile heading hierarchy is normalized site-wide.
+   This file must be loaded after page-specific stylesheets.
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  html body h1 {
+    font-size: 27px !important;
+  }
+
+  html body h2 {
+    font-size: 23px !important;
+  }
+
+  html body h3 {
+    font-size: 20px !important;
+  }
+
+  /* Home hero support copy: keep a clear hierarchy below the 27px H1. */
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow {
+    font-size: 15px;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 767px) {
+  html body h1 {
+    font-size: 25px !important;
+  }
+
+  html body h2 {
+    font-size: 22px !important;
+  }
+
+  html body h3 {
+    font-size: 19px !important;
+  }
+
+  /* Home hero support copy: keep supporting text visually subordinate. */
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__eyebrow {
+    font-size: 14px;
+  }
+
+  body.travel-home-body main.travel-page.travel-home > .wthome-hero .wthome-hero__desc {
+    font-size: 16px;
+  }
+}

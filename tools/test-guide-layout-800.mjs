@@ -45,7 +45,7 @@ for (const file of guideFiles) {
   if (!html.includes('class="breadcrumbs container"')) {
     errors.push(`${path.relative(root, file)}: breadcrumbs container missing.`);
   }
-  if (!html.includes('/assets/css/travel-city.css?v=20260907-guide-width-800-v2')) {
+  if (!html.includes('/assets/css/travel-city.css?v=20260908-guide-alignment-v3')) {
     errors.push(`${path.relative(root, file)}: guide CSS cache version is stale.`);
   }
 }
