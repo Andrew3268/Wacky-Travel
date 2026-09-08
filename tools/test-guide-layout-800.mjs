@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const css = fs.readFileSync(path.join(root, 'public/assets/css/travel-city.css'), 'utf8');
-const marker = '/* 2026-09-07: guide container width + responsive H1 normalization */';
+const marker = '/* 2026-09-08: guide container width + responsive alignment normalization */';
 const start = css.indexOf(marker);
 const errors = [];
 
@@ -13,7 +13,9 @@ if (start < 0) {
   const block = css.slice(start);
   for (const required of [
     'body.wt-guide-body .breadcrumbs.container',
-    'width: min(calc(100% - 40px), 800px);',
+    'width: 100%;',
+    'padding-left: 16px;',
+    'padding-right: 16px;',
     'max-width: 800px;',
     'body.wt-guide-body .wt-city-guide-hero.container',
     '@media (max-width: 1180px)',
@@ -45,7 +47,7 @@ for (const file of guideFiles) {
   if (!html.includes('class="breadcrumbs container"')) {
     errors.push(`${path.relative(root, file)}: breadcrumbs container missing.`);
   }
-  if (!html.includes('/assets/css/travel-city.css?v=20260908-guide-alignment-v3')) {
+  if (!html.includes('/assets/css/travel-city.css?v=20260908-guide-spacing-align-v1')) {
     errors.push(`${path.relative(root, file)}: guide CSS cache version is stale.`);
   }
 }

@@ -6,7 +6,7 @@ const destinationsRoot = path.join(root, 'public', 'destinations');
 const cityCssPath = path.join(root, 'public', 'assets', 'css', 'travel-city.css');
 const coreCssPath = path.join(root, 'public', 'assets', 'css', 'travel-core.css');
 const CORE_VERSION = '20260903-h1-scope-v3';
-const CITY_VERSION = '20260907-guide-width-800-v1';
+const CITY_VERSION = '20260908-guide-spacing-align-v1';
 const errors = [];
 
 const cityPages = fs.readdirSync(destinationsRoot, { withFileTypes: true })
@@ -42,7 +42,7 @@ for (const required of [
   'counter-reset: travel-content-item;',
   'counter-increment: travel-content-item;',
   'content: counter(travel-content-item, decimal-leading-zero);',
-  'grid-template-columns: 56px minmax(0, 1fr) 42px;',
+  'grid-template-columns: 10px minmax(0, 1fr) 42px;',
   'border-top: 1px solid #e9eaec;',
   'border-bottom: 1px solid #e9eaec;',
   'font-size: 30px;',
