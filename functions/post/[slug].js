@@ -588,8 +588,8 @@ export async function onRequestGet(context) {
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
   ${isTravelTipPost
-    ? `<link rel="stylesheet" href="/assets/css/post-public.css?v=20260909-travel-tip-square-cover-v1" />`
-    : `<link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v2" />
+    ? `<link rel="stylesheet" href="/assets/css/post-public.css?v=20260910-post-cover-auto-v1" />`
+    : `<link rel="stylesheet" href="/assets/css/app.css?v=20260910-post-cover-auto-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
@@ -1582,7 +1582,7 @@ function renderNotFound(slug) {
   <meta name="robots" content="noindex,nofollow" />
   <link rel="icon" href="/favicon.ico?v=20260817-brand-v1" sizes="any" />
   <meta name="theme-color" content="#2563EB" />
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v2" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=20260910-post-cover-auto-v1" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />

@@ -11,14 +11,14 @@ const gzipBytes = zlib.gzipSync(Buffer.from(css), { level: 9 }).byteLength;
 
 assert.match(
   renderer,
-  /isTravelTipPost\s*\? `<link rel="stylesheet" href="\/assets\/css\/post-public\.css\?v=20260909-travel-tip-square-cover-v1" \/>`/,
+  /isTravelTipPost\s*\? `<link rel="stylesheet" href="\/assets\/css\/post-public\.css\?v=20260910-post-cover-auto-v1" \/>`/,
   "여행 꿀팁 post가 전용 CSS 번들을 사용해야 합니다."
 );
 assert.ok(gzipBytes < 32 * 1024, `post-public.css gzip 크기가 너무 큽니다: ${gzipBytes} bytes`);
 
 for (const token of [
   "body.post-page-body--travel-tip .post-shell.post-shell--guide-style{",
-  "@media (min-width:1025px){body.post-page-body--travel-tip .post-shell--guide-style .post-hero--product .post-cover-wrap{aspect-ratio:1/1;}}",
+  "body.post-page-body .post-shell--guide-style .post-hero--product .post-cover-wrap,body.post-page-body .post-cover-wrap{height:auto;min-height:0;aspect-ratio:auto;}body.post-page-body .post-cover-link{height:auto;}body.post-page-body .post-shell--guide-style .post-hero--product .post-cover,body.post-page-body .post-cover-wrap img{display:block;width:100%;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain;}",
   "body.post-page-body--travel-tip .post-toc{",
   "body.post-page-body--travel-tip .wt-toc-floating-button{",
   "body.post-page-body .post-author-profile{",

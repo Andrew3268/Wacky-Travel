@@ -9666,12 +9666,24 @@ body.post-page-body .post-cover-wrap--agoda .post-cover-link:focus-visible{
 /* =========================================================
    Travel tip post: minimalist TOC / spacing
 ========================================================= */
-/* Travel tip post: square 1:1 cover on desktop.
-   Tablet/mobile keep their existing intrinsic-ratio behavior. */
-@media (min-width: 1025px) {
-  body.post-page-body--travel-tip .post-shell--guide-style .post-hero--product .post-cover-wrap {
-    aspect-ratio: 1 / 1;
-  }
+/* Post 대표 이미지: 모든 화면에서 이미지 원본 비율에 맞춰 높이 자동 조정. */
+body.post-page-body .post-shell--guide-style .post-hero--product .post-cover-wrap,
+body.post-page-body .post-cover-wrap {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+body.post-page-body .post-cover-link {
+  height: auto;
+}
+body.post-page-body .post-shell--guide-style .post-hero--product .post-cover,
+body.post-page-body .post-cover-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 body.post-page-body--travel-tip .post-shell.post-shell--guide-style{

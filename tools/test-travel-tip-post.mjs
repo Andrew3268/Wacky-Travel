@@ -46,7 +46,7 @@ assert.match(postRenderer, /\$\{faqSectionHtml\}/);
 assert.match(postRenderer, /travel_tip: "여행 꿀팁"/);
 
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-shell\.post-shell--guide-style\{\s*padding-top: 40px;/);
-assert.match(appCss, /@media \(min-width: 1025px\) \{[\s\S]*?body\.post-page-body--travel-tip \.post-shell--guide-style \.post-hero--product \.post-cover-wrap \{[\s\S]*?aspect-ratio: 1 \/ 1;/);
+assert.match(appCss, /body\.post-page-body \.post-cover-wrap \{\s*height: auto;\s*min-height: 0;\s*aspect-ratio: auto;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-shell--guide-style \.post-body \.post-content h2\.post-h2--travel-tip-first\{[\s\S]*?margin-top: 0;[\s\S]*?margin-bottom: 16px;[\s\S]*?border-top: 0;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc\{[\s\S]*?border-top: 1px solid #111;[\s\S]*?border-radius: 0;[\s\S]*?background: #fff;/);
 assert.match(appCss, /body\.post-page-body--travel-tip \.post-toc__index\{\s*display: none !important;/);
