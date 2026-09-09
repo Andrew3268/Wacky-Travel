@@ -1,6 +1,6 @@
 const ONE_YEAR = 60 * 60 * 24 * 365;
 const CACHE_CONTROL = `public, max-age=${ONE_YEAR}, immutable`;
-const ALLOWED_WIDTHS = [180, 240, 320, 480, 640, 720, 768, 900, 960, 1200, 1600];
+const ALLOWED_WIDTHS = [180, 240, 320, 480, 640, 720, 768, 800, 900, 960, 1200, 1600];
 const ALLOWED_QUALITIES = [75, 80, 82, 85, 90];
 const ALLOWED_FITS = new Set(["scale-down", "contain", "cover", "crop", "pad"]);
 const ALLOWED_FORMATS = new Set(["auto", "avif", "webp", "jpeg"]);

@@ -1,6 +1,7 @@
 import { okJson, getAdminSession, requireAdmin } from "../_utils.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../lib/posts/cover-image.js";
+import { warmTravelTipCoverTransforms } from "../../lib/posts/cover-performance.js";
 import { ensurePublicModifiedDateColumn, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../lib/posts/affiliate-disclosure.js";
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn } from "../../lib/posts/content-link-settings.js";
@@ -514,7 +515,8 @@ export async function onRequestGet({ env, request }) {
   }, { headers: publicCacheHeaders });
 }
 
-export async function onRequestPost({ env, request }) {
+export async function onRequestPost(context) {
+  const { env, request } = context;
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
   const body = await request.json().catch(() => null);
@@ -682,6 +684,11 @@ export async function onRequestPost({ env, request }) {
     now,
     now
   ).run();
+
+  if (status === "published" && contentType === "travel_tip" && coverImageSource === "r2" && coverImage) {
+    const warmup = warmTravelTipCoverTransforms(coverImage).catch(() => undefined);
+    if (typeof context.waitUntil === "function") context.waitUntil(warmup);
+  }
 
   return okJson({ ok: true, slug });
 }

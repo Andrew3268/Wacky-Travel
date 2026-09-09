@@ -1,6 +1,7 @@
 import { escapeHtml, jsonld, okHtml, edgeCache, getAdminSession } from "../_utils.js";
 import { renderMarkdown, renderMarkdownBlocks, buildTocItemsFromBlocks, renderTocHtml, parseInlineImages, stripInlineImageTokens, stripStyleHotelTokens, stripSeoMetaTokenLines } from "../../lib/posts/renderer.js";
 import { buildImageAttrs } from "../../lib/image-utils.js";
+import { getTravelTipCoverImageConfig, shouldKeepStableCoverUrl } from "../../lib/posts/cover-performance.js";
 import { normalizeCoverImagePayload, getLargestSrcsetUrl, ensureCoverImageColumns, isMissingCoverImageColumnError } from "../../lib/posts/cover-image.js";
 import { getPublicModifiedAt, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn, isMissingAffiliateDisclosureColumnError } from "../../lib/posts/affiliate-disclosure.js";
@@ -8,7 +9,7 @@ import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
-const POST_RENDER_VERSION = "20260909-post-layout-v55";
+const POST_RENDER_VERSION = "20260909-post-layout-v56";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -315,7 +316,9 @@ export async function onRequestGet(context) {
         : normalizeCoverImagePayload({ cover_image_source: "r2", cover_image: row.cover_image, cover_image_alt: row.cover_image_alt });
       const coverImageSource = safeCoverData.source;
       const rawCoverImage = safeCoverData.image;
-      const versionedCoverImage = coverImageSource === "agoda" ? rawCoverImage : appendImageVersion(rawCoverImage, row.updated_at);
+      const versionedCoverImage = coverImageSource === "agoda"
+        ? rawCoverImage
+        : (shouldKeepStableCoverUrl(rawCoverImage) ? rawCoverImage : appendImageVersion(rawCoverImage, row.updated_at));
       const coverImageSrcset = coverImageSource === "agoda" ? safeCoverData.srcset : "";
       const coverImageLinkUrl = coverImageSource === "agoda" ? safeCoverData.link : "";
       const ogImage = (coverImageSource === "agoda" ? getLargestSrcsetUrl(coverImageSrcset, versionedCoverImage) : versionedCoverImage) || `${origin}/assets/images/open-graph-image.webp`;
@@ -449,13 +452,15 @@ export async function onRequestGet(context) {
               sizes: "(max-width: 900px) 100vw, 900px",
               attrs: `src="${escapeHtml(versionedCoverImage)}"${coverImageSrcset ? ` srcset="${escapeHtml(coverImageSrcset)}"` : ""} sizes="(max-width: 900px) 100vw, 900px"`
             }
-          : buildImageAttrs(versionedCoverImage, {
-              widths: [480, 768, 960, 1200],
-              sizes: "(max-width: 900px) 100vw, 900px",
-              fallbackWidth: 960,
-              fit: "cover",
-              quality: 82
-            }, origin))
+          : buildImageAttrs(versionedCoverImage, isTravelTipPost
+            ? getTravelTipCoverImageConfig()
+            : {
+                widths: [480, 768, 960, 1200],
+                sizes: "(max-width: 900px) 100vw, 900px",
+                fallbackWidth: 960,
+                fit: "cover",
+                quality: 82
+              }, origin))
         : null;
       const hasAgodaInlineImages = /\[\[POST_AGODA_IMAGE_[1-6]\b/i.test(String(row.content_md || ""));
       const agodaConnectionHints = (coverImageSource === "agoda" || hasAgodaInlineImages)

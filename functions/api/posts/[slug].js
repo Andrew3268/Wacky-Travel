@@ -1,6 +1,7 @@
 import { okJson, requireAdmin } from "../../_utils.js";
 import { normalizeContentType } from "../../../lib/travel/travel-settings.js";
 import { normalizeCoverImagePayload, ensureCoverImageColumns } from "../../../lib/posts/cover-image.js";
+import { warmTravelTipCoverTransforms } from "../../../lib/posts/cover-performance.js";
 import { ensurePublicModifiedDateColumn } from "../../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../../lib/posts/affiliate-disclosure.js";
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn, isMissingContentLinkSettingsColumnError } from "../../../lib/posts/content-link-settings.js";
@@ -527,7 +528,8 @@ export async function onRequestGet({ env, params, request }) {
   return okJson({ item: row });
 }
 
-export async function onRequestPut({ env, params, request }) {
+export async function onRequestPut(context) {
+  const { env, params, request } = context;
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
   const slug = decodeURIComponent(String(params.slug || ""));
@@ -725,6 +727,11 @@ export async function onRequestPut({ env, params, request }) {
     now,
     slug
   ).run();
+
+  if (status === "published" && contentType === "travel_tip" && coverImageSource === "r2" && coverImage) {
+    const warmup = warmTravelTipCoverTransforms(coverImage).catch(() => undefined);
+    if (typeof context.waitUntil === "function") context.waitUntil(warmup);
+  }
 
   return okJson({ ok: true, slug, published_at: publishedAt, content_modified_at: contentModifiedAt, updated_at: now });
 }
