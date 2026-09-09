@@ -930,16 +930,81 @@ p, strong { word-break: keep-all; }
   h2.wt-agoda-modal-title { font-size: 25px; }
 }
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JJGZWKW70H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-JJGZWKW70H');
-</script>
 <link href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" rel="stylesheet"/>
+<!-- Google tag (gtag.js) - delayed for page performance -->
+<script data-google-analytics-loader="delayed">
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-JJGZWKW70H');
+
+  (function(){
+    var src = 'https://www.googletagmanager.com/gtag/js?id=G-JJGZWKW70H';
+    var started = false;
+    var idleId = null;
+    var minTimer = null;
+    var maxTimer = null;
+    var interactionEvents = ['pointerdown', 'touchstart', 'keydown'];
+
+    function cleanup(){
+      if (minTimer !== null) window.clearTimeout(minTimer);
+      if (maxTimer !== null) window.clearTimeout(maxTimer);
+      if (idleId !== null && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+      window.removeEventListener('load', queueIdleLoad);
+      window.removeEventListener('pagehide', loadGoogleAnalytics);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      interactionEvents.forEach(function(eventName){
+        window.removeEventListener(eventName, loadGoogleAnalytics);
+      });
+    }
+
+    function loadGoogleAnalytics(){
+      if (started) return;
+      started = true;
+      cleanup();
+
+      if (document.querySelector('script[data-google-analytics-gtag="true"]') || document.querySelector('script[src="' + src + '"]')) return;
+
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = src;
+      script.setAttribute('data-google-analytics-gtag', 'true');
+      document.head.appendChild(script);
+    }
+
+    function queueIdleLoad(){
+      if (started) return;
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(loadGoogleAnalytics, { timeout: 500 });
+      } else {
+        loadGoogleAnalytics();
+      }
+    }
+
+    function afterMinimumDelay(){
+      if (started) return;
+      if (document.readyState === 'complete') {
+        queueIdleLoad();
+      } else {
+        window.addEventListener('load', queueIdleLoad, { once: true });
+      }
+    }
+
+    function onVisibilityChange(){
+      if (document.visibilityState === 'hidden') loadGoogleAnalytics();
+    }
+
+    minTimer = window.setTimeout(afterMinimumDelay, 1000);
+    maxTimer = window.setTimeout(loadGoogleAnalytics, 1500);
+
+    interactionEvents.forEach(function(eventName){
+      window.addEventListener(eventName, loadGoogleAnalytics, { once: true, passive: true });
+    });
+    document.addEventListener('visibilitychange', onVisibilityChange, { passive: true });
+    window.addEventListener('pagehide', loadGoogleAnalytics, { once: true, passive: true });
+  })();
+</script>
 </head>
 <body>
 <div class="wt-agoda-app">
