@@ -8,7 +8,7 @@ import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
-const POST_RENDER_VERSION = "20260909-post-layout-v54";
+const POST_RENDER_VERSION = "20260909-post-layout-v55";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -216,8 +216,17 @@ export async function onRequestGet(context) {
       const webPageId = `${canonical.toString()}#webpage`;
       const articleId = `${canonical.toString()}#article`;
       const faqItems = parseFaqMarkdown(row.faq_md || "");
-      const relatedRows = row.category
-        ? (await env.TRAVEL_DB.prepare(`
+      const contentType = normalizeContentType(row.content_type || "");
+      const categoryName = String(row.category || "").trim();
+      const isHotelIntroPost = contentType === "hotel_intro";
+      const isRecommendedHotelReviewPost = isHotelIntroPost || categoryName === "추천 호텔 리뷰";
+      const isTop5SeriesPost = contentType === "top5_series";
+      const isTravelTipPost = contentType === "travel_tip";
+
+      // 공개 post의 부가 데이터는 서로 의존하지 않으므로 동시에 조회합니다.
+      // 캐시 MISS에서 D1 왕복이 직렬로 누적되어 첫 HTML 응답이 늦어지는 것을 방지합니다.
+      const relatedRowsPromise = row.category
+        ? env.TRAVEL_DB.prepare(`
             SELECT slug, title
             FROM posts
             WHERE status = 'published'
@@ -225,32 +234,27 @@ export async function onRequestGet(context) {
               AND slug != ?
             ORDER BY published_at DESC, updated_at DESC
             LIMIT 5
-          `).bind(String(row.category).trim(), slug).all()).results || []
-        : [];
-      const popularRows = (await env.TRAVEL_DB.prepare(`
+          `).bind(String(row.category).trim(), slug).all().then((result) => result?.results || [])
+        : Promise.resolve([]);
+      const popularRowsPromise = env.TRAVEL_DB.prepare(`
         SELECT slug, title, view_count
         FROM posts
         WHERE status = 'published'
           AND slug != ?
         ORDER BY COALESCE(view_count, 0) DESC, published_at DESC, updated_at DESC
         LIMIT 5
-      `).bind(slug).all()).results || [];
-
-      const contentType = normalizeContentType(row.content_type || "");
-      const categoryName = String(row.category || "").trim();
-      const isHotelIntroPost = contentType === "hotel_intro";
-      const isRecommendedHotelReviewPost = isHotelIntroPost || categoryName === "추천 호텔 리뷰";
-      const isTop5SeriesPost = contentType === "top5_series";
-      const isTravelTipPost = contentType === "travel_tip";
-      const hotelHeroData = isHotelIntroPost ? await getHotelHeroData(env.TRAVEL_DB, row, slug) : null;
-      const destinationData = row.destination_slug
-        ? await env.TRAVEL_DB.prepare(`
+      `).bind(slug).all().then((result) => result?.results || []);
+      const hotelHeroDataPromise = isHotelIntroPost
+        ? getHotelHeroData(env.TRAVEL_DB, row, slug)
+        : Promise.resolve(null);
+      const destinationDataPromise = row.destination_slug
+        ? env.TRAVEL_DB.prepare(`
             SELECT slug, name, city
             FROM destinations
             WHERE slug = ?
             LIMIT 1
           `).bind(String(row.destination_slug).trim()).first()
-        : null;
+        : Promise.resolve(null);
 
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
@@ -273,6 +277,14 @@ export async function onRequestGet(context) {
               : tag.replace('<h2', '<h2 class="post-h2--travel-tip-first"')
           ))
         : renderedBodyHtml;
+
+      const [relatedRows, popularRows, hotelHeroData, destinationData] = await Promise.all([
+        relatedRowsPromise,
+        popularRowsPromise,
+        hotelHeroDataPromise,
+        destinationDataPromise
+      ]);
+
       const faqSectionHtml = renderFaqSection(faqItems, origin);
       const relatedPostsHtml = renderRelatedPostsSection(relatedRows, row.category);
       const popularPostsHtml = renderPopularPosts(popularRows);
@@ -718,7 +730,7 @@ export async function onRequestGet(context) {
   ${adsenseRuntimeScript}
   ${shouldEnableFloatingToc ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260815-post-toc-v7"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
-  <script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>
+  ${isDraftPreview ? `<script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>` : ""}
 </body>
 </html>`;
 
@@ -729,6 +741,8 @@ export async function onRequestGet(context) {
       });
 
       res.headers.set("x-blog-cache-version", updatedAt);
+      res.headers.set("x-blog-render-version", POST_RENDER_VERSION);
+      res.headers.set("x-post-style-bundle", isTravelTipPost ? "post-public" : "legacy-post");
       if (isDraftPreview) res.headers.set("x-draft-preview", "1");
       return res;
   };
