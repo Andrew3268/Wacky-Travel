@@ -588,7 +588,7 @@ export async function onRequestGet(context) {
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
   ${isTravelTipPost
-    ? `<link rel="stylesheet" href="/assets/css/post-public.css?v=20260909-render-path-v1" />`
+    ? `<link rel="stylesheet" href="/assets/css/post-public.css?v=20260909-travel-tip-square-cover-v1" />`
     : `<link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
