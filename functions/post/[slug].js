@@ -8,7 +8,7 @@ import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
-const POST_RENDER_VERSION = "20260827-post-layout-v53";
+const POST_RENDER_VERSION = "20260909-post-layout-v54";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -570,11 +570,13 @@ export async function onRequestGet(context) {
   <meta name="twitter:description" content="${escapeHtml(descriptionText)}" />
   <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 
-  <link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v2" />
+  ${isTravelTipPost
+    ? `<link rel="stylesheet" href="/assets/css/post-public.css?v=20260909-render-path-v1" />`
+    : `<link rel="stylesheet" href="/assets/css/app.css?v=20260907-travel-tip-first-h2-v2" />
   <link rel="stylesheet" href="/assets/css/components.css?v=20260827-editor-actions-v2" />
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
-  <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />
+  <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
