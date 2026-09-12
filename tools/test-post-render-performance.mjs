@@ -11,7 +11,7 @@ const gzipBytes = zlib.gzipSync(Buffer.from(css), { level: 9 }).byteLength;
 
 assert.match(
   renderer,
-  /isTravelTipPost\s*\? `<link rel="stylesheet" href="\/assets\/css\/post-public\.css\?v=20260910-post-cover-auto-v1" \/>`/,
+  /isTravelTipPost\s*\? `<link rel="stylesheet" href="\/assets\/css\/post-public\.css\?v=20260912-editor-tip-v1" \/>`/,
   "여행 꿀팁 post가 전용 CSS 번들을 사용해야 합니다."
 );
 assert.ok(gzipBytes < 32 * 1024, `post-public.css gzip 크기가 너무 큽니다: ${gzipBytes} bytes`);

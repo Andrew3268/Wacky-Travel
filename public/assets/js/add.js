@@ -3327,6 +3327,7 @@ function markdownToHtml(md, options = {}) {
   function isMarkdownBlockStartAt(index) {
     const value = String(lines[index] || "").trim();
     if (!value) return true;
+    if (value === ':::editor-tip') return true;
     if (parseFencedCodeOpen(value)) return true;
     if (parseStyleHotelImageToken(value) || parseStyleHotelButtonToken(value) || STYLE_HOTEL_ENDING_TOKEN_RE.test(value)) return true;
     if (parseTocModeFromLine(value)) return true;
@@ -3350,6 +3351,15 @@ function markdownToHtml(md, options = {}) {
       } else {
         fencedCodeLines.push(rawLine);
       }
+      continue;
+    }
+
+    const editorTip = readEditorTip(lines, lineIndex);
+    if (editorTip) {
+      closeLists(); closeQuote();
+      const tipHtml = renderEditorTip(editorTip.lines);
+      if (tipHtml) pushContentBlock(tipHtml);
+      lineIndex = editorTip.end;
       continue;
     }
 
@@ -3978,3 +3988,37 @@ async function loadHotelCurationItems(selectedMood=[]){
 }
 function syncHotelCurationCardVisibility(){const show=isHotelIntroContentSelected();document.querySelectorAll('.editor-hotel-curation-card').forEach(card=>{card.hidden=!show;card.setAttribute('aria-hidden',show?'false':'true');});}
 document.addEventListener('DOMContentLoaded',()=>{loadHotelCurationItems();syncHotelCurationCardVisibility();$('content_type')?.addEventListener('change',syncHotelCurationCardVisibility);});
+
+
+// Editor Tip: shared implementation; keep server/add/edit copies identical.
+function readEditorTip(lines, start) {
+  if (String(lines[start] || '').trim() !== ':::editor-tip') return null;
+  for (let end = start + 1; end < lines.length; end += 1) {
+    const line = String(lines[end] || '').trim();
+    if (line === ':::editor-tip') return null;
+    if (line === ':::') return { end, lines: lines.slice(start + 1, end) };
+  }
+  return null;
+}
+function renderEditorTip(lines) {
+  const esc = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  const format = (text) => esc(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br />');
+  const content = [];
+  let paragraph = [];
+  const flush = () => { if (paragraph.length) content.push(`<p class="editor-tip__text">${format(paragraph.join('\n'))}</p>`); paragraph = []; };
+  for (const raw of lines) {
+    const line = String(raw).trim();
+    if (!line) { flush(); continue; }
+    const link = line.match(/^\[([^\]]+)\]\((https?:\/\/\S+)\)$/i);
+    let url = null;
+    if (link) { try { const candidate = new URL(link[2]); if (['https:', 'http:'].includes(candidate.protocol)) url = candidate.href; } catch {} }
+    if (url) {
+      flush();
+      content.push(`<a class="editor-tip__button" href="${esc(url)}" target="_blank" rel="nofollow sponsored noopener noreferrer"><span>${esc(link[1])}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>`);
+    } else { paragraph.push(line); }
+  }
+  flush();
+  if (!content.length) return '';
+  return `<aside class="editor-tip" aria-label="에디터 Tip"><div class="editor-tip__heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M8.5 14.5a6 6 0 1 1 7 0c-.9.7-1.5 1.6-1.5 3.5h-4c0-1.9-.6-2.8-1.5-3.5Z"/></svg><span>에디터 Tip</span></div>${content.join('')}</aside>`;
+}
+// End Editor Tip shared implementation.
