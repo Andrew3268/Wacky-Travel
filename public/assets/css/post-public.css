@@ -12,7 +12,7 @@
 html body aside.editor-tip{box-sizing:border-box;display:block;clear:both;margin:34px 0 38px;padding:28px 30px;background:#f7f8f5;border:1px solid #e1e5dc;border-radius:12px;box-shadow:none;color:#43483f;}
 html body aside.editor-tip .editor-tip__heading{display:flex;align-items:center;gap:9px;margin:0 0 15px;padding:0;font-size:16px;font-weight:700;line-height:1.5;color:#374735;}
 html body aside.editor-tip svg{display:block;width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-html body aside.editor-tip p.editor-tip__text{margin:0;padding:0;font-size:17px;line-height:1.85;color:#43483f;word-break:keep-all;overflow-wrap:anywhere;}
+html body aside.editor-tip p.editor-tip__text{margin:0 0 20px;padding:0;font-size:17px;line-height:1.85;color:#43483f;word-break:keep-all;overflow-wrap:anywhere;}
 html body aside.editor-tip a.editor-tip__button{box-sizing:border-box;display:flex!important;align-items:center;justify-content:space-between;gap:18px;width:fit-content;max-width:100%;min-height:52px;margin:20px 0 16px!important;padding:13px 19px!important;border:1px solid #20251e!important;border-radius:6px!important;background:#20251e!important;color:#fff!important;font-size:15px!important;font-weight:600;line-height:1.6;text-align:left;text-decoration:none!important;box-shadow:none;word-break:keep-all;overflow-wrap:anywhere;}
 html body aside.editor-tip a.editor-tip__button::after{content:none!important;}
 html body aside.editor-tip a.editor-tip__button:hover{background:#384331!important;}
