@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const VERSION = '20260901-h2-v2';
+const APP_VERSION = '20260914-editor-tip-v2';
+const SURVEY_VERSION = '20260901-h2-v2';
 const CORE_VERSION = '20260903-h1-scope-v3';
 const HOME_VERSION = '20260901-h1-v1';
 const CITY_VERSION = '20260908-travel-list-gap-responsive-v4';
@@ -245,7 +246,9 @@ for (const relative of versionedFiles) {
           ? PURPOSE_VERSION
           : match[1] === 'travel-home'
             ? HOME_VERSION
-            : VERSION;
+            : match[1] === 'travel-survey'
+              ? SURVEY_VERSION
+              : APP_VERSION;
     if (match[2] !== expectedVersion) errors.push(`${relative}: stale changed CSS version ${match[0]}`);
   }
 }
