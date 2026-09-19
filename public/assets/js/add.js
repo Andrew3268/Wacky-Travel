@@ -3728,6 +3728,45 @@ function broadcastPostSaved(payload = {}, slug = "") {
   } catch (_) {}
 }
 
+
+function prepareSavedPostWindow() {
+  const postWindow = window.open("about:blank", "_blank");
+  if (!postWindow) return null;
+
+  try {
+    postWindow.opener = null;
+    postWindow.document.title = "글 페이지 여는 중…";
+    postWindow.document.body.innerHTML = `
+      <main style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:32px;line-height:1.6;color:#1f2937">
+        <p>저장 완료 후 글 페이지를 여는 중입니다…</p>
+      </main>
+    `;
+  } catch (_) {}
+
+  return postWindow;
+}
+
+function closePreparedPostWindow(postWindow) {
+  try {
+    if (postWindow && !postWindow.closed) postWindow.close();
+  } catch (_) {}
+}
+
+function openSavedPostWindow(postWindow, url) {
+  if (!postWindow || postWindow.closed) return false;
+  try {
+    postWindow.location.replace(url);
+    return true;
+  } catch (_) {
+    try {
+      postWindow.location.href = url;
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+}
+
 async function save() {
   const statusEl = $("saveStatus");
   statusEl.textContent = "저장 중…";
@@ -3822,6 +3861,8 @@ async function save() {
     return;
   }
 
+  const savedPostWindow = prepareSavedPostWindow();
+
   const res = await fetch("/api/posts", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -3830,6 +3871,7 @@ async function save() {
 
   const json = await res.json().catch(() => ({}));
   if (!res.ok) {
+    closePreparedPostWindow(savedPostWindow);
     statusEl.textContent = json?.message || "저장 실패";
     console.error(json);
     return;
@@ -3838,13 +3880,19 @@ async function save() {
   broadcastPostSaved(payload, slug);
 
   if (payload.status === "draft") {
-    statusEl.textContent = "초안 저장 완료! 미리보기 페이지로 이동합니다…";
-    location.href = `/post/${encodeURIComponent(slug)}/?preview=1&v=${Date.now()}`;
+    const previewUrl = `/post/${encodeURIComponent(slug)}/?preview=1&v=${Date.now()}`;
+    const opened = openSavedPostWindow(savedPostWindow, previewUrl);
+    statusEl.textContent = opened
+      ? "초안 저장 완료! 미리보기 페이지를 새 탭에서 열었습니다."
+      : "초안 저장 완료! 새 탭 열기가 차단되었습니다.";
     return;
   }
 
-  statusEl.textContent = "발행 완료! 공개 페이지로 이동합니다…";
-  location.href = `/post/${encodeURIComponent(slug)}/`;
+  const publicUrl = `/post/${encodeURIComponent(slug)}/`;
+  const opened = openSavedPostWindow(savedPostWindow, publicUrl);
+  statusEl.textContent = opened
+    ? "발행 완료! 공개 페이지를 새 탭에서 열었습니다."
+    : "발행 완료! 새 탭 열기가 차단되었습니다.";
 }
 
 function handleRealtimeChange() {
