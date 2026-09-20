@@ -5,6 +5,7 @@ import { warmTravelTipCoverTransforms } from "../../../lib/posts/cover-performan
 import { ensurePublicModifiedDateColumn } from "../../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../../lib/posts/affiliate-disclosure.js";
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn, isMissingContentLinkSettingsColumnError } from "../../../lib/posts/content-link-settings.js";
+import { deriveHotelReviewPostFields, normalizeHotelReviewContentFormat, validateHotelReviewJson } from "../../../lib/posts/hotel-review-json.js";
 
 
 function normalizeStatusValue(value = "published") {
@@ -240,6 +241,8 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_format TEXT DEFAULT 'markdown'`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_json TEXT DEFAULT ''`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
   await ensureAffiliateDisclosureColumn(db);
   await ensureContentLinkSettingsColumn(db);
@@ -429,7 +432,7 @@ async function getHotelHeroData(db, hotelSlug = "") {
 }
 
 function isMissingPostEditColumnError(error) {
-  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json|affiliate_disclosure)/i.test(String(error?.message || error || ""))
+  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json|affiliate_disclosure|content_format|content_json)/i.test(String(error?.message || error || ""))
     || isMissingContentLinkSettingsColumnError(error);
 }
 
@@ -452,6 +455,8 @@ async function selectPostForEdit(db, slug) {
       enable_inarticle_ads,
       tags_json,
       content_md,
+      content_format,
+      content_json,
       faq_md,
       content_type,
       destination_slug,
@@ -537,9 +542,38 @@ export async function onRequestPut(context) {
     return okJson({ message: "slug가 필요합니다." }, { status: 400 });
   }
 
-  const body = await request.json().catch(() => null);
+  let body = await request.json().catch(() => null);
   if (!body) {
     return okJson({ message: "JSON이 필요합니다." }, { status: 400 });
+  }
+
+  const incomingContentType = normalizeContentType(body.content_type || "travel_tip");
+  const incomingContentFormat = incomingContentType === "hotel_intro"
+    ? normalizeHotelReviewContentFormat(body.content_format || (body.content_json ? "json" : "markdown"))
+    : "markdown";
+  let normalizedContentJson = "";
+  if (incomingContentType === "hotel_intro" && incomingContentFormat === "json") {
+    const validation = validateHotelReviewJson(body.content_json);
+    if (!validation.ok) {
+      return okJson({ message: validation.errors[0] || "호텔 리뷰 JSON을 확인해 주세요.", errors: validation.errors }, { status: 400 });
+    }
+    if (String(validation.data.slug || "").trim() !== slug) {
+      return okJson({ message: `JSON slug(${String(validation.data.slug || "").trim()})와 현재 글 slug(${slug})가 다릅니다.` }, { status: 400 });
+    }
+    normalizedContentJson = JSON.stringify(validation.data);
+    const derived = deriveHotelReviewPostFields(validation.data, body);
+    const preservedPriceUrl = String(body.hotel_hero?.price_url || body.hotel_hero?.primary_url || "").trim();
+    body = {
+      ...body,
+      ...derived,
+      slug,
+      content_type: "hotel_intro",
+      content_format: "json",
+      content_json: normalizedContentJson,
+      content_md: "",
+      faq_md: "",
+      hotel_hero: { ...derived.hotel_hero, slug: body.hotel_slug || derived.hotel_hero.slug || slug, price_url: preservedPriceUrl }
+    };
   }
 
   const title = String(body.title || "").trim();
@@ -556,6 +590,8 @@ export async function onRequestPut(context) {
   const focusKeyword = String(body.focus_keyword || "").trim();
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
+  const contentFormat = incomingContentType === "hotel_intro" ? incomingContentFormat : "markdown";
+  const contentJson = contentFormat === "json" ? normalizedContentJson : "";
   const faqMd = String(body.faq_md || "").trim();
   const enableSidebarAd = body.enable_sidebar_ad === true ? 1 : 0;
   const enableInarticleAds = body.enable_inarticle_ads === true ? 1 : 0;
@@ -577,9 +613,10 @@ export async function onRequestPut(context) {
   const contentLinkSettings = normalizeContentLinkSettings(body.content_link_settings || body.content_link_settings_json || []);
   const searchIntent = String(body.search_intent || "").trim();
 
-  if (!title || !contentMd) {
+  const hasRequiredContent = contentFormat === "json" ? Boolean(contentJson) : Boolean(contentMd);
+  if (!title || !hasRequiredContent) {
     return okJson(
-      { message: "title, content_md는 필수입니다." },
+      { message: contentFormat === "json" ? "title, content_json은 필수입니다." : "title, content_md는 필수입니다." },
       { status: 400 }
     );
   }
@@ -587,7 +624,7 @@ export async function onRequestPut(context) {
   await ensurePostRegionColumns(env.TRAVEL_DB);
 
   const current = await env.TRAVEL_DB
-.prepare(`SELECT published_at, COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at, hotel_slug, focus_keyword, longtail_keywords_json, content_md FROM posts WHERE slug = ?`)
+.prepare(`SELECT published_at, COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at, hotel_slug, focus_keyword, longtail_keywords_json, content_md, content_format, content_json FROM posts WHERE slug = ?`)
     .bind(slug)
     .first();
 
@@ -634,11 +671,13 @@ export async function onRequestPut(context) {
     ? incomingMarkdownKeywords.lsi
     : currentMarkdownKeywords.lsi;
 
-  const finalContentMd = ensureSeoKeywordTokens(contentMd, {
-    focus: finalFocusKeyword,
-    longtail: finalLongtailKeywords,
-    lsi: finalLsiKeywords
-  });
+  const finalContentMd = contentFormat === "json"
+    ? ""
+    : ensureSeoKeywordTokens(contentMd, {
+        focus: finalFocusKeyword,
+        longtail: finalLongtailKeywords,
+        lsi: finalLsiKeywords
+      });
 
   if (hotelSlug === null) hotelSlug = String(current.hotel_slug || "").trim();
   hotelSlug = await syncHotelHeroData(env.TRAVEL_DB, body, {
@@ -666,6 +705,8 @@ export async function onRequestPut(context) {
       longtail_keywords_json = ?,
       tags_json = ?,
       content_md = ?,
+      content_format = ?,
+      content_json = ?,
       faq_md = ?,
       enable_sidebar_ad = ?,
       enable_inarticle_ads = ?,
@@ -703,6 +744,8 @@ export async function onRequestPut(context) {
     JSON.stringify(finalLongtailKeywords),
     JSON.stringify(tags),
     finalContentMd,
+    contentFormat,
+    contentJson,
     faqMd,
     enableSidebarAd,
     enableInarticleAds,

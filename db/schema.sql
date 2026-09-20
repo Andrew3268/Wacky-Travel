@@ -17,6 +17,8 @@ CREATE TABLE IF NOT EXISTS posts (
   template_name TEXT DEFAULT 'basic',
   tags_json TEXT DEFAULT '[]',
   content_md TEXT DEFAULT '',
+  content_format TEXT DEFAULT 'markdown',
+  content_json TEXT DEFAULT '',
   faq_md TEXT DEFAULT '',
   view_count INTEGER DEFAULT 0,
   enable_sidebar_ad INTEGER DEFAULT 0,

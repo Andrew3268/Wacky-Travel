@@ -5,6 +5,7 @@ import { warmTravelTipCoverTransforms } from "../../lib/posts/cover-performance.
 import { ensurePublicModifiedDateColumn, isMissingPublicModifiedColumnError } from "../../lib/posts/public-modified-date.js";
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../lib/posts/affiliate-disclosure.js";
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn } from "../../lib/posts/content-link-settings.js";
+import { deriveHotelReviewPostFields, normalizeHotelReviewContentFormat, validateHotelReviewJson } from "../../lib/posts/hotel-review-json.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -100,6 +101,8 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN hotel_pick_label TEXT DEFAULT ''`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN mood_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_format TEXT DEFAULT 'markdown'`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_json TEXT DEFAULT ''`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
   await ensureAffiliateDisclosureColumn(db);
   await ensureContentLinkSettingsColumn(db);
@@ -368,12 +371,13 @@ export async function onRequestGet({ env, request }) {
       queryParts.push(`LOWER(COALESCE(meta_description, '')) LIKE ?`);
       queryParts.push(`LOWER(COALESCE(category, '')) LIKE ?`);
       queryParts.push(`LOWER(COALESCE(content_md, '')) LIKE ?`);
+      queryParts.push(`LOWER(COALESCE(content_json, '')) LIKE ?`);
       queryParts.push(`EXISTS (
         SELECT 1
         FROM json_each(COALESCE(tags_json, '[]'))
         WHERE LOWER(TRIM(json_each.value)) LIKE ?
       )`);
-      binds.push(qLike, qLike, qLike, qLike, qLike);
+      binds.push(qLike, qLike, qLike, qLike, qLike, qLike);
     }
 
     if (!queryParts.length) {
@@ -519,9 +523,34 @@ export async function onRequestPost(context) {
   const { env, request } = context;
   const admin = await requireAdmin(env, request);
   if (!admin) return okJson({ message: "관리자 로그인이 필요합니다." }, { status: 401 });
-  const body = await request.json().catch(() => null);
+  let body = await request.json().catch(() => null);
   if (!body) {
     return okJson({ message: "JSON이 필요합니다." }, { status: 400 });
+  }
+
+  const incomingContentType = normalizeContentType(body.content_type || "travel_tip");
+  const incomingContentFormat = incomingContentType === "hotel_intro"
+    ? normalizeHotelReviewContentFormat(body.content_format || (body.content_json ? "json" : "markdown"))
+    : "markdown";
+  let normalizedContentJson = "";
+  if (incomingContentType === "hotel_intro" && incomingContentFormat === "json") {
+    const validation = validateHotelReviewJson(body.content_json);
+    if (!validation.ok) {
+      return okJson({ message: validation.errors[0] || "호텔 리뷰 JSON을 확인해 주세요.", errors: validation.errors }, { status: 400 });
+    }
+    normalizedContentJson = JSON.stringify(validation.data);
+    const derived = deriveHotelReviewPostFields(validation.data, body);
+    const preservedPriceUrl = String(body.hotel_hero?.price_url || body.hotel_hero?.primary_url || "").trim();
+    body = {
+      ...body,
+      ...derived,
+      content_type: "hotel_intro",
+      content_format: "json",
+      content_json: normalizedContentJson,
+      content_md: "",
+      faq_md: "",
+      hotel_hero: { ...derived.hotel_hero, price_url: preservedPriceUrl }
+    };
   }
 
   const slug = String(body.slug || "").trim();
@@ -539,6 +568,8 @@ export async function onRequestPost(context) {
   const focusKeyword = String(body.focus_keyword || "").trim();
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
+  const contentFormat = incomingContentType === "hotel_intro" ? incomingContentFormat : "markdown";
+  const contentJson = contentFormat === "json" ? normalizedContentJson : "";
   const faqMd = String(body.faq_md || "").trim();
   const enableSidebarAd = body.enable_sidebar_ad === true ? 1 : 0;
   const enableInarticleAds = body.enable_inarticle_ads === true ? 1 : 0;
@@ -560,9 +591,10 @@ export async function onRequestPost(context) {
   const contentLinkSettings = normalizeContentLinkSettings(body.content_link_settings || body.content_link_settings_json || []);
   const searchIntent = String(body.search_intent || "").trim();
 
-  if (!slug || !title || !contentMd) {
+  const hasRequiredContent = contentFormat === "json" ? Boolean(contentJson) : Boolean(contentMd);
+  if (!slug || !title || !hasRequiredContent) {
     return okJson(
-      { message: "slug, title, content_md는 필수입니다." },
+      { message: contentFormat === "json" ? "slug, title, content_json은 필수입니다." : "slug, title, content_md는 필수입니다." },
       { status: 400 }
     );
   }
@@ -587,6 +619,8 @@ export async function onRequestPost(context) {
       longtail_keywords_json,
       tags_json,
       content_md,
+      content_format,
+      content_json,
       faq_md,
       enable_sidebar_ad,
       enable_inarticle_ads,
@@ -609,7 +643,7 @@ export async function onRequestPost(context) {
       published_at,
       content_modified_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -624,6 +658,8 @@ export async function onRequestPost(context) {
       longtail_keywords_json = excluded.longtail_keywords_json,
       tags_json = excluded.tags_json,
       content_md = excluded.content_md,
+      content_format = excluded.content_format,
+      content_json = excluded.content_json,
       faq_md = excluded.faq_md,
       enable_sidebar_ad = excluded.enable_sidebar_ad,
       enable_inarticle_ads = excluded.enable_inarticle_ads,
@@ -661,6 +697,8 @@ export async function onRequestPost(context) {
     JSON.stringify(longtailKeywords),
     JSON.stringify(tags),
     contentMd,
+    contentFormat,
+    contentJson,
     faqMd,
     enableSidebarAd,
     enableInarticleAds,

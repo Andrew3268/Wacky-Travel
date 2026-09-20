@@ -9,7 +9,8 @@ import { isMissingContentLinkSettingsColumnError } from "../../lib/posts/content
 import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
-const POST_RENDER_VERSION = "20260912-editor-tip-v57";
+import { deriveHotelReviewPostFields, getHotelReviewPlainText, normalizeHotelReviewContentFormat, parseHotelReviewJson, renderHotelReviewLayout, validateHotelReviewData } from "../../lib/posts/hotel-review-json.js";
+const POST_RENDER_VERSION = "20260921-post-layout-v58";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -82,6 +83,10 @@ function isMissingHotelPickColumnError(error) {
   return /no such column:\s*(?:posts\.)?hotel_pick_label/i.test(String(error?.message || error || ""));
 }
 
+function isMissingHotelReviewContentColumnError(error) {
+  return /no such column:\s*(?:posts\.)?(?:content_format|content_json)/i.test(String(error?.message || error || ""));
+}
+
 async function loadPostRow(db, slug, requestedStatus) {
   const sql = `
     SELECT
@@ -97,6 +102,8 @@ async function loadPostRow(db, slug, requestedStatus) {
       cover_image_srcset,
       tags_json,
       content_md,
+      COALESCE(NULLIF(content_format, ''), 'markdown') AS content_format,
+      content_json,
       faq_md,
       view_count,
       enable_sidebar_ad,
@@ -123,12 +130,17 @@ async function loadPostRow(db, slug, requestedStatus) {
       "published_at AS content_modified_at"
     )
     .replace("      affiliate_disclosure,", "      '' AS affiliate_disclosure,")
-    .replace("      content_link_settings_json,", "      '[]' AS content_link_settings_json,");
+    .replace("      content_link_settings_json,", "      '[]' AS content_link_settings_json,")
+    .replace("      COALESCE(NULLIF(content_format, ''), 'markdown') AS content_format,", "      'markdown' AS content_format,")
+    .replace("      content_json,", "      '' AS content_json,");
 
   try {
     return await db.prepare(sql).bind(slug, requestedStatus).first();
   } catch (error) {
     if (isMissingPublicModifiedColumnError(error) || isMissingContentLinkSettingsColumnError(error)) {
+      return db.prepare(fallbackLegacySql).bind(slug, requestedStatus).first();
+    }
+    if (isMissingHotelReviewContentColumnError(error)) {
       return db.prepare(fallbackLegacySql).bind(slug, requestedStatus).first();
     }
     if (!isMissingHotelPickColumnError(error) && !isMissingCoverImageColumnError(error) && !isMissingAffiliateDisclosureColumnError(error)) throw error;
@@ -223,6 +235,12 @@ export async function onRequestGet(context) {
       const isRecommendedHotelReviewPost = isHotelIntroPost || categoryName === "추천 호텔 리뷰";
       const isTop5SeriesPost = contentType === "top5_series";
       const isTravelTipPost = contentType === "travel_tip";
+      const contentFormat = normalizeHotelReviewContentFormat(row.content_format || "markdown");
+      const parsedHotelReviewData = isHotelIntroPost && contentFormat === "json" ? parseHotelReviewJson(row.content_json || "") : null;
+      const hotelReviewValidation = parsedHotelReviewData ? validateHotelReviewData(parsedHotelReviewData) : { ok: false, errors: [] };
+      const isJsonHotelReviewPost = Boolean(isHotelIntroPost && contentFormat === "json" && parsedHotelReviewData && hotelReviewValidation.ok);
+      const hotelReviewDerived = isJsonHotelReviewPost ? deriveHotelReviewPostFields(parsedHotelReviewData, row) : null;
+      const hotelReviewPlainText = isJsonHotelReviewPost ? getHotelReviewPlainText(parsedHotelReviewData) : "";
 
       // 공개 post의 부가 데이터는 서로 의존하지 않으므로 동시에 조회합니다.
       // 캐시 MISS에서 D1 왕복이 직렬로 누적되어 첫 HTML 응답이 늦어지는 것을 방지합니다.
@@ -259,11 +277,13 @@ export async function onRequestGet(context) {
 
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
-      const contentTextLength = stripMarkdown(stripStyleHotelTokens(stripInlineImageTokens(cleanContentMd))).replace(/\s+/g, "").length;
+      const contentTextLength = isJsonHotelReviewPost
+        ? hotelReviewPlainText.replace(/\s+/g, "").length
+        : stripMarkdown(stripStyleHotelTokens(stripInlineImageTokens(cleanContentMd))).replace(/\s+/g, "").length;
       const shouldShowSidebarAd = !isDraftPreview && toBool(row.enable_sidebar_ad, false);
-      const shouldShowInarticleAds = !isDraftPreview && toBool(row.enable_inarticle_ads, false);
+      const shouldShowInarticleAds = !isDraftPreview && !isJsonHotelReviewPost && toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
-      const renderedBodyHtml = buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
+      const renderedBodyHtml = isJsonHotelReviewPost ? "" : buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
         useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
         styleHotelSeries: isTop5SeriesPost,
@@ -271,7 +291,7 @@ export async function onRequestGet(context) {
         contentLinkSettings: row.content_link_settings_json || "[]",
         origin
       });
-      const bodyHtml = isTravelTipPost
+      const bodyHtml = !isJsonHotelReviewPost && isTravelTipPost
         ? renderedBodyHtml.replace(/<h2\b[^>]*>/i, (tag) => (
             tag.includes('class="')
               ? tag.replace('class="', 'class="post-h2--travel-tip-first ')
@@ -293,21 +313,24 @@ export async function onRequestGet(context) {
       const adsenseHeadScript = renderAdsenseHeadScript(adConfig, shouldShowSidebarAd || shouldShowInarticleAds);
       const adsenseRuntimeScript = renderAdsenseRuntimeScript(adConfig, shouldShowSidebarAd || shouldShowInarticleAds);
 
-      const titleText = String(row.title || "").trim();
-      const descriptionText = buildDescription(
-        row.meta_description,
-        row.summary,
-        stripStyleHotelTokens(cleanContentMd),
-        titleText
-      );
-      const pageTitle = `${isDraftPreview ? "[초안 미리보기] " : ""}${titleText} | ${siteName}`;
+      const titleText = String(hotelReviewDerived?.title || row.title || "").trim();
+      const descriptionText = isJsonHotelReviewPost
+        ? String(hotelReviewDerived?.meta_description || hotelReviewDerived?.summary || titleText).trim()
+        : buildDescription(
+            row.meta_description,
+            row.summary,
+            stripStyleHotelTokens(cleanContentMd),
+            titleText
+          );
+      const seoTitleText = isJsonHotelReviewPost ? String(hotelReviewDerived?.seo_title || titleText).trim() : titleText;
+      const pageTitle = `${isDraftPreview ? "[초안 미리보기] " : ""}${seoTitleText} | ${siteName}`;
       const robotsContent = isDraftPreview
         ? "noindex,nofollow,noarchive,nosnippet"
         : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
       const storedCoverData = normalizeCoverImagePayload({
         cover_image_source: row.cover_image_source,
-        cover_image: row.cover_image,
-        cover_image_alt: row.cover_image_alt,
+        cover_image: hotelReviewDerived?.cover_image || row.cover_image,
+        cover_image_alt: hotelReviewDerived?.cover_image_alt || row.cover_image_alt,
         cover_image_link_url: row.cover_image_link_url,
         cover_image_srcset: row.cover_image_srcset
       });
@@ -404,7 +427,7 @@ export async function onRequestGet(context) {
         url: canonical.toString(),
         inLanguage: "ko-KR",
         articleSection: row.category || "블로그",
-        wordCount: stripMarkdown(cleanContentMd).split(/\s+/).filter(Boolean).length,
+        wordCount: (isJsonHotelReviewPost ? hotelReviewPlainText : stripMarkdown(cleanContentMd)).split(/\s+/).filter(Boolean).length,
         ...(hotelAboutJsonLd ? { about: hotelAboutJsonLd } : {})
       };
 
@@ -462,7 +485,7 @@ export async function onRequestGet(context) {
                 quality: 82
               }, origin))
         : null;
-      const hasAgodaInlineImages = /\[\[POST_AGODA_IMAGE_[1-6]\b/i.test(String(row.content_md || ""));
+      const hasAgodaInlineImages = !isJsonHotelReviewPost && /\[\[POST_AGODA_IMAGE_[1-6]\b/i.test(String(row.content_md || ""));
       const agodaConnectionHints = (coverImageSource === "agoda" || hasAgodaInlineImages)
         ? `<link rel="dns-prefetch" href="//pix8.agoda.net" />
   <link rel="preconnect" href="https://pix8.agoda.net" crossorigin />`
@@ -490,6 +513,11 @@ export async function onRequestGet(context) {
           ${coverImageLinkUrl ? `</a>` : ""}
         </figure>
         `
+        : "";
+      const hotelReviewCoverImageHtml = isJsonHotelReviewPost
+        ? (coverImage
+          ? `<figure class="hrj-hero">${coverImageLinkUrl ? `<a href="${escapeHtml(coverImageLinkUrl)}" target="_blank" rel="sponsored noopener noreferrer" aria-label="${escapeHtml(`${titleText} 예약 페이지 열기`)}">` : ""}<img ${coverImage.attrs} alt="${escapeHtml(coverImageAltText)}" loading="eager" fetchpriority="high" decoding="async" width="1200" height="675" />${coverImageLinkUrl ? `</a>` : ""}</figure>`
+          : `<div class="hrj-hero hrj-hero--placeholder" role="img" aria-label="${escapeHtml(coverImageAltText)}"></div>`)
         : "";
       const affiliateDisclosure = normalizeAffiliateDisclosure(row.affiliate_disclosure);
       const affiliateDisclosureHtml = affiliateDisclosure
@@ -547,6 +575,7 @@ export async function onRequestGet(context) {
         isTop5SeriesPost ? "post-page-body--top5-series" : "",
         isTravelTipPost ? "post-page-body--travel-tip" : "",
         isHotelIntroPost ? "post-page-body--hotel-intro" : "",
+        isJsonHotelReviewPost ? "post-page-body--hotel-review-json" : "",
         isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
         (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : "",
         safeHotelPriceLink ? "post-page-body--has-mobile-hotel-cta" : ""
@@ -594,6 +623,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
+  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20260921-v1" />` : ""}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -623,7 +653,18 @@ export async function onRequestGet(context) {
   ${topbar()}
   ${homeSearchOverlay()}
 
-  <main id="main-content" class="container post-guide-page">
+  ${isJsonHotelReviewPost
+    ? renderHotelReviewLayout(parsedHotelReviewData, {
+        publishedDate: formatKoreanDate(row.published_at) || publishedDate,
+        updatedDate: formatKoreanDate(publicModifiedAt) || updatedDate,
+        coverImageHtml: hotelReviewCoverImageHtml,
+        affiliateDisclosureHtml,
+        availabilityUrl: safeHotelPriceLink,
+        draftPreviewBannerHtml,
+        relatedPostsHtml,
+        sidebarAdHtml
+      })
+    : `<main id="main-content" class="container post-guide-page">
     ${draftPreviewBannerHtml}
     ${breadcrumbHtml}
 
@@ -668,7 +709,7 @@ export async function onRequestGet(context) {
       </div>
     </article>
 
-  </main>
+  </main>`}
 
   ${footer(siteName)}
   ${mobileHotelAvailabilityCtaHtml}
@@ -747,7 +788,7 @@ export async function onRequestGet(context) {
 
       res.headers.set("x-blog-cache-version", updatedAt);
       res.headers.set("x-blog-render-version", POST_RENDER_VERSION);
-      res.headers.set("x-post-style-bundle", isTravelTipPost ? "post-public" : "legacy-post");
+      res.headers.set("x-post-style-bundle", isJsonHotelReviewPost ? "hotel-review-json" : (isTravelTipPost ? "post-public" : "legacy-post"));
       if (isDraftPreview) res.headers.set("x-draft-preview", "1");
       return res;
   };

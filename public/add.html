@@ -9,6 +9,7 @@
 <link href="/assets/css/app.css?v=20260914-editor-tip-v2" rel="stylesheet"/>
 <link href="/assets/css/components.css?v=20260827-editor-actions-v2" rel="stylesheet"/>
 <link href="/assets/css/style-hotel-editor.css?v=20260818-content-links-v1" rel="stylesheet"/>
+<link href="/assets/css/hotel-review-json-editor.css?v=20260921-v1" rel="stylesheet"/>
 <meta content="비스테이어블 콘텐츠를 작성하는 관리자 전용 페이지입니다." name="description"/><meta content="noindex,nofollow,noarchive,nosnippet" name="robots"/><meta content="#ffffff" name="theme-color"/><meta content="website" property="og:type"/><meta content="Be Stayable" property="og:site_name"/><meta content="글 작성 | Be Stayable" property="og:title"/><meta content="비스테이어블 콘텐츠를 작성하는 관리자 전용 페이지입니다." property="og:description"/><meta content="https://bestayable.com/add.html" property="og:url"/><meta content="https://bestayable.com/assets/images/open-graph-image.webp" property="og:image"/><meta content="600" property="og:image:width"/><meta content="315" property="og:image:height"/><meta content="글 작성 | Be Stayable 대표 이미지" property="og:image:alt"/><meta content="ko_KR" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="글 작성 | Be Stayable" name="twitter:title"/><meta content="비스테이어블 콘텐츠를 작성하는 관리자 전용 페이지입니다." name="twitter:description"/><meta content="https://bestayable.com/assets/images/open-graph-image.webp" name="twitter:image"/><meta content="글 작성 | Be Stayable 대표 이미지" name="twitter:image:alt"/>
 <link href="/assets/css/admin.css?v=20260908-affiliate-presets-v1" rel="stylesheet"/>
 <link href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" rel="stylesheet"/>
@@ -415,7 +416,7 @@
               </label>
             </section>
 
-            <div class="card editor-option-card">
+            <div class="card editor-option-card" id="markdownTocCard">
               <div style="display:flex; gap:18px; flex-wrap:wrap;">
                 <label class="row"><input type="checkbox" id="enableToc" /> 목차 사용</label>
                 <label class="row"><input type="checkbox" id="includeTocH3" /> H3 포함</label>
@@ -424,6 +425,36 @@
               </div>
               <div id="tocStatus" class="small" style="margin-top:10px;"></div>
             </div>
+
+            <section class="card editor-option-card hotel-review-json-editor" id="hotelReviewJsonEditor" hidden aria-hidden="true">
+              <input type="hidden" id="content_format" value="markdown" />
+              <textarea id="hotelReviewJsonValue" hidden></textarea>
+              <div class="section-heading" style="margin-bottom:12px;">
+                <div>
+                  <div class="h2">추천 호텔 리뷰 JSON</div>
+                  <p class="small">추천 호텔 리뷰는 Markdown 대신 <code>hotel-review-v1.0</code> JSON 파일을 업로드해 작성합니다. JSON의 제목·SEO·호텔 정보·본문 섹션을 서버에서 SSR로 렌더링합니다.</p>
+                </div>
+              </div>
+              <div class="hotel-review-json-editor__legacy" id="hotelReviewLegacyNotice" hidden>이 글은 기존 Markdown 방식으로 저장된 추천 호텔 리뷰입니다. 현재 방식 그대로 수정할 수 있으며, 아래에 JSON 파일을 업로드하면 JSON SSR 방식으로 전환됩니다.</div>
+              <div class="hotel-review-json-editor__drop" id="hotelReviewJsonDrop">
+                <div class="hotel-review-json-editor__file">
+                  <label class="btn" for="hotelReviewJsonFile">JSON 파일 선택</label>
+                  <input id="hotelReviewJsonFile" type="file" accept=".json,application/json" />
+                </div>
+                <div class="hotel-review-json-editor__status" id="hotelReviewJsonStatus" aria-live="polite">JSON 파일을 선택해 주세요.</div>
+                <div class="hotel-review-json-editor__summary" id="hotelReviewJsonSummary"></div>
+                <div class="grid grid--2 hotel-review-json-editor__ops" style="margin-top:4px;">
+                  <label>
+                    <span class="small">호텔 픽 라벨 (선택)</span>
+                    <input class="input" id="hotelReviewPickLabel" maxlength="30" placeholder="예: 에디터픽" />
+                  </label>
+                  <label>
+                    <span class="small">예약·제휴 링크 (선택)</span>
+                    <input class="input" id="hotelReviewPriceUrl" placeholder="https://..." />
+                  </label>
+                </div>
+              </div>
+            </section>
 
             <div class="editor-content-markdown-section" id="contentMarkdownSection">
               <div class="small editor-content-markdown-section__label">본문 Markdown <span id="contentCount"></span></div>
@@ -462,7 +493,7 @@
               <div class="content-link-manager__list" id="contentLinkManagerList"></div>
             </section>
 
-            <label>
+            <label id="faqMarkdownField">
               <div class="small">FAQ Markdown <span id="faqCount"></span></div>
               <textarea class="input" id="faq_md" rows="8" placeholder="### 질문을 입력하세요&#10;&#10;질문에 대한 답변을 입력하세요.&#10;&#10;### 두 번째 질문을 입력하세요&#10;&#10;두 번째 질문에 대한 답변을 입력하세요."></textarea>
               <span class="small">입력 방법: 질문 앞에 <code>###</code>을 붙이고, 한 줄을 비운 뒤 답변을 입력하세요. FAQ가 여러 개라면 같은 형식을 반복합니다. 기존 <code>Q:</code> / <code>A:</code> 형식도 지원합니다.</span>
@@ -1047,6 +1078,7 @@
   <script src="/assets/js/cover-image-source.js?v=20260731-cover-source-v1" defer></script>
   <script src="/assets/js/style-hotel-editor.js?v=20260803-style-hotel-editor-v6" defer></script>
   <script src="/assets/js/post-link-manager.js?v=20260825-content-links-v3" defer></script>
-  <script src="/assets/js/add.js?v=20260919-save-new-tab-v1" defer></script>
+  <script src="/assets/js/hotel-review-json-editor.js?v=20260921-v1" defer></script>
+  <script src="/assets/js/add.js?v=20260921-hotel-review-json-v1" defer></script>
 </body>
 </html>
