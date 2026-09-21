@@ -64,6 +64,9 @@ assert.doesNotMatch(editorJs, /fetch\([^)]*content_json/i);
 assert.match(css, /\.hotel-review-json-page/);
 assert.match(css, /\.hrj-shell/);
 assert.match(css, /\.hrj-review-analysis__grid/);
+assert.match(css, /\.hrj-decision-card/);
+assert.match(css, /\.hrj-mobile-decision/);
+assert.match(post, /hotel-review-json\.css\?v=20260921-sidebar-decision-v3/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 console.log("Hotel review JSON SSR integration check passed: DB, admin upload, API validation, server renderer branch, scoped CSS, and Markdown fallback wiring are present.");

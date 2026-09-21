@@ -86,7 +86,11 @@ assert.match(rendered, /반복해서 언급된 장점/);
 assert.match(rendered, /반복해서 언급된 단점/);
 assert.match(rendered, /객실 선택 가이드/);
 assert.match(rendered, /도심 여행용 호텔/);
-assert.match(rendered, /잔여 객실 확인/);
+assert.match(rendered, /객실·요금 확인하기/);
+assert.match(rendered, /hrj-decision-card/);
+assert.match(rendered, /예약 전 체크/);
+assert.match(rendered, /객실 선택 포인트/);
+assert.match(rendered, /hrj-mobile-decision/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
 

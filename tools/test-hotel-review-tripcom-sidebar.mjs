@@ -22,10 +22,12 @@ const html = renderHotelReviewLayout(sample, { tripcomSidebarAdUrl: valid.url })
 assert.match(html, /hrj-sidecard--tripcom/);
 assert.match(html, /kr\.trip\.com\/partners\/ad\/S19906483/);
 const firstSidebar = html.split('<aside class="hrj-sidebar"')[1].split('이 글의 목차')[0];
-assert.doesNotMatch(firstSidebar, /hrj-hotel-mini__name/);
+assert.doesNotMatch(firstSidebar, /hrj-decision-card/);
 
 const fallback = renderHotelReviewLayout(sample, { tripcomSidebarAdUrl: '' });
-assert.match(fallback, /hrj-hotel-mini__name/);
+assert.match(fallback, /hrj-decision-card/);
+assert.match(fallback, /샘플 호텔/);
+assert.doesNotMatch(fallback, /hrj-hotel-mini__name/);
 assert.doesNotMatch(fallback, /hrj-sidecard--tripcom/);
 
 const addHtml = fs.readFileSync(new URL('../public/add.html', import.meta.url), 'utf8');
