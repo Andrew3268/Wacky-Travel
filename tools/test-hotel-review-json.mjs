@@ -90,7 +90,9 @@ assert.match(rendered, /객실·요금 확인하기/);
 assert.match(rendered, /hrj-decision-card/);
 assert.match(rendered, /예약 전 체크/);
 assert.match(rendered, /객실 선택 포인트/);
-assert.match(rendered, /hrj-mobile-decision/);
+assert.doesNotMatch(rendered, /hrj-mobile-decision/);
+assert.match(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ul>[\s\S]*?01\. 개요[\s\S]*?<\/ul>/);
+assert.doesNotMatch(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ol>/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
 
