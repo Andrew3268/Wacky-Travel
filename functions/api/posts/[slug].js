@@ -615,11 +615,12 @@ export async function onRequestPut(context) {
   const affiliateDisclosure = normalizeAffiliateDisclosure(body.affiliate_disclosure);
   const contentLinkSettings = normalizeContentLinkSettings(body.content_link_settings || body.content_link_settings_json || []);
   const searchIntent = String(body.search_intent || "").trim();
-  const tripcomSidebarAd = contentType === "hotel_intro"
+  const hasTripcomSidebarAdInput = Object.prototype.hasOwnProperty.call(body, "tripcom_sidebar_ad_url")
+    || Object.prototype.hasOwnProperty.call(body, "tripcom_sidebar_ad_code");
+  const incomingTripcomSidebarAd = contentType === "hotel_intro" && hasTripcomSidebarAdInput
     ? normalizeTripcomSidebarAd(body.tripcom_sidebar_ad_url || body.tripcom_sidebar_ad_code || "")
     : { ok: true, url: "", error: "" };
-  if (!tripcomSidebarAd.ok) return okJson({ message: tripcomSidebarAd.error }, { status: 400 });
-  const tripcomSidebarAdUrl = tripcomSidebarAd.url;
+  if (!incomingTripcomSidebarAd.ok) return okJson({ message: incomingTripcomSidebarAd.error }, { status: 400 });
 
   const hasRequiredContent = contentFormat === "json" ? Boolean(contentJson) : Boolean(contentMd);
   if (!title || !hasRequiredContent) {
@@ -632,13 +633,19 @@ export async function onRequestPut(context) {
   await ensurePostRegionColumns(env.TRAVEL_DB);
 
   const current = await env.TRAVEL_DB
-.prepare(`SELECT published_at, COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at, hotel_slug, focus_keyword, longtail_keywords_json, content_md, content_format, content_json FROM posts WHERE slug = ?`)
+.prepare(`SELECT published_at, COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at, hotel_slug, focus_keyword, longtail_keywords_json, content_md, content_format, content_json, tripcom_sidebar_ad_url FROM posts WHERE slug = ?`)
     .bind(slug)
     .first();
 
   if (!current) {
     return okJson({ message: "not_found" }, { status: 404 });
   }
+
+  const tripcomSidebarAdUrl = contentType === "hotel_intro"
+    ? (hasTripcomSidebarAdInput
+      ? incomingTripcomSidebarAd.url
+      : String(current.tripcom_sidebar_ad_url || "").trim())
+    : "";
 
   const now = new Date().toISOString();
   const publishedAt = String(current.published_at || now);
@@ -786,7 +793,7 @@ export async function onRequestPut(context) {
     if (typeof context.waitUntil === "function") context.waitUntil(warmup);
   }
 
-  return okJson({ ok: true, slug, published_at: publishedAt, content_modified_at: contentModifiedAt, updated_at: now });
+  return okJson({ ok: true, slug, tripcom_sidebar_ad_url: tripcomSidebarAdUrl, published_at: publishedAt, content_modified_at: contentModifiedAt, updated_at: now });
 }
 
 export async function onRequestDelete({ env, params, request }) {

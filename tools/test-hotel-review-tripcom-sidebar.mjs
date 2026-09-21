@@ -33,11 +33,19 @@ const editHtml = fs.readFileSync(new URL('../public/edit.html', import.meta.url)
 for (const content of [addHtml, editHtml]) {
   assert.match(content, /id="hotelReviewTripcomCode"/);
   assert.match(content, /id="hotelReviewTripcomStatus"/);
+  assert.match(content, /hotel-review-json-editor\.js\?v=20260921-tripcom-v2/);
 }
+assert.match(addHtml, /add\.js\?v=20260921-tripcom-v2/);
+assert.match(editHtml, /edit\.js\?v=20260921-tripcom-v2/);
 
 const postApi = fs.readFileSync(new URL('../functions/api/posts.js', import.meta.url), 'utf8');
 const editApi = fs.readFileSync(new URL('../functions/api/posts/[slug].js', import.meta.url), 'utf8');
 const publicPost = fs.readFileSync(new URL('../functions/post/[slug].js', import.meta.url), 'utf8');
 for (const content of [postApi, editApi, publicPost]) assert.match(content, /tripcom_sidebar_ad_url/);
+assert.match(editApi, /hasTripcomSidebarAdInput/);
+assert.match(editApi, /current\.tripcom_sidebar_ad_url/);
 
-console.log('Hotel review Trip.com sidebar check passed: admin input, URL-only normalization, persistence, SSR replacement, and fallback are wired.');
+const headers = fs.readFileSync(new URL('../public/_headers', import.meta.url), 'utf8');
+assert.match(headers, /\/assets\/\*[\s\S]*max-age=31536000, immutable/);
+
+console.log('Hotel review Trip.com sidebar check passed: admin input, immutable-cache busting, URL-only normalization, persistence, SSR replacement, and fallback are wired.');
