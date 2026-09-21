@@ -696,6 +696,124 @@ function syncHotelHeroCardVisibility() {
   });
 }
 
+let hotelReviewJsonEditTimer = null;
+
+function setHotelReviewJsonEditStatus(message, state = "") {
+  const status = $("hotelReviewJsonStatus");
+  const drop = $("hotelReviewJsonDrop");
+  if (status) {
+    status.textContent = message;
+    status.classList.toggle("is-valid", state === "valid");
+    status.classList.toggle("is-error", state === "error");
+  }
+  if (drop) {
+    drop.classList.toggle("is-valid", state === "valid");
+    drop.classList.toggle("is-error", state === "error");
+  }
+}
+
+function renderHotelReviewJsonEditSummary(data = {}, sourceLabel = "직접 편집 중") {
+  const summary = $("hotelReviewJsonSummary");
+  if (!summary || !data || typeof data !== "object") return;
+  const escapeHtml = (value = "") => String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+  const items = [
+    ["상태", sourceLabel],
+    ["스키마", String(data.schemaVersion || "")],
+    ["호텔", String(data.hotel?.nameKo || "")],
+    ["도시", [data.hotel?.country, data.hotel?.city].filter(Boolean).join(" · ")],
+    ["슬러그", String(data.slug || "")],
+    ["섹션", `${Array.isArray(data.sections) ? data.sections.length : 0}개`]
+  ];
+  summary.innerHTML = items.map(([label, value]) => `<div class="hotel-review-json-editor__summary-item"><span class="hotel-review-json-editor__summary-label">${escapeHtml(label)}</span><span class="hotel-review-json-editor__summary-value">${escapeHtml(value)}</span></div>`).join("");
+}
+
+function syncHotelReviewJsonDerivedFields(data = {}) {
+  if (!data || typeof data !== "object") return;
+  const intro = Array.isArray(data.article?.intro) ? data.article.intro : [];
+  if ($("title")) $("title").value = String(data.article?.title || data.seo?.title || "").trim();
+  if ($("meta_description")) $("meta_description").value = String(data.seo?.description || "").trim();
+  if ($("summary")) $("summary").value = String(intro[0] || data.seo?.description || "").trim();
+}
+
+function syncHotelReviewJsonSourceVisibility() {
+  const wrap = $("hotelReviewJsonSourceEditor");
+  if (!wrap) return;
+  const show = Boolean(window.HotelReviewJsonEditor?.isJsonMode?.());
+  wrap.hidden = !show;
+  wrap.setAttribute("aria-hidden", show ? "false" : "true");
+}
+
+function prettyPrintHotelReviewJsonEditor() {
+  const source = $("hotelReviewJsonValue");
+  if (!source) return false;
+  const raw = String(source.value || "").trim();
+  if (!raw) return false;
+  try {
+    source.value = JSON.stringify(JSON.parse(raw), null, 2);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function validateHotelReviewJsonEditor({ updatePreview = true } = {}) {
+  const source = $("hotelReviewJsonValue");
+  if (!source || !window.HotelReviewJsonEditor?.isJsonMode?.()) return { ok: true };
+  const raw = String(source.value || "").trim();
+  if (!raw) {
+    setHotelReviewJsonEditStatus("JSON 내용을 입력하거나 JSON 파일을 업로드해 주세요.", "error");
+    return { ok: false };
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (error) {
+    setHotelReviewJsonEditStatus(`JSON 문법 오류 · ${error?.message || "형식을 확인해 주세요."}`, "error");
+    return { ok: false };
+  }
+
+  const currentSlug = String($("slug")?.value || "").trim();
+  const jsonSlug = String(parsed?.slug || "").trim();
+  if (currentSlug && jsonSlug && currentSlug !== jsonSlug) {
+    setHotelReviewJsonEditStatus(`JSON slug(${jsonSlug})와 현재 글 slug(${currentSlug})가 다릅니다. 기존 글의 slug와 동일하게 수정해 주세요.`, "error");
+    return { ok: false };
+  }
+
+  const validation = window.HotelReviewJsonEditor?.validateForSave?.() || { ok: true, errors: [] };
+  if (!validation.ok) {
+    setHotelReviewJsonEditStatus(`JSON 검증 실패\n- ${(validation.errors || []).slice(0, 8).join("\n- ")}`, "error");
+    return validation;
+  }
+
+  syncHotelReviewJsonDerivedFields(parsed);
+  renderHotelReviewJsonEditSummary(parsed);
+  setHotelReviewJsonEditStatus(`JSON 검증 완료 · 직접 수정 가능 · ${Array.isArray(parsed.sections) ? parsed.sections.length : 0}개 섹션 · ${String(parsed.hotel?.nameKo || "")}`, "valid");
+  if (updatePreview) {
+    updateAllCounts();
+    renderSeoChecklist();
+    renderPreview();
+  }
+  return { ok: true, data: parsed };
+}
+
+function handleHotelReviewJsonDirectInput() {
+  clearTimeout(hotelReviewJsonEditTimer);
+  hotelReviewJsonEditTimer = setTimeout(() => validateHotelReviewJsonEditor({ updatePreview: true }), 220);
+}
+
+function handleHotelReviewJsonLoadedOrUploaded() {
+  syncHotelReviewJsonSourceVisibility();
+  if (!window.HotelReviewJsonEditor?.isJsonMode?.()) return;
+  prettyPrintHotelReviewJsonEditor();
+  validateHotelReviewJsonEditor({ updatePreview: true });
+}
+
 function syncRecommendationCategoryCardVisibility() {
   const shouldShow = isHotelRecommendationContentSelected();
   document.querySelectorAll(".editor-recommendation-category-card").forEach((card) => {
@@ -4109,6 +4227,11 @@ async function load() {
   applyHotelHeroFormData(item.hotel_hero || {});
   applyHotelPickFormData({ price_level: item.hotel_pick_label || "" });
   window.HotelReviewJsonEditor?.loadFromServer?.(item);
+  syncHotelReviewJsonSourceVisibility();
+  if (window.HotelReviewJsonEditor?.isJsonMode?.()) {
+    prettyPrintHotelReviewJsonEditor();
+    validateHotelReviewJsonEditor({ updatePreview: false });
+  }
 
   let tags = [];
   try { tags = JSON.parse(item.tags_json || "[]"); } catch {}
@@ -4205,10 +4328,12 @@ async function save() {
 
   const normalizedContentType = normalizeContentType($("content_type")?.value || "");
   const isHotelReviewJson = Boolean(window.HotelReviewJsonEditor?.isJsonMode?.());
-  const hotelJsonValidation = window.HotelReviewJsonEditor?.validateForSave?.() || { ok: true, errors: [] };
+  const hotelJsonValidation = isHotelReviewJson
+    ? validateHotelReviewJsonEditor({ updatePreview: false })
+    : (window.HotelReviewJsonEditor?.validateForSave?.() || { ok: true, errors: [] });
   if (!hotelJsonValidation.ok) {
     statusEl.textContent = hotelJsonValidation.errors?.[0] || "추천 호텔 리뷰 JSON을 확인해 주세요.";
-    $("hotelReviewJsonFile")?.focus();
+    ($("hotelReviewJsonValue") && !$("hotelReviewJsonValue").hidden ? $("hotelReviewJsonValue") : $("hotelReviewJsonFile"))?.focus();
     return;
   }
   const shouldSaveHotelHero = normalizedContentType === "hotel_intro";
@@ -4418,8 +4543,14 @@ document.querySelectorAll("[data-preview-width]").forEach((button) => {
   button.addEventListener("click", () => setPreviewDevice(button.dataset.previewWidth || "pc"));
 });
 
+$("hotelReviewJsonValue")?.addEventListener("input", handleHotelReviewJsonDirectInput);
+$("content_type")?.addEventListener("change", syncHotelReviewJsonSourceVisibility);
+
 document.addEventListener("content-link-settings-change", handleRealtimeChange);
-document.addEventListener("hotel-review-json-change", handleRealtimeChange);
+document.addEventListener("hotel-review-json-change", () => {
+  handleHotelReviewJsonLoadedOrUploaded();
+  handleRealtimeChange();
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") { closePreview(); closeTravelSettingsModal(); }

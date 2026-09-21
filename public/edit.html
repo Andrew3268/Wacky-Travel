@@ -131,22 +131,38 @@
 
             <section class="card editor-option-card hotel-review-json-editor" id="hotelReviewJsonEditor" hidden aria-hidden="true">
               <input type="hidden" id="content_format" value="markdown" />
-              <textarea id="hotelReviewJsonValue" hidden></textarea>
               <div class="section-heading" style="margin-bottom:12px;">
                 <div>
                   <div class="h2">추천 호텔 리뷰 JSON</div>
-                  <p class="small">추천 호텔 리뷰는 Markdown 대신 <code>hotel-review-v1.0</code> JSON 파일을 업로드해 작성합니다. JSON의 제목·SEO·호텔 정보·본문 섹션을 서버에서 SSR로 렌더링합니다.</p>
+                  <p class="small">저장된 <code>hotel-review-v1.0</code> JSON을 직접 확인·수정하거나, 새 JSON 파일을 업로드해 전체 내용을 교체할 수 있습니다. 저장 전 JSON 문법과 필수 구조를 다시 검증합니다.</p>
                 </div>
               </div>
               <div class="hotel-review-json-editor__legacy" id="hotelReviewLegacyNotice" hidden>이 글은 기존 Markdown 방식으로 저장된 추천 호텔 리뷰입니다. 현재 방식 그대로 수정할 수 있으며, 아래에 JSON 파일을 업로드하면 JSON SSR 방식으로 전환됩니다.</div>
               <div class="hotel-review-json-editor__drop" id="hotelReviewJsonDrop">
                 <div class="hotel-review-json-editor__file">
-                  <label class="btn" for="hotelReviewJsonFile">JSON 파일 선택</label>
+                  <label class="btn" for="hotelReviewJsonFile">JSON 파일로 교체</label>
                   <input id="hotelReviewJsonFile" type="file" accept=".json,application/json" />
                 </div>
                 <div class="hotel-review-json-editor__status" id="hotelReviewJsonStatus" aria-live="polite">JSON 파일을 선택해 주세요.</div>
                 <div class="hotel-review-json-editor__summary" id="hotelReviewJsonSummary"></div>
-                <div class="grid grid--2 hotel-review-json-editor__ops" style="margin-top:4px;">
+                <div id="hotelReviewJsonSourceEditor" hidden style="margin-top:14px;">
+                  <label for="hotelReviewJsonValue" style="display:block;">
+                    <span class="small" style="display:block;margin-bottom:7px;">현재 JSON 직접 수정</span>
+                    <textarea
+                      id="hotelReviewJsonValue"
+                      class="input"
+                      rows="24"
+                      spellcheck="false"
+                      autocomplete="off"
+                      autocapitalize="off"
+                      wrap="off"
+                      aria-describedby="hotelReviewJsonEditHelp"
+                      style="display:block;width:100%;min-height:520px;resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;font-size:13px;line-height:1.65;white-space:pre;overflow:auto;tab-size:2;"
+                    ></textarea>
+                  </label>
+                  <p class="small" id="hotelReviewJsonEditHelp" style="margin:8px 0 0;">내용을 직접 수정할 수 있습니다. 올바른 JSON이면 편집 상태와 미리보기가 자동으로 갱신되며, 문법 또는 스키마 오류가 있으면 저장되지 않습니다.</p>
+                </div>
+                <div class="grid grid--2 hotel-review-json-editor__ops" style="margin-top:14px;">
                   <label>
                     <span class="small">호텔 픽 라벨 (선택)</span>
                     <input class="input" id="hotelReviewPickLabel" maxlength="30" placeholder="예: 에디터픽" />
