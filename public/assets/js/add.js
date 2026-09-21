@@ -3784,6 +3784,12 @@ async function save() {
     $("hotelReviewJsonFile")?.focus();
     return;
   }
+  const tripcomValidation = window.HotelReviewJsonEditor?.validateTripcomForSave?.() || { ok:true, errors:[] };
+  if (!tripcomValidation.ok) {
+    statusEl.textContent = tripcomValidation.errors?.[0] || "트립닷컴 사이드바 제휴 코드를 확인해 주세요.";
+    $("hotelReviewTripcomCode")?.focus();
+    return;
+  }
   const slug = isHotelReviewJson ? (window.HotelReviewJsonEditor?.getSlug?.() || "") : slugify(title);
   const shouldSaveHotelHero = normalizedContentType === "hotel_intro";
   const shouldSaveRecommendationCategory = normalizedContentType === "top5_series";

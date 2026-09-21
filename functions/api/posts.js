@@ -6,6 +6,7 @@ import { ensurePublicModifiedDateColumn, isMissingPublicModifiedColumnError } fr
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../lib/posts/affiliate-disclosure.js";
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn } from "../../lib/posts/content-link-settings.js";
 import { deriveHotelReviewPostFields, normalizeHotelReviewContentFormat, validateHotelReviewJson } from "../../lib/posts/hotel-review-json.js";
+import { normalizeTripcomSidebarAd } from "../../lib/posts/tripcom-sidebar-ad.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -103,6 +104,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_format TEXT DEFAULT 'markdown'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_json TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN tripcom_sidebar_ad_url TEXT DEFAULT ''`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
   await ensureAffiliateDisclosureColumn(db);
   await ensureContentLinkSettingsColumn(db);
@@ -590,6 +592,11 @@ export async function onRequestPost(context) {
   const affiliateDisclosure = normalizeAffiliateDisclosure(body.affiliate_disclosure);
   const contentLinkSettings = normalizeContentLinkSettings(body.content_link_settings || body.content_link_settings_json || []);
   const searchIntent = String(body.search_intent || "").trim();
+  const tripcomSidebarAd = contentType === "hotel_intro"
+    ? normalizeTripcomSidebarAd(body.tripcom_sidebar_ad_url || body.tripcom_sidebar_ad_code || "")
+    : { ok: true, url: "", error: "" };
+  if (!tripcomSidebarAd.ok) return okJson({ message: tripcomSidebarAd.error }, { status: 400 });
+  const tripcomSidebarAdUrl = tripcomSidebarAd.url;
 
   const hasRequiredContent = contentFormat === "json" ? Boolean(contentJson) : Boolean(contentMd);
   if (!slug || !title || !hasRequiredContent) {
@@ -639,11 +646,12 @@ export async function onRequestPost(context) {
       affiliate_disclosure,
       content_link_settings_json,
       search_intent,
+      tripcom_sidebar_ad_url,
       status,
       published_at,
       content_modified_at,
       updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       title = excluded.title,
       category = excluded.category,
@@ -678,6 +686,7 @@ export async function onRequestPost(context) {
       affiliate_disclosure = excluded.affiliate_disclosure,
       content_link_settings_json = excluded.content_link_settings_json,
       search_intent = excluded.search_intent,
+      tripcom_sidebar_ad_url = excluded.tripcom_sidebar_ad_url,
       status = excluded.status,
       published_at = excluded.published_at,
       content_modified_at = COALESCE(NULLIF(posts.content_modified_at, ''), posts.published_at, excluded.content_modified_at),
@@ -717,6 +726,7 @@ export async function onRequestPost(context) {
     affiliateDisclosure,
     JSON.stringify(contentLinkSettings),
     searchIntent,
+    tripcomSidebarAdUrl,
     status,
     now,
     now,

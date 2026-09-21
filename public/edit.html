@@ -172,6 +172,14 @@
                     <input class="input" id="hotelReviewPriceUrl" placeholder="https://..." />
                   </label>
                 </div>
+                <div class="hotel-review-json-editor__tripcom" id="hotelReviewTripcomSection" style="margin-top:14px;">
+                  <label for="hotelReviewTripcomCode" style="display:block;">
+                    <span class="small" style="display:block;margin-bottom:7px;">트립닷컴 사이드바 제휴 코드 (선택)</span>
+                    <textarea class="input" id="hotelReviewTripcomCode" rows="5" spellcheck="false" placeholder="트립닷컴에서 복사한 &lt;iframe ...&gt;&lt;/iframe&gt; 코드를 붙여넣으세요."></textarea>
+                  </label>
+                  <p class="small" style="margin:8px 0 0;">추천 호텔 리뷰의 첫 번째 사이드바 카드에 표시됩니다. 보안을 위해 전체 iframe 코드는 저장하지 않고 <code>kr.trip.com/partners/ad/</code>의 <code>src</code> URL만 추출해 저장합니다.</p>
+                  <div class="hotel-review-json-editor__status" id="hotelReviewTripcomStatus" aria-live="polite" style="margin-top:8px;">코드를 입력하지 않으면 기존 호텔 정보 카드가 표시됩니다.</div>
+                </div>
               </div>
             </section>
 

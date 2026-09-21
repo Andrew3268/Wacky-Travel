@@ -18,6 +18,64 @@
   const getFormat = () => text($("content_format")?.value || "markdown").toLowerCase() === "json" ? "json" : "markdown";
   const isJsonMode = () => isHotelType() && getFormat() === "json";
 
+
+  function extractTripcomSidebarUrl(value = "") {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    const iframeMatch = raw.match(/<iframe\b[^>]*\bsrc\s*=\s*(["'])(.*?)\1/i);
+    return String(iframeMatch?.[2] || raw)
+      .replace(/&amp;/gi, "&")
+      .replace(/&quot;/gi, '"')
+      .replace(/&#39;|&apos;/gi, "'")
+      .trim();
+  }
+
+  function validateTripcomInput(value = "") {
+    const candidate = extractTripcomSidebarUrl(value);
+    if (!candidate) return { ok:true, url:"", error:"" };
+    try {
+      const url = new URL(candidate);
+      if (url.protocol !== "https:" || url.hostname.toLowerCase() !== "kr.trip.com" || !url.pathname.startsWith("/partners/ad/")) {
+        return { ok:false, url:"", error:"kr.trip.com/partners/ad/ 형식의 트립닷컴 제휴 iframe만 사용할 수 있습니다." };
+      }
+      url.hash = "";
+      return { ok:true, url:url.toString(), error:"" };
+    } catch (_) {
+      return { ok:false, url:"", error:"트립닷컴 iframe 코드 또는 올바른 제휴 URL을 입력해 주세요." };
+    }
+  }
+
+  function buildTripcomIframeCode(url = "") {
+    const safe = String(url || "").trim();
+    if (!safe) return "";
+    return `<iframe border="0" src="${safe}" style="width:320px;height:320px" frameborder="0" scrolling="no" style="border:none"></iframe>`;
+  }
+
+  function renderTripcomStatus() {
+    const input = $("hotelReviewTripcomCode");
+    const status = $("hotelReviewTripcomStatus");
+    if (!input || !status) return { ok:true, url:"", error:"" };
+    const result = validateTripcomInput(input.value);
+    status.classList.toggle("is-valid", result.ok && Boolean(result.url));
+    status.classList.toggle("is-error", !result.ok);
+    if (!String(input.value || "").trim()) {
+      status.textContent = "코드를 입력하지 않으면 기존 호텔 정보 카드가 표시됩니다.";
+    } else if (result.ok) {
+      status.textContent = "트립닷컴 제휴 코드 확인 완료 · 첫 번째 사이드바 카드에 표시됩니다.";
+    } else {
+      status.textContent = result.error;
+    }
+    return result;
+  }
+
+  function validateTripcomForSave() {
+    if (!isHotelType()) return { ok:true, url:"", errors:[] };
+    const result = renderTripcomStatus();
+    return result.ok
+      ? { ok:true, url:result.url, errors:[] }
+      : { ok:false, url:"", errors:[result.error || "트립닷컴 제휴 코드를 확인해 주세요."] };
+  }
+
   function validate(input) {
     const errors = [];
     if (!obj(input)) return { ok:false, errors:["호텔 리뷰 JSON 최상위 값은 객체여야 합니다."] };
@@ -174,6 +232,8 @@
     if (editor) { editor.hidden = !hotel; editor.setAttribute("aria-hidden", hotel ? "false" : "true"); }
     const legacyNotice = $("hotelReviewLegacyNotice");
     if (legacyNotice) legacyNotice.hidden = !(hotel && !jsonMode && loadedLegacy);
+    const tripcomSection = $("hotelReviewTripcomSection");
+    if (tripcomSection) tripcomSection.hidden = !jsonMode;
     const markdownIds = ["contentMarkdownSection","contentLinkManager","faqMarkdownField","inlineImageEditorCard","markdownTocCard"];
     markdownIds.forEach((id) => { const el=$(id); if (el) { el.hidden = jsonMode; el.setAttribute("aria-hidden", jsonMode ? "true" : "false"); } });
     setReadonlyForJsonMode(jsonMode);
@@ -194,6 +254,9 @@
     setField("hotelReviewPickLabel", text(item.hotel_pick_label || ""));
     setField("hotelReviewPriceUrl", text(item.hotel_hero?.price_url || ""));
     setField("heroHotelPriceUrl", text(item.hotel_hero?.price_url || ""));
+    const tripcomUrl = text(item.tripcom_sidebar_ad_url || "");
+    if ($("hotelReviewTripcomCode")) $("hotelReviewTripcomCode").value = buildTripcomIframeCode(tripcomUrl);
+    renderTripcomStatus();
     const format = text(item.content_format || "markdown").toLowerCase() === "json" ? "json" : "markdown";
     if ($("content_format")) $("content_format").value = format;
     if (format === "json") {
@@ -229,9 +292,11 @@
   }
 
   function getPayload() {
+    const tripcom = validateTripcomInput($("hotelReviewTripcomCode")?.value || "");
     return {
       content_format: isJsonMode() ? "json" : "markdown",
-      content_json: isJsonMode() ? text($("hotelReviewJsonValue")?.value || "") : ""
+      content_json: isJsonMode() ? text($("hotelReviewJsonValue")?.value || "") : "",
+      tripcom_sidebar_ad_url: isHotelType() && tripcom.ok ? tripcom.url : ""
     };
   }
 
@@ -248,6 +313,7 @@
     $("hotelReviewPriceUrl")?.addEventListener("input", () => {
       if ($("heroHotelPriceUrl")) $("heroHotelPriceUrl").value = $("hotelReviewPriceUrl").value;
     });
+    $("hotelReviewTripcomCode")?.addEventListener("input", renderTripcomStatus);
     $("content_type")?.addEventListener("change", setHotelModeDefault);
     setHotelModeDefault();
   }
@@ -258,6 +324,7 @@
     syncVisibility,
     loadFromServer,
     validateForSave,
+    validateTripcomForSave,
     getPayload,
     getData: () => data,
     getSlug: () => isJsonMode() ? text(data?.slug) : "",

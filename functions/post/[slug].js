@@ -84,7 +84,7 @@ function isMissingHotelPickColumnError(error) {
 }
 
 function isMissingHotelReviewContentColumnError(error) {
-  return /no such column:\s*(?:posts\.)?(?:content_format|content_json)/i.test(String(error?.message || error || ""));
+  return /no such column:\s*(?:posts\.)?(?:content_format|content_json|tripcom_sidebar_ad_url)/i.test(String(error?.message || error || ""));
 }
 
 async function loadPostRow(db, slug, requestedStatus) {
@@ -104,6 +104,7 @@ async function loadPostRow(db, slug, requestedStatus) {
       content_md,
       COALESCE(NULLIF(content_format, ''), 'markdown') AS content_format,
       content_json,
+      tripcom_sidebar_ad_url,
       faq_md,
       view_count,
       enable_sidebar_ad,
@@ -132,7 +133,8 @@ async function loadPostRow(db, slug, requestedStatus) {
     .replace("      affiliate_disclosure,", "      '' AS affiliate_disclosure,")
     .replace("      content_link_settings_json,", "      '[]' AS content_link_settings_json,")
     .replace("      COALESCE(NULLIF(content_format, ''), 'markdown') AS content_format,", "      'markdown' AS content_format,")
-    .replace("      content_json,", "      '' AS content_json,");
+    .replace("      content_json,", "      '' AS content_json,")
+    .replace("      tripcom_sidebar_ad_url,", "      '' AS tripcom_sidebar_ad_url,");
 
   try {
     return await db.prepare(sql).bind(slug, requestedStatus).first();
@@ -623,7 +625,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
-  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20260921-v1" />` : ""}
+  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20260921-v2" />` : ""}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -660,6 +662,7 @@ export async function onRequestGet(context) {
         coverImageHtml: hotelReviewCoverImageHtml,
         affiliateDisclosureHtml,
         availabilityUrl: safeHotelPriceLink,
+        tripcomSidebarAdUrl: row.tripcom_sidebar_ad_url || "",
         draftPreviewBannerHtml,
         relatedPostsHtml,
         sidebarAdHtml

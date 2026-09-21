@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS posts (
   content_md TEXT DEFAULT '',
   content_format TEXT DEFAULT 'markdown',
   content_json TEXT DEFAULT '',
+  tripcom_sidebar_ad_url TEXT DEFAULT '',
   faq_md TEXT DEFAULT '',
   view_count INTEGER DEFAULT 0,
   enable_sidebar_ad INTEGER DEFAULT 0,

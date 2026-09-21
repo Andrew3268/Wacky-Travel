@@ -6,6 +6,7 @@ import { ensurePublicModifiedDateColumn } from "../../../lib/posts/public-modifi
 import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from "../../../lib/posts/affiliate-disclosure.js";
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn, isMissingContentLinkSettingsColumnError } from "../../../lib/posts/content-link-settings.js";
 import { deriveHotelReviewPostFields, normalizeHotelReviewContentFormat, validateHotelReviewJson } from "../../../lib/posts/hotel-review-json.js";
+import { normalizeTripcomSidebarAd } from "../../../lib/posts/tripcom-sidebar-ad.js";
 
 
 function normalizeStatusValue(value = "published") {
@@ -243,6 +244,7 @@ async function ensurePostRegionColumns(db) {
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN situation_tags_json TEXT DEFAULT '[]'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_format TEXT DEFAULT 'markdown'`).run(); } catch (_) {}
   try { await db.prepare(`ALTER TABLE posts ADD COLUMN content_json TEXT DEFAULT ''`).run(); } catch (_) {}
+  try { await db.prepare(`ALTER TABLE posts ADD COLUMN tripcom_sidebar_ad_url TEXT DEFAULT ''`).run(); } catch (_) {}
   await ensurePublicModifiedDateColumn(db);
   await ensureAffiliateDisclosureColumn(db);
   await ensureContentLinkSettingsColumn(db);
@@ -432,7 +434,7 @@ async function getHotelHeroData(db, hotelSlug = "") {
 }
 
 function isMissingPostEditColumnError(error) {
-  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json|affiliate_disclosure|content_format|content_json)/i.test(String(error?.message || error || ""))
+  return /no such column:\s*(?:posts\.)?(?:cover_image_source|cover_image_link_url|cover_image_srcset|content_modified_at|region_slug|region_name|recommendation_category_slug|recommendation_category_name|recommendation_category_description|hotel_pick_label|mood_tags_json|situation_tags_json|affiliate_disclosure|content_format|content_json|tripcom_sidebar_ad_url)/i.test(String(error?.message || error || ""))
     || isMissingContentLinkSettingsColumnError(error);
 }
 
@@ -473,6 +475,7 @@ async function selectPostForEdit(db, slug) {
       affiliate_disclosure,
       content_link_settings_json,
       search_intent,
+      tripcom_sidebar_ad_url,
       status,
       published_at,
       COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at,
@@ -612,6 +615,11 @@ export async function onRequestPut(context) {
   const affiliateDisclosure = normalizeAffiliateDisclosure(body.affiliate_disclosure);
   const contentLinkSettings = normalizeContentLinkSettings(body.content_link_settings || body.content_link_settings_json || []);
   const searchIntent = String(body.search_intent || "").trim();
+  const tripcomSidebarAd = contentType === "hotel_intro"
+    ? normalizeTripcomSidebarAd(body.tripcom_sidebar_ad_url || body.tripcom_sidebar_ad_code || "")
+    : { ok: true, url: "", error: "" };
+  if (!tripcomSidebarAd.ok) return okJson({ message: tripcomSidebarAd.error }, { status: 400 });
+  const tripcomSidebarAdUrl = tripcomSidebarAd.url;
 
   const hasRequiredContent = contentFormat === "json" ? Boolean(contentJson) : Boolean(contentMd);
   if (!title || !hasRequiredContent) {
@@ -725,6 +733,7 @@ export async function onRequestPut(context) {
       affiliate_disclosure = ?,
       content_link_settings_json = ?,
       search_intent = ?,
+      tripcom_sidebar_ad_url = ?,
       status = ?,
       published_at = ?,
       content_modified_at = ?,
@@ -764,6 +773,7 @@ export async function onRequestPut(context) {
     affiliateDisclosure,
     JSON.stringify(contentLinkSettings),
     searchIntent,
+    tripcomSidebarAdUrl,
     status,
     publishedAt,
     contentModifiedAt,
