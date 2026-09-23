@@ -95,7 +95,10 @@
 .hotel-review-json-page .hrj-map-note{margin:12px 2px 0!important;font-size:11px!important;line-height:1.55!important;color:#9a948c!important}
 
 /* Leaflet label cards */
-.hotel-review-json-page .hrj-map-label-wrap{background:transparent!important;border:0!important}
+.hotel-review-json-page .hrj-map-label-wrap{background:transparent!important;border:0!important;transition:opacity .2s ease,filter .2s ease}
+.hotel-review-json-page .hrj-location-map.is-poi-focused .hrj-map-marker--poi{opacity:.2!important;filter:grayscale(.72) saturate(.38)}
+.hotel-review-json-page .hrj-location-map.is-poi-focused .hrj-map-marker--poi.is-focused-poi{opacity:1!important;filter:none}
+.hotel-review-json-page .hrj-location-map.is-poi-focused .hrj-map-marker--hotel{opacity:1!important;filter:none}
 .hotel-review-json-page .hrj-map-label{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 9px 4px 5px;border-radius:10px;background:rgba(255,255,255,.97);border:1.5px solid #dbeafe;box-shadow:0 5px 14px rgba(17,24,39,.13);color:#1e3a8a;white-space:nowrap;font:600 12px/1.15 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .hotel-review-json-page .hrj-map-label::after{content:"";position:absolute;left:13px;bottom:-4px;width:7px;height:7px;border-radius:50%;background:#2563eb;border:2px solid #fff;box-shadow:0 1px 3px rgba(17,24,39,.14)}
 .hotel-review-json-page .hrj-map-label__icon{width:23px;height:23px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:#2563eb;color:#fff}

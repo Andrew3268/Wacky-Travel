@@ -157,6 +157,7 @@
         if (clearConnection) {
           lineLayer.clearLayers();
           setSelected("");
+          clearMarkerFocus();
         }
         const zoom = initialZoom();
         if (animate && map._loaded) map.flyTo(hotelLatLng, zoom, { duration: 0.45 });
@@ -170,6 +171,7 @@
         }
         lineLayer.clearLayers();
         setSelected("");
+        clearMarkerFocus();
         map.fitBounds(activeBounds, { padding: [48, 48], maxZoom: 14 });
       };
 
@@ -178,6 +180,27 @@
           button.classList.toggle("is-selected", button.dataset.hrjMapPlace === String(id) && button.dataset.mapCategory === activeCategory);
         });
       };
+
+      const clearMarkerFocus = () => {
+        root.classList.remove("is-poi-focused");
+        markerById.forEach((marker) => {
+          marker.getElement()?.classList.remove("is-focused-poi");
+          marker.setZIndexOffset(0);
+        });
+      };
+
+      const setMarkerFocus = (id) => {
+        const selectedId = String(id);
+        root.classList.add("is-poi-focused");
+        markerById.forEach((marker, markerId) => {
+          const focused = String(markerId) === selectedId;
+          marker.getElement()?.classList.toggle("is-focused-poi", focused);
+          marker.setZIndexOffset(focused ? 1500 : 0);
+        });
+        hotelMarker.setZIndexOffset(2000);
+      };
+
+      hotelMarker.getElement()?.classList.add("hrj-map-marker--hotel");
 
       const connectToItem = (item, { openPopup = true } = {}) => {
         const marker = markerById.get(String(item.id));
@@ -200,6 +223,7 @@
         map.fitBounds([hotelLatLng, target], { padding: [55, 55], maxZoom: 15 });
         if (openPopup) marker.openPopup();
         setSelected(item.id);
+        setMarkerFocus(item.id);
       };
 
       const renderCategory = (key) => {
@@ -207,6 +231,7 @@
         activeCategory = text(category?.key);
         poiLayer.clearLayers();
         lineLayer.clearLayers();
+        clearMarkerFocus();
         markerById.clear();
 
         const bounds = [hotelLatLng];
@@ -219,6 +244,7 @@
             icon: markerIcon(text(item.nameKo), kind),
             keyboard: true
           }).addTo(poiLayer).bindPopup(popupHtml(item));
+          marker.getElement()?.classList.add("hrj-map-marker--poi");
           marker.on("click", () => connectToItem(item, { openPopup: false }));
           markerById.set(String(item.id), marker);
           bounds.push([lat, lng]);
