@@ -121,6 +121,8 @@ assert.match(rendered, /<h1 class="hrj-title">샘플 호텔 리뷰<\/h1>/);
 assert.match(rendered, /data-hrj-location-map/);
 assert.match(rendered, /data-hrj-map-tab="attractions"/);
 assert.match(rendered, /data-hrj-map-tab="restaurants"/);
+assert.match(rendered, /data-hrj-map-center/);
+assert.match(rendered, /data-hrj-map-all/);
 assert.match(rendered, /샘플 명소/);
 assert.match(rendered, /샘플 맛집/);
 assert.match(rendered, /반복해서 언급된 장점/);

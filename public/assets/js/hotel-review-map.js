@@ -128,7 +128,8 @@
       const map = L.map(canvas, {
         zoomControl: true,
         scrollWheelZoom: false,
-        attributionControl: true
+        attributionControl: true,
+        zoomSnap: 0.5
       });
       map.attributionControl.setPrefix(false);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -147,8 +148,30 @@
       const lineLayer = L.layerGroup().addTo(map);
       const markerById = new Map();
       let activeCategory = text(config.defaultCategory) || text(config.categories[0]?.key);
+      let activeBounds = null;
 
+      const initialZoom = () => window.matchMedia?.("(max-width: 720px)")?.matches ? 13.5 : 14;
       const getCategory = (key) => config.categories.find((category) => text(category.key) === text(key)) || config.categories[0];
+
+      const showHotelCenter = ({ animate = true, clearConnection = true } = {}) => {
+        if (clearConnection) {
+          lineLayer.clearLayers();
+          setSelected("");
+        }
+        const zoom = initialZoom();
+        if (animate && map._loaded) map.flyTo(hotelLatLng, zoom, { duration: 0.45 });
+        else map.setView(hotelLatLng, zoom, { animate: false });
+      };
+
+      const showAllPlaces = () => {
+        if (!activeBounds || !activeBounds.isValid()) {
+          showHotelCenter();
+          return;
+        }
+        lineLayer.clearLayers();
+        setSelected("");
+        map.fitBounds(activeBounds, { padding: [48, 48], maxZoom: 14 });
+      };
 
       const setSelected = (id) => {
         root.querySelectorAll("[data-hrj-map-place]").forEach((button) => {
@@ -212,14 +235,24 @@
           panel.classList.toggle("is-active", active);
         });
         setSelected("");
-        if (bounds.length > 1) map.fitBounds(bounds, { padding: [42, 42], maxZoom: 13 });
-        else map.setView(hotelLatLng, 14);
+        activeBounds = L.latLngBounds(bounds);
+        showHotelCenter({ animate: false, clearConnection: false });
       };
 
       root.addEventListener("click", (event) => {
         const tab = event.target.closest("[data-hrj-map-tab]");
         if (tab && root.contains(tab)) {
           renderCategory(tab.dataset.hrjMapTab || "");
+          return;
+        }
+        const centerButton = event.target.closest("[data-hrj-map-center]");
+        if (centerButton && root.contains(centerButton)) {
+          showHotelCenter();
+          return;
+        }
+        const allButton = event.target.closest("[data-hrj-map-all]");
+        if (allButton && root.contains(allButton)) {
+          showAllPlaces();
           return;
         }
         const button = event.target.closest("[data-hrj-map-place]");
