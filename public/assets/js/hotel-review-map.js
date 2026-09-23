@@ -75,15 +75,6 @@
     });
   }
 
-  function distanceLabel(item = {}) {
-    const label = text(item?.distance?.label);
-    if (label) return label;
-    const km = num(item?.distance?.valueKm);
-    if (km === null) return "";
-    if (km < 1) return `약 ${Math.round(km * 1000)}m`;
-    return `약 ${km.toFixed(km < 10 ? 1 : 0)}km`;
-  }
-
   function travelLabel(item = {}) {
     const bits = [];
     const walk = num(item?.travel?.walkMinutes);
@@ -94,9 +85,8 @@
   }
 
   function popupHtml(item = {}) {
-    const local = text(item.nameLocal) || text(item.nameEn);
-    const info = [distanceLabel(item), travelLabel(item)].filter(Boolean).join(" · ");
-    return `<div class="hrj-map-popup"><strong>${escapeHtml(text(item.nameKo))}</strong>${local ? `<span>${escapeHtml(local)}</span>` : ""}${info ? `<small>호텔에서 ${escapeHtml(info)}</small>` : ""}</div>`;
+    const info = travelLabel(item);
+    return `<div class="hrj-map-popup"><strong>${escapeHtml(text(item.nameKo))}</strong>${info ? `<small>${escapeHtml(info)}</small>` : ""}</div>`;
   }
 
   function parseConfig(root) {
@@ -184,6 +174,7 @@
       const clearMarkerFocus = () => {
         root.classList.remove("is-poi-focused");
         markerById.forEach((marker) => {
+          marker.setOpacity(1);
           marker.getElement()?.classList.remove("is-focused-poi");
           marker.setZIndexOffset(0);
         });
@@ -194,9 +185,11 @@
         root.classList.add("is-poi-focused");
         markerById.forEach((marker, markerId) => {
           const focused = String(markerId) === selectedId;
+          marker.setOpacity(focused ? 1 : 0.5);
           marker.getElement()?.classList.toggle("is-focused-poi", focused);
           marker.setZIndexOffset(focused ? 1500 : 0);
         });
+        hotelMarker.setOpacity(1);
         hotelMarker.setZIndexOffset(2000);
       };
 

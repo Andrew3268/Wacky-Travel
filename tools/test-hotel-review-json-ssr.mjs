@@ -70,8 +70,8 @@ assert.match(css, /\.hrj-review-analysis__grid/);
 assert.match(css, /\.hrj-decision-card/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.match(css, /\.hrj-mobile-toc ul\{list-style:none/);
-assert.match(post, /hotel-review-json\.css\?v=20260923-location-map-focus-v3/);
-assert.match(post, /hotel-review-map\.js\?v=20260923-location-map-focus-v3/);
+assert.match(post, /hotel-review-json\.css\?v=20260923-location-map-focus-v4/);
+assert.match(post, /hotel-review-map\.js\?v=20260923-location-map-focus-v4/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 assert.match(css, /\.hrj-location-map/);
@@ -92,6 +92,10 @@ assert.match(mapJs, /13\.5/);
 assert.match(mapJs, /map\.fitBounds\(activeBounds/);
 assert.match(mapJs, /is-poi-focused/);
 assert.match(mapJs, /is-focused-poi/);
-assert.match(css, /hrj-map-marker--poi/);
+assert.match(mapJs, /setOpacity\(focused \? 1 : 0\.5\)/);
+assert.match(mapJs, /hotelMarker\.setOpacity\(1\)/);
+assert.doesNotMatch(mapJs, /item\.nameLocal|item\.nameEn|distanceLabel/);
+assert.match(css, /hrj-map-marker--poi:not\(\.is-focused-poi\)\{opacity:\.5!important/);
+assert.match(css, /grayscale\(\.9\) saturate\(\.16\)/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");
