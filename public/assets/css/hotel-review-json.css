@@ -140,3 +140,39 @@
   .hotel-review-json-page .hrj-map-label__icon{width:21px;height:21px}
   .hotel-review-json-page .hrj-map-label__text{max-width:112px}
 }
+
+/* Hotel review booking overview 40/60 v6 */
+.hotel-review-json-page .hrj-booking-overview{margin:36px 0 0;display:grid;grid-template-columns:minmax(0,40%) minmax(0,60%);min-height:470px;border:1px solid var(--hrj-line);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 8px 28px rgba(28,28,28,.035)}
+.hotel-review-json-page .hrj-booking-overview__media{min-width:0;min-height:0;background:#f0ede8}
+.hotel-review-json-page .hrj-booking-overview__media .hrj-hero{margin:0;width:100%;height:100%;min-height:470px;border-radius:0;background:#e7e2da}
+.hotel-review-json-page .hrj-booking-overview__media .hrj-hero a{display:block;width:100%;height:100%}
+.hotel-review-json-page .hrj-booking-overview__media .hrj-hero img{display:block;width:100%;height:100%;object-fit:cover}
+.hotel-review-json-page .hrj-basic-info{margin:0;border:0;padding:36px 34px 30px;display:flex;flex-direction:column;min-width:0;background:#fff}
+.hotel-review-json-page .hrj-basic-info__title{margin:0 0 9px;font-size:22px;line-height:1.4;font-weight:400;letter-spacing:-.02em}
+.hotel-review-json-page .hrj-basic-info__desc{margin:0 0 24px;font-size:13px;line-height:1.65;color:#918b84}
+.hotel-review-json-page .hrj-basic-info__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:22px}
+.hotel-review-json-page .hrj-basic-info__item{padding:0;min-height:0}
+.hotel-review-json-page .hrj-basic-info__label{display:block;margin-bottom:7px;font-size:12px;line-height:1.4;color:#9a948e}
+.hotel-review-json-page .hrj-basic-info__value{display:block;font-size:14px;line-height:1.68;color:#3d3b38;word-break:keep-all}
+.hotel-review-json-page .hrj-basic-info__action{margin-top:auto;padding-top:24px;border-top:1px solid var(--hrj-line);display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+.hotel-review-json-page .hrj-basic-info__action>span{max-width:240px;font-size:11px;line-height:1.5;color:#9a948e;text-align:right}
+.hotel-review-json-page .post-affiliate-disclosure{margin:12px 0 0}
+
+@media(max-width:820px){
+  .hotel-review-json-page .hrj-booking-overview{grid-template-columns:1fr;min-height:0}
+  .hotel-review-json-page .hrj-booking-overview__media{aspect-ratio:16/9}
+  .hotel-review-json-page .hrj-booking-overview__media .hrj-hero{height:100%;min-height:0}
+  .hotel-review-json-page .hrj-basic-info{padding:28px 24px 24px}
+}
+
+@media(max-width:560px){
+  .hotel-review-json-page .hrj-booking-overview{margin-top:28px;border-radius:18px}
+  .hotel-review-json-page .hrj-booking-overview__media{aspect-ratio:4/3}
+  .hotel-review-json-page .hrj-basic-info{padding:24px 18px 20px}
+  .hotel-review-json-page .hrj-basic-info__title{font-size:20px}
+  .hotel-review-json-page .hrj-basic-info__desc{margin-bottom:22px}
+  .hotel-review-json-page .hrj-basic-info__grid{grid-template-columns:1fr;row-gap:19px}
+  .hotel-review-json-page .hrj-basic-info__action{margin-top:24px;padding-top:18px;align-items:stretch;flex-direction:column-reverse;gap:8px}
+  .hotel-review-json-page .hrj-basic-info__action>span{max-width:none;text-align:center}
+  .hotel-review-json-page .hrj-basic-info__cta{width:100%;min-height:48px}
+}
