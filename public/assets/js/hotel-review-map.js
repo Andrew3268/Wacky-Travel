@@ -185,7 +185,7 @@
         root.classList.add("is-poi-focused");
         markerById.forEach((marker, markerId) => {
           const focused = String(markerId) === selectedId;
-          marker.setOpacity(focused ? 1 : 0.5);
+          marker.setOpacity(1);
           marker.getElement()?.classList.toggle("is-focused-poi", focused);
           marker.setZIndexOffset(focused ? 1500 : 0);
         });

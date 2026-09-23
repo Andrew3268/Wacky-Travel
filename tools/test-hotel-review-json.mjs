@@ -134,12 +134,13 @@ assert.match(rendered, /반복해서 언급된 단점/);
 assert.match(rendered, /객실 선택 가이드/);
 assert.match(rendered, /도심 여행용 호텔/);
 assert.match(rendered, /객실·요금 확인하기/);
-assert.match(rendered, /hrj-decision-card/);
+assert.match(rendered, /hrj-basic-info__cta/);
 assert.doesNotMatch(rendered, /<div class="hrj-decision-section__title">예약 전 체크<\/div>/);
 assert.doesNotMatch(rendered, /<div class="hrj-decision-section__title">객실 선택 포인트<\/div>/);
 assert.doesNotMatch(rendered, /hrj-mobile-decision/);
-assert.match(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ul>[\s\S]*?01\. 명소·교통[\s\S]*?<\/ul>/);
-assert.doesNotMatch(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ol>/);
+assert.doesNotMatch(rendered, /hrj-sidebar/);
+assert.doesNotMatch(rendered, /hrj-mobile-toc/);
+assert.doesNotMatch(rendered, /이 글의 목차/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
 

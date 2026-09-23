@@ -18,16 +18,16 @@ const sample = {
   article: { title: '샘플 호텔 리뷰', intro: ['소개'], basicInfo: [{ label:'호텔 유형', value:'도심형' }], quickPoints: [{ label:'위치', value:'한강' }] },
   sections: [{ number:'01', id:'location', label:'숙박 위치', heading:'위치', blocks:[{ type:'paragraph', text:'본문' }] }]
 };
-const html = renderHotelReviewLayout(sample, { tripcomSidebarAdUrl: valid.url });
-assert.match(html, /hrj-sidecard--tripcom/);
-assert.match(html, /kr\.trip\.com\/partners\/ad\/S19906483/);
-const firstSidebar = html.split('<aside class="hrj-sidebar"')[1].split('이 글의 목차')[0];
-assert.doesNotMatch(firstSidebar, /hrj-decision-card/);
+const html = renderHotelReviewLayout(sample, { tripcomSidebarAdUrl: valid.url, availabilityUrl: 'https://example.com/hotel' });
+assert.doesNotMatch(html, /hrj-sidebar/);
+assert.doesNotMatch(html, /hrj-sidecard--tripcom/);
+assert.doesNotMatch(html, /kr\.trip\.com\/partners\/ad\/S19906483/);
+assert.match(html, /hrj-basic-info__cta/);
+assert.match(html, /객실·요금 확인하기/);
 
 const fallback = renderHotelReviewLayout(sample, { tripcomSidebarAdUrl: '' });
-assert.match(fallback, /hrj-decision-card/);
-assert.match(fallback, /샘플 호텔/);
-assert.doesNotMatch(fallback, /hrj-hotel-mini__name/);
+assert.doesNotMatch(fallback, /hrj-sidebar/);
+assert.doesNotMatch(fallback, /hrj-decision-card/);
 assert.doesNotMatch(fallback, /hrj-sidecard--tripcom/);
 
 const addHtml = fs.readFileSync(new URL('../public/add.html', import.meta.url), 'utf8');
@@ -50,4 +50,4 @@ assert.match(editApi, /current\.tripcom_sidebar_ad_url/);
 const headers = fs.readFileSync(new URL('../public/_headers', import.meta.url), 'utf8');
 assert.match(headers, /\/assets\/\*[\s\S]*max-age=31536000, immutable/);
 
-console.log('Hotel review Trip.com sidebar check passed: admin input, immutable-cache busting, URL-only normalization, persistence, SSR replacement, and fallback are wired.');
+console.log('Hotel review sidebar retirement check passed: Trip.com admin persistence remains, public sidebar rendering is removed, and the room-rate CTA lives in basic info.');

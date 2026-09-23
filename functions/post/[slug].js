@@ -580,7 +580,7 @@ export async function onRequestGet(context) {
         isJsonHotelReviewPost ? "post-page-body--hotel-review-json" : "",
         isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
         (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : "",
-        safeHotelPriceLink ? "post-page-body--has-mobile-hotel-cta" : ""
+        (safeHotelPriceLink && !isJsonHotelReviewPost) ? "post-page-body--has-mobile-hotel-cta" : ""
       ].filter(Boolean).join(" ");
       const shouldEnableFloatingToc = isTop5SeriesPost || isTravelTipPost;
       const floatingTocButtonHtml = shouldEnableFloatingToc
@@ -625,7 +625,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
-  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20260923-location-map-focus-v4" />` : ""}
+  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20260923-layout-focus-v5" />` : ""}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -715,7 +715,7 @@ export async function onRequestGet(context) {
   </main>`}
 
   ${footer(siteName)}
-  ${mobileHotelAvailabilityCtaHtml}
+  ${isJsonHotelReviewPost ? "" : mobileHotelAvailabilityCtaHtml}
   ${floatingTocButtonHtml}
 
   <script>
@@ -777,7 +777,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
-  ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=20260923-location-map-focus-v4"></script>` : ""}
+  ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=20260923-layout-focus-v5"></script>` : ""}
   ${shouldEnableFloatingToc ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260815-post-toc-v7"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   ${isDraftPreview ? `<script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>` : ""}
