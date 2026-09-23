@@ -1,5 +1,6 @@
 (() => {
-  const SCHEMA_VERSION = "hotel-review-v1.0";
+  const SCHEMA_VERSION = "hotel-review-v1.1";
+  const SCHEMA_VERSIONS = new Set(["hotel-review-v1.0", "hotel-review-v1.1"]);
   const BLOCK_TYPES = new Set(["paragraph","paragraphRich","subheading","locationTable","accessSummary","insight","reviewProsCons","roomOptions","fitGrid","finalVerdict"]);
   const $ = (id) => document.getElementById(id);
   let data = null;
@@ -18,6 +19,49 @@
   const getFormat = () => text($("content_format")?.value || "markdown").toLowerCase() === "json" ? "json" : "markdown";
   const isJsonMode = () => isHotelType() && getFormat() === "json";
 
+
+  const num = (value) => typeof value === "number" && Number.isFinite(value) ? value : null;
+  const validCoords = (value) => obj(value) && num(value.lat) !== null && value.lat >= -90 && value.lat <= 90 && num(value.lng) !== null && value.lng >= -180 && value.lng <= 180;
+  const MAP_TYPES = new Set(["airport","attraction","landmark","beach","nature","shopping","market","museum","park","transport","convenience","restaurant","cafe","other"]);
+  const MAP_SOURCE_TYPES = new Set(["route","estimated"]);
+
+  function validateLocationMap(input, errors) {
+    if (input.locationMap === undefined) return;
+    const map = input.locationMap;
+    if (!obj(map)) { errors.push("locationMap은 객체여야 합니다."); return; }
+    if (map.enabled !== undefined && typeof map.enabled !== "boolean") errors.push("locationMap.enabled는 Boolean 값이어야 합니다.");
+    if (map.enabled === false) return;
+    if (!validCoords(input.hotel?.coordinates)) errors.push("locationMap을 사용하려면 hotel.coordinates.lat/lng가 필요합니다.");
+    if (!text(map.defaultCategory)) errors.push("locationMap.defaultCategory가 필요합니다.");
+    if (!arr(map.categories).length) errors.push("locationMap.categories가 1개 이상 필요합니다.");
+    const keys = new Set();
+    const ids = new Set();
+    arr(map.categories).forEach((category, ci) => {
+      if (!obj(category)) { errors.push(`locationMap.categories[${ci}]는 객체여야 합니다.`); return; }
+      const key = text(category.key);
+      if (!key || !text(category.label)) errors.push(`locationMap.categories[${ci}]의 key/label이 필요합니다.`);
+      if (key && keys.has(key)) errors.push(`locationMap.categories[${ci}].key가 중복되었습니다.`);
+      if (key) keys.add(key);
+      if (!arr(category.items).length) errors.push(`locationMap.categories[${ci}].items가 1개 이상 필요합니다.`);
+      arr(category.items).forEach((item, ii) => {
+        if (!obj(item)) { errors.push(`locationMap.categories[${ci}].items[${ii}]는 객체여야 합니다.`); return; }
+        const itemId = text(item.id);
+        const type = text(item.type);
+        if (!itemId || !text(item.nameKo) || !type) errors.push(`locationMap.categories[${ci}].items[${ii}]의 id/nameKo/type이 필요합니다.`);
+        if (itemId && ids.has(itemId)) errors.push(`locationMap item id '${itemId}'가 중복되었습니다.`);
+        if (itemId) ids.add(itemId);
+        if (type && !MAP_TYPES.has(type)) errors.push(`locationMap item type '${type}'은 지원하지 않습니다.`);
+        if (!validCoords(item.coordinates)) errors.push(`locationMap.categories[${ci}].items[${ii}].coordinates가 올바르지 않습니다.`);
+        if (item.distance?.valueKm !== undefined && (num(item.distance.valueKm) === null || item.distance.valueKm < 0)) errors.push(`locationMap.categories[${ci}].items[${ii}].distance.valueKm는 0 이상의 숫자여야 합니다.`);
+        for (const field of ["walkMinutes","driveMinutes"]) {
+          if (item.travel?.[field] !== undefined && (num(item.travel[field]) === null || item.travel[field] < 0)) errors.push(`locationMap.categories[${ci}].items[${ii}].travel.${field}는 0 이상의 숫자여야 합니다.`);
+        }
+        const sourceType = text(item.travel?.sourceType);
+        if (sourceType && !MAP_SOURCE_TYPES.has(sourceType)) errors.push(`locationMap travel.sourceType은 route 또는 estimated만 사용할 수 있습니다.`);
+      });
+    });
+    if (text(map.defaultCategory) && !keys.has(text(map.defaultCategory))) errors.push("locationMap.defaultCategory에 해당하는 category가 없습니다.");
+  }
 
   function extractTripcomSidebarUrl(value = "") {
     const raw = String(value || "").trim();
@@ -79,14 +123,16 @@
   function validate(input) {
     const errors = [];
     if (!obj(input)) return { ok:false, errors:["호텔 리뷰 JSON 최상위 값은 객체여야 합니다."] };
-    if (text(input.schemaVersion) !== SCHEMA_VERSION) errors.push(`schemaVersion은 '${SCHEMA_VERSION}'이어야 합니다.`);
+    if (!SCHEMA_VERSIONS.has(text(input.schemaVersion))) errors.push(`schemaVersion은 hotel-review-v1.0 또는 ${SCHEMA_VERSION}이어야 합니다.`);
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(text(input.slug))) errors.push("slug는 영문 소문자·숫자·하이픈 형식이어야 합니다.");
     if (!obj(input.hotel)) errors.push("hotel 객체가 필요합니다.");
     else {
       if (!text(input.hotel.nameKo)) errors.push("hotel.nameKo가 필요합니다.");
       if (!text(input.hotel.country)) errors.push("hotel.country가 필요합니다.");
       if (!text(input.hotel.city)) errors.push("hotel.city가 필요합니다.");
+      if (input.hotel.coordinates !== undefined && !validCoords(input.hotel.coordinates)) errors.push("hotel.coordinates.lat/lng가 올바르지 않습니다.");
     }
+    validateLocationMap(input, errors);
     if (!obj(input.seo) || !text(input.seo.title) || !text(input.seo.description)) errors.push("seo.title과 seo.description이 필요합니다.");
     if (!obj(input.article)) errors.push("article 객체가 필요합니다.");
     else {
@@ -166,7 +212,12 @@
       ["호텔", text(data.hotel?.nameKo)],
       ["도시", [text(data.hotel?.country), text(data.hotel?.city)].filter(Boolean).join(" · ")],
       ["슬러그", text(data.slug)],
-      ["섹션", `${arr(data.sections).length}개`]
+      ["섹션", `${arr(data.sections).length}개`],
+      ["지도", (() => {
+        const categories = arr(data.locationMap?.categories);
+        if (!categories.length || data.locationMap?.enabled === false) return "없음";
+        return categories.map((category) => `${text(category.label)} ${arr(category.items).length}`).join(" · ");
+      })()]
     ];
     summary.innerHTML = items.map(([label,value]) => `<div class="hotel-review-json-editor__summary-item"><span class="hotel-review-json-editor__summary-label">${escapeHtml(label)}</span><span class="hotel-review-json-editor__summary-value">${escapeHtml(value)}</span></div>`).join("");
   }

@@ -35,7 +35,7 @@ const editHtml = fs.readFileSync(new URL('../public/edit.html', import.meta.url)
 for (const content of [addHtml, editHtml]) {
   assert.match(content, /id="hotelReviewTripcomCode"/);
   assert.match(content, /id="hotelReviewTripcomStatus"/);
-  assert.match(content, /hotel-review-json-editor\.js\?v=20260921-tripcom-v2/);
+  assert.match(content, /hotel-review-json-editor\.js\?v=20260923-location-map-v1/);
 }
 assert.match(addHtml, /add\.js\?v=20260921-tripcom-v2/);
 assert.match(editHtml, /edit\.js\?v=20260921-tripcom-v2/);

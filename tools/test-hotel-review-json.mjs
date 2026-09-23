@@ -18,6 +18,7 @@ const sample = {
     country: "대한민국",
     city: "서울",
     area: "도심",
+    coordinates: { lat: 37.5665, lng: 126.9780 },
     grade: "5성급",
     type: "도심형 호텔",
     roomCount: "300실",
@@ -34,12 +35,47 @@ const sample = {
     basicInfo: [{ label: "호텔 유형", value: "도심형 5성급 호텔" }],
     quickPoints: [{ label: "위치", value: "도심 이동이 편리함" }]
   },
+  locationMap: {
+    enabled: true,
+    defaultCategory: "attractions",
+    categories: [
+      {
+        key: "attractions",
+        label: "주요 명소",
+        items: [
+          {
+            id: "sample-attraction",
+            nameKo: "샘플 명소",
+            nameEn: "Sample Attraction",
+            type: "landmark",
+            coordinates: { lat: 37.5700, lng: 126.9800 },
+            distance: { valueKm: 0.5, label: "약 500m" },
+            travel: { walkMinutes: 7, driveMinutes: 3, sourceType: "route" }
+          }
+        ]
+      },
+      {
+        key: "restaurants",
+        label: "맛집",
+        items: [
+          {
+            id: "sample-restaurant",
+            nameKo: "샘플 맛집",
+            type: "restaurant",
+            coordinates: { lat: 37.5640, lng: 126.9750 },
+            distance: { valueKm: 0.4, label: "약 400m" },
+            travel: { walkMinutes: 6, driveMinutes: 3, sourceType: "estimated" }
+          }
+        ]
+      }
+    ]
+  },
   sections: [
     {
       number: "01",
-      id: "overview",
-      label: "개요",
-      heading: "호텔 개요",
+      id: "attractions-transport",
+      label: "명소·교통",
+      heading: "호텔 주변 이동",
       blocks: [
         { type: "paragraph", text: "일반 문단" },
         { type: "paragraphRich", parts: [{ text: "강조 ", strong: false }, { text: "내용", strong: true }] },
@@ -82,6 +118,11 @@ const rendered = renderHotelReviewLayout(sample, {
 });
 assert.match(rendered, /class="hotel-review-json-page"/);
 assert.match(rendered, /<h1 class="hrj-title">샘플 호텔 리뷰<\/h1>/);
+assert.match(rendered, /data-hrj-location-map/);
+assert.match(rendered, /data-hrj-map-tab="attractions"/);
+assert.match(rendered, /data-hrj-map-tab="restaurants"/);
+assert.match(rendered, /샘플 명소/);
+assert.match(rendered, /샘플 맛집/);
 assert.match(rendered, /반복해서 언급된 장점/);
 assert.match(rendered, /반복해서 언급된 단점/);
 assert.match(rendered, /객실 선택 가이드/);
@@ -91,7 +132,7 @@ assert.match(rendered, /hrj-decision-card/);
 assert.doesNotMatch(rendered, /<div class="hrj-decision-section__title">예약 전 체크<\/div>/);
 assert.doesNotMatch(rendered, /<div class="hrj-decision-section__title">객실 선택 포인트<\/div>/);
 assert.doesNotMatch(rendered, /hrj-mobile-decision/);
-assert.match(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ul>[\s\S]*?01\. 개요[\s\S]*?<\/ul>/);
+assert.match(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ul>[\s\S]*?01\. 명소·교통[\s\S]*?<\/ul>/);
 assert.doesNotMatch(rendered, /<nav class="hrj-mobile-toc"[\s\S]*?<ol>/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
@@ -112,4 +153,20 @@ const unknownValidation = validateHotelReviewData(unknownBlock);
 assert.equal(unknownValidation.ok, false);
 assert.match(unknownValidation.errors.join("\n"), /지원하지 않는 블록/);
 
-console.log("Hotel review JSON check passed: schema validation, block coverage, metadata derivation, image fallback, escaping, and server HTML rendering.");
+const legacyV10 = structuredClone(sample);
+legacyV10.schemaVersion = "hotel-review-v1.0";
+delete legacyV10.locationMap;
+delete legacyV10.hotel.coordinates;
+assert.equal(validateHotelReviewData(legacyV10).ok, true);
+
+const invalidMap = structuredClone(sample);
+invalidMap.locationMap.categories[0].items[0].coordinates.lat = 123;
+assert.equal(validateHotelReviewData(invalidMap).ok, false);
+assert.match(validateHotelReviewData(invalidMap).errors.join("\n"), /coordinates/);
+
+const invalidMapSource = structuredClone(sample);
+invalidMapSource.locationMap.categories[0].items[0].travel.sourceType = "guess";
+assert.equal(validateHotelReviewData(invalidMapSource).ok, false);
+assert.match(validateHotelReviewData(invalidMapSource).errors.join("\n"), /sourceType/);
+
+console.log("Hotel review JSON check passed: v1.1 map schema, v1.0 compatibility, block coverage, metadata derivation, escaping, and server HTML rendering.");

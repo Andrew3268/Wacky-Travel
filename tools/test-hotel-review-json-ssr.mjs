@@ -11,6 +11,7 @@ const addJs = read("public/assets/js/add.js");
 const editJs = read("public/assets/js/edit.js");
 const editorJs = read("public/assets/js/hotel-review-json-editor.js");
 const css = read("public/assets/css/hotel-review-json.css");
+const mapJs = read("public/assets/js/hotel-review-map.js");
 const schema = read("db/schema.sql");
 const migration = read("db/migrations/023_hotel_review_json_content.sql");
 
@@ -53,7 +54,9 @@ for (const editor of [addJs, editJs]) {
   assert.match(editor, /hotelReviewPickLabel/);
 }
 
+assert.match(editorJs, /hotel-review-v1\.1/);
 assert.match(editorJs, /hotel-review-v1\.0/);
+assert.match(editorJs, /locationMap/);
 assert.match(editorJs, /BLOCK_TYPES/);
 assert.match(editorJs, /validateForSave/);
 assert.match(editorJs, /readFile/);
@@ -67,7 +70,17 @@ assert.match(css, /\.hrj-review-analysis__grid/);
 assert.match(css, /\.hrj-decision-card/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.match(css, /\.hrj-mobile-toc ul\{list-style:none/);
-assert.match(post, /hotel-review-json\.css\?v=20260921-mobile-toc-fix-v4/);
+assert.match(post, /hotel-review-json\.css\?v=20260923-location-map-v1/);
+assert.match(post, /hotel-review-map\.js\?v=20260923-location-map-v1/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
-console.log("Hotel review JSON SSR integration check passed: DB, admin upload, API validation, server renderer branch, scoped CSS, and Markdown fallback wiring are present.");
+assert.match(css, /\.hrj-location-map/);
+assert.match(css, /\.hrj-map-label/);
+assert.match(mapJs, /IntersectionObserver/);
+assert.match(mapJs, /setPrefix\(false\)/);
+assert.match(mapJs, /OpenStreetMap contributors/);
+assert.match(mapJs, /L\.polyline|polyline\(/);
+assert.match(mapJs, /data-hrj-map-tab/);
+assert.doesNotMatch(mapJs, /navigator\.geolocation|map\.locate\(/);
+
+console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");
