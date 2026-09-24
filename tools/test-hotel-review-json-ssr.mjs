@@ -71,8 +71,8 @@ assert.match(css, /\.hrj-basic-info__cta/);
 assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,40%\) minmax\(0,60%\)/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20260924-map-layout-v8/);
-assert.match(post, /hotel-review-map\.js\?v=20260924-map-layout-v8/);
+assert.match(post, /hotel-review-json\.css\?v=20260924-map-head-v9/);
+assert.match(post, /hotel-review-map\.js\?v=20260924-map-head-v9/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 assert.match(css, /\.hrj-location-map/);
