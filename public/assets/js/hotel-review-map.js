@@ -84,20 +84,12 @@
     });
   }
 
-  function walkSvg() {
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12.5" cy="4.5" r="1.8"></circle><path d="M9.2 9.7 11.6 7.9c.6-.5 1.5-.4 2 .1l1.8 1.9 2.6 1"></path><path d="m11.8 9.1-.8 4.2-2.7 2.4"></path><path d="m11 13.3 3.2 1.8 1.3 4.3"></path><path d="m8.3 15.7-1.8 3.7"></path></svg>';
-  }
-
-  function carSvg() {
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 9 1.6-3.2c.3-.6.9-.9 1.5-.9h4.8c.7 0 1.3.4 1.6 1L17.5 9"></path><rect x="4.5" y="8.5" width="15" height="8.5" rx="2.6"></rect><path d="M7 17v2M17 17v2"></path><path d="M7.5 12.5h.01M16.5 12.5h.01"></path><path d="M8.2 9h7.6"></path></svg>';
-  }
-
   function overlayMetaHtml(item = {}) {
     const walk = num(item?.travel?.walkMinutes);
     const drive = num(item?.travel?.driveMinutes);
     const pills = [];
-    if (walk !== null) pills.push(`<span class="hrj-map-overlay__pill">${walkSvg()}<span>도보 약 ${Math.round(walk)}분</span></span>`);
-    if (drive !== null) pills.push(`<span class="hrj-map-overlay__pill">${carSvg()}<span>차량 약 ${Math.round(drive)}분</span></span>`);
+    if (walk !== null) pills.push(`<span class="hrj-map-overlay__pill"><span>도보 약 ${Math.round(walk)}분</span></span>`);
+    if (drive !== null) pills.push(`<span class="hrj-map-overlay__pill"><span>차량 약 ${Math.round(drive)}분</span></span>`);
     return pills.join("");
   }
 
@@ -250,18 +242,42 @@
 
       const positionOverlay = () => {
         if (!activeMarker || overlay.hidden) return;
-        const point = map.latLngToContainerPoint(activeMarker.getLatLng());
+
+        const markerRoot = activeMarker.getElement();
+        const pin = markerRoot?.querySelector(".hrj-map-pin") || markerRoot;
+        if (!pin) return;
+
         overlay.hidden = false;
         overlay.style.visibility = "hidden";
+        overlay.classList.remove("is-above-pin", "is-below-pin");
+
+        const wrapRect = wrap.getBoundingClientRect();
+        const markerRect = pin.getBoundingClientRect();
         const width = overlay.offsetWidth;
         const height = overlay.offsetHeight;
-        let left = point.x - (width / 2);
-        let top = point.y - height - 22;
+        const markerCenterX = markerRect.left - wrapRect.left + (markerRect.width / 2);
+        const markerTop = markerRect.top - wrapRect.top;
+        const markerBottom = markerRect.bottom - wrapRect.top;
+        const gap = 18;
+
+        let left = markerCenterX - (width / 2);
+        let top = markerTop - height - gap;
+        let placement = "above";
+
+        // 상단 공간이 부족하면 핀 아래로 보내며, 어느 경우에도 번호 핀을 덮지 않습니다.
+        if (top < 8) {
+          top = markerBottom + gap;
+          placement = "below";
+        }
+
         const maxLeft = Math.max(8, wrap.clientWidth - width - 8);
+        const maxTop = Math.max(8, wrap.clientHeight - height - 8);
         left = Math.min(Math.max(8, left), maxLeft);
-        top = Math.max(8, top);
+        top = Math.min(Math.max(8, top), maxTop);
+
         overlay.style.left = `${left}px`;
         overlay.style.top = `${top}px`;
+        overlay.classList.add(placement === "below" ? "is-below-pin" : "is-above-pin");
         overlay.style.removeProperty("visibility");
       };
 
