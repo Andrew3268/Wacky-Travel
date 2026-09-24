@@ -85,11 +85,11 @@
   }
 
   function walkSvg() {
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4" r="2"></circle><path d="M10.5 8.5 13 7l2 2.5 2.5 1"></path><path d="m12 10-2 4 3 2 1.5 4"></path><path d="m10 14-3 1.5L5 19"></path></svg>';
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12.5" cy="4.5" r="1.8"></circle><path d="M9.2 9.7 11.6 7.9c.6-.5 1.5-.4 2 .1l1.8 1.9 2.6 1"></path><path d="m11.8 9.1-.8 4.2-2.7 2.4"></path><path d="m11 13.3 3.2 1.8 1.3 4.3"></path><path d="m8.3 15.7-1.8 3.7"></path></svg>';
   }
 
   function carSvg() {
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5 8 6.5h8l1.5 3"></path><rect x="4" y="9.5" width="16" height="8" rx="2.2"></rect><circle cx="8" cy="14" r="1.2"></circle><circle cx="16" cy="14" r="1.2"></circle><path d="M6 17.5V20M18 17.5V20"></path></svg>';
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.5 9 1.6-3.2c.3-.6.9-.9 1.5-.9h4.8c.7 0 1.3.4 1.6 1L17.5 9"></path><rect x="4.5" y="8.5" width="15" height="8.5" rx="2.6"></rect><path d="M7 17v2M17 17v2"></path><path d="M7.5 12.5h.01M16.5 12.5h.01"></path><path d="M8.2 9h7.6"></path></svg>';
   }
 
   function overlayMetaHtml(item = {}) {
