@@ -54,15 +54,15 @@
 
   function svgIcon(kind = "place") {
     if (kind === "hotel") {
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V5.5c0-.8.7-1.5 1.5-1.5h8c.8 0 1.5.7 1.5 1.5V21M16 9h2.5c.8 0 1.5.7 1.5 1.5V21M8 8h2M8 12h2M8 16h2M13 8h.01M13 12h.01M13 16h.01M3 21h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4.8c0-.45.35-.8.8-.8h9.4c.45 0 .8.35.8.8V21"/><path d="M8 8h2M13 8h1M8 12h2M13 12h1M8 16h2M13 16h1"/><path d="M3 21h18M16 10h2.2c.45 0 .8.35.8.8V21"/></svg>';
     }
     if (kind === "airport") {
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.8 13.1 10 11l2.7-7.2c.2-.6.8-1 1.4-1 .9 0 1.5.9 1.2 1.7L13.8 10l5.6-1.9c.9-.3 1.8.3 1.8 1.3 0 .5-.3 1-.8 1.2l-6.8 2.9-1.1 6.1-1.4.5-1.7-5.4-3.4 1.4-1 2-1 .3.2-3.2-2.1-2.4 1.7-.7Z" fill="currentColor"/></svg>';
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 14 7.2-2.2L7 5.2 8.7 4l5.5 6.5 4.7-1.5c1.3-.4 2.3.1 2.6.9.3.9-.4 1.7-1.7 2.1l-4.8 1.5-1 8-2 .6-1.8-7.3L4 16z"/></svg>';
     }
     if (kind === "food") {
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v7M4.5 3v5.5A2.5 2.5 0 0 0 7 11v10M9.5 3v5.5A2.5 2.5 0 0 1 7 11M16 3v18M16 3c2.2 1.8 3.3 4.1 3.3 6.8H16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v7M4.5 3v4.5A2.5 2.5 0 0 0 7 10M9.5 3v4.5A2.5 2.5 0 0 1 7 10M7 10v11"/><path d="M16 3c2.1 2.1 2.4 6.2 0 8.5V21M16 3v8.5"/></svg>';
     }
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.2" fill="currentColor"/></svg>';
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2.2"/></svg>';
   }
 
   function markerIcon(label, kind = "place") {
@@ -70,8 +70,8 @@
       className: "hrj-map-label-wrap",
       html: `<div class="hrj-map-label hrj-map-label--${kind}"><span class="hrj-map-label__icon">${svgIcon(kind)}</span><span class="hrj-map-label__text">${escapeHtml(label)}</span></div>`,
       iconSize: null,
-      iconAnchor: [16, 37],
-      popupAnchor: [0, -31]
+      iconAnchor: [18, 58],
+      popupAnchor: [0, -50]
     });
   }
 
@@ -84,9 +84,33 @@
     return bits.join(" · ");
   }
 
-  function popupHtml(item = {}) {
-    const info = travelLabel(item);
-    return `<div class="hrj-map-popup"><strong>${escapeHtml(text(item.nameKo))}</strong>${info ? `<small>${escapeHtml(info)}</small>` : ""}</div>`;
+  function walkSvg() {
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4" r="2"></circle><path d="M10.5 8.5 13 7l2 2.5 2.5 1"></path><path d="m12 10-2 4 3 2 1.5 4"></path><path d="m10 14-3 1.5L5 19"></path></svg>';
+  }
+
+  function carSvg() {
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5 8 6.5h8l1.5 3"></path><rect x="4" y="9.5" width="16" height="8" rx="2.2"></rect><circle cx="8" cy="14" r="1.2"></circle><circle cx="16" cy="14" r="1.2"></circle><path d="M6 17.5V20M18 17.5V20"></path></svg>';
+  }
+
+  function popupHtml(item = {}, explicitKind = "") {
+    const kind = explicitKind || iconKind(text(item.type));
+    const name = text(item.nameKo || item.name || "장소");
+    const walk = num(item?.travel?.walkMinutes);
+    const drive = num(item?.travel?.driveMinutes);
+    const pills = [];
+    if (walk !== null) pills.push(`<span class="hrj-map-popup__pill">${walkSvg()}<span>도보 약 ${Math.round(walk)}분</span></span>`);
+    if (drive !== null) pills.push(`<span class="hrj-map-popup__pill">${carSvg()}<span>차량 약 ${Math.round(drive)}분</span></span>`);
+    const metaClass = pills.length === 1 ? "hrj-map-popup__meta is-single" : "hrj-map-popup__meta";
+    return `<div class="hrj-map-popup hrj-map-popup--${kind}">
+      <div class="hrj-map-popup__head">
+        <span class="hrj-map-popup__icon">${svgIcon(kind)}</span>
+        <div class="hrj-map-popup__copy">
+          <strong>${escapeHtml(name)}</strong>
+          <small>${kind === "hotel" ? "호텔 위치" : "호텔에서 이동"}</small>
+        </div>
+      </div>
+      ${pills.length ? `<div class="hrj-map-popup__divider"></div><div class="${metaClass}">${pills.join("")}</div>` : ""}
+    </div>`;
   }
 
   function parseConfig(root) {
@@ -132,7 +156,7 @@
         icon: markerIcon(config.hotel.name || "호텔", "hotel"),
         zIndexOffset: 2000,
         keyboard: true
-      }).addTo(map).bindPopup(`<div class="hrj-map-popup"><strong>${escapeHtml(config.hotel.name || "호텔")}</strong><small>호텔 위치</small></div>`);
+      }).addTo(map).bindPopup(popupHtml({ name: config.hotel.name || "호텔", type: "hotel" }, "hotel"));
 
       const poiLayer = L.layerGroup().addTo(map);
       const lineLayer = L.layerGroup().addTo(map);

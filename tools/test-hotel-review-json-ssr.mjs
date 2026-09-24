@@ -71,11 +71,13 @@ assert.match(css, /\.hrj-basic-info__cta/);
 assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,40%\) minmax\(0,60%\)/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20260923-basic-map-v6/);
-assert.match(post, /hotel-review-map\.js\?v=20260923-basic-map-v6/);
+assert.match(post, /hotel-review-json\.css\?v=20260923-map-ui-v7/);
+assert.match(post, /hotel-review-map\.js\?v=20260923-map-ui-v7/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 assert.match(css, /\.hrj-location-map/);
+assert.match(css, /hrj-map-popup__pill/);
+assert.match(css, /hrj-map-label::before/);
 assert.match(css, /\.hrj-map-label/);
 assert.match(mapJs, /IntersectionObserver/);
 assert.match(mapJs, /setPrefix\(false\)/);
@@ -97,6 +99,6 @@ assert.match(mapJs, /marker\.setOpacity\(1\)/);
 assert.match(mapJs, /hotelMarker\.setOpacity\(1\)/);
 assert.doesNotMatch(mapJs, /item\.nameLocal|item\.nameEn|distanceLabel/);
 assert.doesNotMatch(css, /hrj-map-marker--poi:not\(\.is-focused-poi\)/);
-assert.match(css, /is-focused-poi \.hrj-map-label\{transform:scale\(1\.12\)/);
+assert.match(css, /is-focused-poi \.hrj-map-label\{transform:scale\(1\.09\)/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");
