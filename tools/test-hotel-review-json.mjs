@@ -125,7 +125,7 @@ assert.match(rendered, /data-hrj-map-center/);
 assert.match(rendered, /data-hrj-map-all/);
 assert.match(rendered, /샘플 명소/);
 assert.match(rendered, /샘플 맛집/);
-assert.match(rendered, /도보 약 7분 · 차량 약 3분/);
+assert.doesNotMatch(rendered, /도보 약 7분 · 차량 약 3분/);
 assert.doesNotMatch(rendered, /Sample Attraction/);
 assert.doesNotMatch(rendered, /약 500m/);
 assert.doesNotMatch(rendered, /약 400m/);
