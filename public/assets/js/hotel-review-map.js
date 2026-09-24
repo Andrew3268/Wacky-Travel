@@ -302,14 +302,14 @@
         setSelected(item.id);
         setMarkerFocus(item.id);
         connectLine(item, kind);
+        if (fit) {
+          map.fitBounds([hotelLatLng, [item.coordinates.lat, item.coordinates.lng]], { padding: [55, 55], maxZoom: 15, animate: false });
+        }
         renderOverlay(item, kind);
         overlay.hidden = false;
         overlay.classList.remove("is-visible");
         positionOverlay();
         requestAnimationFrame(() => overlay.classList.add("is-visible"));
-        if (fit) {
-          map.fitBounds([hotelLatLng, [item.coordinates.lat, item.coordinates.lng]], { padding: [55, 55], maxZoom: 15 });
-        }
       };
 
       const connectToItem = (item) => {
@@ -387,12 +387,6 @@
           showAllPlaces();
           return;
         }
-        const closeButton = event.target.closest("[data-hrj-map-overlay-close]");
-        if (closeButton && root.contains(closeButton)) {
-          event.preventDefault();
-          hideOverlay({ clearSelection: true });
-          return;
-        }
         const button = event.target.closest("[data-hrj-map-place]");
         if (!button || !root.contains(button)) return;
         const category = getCategory(button.dataset.mapCategory || activeCategory);
@@ -401,6 +395,11 @@
         if (item) connectToItem(item);
       });
 
+      overlayClose.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        hideOverlay({ clearSelection: true });
+      });
       overlay.addEventListener("click", (event) => event.stopPropagation());
       map.on("click", () => hideOverlay({ clearSelection: true }));
       map.on("zoom move", () => positionOverlay());

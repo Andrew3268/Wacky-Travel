@@ -85,6 +85,7 @@
 .hotel-review-json-page .hrj-map-place__num{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border-radius:50%;background:#eef4ff;color:#2f67d8;font-size:12px;font-weight:850;line-height:1}
 .hotel-review-json-page .hrj-map-place__num--food{background:#fff1f5;color:#d95070}
 .hotel-review-json-page .hrj-map-place__num--airport{background:#eef0f2;color:#5d6875}
+.hotel-review-json-page .hrj-map-place__num--airport svg{width:14px;height:14px;display:block;fill:currentColor;stroke:none}
 .hotel-review-json-page .hrj-map-place__body{min-width:0;flex:1}
 .hotel-review-json-page .hrj-map-place__body strong{display:block;font-size:13px;font-weight:700;line-height:1.45;color:#343230;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hotel-review-json-page .hrj-map-note{margin:12px 2px 0!important;font-size:11px!important;line-height:1.55!important;color:#9a948c!important}
