@@ -11,7 +11,7 @@
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
+    .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
   function ensureLeaflet() {
@@ -65,23 +65,23 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2.2"/></svg>';
   }
 
-  function markerIcon(label, kind = "place") {
+  function hotelIcon(label) {
     return window.L.divIcon({
       className: "hrj-map-label-wrap",
-      html: `<div class="hrj-map-label hrj-map-label--${kind}"><span class="hrj-map-label__icon">${svgIcon(kind)}</span><span class="hrj-map-label__text">${escapeHtml(label)}</span></div>`,
+      html: `<div class="hrj-map-label hrj-map-label--hotel"><span class="hrj-map-label__icon">${svgIcon("hotel")}</span><span class="hrj-map-label__text">${escapeHtml(label)}</span></div>`,
       iconSize: null,
-      iconAnchor: [18, 58],
-      popupAnchor: [0, -50]
+      iconAnchor: [24, 56]
     });
   }
 
-  function travelLabel(item = {}) {
-    const bits = [];
-    const walk = num(item?.travel?.walkMinutes);
-    const drive = num(item?.travel?.driveMinutes);
-    if (walk !== null) bits.push(`도보 약 ${Math.round(walk)}분`);
-    if (drive !== null) bits.push(`차량 약 ${Math.round(drive)}분`);
-    return bits.join(" · ");
+  function poiIcon(order, kind = "place") {
+    const content = kind === "airport" ? svgIcon("airport") : escapeHtml(String(order));
+    return window.L.divIcon({
+      className: "hrj-map-pin-wrap",
+      html: `<div class="hrj-map-pin hrj-map-pin--${kind}">${kind === "airport" ? `<span class="hrj-map-pin__icon">${content}</span>` : `<span class="hrj-map-pin__num">${content}</span>`}</div>`,
+      iconSize: null,
+      iconAnchor: [17, 38]
+    });
   }
 
   function walkSvg() {
@@ -92,25 +92,13 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5 8 6.5h8l1.5 3"></path><rect x="4" y="9.5" width="16" height="8" rx="2.2"></rect><circle cx="8" cy="14" r="1.2"></circle><circle cx="16" cy="14" r="1.2"></circle><path d="M6 17.5V20M18 17.5V20"></path></svg>';
   }
 
-  function popupHtml(item = {}, explicitKind = "") {
-    const kind = explicitKind || iconKind(text(item.type));
-    const name = text(item.nameKo || item.name || "장소");
+  function overlayMetaHtml(item = {}) {
     const walk = num(item?.travel?.walkMinutes);
     const drive = num(item?.travel?.driveMinutes);
     const pills = [];
-    if (walk !== null) pills.push(`<span class="hrj-map-popup__pill">${walkSvg()}<span>도보 약 ${Math.round(walk)}분</span></span>`);
-    if (drive !== null) pills.push(`<span class="hrj-map-popup__pill">${carSvg()}<span>차량 약 ${Math.round(drive)}분</span></span>`);
-    const metaClass = pills.length === 1 ? "hrj-map-popup__meta is-single" : "hrj-map-popup__meta";
-    return `<div class="hrj-map-popup hrj-map-popup--${kind}">
-      <div class="hrj-map-popup__head">
-        <span class="hrj-map-popup__icon">${svgIcon(kind)}</span>
-        <div class="hrj-map-popup__copy">
-          <strong>${escapeHtml(name)}</strong>
-          <small>${kind === "hotel" ? "호텔 위치" : "호텔에서 이동"}</small>
-        </div>
-      </div>
-      ${pills.length ? `<div class="hrj-map-popup__divider"></div><div class="${metaClass}">${pills.join("")}</div>` : ""}
-    </div>`;
+    if (walk !== null) pills.push(`<span class="hrj-map-overlay__pill">${walkSvg()}<span>도보 약 ${Math.round(walk)}분</span></span>`);
+    if (drive !== null) pills.push(`<span class="hrj-map-overlay__pill">${carSvg()}<span>차량 약 ${Math.round(drive)}분</span></span>`);
+    return pills.join("");
   }
 
   function parseConfig(root) {
@@ -128,10 +116,16 @@
   function setupMap(root) {
     if (root.dataset.hrjMapReady === "1") return;
     root.dataset.hrjMapReady = "1";
+
     const config = parseConfig(root);
     const canvas = root.querySelector("[data-hrj-map-canvas]");
+    const wrap = root.querySelector(".hrj-map-canvas-wrap");
     const skeleton = root.querySelector("[data-hrj-map-skeleton]");
-    if (!config || !canvas) {
+    const overlay = root.querySelector("[data-hrj-map-overlay]");
+    const overlayClose = root.querySelector("[data-hrj-map-overlay-close]");
+    const overlayName = root.querySelector("[data-hrj-map-overlay-name]");
+    const overlayMeta = root.querySelector("[data-hrj-map-overlay-meta]");
+    if (!config || !canvas || !wrap || !overlay || !overlayClose || !overlayName || !overlayMeta) {
       if (skeleton) skeleton.innerHTML = "<p>지도 데이터를 확인할 수 없습니다.</p>";
       return;
     }
@@ -143,7 +137,8 @@
         zoomControl: true,
         scrollWheelZoom: false,
         attributionControl: true,
-        zoomSnap: 0.5
+        zoomSnap: 0.5,
+        closePopupOnClick: false
       });
       map.attributionControl.setPrefix(false);
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -153,45 +148,28 @@
 
       const hotelLatLng = [config.hotel.lat, config.hotel.lng];
       const hotelMarker = L.marker(hotelLatLng, {
-        icon: markerIcon(config.hotel.name || "호텔", "hotel"),
+        icon: hotelIcon(config.hotel.name || "호텔"),
         zIndexOffset: 2000,
-        keyboard: true
-      }).addTo(map).bindPopup(popupHtml({ name: config.hotel.name || "호텔", type: "hotel" }, "hotel"));
+        keyboard: false,
+        interactive: false
+      }).addTo(map);
+      hotelMarker.getElement()?.classList.add("hrj-map-marker--hotel");
 
       const poiLayer = L.layerGroup().addTo(map);
       const lineLayer = L.layerGroup().addTo(map);
       const markerById = new Map();
       let activeCategory = text(config.defaultCategory) || text(config.categories[0]?.key);
       let activeBounds = null;
+      let activeItem = null;
+      let activeMarker = null;
+      let switchTimer = null;
 
       const initialZoom = () => window.matchMedia?.("(max-width: 720px)")?.matches ? 13.5 : 14;
       const getCategory = (key) => config.categories.find((category) => text(category.key) === text(key)) || config.categories[0];
 
-      const showHotelCenter = ({ animate = true, clearConnection = true } = {}) => {
-        if (clearConnection) {
-          lineLayer.clearLayers();
-          setSelected("");
-          clearMarkerFocus();
-        }
-        const zoom = initialZoom();
-        if (animate && map._loaded) map.flyTo(hotelLatLng, zoom, { duration: 0.45 });
-        else map.setView(hotelLatLng, zoom, { animate: false });
-      };
-
-      const showAllPlaces = () => {
-        if (!activeBounds || !activeBounds.isValid()) {
-          showHotelCenter();
-          return;
-        }
-        lineLayer.clearLayers();
-        setSelected("");
-        clearMarkerFocus();
-        map.fitBounds(activeBounds, { padding: [48, 48], maxZoom: 14 });
-      };
-
       const setSelected = (id) => {
         root.querySelectorAll("[data-hrj-map-place]").forEach((button) => {
-          button.classList.toggle("is-selected", button.dataset.hrjMapPlace === String(id) && button.dataset.mapCategory === activeCategory);
+          button.classList.toggle("is-selected", Boolean(id) && button.dataset.hrjMapPlace === String(id) && button.dataset.mapCategory === activeCategory);
         });
       };
 
@@ -199,48 +177,157 @@
         root.classList.remove("is-poi-focused");
         markerById.forEach((marker) => {
           marker.setOpacity(1);
-          marker.getElement()?.classList.remove("is-focused-poi");
+          marker.getElement()?.classList.remove("is-selected", "is-focused-poi");
           marker.setZIndexOffset(0);
         });
+        hotelMarker.setOpacity(1);
+        hotelMarker.setOpacity(1);
+        hotelMarker.setZIndexOffset(2000);
       };
 
       const setMarkerFocus = (id) => {
         const selectedId = String(id);
         root.classList.add("is-poi-focused");
         markerById.forEach((marker, markerId) => {
-          const focused = String(markerId) === selectedId;
+          const selected = String(markerId) === selectedId;
           marker.setOpacity(1);
-          marker.getElement()?.classList.toggle("is-focused-poi", focused);
-          marker.setZIndexOffset(focused ? 1500 : 0);
+          marker.getElement()?.classList.toggle("is-selected", selected);
+          marker.getElement()?.classList.toggle("is-focused-poi", selected);
+          marker.setZIndexOffset(selected ? 1500 : 0);
         });
-        hotelMarker.setOpacity(1);
         hotelMarker.setZIndexOffset(2000);
       };
 
-      hotelMarker.getElement()?.classList.add("hrj-map-marker--hotel");
+      const clearConnection = ({ keepSelection = false } = {}) => {
+        lineLayer.clearLayers();
+        clearMarkerFocus();
+        if (!keepSelection) {
+          activeItem = null;
+          activeMarker = null;
+          setSelected("");
+        }
+      };
 
-      const connectToItem = (item, { openPopup = true } = {}) => {
-        const marker = markerById.get(String(item.id));
-        if (!marker) return;
+      const hideOverlayNow = () => {
+        overlay.hidden = true;
+        overlay.classList.remove("is-visible", "hrj-map-overlay--food", "hrj-map-overlay--airport");
+      };
+
+      const hideOverlay = ({ clearSelection = true, immediate = false } = {}) => {
+        if (switchTimer) {
+          clearTimeout(switchTimer);
+          switchTimer = null;
+        }
+        if (immediate || overlay.hidden) {
+          hideOverlayNow();
+          if (clearSelection) clearConnection();
+          return;
+        }
+        overlay.classList.remove("is-visible");
+        const finish = () => {
+          hideOverlayNow();
+          if (clearSelection) clearConnection();
+          switchTimer = null;
+        };
+        switchTimer = setTimeout(finish, 145);
+      };
+
+      const showHotelCenter = ({ animate = true, clear = true } = {}) => {
+        if (clear) hideOverlay({ clearSelection: true, immediate: true });
+        const zoom = initialZoom();
+        if (animate && map._loaded) map.flyTo(hotelLatLng, zoom, { duration: 0.45 });
+        else map.setView(hotelLatLng, zoom, { animate: false });
+      };
+
+      const showAllPlaces = () => {
+        hideOverlay({ clearSelection: true, immediate: true });
+        if (!activeBounds || !activeBounds.isValid()) {
+          showHotelCenter({ clear: false });
+          return;
+        }
+        map.fitBounds(activeBounds, { padding: [48, 48], maxZoom: 14 });
+      };
+
+      const positionOverlay = () => {
+        if (!activeMarker || overlay.hidden) return;
+        const point = map.latLngToContainerPoint(activeMarker.getLatLng());
+        overlay.hidden = false;
+        overlay.style.visibility = "hidden";
+        const width = overlay.offsetWidth;
+        const height = overlay.offsetHeight;
+        let left = point.x - (width / 2);
+        let top = point.y - height - 22;
+        const maxLeft = Math.max(8, wrap.clientWidth - width - 8);
+        left = Math.min(Math.max(8, left), maxLeft);
+        top = Math.max(8, top);
+        overlay.style.left = `${left}px`;
+        overlay.style.top = `${top}px`;
+        overlay.style.removeProperty("visibility");
+      };
+
+      const renderOverlay = (item, kind) => {
+        overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport");
+        if (kind === "food") overlay.classList.add("hrj-map-overlay--food");
+        if (kind === "airport") overlay.classList.add("hrj-map-overlay--airport");
+        overlayName.textContent = text(item?.nameKo || item?.name || "장소");
+        overlayMeta.innerHTML = overlayMetaHtml(item);
+      };
+
+      const connectLine = (item, kind) => {
         lineLayer.clearLayers();
         const target = [item.coordinates.lat, item.coordinates.lng];
+        const color = kind === "food" ? "#d95070" : kind === "airport" ? "#5d6875" : "#2f67d8";
+        const soft = kind === "food" ? "#f7b5c4" : kind === "airport" ? "#d5dbe2" : "#b6cbff";
         L.polyline([hotelLatLng, target], {
-          color: iconKind(item.type) === "food" ? "#e11d48" : "#2563eb",
+          color,
           weight: 3,
-          opacity: 0.8,
+          opacity: 0.82,
           dashArray: "7 8"
         }).addTo(lineLayer);
         L.circleMarker(target, {
-          radius: 11,
-          color: iconKind(item.type) === "food" ? "#fda4af" : "#93c5fd",
+          radius: 10,
+          color: soft,
           fillColor: "#fff",
-          fillOpacity: 0.2,
+          fillOpacity: 0.32,
           weight: 5
         }).addTo(lineLayer);
-        map.fitBounds([hotelLatLng, target], { padding: [55, 55], maxZoom: 15 });
-        if (openPopup) marker.openPopup();
+      };
+
+      const activateItem = (item, { fit = true } = {}) => {
+        const marker = markerById.get(String(item.id));
+        if (!marker) return;
+        const kind = iconKind(text(item.type));
+        activeItem = item;
+        activeMarker = marker;
         setSelected(item.id);
         setMarkerFocus(item.id);
+        connectLine(item, kind);
+        renderOverlay(item, kind);
+        overlay.hidden = false;
+        overlay.classList.remove("is-visible");
+        positionOverlay();
+        requestAnimationFrame(() => overlay.classList.add("is-visible"));
+        if (fit) {
+          map.fitBounds([hotelLatLng, [item.coordinates.lat, item.coordinates.lng]], { padding: [55, 55], maxZoom: 15 });
+        }
+      };
+
+      const connectToItem = (item) => {
+        if (switchTimer) {
+          clearTimeout(switchTimer);
+          switchTimer = null;
+        }
+        const switching = activeItem && String(activeItem.id) !== String(item.id) && !overlay.hidden && overlay.classList.contains("is-visible");
+        if (switching) {
+          overlay.classList.remove("is-visible");
+          switchTimer = setTimeout(() => {
+            overlay.hidden = true;
+            activateItem(item);
+            switchTimer = null;
+          }, 145);
+          return;
+        }
+        activateItem(item);
       };
 
       const renderCategory = (key) => {
@@ -248,21 +335,24 @@
         activeCategory = text(category?.key);
         poiLayer.clearLayers();
         lineLayer.clearLayers();
-        clearMarkerFocus();
+        hideOverlay({ clearSelection: true, immediate: true });
         markerById.clear();
 
         const bounds = [hotelLatLng];
-        arr(category?.items).forEach((item) => {
+        arr(category?.items).forEach((item, index) => {
           const lat = num(item?.coordinates?.lat);
           const lng = num(item?.coordinates?.lng);
           if (lat === null || lng === null) return;
           const kind = iconKind(text(item.type));
           const marker = L.marker([lat, lng], {
-            icon: markerIcon(text(item.nameKo), kind),
+            icon: poiIcon(index + 1, kind),
             keyboard: true
-          }).addTo(poiLayer).bindPopup(popupHtml(item));
+          }).addTo(poiLayer);
           marker.getElement()?.classList.add("hrj-map-marker--poi");
-          marker.on("click", () => connectToItem(item, { openPopup: false }));
+          marker.on("click", (event) => {
+            if (event?.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
+            connectToItem(item);
+          });
           markerById.set(String(item.id), marker);
           bounds.push([lat, lng]);
         });
@@ -277,9 +367,8 @@
           panel.hidden = !active;
           panel.classList.toggle("is-active", active);
         });
-        setSelected("");
         activeBounds = L.latLngBounds(bounds);
-        showHotelCenter({ animate: false, clearConnection: false });
+        showHotelCenter({ animate: false, clear: false });
       };
 
       root.addEventListener("click", (event) => {
@@ -298,6 +387,12 @@
           showAllPlaces();
           return;
         }
+        const closeButton = event.target.closest("[data-hrj-map-overlay-close]");
+        if (closeButton && root.contains(closeButton)) {
+          event.preventDefault();
+          hideOverlay({ clearSelection: true });
+          return;
+        }
         const button = event.target.closest("[data-hrj-map-place]");
         if (!button || !root.contains(button)) return;
         const category = getCategory(button.dataset.mapCategory || activeCategory);
@@ -306,6 +401,10 @@
         if (item) connectToItem(item);
       });
 
+      overlay.addEventListener("click", (event) => event.stopPropagation());
+      map.on("click", () => hideOverlay({ clearSelection: true }));
+      map.on("zoom move", () => positionOverlay());
+
       renderCategory(activeCategory);
       requestAnimationFrame(() => {
         map.invalidateSize(false);
@@ -313,8 +412,10 @@
         if (skeleton) skeleton.hidden = true;
       });
 
-      window.addEventListener("resize", () => map.invalidateSize(false), { passive: true });
-      hotelMarker.setZIndexOffset(2000);
+      window.addEventListener("resize", () => {
+        map.invalidateSize(false);
+        positionOverlay();
+      }, { passive: true });
     }).catch(() => {
       root.classList.add("is-map-error");
       if (skeleton) skeleton.innerHTML = "<p>지도를 불러오지 못했습니다. 아래 장소 목록은 그대로 이용할 수 있습니다.</p>";
@@ -338,7 +439,7 @@
       });
     }, { rootMargin: "500px 0px" });
 
-    maps.forEach((map) => observer.observe(map));
+    maps.forEach((mapRoot) => observer.observe(mapRoot));
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });

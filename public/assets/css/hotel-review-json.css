@@ -79,16 +79,97 @@
 @keyframes hrj-map-spin{to{transform:rotate(360deg)}}
 .hotel-review-json-page .hrj-map-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:13px}
 .hotel-review-json-page .hrj-map-panel[hidden]{display:none!important}
-.hotel-review-json-page .hrj-map-place{appearance:none;width:100%;display:flex;align-items:center;gap:11px;padding:12px;border:1px solid #e5e1da;border-radius:14px;background:#fff;color:#3d3a36;text-align:left;font:inherit;cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease}
+.hotel-review-json-page .hrj-map-place{appearance:none;width:100%;display:flex;align-items:center;gap:10px;padding:12px 13px;border:1px solid #e5e1da;border-radius:14px;background:#fff;color:#3d3a36;text-align:left;font:inherit;cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease}
 .hotel-review-json-page .hrj-map-place:hover{transform:translateY(-1px);border-color:#d0cbc3;box-shadow:0 7px 20px rgba(30,34,39,.055)}
 .hotel-review-json-page .hrj-map-place.is-selected{border-color:#6b84a8;background:#f7fbff;box-shadow:0 0 0 3px rgba(37,99,235,.12),0 10px 24px rgba(30,64,175,.10);transform:translateY(-1px)}
-.hotel-review-json-page .hrj-map-place__icon{flex:0 0 auto;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:9px;background:#eaf2ff;color:#2563eb}
-.hotel-review-json-page .hrj-map-place__icon--food{background:#fff0f3;color:#e11d48}
-.hotel-review-json-page .hrj-map-place__icon--airport{background:#eef0f2;color:#58616c}
-.hotel-review-json-page .hrj-map-place__icon svg{width:17px;height:17px}
+.hotel-review-json-page .hrj-map-place__num{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border-radius:50%;background:#eef4ff;color:#2f67d8;font-size:12px;font-weight:850;line-height:1}
+.hotel-review-json-page .hrj-map-place__num--food{background:#fff1f5;color:#d95070}
+.hotel-review-json-page .hrj-map-place__num--airport{background:#eef0f2;color:#5d6875}
 .hotel-review-json-page .hrj-map-place__body{min-width:0;flex:1}
-.hotel-review-json-page .hrj-map-place__body strong{display:block;font-size:13px;font-weight:600;line-height:1.45;color:#343230;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hotel-review-json-page .hrj-map-place__arrow{flex:0 0 auto;color:#b2aca5;font-size:18px}
+.hotel-review-json-page .hrj-map-place__body strong{display:block;font-size:13px;font-weight:700;line-height:1.45;color:#343230;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hotel-review-json-page .hrj-map-note{margin:12px 2px 0!important;font-size:11px!important;line-height:1.55!important;color:#9a948c!important}
+
+/* Leaflet numbered markers + overlay cards v10 */
+.hotel-review-json-page .hrj-map-label-wrap,
+.hotel-review-json-page .hrj-map-pin-wrap{background:transparent!important;border:0!important;overflow:visible!important}
+.hotel-review-json-page .hrj-map-marker--poi,
+.hotel-review-json-page .hrj-map-marker--hotel{opacity:1!important}
+.hotel-review-json-page .hrj-map-label{--hrj-map-accent:#f97316;--hrj-map-soft:#fff7ed;position:relative;display:inline-flex;align-items:center;gap:8px;height:46px;padding:5px 15px 5px 5px;border:1px solid #fed7aa;border-radius:15px;background:rgba(255,255,255,.98);color:#9a3412;box-shadow:0 8px 22px rgba(249,115,22,.14),0 2px 8px rgba(31,41,55,.06);white-space:nowrap;font:800 13px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.02em}
+.hotel-review-json-page .hrj-map-label::before{content:"";position:absolute;left:22px;bottom:-10px;width:14px;height:14px;background:#fff;border-left:1px solid #fed7aa;border-bottom:1px solid #fed7aa;border-bottom-left-radius:4px;transform:rotate(-45deg);z-index:-1}
+.hotel-review-json-page .hrj-map-label__icon{width:35px;height:35px;flex:0 0 35px;display:grid;place-items:center;border-radius:11px;background:var(--hrj-map-soft);color:var(--hrj-map-accent)}
+.hotel-review-json-page .hrj-map-label__icon svg{width:18px;height:18px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.hotel-review-json-page .hrj-map-label__text{min-width:0;max-width:220px;overflow:hidden;text-overflow:ellipsis;color:inherit;font-size:13.5px;line-height:1;font-weight:900;letter-spacing:-.02em}
+
+.hotel-review-json-page .hrj-map-pin{--hrj-pin-bg:#2f67d8;position:relative;display:grid;place-items:center;width:34px;height:34px;border:3px solid #fff;border-radius:11px;background:var(--hrj-pin-bg);color:#fff;box-shadow:0 10px 24px rgba(23,32,41,.18),0 2px 8px rgba(23,32,41,.06);font:800 13px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+.hotel-review-json-page .hrj-map-pin::after{content:"";position:absolute;left:50%;bottom:-4px;width:8px;height:8px;background:var(--hrj-pin-bg);border-radius:2px;transform:translateX(-50%) rotate(45deg);z-index:-1}
+.hotel-review-json-page .hrj-map-pin--food{--hrj-pin-bg:#d95070}
+.hotel-review-json-page .hrj-map-pin--airport{--hrj-pin-bg:#5d6875}
+.hotel-review-json-page .hrj-map-pin__num{display:block;font-size:13px;font-weight:850;line-height:1;color:#fff}
+.hotel-review-json-page .hrj-map-pin__icon{display:grid;place-items:center;width:17px;height:17px;color:#fff}
+.hotel-review-json-page .hrj-map-pin__icon svg{width:16px;height:16px;display:block;fill:currentColor;stroke:none}
+.hotel-review-json-page .hrj-map-label-wrap:hover .hrj-map-label,
+.hotel-review-json-page .hrj-map-pin-wrap:hover .hrj-map-pin{transform:translateY(-2px)}
+.hotel-review-json-page .hrj-map-marker--poi.is-selected .hrj-map-pin{transform:scale(1.08);box-shadow:0 0 0 5px rgba(47,103,216,.13),0 16px 32px rgba(23,32,41,.22)}
+.hotel-review-json-page .hrj-map-marker--poi.is-selected .hrj-map-pin--food{box-shadow:0 0 0 5px rgba(217,80,112,.13),0 16px 32px rgba(23,32,41,.22)}
+.hotel-review-json-page .hrj-map-marker--poi.is-selected .hrj-map-pin--airport{box-shadow:0 0 0 5px rgba(93,104,117,.14),0 16px 32px rgba(23,32,41,.22)}
+
+.hotel-review-json-page .hrj-map-overlay{position:absolute;left:0;top:0;z-index:650;min-width:220px;max-width:290px;padding:14px 42px 13px 14px;border:1px solid #dce5f5;border-radius:16px;background:rgba(255,255,255,.985);box-shadow:0 16px 38px rgba(23,32,41,.14),0 2px 8px rgba(23,32,41,.05);opacity:0;visibility:hidden;transform:scale(.97);transform-origin:50% 100%;transition:opacity .14s ease,transform .14s ease,visibility 0s linear .14s}
+.hotel-review-json-page .hrj-map-overlay.is-visible{opacity:1;visibility:visible;transform:scale(1);transition:opacity .16s ease,transform .16s ease,visibility 0s}
+.hotel-review-json-page .hrj-map-overlay::after{content:"";position:absolute;left:50%;bottom:-10px;width:2px;height:10px;border-radius:999px;background:#cdd9eb;transform:translateX(-50%)}
+.hotel-review-json-page .hrj-map-overlay--food{border-color:#efd4dc}
+.hotel-review-json-page .hrj-map-overlay--food::after{background:#e5b8c5}
+.hotel-review-json-page .hrj-map-overlay--airport{border-color:#d9dee4}
+.hotel-review-json-page .hrj-map-overlay--airport::after{background:#c9d0d8}
+.hotel-review-json-page .hrj-map-overlay__close{position:absolute;top:9px;right:9px;width:28px;height:28px;display:grid;place-items:center;border:0;border-radius:50%;background:#f4f6f8;color:#747b83;font-size:18px;line-height:1;cursor:pointer;transition:background .14s ease,color .14s ease}
+.hotel-review-json-page .hrj-map-overlay__close:hover{background:#e9edf1;color:#343a40}
+.hotel-review-json-page .hrj-map-overlay__close:focus-visible{outline:2px solid #6b8fd8;outline-offset:2px}
+.hotel-review-json-page .hrj-map-overlay__name{padding-right:2px;color:#284e8f;font-size:16px;line-height:1.35;font-weight:850;letter-spacing:-.03em}
+.hotel-review-json-page .hrj-map-overlay--food .hrj-map-overlay__name{color:#b3405b}
+.hotel-review-json-page .hrj-map-overlay--airport .hrj-map-overlay__name{color:#475260}
+.hotel-review-json-page .hrj-map-overlay__meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.hotel-review-json-page .hrj-map-overlay__pill{display:inline-flex;align-items:center;gap:5px;padding:6px 8px;border-radius:999px;background:#f7f9fb;border:1px solid #ebeff3;color:#69717a;font-size:11px;font-weight:750;line-height:1;white-space:nowrap}
+.hotel-review-json-page .hrj-map-overlay__pill svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+.hotel-review-json-page .leaflet-control-attribution{font-size:9px!important;line-height:1.35!important;color:#777!important;background:rgba(255,255,255,.86)!important;padding:2px 5px!important}
+.hotel-review-json-page .leaflet-control-attribution a{color:#626b75!important;text-decoration:none}
+.hotel-review-json-page .leaflet-control-zoom{border:0!important;box-shadow:0 5px 16px rgba(17,24,39,.12)!important}
+.hotel-review-json-page .leaflet-control-zoom a{border:0!important;color:#3d4650!important}
+
+@media(max-width:720px){.hotel-review-json-page{padding:0 0 64px;background:var(--hrj-paper)}.hotel-review-json-page .hrj-shell{width:100%}.hotel-review-json-page .hrj-article{background:#fff}.hotel-review-json-page .hrj-article__inner{padding:32px 20px 56px}.hotel-review-json-page .hrj-title{font-size:28px!important;line-height:1.38}.hotel-review-json-page .hrj-lede{font-size:16px;line-height:1.78}.hotel-review-json-page .hrj-hero{height:300px;border-radius:16px;margin-top:28px}.hotel-review-json-page .hrj-basic-info__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hotel-review-json-page .hrj-basic-info__action{align-items:stretch;flex-direction:column-reverse;gap:8px}.hotel-review-json-page .hrj-basic-info__cta{width:100%;min-height:48px}.hotel-review-json-page .hrj-basic-info__action>span{text-align:center}.hotel-review-json-page .hrj-quick-card__head h2{font-size:17px}.hotel-review-json-page .hrj-quick-grid{grid-template-columns:1fr}.hotel-review-json-page .hrj-quick-item{border-right:0!important;border-bottom:1px solid var(--hrj-line)!important}.hotel-review-json-page .hrj-quick-item:last-child{border-bottom:0!important}.hotel-review-json-page .hrj-content{margin-top:48px}.hotel-review-json-page .hrj-chapter{margin-top:56px}.hotel-review-json-page .hrj-chapter h2{font-size:21px!important;line-height:1.48}.hotel-review-json-page .hrj-chapter h3{font-size:17px!important;line-height:1.52}.hotel-review-json-page .hrj-chapter p{font-size:16px}.hotel-review-json-page .hrj-access-summary__item{grid-template-columns:1fr;gap:5px}.hotel-review-json-page .hrj-location-row{grid-template-columns:.9fr 1.1fr}.hotel-review-json-page .hrj-review-analysis__grid,.hotel-review-json-page .hrj-fit-grid{grid-template-columns:1fr}.hotel-review-json-page .hrj-room-grid{grid-template-columns:1fr}.hotel-review-json-page .hrj-room-option{border-right:0;border-bottom:1px solid var(--hrj-line)}.hotel-review-json-page .hrj-room-option:last-child{border-bottom:0}}
+
+/* Hotel review location map */
+.hotel-review-json-page .hrj-location-map{padding:22px;overflow:hidden}
+.hotel-review-json-page .hrj-location-map__head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;min-width:0}
+.hotel-review-json-page .hrj-location-map__head h3{flex:0 0 auto;margin:0!important;font-size:18px!important;line-height:1.35!important;color:#343230}
+.hotel-review-json-page .hrj-map-tabs{display:flex;align-items:center;justify-content:flex-end;gap:6px;min-width:0;margin:0;overflow-x:auto;scrollbar-width:none}
+.hotel-review-json-page .hrj-map-tabs::-webkit-scrollbar{display:none}
+.hotel-review-json-page .hrj-map-tab{appearance:none;border:1px solid #ddd9d2;background:#fff;color:#66615b;border-radius:999px;min-height:34px;padding:7px 11px;font:inherit;font-size:12px;line-height:1;white-space:nowrap;cursor:pointer;transition:border-color .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease}
+.hotel-review-json-page .hrj-map-tab span{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;margin-left:5px;padding:0 5px;border-radius:999px;background:#f0eeeb;color:#817b74;font-size:9.5px}
+.hotel-review-json-page .hrj-map-tab:hover{border-color:#c8c2ba}
+.hotel-review-json-page .hrj-map-tab.is-active{border-color:#363b42;background:#363b42;color:#fff;box-shadow:0 5px 14px rgba(35,39,44,.12)}
+.hotel-review-json-page .hrj-map-tab.is-active span{background:rgba(255,255,255,.16);color:#fff}
+.hotel-review-json-page .hrj-map-canvas-wrap{position:relative;height:390px;border:1px solid #e1ddd7;border-radius:17px;overflow:hidden;background:#ece9e4}
+.hotel-review-json-page .hrj-map-controls{position:absolute;top:12px;right:12px;z-index:500;display:flex;gap:6px;pointer-events:none}
+.hotel-review-json-page .hrj-map-control{pointer-events:auto;appearance:none;min-height:32px;padding:7px 10px;border:1px solid rgba(112,106,98,.24);border-radius:9px;background:rgba(255,255,255,.94);box-shadow:0 4px 12px rgba(17,24,39,.1);color:#514d48;font:600 11px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer;backdrop-filter:blur(6px);transition:background .16s ease,border-color .16s ease,transform .16s ease}
+.hotel-review-json-page .hrj-map-control:hover{background:#fff;border-color:#aaa39a;transform:translateY(-1px)}
+.hotel-review-json-page .hrj-map-control:focus-visible{outline:2px solid #607d9e;outline-offset:2px}
+.hotel-review-json-page .hrj-map-canvas{width:100%;height:100%;opacity:0;transition:opacity .22s ease}
+.hotel-review-json-page .hrj-location-map.is-map-ready .hrj-map-canvas{opacity:1}
+.hotel-review-json-page .hrj-map-skeleton{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#efede8,#e4e1db);color:#858079;text-align:center}
+.hotel-review-json-page .hrj-map-skeleton[hidden]{display:none}
+.hotel-review-json-page .hrj-map-skeleton>span{width:26px;height:26px;border:3px solid rgba(79,86,93,.14);border-top-color:#5a626b;border-radius:50%;animation:hrj-map-spin .8s linear infinite}
+.hotel-review-json-page .hrj-map-skeleton p{margin:0!important;font-size:12px!important;color:#858079!important}
+@keyframes hrj-map-spin{to{transform:rotate(360deg)}}
+.hotel-review-json-page .hrj-map-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:13px}
+.hotel-review-json-page .hrj-map-panel[hidden]{display:none!important}
+.hotel-review-json-page .hrj-map-place{appearance:none;width:100%;display:flex;align-items:center;gap:10px;padding:12px 13px;border:1px solid #e5e1da;border-radius:14px;background:#fff;color:#3d3a36;text-align:left;font:inherit;cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease,background .16s ease}
+.hotel-review-json-page .hrj-map-place:hover{transform:translateY(-1px);border-color:#d0cbc3;box-shadow:0 7px 20px rgba(30,34,39,.055)}
+.hotel-review-json-page .hrj-map-place.is-selected{border-color:#6b84a8;background:#f7fbff;box-shadow:0 0 0 3px rgba(37,99,235,.12),0 10px 24px rgba(30,64,175,.10);transform:translateY(-1px)}
+.hotel-review-json-page .hrj-map-place__num{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border-radius:50%;background:#eef4ff;color:#2f67d8;font-size:12px;font-weight:850;line-height:1}
+.hotel-review-json-page .hrj-map-place__num--food{background:#fff1f5;color:#d95070}
+.hotel-review-json-page .hrj-map-place__num--airport{background:#eef0f2;color:#5d6875}
+.hotel-review-json-page .hrj-map-place__body{min-width:0;flex:1}
+.hotel-review-json-page .hrj-map-place__body strong{display:block;font-size:13px;font-weight:700;line-height:1.45;color:#343230;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hotel-review-json-page .hrj-map-note{margin:12px 2px 0!important;font-size:11px!important;line-height:1.55!important;color:#9a948c!important}
 
 /* Leaflet modern label cards + friendly popups v7 */
@@ -152,17 +233,17 @@
   .hotel-review-json-page .hrj-map-control{min-height:30px;padding:6px 8px;font-size:10.5px;border-radius:8px}
   .hotel-review-json-page .hrj-map-panel{grid-template-columns:1fr;gap:8px}
   .hotel-review-json-page .hrj-map-place{padding:11px}
-  .hotel-review-json-page .hrj-map-label{height:38px;border-radius:12px;padding:4px 10px 4px 4px;font-size:12px}
-  .hotel-review-json-page .hrj-map-label__icon{width:29px;height:29px;flex-basis:29px;border-radius:9px}
+  .hotel-review-json-page .hrj-map-label{height:42px;padding:4px 12px 4px 4px;border-radius:13px}
+  .hotel-review-json-page .hrj-map-label__icon{width:32px;height:32px;flex-basis:32px;border-radius:10px}
   .hotel-review-json-page .hrj-map-label__icon svg{width:16px;height:16px}
-  .hotel-review-json-page .hrj-map-label__text{max-width:115px;font-size:12px}
-  .hotel-review-json-page .hrj-map-label--hotel{height:42px}
-  .hotel-review-json-page .hrj-map-label--hotel .hrj-map-label__icon{width:32px;height:32px;flex-basis:32px}
-  .hotel-review-json-page .hrj-map-label--hotel .hrj-map-label__text{max-width:160px;font-size:12.5px}
-  .hotel-review-json-page .hrj-map-label::before{left:16px}
-  .hotel-review-json-page .hrj-map-label::after{left:11px}
-  .hotel-review-json-page .leaflet-popup-content{min-width:210px;max-width:250px}
-  .hotel-review-json-page .hrj-map-popup{padding:13px 39px 13px 13px}
+  .hotel-review-json-page .hrj-map-label__text{max-width:155px;font-size:12.5px}
+  .hotel-review-json-page .hrj-map-label::before{left:19px;bottom:-9px;width:12px;height:12px}
+  .hotel-review-json-page .hrj-map-pin{width:30px;height:30px;border-width:3px;border-radius:10px}
+  .hotel-review-json-page .hrj-map-pin__num{font-size:12px}
+  .hotel-review-json-page .hrj-map-pin__icon{width:15px;height:15px}
+  .hotel-review-json-page .hrj-map-overlay{min-width:190px;max-width:240px;padding:12px 38px 12px 12px}
+  .hotel-review-json-page .hrj-map-overlay__name{font-size:14px}
+  .hotel-review-json-page .hrj-map-overlay__pill{font-size:10px}
 }
 
 /* Hotel review booking overview 40/60 v6 */
