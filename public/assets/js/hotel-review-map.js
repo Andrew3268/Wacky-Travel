@@ -258,13 +258,13 @@
         const markerCenterX = markerRect.left - wrapRect.left + (markerRect.width / 2);
         const markerTop = markerRect.top - wrapRect.top;
         const markerBottom = markerRect.bottom - wrapRect.top;
-        const gap = 18;
+        const gap = 8;
 
         let left = markerCenterX - (width / 2);
         let top = markerTop - height - gap;
         let placement = "above";
 
-        // 상단 공간이 부족하면 핀 아래로 보내며, 어느 경우에도 번호 핀을 덮지 않습니다.
+        // 말풍선 포인터가 번호 핀 가까이에 오도록 8px 간격을 유지하고, 상단 공간이 부족하면 핀 아래로 보냅니다.
         if (top < 8) {
           top = markerBottom + gap;
           placement = "below";
