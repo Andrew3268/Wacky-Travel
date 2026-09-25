@@ -314,7 +314,29 @@
         }).addTo(lineLayer);
       };
 
-      const activateItem = (item, { ensureVisible = false } = {}) => {
+      const focusHotelAndTarget = (item) => {
+        const targetLat = num(item?.coordinates?.lat);
+        const targetLng = num(item?.coordinates?.lng);
+        if (targetLat === null || targetLng === null) return;
+
+        // 이 지도는 '선택 장소 중심'이 아니라 '호텔 중심' 지도다.
+        // 선택 지점의 반대편에 대칭 좌표를 만들어 호텔을 정확한 화면 중심으로 유지하면서
+        // 호텔과 선택 지점이 동시에 들어오는 최소 줌을 계산한다.
+        const mirror = [
+          (hotelLatLng[0] * 2) - targetLat,
+          (hotelLatLng[1] * 2) - targetLng
+        ];
+        const symmetricBounds = L.latLngBounds([[targetLat, targetLng], mirror]);
+        const mobile = window.matchMedia?.("(max-width: 720px)")?.matches;
+        const padding = L.point(mobile ? 56 : 78, mobile ? 72 : 92);
+        const boundsZoom = map.getBoundsZoom(symmetricBounds, false, padding);
+        const zoom = Math.min(15, Number.isFinite(boundsZoom) ? boundsZoom : initialZoom());
+
+        // 애니메이션 없이 즉시 적용해 핀/패널 선택 지연을 최소화한다.
+        map.setView(hotelLatLng, zoom, { animate: false });
+      };
+
+      const activateItem = (item) => {
         const marker = markerById.get(String(item.id));
         if (!marker) return;
         const kind = iconKind(text(item.type));
@@ -324,15 +346,8 @@
         setMarkerFocus(item.id);
         connectLine(item, kind);
 
-        // 핀을 직접 누른 경우에는 지도 이동을 하지 않는다.
-        // 패널에서 선택한 장소가 화면 가장자리/밖에 있을 때만 최소 거리로 즉시 이동한다.
-        if (ensureVisible) {
-          map.panInside(marker.getLatLng(), {
-            paddingTopLeft: [70, 100],
-            paddingBottomRight: [70, 70],
-            animate: false
-          });
-        }
+        // 가까운 곳은 적절히 확대하고, 먼 곳은 자동 줌아웃하되 호텔은 항상 중심에 둔다.
+        focusHotelAndTarget(item);
 
         renderOverlay(item, kind);
         overlay.hidden = false;
@@ -341,7 +356,7 @@
         requestAnimationFrame(() => overlay.classList.add("is-visible"));
       };
 
-      const connectToItem = (item, options = {}) => {
+      const connectToItem = (item) => {
         if (closeTimer) {
           clearTimeout(closeTimer);
           closeTimer = null;
@@ -352,10 +367,10 @@
           // 145ms 강제 대기를 제거해 선택 반응 속도를 높였다.
           overlay.classList.remove("is-visible");
           overlay.hidden = true;
-          requestAnimationFrame(() => activateItem(item, options));
+          requestAnimationFrame(() => activateItem(item));
           return;
         }
-        activateItem(item, options);
+        activateItem(item);
       };
 
       const renderCategory = (key) => {
@@ -381,7 +396,7 @@
           marker.getElement()?.classList.add("hrj-map-marker--poi");
           marker.on("click", (event) => {
             if (event?.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
-            connectToItem(item, { ensureVisible: false });
+            connectToItem(item);
           });
           markerById.set(String(item.id), marker);
           bounds.push([lat, lng]);
@@ -422,7 +437,7 @@
         const category = getCategory(button.dataset.mapCategory || activeCategory);
         if (text(category?.key) !== activeCategory) renderCategory(category?.key);
         const item = arr(category?.items).find((candidate) => String(candidate?.id) === String(button.dataset.hrjMapPlace));
-        if (item) connectToItem(item, { ensureVisible: true });
+        if (item) connectToItem(item);
       });
 
       overlayClose.addEventListener("click", (event) => {

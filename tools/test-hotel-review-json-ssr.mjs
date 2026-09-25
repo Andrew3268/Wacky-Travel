@@ -71,8 +71,8 @@ assert.match(css, /\.hrj-basic-info__cta/);
 assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,40%\) minmax\(0,60%\)/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20260925-map-overlay-fast-v15/);
-assert.match(post, /hotel-review-map\.js\?v=20260925-map-overlay-fast-v15/);
+assert.match(post, /hotel-review-json\.css\?v=20260925-map-hotel-center-v16/);
+assert.match(post, /hotel-review-map\.js\?v=20260925-map-hotel-center-v16/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 assert.match(css, /\.hrj-location-map/);
@@ -112,11 +112,12 @@ assert.match(mapJs, /data-hrj-map-overlay-close/);
 assert.match(mapJs, /overlayClose\.addEventListener\("click"/);
 assert.match(mapJs, /map\.on\("click"/);
 assert.match(mapJs, /requestAnimationFrame\(\(\) => activateItem/);
-assert.match(mapJs, /map\.panInside\(/);
+assert.match(mapJs, /map\.getBoundsZoom\(/);
+assert.match(mapJs, /map\.setView\(hotelLatLng/);
 assert.match(mapJs, /scheduleOverlayPosition/);
 assert.match(css, /hrj-map-overlay__meta\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 assert.match(mapJs, /animate: false/);
-assert.match(post, /POST_RENDER_VERSION = "20260925-post-layout-v63"/);
+assert.match(post, /POST_RENDER_VERSION = "20260925-post-layout-v64"/);
 assert.match(post, /max-age=0, s-maxage=600, must-revalidate/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");
