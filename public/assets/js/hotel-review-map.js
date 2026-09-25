@@ -56,9 +56,6 @@
     if (kind === "hotel") {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4.8c0-.45.35-.8.8-.8h9.4c.45 0 .8.35.8.8V21"/><path d="M8 8h2M13 8h1M8 12h2M13 12h1M8 16h2M13 16h1"/><path d="M3 21h18M16 10h2.2c.45 0 .8.35.8.8V21"/></svg>';
     }
-    if (kind === "airport") {
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 14 7.2-2.2L7 5.2 8.7 4l5.5 6.5 4.7-1.5c1.3-.4 2.3.1 2.6.9.3.9-.4 1.7-1.7 2.1l-4.8 1.5-1 8-2 .6-1.8-7.3L4 16z"/></svg>';
-    }
     if (kind === "food") {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v7M4.5 3v4.5A2.5 2.5 0 0 0 7 10M9.5 3v4.5A2.5 2.5 0 0 1 7 10M7 10v11"/><path d="M16 3c2.1 2.1 2.4 6.2 0 8.5V21M16 3v8.5"/></svg>';
     }
@@ -74,11 +71,12 @@
     });
   }
 
-  function poiIcon(order, kind = "place") {
-    const content = kind === "airport" ? svgIcon("airport") : escapeHtml(String(order));
+  function poiIcon(order, kind = "place", existingAirportSvg = "") {
+    const isAirport = kind === "airport";
+    const content = isAirport ? existingAirportSvg : escapeHtml(String(order));
     return window.L.divIcon({
       className: "hrj-map-pin-wrap",
-      html: `<div class="hrj-map-pin hrj-map-pin--${kind}">${kind === "airport" ? `<span class="hrj-map-pin__icon">${content}</span>` : `<span class="hrj-map-pin__num">${content}</span>`}</div>`,
+      html: `<div class="hrj-map-pin hrj-map-pin--${kind}">${isAirport ? `<span class="hrj-map-pin__icon">${content}</span>` : `<span class="hrj-map-pin__num">${content}</span>`}</div>`,
       iconSize: null,
       iconAnchor: [17, 38]
     });
@@ -154,7 +152,8 @@
       let activeBounds = null;
       let activeItem = null;
       let activeMarker = null;
-      let switchTimer = null;
+      let closeTimer = null;
+      let positionFrame = 0;
 
       const initialZoom = () => window.matchMedia?.("(max-width: 720px)")?.matches ? 13.5 : 14;
       const getCategory = (key) => config.categories.find((category) => text(category.key) === text(key)) || config.categories[0];
@@ -172,7 +171,6 @@
           marker.getElement()?.classList.remove("is-selected", "is-focused-poi");
           marker.setZIndexOffset(0);
         });
-        hotelMarker.setOpacity(1);
         hotelMarker.setOpacity(1);
         hotelMarker.setZIndexOffset(2000);
       };
@@ -206,9 +204,9 @@
       };
 
       const hideOverlay = ({ clearSelection = true, immediate = false } = {}) => {
-        if (switchTimer) {
-          clearTimeout(switchTimer);
-          switchTimer = null;
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
         }
         if (immediate || overlay.hidden) {
           hideOverlayNow();
@@ -216,12 +214,11 @@
           return;
         }
         overlay.classList.remove("is-visible");
-        const finish = () => {
+        closeTimer = setTimeout(() => {
           hideOverlayNow();
           if (clearSelection) clearConnection();
-          switchTimer = null;
-        };
-        switchTimer = setTimeout(finish, 145);
+          closeTimer = null;
+        }, 110);
       };
 
       const showHotelCenter = ({ animate = true, clear = true } = {}) => {
@@ -281,6 +278,14 @@
         overlay.style.removeProperty("visibility");
       };
 
+      const scheduleOverlayPosition = () => {
+        if (positionFrame) return;
+        positionFrame = requestAnimationFrame(() => {
+          positionFrame = 0;
+          positionOverlay();
+        });
+      };
+
       const renderOverlay = (item, kind) => {
         overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport");
         if (kind === "food") overlay.classList.add("hrj-map-overlay--food");
@@ -309,7 +314,7 @@
         }).addTo(lineLayer);
       };
 
-      const activateItem = (item, { fit = true } = {}) => {
+      const activateItem = (item, { ensureVisible = false } = {}) => {
         const marker = markerById.get(String(item.id));
         if (!marker) return;
         const kind = iconKind(text(item.type));
@@ -318,9 +323,17 @@
         setSelected(item.id);
         setMarkerFocus(item.id);
         connectLine(item, kind);
-        if (fit) {
-          map.fitBounds([hotelLatLng, [item.coordinates.lat, item.coordinates.lng]], { padding: [55, 55], maxZoom: 15, animate: false });
+
+        // 핀을 직접 누른 경우에는 지도 이동을 하지 않는다.
+        // 패널에서 선택한 장소가 화면 가장자리/밖에 있을 때만 최소 거리로 즉시 이동한다.
+        if (ensureVisible) {
+          map.panInside(marker.getLatLng(), {
+            paddingTopLeft: [70, 100],
+            paddingBottomRight: [70, 70],
+            animate: false
+          });
         }
+
         renderOverlay(item, kind);
         overlay.hidden = false;
         overlay.classList.remove("is-visible");
@@ -328,22 +341,21 @@
         requestAnimationFrame(() => overlay.classList.add("is-visible"));
       };
 
-      const connectToItem = (item) => {
-        if (switchTimer) {
-          clearTimeout(switchTimer);
-          switchTimer = null;
+      const connectToItem = (item, options = {}) => {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
         }
-        const switching = activeItem && String(activeItem.id) !== String(item.id) && !overlay.hidden && overlay.classList.contains("is-visible");
+        const switching = activeItem && String(activeItem.id) !== String(item.id) && !overlay.hidden;
         if (switching) {
+          // 기존 카드는 즉시 사라지게 하고 다음 프레임에 새 위치에서 다시 나타낸다.
+          // 145ms 강제 대기를 제거해 선택 반응 속도를 높였다.
           overlay.classList.remove("is-visible");
-          switchTimer = setTimeout(() => {
-            overlay.hidden = true;
-            activateItem(item);
-            switchTimer = null;
-          }, 145);
+          overlay.hidden = true;
+          requestAnimationFrame(() => activateItem(item, options));
           return;
         }
-        activateItem(item);
+        activateItem(item, options);
       };
 
       const renderCategory = (key) => {
@@ -354,6 +366,8 @@
         hideOverlay({ clearSelection: true, immediate: true });
         markerById.clear();
 
+        const activePanel = root.querySelector(`[data-hrj-map-panel="${CSS.escape(activeCategory)}"]`);
+        const existingAirportSvg = activePanel?.querySelector(".hrj-map-place__num--airport svg")?.outerHTML || "";
         const bounds = [hotelLatLng];
         arr(category?.items).forEach((item, index) => {
           const lat = num(item?.coordinates?.lat);
@@ -361,13 +375,13 @@
           if (lat === null || lng === null) return;
           const kind = iconKind(text(item.type));
           const marker = L.marker([lat, lng], {
-            icon: poiIcon(index + 1, kind),
+            icon: poiIcon(index + 1, kind, existingAirportSvg),
             keyboard: true
           }).addTo(poiLayer);
           marker.getElement()?.classList.add("hrj-map-marker--poi");
           marker.on("click", (event) => {
             if (event?.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
-            connectToItem(item);
+            connectToItem(item, { ensureVisible: false });
           });
           markerById.set(String(item.id), marker);
           bounds.push([lat, lng]);
@@ -408,7 +422,7 @@
         const category = getCategory(button.dataset.mapCategory || activeCategory);
         if (text(category?.key) !== activeCategory) renderCategory(category?.key);
         const item = arr(category?.items).find((candidate) => String(candidate?.id) === String(button.dataset.hrjMapPlace));
-        if (item) connectToItem(item);
+        if (item) connectToItem(item, { ensureVisible: true });
       });
 
       overlayClose.addEventListener("click", (event) => {
@@ -418,7 +432,7 @@
       });
       overlay.addEventListener("click", (event) => event.stopPropagation());
       map.on("click", () => hideOverlay({ clearSelection: true }));
-      map.on("zoom move", () => positionOverlay());
+      map.on("zoom move", scheduleOverlayPosition);
 
       renderCategory(activeCategory);
       requestAnimationFrame(() => {
@@ -429,7 +443,7 @@
 
       window.addEventListener("resize", () => {
         map.invalidateSize(false);
-        positionOverlay();
+        scheduleOverlayPosition();
       }, { passive: true });
     }).catch(() => {
       root.classList.add("is-map-error");
