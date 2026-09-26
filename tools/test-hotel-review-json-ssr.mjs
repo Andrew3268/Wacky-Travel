@@ -59,6 +59,8 @@ assert.match(editorJs, /hotel-review-v1\.0/);
 assert.match(editorJs, /locationMap/);
 assert.match(editorJs, /BLOCK_TYPES/);
 assert.match(editorJs, /locationSummary/);
+assert.match(read("public/add.html"), /hotel-review-json-editor\.js\?v=20260926-location-summary-v21/);
+assert.match(read("public/edit.html"), /hotel-review-json-editor\.js\?v=20260926-location-summary-v21/);
 assert.match(editorJs, /validateForSave/);
 assert.match(editorJs, /readFile/);
 assert.match(editorJs, /contentMarkdownSection/);
