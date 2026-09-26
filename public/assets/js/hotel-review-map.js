@@ -62,12 +62,12 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2.2"/></svg>';
   }
 
-  function hotelIcon(label) {
+  function hotelIcon() {
     return window.L.divIcon({
       className: "hrj-map-label-wrap",
-      html: `<div class="hrj-map-label hrj-map-label--hotel"><span class="hrj-map-label__icon">${svgIcon("hotel")}</span><span class="hrj-map-label__text">${escapeHtml(label)}</span></div>`,
+      html: `<div class="hrj-map-label hrj-map-label--hotel"><span class="hrj-map-label__icon">${svgIcon("hotel")}</span><span class="hrj-map-label__text">호텔</span></div>`,
       iconSize: null,
-      iconAnchor: [24, 56]
+      iconAnchor: [22, 50]
     });
   }
 
@@ -137,11 +137,14 @@
       }).addTo(map);
 
       const hotelLatLng = [config.hotel.lat, config.hotel.lng];
+      const hotelName = text(config.hotel.name) || "호텔";
       const hotelMarker = L.marker(hotelLatLng, {
-        icon: hotelIcon(config.hotel.name || "호텔"),
+        icon: hotelIcon(),
         zIndexOffset: 2000,
-        keyboard: false,
-        interactive: false
+        keyboard: true,
+        interactive: true,
+        title: hotelName,
+        alt: `${hotelName} 위치`
       }).addTo(map);
       hotelMarker.getElement()?.classList.add("hrj-map-marker--hotel");
 
@@ -173,6 +176,7 @@
         });
         hotelMarker.setOpacity(1);
         hotelMarker.setZIndexOffset(2000);
+        hotelMarker.getElement()?.classList.remove("is-selected");
       };
 
       const setMarkerFocus = (id) => {
@@ -186,6 +190,7 @@
           marker.setZIndexOffset(selected ? 1500 : 0);
         });
         hotelMarker.setZIndexOffset(2000);
+        hotelMarker.getElement()?.classList.remove("is-selected");
       };
 
       const clearConnection = ({ keepSelection = false } = {}) => {
@@ -200,7 +205,7 @@
 
       const hideOverlayNow = () => {
         overlay.hidden = true;
-        overlay.classList.remove("is-visible", "hrj-map-overlay--food", "hrj-map-overlay--airport");
+        overlay.classList.remove("is-visible", "hrj-map-overlay--food", "hrj-map-overlay--airport", "hrj-map-overlay--hotel");
       };
 
       const hideOverlay = ({ clearSelection = true, immediate = false } = {}) => {
@@ -241,7 +246,7 @@
         if (!activeMarker || overlay.hidden) return;
 
         const markerRoot = activeMarker.getElement();
-        const pin = markerRoot?.querySelector(".hrj-map-pin") || markerRoot;
+        const pin = markerRoot?.querySelector(".hrj-map-pin, .hrj-map-label") || markerRoot;
         if (!pin) return;
 
         overlay.hidden = false;
@@ -287,11 +292,34 @@
       };
 
       const renderOverlay = (item, kind) => {
-        overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport");
+        overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport", "hrj-map-overlay--hotel");
         if (kind === "food") overlay.classList.add("hrj-map-overlay--food");
         if (kind === "airport") overlay.classList.add("hrj-map-overlay--airport");
         overlayName.textContent = text(item?.nameKo || item?.name || "장소");
         overlayMeta.innerHTML = overlayMetaHtml(item);
+      };
+
+      const showHotelOverlay = () => {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        lineLayer.clearLayers();
+        clearMarkerFocus();
+        setSelected("");
+        activeItem = { id: "__hotel__" };
+        activeMarker = hotelMarker;
+        hotelMarker.getElement()?.classList.add("is-selected");
+        hotelMarker.setZIndexOffset(2200);
+
+        overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport");
+        overlay.classList.add("hrj-map-overlay--hotel");
+        overlayName.textContent = hotelName;
+        overlayMeta.innerHTML = '<span class="hrj-map-overlay__pill"><span>현재 숙소 기준점</span></span>';
+        overlay.hidden = false;
+        overlay.classList.remove("is-visible");
+        positionOverlay();
+        requestAnimationFrame(() => overlay.classList.add("is-visible"));
       };
 
       const connectLine = (item, kind) => {
@@ -415,6 +443,11 @@
         activeBounds = L.latLngBounds(bounds);
         showHotelCenter({ animate: false, clear: false });
       };
+
+      hotelMarker.on("click", (event) => {
+        if (event?.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
+        showHotelOverlay();
+      });
 
       root.addEventListener("click", (event) => {
         const tab = event.target.closest("[data-hrj-map-tab]");
