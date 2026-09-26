@@ -29,7 +29,7 @@ assert.match(renderer, /rel="preload" as="image"/);
 assert.match(renderer, /imagesrcset=/);
 assert.match(renderer, /imagesizes=/);
 assert.match(renderer, /shouldKeepStableCoverUrl\(rawCoverImage\) \? rawCoverImage : appendImageVersion/);
-assert.match(renderer, /POST_RENDER_VERSION = "20260926-post-layout-v67"/);
+assert.match(renderer, /POST_RENDER_VERSION = "20260926-post-layout-v68"/);
 assert.match(proxy, /ALLOWED_WIDTHS = \[[^\]]*800[^\]]*\]/);
 assert.match(createApi, /warmTravelTipCoverTransforms\(coverImage\)/);
 assert.match(updateApi, /warmTravelTipCoverTransforms\(coverImage\)/);

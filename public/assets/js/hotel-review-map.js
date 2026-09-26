@@ -499,7 +499,53 @@
     });
   }
 
+  function initLocationSummaryCopy() {
+    document.querySelectorAll("[data-hrj-location-summary-copy]").forEach((button) => {
+      if (button.dataset.hrjCopyReady === "1") return;
+      button.dataset.hrjCopyReady = "1";
+      button.addEventListener("click", async () => {
+        const summary = button.closest("[data-hrj-location-summary]");
+        if (!summary) return;
+        const lines = Array.from(summary.querySelectorAll(".hrj-location-summary__row")).map((row) => {
+          const label = text(row.querySelector(".hrj-location-summary__label")?.textContent);
+          const value = text(row.querySelector(".hrj-location-summary__value")?.textContent);
+          return label && value ? `${label}: ${value}` : "";
+        }).filter(Boolean);
+        if (!lines.length) return;
+        const payload = lines.join("\n");
+        let copied = false;
+        try {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(payload);
+            copied = true;
+          }
+        } catch (_) {}
+        if (!copied) {
+          const textarea = document.createElement("textarea");
+          textarea.value = payload;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          try { copied = document.execCommand("copy"); } catch (_) {}
+          textarea.remove();
+        }
+        if (!copied) return;
+        button.classList.add("is-copied");
+        button.setAttribute("aria-label", "위치 요약 복사 완료");
+        button.title = "복사 완료";
+        window.setTimeout(() => {
+          button.classList.remove("is-copied");
+          button.setAttribute("aria-label", "위치 요약 복사");
+          button.title = "위치 요약 복사";
+        }, 1200);
+      });
+    });
+  }
+
   function init() {
+    initLocationSummaryCopy();
     const maps = Array.from(document.querySelectorAll(MAP_SELECTOR));
     if (!maps.length) return;
 

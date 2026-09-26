@@ -73,6 +73,30 @@ const sample = {
   sections: [
     {
       number: "01",
+      id: "location",
+      label: "숙박 위치",
+      heading: "도심과 주요 권역을 연결하는 위치",
+      blocks: [
+        { type: "paragraph", text: "호텔이 도시 안에서 어디에 있는지 설명합니다." },
+        { type: "paragraphRich", parts: [{ text: "도심은 걷고, " }, { text: "외곽은 차량을 섞습니다.", strong: true }] },
+        {
+          type: "locationSummary",
+          title: "위치를 한눈에 보면",
+          items: [
+            { label: "숙소 위치", value: "도심 중심" },
+            { label: "도심 접근", value: "도보 이동 중심" },
+            { label: "여행 스타일", value: "도보와 차량을 섞는 일정" },
+            { label: "장점", value: "여러 권역을 한 숙소에서 연결" }
+          ]
+        },
+        { type: "subheading", text: "이 위치가 특히 좋은 일정" },
+        { type: "paragraph", text: "도심과 외곽을 함께 보는 일정에 좋습니다." },
+        { type: "subheading", text: "이 위치가 아쉬울 수 있는 경우" },
+        { type: "paragraph", text: "한 지역에만 머무는 일정에는 장점이 줄어듭니다." }
+      ]
+    },
+    {
+      number: "02",
       id: "attractions-transport",
       label: "명소·교통",
       heading: "호텔 주변 이동",
@@ -118,6 +142,12 @@ const rendered = renderHotelReviewLayout(sample, {
 });
 assert.match(rendered, /class="hotel-review-json-page"/);
 assert.match(rendered, /<h1 class="hrj-title">샘플 호텔 리뷰<\/h1>/);
+assert.match(rendered, /hrj-chapter--location/);
+assert.match(rendered, /data-hrj-location-summary/);
+assert.match(rendered, /위치를 한눈에 보면/);
+assert.match(rendered, /숙소 위치/);
+assert.match(rendered, /hrj-location-fit__item--good/);
+assert.match(rendered, /hrj-location-fit__item--caution/);
 assert.match(rendered, /data-hrj-location-map/);
 assert.match(rendered, /data-hrj-map-tab="attractions"/);
 assert.match(rendered, /data-hrj-map-tab="restaurants"/);
@@ -150,6 +180,7 @@ assert.doesNotMatch(rendered, /hrj-mobile-toc/);
 assert.doesNotMatch(rendered, /이 글의 목차/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
+assert.match(getHotelReviewPlainText(sample), /여러 권역을 한 숙소에서 연결/);
 
 const malicious = structuredClone(sample);
 malicious.article.title = '<img src=x onerror="alert(1)">';
