@@ -1,7 +1,7 @@
 (() => {
   const SCHEMA_VERSION = "hotel-review-v1.1";
   const SCHEMA_VERSIONS = new Set(["hotel-review-v1.0", "hotel-review-v1.1"]);
-  const BLOCK_TYPES = new Set(["paragraph","paragraphRich","subheading","locationSummary","locationTable","accessSummary","insight","reviewProsCons","roomOptions","fitGrid","finalVerdict"]);
+  const BLOCK_TYPES = new Set(["paragraph","paragraphRich","subheading","locationSummary","airportJourney","locationTable","accessSummary","insight","reviewProsCons","roomOptions","fitGrid","finalVerdict"]);
   const $ = (id) => document.getElementById(id);
   let data = null;
   let fileName = "";
@@ -158,6 +158,20 @@
           if (items.length < 3 || items.length > 5) errors.push(`sections[${si}].blocks[${bi}] locationSummary.items는 3~5개여야 합니다.`);
           items.forEach((item, ii) => {
             if (!text(item?.label) || !text(item?.value)) errors.push(`sections[${si}].blocks[${bi}].items[${ii}]의 label/value가 필요합니다.`);
+          });
+        }
+        if (type === "airportJourney") {
+          if (!text(block?.title)) errors.push(`sections[${si}].blocks[${bi}] airportJourney.title이 필요합니다.`);
+          if (!text(block?.summary)) errors.push(`sections[${si}].blocks[${bi}] airportJourney.summary가 필요합니다.`);
+          const stats = arr(block?.stats);
+          if (stats.length < 3 || stats.length > 4) errors.push(`sections[${si}].blocks[${bi}] airportJourney.stats는 3~4개여야 합니다.`);
+          stats.forEach((item, ii) => {
+            if (!text(item?.label) || !text(item?.value)) errors.push(`sections[${si}].blocks[${bi}].stats[${ii}] label/value가 필요합니다.`);
+          });
+          const methods = arr(block?.methods);
+          if (methods.length < 1 || methods.length > 3) errors.push(`sections[${si}].blocks[${bi}] airportJourney.methods는 1~3개여야 합니다.`);
+          methods.forEach((item, ii) => {
+            if (!text(item?.name) || !text(item?.desc)) errors.push(`sections[${si}].blocks[${bi}].methods[${ii}] name/desc가 필요합니다.`);
           });
         }
         if (type === "reviewProsCons" && (!arr(block?.pros).length || !arr(block?.cons).length)) errors.push(`sections[${si}].blocks[${bi}] reviewProsCons에는 pros와 cons가 모두 필요합니다.`);

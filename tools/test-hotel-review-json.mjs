@@ -51,6 +51,14 @@ const sample = {
             coordinates: { lat: 37.5700, lng: 126.9800 },
             distance: { valueKm: 0.5, label: "약 500m" },
             travel: { walkMinutes: 7, driveMinutes: 3, sourceType: "route" }
+          },
+          {
+            id: "sample-airport",
+            nameKo: "샘플 국제공항",
+            type: "airport",
+            coordinates: { lat: 37.4602, lng: 126.4407 },
+            distance: { valueKm: 18.2, label: "약 18.2km" },
+            travel: { driveMinutes: 22, sourceType: "route" }
           }
         ]
       },
@@ -107,6 +115,7 @@ const sample = {
         { type: "locationTable", rows: [["명소", "약 1km"]] },
         { type: "accessSummary", title: "이동 요약", items: [{ level: "도보", places: "명소", desc: "걸어서 이동" }] },
         { type: "insight", label: "핵심", text: "이동이 편리합니다." },
+        { type: "airportJourney", title: "공항에서 호텔까지 여정", accessLabel: "접근성 좋은 편", summary: "샘플 국제공항에서 호텔까지는 차량으로 약 22분 정도입니다.", stats: [{ label: "추천 이동", value: "차량 이동" }, { label: "예상 소요", value: "약 22분" }, { label: "환승", value: "없음" }, { label: "이동 부담", value: "낮은 편" }], methods: [{ name: "차량 이동", desc: "공항에서 호텔까지 바로 이동합니다.", badge: "가장 추천" }, { name: "사전 픽업", desc: "짐이 많은 경우 편리합니다.", badge: "상황에 따라" }] },
         { type: "reviewProsCons", title: "장단점", pros: [{ title: "장점", text: "넓어요" }], cons: [{ title: "단점", text: "소음" }], summary: "객실별 차이가 있습니다." },
         { type: "roomOptions", title: "객실 선택", items: [{ title: "리버뷰", desc: "전망 중시" }] },
         { type: "fitGrid", good: ["도심 여행"], bad: ["해변 휴양"] },
@@ -158,6 +167,11 @@ assert.match(rendered, /data-hrj-map-center/);
 assert.match(rendered, /data-hrj-map-all/);
 assert.match(rendered, /샘플 명소/);
 assert.match(rendered, /샘플 맛집/);
+assert.match(rendered, /hrj-chapter--attractions-transport/);
+assert.match(rendered, /data-hrj-airport-journey/);
+assert.match(rendered, /공항에서 호텔까지 여정/);
+assert.match(rendered, /접근성 좋은 편/);
+assert.match(rendered, /가장 추천/);
 assert.doesNotMatch(rendered, /도보 약 7분 · 차량 약 3분/);
 assert.doesNotMatch(rendered, /Sample Attraction/);
 assert.doesNotMatch(rendered, /약 500m/);
@@ -181,6 +195,7 @@ assert.doesNotMatch(rendered, /이 글의 목차/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
 assert.match(getHotelReviewPlainText(sample), /여러 권역을 한 숙소에서 연결/);
+assert.match(getHotelReviewPlainText(sample), /공항에서 호텔까지 바로 이동합니다/);
 
 const malicious = structuredClone(sample);
 malicious.article.title = '<img src=x onerror="alert(1)">';
