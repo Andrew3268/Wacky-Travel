@@ -32,7 +32,7 @@ const sample = {
     title: "샘플 호텔 리뷰",
     intro: ["호텔 리뷰 소개 문장입니다."],
     featuredImage: { src: "", alt: "샘플 호텔 대표 이미지" },
-    basicInfo: [{ label: "호텔 유형", value: "도심형 5성급 호텔" }],
+    basicInfo: [{ label: "호텔 유형", value: "도심형 5성급 호텔" }, { label: "주요 시설", value: "야외·실내 수영장 · 키즈클럽 · 피트니스 · 스파" }],
     quickPoints: [{ label: "위치", value: "도심 이동이 편리함" }]
   },
   locationMap: {
@@ -121,6 +121,31 @@ const sample = {
         { type: "fitGrid", good: ["도심 여행"], bad: ["해변 휴양"] },
         { type: "finalVerdict", eyebrow: "한 문장 정리", title: "도심 여행용 호텔", text: "동선이 편리합니다." }
       ]
+    },
+    {
+      number: "03",
+      id: "shopping-food",
+      label: "쇼핑·맛집",
+      heading: "도심 상권을 가까이 쓰는 생활권",
+      blocks: [
+        { type: "paragraph", text: "가까운 쇼핑몰과 도심 상권은 걸어서 접근하기 쉬워 쇼핑 뒤 숙소로 돌아오는 동선이 짧습니다. 생활권 안에서 필요한 일을 해결하기 편합니다." },
+        { type: "paragraph", text: "도심 외식권은 가까이 이용할 수 있고 더 먼 지역은 짧은 차량 이동을 섞는 방식이 현실적입니다. 식사 뒤 숙소로 돌아오기도 어렵지 않습니다." },
+        { type: "insight", label: "생활권 요약", text: "쇼핑과 식사를 위해 매번 먼 지역으로 이동하기보다 숙소 주변 생활권을 우선 활용하기 좋은 위치입니다." }
+      ]
+    },
+    {
+      number: "04",
+      id: "hotel-features",
+      label: "호텔 특징",
+      heading: "관광 뒤 호텔 안에서 쉬기 좋은 구성",
+      blocks: [
+        { type: "paragraph", text: "실내외 수영장과 키즈클럽, 피트니스, 스파를 갖춘 호텔이라 외부 관광만 이어가기보다 일정 중간에 호텔에서 쉬는 시간을 넣기 좋습니다." },
+        { type: "subheading", text: "수영장과 키즈시설 활용" },
+        { type: "paragraph", text: "실내외 수영장을 나눠 이용할 수 있어 날씨에 따라 호텔 안에서 쉬는 시간을 조절하기 쉽습니다. 가족 여행에서도 활용도가 높습니다." },
+        { type: "subheading", text: "대형 호텔에서 확인할 점" },
+        { type: "paragraph", text: "이용객이 몰리는 시간에는 공용공간이 붐빌 수 있습니다. 시설 수보다 실제 이용 시간대를 조절하는 편이 중요합니다." },
+        { type: "insight", label: "시설 활용 포인트", text: "관광 뒤 호텔 안에서 쉬는 시간을 확보하려는 일정에서 시설 구성이 의미 있습니다." }
+      ]
     }
   ]
 };
@@ -174,6 +199,20 @@ assert.match(rendered, /data-hrj-airport-journey/);
 assert.match(rendered, /공항에서 호텔까지 여정/);
 assert.match(rendered, /접근성 좋은 편/);
 assert.match(rendered, /가장 추천/);
+assert.match(rendered, /hrj-chapter--shopping-food/);
+assert.match(rendered, /hrj-shopping-food-summary/);
+assert.match(rendered, /쇼핑과 식사를 위해 매번 먼 지역으로 이동하기보다 숙소 주변 생활권을 우선 활용하기 좋은 위치입니다\./);
+assert.match(rendered, /hrj-editorial-row__label">쇼핑/);
+assert.match(rendered, /hrj-editorial-row__label">식사·외식/);
+assert.match(rendered, /hrj-chapter--hotel-features/);
+assert.match(rendered, /hrj-hotel-features-summary/);
+assert.match(rendered, /hrj-feature-tags/);
+assert.match(rendered, /야외·실내 수영장/);
+assert.match(rendered, /키즈클럽/);
+assert.match(rendered, /hrj-editorial-row__label">시설 활용/);
+assert.match(rendered, /hrj-editorial-row__label">이용할 때 참고/);
+assert.doesNotMatch(rendered, /생활권 요약<\/span>/);
+assert.doesNotMatch(rendered, /시설 활용 포인트<\/span>/);
 assert.doesNotMatch(rendered, /도보 약 7분 · 차량 약 3분/);
 assert.doesNotMatch(rendered, /Sample Attraction/);
 assert.doesNotMatch(rendered, /약 500m/);
