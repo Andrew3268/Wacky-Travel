@@ -15,6 +15,7 @@ const INDEX_ROBOTS = "index, follow, max-image-preview:large, max-snippet:-1, ma
 const NOINDEX_FOLLOW = "noindex, follow, noarchive";
 const NOINDEX_PRIVATE = "noindex, nofollow, noarchive, nosnippet";
 const ARCHIVE_MIN_PUBLISHED_POSTS = 5;
+const ARCHIVE_INDEX_STATE_TABLE = "seo_archive_index_state";
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -197,10 +198,28 @@ async function loadDynamicPageState(env, pathname) {
   const path = String(pathname || "");
 
   if (/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/?$/.test(path)) {
-    const archiveData = await loadArchiveData(env, path);
+    const archiveResult = await loadArchiveData(env, path);
+
+    // A database/binding failure must never be interpreted as "0 published posts".
+    // `indexable: null` means: preserve the normal public-page index directive.
+    if (!archiveResult.ok) {
+      return { archiveData: null, indexable: null, archiveLoadFailed: true };
+    }
+
+    const archiveData = archiveResult.data;
+    const currentQualified = Number(archiveData?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS;
+    const previouslyQualified = await readArchiveIndexState(env, path);
+
+    if (currentQualified) {
+      await rememberArchiveIndexState(env, path, Number(archiveData?.total || 0));
+    }
+
     return {
       archiveData,
-      indexable: Number(archiveData?.total || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS
+      // Once an archive has qualified for indexing, keep it indexable even if a
+      // temporary draft/edit drops the live count below five. This prevents
+      // repeated index/noindex flapping around the threshold.
+      indexable: currentQualified || previouslyQualified === true
     };
   }
 
@@ -209,7 +228,8 @@ async function loadDynamicPageState(env, pathname) {
 
 async function loadArchiveData(env, pathname) {
   const match = String(pathname || "").match(/^\/destinations\/([^/]+)\/(hotels|hotel-recommendations)\/?$/);
-  if (!match || !env?.TRAVEL_DB) return null;
+  if (!match) return { ok: false, reason: "invalid_path", data: null };
+  if (!env?.TRAVEL_DB) return { ok: false, reason: "missing_db_binding", data: null };
 
   const destinationSlug = decodeURIComponent(match[1]).trim().toLowerCase();
   const requestedType = match[2] === "hotels" ? "hotel_intro" : "top5_series";
@@ -300,7 +320,7 @@ async function loadArchiveData(env, pathname) {
       }))
       .filter((item) => item.slug && item.name);
 
-    return {
+    return { ok: true, data: {
       type: requestedType,
       destinationName: String(destination.name || destination.city || destinationSlug),
       total: items.length,
@@ -310,9 +330,45 @@ async function loadArchiveData(env, pathname) {
         title: String(post.title || post.hotel_name || "").trim()
       })).filter((item) => item.slug && item.title),
       html: items.map((post) => renderHotelPostCard(post, DEFAULT_CONTENT_TYPES)).join("")
-    };
-  } catch {
+    } };
+  } catch (error) {
+    console.error("[seo] archive data load failed", pathname, error);
+    return { ok: false, reason: "query_failed", data: null };
+  }
+}
+
+async function readArchiveIndexState(env, pathname) {
+  if (!env?.TRAVEL_DB) return null;
+  try {
+    const row = await env.TRAVEL_DB.prepare(`
+      SELECT qualified
+      FROM ${ARCHIVE_INDEX_STATE_TABLE}
+      WHERE route = ?
+      LIMIT 1
+    `).bind(normalizePagePath(pathname)).first();
+    return row ? Number(row.qualified || 0) === 1 : false;
+  } catch (error) {
+    // Migration 025 may not have been applied yet. Falling back to current
+    // qualification is safer than turning a public page into noindex.
+    console.warn("[seo] archive index state unavailable", pathname, error);
     return null;
+  }
+}
+
+async function rememberArchiveIndexState(env, pathname, publishedCount) {
+  if (!env?.TRAVEL_DB) return;
+  try {
+    await env.TRAVEL_DB.prepare(`
+      INSERT INTO ${ARCHIVE_INDEX_STATE_TABLE} (route, qualified, qualified_at, last_seen_count, updated_at)
+      VALUES (?, 1, datetime('now'), ?, datetime('now'))
+      ON CONFLICT(route) DO UPDATE SET
+        qualified = 1,
+        qualified_at = COALESCE(${ARCHIVE_INDEX_STATE_TABLE}.qualified_at, excluded.qualified_at),
+        last_seen_count = excluded.last_seen_count,
+        updated_at = excluded.updated_at
+    `).bind(normalizePagePath(pathname), Number(publishedCount || 0)).run();
+  } catch (error) {
+    console.warn("[seo] archive index state write skipped", pathname, error);
   }
 }
 

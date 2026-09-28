@@ -35,10 +35,18 @@ for (const route of blockedRoutes) {
   assert(!robots.includes(`Disallow: ${route}`), `${route} must remain crawlable so noindex/index directives can be observed`);
 }
 
-const sitemapResponse = await getSitemap({ env: {}, request: new Request("https://bestayable.com/sitemap.xml") });
+const emptyDb = {
+  prepare() {
+    return {
+      all: async () => ({ results: [] }),
+      run: async () => ({ success: true })
+    };
+  }
+};
+const sitemapResponse = await getSitemap({ env: { TRAVEL_DB: emptyDb }, request: new Request("https://bestayable.com/sitemap.xml") });
 const sitemap = await sitemapResponse.text();
 assert(!sitemap.includes("bestayable-sitemap-version:"), "sitemap XML must not expose deployment version comment");
-assert.equal(sitemapResponse.headers.get("x-bestayable-sitemap-version"), "2026-08-21-index-quality-v6", "sitemap version response header missing");
+assert.equal(sitemapResponse.headers.get("x-bestayable-sitemap-version"), "2026-09-28-seo-stability-v7", "sitemap version response header missing");
 for (const route of blockedRoutes) {
   assert(!sitemap.includes(`https://bestayable.com${route}`), `${route} unexpectedly present in sitemap`);
 }

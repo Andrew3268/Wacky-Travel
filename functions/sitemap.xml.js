@@ -4,7 +4,8 @@ import { isMissingPublicModifiedColumnError } from "../lib/posts/public-modified
 import { getHotelPostGroup } from "./api/destination-posts.js";
 
 const ARCHIVE_MIN_PUBLISHED_POSTS = 5;
-const SITEMAP_VERSION = "2026-08-21-index-quality-v6";
+const SITEMAP_VERSION = "2026-09-28-seo-stability-v7";
+const ARCHIVE_INDEX_STATE_TABLE = "seo_archive_index_state";
 
 // Pages still being prepared. Keep them out of search discovery until they are ready.
 const SEARCH_BLOCKED_ROUTES = new Set([
@@ -38,33 +39,62 @@ function normalizeLastmod(value = "") {
   return date.toISOString().slice(0, 10);
 }
 
-async function safeAll(db, sql) {
-  try {
-    if (!db) return [];
-    const rows = await db.prepare(sql).all();
-    return rows.results || [];
-  } catch {
-    return [];
-  }
+async function queryAll(db, sql) {
+  if (!db) throw new Error("TRAVEL_DB binding is unavailable");
+  const rows = await db.prepare(sql).all();
+  return rows.results || [];
 }
 
-async function safeAllWithPublicModifiedFallback(db, sql) {
+async function queryAllWithPublicModifiedFallback(db, sql) {
+  if (!db) throw new Error("TRAVEL_DB binding is unavailable");
   try {
-    if (!db) return [];
     const rows = await db.prepare(sql).all();
     return rows.results || [];
   } catch (error) {
-    if (!isMissingPublicModifiedColumnError(error)) return [];
+    if (!isMissingPublicModifiedColumnError(error)) throw error;
     const fallbackSql = sql.replace(
       "COALESCE(NULLIF(content_modified_at, ''), published_at) AS content_modified_at",
       "published_at AS content_modified_at"
     );
-    try {
-      const rows = await db.prepare(fallbackSql).all();
-      return rows.results || [];
-    } catch {
-      return [];
-    }
+    const rows = await db.prepare(fallbackSql).all();
+    return rows.results || [];
+  }
+}
+
+async function readStableArchiveRoutes(db) {
+  if (!db) throw new Error("TRAVEL_DB binding is unavailable");
+  try {
+    const rows = await db.prepare(`
+      SELECT route
+      FROM ${ARCHIVE_INDEX_STATE_TABLE}
+      WHERE qualified = 1
+    `).all();
+    return new Set((rows.results || []).map((row) => normalizePagePath(row.route)).filter(Boolean));
+  } catch (error) {
+    // Migration 025 is backwards-compatible: the sitemap can still be generated
+    // with the live >=5 rule until the state table is installed.
+    console.warn("[seo] stable archive state unavailable for sitemap", error);
+    return new Set();
+  }
+}
+
+async function rememberQualifiedArchiveRoutes(db, availability) {
+  if (!db) return;
+  const qualified = Array.from(availability.archiveStats.entries())
+    .filter(([, stats]) => Number(stats?.count || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS);
+  if (!qualified.length) return;
+  try {
+    await Promise.all(qualified.map(([route, stats]) => db.prepare(`
+      INSERT INTO ${ARCHIVE_INDEX_STATE_TABLE} (route, qualified, qualified_at, last_seen_count, updated_at)
+      VALUES (?, 1, datetime('now'), ?, datetime('now'))
+      ON CONFLICT(route) DO UPDATE SET
+        qualified = 1,
+        qualified_at = COALESCE(${ARCHIVE_INDEX_STATE_TABLE}.qualified_at, excluded.qualified_at),
+        last_seen_count = excluded.last_seen_count,
+        updated_at = excluded.updated_at
+    `).bind(normalizePagePath(route), Number(stats?.count || 0)).run()));
+  } catch (error) {
+    console.warn("[seo] stable archive state write skipped for sitemap", error);
   }
 }
 
@@ -97,10 +127,11 @@ function collectConditionalRouteAvailability(posts = []) {
   return { archiveStats };
 }
 
-function shouldIncludeStaticRoute(route, availability) {
+function shouldIncludeStaticRoute(route, availability, stableArchiveRoutes = new Set()) {
   if (isSearchBlockedRoute(route)) return false;
   if (/^\/destinations\/[^/]+\/(hotels|hotel-recommendations)\/$/.test(route)) {
-    return Number(availability.archiveStats.get(route)?.count || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS;
+    return Number(availability.archiveStats.get(route)?.count || 0) >= ARCHIVE_MIN_PUBLISHED_POSTS
+      || stableArchiveRoutes.has(normalizePagePath(route));
   }
   return true;
 }
@@ -108,8 +139,11 @@ function shouldIncludeStaticRoute(route, availability) {
 export async function onRequestGet({ env, request }) {
   const origin = getSiteOrigin(env, request);
 
-  const [posts, destinations] = await Promise.all([
-    safeAllWithPublicModifiedFallback(env.TRAVEL_DB, `
+  let posts;
+  let destinations;
+  try {
+    [posts, destinations] = await Promise.all([
+      queryAllWithPublicModifiedFallback(env.TRAVEL_DB, `
       SELECT
         slug,
         title,
@@ -130,20 +164,34 @@ export async function onRequestGet({ env, request }) {
       ORDER BY COALESCE(updated_at, published_at) DESC
       LIMIT 20000
     `),
-    safeAll(env.TRAVEL_DB, `
+    queryAll(env.TRAVEL_DB, `
       SELECT slug, name, city, updated_at
       FROM destinations
       WHERE status = 'published'
       ORDER BY updated_at DESC
       LIMIT 5000
     `)
-  ]);
+    ]);
+  } catch (error) {
+    console.error("[seo] sitemap generation aborted because D1 query failed", error);
+    return new Response("Temporary sitemap generation error", {
+      status: 503,
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "no-store, no-cache, max-age=0, must-revalidate",
+        "retry-after": "300",
+        "x-bestayable-sitemap-version": SITEMAP_VERSION
+      }
+    });
+  }
 
   const conditionalAvailability = collectConditionalRouteAvailability(posts);
+  await rememberQualifiedArchiveRoutes(env.TRAVEL_DB, conditionalAvailability);
+  const stableArchiveRoutes = await readStableArchiveRoutes(env.TRAVEL_DB);
   const urlMap = new Map();
 
   STATIC_ROUTES.forEach((route) => {
-    if (!shouldIncludeStaticRoute(route, conditionalAvailability)) return;
+    if (!shouldIncludeStaticRoute(route, conditionalAvailability, stableArchiveRoutes)) return;
     addUrl(urlMap, {
       loc: `${origin}${normalizePagePath(route)}`,
       lastmod: conditionalAvailability.archiveStats.get(route)?.lastmod || STATIC_ROUTE_LASTMOD[route] || ""
@@ -198,7 +246,6 @@ ${urls.map((item) => `  <url><loc>${xmlEscape(item.loc)}</loc>${item.lastmod ? `
       "cache-control": "no-store, no-cache, max-age=0, must-revalidate",
       "cdn-cache-control": "no-store",
       "cloudflare-cdn-cache-control": "no-store",
-      "x-robots-tag": "noindex",
       "x-bestayable-sitemap-version": SITEMAP_VERSION
     }
   });
