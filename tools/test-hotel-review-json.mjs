@@ -168,6 +168,8 @@ assert.match(rendered, /data-hrj-map-all/);
 assert.match(rendered, /샘플 명소/);
 assert.match(rendered, /샘플 맛집/);
 assert.match(rendered, /hrj-chapter--attractions-transport/);
+assert.match(rendered, /<h2>호텔 주변 이동<\/h2>\s*<p class="hrj-attractions-transport-summary">이동이 편리합니다\.<\/p>/);
+assert.doesNotMatch(rendered, /<aside class="hrj-insight">/);
 assert.match(rendered, /data-hrj-airport-journey/);
 assert.match(rendered, /공항에서 호텔까지 여정/);
 assert.match(rendered, /접근성 좋은 편/);

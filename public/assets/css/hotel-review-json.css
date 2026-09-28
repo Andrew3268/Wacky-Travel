@@ -301,9 +301,9 @@
 }
 
 
-/* 02 명소·교통 + 공항 여정 v22 */
+/* 02 명소·교통 핵심 요약 + 공항 여정 v23 */
 .hotel-review-json-page .hrj-chapter--attractions-transport>h2{margin-bottom:16px}
-.hotel-review-json-page .hrj-chapter--attractions-transport>p{max-width:800px;color:#666b6e;line-height:1.9}
+.hotel-review-json-page .hrj-chapter--attractions-transport>.hrj-attractions-transport-summary{max-width:800px;margin:0 0 28px;color:#666b6e;font-size:15px;line-height:1.9}
 .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary{margin:38px 0 0;padding:0;border:0;border-radius:0;background:transparent}
 .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary__title{margin:0 0 12px;color:#2e3235;font-size:18px;line-height:1.4;font-weight:700;letter-spacing:-.03em}
 .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary__list{border-top:1px solid #dcdedb}
@@ -311,9 +311,6 @@
 .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary__level{color:#4e5458;font-size:13px;line-height:1.55;font-weight:750}
 .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary__places{margin-bottom:5px;color:#34393c;font-size:14px;line-height:1.55;font-weight:700}
 .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary__desc{color:#6d7275;font-size:12.5px;line-height:1.75}
-.hotel-review-json-page .hrj-chapter--attractions-transport .hrj-insight{margin:28px 0;padding:18px 20px;border:0;border-radius:16px;background:#f4f6f8}
-.hotel-review-json-page .hrj-chapter--attractions-transport .hrj-insight__label{margin-bottom:7px;color:#77818a;font-size:11px;font-weight:800}
-.hotel-review-json-page .hrj-chapter--attractions-transport .hrj-insight p{color:#3e454a;font-size:14px;line-height:1.78;font-weight:650}
 .hotel-review-json-page .hrj-airport-journey{margin-top:32px;padding-top:22px;border-top:1px solid var(--hrj-line)}
 .hotel-review-json-page .hrj-airport-journey__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
 .hotel-review-json-page .hrj-airport-journey__head h3{margin:0!important;color:#282d30;font-size:18px!important;line-height:1.4!important;font-weight:720!important;letter-spacing:-.035em!important}
@@ -335,6 +332,7 @@
 .hotel-review-json-page .hrj-airport-method__badge{flex:0 0 auto;padding:5px 8px;border-radius:999px;background:#f2f3f4;color:#747a7e;font-size:10px;line-height:1;font-weight:800;white-space:nowrap}
 .hotel-review-json-page .hrj-airport-method__badge.is-best{background:#eef4ff;color:#365e9d}
 @media(max-width:720px){
+  .hotel-review-json-page .hrj-chapter--attractions-transport>.hrj-attractions-transport-summary{margin-bottom:22px;font-size:14px;line-height:1.82}
   .hotel-review-json-page .hrj-chapter--attractions-transport .hrj-access-summary__item{grid-template-columns:1fr;gap:6px;padding:15px 0}
   .hotel-review-json-page .hrj-airport-journey__head{align-items:flex-start;flex-direction:column;gap:8px}
   .hotel-review-json-page .hrj-airport-journey__summary{margin-bottom:14px!important;font-size:12.5px!important;line-height:1.76!important}
