@@ -168,11 +168,12 @@
       const clearMarkerFocus = () => {
         root.classList.remove("is-poi-focused");
         markerById.forEach((marker) => {
-          marker.setOpacity(1);
-          marker.getElement()?.classList.remove("is-selected", "is-focused-poi");
+          const element = marker.getElement();
+          const pin = element?.querySelector(".hrj-map-pin");
+          element?.classList.remove("is-selected", "is-focused-poi", "is-dimmed");
+          pin?.classList.remove("is-selected", "is-dimmed");
           marker.setZIndexOffset(0);
         });
-        hotelMarker.setOpacity(1);
         hotelMarker.setZIndexOffset(2000);
         hotelMarker.getElement()?.classList.remove("is-selected");
       };
@@ -180,13 +181,22 @@
       const setMarkerFocus = (id) => {
         const selectedId = String(id);
         root.classList.add("is-poi-focused");
+
         markerById.forEach((marker, markerId) => {
           const selected = String(markerId) === selectedId;
-          marker.setOpacity(1);
-          marker.getElement()?.classList.toggle("is-selected", selected);
-          marker.getElement()?.classList.toggle("is-focused-poi", selected);
-          marker.setZIndexOffset(selected ? 1500 : 0);
+          const element = marker.getElement();
+          const pin = element?.querySelector(".hrj-map-pin");
+
+          // Leaflet wrapper뿐 아니라 실제로 보이는 번호 핀에도 상태 클래스를 직접 적용한다.
+          element?.classList.toggle("is-selected", selected);
+          element?.classList.toggle("is-focused-poi", selected);
+          element?.classList.toggle("is-dimmed", !selected);
+          pin?.classList.toggle("is-selected", selected);
+          pin?.classList.toggle("is-dimmed", !selected);
+
+          marker.setZIndexOffset(selected ? 2500 : 0);
         });
+
         hotelMarker.setZIndexOffset(2000);
         hotelMarker.getElement()?.classList.remove("is-selected");
       };
