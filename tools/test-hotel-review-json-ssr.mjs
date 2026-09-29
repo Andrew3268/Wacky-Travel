@@ -76,7 +76,7 @@ assert.match(css, /\.hrj-basic-info__cta/);
 assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,40%\) minmax\(0,60%\)/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20260929-map-panels-v26/);
+assert.match(post, /hotel-review-json\.css\?v=20260929-map-panels-v27/);
 assert.match(post, /hotel-review-map\.js\?v=20260929-map-panels-v24/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
@@ -138,6 +138,9 @@ assert.match(mapJs, /hotelMarker\.setOpacity\(1\)/);
 assert.doesNotMatch(mapJs, /item\.nameLocal|item\.nameEn|distanceLabel/);
 assert.doesNotMatch(css, /hrj-map-marker--poi:not\(\.is-focused-poi\)/);
 assert.match(css, /hrj-map-marker--poi\.is-selected \.hrj-map-pin/);
+assert.match(css, /hrj-map-marker--poi\.is-selected\{z-index:1000!important\}/);
+assert.match(css, /scale\(1\.2\)/);
+assert.match(css, /0 0 0 3px #fff,0 0 0 8px/);
 assert.match(mapJs, /function hotelIcon\(\)/);
 assert.doesNotMatch(mapJs, /hrj-map-label__text|>호텔<\/span>/);
 assert.match(mapJs, /interactive: true/);
