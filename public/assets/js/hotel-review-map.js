@@ -82,14 +82,6 @@
     });
   }
 
-  function overlayMetaHtml(item = {}) {
-    const walk = num(item?.travel?.walkMinutes);
-    const drive = num(item?.travel?.driveMinutes);
-    const pills = [];
-    if (walk !== null) pills.push(`<span class="hrj-map-overlay__pill"><span>도보 약 ${Math.round(walk)}분</span></span>`);
-    if (drive !== null) pills.push(`<span class="hrj-map-overlay__pill"><span>차량 약 ${Math.round(drive)}분</span></span>`);
-    return pills.join("");
-  }
 
   function parseConfig(root) {
     try {
@@ -111,11 +103,7 @@
     const canvas = root.querySelector("[data-hrj-map-canvas]");
     const wrap = root.querySelector(".hrj-map-canvas-wrap");
     const skeleton = root.querySelector("[data-hrj-map-skeleton]");
-    const overlay = root.querySelector("[data-hrj-map-overlay]");
-    const overlayClose = root.querySelector("[data-hrj-map-overlay-close]");
-    const overlayName = root.querySelector("[data-hrj-map-overlay-name]");
-    const overlayMeta = root.querySelector("[data-hrj-map-overlay-meta]");
-    if (!config || !canvas || !wrap || !overlay || !overlayClose || !overlayName || !overlayMeta) {
+    if (!config || !canvas || !wrap) {
       if (skeleton) skeleton.innerHTML = "<p>지도 데이터를 확인할 수 없습니다.</p>";
       return;
     }
@@ -153,10 +141,6 @@
       const markerById = new Map();
       let activeCategory = text(config.defaultCategory) || text(config.categories[0]?.key);
       let activeBounds = null;
-      let activeItem = null;
-      let activeMarker = null;
-      let closeTimer = null;
-      let positionFrame = 0;
 
       const initialZoom = () => window.matchMedia?.("(max-width: 720px)")?.matches ? 13.5 : 14;
       const getCategory = (key) => config.categories.find((category) => text(category.key) === text(key)) || config.categories[0];
@@ -206,130 +190,23 @@
       const clearConnection = ({ keepSelection = false } = {}) => {
         lineLayer.clearLayers();
         clearMarkerFocus();
-        if (!keepSelection) {
-          activeItem = null;
-          activeMarker = null;
-          setSelected("");
-        }
-      };
-
-      const hideOverlayNow = () => {
-        overlay.hidden = true;
-        overlay.classList.remove("is-visible", "hrj-map-overlay--food", "hrj-map-overlay--airport", "hrj-map-overlay--hotel");
-      };
-
-      const hideOverlay = ({ clearSelection = true, immediate = false } = {}) => {
-        if (closeTimer) {
-          clearTimeout(closeTimer);
-          closeTimer = null;
-        }
-        if (immediate || overlay.hidden) {
-          hideOverlayNow();
-          if (clearSelection) clearConnection();
-          return;
-        }
-        overlay.classList.remove("is-visible");
-        closeTimer = setTimeout(() => {
-          hideOverlayNow();
-          if (clearSelection) clearConnection();
-          closeTimer = null;
-        }, 110);
+        if (!keepSelection) setSelected("");
       };
 
       const showHotelCenter = ({ animate = true, clear = true } = {}) => {
-        if (clear) hideOverlay({ clearSelection: true, immediate: true });
+        if (clear) clearConnection();
         const zoom = initialZoom();
         if (animate && map._loaded) map.flyTo(hotelLatLng, zoom, { duration: 0.45 });
         else map.setView(hotelLatLng, zoom, { animate: false });
       };
 
       const showAllPlaces = () => {
-        hideOverlay({ clearSelection: true, immediate: true });
+        clearConnection();
         if (!activeBounds || !activeBounds.isValid()) {
           showHotelCenter({ clear: false });
           return;
         }
         map.fitBounds(activeBounds, { padding: [48, 48], maxZoom: 14 });
-      };
-
-      const positionOverlay = () => {
-        if (!activeMarker || overlay.hidden) return;
-
-        const markerRoot = activeMarker.getElement();
-        const pin = markerRoot?.querySelector(".hrj-map-pin, .hrj-map-label") || markerRoot;
-        if (!pin) return;
-
-        overlay.hidden = false;
-        overlay.style.visibility = "hidden";
-        overlay.classList.remove("is-above-pin", "is-below-pin");
-
-        const wrapRect = wrap.getBoundingClientRect();
-        const markerRect = pin.getBoundingClientRect();
-        const width = overlay.offsetWidth;
-        const height = overlay.offsetHeight;
-        const markerCenterX = markerRect.left - wrapRect.left + (markerRect.width / 2);
-        const markerTop = markerRect.top - wrapRect.top;
-        const markerBottom = markerRect.bottom - wrapRect.top;
-        const gap = 8;
-
-        let left = markerCenterX - (width / 2);
-        let top = markerTop - height - gap;
-        let placement = "above";
-
-        // 말풍선 포인터가 번호 핀 가까이에 오도록 8px 간격을 유지하고, 상단 공간이 부족하면 핀 아래로 보냅니다.
-        if (top < 8) {
-          top = markerBottom + gap;
-          placement = "below";
-        }
-
-        const maxLeft = Math.max(8, wrap.clientWidth - width - 8);
-        const maxTop = Math.max(8, wrap.clientHeight - height - 8);
-        left = Math.min(Math.max(8, left), maxLeft);
-        top = Math.min(Math.max(8, top), maxTop);
-
-        overlay.style.left = `${left}px`;
-        overlay.style.top = `${top}px`;
-        overlay.classList.add(placement === "below" ? "is-below-pin" : "is-above-pin");
-        overlay.style.removeProperty("visibility");
-      };
-
-      const scheduleOverlayPosition = () => {
-        if (positionFrame) return;
-        positionFrame = requestAnimationFrame(() => {
-          positionFrame = 0;
-          positionOverlay();
-        });
-      };
-
-      const renderOverlay = (item, kind) => {
-        overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport", "hrj-map-overlay--hotel");
-        if (kind === "food") overlay.classList.add("hrj-map-overlay--food");
-        if (kind === "airport") overlay.classList.add("hrj-map-overlay--airport");
-        overlayName.textContent = text(item?.nameKo || item?.name || "장소");
-        overlayMeta.innerHTML = overlayMetaHtml(item);
-      };
-
-      const showHotelOverlay = () => {
-        if (closeTimer) {
-          clearTimeout(closeTimer);
-          closeTimer = null;
-        }
-        lineLayer.clearLayers();
-        clearMarkerFocus();
-        setSelected("");
-        activeItem = { id: "__hotel__" };
-        activeMarker = hotelMarker;
-        hotelMarker.getElement()?.classList.add("is-selected");
-        hotelMarker.setZIndexOffset(2200);
-
-        overlay.classList.remove("hrj-map-overlay--food", "hrj-map-overlay--airport");
-        overlay.classList.add("hrj-map-overlay--hotel");
-        overlayName.textContent = hotelName;
-        overlayMeta.innerHTML = '<span class="hrj-map-overlay__pill"><span>현재 숙소 기준점</span></span>';
-        overlay.hidden = false;
-        overlay.classList.remove("is-visible");
-        positionOverlay();
-        requestAnimationFrame(() => overlay.classList.add("is-visible"));
       };
 
       const connectLine = (item, kind) => {
@@ -378,8 +255,6 @@
         const marker = markerById.get(String(item.id));
         if (!marker) return;
         const kind = iconKind(text(item.type));
-        activeItem = item;
-        activeMarker = marker;
         setSelected(item.id);
         setMarkerFocus(item.id);
         requestAnimationFrame(() => centerSelectedPlace(item.id));
@@ -387,28 +262,9 @@
 
         // 가까운 곳은 적절히 확대하고, 먼 곳은 자동 줌아웃하되 호텔은 항상 중심에 둔다.
         focusHotelAndTarget(item);
-
-        renderOverlay(item, kind);
-        overlay.hidden = false;
-        overlay.classList.remove("is-visible");
-        positionOverlay();
-        requestAnimationFrame(() => overlay.classList.add("is-visible"));
       };
 
       const connectToItem = (item) => {
-        if (closeTimer) {
-          clearTimeout(closeTimer);
-          closeTimer = null;
-        }
-        const switching = activeItem && String(activeItem.id) !== String(item.id) && !overlay.hidden;
-        if (switching) {
-          // 기존 카드는 즉시 사라지게 하고 다음 프레임에 새 위치에서 다시 나타낸다.
-          // 145ms 강제 대기를 제거해 선택 반응 속도를 높였다.
-          overlay.classList.remove("is-visible");
-          overlay.hidden = true;
-          requestAnimationFrame(() => activateItem(item));
-          return;
-        }
         activateItem(item);
       };
 
@@ -417,7 +273,7 @@
         activeCategory = text(category?.key);
         poiLayer.clearLayers();
         lineLayer.clearLayers();
-        hideOverlay({ clearSelection: true, immediate: true });
+        clearConnection();
         markerById.clear();
 
         const activePanel = root.querySelector(`[data-hrj-map-panel="${CSS.escape(activeCategory)}"]`);
@@ -458,7 +314,7 @@
 
       hotelMarker.on("click", (event) => {
         if (event?.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
-        showHotelOverlay();
+        showHotelCenter({ animate: true, clear: true });
       });
 
       root.addEventListener("click", (event) => {
@@ -485,14 +341,7 @@
         if (item) connectToItem(item);
       });
 
-      overlayClose.addEventListener("click", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        hideOverlay({ clearSelection: true });
-      });
-      overlay.addEventListener("click", (event) => event.stopPropagation());
-      map.on("click", () => hideOverlay({ clearSelection: true }));
-      map.on("zoom move", scheduleOverlayPosition);
+      map.on("click", () => clearConnection());
 
       renderCategory(activeCategory);
       requestAnimationFrame(() => {
@@ -503,7 +352,6 @@
 
       window.addEventListener("resize", () => {
         map.invalidateSize(false);
-        scheduleOverlayPosition();
       }, { passive: true });
     }).catch(() => {
       root.classList.add("is-map-error");
