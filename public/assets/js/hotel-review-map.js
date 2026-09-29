@@ -446,8 +446,24 @@
     });
   }
 
+  function initAirportJourneyMethods() {
+    document.querySelectorAll("[data-hrj-airport-journey]").forEach((journey) => {
+      const button = journey.querySelector("[data-hrj-airport-method-toggle]");
+      const more = journey.querySelector("[data-hrj-airport-method-more]");
+      if (!button || !more || button.dataset.hrjAirportReady === "1") return;
+      button.dataset.hrjAirportReady = "1";
+      button.addEventListener("click", () => {
+        const open = more.hidden;
+        more.hidden = !open;
+        button.setAttribute("aria-expanded", String(open));
+        button.textContent = open ? "간단히 보기" : "다른 방법 보기";
+      });
+    });
+  }
+
   function init() {
     initLocationSummaryCopy();
+    initAirportJourneyMethods();
     const maps = Array.from(document.querySelectorAll(MAP_SELECTOR));
     if (!maps.length) return;
 
