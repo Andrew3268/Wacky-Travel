@@ -65,9 +65,9 @@
   function hotelIcon() {
     return window.L.divIcon({
       className: "hrj-map-label-wrap",
-      html: `<div class="hrj-map-label hrj-map-label--hotel"><span class="hrj-map-label__icon">${svgIcon("hotel")}</span><span class="hrj-map-label__text">호텔</span></div>`,
+      html: `<div class="hrj-map-label hrj-map-label--hotel"><span class="hrj-map-label__icon">${svgIcon("hotel")}</span></div>`,
       iconSize: null,
-      iconAnchor: [22, 50]
+      iconAnchor: [20, 47]
     });
   }
 
@@ -78,7 +78,7 @@
       className: "hrj-map-pin-wrap",
       html: `<div class="hrj-map-pin hrj-map-pin--${kind}">${isAirport ? `<span class="hrj-map-pin__icon">${content}</span>` : `<span class="hrj-map-pin__num">${content}</span>`}</div>`,
       iconSize: null,
-      iconAnchor: [17, 38]
+      iconAnchor: [17, 40]
     });
   }
 
@@ -123,6 +123,10 @@
         maxZoom: 19,
         attribution: '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>'
       }).addTo(map);
+
+      const routePane = map.createPane("hrjRoutePane");
+      routePane.style.zIndex = "350";
+      routePane.style.pointerEvents = "none";
 
       const hotelLatLng = [config.hotel.lat, config.hotel.lng];
       const hotelName = text(config.hotel.name) || "호텔";
@@ -211,21 +215,25 @@
 
       const connectLine = (item, kind) => {
         lineLayer.clearLayers();
-        const target = [item.coordinates.lat, item.coordinates.lng];
-        const color = kind === "food" ? "#d95070" : kind === "airport" ? "#5d6875" : "#2f67d8";
-        const soft = kind === "food" ? "#f7b5c4" : kind === "airport" ? "#d5dbe2" : "#b6cbff";
-        L.polyline([hotelLatLng, target], {
+        const targetLat = num(item?.coordinates?.lat);
+        const targetLng = num(item?.coordinates?.lng);
+        if (targetLat === null || targetLng === null) return;
+
+        const from = L.latLng(hotelLatLng[0], hotelLatLng[1]);
+        const to = L.latLng(targetLat, targetLng);
+        const color = kind === "food" ? "#c95b74" : kind === "airport" ? "#65717e" : "#4b72b5";
+
+        // 실제 호텔 좌표와 목적지 좌표를 정확한 끝점으로 사용한다.
+        // 별도 원형 시작/종료점은 두지 않아 핀의 끝점과 선이 자연스럽게 이어지게 한다.
+        L.polyline([from, to], {
+          pane: "hrjRoutePane",
           color,
-          weight: 3,
-          opacity: 0.82,
-          dashArray: "7 8"
-        }).addTo(lineLayer);
-        L.circleMarker(target, {
-          radius: 10,
-          color: soft,
-          fillColor: "#fff",
-          fillOpacity: 0.32,
-          weight: 5
+          weight: 2.25,
+          opacity: 0.58,
+          lineCap: "round",
+          lineJoin: "round",
+          interactive: false,
+          smoothFactor: 1
         }).addTo(lineLayer);
       };
 
@@ -234,20 +242,30 @@
         const targetLng = num(item?.coordinates?.lng);
         if (targetLat === null || targetLng === null) return;
 
-        // 이 지도는 '선택 장소 중심'이 아니라 '호텔 중심' 지도다.
-        // 선택 지점의 반대편에 대칭 좌표를 만들어 호텔을 정확한 화면 중심으로 유지하면서
-        // 호텔과 선택 지점이 동시에 들어오는 최소 줌을 계산한다.
+        const targetLatLng = L.latLng(targetLat, targetLng);
+        const distanceM = map.distance(L.latLng(hotelLatLng[0], hotelLatLng[1]), targetLatLng);
+
+        // 호텔을 화면 중심에 유지하면서 목적지가 함께 들어오는 대칭 범위를 만든다.
         const mirror = [
           (hotelLatLng[0] * 2) - targetLat,
           (hotelLatLng[1] * 2) - targetLng
         ];
         const symmetricBounds = L.latLngBounds([[targetLat, targetLng], mirror]);
         const mobile = window.matchMedia?.("(max-width: 720px)")?.matches;
-        const padding = L.point(mobile ? 56 : 78, mobile ? 72 : 92);
+        const padding = L.point(mobile ? 58 : 78, mobile ? 98 : 112);
         const boundsZoom = map.getBoundsZoom(symmetricBounds, false, padding);
-        const zoom = Math.min(15, Number.isFinite(boundsZoom) ? boundsZoom : initialZoom());
 
-        // 애니메이션 없이 즉시 적용해 핀/패널 선택 지연을 최소화한다.
+        // 가까운 장소일수록 충분히 확대한다. 기존 고정 maxZoom=15 제한을 제거한다.
+        let maxZoom = 15;
+        if (distanceM <= 250) maxZoom = 18;
+        else if (distanceM <= 500) maxZoom = 17.5;
+        else if (distanceM <= 1000) maxZoom = 16.5;
+        else if (distanceM <= 2000) maxZoom = 15.5;
+
+        const calculatedZoom = Number.isFinite(boundsZoom) ? boundsZoom : initialZoom();
+        const zoom = Math.min(maxZoom, Math.max(initialZoom(), calculatedZoom));
+
+        // 즉시 반영해 핀/패널 선택 반응을 빠르게 유지한다.
         map.setView(hotelLatLng, zoom, { animate: false });
       };
 
