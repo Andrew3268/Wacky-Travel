@@ -167,6 +167,16 @@
         });
       };
 
+      const centerSelectedPlace = (id, { behavior = "smooth" } = {}) => {
+        const selectedId = String(id || "");
+        if (!selectedId) return;
+        const panel = root.querySelector(`[data-hrj-map-panel="${CSS.escape(activeCategory)}"]`);
+        const button = panel?.querySelector(`[data-hrj-map-place="${CSS.escape(selectedId)}"]`);
+        if (!panel || !button) return;
+        const left = button.offsetLeft - ((panel.clientWidth - button.offsetWidth) / 2);
+        panel.scrollTo({ left: Math.max(0, left), behavior });
+      };
+
       const clearMarkerFocus = () => {
         root.classList.remove("is-poi-focused");
         markerById.forEach((marker) => {
@@ -372,6 +382,7 @@
         activeMarker = marker;
         setSelected(item.id);
         setMarkerFocus(item.id);
+        requestAnimationFrame(() => centerSelectedPlace(item.id));
         connectLine(item, kind);
 
         // 가까운 곳은 적절히 확대하고, 먼 곳은 자동 줌아웃하되 호텔은 항상 중심에 둔다.
@@ -439,6 +450,7 @@
           const active = panel.dataset.hrjMapPanel === activeCategory;
           panel.hidden = !active;
           panel.classList.toggle("is-active", active);
+          if (active) panel.scrollTo({ left: 0, behavior: "auto" });
         });
         activeBounds = L.latLngBounds(bounds);
         showHotelCenter({ animate: false, clear: false });
