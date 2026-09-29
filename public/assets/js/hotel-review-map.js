@@ -221,15 +221,15 @@
 
         const from = L.latLng(hotelLatLng[0], hotelLatLng[1]);
         const to = L.latLng(targetLat, targetLng);
-        const color = kind === "food" ? "#c95b74" : kind === "airport" ? "#65717e" : "#4b72b5";
+        const color = "#64748B";
 
         // 실제 호텔 좌표와 목적지 좌표를 정확한 끝점으로 사용한다.
         // 별도 원형 시작/종료점은 두지 않아 핀의 끝점과 선이 자연스럽게 이어지게 한다.
         L.polyline([from, to], {
           pane: "hrjRoutePane",
           color,
-          weight: 2.25,
-          opacity: 0.58,
+          weight: 2,
+          opacity: 0.46,
           lineCap: "round",
           lineJoin: "round",
           interactive: false,
@@ -242,31 +242,45 @@
         const targetLng = num(item?.coordinates?.lng);
         if (targetLat === null || targetLng === null) return;
 
-        const targetLatLng = L.latLng(targetLat, targetLng);
-        const distanceM = map.distance(L.latLng(hotelLatLng[0], hotelLatLng[1]), targetLatLng);
-
-        // 호텔을 화면 중심에 유지하면서 목적지가 함께 들어오는 대칭 범위를 만든다.
-        const mirror = [
-          (hotelLatLng[0] * 2) - targetLat,
-          (hotelLatLng[1] * 2) - targetLng
-        ];
-        const symmetricBounds = L.latLngBounds([[targetLat, targetLng], mirror]);
+        const hotelPoint = L.latLng(hotelLatLng[0], hotelLatLng[1]);
+        const targetPoint = L.latLng(targetLat, targetLng);
+        const distanceM = map.distance(hotelPoint, targetPoint);
         const mobile = window.matchMedia?.("(max-width: 720px)")?.matches;
-        const padding = L.point(mobile ? 58 : 78, mobile ? 98 : 112);
-        const boundsZoom = map.getBoundsZoom(symmetricBounds, false, padding);
 
-        // 가까운 장소일수록 충분히 확대한다. 기존 고정 maxZoom=15 제한을 제거한다.
-        let maxZoom = 15;
-        if (distanceM <= 250) maxZoom = 18;
-        else if (distanceM <= 500) maxZoom = 17.5;
-        else if (distanceM <= 1000) maxZoom = 16.5;
-        else if (distanceM <= 2000) maxZoom = 15.5;
+        // 가까운 장소: 호텔을 화면 중심에 유지하면서 충분히 확대한다.
+        if (distanceM < 3000) {
+          const mirror = [
+            (hotelLatLng[0] * 2) - targetLat,
+            (hotelLatLng[1] * 2) - targetLng
+          ];
+          const symmetricBounds = L.latLngBounds([[targetLat, targetLng], mirror]);
+          const padding = L.point(mobile ? 58 : 78, mobile ? 98 : 112);
+          const boundsZoom = map.getBoundsZoom(symmetricBounds, false, padding);
 
-        const calculatedZoom = Number.isFinite(boundsZoom) ? boundsZoom : initialZoom();
-        const zoom = Math.min(maxZoom, Math.max(initialZoom(), calculatedZoom));
+          let maxZoom = 15;
+          if (distanceM <= 250) maxZoom = 18;
+          else if (distanceM <= 500) maxZoom = 17.5;
+          else if (distanceM <= 1000) maxZoom = 16.5;
+          else if (distanceM <= 2000) maxZoom = 15.5;
 
-        // 즉시 반영해 핀/패널 선택 반응을 빠르게 유지한다.
-        map.setView(hotelLatLng, zoom, { animate: false });
+          const calculatedZoom = Number.isFinite(boundsZoom) ? boundsZoom : initialZoom();
+          const zoom = Math.min(maxZoom, Math.max(initialZoom(), calculatedZoom));
+          map.setView(hotelLatLng, zoom, { animate: false });
+          return;
+        }
+
+        // 먼 장소: 호텔과 목적지를 모두 한 지도에 확실히 보여 거리감을 우선한다.
+        // 하단 패널이 지도 안에 있으므로 아래쪽 여백을 더 크게 잡는다.
+        const farBounds = L.latLngBounds([hotelPoint, targetPoint]);
+        const paddingTopLeft = L.point(mobile ? 40 : 56, mobile ? 44 : 56);
+        const paddingBottomRight = L.point(mobile ? 40 : 56, mobile ? 150 : 170);
+
+        map.fitBounds(farBounds, {
+          paddingTopLeft,
+          paddingBottomRight,
+          maxZoom: distanceM >= 15000 ? 11.5 : distanceM >= 8000 ? 12.5 : distanceM >= 5000 ? 13 : 14,
+          animate: false
+        });
       };
 
       const activateItem = (item) => {

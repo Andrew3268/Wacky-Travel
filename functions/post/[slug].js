@@ -777,7 +777,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
-  ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=20260929-map-panels-v23"></script>` : ""}
+  ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=20260929-map-panels-v24"></script>` : ""}
   ${shouldEnableFloatingToc ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260815-post-toc-v7"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   ${isDraftPreview ? `<script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>` : ""}

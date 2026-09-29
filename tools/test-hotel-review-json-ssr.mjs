@@ -77,7 +77,7 @@ assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
 assert.match(post, /hotel-review-json\.css\?v=20260929-map-panels-v26/);
-assert.match(post, /hotel-review-map\.js\?v=20260929-map-panels-v23/);
+assert.match(post, /hotel-review-map\.js\?v=20260929-map-panels-v24/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 assert.match(css, /\.hrj-location-map/);
@@ -102,6 +102,11 @@ assert.match(renderer, /도보 약/);
 assert.match(renderer, /차량 약/);
 assert.match(css, /hrj-map-canvas-wrap\{[^}]*height:clamp\(430px,48vw,500px\)/);
 assert.match(mapJs, /distanceM <= 250/);
+assert.match(mapJs, /distanceM < 3000/);
+assert.match(mapJs, /map\.fitBounds\(farBounds/);
+assert.match(mapJs, /paddingBottomRight/);
+assert.match(mapJs, /const color = "#64748B"/);
+assert.match(mapJs, /opacity: 0\.46/);
 assert.match(mapJs, /maxZoom = 18/);
 assert.match(mapJs, /map\.createPane\("hrjRoutePane"\)/);
 assert.doesNotMatch(mapJs, /L\.circleMarker\(target/);
