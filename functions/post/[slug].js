@@ -570,7 +570,7 @@ export async function onRequestGet(context) {
         ? `<div class="post-hotel-availability-cta post-hotel-availability-cta--mobile" data-mobile-hotel-cta aria-hidden="true"><a class="post-hotel-availability-btn" href="${escapeHtml(safeHotelPriceLink)}" target="_blank" rel="sponsored noopener noreferrer">잔여 객실 확인</a></div>`
         : "";
       const draftPreviewBannerHtml = isDraftPreview
-        ? `<div role="status" style="margin:16px 0;padding:12px 16px;border:1px solid #111;background:#fff7d6;font-size:14px;line-height:1.5"><strong>초안 미리보기</strong> · 관리자에게만 표시되며 검색엔진에 노출되지 않습니다. <a href="/edit.html?slug=${encodeURIComponent(slug)}" style="margin-left:8px;text-decoration:underline">편집 화면으로 돌아가기</a></div>`
+        ? `<div role="status" style="margin:16px 0;padding:12px 16px;border:1px solid #111;background:#fff7d6;font-size:15px;line-height:1.5"><strong>초안 미리보기</strong> · 관리자에게만 표시되며 검색엔진에 노출되지 않습니다. <a href="/edit.html?slug=${encodeURIComponent(slug)}" style="margin-left:8px;text-decoration:underline">편집 화면으로 돌아가기</a></div>`
         : "";
       const bodyClassName = [
         "post-page-body",
@@ -625,7 +625,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
-  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20260929-attractions-airport-v24" />` : ""}
+  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20261001-desktop-type-v25" />` : ""}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }

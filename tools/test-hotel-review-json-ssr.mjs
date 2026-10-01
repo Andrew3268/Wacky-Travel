@@ -76,9 +76,44 @@ assert.match(css, /\.hrj-basic-info__cta/);
 assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,40%\) minmax\(0,60%\)/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20260929-attractions-airport-v24/);
+assert.match(post, /hotel-review-json\.css\?v=20261001-desktop-type-v25/);
 assert.match(post, /hotel-review-map\.js\?v=20260929-attractions-airport-v27/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
+
+// Desktop hotel-review typography must not fall below 15px.
+function stripMediaBlocks(source) {
+  let out = "";
+  let cursor = 0;
+  while (cursor < source.length) {
+    const mediaIndex = source.indexOf("@media", cursor);
+    if (mediaIndex === -1) { out += source.slice(cursor); break; }
+    out += source.slice(cursor, mediaIndex);
+    const open = source.indexOf("{", mediaIndex);
+    if (open === -1) break;
+    let depth = 1;
+    let i = open + 1;
+    while (i < source.length && depth > 0) {
+      if (source[i] === "{") depth += 1;
+      else if (source[i] === "}") depth -= 1;
+      i += 1;
+    }
+    cursor = i;
+  }
+  return out;
+}
+const desktopCss = stripMediaBlocks(css);
+const desktopFontSizes = [
+  ...desktopCss.matchAll(/font-size\s*:\s*([0-9]+(?:\.[0-9]+)?)px/g),
+  ...desktopCss.matchAll(/font\s*:[^;{}]*?\b([0-9]+(?:\.[0-9]+)?)px(?=\/|\s)/g)
+].map((match) => Number(match[1]));
+assert.ok(desktopFontSizes.length > 0);
+assert.ok(desktopFontSizes.every((size) => size >= 15), `Desktop hotel-review font-size below 15px: ${desktopFontSizes.filter((size) => size < 15).join(", ")}`);
+
+// !important is reserved for late-loaded Leaflet CSS or Leaflet marker stacking only.
+const importantLines = css.split("\n").filter((line) => line.includes("!important"));
+for (const line of importantLines) {
+  assert.match(line, /leaflet-|hrj-map-pin-wrap|hrj-map-marker--poi\.is-selected/);
+}
 
 assert.match(css, /\.hrj-location-map/);
 assert.match(css, /\.hrj-location-summary/);
