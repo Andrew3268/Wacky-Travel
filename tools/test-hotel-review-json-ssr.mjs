@@ -73,10 +73,15 @@ assert.match(css, /\.hotel-review-json-page/);
 assert.match(css, /\.hrj-shell/);
 assert.match(css, /\.hrj-review-analysis__grid/);
 assert.match(css, /\.hrj-basic-info__cta/);
+assert.match(css, /hrj-quick-grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+assert.match(css, /hrj-quick-item__top/);
+assert.match(css, /hrj-quick-item__hint/);
+assert.match(renderer, /QUICK_OVERVIEW_ORDER/);
+assert.match(renderer, /맛집 접근성/);
 assert.match(css, /\.hrj-booking-overview\{[^}]*grid-template-columns:minmax\(0,40%\) minmax\(0,60%\)/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261001-desktop-type-v25/);
+assert.match(post, /hotel-review-json\.css\?v=20261001-quick-overview-v26/);
 assert.match(post, /hotel-review-map\.js\?v=20260929-attractions-airport-v27/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 

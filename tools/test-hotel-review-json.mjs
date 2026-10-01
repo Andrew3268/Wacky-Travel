@@ -185,6 +185,12 @@ assert.match(rendered, /도심 여행용 호텔/);
 assert.match(rendered, /객실·요금 확인하기/);
 assert.match(rendered, /hrj-basic-info__cta/);
 assert.match(rendered, /hrj-booking-overview/);
+assert.match(rendered, /한눈에 보는 핵심 포인트/);
+assert.match(rendered, /핫플 접근성/);
+assert.match(rendered, /맛집 접근성/);
+assert.match(rendered, /hrj-quick-item__top/);
+assert.match(rendered, /hrj-quick-item__hint/);
+assert.doesNotMatch(rendered, /객실 선택<\/h3>/);
 assert.match(rendered, /hrj-booking-overview__media[\s\S]*?<figure class="hrj-hero">대표 이미지<\/figure>[\s\S]*?hrj-basic-info/);
 assert.doesNotMatch(rendered, /class="hrj-location-table"/);
 assert.ok(rendered.indexOf('data-hrj-location-map') < rendered.indexOf('hrj-access-summary'), 'location map should replace locationTable before accessSummary');
@@ -198,6 +204,23 @@ assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
 assert.match(getHotelReviewPlainText(sample), /여러 권역을 한 숙소에서 연결/);
 assert.match(getHotelReviewPlainText(sample), /공항에서 호텔까지 바로 이동합니다/);
+
+
+const legacyQuickOverview = structuredClone(sample);
+legacyQuickOverview.article.quickPoints = [
+  { label: "위치 성격", value: "도톤보리와 주요 명소를 걸어서 연결하기 좋은 위치" },
+  { label: "이동 방식", value: "닛폰바시역까지 도보 약 5분이라 지하철 이동이 편리함" },
+  { label: "생활 편의", value: "편의점과 드럭스토어, 쇼핑 시설을 이용하기 편리함" },
+  { label: "객실 선택", value: "2인은 21㎡ 이상 객실이 편리함" },
+  { label: "가족·친구 여행", value: "도보 관광과 먹거리 일정을 함께 즐기는 여행에 잘 맞음" },
+  { label: "주의할 점", value: "도로 방향 객실은 밤 시간대 소음이 변수일 수 있음" }
+];
+const legacyQuickRendered = renderHotelReviewLayout(legacyQuickOverview);
+for (const label of ["핫플 접근성", "맛집 접근성", "대중교통 접근성", "생활 편의", "이런 여행에 잘 맞아요", "예약 전 체크"]) {
+  assert.match(legacyQuickRendered, new RegExp(label));
+}
+assert.doesNotMatch(legacyQuickRendered, /<h3 class="hrj-quick-item__label">객실 선택<\/h3>/);
+assert.match(legacyQuickRendered, /6가지 핵심 체크/);
 
 const malicious = structuredClone(sample);
 malicious.article.title = '<img src=x onerror="alert(1)">';
