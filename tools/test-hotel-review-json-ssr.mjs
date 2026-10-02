@@ -84,7 +84,14 @@ assert.match(css, /hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,mi
 assert.match(css, /hrj-basic-info__sub/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261002-hero-overview-v27/);
+assert.match(post, /hotel-review-json\.css\?v=20261002-basic-info-type-v28/);
+assert.match(css, /hrj-basic-info__title\{[^}]*font-size:25px/);
+assert.match(css, /hrj-basic-info__value\{[^}]*font-size:15px/);
+assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:22px/);
+assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:20px/);
+assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__value\{[^}]*font-size:15px/);
 assert.match(post, /hotel-review-map\.js\?v=20260929-attractions-airport-v27/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
