@@ -239,13 +239,13 @@
   .hotel-review-json-page .hrj-basic-info{padding:0}
   .hotel-review-json-page .hrj-basic-info__title{font-size:22px;line-height:1.28;letter-spacing:-.03em}
   .hotel-review-json-page .hrj-basic-info__meta{margin-top:14px}
-  .hotel-review-json-page .hrj-basic-info__grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px}
+  .hotel-review-json-page .hrj-basic-info__grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px}
   .hotel-review-json-page .hrj-basic-info__grid+.hrj-basic-info__grid{margin-top:0}
   .hotel-review-json-page .hrj-basic-info__item{padding:16px 14px}
-  .hotel-review-json-page .hrj-basic-info__item:first-child,.hotel-review-json-page .hrj-basic-info__item:nth-child(odd){padding-left:0}
-  .hotel-review-json-page .hrj-basic-info__item+.hrj-basic-info__item{border-left:0}
-  .hotel-review-json-page .hrj-basic-info__item:nth-child(even){border-left:1px solid var(--hrj-line)}
-  .hotel-review-json-page .hrj-basic-info__item:nth-child(n+3){border-top:1px solid var(--hrj-line)}
+  .hotel-review-json-page .hrj-basic-info__item:first-child,.hotel-review-json-page .hrj-basic-info__item:nth-child(3n+1){padding-left:0}
+  .hotel-review-json-page .hrj-basic-info__item+.hrj-basic-info__item{border-left:1px solid var(--hrj-line)}
+  .hotel-review-json-page .hrj-basic-info__item:nth-child(3n+1){border-left:0}
+  .hotel-review-json-page .hrj-basic-info__item:nth-child(n+4){border-top:1px solid var(--hrj-line)}
   .hotel-review-json-page .hrj-basic-info__value{font-size:15px}
   .hotel-review-json-page .hrj-basic-info__action{margin-top:18px;align-items:stretch;flex-direction:column-reverse;gap:8px}
   .hotel-review-json-page .hrj-basic-info__action>span{max-width:none;text-align:center}
@@ -265,6 +265,7 @@
   .hotel-review-json-page .hrj-basic-info__item+.hrj-basic-info__item{border-left:0}
   .hotel-review-json-page .hrj-basic-info__item:nth-child(even){border-left:1px solid var(--hrj-line)}
   .hotel-review-json-page .hrj-basic-info__item:nth-child(n+3){border-top:1px solid var(--hrj-line)}
+  .hotel-review-json-page .hrj-basic-info__item:nth-child(odd):last-child{grid-column:1/-1;border-left:0}
   .hotel-review-json-page .hrj-basic-info__label{margin-bottom:5px;font-size:14px}
   .hotel-review-json-page .hrj-basic-info__value{font-size:15px;line-height:1.45}
   .hotel-review-json-page .hrj-basic-info__sub{font-size:14px}
