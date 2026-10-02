@@ -84,16 +84,16 @@ assert.match(css, /hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,mi
 assert.match(css, /hrj-basic-info__sub/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261002-basic-info-border-v29/);
+assert.match(post, /hotel-review-json\.css\?v=20261002-location-summary-clean-v31/);
 assert.match(css, /hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.match(css, /hrj-basic-info__value\{[^}]*font-size:15px/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:22px/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:20px/);
-assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
-assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__item:nth-child\(odd\):last-child\{[^}]*grid-column:1\/-1/);
+assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+assert.doesNotMatch(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__item:nth-child\(odd\):last-child\{[^}]*grid-column:1\/-1/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__value\{[^}]*font-size:15px/);
-assert.match(post, /hotel-review-map\.js\?v=20261002-map-panel-safe-v30/);
+assert.match(post, /hotel-review-map\.js\?v=20261002-location-summary-clean-v31/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 // Desktop hotel-review typography must not fall below 15px.
@@ -134,6 +134,8 @@ for (const line of importantLines) {
 assert.match(css, /\.hrj-location-map/);
 assert.match(css, /\.hrj-location-summary/);
 assert.match(css, /\.hrj-location-summary__row/);
+assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+assert.doesNotMatch(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 assert.match(css, /\.hrj-location-fit/);
 assert.match(css, /\.hrj-airport-journey/);
 assert.match(css, /\.hrj-chapter--attractions-transport/);
@@ -178,8 +180,10 @@ assert.match(css, /hrj-map-pin::after/);
 assert.match(css, /\.hrj-map-pin/);
 assert.match(css, /\.hrj-map-label--hotel|\.hrj-map-label/);
 assert.match(mapJs, /IntersectionObserver/);
-assert.match(mapJs, /data-hrj-location-summary-copy/);
-assert.match(mapJs, /initLocationSummaryCopy/);
+assert.doesNotMatch(mapJs, /data-hrj-location-summary-copy/);
+assert.doesNotMatch(mapJs, /initLocationSummaryCopy/);
+assert.doesNotMatch(mapJs, /navigator\.clipboard|execCommand\(["\']copy["\']\)/);
+assert.doesNotMatch(css, /hrj-location-summary__copy/);
 assert.match(mapJs, /setPrefix\(false\)/);
 assert.match(mapJs, /OpenStreetMap contributors/);
 assert.match(mapJs, /L\.polyline|polyline\(/);

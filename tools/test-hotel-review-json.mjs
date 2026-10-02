@@ -166,7 +166,8 @@ const rendered = renderHotelReviewLayout(sample, {
 assert.match(rendered, /class="hotel-review-json-page"/);
 assert.match(rendered, /<h1 class="hrj-title">샘플 호텔 리뷰<\/h1>/);
 assert.match(rendered, /hrj-chapter--location/);
-assert.match(rendered, /data-hrj-location-summary/);
+assert.match(rendered, /class="hrj-location-summary"/);
+assert.doesNotMatch(rendered, /data-hrj-location-summary-copy|hrj-location-summary__copy|위치 요약 복사/);
 assert.match(rendered, /위치를 한눈에 보면/);
 assert.match(rendered, /숙소 위치/);
 assert.match(rendered, /hrj-location-fit__item--good/);
