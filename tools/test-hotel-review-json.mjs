@@ -20,6 +20,8 @@ const sample = {
     area: "도심",
     coordinates: { lat: 37.5665, lng: 126.9780 },
     grade: "5성급",
+    guestRating: "9.0",
+    reviewCount: 1245,
     type: "도심형 호텔",
     roomCount: "300실",
     airport: "공항 약 50km"
@@ -32,7 +34,11 @@ const sample = {
     title: "샘플 호텔 리뷰",
     intro: ["호텔 리뷰 소개 문장입니다."],
     featuredImage: { src: "", alt: "샘플 호텔 대표 이미지" },
-    basicInfo: [{ label: "호텔 유형", value: "도심형 5성급 호텔" }],
+    basicInfo: [
+      { label: "조식", value: "포함" },
+      { label: "짐 보관", value: "가능" },
+      { label: "체크인·체크아웃", value: "15:00 · 11:00" }
+    ],
     quickPoints: [{ label: "위치", value: "도심 이동이 편리함" }]
   },
   locationMap: {
@@ -43,6 +49,14 @@ const sample = {
         key: "attractions",
         label: "주요 명소",
         items: [
+          {
+            id: "sample-station",
+            nameKo: "샘플역",
+            type: "transport",
+            coordinates: { lat: 37.5670, lng: 126.9785 },
+            distance: { valueKm: 0.3, label: "약 300m" },
+            travel: { walkMinutes: 5, driveMinutes: 2, sourceType: "route" }
+          },
           {
             id: "sample-attraction",
             nameKo: "샘플 명소",
@@ -185,6 +199,23 @@ assert.match(rendered, /도심 여행용 호텔/);
 assert.match(rendered, /객실·요금 확인하기/);
 assert.match(rendered, /hrj-basic-info__cta/);
 assert.match(rendered, /hrj-booking-overview/);
+assert.doesNotMatch(rendered, /숙소 선택 전에 빠르게 확인하면 좋은 객관적인 정보/);
+assert.match(rendered, /hrj-basic-info__meta/);
+assert.match(rendered, /5성급/);
+assert.match(rendered, /평점 좋음/);
+assert.match(rendered, /리뷰 충분/);
+assert.match(rendered, /hrj-basic-info__grid--stay/);
+assert.match(rendered, /<span class="hrj-basic-info__label">조식<\/span><span class="hrj-basic-info__value">포함<\/span>/);
+assert.match(rendered, /<span class="hrj-basic-info__label">짐 보관<\/span><span class="hrj-basic-info__value">가능<\/span>/);
+assert.match(rendered, /체크인 · 체크아웃/);
+assert.match(rendered, /15:00 · 11:00/);
+assert.match(rendered, /hrj-basic-info__grid--location/);
+assert.match(rendered, /가까운 역/);
+assert.match(rendered, /샘플역/);
+assert.match(rendered, /주요 명소/);
+assert.match(rendered, /샘플 명소/);
+assert.match(rendered, /맛집 접근성/);
+assert.match(rendered, /보통/);
 assert.match(rendered, /한눈에 보는 핵심 포인트/);
 assert.match(rendered, /핫플 접근성/);
 assert.match(rendered, /맛집 접근성/);
