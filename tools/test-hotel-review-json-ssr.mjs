@@ -93,7 +93,7 @@ assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__title\{[^}
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__item:nth-child\(odd\):last-child\{[^}]*grid-column:1\/-1/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__value\{[^}]*font-size:15px/);
-assert.match(post, /hotel-review-map\.js\?v=20260929-attractions-airport-v27/);
+assert.match(post, /hotel-review-map\.js\?v=20261002-map-panel-safe-v30/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 // Desktop hotel-review typography must not fall below 15px.
@@ -186,6 +186,11 @@ assert.match(mapJs, /L\.polyline|polyline\(/);
 assert.match(mapJs, /data-hrj-map-tab/);
 assert.match(mapJs, /centerSelectedPlace/);
 assert.match(mapJs, /panel\.scrollTo\(\{ left: Math\.max\(0, left\), behavior \}\)/);
+assert.match(mapJs, /getActivePanelBottomInset/);
+assert.match(mapJs, /ensureSelectedMarkerVisible/);
+assert.match(mapJs, /safeMarkerBottom = panelTop - 18/);
+assert.match(mapJs, /map\.panBy\(\[0, Math\.ceil\(overlap\)\]/);
+assert.match(mapJs, /panelInset \+ \(mobile \? 28 : 34\)/);
 assert.doesNotMatch(mapJs, /navigator\.geolocation|map\.locate\(/);
 
 assert.match(css, /\.hrj-map-controls/);

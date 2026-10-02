@@ -165,6 +165,42 @@
         panel.scrollTo({ left: Math.max(0, left), behavior });
       };
 
+      const getActivePanelBottomInset = () => {
+        const panel = root.querySelector(`[data-hrj-map-panel="${CSS.escape(activeCategory)}"]`);
+        if (!panel || panel.hidden) return 0;
+        const canvasRect = canvas.getBoundingClientRect();
+        const panelRect = panel.getBoundingClientRect();
+        if (!canvasRect.height || !panelRect.height) return 0;
+        const panelTop = Math.max(0, panelRect.top - canvasRect.top);
+        return Math.max(0, canvasRect.height - panelTop);
+      };
+
+      const ensureSelectedMarkerVisible = (item, { animate = true } = {}) => {
+        const targetLat = num(item?.coordinates?.lat);
+        const targetLng = num(item?.coordinates?.lng);
+        if (targetLat === null || targetLng === null || !map._loaded) return;
+
+        const panel = root.querySelector(`[data-hrj-map-panel="${CSS.escape(activeCategory)}"]`);
+        if (!panel || panel.hidden) return;
+
+        const canvasRect = canvas.getBoundingClientRect();
+        const panelRect = panel.getBoundingClientRect();
+        if (!canvasRect.height || !panelRect.height) return;
+
+        const panelTop = panelRect.top - canvasRect.top;
+        const markerPoint = map.latLngToContainerPoint([targetLat, targetLng]);
+        const safeMarkerBottom = panelTop - 18;
+        const overlap = markerPoint.y - safeMarkerBottom;
+
+        if (overlap > 0) {
+          map.panBy([0, Math.ceil(overlap)], {
+            animate,
+            duration: animate ? 0.24 : 0,
+            easeLinearity: 0.3
+          });
+        }
+      };
+
       const clearMarkerFocus = () => {
         root.classList.remove("is-poi-focused");
         markerById.forEach((marker) => {
@@ -283,7 +319,11 @@
         // 하단 패널이 지도 안에 있으므로 아래쪽 여백을 더 크게 잡는다.
         const farBounds = L.latLngBounds([hotelPoint, targetPoint]);
         const paddingTopLeft = L.point(mobile ? 40 : 56, mobile ? 44 : 56);
-        const paddingBottomRight = L.point(mobile ? 40 : 56, mobile ? 150 : 170);
+        const panelInset = getActivePanelBottomInset();
+        const paddingBottomRight = L.point(
+          mobile ? 40 : 56,
+          Math.max(mobile ? 150 : 170, panelInset + (mobile ? 28 : 34))
+        );
 
         map.fitBounds(farBounds, {
           paddingTopLeft,
@@ -302,8 +342,12 @@
         requestAnimationFrame(() => centerSelectedPlace(item.id));
         connectLine(item, kind);
 
-        // 가까운 곳은 적절히 확대하고, 먼 곳은 자동 줌아웃하되 호텔은 항상 중심에 둔다.
+        // 가까운 곳은 적절히 확대하고, 먼 곳은 자동 줌아웃한다.
+        // 하단 카드 패널이 선택 핀을 가리지 않도록 지도 이동 후 가시 영역을 한 번 더 보정한다.
         focusHotelAndTarget(item);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => ensureSelectedMarkerVisible(item));
+        });
       };
 
       const connectToItem = (item) => {
