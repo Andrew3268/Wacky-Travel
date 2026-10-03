@@ -625,7 +625,7 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/travel-core.css?v=20260903-h1-scope-v3" />
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
-  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20261003-section-03-04-unified-v35" />` : ""}
+  ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=20261003-feature-title-margin-v36" />` : ""}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }

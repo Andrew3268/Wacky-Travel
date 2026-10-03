@@ -84,9 +84,10 @@ assert.match(css, /hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,mi
 assert.match(css, /hrj-basic-info__sub/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261003-section-03-04-unified-v35/);
+assert.match(post, /hotel-review-json\.css\?v=20261003-feature-title-margin-v36/);
 assert.match(css, /hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.match(css, /hrj-basic-info__value\{[^}]*font-size:15px/);
+assert.match(css, /\.hotel-review-json-page \.hrj-chapter \.hrj-feature-item__title\{[^}]*margin:0/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:22px/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:20px/);

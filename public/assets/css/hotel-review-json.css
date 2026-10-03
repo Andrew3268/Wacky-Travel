@@ -516,8 +516,10 @@
   padding:23px 0 25px;
   border-bottom:1px solid var(--hrj-line);
 }
-.hotel-review-json-page .hrj-feature-item__title{
+.hotel-review-json-page .hrj-chapter .hrj-feature-item__title{
   margin:0;
+}
+.hotel-review-json-page .hrj-feature-item__title{
   color:#303438;
   font-size:18px;
   line-height:1.5;
