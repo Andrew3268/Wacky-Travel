@@ -334,9 +334,7 @@
 .hotel-review-json-page .hrj-airport-journey__stat span{display:block;margin-bottom:5px;color:#8a9097;font-size:15px;line-height:1.4;font-weight:700}
 .hotel-review-json-page .hrj-airport-journey__stat strong{display:block;color:#303539;font-size:15px;line-height:1.4;font-weight:760;word-break:keep-all}
 .hotel-review-json-page .hrj-airport-journey__methods{margin-top:22px}
-.hotel-review-json-page .hrj-airport-journey__methods-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px}
-.hotel-review-json-page .hrj-airport-journey__methods-head>h4{margin:0;color:#303538;font-size:15px;line-height:1.45;font-weight:750;letter-spacing:-.025em}
-.hotel-review-json-page .hrj-airport-journey__toggle{appearance:none;border:0;padding:5px 0;background:transparent;color:#2f67d8;font:inherit;font-size:15px;font-weight:800;cursor:pointer;white-space:nowrap}
+.hotel-review-json-page .hrj-airport-journey__toggle{display:block;margin:8px 0 0 auto;appearance:none;border:0;padding:5px 0;background:transparent;color:#2f67d8;font:inherit;font-size:15px;font-weight:800;cursor:pointer;white-space:nowrap}
 .hotel-review-json-page .hrj-airport-journey__toggle:hover{text-decoration:underline;text-underline-offset:3px}
 .hotel-review-json-page .hrj-airport-journey__toggle:focus-visible{outline:2px solid #7ba0e4;outline-offset:3px;border-radius:4px}
 .hotel-review-json-page .hrj-airport-journey__more[hidden]{display:none}
@@ -368,8 +366,6 @@
   .hotel-review-json-page .hrj-airport-journey__stat:nth-child(3){border-left:0;border-top:1px solid var(--hrj-line)}
   .hotel-review-json-page .hrj-airport-journey__stat:nth-child(4){border-top:1px solid var(--hrj-line)}
   .hotel-review-json-page .hrj-airport-journey__stat strong{font-size:13px}
-  .hotel-review-json-page .hrj-airport-journey__methods-head{gap:10px}
-  .hotel-review-json-page .hrj-airport-journey__methods-head>h4{font-size:13px}
   .hotel-review-json-page .hrj-airport-journey__toggle{font-size:10.5px}
 
   /* 모바일에서도 이동방법/뱃지는 좌우 포지션 유지 */
