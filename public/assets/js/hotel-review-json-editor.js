@@ -168,11 +168,6 @@
           stats.forEach((item, ii) => {
             if (!text(item?.label) || !text(item?.value)) errors.push(`sections[${si}].blocks[${bi}].stats[${ii}] label/value가 필요합니다.`);
           });
-          const methods = arr(block?.methods);
-          if (methods.length < 1 || methods.length > 3) errors.push(`sections[${si}].blocks[${bi}] airportJourney.methods는 1~3개여야 합니다.`);
-          methods.forEach((item, ii) => {
-            if (!text(item?.name) || !text(item?.desc)) errors.push(`sections[${si}].blocks[${bi}].methods[${ii}] name/desc가 필요합니다.`);
-          });
         }
         if (type === "reviewProsCons" && (!arr(block?.pros).length || !arr(block?.cons).length)) errors.push(`sections[${si}].blocks[${bi}] reviewProsCons에는 pros와 cons가 모두 필요합니다.`);
       });
