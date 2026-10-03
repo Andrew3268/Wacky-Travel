@@ -84,7 +84,7 @@ assert.match(css, /hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,mi
 assert.match(css, /hrj-basic-info__sub/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261003-hotspot-airport-v32/);
+assert.match(post, /hotel-review-json\.css\?v=20261003-hotspot-evidence-airport-v33/);
 assert.match(css, /hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.match(css, /hrj-basic-info__value\{[^}]*font-size:15px/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:22px/);
@@ -93,7 +93,7 @@ assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__title\{[^}
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__grid\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 assert.doesNotMatch(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__item:nth-child\(odd\):last-child\{[^}]*grid-column:1\/-1/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__value\{[^}]*font-size:15px/);
-assert.match(post, /hotel-review-map\.js\?v=20261003-hotspot-airport-v32/);
+assert.match(post, /hotel-review-map\.js\?v=20261003-hotspot-evidence-airport-v33/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 // Desktop hotel-review typography must not fall below 15px.
@@ -151,15 +151,15 @@ assert.match(css, /hrj-map-place\{[^}]*flex:0 0 230px/);
 assert.match(css, /@media\(max-width:720px\)\{[\s\S]*?hrj-map-place\{[^}]*flex-basis:205px/);
 assert.match(css, /hrj-map-place__body strong\{[^}]*text-overflow:ellipsis/);
 assert.match(css, /hrj-map-place__travel/);
-assert.match(renderer, /data-hrj-airport-method-toggle/);
+assert.doesNotMatch(renderer, /hrj-airport-journey__methods|data-hrj-airport-method-toggle|data-hrj-airport-method-more|hrj-airport-method/);
 assert.doesNotMatch(renderer, /hrj-airport-journey__methods-head|공항에서 호텔까지 가는 방법/);
 assert.doesNotMatch(css, /hrj-airport-journey__methods-head/);
 assert.match(renderer, /역에서 호텔까지/);
 assert.match(css, /hrj-access-summary__list\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 assert.match(css, /hrj-access-summary__desc\{display:block/);
 assert.match(css, /hrj-airport-journey__head\{[^}]*display:flex[^}]*justify-content:space-between/);
-assert.match(css, /hrj-airport-method\{[^}]*grid-template-columns:minmax\(0,1fr\) auto/);
-assert.match(mapJs, /function initAirportJourneyMethods\(\)/);
+assert.doesNotMatch(css, /hrj-airport-journey__methods|hrj-airport-journey__toggle|hrj-airport-journey__more|hrj-airport-method/);
+assert.doesNotMatch(mapJs, /initAirportJourneyMethods|data-hrj-airport-method-toggle|data-hrj-airport-method-more/);
 assert.match(renderer, /도보 약/);
 assert.match(renderer, /차량 약/);
 assert.match(css, /hrj-map-canvas-wrap\{[^}]*height:clamp\(430px,48vw,500px\)/);
