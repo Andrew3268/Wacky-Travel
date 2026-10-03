@@ -492,7 +492,7 @@
   .hotel-review-json-page .hrj-quick-item--caution{border-color:#eadfd8;background:#fdfbf9}
 }
 
-/* 03 쇼핑·맛집 + 04 호텔 특징 미니멀 에디토리얼 UI v34 */
+/* 03 쇼핑·맛집 + 04 호텔 특징 공통 미니멀 feature-list UI v35 */
 .hotel-review-json-page .hrj-chapter--shopping-food>h2,
 .hotel-review-json-page .hrj-chapter--hotel-features>h2{
   margin-bottom:0;
@@ -504,42 +504,6 @@
   font-size:17px;
   line-height:1.85;
   letter-spacing:-.012em;
-}
-.hotel-review-json-page .hrj-lifestyle-summary{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  margin-top:32px;
-  border-top:1px solid var(--hrj-line);
-  border-bottom:1px solid var(--hrj-line);
-}
-.hotel-review-json-page .hrj-lifestyle-summary__item{
-  min-width:0;
-  padding:23px 24px 25px;
-}
-.hotel-review-json-page .hrj-lifestyle-summary__item+.hrj-lifestyle-summary__item{
-  border-left:1px solid var(--hrj-line);
-}
-.hotel-review-json-page .hrj-lifestyle-summary__label{
-  margin:0 0 8px;
-  color:#8b8f92;
-  font-size:15px;
-  line-height:1.4;
-  font-weight:700;
-}
-.hotel-review-json-page .hrj-lifestyle-summary__value{
-  color:#2f3336;
-  font-size:18px;
-  line-height:1.5;
-  font-weight:720;
-  letter-spacing:-.025em;
-  word-break:keep-all;
-}
-.hotel-review-json-page .hrj-lifestyle-summary__desc{
-  margin:9px 0 0;
-  color:#676c70;
-  font-size:15px;
-  line-height:1.72;
-  letter-spacing:-.01em;
 }
 .hotel-review-json-page .hrj-feature-list{
   margin-top:32px;
@@ -570,9 +534,6 @@
 
 @media(max-width:1020px) and (min-width:721px){
   .hotel-review-json-page .hrj-editorial-lead{font-size:16px;line-height:1.82}
-  .hotel-review-json-page .hrj-lifestyle-summary{margin-top:28px}
-  .hotel-review-json-page .hrj-lifestyle-summary__item{padding:21px 19px 23px}
-  .hotel-review-json-page .hrj-lifestyle-summary__value{font-size:17px}
   .hotel-review-json-page .hrj-feature-list{margin-top:28px}
   .hotel-review-json-page .hrj-feature-item{grid-template-columns:180px minmax(0,1fr);gap:26px;padding:21px 0 23px}
   .hotel-review-json-page .hrj-feature-item__title{font-size:17px}
@@ -581,12 +542,6 @@
 
 @media(max-width:720px){
   .hotel-review-json-page .hrj-editorial-lead{margin-top:17px;font-size:15px;line-height:1.78}
-  .hotel-review-json-page .hrj-lifestyle-summary{grid-template-columns:1fr;margin-top:24px}
-  .hotel-review-json-page .hrj-lifestyle-summary__item{padding:18px 0 19px}
-  .hotel-review-json-page .hrj-lifestyle-summary__item+.hrj-lifestyle-summary__item{border-left:0;border-top:1px solid var(--hrj-line)}
-  .hotel-review-json-page .hrj-lifestyle-summary__label{margin-bottom:6px;font-size:13px}
-  .hotel-review-json-page .hrj-lifestyle-summary__value{font-size:16px;line-height:1.5}
-  .hotel-review-json-page .hrj-lifestyle-summary__desc{margin-top:6px;font-size:14px;line-height:1.7}
   .hotel-review-json-page .hrj-feature-list{margin-top:24px}
   .hotel-review-json-page .hrj-feature-item{grid-template-columns:1fr;gap:7px;padding:18px 0 20px}
   .hotel-review-json-page .hrj-feature-item__title{font-size:16px;line-height:1.5}
