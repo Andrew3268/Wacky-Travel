@@ -18,6 +18,7 @@ const sample = {
     country: "대한민국",
     city: "서울",
     area: "도심",
+    locationType: "중심가 인근",
     coordinates: { lat: 37.5665, lng: 126.9780 },
     grade: "5성급",
     guestRating: "9.0",
@@ -37,7 +38,8 @@ const sample = {
     basicInfo: [
       { label: "조식", value: "포함" },
       { label: "짐 보관", value: "가능" },
-      { label: "체크인·체크아웃", value: "15:00 · 11:00" }
+      { label: "체크인·체크아웃", value: "15:00 · 11:00" },
+      { label: "무료 취소", value: "가능" }
     ],
     quickPoints: [{ label: "위치", value: "도심 이동이 편리함" }]
   },
@@ -65,6 +67,14 @@ const sample = {
             coordinates: { lat: 37.5700, lng: 126.9800 },
             distance: { valueKm: 0.5, label: "약 500m" },
             travel: { walkMinutes: 7, driveMinutes: 3, sourceType: "route" }
+          },
+          {
+            id: "sample-shopping",
+            nameKo: "샘플 쇼핑거리",
+            type: "shopping",
+            coordinates: { lat: 37.5680, lng: 126.9790 },
+            distance: { valueKm: 0.6, label: "약 600m" },
+            travel: { walkMinutes: 8, driveMinutes: 3, sourceType: "route" }
           },
           {
             id: "sample-airport",
@@ -129,10 +139,10 @@ const sample = {
         { type: "locationTable", rows: [["명소", "약 1km"]] },
         { type: "accessSummary", title: "이동 요약", items: [{ level: "도보", places: "명소", desc: "걸어서 이동" }] },
         { type: "insight", label: "핵심", text: "이동이 편리합니다." },
-        { type: "airportJourney", title: "공항에서 호텔까지 여정", accessLabel: "접근성 좋은 편", summary: "샘플 국제공항에서 호텔까지는 차량으로 약 22분 정도입니다.", stats: [{ label: "추천 이동", value: "차량 이동" }, { label: "예상 소요", value: "약 22분" }, { label: "환승", value: "없음" }, { label: "이동 부담", value: "낮은 편" }], methods: [{ name: "차량 이동", desc: "공항에서 호텔까지 바로 이동합니다.", badge: "가장 추천" }, { name: "사전 픽업", desc: "짐이 많은 경우 편리합니다.", badge: "상황에 따라" }] },
+        { type: "airportJourney", title: "공항에서 호텔까지 여정", accessLabel: "접근성 무난한 편", summary: "샘플 국제공항에서 호텔까지는 차량으로 약 22분 정도입니다.", stats: [{ label: "추천 이동", value: "차량 이동" }, { label: "예상 소요", value: "약 22분" }, { label: "환승", value: "없음" }, { label: "이동 부담", value: "낮은 편" }], methods: [{ name: "차량 이동", desc: "공항에서 호텔까지 바로 이동합니다.", badge: "가장 추천" }, { name: "사전 픽업", desc: "짐이 많은 경우 편리합니다.", badge: "상황에 따라" }] },
         { type: "reviewProsCons", title: "장단점", pros: [{ title: "장점", text: "넓어요" }], cons: [{ title: "단점", text: "소음" }], summary: "객실별 차이가 있습니다." },
         { type: "roomOptions", title: "객실 선택", items: [{ title: "리버뷰", desc: "전망 중시" }] },
-        { type: "fitGrid", good: ["도심 여행"], bad: ["해변 휴양"] },
+        { type: "fitGrid", good: ["관광·맛집·쇼핑을 함께 즐기고 도보 이동 비중이 높은 일정"], bad: ["해변 휴양"] },
         { type: "finalVerdict", eyebrow: "한 문장 정리", title: "도심 여행용 호텔", text: "동선이 편리합니다." }
       ]
     }
@@ -187,7 +197,7 @@ assert.match(rendered, /<h2>호텔 주변 이동<\/h2>\s*<p class="hrj-attractio
 assert.doesNotMatch(rendered, /<aside class="hrj-insight">/);
 assert.match(rendered, /data-hrj-airport-journey/);
 assert.match(rendered, /공항에서 호텔까지 여정/);
-assert.match(rendered, /접근성 좋은 편/);
+assert.match(rendered, /접근성 무난한 편/);
 assert.doesNotMatch(rendered, /가장 추천/);
 assert.doesNotMatch(rendered, /hrj-airport-journey__methods-head|공항에서 호텔까지 가는 방법/);
 assert.doesNotMatch(rendered, /hrj-airport-journey__methods|data-hrj-airport-method-toggle|data-hrj-airport-method-more|hrj-airport-method/);
@@ -204,26 +214,31 @@ assert.match(rendered, /hrj-basic-info__cta/);
 assert.match(rendered, /hrj-booking-overview/);
 assert.doesNotMatch(rendered, /숙소 선택 전에 빠르게 확인하면 좋은 객관적인 정보/);
 assert.match(rendered, /hrj-basic-info__meta/);
+assert.match(rendered, /중심가 인근/);
 assert.match(rendered, /5성급/);
-assert.match(rendered, /평점 좋음/);
-assert.match(rendered, /리뷰 충분/);
+assert.match(rendered, /hrj-basic-info__meta-star[^>]*>★<\/span>9\.0/);
+assert.doesNotMatch(rendered, /평점 좋음|리뷰 충분/);
 assert.match(rendered, /hrj-basic-info__grid--stay/);
 assert.match(rendered, /<span class="hrj-basic-info__label">조식<\/span><span class="hrj-basic-info__value">포함<\/span>/);
 assert.match(rendered, /<span class="hrj-basic-info__label">짐 보관<\/span><span class="hrj-basic-info__value">가능<\/span>/);
 assert.match(rendered, /체크인 · 체크아웃/);
 assert.match(rendered, /15:00 · 11:00/);
-assert.match(rendered, /hrj-basic-info__grid--location/);
-assert.match(rendered, /가까운 역/);
-assert.match(rendered, /샘플역/);
-assert.match(rendered, /<span class="hrj-basic-info__label">핫플 접근성<\/span><span class="hrj-basic-info__value">좋음<\/span><span class="hrj-basic-info__sub">도보 10분 내 1곳<\/span>/);
-assert.doesNotMatch(rendered, /<span class="hrj-basic-info__label">주요 명소<\/span>/);
-assert.match(rendered, /맛집 접근성/);
-assert.match(rendered, /보통/);
+assert.match(rendered, /<span class="hrj-basic-info__label">무료 취소<\/span><span class="hrj-basic-info__value">가능<\/span>/);
+assert.doesNotMatch(rendered, /hrj-basic-info__grid--location/);
+assert.doesNotMatch(rendered, /<span class="hrj-basic-info__label">가까운 역<\/span>/);
 assert.match(rendered, /한눈에 보는 핵심 포인트/);
-assert.match(rendered, /핫플 접근성/);
-assert.match(rendered, /맛집 접근성/);
+for (const label of ["핫플 접근성", "맛집 접근성", "쇼핑 접근성", "대중교통 접근성", "공항에서 호텔까지 접근성", "이런 여행에 잘 맞아요"]) {
+  assert.match(rendered, new RegExp(label));
+}
+assert.match(rendered, /6가지 핵심 체크/);
+assert.match(rendered, /hrj-quick-item--hotspot hrj-quick-item--grade-good[\s\S]*?<p class="hrj-quick-item__value">좋음<\/p>/);
+assert.match(rendered, /hrj-quick-item--dining hrj-quick-item--grade-normal[\s\S]*?<p class="hrj-quick-item__value">보통<\/p>/);
+assert.match(rendered, /hrj-quick-item--shopping hrj-quick-item--grade-good/);
+assert.match(rendered, /hrj-quick-item--airport hrj-quick-item--grade-normal[\s\S]*?<p class="hrj-quick-item__value">보통<\/p>/);
+assert.match(rendered, /관광·맛집·쇼핑 중심 일정/);
 assert.match(rendered, /hrj-quick-item__top/);
 assert.match(rendered, /hrj-quick-item__hint/);
+assert.match(rendered, /hrj-quick-item__desc/);
 assert.doesNotMatch(rendered, /객실 선택<\/h3>/);
 assert.match(rendered, /hrj-booking-overview__media[\s\S]*?<figure class="hrj-hero">대표 이미지<\/figure>[\s\S]*?hrj-basic-info/);
 assert.doesNotMatch(rendered, /class="hrj-location-table"/);
@@ -250,11 +265,25 @@ legacyQuickOverview.article.quickPoints = [
   { label: "주의할 점", value: "도로 방향 객실은 밤 시간대 소음이 변수일 수 있음" }
 ];
 const legacyQuickRendered = renderHotelReviewLayout(legacyQuickOverview);
-for (const label of ["핫플 접근성", "맛집 접근성", "대중교통 접근성", "생활 편의", "이런 여행에 잘 맞아요", "예약 전 체크"]) {
+for (const label of ["핫플 접근성", "맛집 접근성", "쇼핑 접근성", "대중교통 접근성", "공항에서 호텔까지 접근성", "이런 여행에 잘 맞아요"]) {
   assert.match(legacyQuickRendered, new RegExp(label));
 }
 assert.doesNotMatch(legacyQuickRendered, /<h3 class="hrj-quick-item__label">객실 선택<\/h3>/);
 assert.match(legacyQuickRendered, /6가지 핵심 체크/);
+
+const standardizedAccess = structuredClone(sample);
+standardizedAccess.article.quickPoints = [
+  { label: "핫플 접근성", value: "나쁨", hint: "주요 명소까지 별도 이동" },
+  { label: "맛집 접근성", value: "아쉬움", hint: "외식권까지 이동 필요" },
+  { label: "쇼핑 접근성", value: "무난함", hint: "짧은 이동 필요" },
+  { label: "대중교통 접근성", value: "보통", hint: "역 도보 약 12분" },
+  { label: "공항에서 호텔까지 접근성", value: "무난함", hint: "전철 약 55분" },
+  { label: "이런 여행에 잘 맞아요", value: "도보 관광 중심 일정", hint: "도보 관광형" }
+];
+const standardizedRendered = renderHotelReviewLayout(standardizedAccess);
+assert.match(standardizedRendered, /hrj-quick-item--hotspot hrj-quick-item--grade-caution[\s\S]*?<p class="hrj-quick-item__value">아쉬움<\/p>/);
+assert.match(standardizedRendered, /hrj-quick-item--shopping hrj-quick-item--grade-normal[\s\S]*?<p class="hrj-quick-item__value">보통<\/p>/);
+assert.doesNotMatch(standardizedRendered.match(/<section class="hrj-quick-card"[\s\S]*?<\/section>/)?.[0] || "", />나쁨<|>무난함</);
 
 const malicious = structuredClone(sample);
 malicious.article.title = '<img src=x onerror="alert(1)">';
