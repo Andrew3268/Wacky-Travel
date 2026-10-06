@@ -39,7 +39,8 @@ const sample = {
       { label: "조식", value: "포함" },
       { label: "짐 보관", value: "가능" },
       { label: "체크인·체크아웃", value: "15:00 · 11:00" },
-      { label: "무료 취소", value: "가능" }
+      { label: "무료 취소", value: "가능" },
+      { label: "24시간 프런트", value: "운영" }
     ],
     quickPoints: [{ label: "위치", value: "도심 이동이 편리함" }]
   },
@@ -218,13 +219,14 @@ assert.match(rendered, /중심가 인근/);
 assert.match(rendered, /5성급/);
 assert.match(rendered, /hrj-basic-info__meta-star[^>]*>★<\/span>9\.0/);
 assert.doesNotMatch(rendered, /평점 좋음|리뷰 충분/);
-assert.match(rendered, /hrj-basic-info__grid--stay/);
-assert.match(rendered, /<span class="hrj-basic-info__label">조식<\/span><span class="hrj-basic-info__value">포함<\/span>/);
-assert.match(rendered, /<span class="hrj-basic-info__label">짐 보관<\/span><span class="hrj-basic-info__value">가능<\/span>/);
-assert.match(rendered, /체크인 · 체크아웃/);
-assert.match(rendered, /15:00 · 11:00/);
-assert.match(rendered, /<span class="hrj-basic-info__label">무료 취소<\/span><span class="hrj-basic-info__value">가능<\/span>/);
-assert.doesNotMatch(rendered, /hrj-basic-info__grid--location/);
+assert.match(rendered, /hrj-basic-info__features/);
+assert.match(rendered, /hrj-basic-info__features-title">기본 정보<\/div>/);
+assert.match(rendered, /hrj-basic-info__feature--breakfast[\s\S]*?조식 <strong>포함<\/strong>/);
+assert.match(rendered, /hrj-basic-info__feature--luggage[\s\S]*?짐 보관 <strong>가능<\/strong>/);
+assert.match(rendered, /hrj-basic-info__feature--checkin[\s\S]*?체크인 · 체크아웃 <strong>15:00 · 11:00<\/strong>/);
+assert.match(rendered, /hrj-basic-info__feature--cancellation[\s\S]*?무료 취소 <strong>가능<\/strong>/);
+assert.match(rendered, /hrj-basic-info__feature--frontdesk[\s\S]*?24시간 프런트 <strong>운영<\/strong>/);
+assert.doesNotMatch(rendered, /hrj-basic-info__grid--stay|hrj-basic-info__grid--location/);
 assert.doesNotMatch(rendered, /<span class="hrj-basic-info__label">가까운 역<\/span>/);
 assert.match(rendered, /한눈에 보는 핵심 포인트/);
 for (const label of ["핫플 접근성", "맛집 접근성", "쇼핑 접근성", "대중교통 접근성", "공항에서 호텔까지 접근성", "이런 여행에 잘 맞아요"]) {
