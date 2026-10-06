@@ -9,7 +9,7 @@ const addHtml = read("public/add.html");
 const editHtml = read("public/edit.html");
 const addJs = read("public/assets/js/add.js");
 const editJs = read("public/assets/js/edit.js");
-const editorJs = read("public/assets/js/hotel-review-json-editor.js");
+const editorJs = read("public/assets/js/hotel-review-json-editor-v38.js");
 const css = read("public/assets/css/hotel-review-json.css");
 const mapJs = read("public/assets/js/hotel-review-map.js");
 const renderer = read("lib/posts/hotel-review-json.js");
@@ -44,7 +44,7 @@ for (const html of [addHtml, editHtml]) {
   assert.match(html, /id="content_format"/);
   assert.match(html, /id="hotelReviewPickLabel"/);
   assert.match(html, /id="hotelReviewPriceUrl"/);
-  assert.match(html, /hotel-review-json-editor\.js/);
+  assert.match(html, /hotel-review-json-editor-v38\.js/);
 }
 
 for (const editor of [addJs, editJs]) {
@@ -61,8 +61,8 @@ assert.match(editorJs, /locationMap/);
 assert.match(editorJs, /BLOCK_TYPES/);
 assert.match(editorJs, /locationSummary/);
 assert.match(editorJs, /airportJourney/);
-assert.match(read("public/add.html"), /hotel-review-json-editor\.js\?v=20260927-airport-journey-v22/);
-assert.match(read("public/edit.html"), /hotel-review-json-editor\.js\?v=20260927-airport-journey-v22/);
+assert.match(read("public/add.html"), /hotel-review-json-editor-v38\.js\?v=20261006-airport-journey-no-methods-v38/);
+assert.match(read("public/edit.html"), /hotel-review-json-editor-v38\.js\?v=20261006-airport-journey-no-methods-v38/);
 assert.match(editorJs, /validateForSave/);
 assert.match(editorJs, /readFile/);
 assert.match(editorJs, /contentMarkdownSection/);

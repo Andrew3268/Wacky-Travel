@@ -139,7 +139,7 @@ const sample = {
         { type: "locationTable", rows: [["명소", "약 1km"]] },
         { type: "accessSummary", title: "이동 요약", items: [{ level: "도보", places: "명소", desc: "걸어서 이동" }] },
         { type: "insight", label: "핵심", text: "이동이 편리합니다." },
-        { type: "airportJourney", title: "공항에서 호텔까지 여정", accessLabel: "접근성 무난한 편", summary: "샘플 국제공항에서 호텔까지는 차량으로 약 22분 정도입니다.", stats: [{ label: "추천 이동", value: "차량 이동" }, { label: "예상 소요", value: "약 22분" }, { label: "환승", value: "없음" }, { label: "이동 부담", value: "낮은 편" }], methods: [{ name: "차량 이동", desc: "공항에서 호텔까지 바로 이동합니다.", badge: "가장 추천" }, { name: "사전 픽업", desc: "짐이 많은 경우 편리합니다.", badge: "상황에 따라" }] },
+        { type: "airportJourney", title: "공항에서 호텔까지 여정", accessLabel: "접근성 무난한 편", summary: "샘플 국제공항에서 호텔까지는 차량으로 약 22분 정도입니다.", stats: [{ label: "추천 이동", value: "차량 이동" }, { label: "예상 소요", value: "약 22분" }, { label: "환승", value: "없음" }, { label: "이동 부담", value: "낮은 편" }] },
         { type: "reviewProsCons", title: "장단점", pros: [{ title: "장점", text: "넓어요" }], cons: [{ title: "단점", text: "소음" }], summary: "객실별 차이가 있습니다." },
         { type: "roomOptions", title: "객실 선택", items: [{ title: "리버뷰", desc: "전망 중시" }] },
         { type: "fitGrid", good: ["관광·맛집·쇼핑을 함께 즐기고 도보 이동 비중이 높은 일정"], bad: ["해변 휴양"] },
