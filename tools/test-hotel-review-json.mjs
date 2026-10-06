@@ -233,13 +233,13 @@ for (const label of ["핫플 접근성", "맛집 접근성", "쇼핑 접근성",
   assert.match(rendered, new RegExp(label));
 }
 assert.match(rendered, /6가지 핵심 체크/);
-assert.match(rendered, /hrj-quick-item--hotspot hrj-quick-item--grade-good[\s\S]*?<p class="hrj-quick-item__value">좋음<\/p>/);
-assert.match(rendered, /hrj-quick-item--dining hrj-quick-item--grade-normal[\s\S]*?<p class="hrj-quick-item__value">보통<\/p>/);
+assert.match(rendered, /hrj-quick-item--hotspot hrj-quick-item--grade-good[\s\S]*?hrj-quick-item__top[\s\S]*?<span class="hrj-quick-item__value">좋음<\/span>/);
+assert.match(rendered, /hrj-quick-item--dining hrj-quick-item--grade-normal[\s\S]*?hrj-quick-item__top[\s\S]*?<span class="hrj-quick-item__value">보통<\/span>/);
 assert.match(rendered, /hrj-quick-item--shopping hrj-quick-item--grade-good/);
-assert.match(rendered, /hrj-quick-item--airport hrj-quick-item--grade-normal[\s\S]*?<p class="hrj-quick-item__value">보통<\/p>/);
+assert.match(rendered, /hrj-quick-item--airport hrj-quick-item--grade-normal[\s\S]*?hrj-quick-item__top[\s\S]*?<span class="hrj-quick-item__value">보통<\/span>/);
 assert.match(rendered, /관광·맛집·쇼핑 중심 일정/);
 assert.match(rendered, /hrj-quick-item__top/);
-assert.match(rendered, /hrj-quick-item__hint/);
+assert.doesNotMatch(rendered, /hrj-quick-item__hint/);
 assert.match(rendered, /hrj-quick-item__desc/);
 assert.doesNotMatch(rendered, /객실 선택<\/h3>/);
 assert.match(rendered, /hrj-booking-overview__media[\s\S]*?<figure class="hrj-hero">대표 이미지<\/figure>[\s\S]*?hrj-basic-info/);
@@ -283,8 +283,8 @@ standardizedAccess.article.quickPoints = [
   { label: "이런 여행에 잘 맞아요", value: "도보 관광 중심 일정", hint: "도보 관광형" }
 ];
 const standardizedRendered = renderHotelReviewLayout(standardizedAccess);
-assert.match(standardizedRendered, /hrj-quick-item--hotspot hrj-quick-item--grade-caution[\s\S]*?<p class="hrj-quick-item__value">아쉬움<\/p>/);
-assert.match(standardizedRendered, /hrj-quick-item--shopping hrj-quick-item--grade-normal[\s\S]*?<p class="hrj-quick-item__value">보통<\/p>/);
+assert.match(standardizedRendered, /hrj-quick-item--hotspot hrj-quick-item--grade-caution[\s\S]*?<span class="hrj-quick-item__value">아쉬움<\/span>/);
+assert.match(standardizedRendered, /hrj-quick-item--shopping hrj-quick-item--grade-normal[\s\S]*?<span class="hrj-quick-item__value">보통<\/span>/);
 assert.doesNotMatch(standardizedRendered.match(/<section class="hrj-quick-card"[\s\S]*?<\/section>/)?.[0] || "", />나쁨<|>무난함</);
 
 const malicious = structuredClone(sample);
