@@ -241,6 +241,35 @@ assert.match(rendered, /관광·맛집·쇼핑 중심 일정/);
 assert.match(rendered, /hrj-quick-item__top/);
 assert.doesNotMatch(rendered, /hrj-quick-item__hint/);
 assert.match(rendered, /hrj-quick-item__desc/);
+
+// v3.12 regression: JSON raw rating must survive an empty SSR option, and quickPoints.desc must render.
+const v312Sample = structuredClone(sample);
+delete v312Sample.hotel.locationType;
+v312Sample.hotel.area = "난바·도톤보리 생활권";
+v312Sample.hotel.guestRating = 8.7;
+v312Sample.article.basicInfo = [
+  { label: "위치 유형", value: "중심가 인근" },
+  { label: "조식", value: "포함" },
+  { label: "짐 보관", value: "가능" },
+  { label: "체크인·체크아웃", value: "15:00 · 11:00" },
+  { label: "무료 취소", value: "가능" },
+  { label: "24시간 프런트", value: "운영" }
+];
+v312Sample.article.quickPoints = [
+  { label: "핫플 접근성", value: "좋음", desc: "도톤보리·쿠로몬시장 등 주요 관광권을 걸어서 연결하기 좋은 편입니다." },
+  { label: "맛집 접근성", value: "좋음", desc: "숙소 주변 외식 선택지를 도보로 이용하기 좋은 편입니다." },
+  { label: "쇼핑 접근성", value: "좋음", desc: "난바와 신사이바시 주요 쇼핑권을 관광 동선과 함께 이용하기 좋습니다." },
+  { label: "대중교통 접근성", value: "좋음", desc: "가까운 역을 이용해 주요 관광지역으로 이동하기 편한 편입니다." },
+  { label: "공항에서 호텔까지 접근성", value: "보통", desc: "공항에서 전철로 이동한 뒤 짧은 도보 구간을 연결하는 방식입니다." },
+  { label: "이런 여행에 잘 맞아요", value: "관광·맛집·쇼핑 중심 일정", desc: "숙소 주변을 걸어서 둘러보고 필요할 때 지하철을 섞는 도보 관광형 여행에 잘 맞습니다." }
+];
+assert.equal(validateHotelReviewData(v312Sample).ok, true);
+const v312Rendered = renderHotelReviewLayout(v312Sample, { guestRating: "", locationType: "" });
+assert.match(v312Rendered, /hrj-basic-info__meta-star[^>]*>★<\/span>8\.7/);
+assert.match(v312Rendered, /hrj-basic-info__meta-item--location[^>]*>중심가 인근<\/span>/);
+assert.match(v312Rendered, /hrj-basic-info__feature--frontdesk[\s\S]*?24시간 프런트 <strong>운영<\/strong>/);
+assert.match(v312Rendered, /이런 여행에 잘 맞아요[\s\S]*?관광·맛집·쇼핑 중심 일정[\s\S]*?hrj-quick-item__desc">숙소 주변을 걸어서 둘러보고 필요할 때 지하철을 섞는 도보 관광형 여행에 잘 맞습니다\.<\/p>/);
+assert.match(getHotelReviewPlainText(v312Sample), /도보 관광형 여행에 잘 맞습니다/);
 assert.doesNotMatch(rendered, /객실 선택<\/h3>/);
 assert.match(rendered, /hrj-booking-overview__media[\s\S]*?<figure class="hrj-hero">대표 이미지<\/figure>[\s\S]*?hrj-basic-info/);
 assert.doesNotMatch(rendered, /class="hrj-location-table"/);
