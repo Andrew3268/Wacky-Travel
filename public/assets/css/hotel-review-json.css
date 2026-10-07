@@ -358,12 +358,13 @@
 }
 
 
-/* 한눈에 보는 핵심 포인트: 흰색 미니멀 정보판 UI v40 */
+/* 한눈에 보는 핵심 포인트: Hero 구분선 포함 미니멀 정보판 UI v42 */
 .hotel-review-json-page .hrj-quick-card{
-  margin:34px 0 0;
+  margin:48px 0 0;
   border:0;
-  border-radius:20px;
-  overflow:hidden;
+  border-top:1px solid #e8e4dc;
+  border-radius:0;
+  overflow:visible;
   background:#fff;
 }
 .hotel-review-json-page .hrj-quick-card__head{
@@ -495,7 +496,7 @@
 }
 
 @media(max-width:720px){
-  .hotel-review-json-page .hrj-quick-card{margin-top:28px;border-radius:0}
+  .hotel-review-json-page .hrj-quick-card{margin-top:40px;border-top:1px solid #e8e4dc;border-radius:0}
   .hotel-review-json-page .hrj-quick-card__head{align-items:flex-start;padding:22px 0 16px;gap:12px}
   .hotel-review-json-page .hrj-quick-card__head h2{font-size:18px}
   .hotel-review-json-page .hrj-quick-card__desc{font-size:14px;line-height:1.6}
@@ -570,7 +571,7 @@
   .hotel-review-json-page .hrj-feature-item__text{font-size:14px;line-height:1.74}
 }
 
-/* Hotel review hero basic info inline features v39 */
+/* Hotel review hero basic info natural inline features v42 */
 .hotel-review-json-page .hrj-basic-info__features{margin-top:30px;padding-top:20px;border-top:1px solid var(--hrj-line)}
 .hotel-review-json-page .hrj-basic-info__features-title{margin:0 0 16px;color:#35383b;font-size:15px;line-height:1.35;font-weight:760;letter-spacing:-.015em}
 .hotel-review-json-page .hrj-basic-info__feature-list{display:flex;align-items:center;flex-wrap:wrap;gap:18px 28px;min-width:0}
@@ -587,9 +588,8 @@
 @media(max-width:460px){
   .hotel-review-json-page .hrj-basic-info__features{margin-top:22px;padding-top:17px}
   .hotel-review-json-page .hrj-basic-info__features-title{margin-bottom:14px;font-size:15px}
-  .hotel-review-json-page .hrj-basic-info__feature-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 14px;align-items:center}
-  .hotel-review-json-page .hrj-basic-info__feature{gap:7px}
-  .hotel-review-json-page .hrj-basic-info__feature--checkin{grid-column:1/-1}
+  .hotel-review-json-page .hrj-basic-info__feature-list{display:flex;align-items:center;flex-wrap:wrap;gap:14px 18px}
+  .hotel-review-json-page .hrj-basic-info__feature{flex:0 0 auto;max-width:100%;gap:7px}
   .hotel-review-json-page .hrj-basic-info__feature-icon{width:19px;height:19px;flex-basis:19px}
   .hotel-review-json-page .hrj-basic-info__feature-text{font-size:15px;white-space:nowrap}
 }
