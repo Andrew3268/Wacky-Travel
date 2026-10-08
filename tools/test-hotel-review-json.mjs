@@ -226,6 +226,15 @@ assert.match(rendered, /hrj-basic-info__feature--luggage[\s\S]*?hrj-basic-info__
 assert.match(rendered, /hrj-basic-info__feature--checkin[\s\S]*?hrj-basic-info__feature-label">체크인 · 체크아웃<\/span>[\s\S]*?hrj-basic-info__feature-value">15:00 · 11:00<\/strong>/);
 assert.match(rendered, /hrj-basic-info__feature--cancellation[\s\S]*?hrj-basic-info__feature-label">무료 취소<\/span>[\s\S]*?hrj-basic-info__feature-value">가능<\/strong>/);
 assert.match(rendered, /hrj-basic-info__feature--frontdesk[\s\S]*?hrj-basic-info__feature-label">24시간 프런트<\/span>[\s\S]*?hrj-basic-info__feature-value">운영<\/strong>/);
+const featureOrder = [
+  rendered.indexOf('hrj-basic-info__feature--breakfast'),
+  rendered.indexOf('hrj-basic-info__feature--luggage'),
+  rendered.indexOf('hrj-basic-info__feature--cancellation'),
+  rendered.indexOf('hrj-basic-info__feature--frontdesk'),
+  rendered.indexOf('hrj-basic-info__feature--checkin')
+];
+assert.ok(featureOrder.every((index) => index >= 0));
+assert.deepEqual([...featureOrder].sort((a, b) => a - b), featureOrder);
 assert.doesNotMatch(rendered, /hrj-basic-info__grid--stay|hrj-basic-info__grid--location/);
 assert.doesNotMatch(rendered, /<span class="hrj-basic-info__label">가까운 역<\/span>/);
 assert.match(rendered, /한눈에 보는 핵심 포인트/);
