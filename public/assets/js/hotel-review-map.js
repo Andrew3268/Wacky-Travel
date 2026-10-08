@@ -175,6 +175,11 @@
         return Math.max(0, canvasRect.height - panelTop);
       };
 
+      const syncMapControlClearance = () => {
+        const panelInset = Math.ceil(getActivePanelBottomInset());
+        wrap.style.setProperty("--hrj-map-panel-inset", `${Math.max(0, panelInset)}px`);
+      };
+
       const ensureSelectedMarkerVisible = (item, { animate = true } = {}) => {
         const targetLat = num(item?.coordinates?.lat);
         const targetLng = num(item?.coordinates?.lng);
@@ -394,6 +399,7 @@
           panel.classList.toggle("is-active", active);
           if (active) panel.scrollTo({ left: 0, behavior: "auto" });
         });
+        requestAnimationFrame(syncMapControlClearance);
         activeBounds = L.latLngBounds(bounds);
         showHotelCenter({ animate: false, clear: false });
       };
@@ -432,12 +438,14 @@
       renderCategory(activeCategory);
       requestAnimationFrame(() => {
         map.invalidateSize(false);
+        syncMapControlClearance();
         root.classList.add("is-map-ready");
         if (skeleton) skeleton.hidden = true;
       });
 
       window.addEventListener("resize", () => {
         map.invalidateSize(false);
+        requestAnimationFrame(syncMapControlClearance);
       }, { passive: true });
     }).catch(() => {
       root.classList.add("is-map-error");
