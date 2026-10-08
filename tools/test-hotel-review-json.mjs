@@ -224,7 +224,7 @@ assert.match(rendered, /hrj-basic-info__facts-title">기본 정보<\/div>/);
 assert.match(rendered, /hrj-basic-info__fact--breakfast[\s\S]*?hrj-basic-info__fact-label">조식<\/span>[\s\S]*?hrj-basic-info__fact-value">포함<\/strong>/);
 assert.match(rendered, /hrj-basic-info__fact--luggage[\s\S]*?hrj-basic-info__fact-label">짐 보관<\/span>[\s\S]*?hrj-basic-info__fact-value">가능<\/strong>/);
 assert.match(rendered, /hrj-basic-info__fact--cancellation[\s\S]*?hrj-basic-info__fact-label">무료 취소<\/span>[\s\S]*?hrj-basic-info__fact-value">가능<\/strong>/);
-assert.match(rendered, /hrj-basic-info__fact--frontdesk[\s\S]*?hrj-basic-info__fact-label">24시간 프런트<\/span>[\s\S]*?hrj-basic-info__fact-value hrj-basic-info__fact-value--accent">운영<\/strong>/);
+assert.match(rendered, /hrj-basic-info__fact--frontdesk[\s\S]*?hrj-basic-info__fact-label">24시간 프런트<\/span>[\s\S]*?hrj-basic-info__fact-value">운영<\/strong>/);
 assert.match(rendered, /hrj-basic-info__fact--checkin hrj-basic-info__fact--wide[\s\S]*?hrj-basic-info__fact-label">체크인 · 체크아웃<\/span>[\s\S]*?hrj-basic-info__fact-value">15:00 · 11:00<\/strong>/);
 const featureOrder = [
   rendered.indexOf('hrj-basic-info__fact--breakfast'),
@@ -276,7 +276,7 @@ assert.equal(validateHotelReviewData(v312Sample).ok, true);
 const v312Rendered = renderHotelReviewLayout(v312Sample, { guestRating: "", locationType: "" });
 assert.match(v312Rendered, /hrj-basic-info__meta-star[^>]*>★<\/span>8\.7\+/);
 assert.match(v312Rendered, /hrj-basic-info__meta-item--location[^>]*>중심가 인근<\/span>/);
-assert.match(v312Rendered, /hrj-basic-info__fact--frontdesk[\s\S]*?hrj-basic-info__fact-label">24시간 프런트<\/span>[\s\S]*?hrj-basic-info__fact-value hrj-basic-info__fact-value--accent">운영<\/strong>/);
+assert.match(v312Rendered, /hrj-basic-info__fact--frontdesk[\s\S]*?hrj-basic-info__fact-label">24시간 프런트<\/span>[\s\S]*?hrj-basic-info__fact-value">운영<\/strong>/);
 assert.match(v312Rendered, /이런 여행에 잘 맞아요[\s\S]*?관광·맛집·쇼핑 중심 일정[\s\S]*?hrj-quick-item__desc">숙소 주변을 걸어서 둘러보고 필요할 때 지하철을 섞는 도보 관광형 여행에 잘 맞습니다\.<\/p>/);
 assert.match(getHotelReviewPlainText(v312Sample), /도보 관광형 여행에 잘 맞습니다/);
 assert.doesNotMatch(rendered, /객실 선택<\/h3>/);
