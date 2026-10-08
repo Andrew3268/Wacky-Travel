@@ -101,7 +101,7 @@ assert.doesNotMatch(css, /hrj-basic-info__fact-value--accent/);
 assert.doesNotMatch(css, /hrj-basic-info__feature-icon/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261008-map-panels-clear-attribution-v51/);
+assert.match(post, /hotel-review-json\.css\?v=20261008-map-panels-bottom0-attribution-v52/);
 assert.match(css, /hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.doesNotMatch(css, /hrj-basic-info__title\{[^}]*word-break:/);
 assert.match(css, /hrj-basic-info__value\{[^}]*font-size:15px/);
@@ -122,7 +122,7 @@ assert.match(css, /hrj-location-fit__head \.hrj-section-subheading::before\{[^}]
 assert.doesNotMatch(css, /hrj-location-fit__icon/);
 assert.match(css, /hrj-fit-criterion\{[^}]*border-top:1px solid var\(--hrj-line\)/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__fact-value\{[^}]*font-size:14px/);
-assert.match(post, /hotel-review-map\.js\?v=20261008-map-panels-clear-attribution-v51/);
+assert.match(post, /hotel-review-map\.js\?v=20261008-map-panels-bottom0-attribution-v52/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 // Desktop hotel-review typography must not fall below 15px.
@@ -182,12 +182,12 @@ assert.match(css, /\.hrj-airport-journey/);
 assert.match(css, /\.hrj-chapter--attractions-transport/);
 assert.match(css, /\.hrj-attractions-transport-summary/);
 assert.doesNotMatch(css, /\.hrj-chapter--attractions-transport \.hrj-insight/);
-assert.match(css, /hrj-map-panels\{[^}]*position:absolute[^}]*bottom:32px/);
-assert.match(css, /leaflet-control-attribution\{[^}]*font-size:12px!important/);
+assert.match(css, /hrj-map-panels\{[^}]*position:absolute[^}]*bottom:0/);
+assert.match(css, /leaflet-control-attribution\{[^}]*font-size:8px!important[^}]*background:transparent!important[^}]*padding:0 14px!important/);
 assert.doesNotMatch(css, /hrj-map-canvas-wrap \.leaflet-bottom\.leaflet-right\{[^}]*bottom:/);
 assert.doesNotMatch(css, /--hrj-map-panel-inset/);
 assert.doesNotMatch(mapJs, /syncMapControlClearance/);
-assert.match(css, /@media\(max-width:720px\)\{[\s\S]*?hrj-map-panels\{[^}]*bottom:30px/);
+assert.match(css, /@media\(max-width:720px\)\{[\s\S]*?hrj-map-panels\{[^}]*bottom:0/);
 assert.match(css, /hrj-map-panel\{[^}]*display:flex[^}]*flex-wrap:nowrap[^}]*overflow-x:auto/);
 assert.doesNotMatch(css, /hrj-map-overlay/);
 assert.doesNotMatch(mapJs, /data-hrj-map-overlay/);
