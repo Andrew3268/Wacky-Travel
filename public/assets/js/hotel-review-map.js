@@ -101,9 +101,8 @@
 
     const config = parseConfig(root);
     const canvas = root.querySelector("[data-hrj-map-canvas]");
-    const wrap = root.querySelector(".hrj-map-canvas-wrap");
     const skeleton = root.querySelector("[data-hrj-map-skeleton]");
-    if (!config || !canvas || !wrap) {
+    if (!config || !canvas) {
       if (skeleton) skeleton.innerHTML = "<p>지도 데이터를 확인할 수 없습니다.</p>";
       return;
     }
@@ -173,11 +172,6 @@
         if (!canvasRect.height || !panelRect.height) return 0;
         const panelTop = Math.max(0, panelRect.top - canvasRect.top);
         return Math.max(0, canvasRect.height - panelTop);
-      };
-
-      const syncMapControlClearance = () => {
-        const panelInset = Math.ceil(getActivePanelBottomInset());
-        wrap.style.setProperty("--hrj-map-panel-inset", `${Math.max(0, panelInset)}px`);
       };
 
       const ensureSelectedMarkerVisible = (item, { animate = true } = {}) => {
@@ -399,7 +393,6 @@
           panel.classList.toggle("is-active", active);
           if (active) panel.scrollTo({ left: 0, behavior: "auto" });
         });
-        requestAnimationFrame(syncMapControlClearance);
         activeBounds = L.latLngBounds(bounds);
         showHotelCenter({ animate: false, clear: false });
       };
@@ -438,14 +431,12 @@
       renderCategory(activeCategory);
       requestAnimationFrame(() => {
         map.invalidateSize(false);
-        syncMapControlClearance();
         root.classList.add("is-map-ready");
         if (skeleton) skeleton.hidden = true;
       });
 
       window.addEventListener("resize", () => {
         map.invalidateSize(false);
-        requestAnimationFrame(syncMapControlClearance);
       }, { passive: true });
     }).catch(() => {
       root.classList.add("is-map-error");
