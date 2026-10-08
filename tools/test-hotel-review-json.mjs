@@ -143,8 +143,17 @@ const sample = {
         { type: "airportJourney", title: "공항에서 호텔까지 여정", accessLabel: "접근성 무난한 편", summary: "샘플 국제공항에서 호텔까지는 차량으로 약 22분 정도입니다.", stats: [{ label: "추천 이동", value: "차량 이동" }, { label: "예상 소요", value: "약 22분" }, { label: "환승", value: "없음" }, { label: "이동 부담", value: "낮은 편" }] },
         { type: "reviewProsCons", title: "장단점", pros: [{ title: "장점", text: "넓어요" }], cons: [{ title: "단점", text: "소음" }], summary: "객실별 차이가 있습니다." },
         { type: "roomOptions", title: "객실 선택", items: [{ title: "리버뷰", desc: "전망 중시" }] },
-        { type: "fitGrid", good: ["관광·맛집·쇼핑을 함께 즐기고 도보 이동 비중이 높은 일정"], bad: ["해변 휴양"] },
         { type: "finalVerdict", eyebrow: "한 문장 정리", title: "도심 여행용 호텔", text: "동선이 편리합니다." }
+      ]
+    },
+    {
+      number: "06",
+      id: "fit",
+      label: "숙소 선택",
+      heading: "도보 관광과 도심 생활권 활용을 우선하는 여행에 잘 맞는 숙소",
+      blocks: [
+        { type: "fitGrid", good: ["관광·맛집·쇼핑을 함께 즐기고 도보 이동 비중이 높은 일정"], bad: ["해변 휴양"] },
+        { type: "insight", label: "선택 기준", text: "위치와 외부 동선을 우선하는 일정에 잘 맞습니다." }
       ]
     }
   ]
@@ -183,6 +192,13 @@ assert.match(rendered, /위치를 한눈에 보면/);
 assert.match(rendered, /숙소 위치/);
 assert.match(rendered, /hrj-location-fit__item--good/);
 assert.match(rendered, /hrj-location-fit__item--caution/);
+assert.match(rendered, /hrj-chapter--fit/);
+assert.match(rendered, /class="hrj-fit-editorial"/);
+assert.match(rendered, /잘 맞는 여행 스타일/);
+assert.match(rendered, /잘 맞지 않는 여행 스타일/);
+assert.match(rendered, /class="hrj-fit-criterion"/);
+assert.match(rendered, /선택 기준/);
+assert.doesNotMatch(rendered, /hrj-fit-box--good|hrj-fit-box--bad/);
 assert.match(rendered, /data-hrj-location-map/);
 assert.match(rendered, /data-hrj-map-tab="attractions"/);
 assert.match(rendered, /data-hrj-map-tab="restaurants"/);
