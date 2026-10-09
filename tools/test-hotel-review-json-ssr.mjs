@@ -98,6 +98,16 @@ assert.match(css, /hrj-booking-overview__media \.hrj-hero img\{[^}]*object-posit
 assert.match(css, /hrj-basic-info\{[^}]*padding:0 8px 10px 0/);
 assert.match(css, /hrj-basic-info__action\{[^}]*display:block[^}]*margin-top:28px/);
 assert.match(css, /hrj-basic-info__cta\{[^}]*width:100%[^}]*min-height:58px/);
+assert.match(css, /hrj-basic-info__cta\{[^}]*gap:10px/);
+assert.match(css, /hrj-booking-cta__icon\{[^}]*width:18px[^}]*stroke:currentColor/);
+assert.match(css, /hrj-mobile-booking-cta\{display:none\}/);
+assert.match(css, /@media\(max-width:767px\)\{[\s\S]*?hrj-mobile-booking-cta\{[^}]*position:fixed[^}]*bottom:0[^}]*opacity:0[^}]*transform:translateY\(18px\)/);
+assert.match(css, /hrj-mobile-booking-cta\.is-visible\{[^}]*opacity:1[^}]*transform:translateY\(0\)/);
+assert.match(renderer, /잔여 객실 확인하기/);
+assert.match(renderer, /data-hrj-inline-booking-cta/);
+assert.match(renderer, /data-hrj-mobile-booking-cta/);
+assert.match(post, /inlineRect\.bottom <= topBoundary/);
+assert.match(post, /requestAnimationFrame\(syncHrjMobileBookingCta\)/);
 assert.match(css, /hrj-basic-info__action \.post-affiliate-disclosure\{[^}]*font-size:15px[^}]*text-align:left/);
 assert.match(renderer, /inlineAffiliateDisclosureHtml/);
 assert.doesNotMatch(renderer, /객실 타입과 요금은 예약 시점에 따라 달라질 수 있습니다/);
@@ -295,7 +305,7 @@ assert.match(mapJs, /map\.on\("click"/);
 assert.match(mapJs, /map\.getBoundsZoom\(/);
 assert.match(mapJs, /map\.setView\(hotelLatLng/);
 assert.match(mapJs, /animate: false/);
-assert.match(post, /POST_RENDER_VERSION = "20261009-post-layout-v75"/);
+assert.match(post, /POST_RENDER_VERSION = "20261009-post-layout-v76"/);
 assert.match(post, /max-age=0, s-maxage=600, must-revalidate/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");

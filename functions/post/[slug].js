@@ -10,7 +10,7 @@ import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
 import { deriveHotelReviewPostFields, getHotelReviewPlainText, normalizeHotelReviewContentFormat, parseHotelReviewJson, renderHotelReviewLayout, validateHotelReviewData } from "../../lib/posts/hotel-review-json.js";
-const POST_RENDER_VERSION = "20261009-post-layout-v75";
+const POST_RENDER_VERSION = "20261009-post-layout-v76";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -580,7 +580,7 @@ export async function onRequestGet(context) {
         isJsonHotelReviewPost ? "post-page-body--hotel-review-json" : "",
         isRecommendedHotelReviewPost ? "post-page-body--recommended-hotel-review" : "",
         (isRecommendedHotelReviewPost || isTop5SeriesPost) ? "post-page-body--hotel-review-magazine" : "",
-        (safeHotelPriceLink && !isJsonHotelReviewPost) ? "post-page-body--has-mobile-hotel-cta" : ""
+        safeHotelPriceLink ? "post-page-body--has-mobile-hotel-cta" : ""
       ].filter(Boolean).join(" ");
       const shouldEnableFloatingToc = isTop5SeriesPost || isTravelTipPost;
       const floatingTocButtonHtml = shouldEnableFloatingToc
@@ -734,6 +734,32 @@ export async function onRequestGet(context) {
       syncMobileHotelCta();
       window.addEventListener('scroll', syncMobileHotelCta, { passive: true });
       window.addEventListener('resize', syncMobileHotelCta);
+    }
+    const hrjMobileBookingCta = document.querySelector('[data-hrj-mobile-booking-cta]');
+    const hrjInlineBookingCta = document.querySelector('[data-hrj-inline-booking-cta]');
+    if (hrjMobileBookingCta && hrjInlineBookingCta) {
+      const hrjMobileQuery = window.matchMedia('(max-width: 767px)');
+      const hrjTopbar = document.querySelector('.topbar');
+      let hrjCtaTicking = false;
+      const syncHrjMobileBookingCta = () => {
+        hrjCtaTicking = false;
+        const inlineRect = hrjInlineBookingCta.getBoundingClientRect();
+        const topBoundary = hrjTopbar ? Math.max(0, hrjTopbar.getBoundingClientRect().bottom) : 0;
+        const shouldShow = hrjMobileQuery.matches && inlineRect.bottom <= topBoundary;
+        hrjMobileBookingCta.classList.toggle('is-visible', shouldShow);
+        hrjMobileBookingCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+      };
+      const requestHrjMobileBookingCtaSync = () => {
+        if (hrjCtaTicking) return;
+        hrjCtaTicking = true;
+        window.requestAnimationFrame(syncHrjMobileBookingCta);
+      };
+      syncHrjMobileBookingCta();
+      window.addEventListener('scroll', requestHrjMobileBookingCtaSync, { passive: true });
+      window.addEventListener('resize', requestHrjMobileBookingCtaSync);
+      if (typeof hrjMobileQuery.addEventListener === 'function') {
+        hrjMobileQuery.addEventListener('change', requestHrjMobileBookingCtaSync);
+      }
     }
     const postSide = document.querySelector('.post-shell--guide-style .post-side');
     const topbar = document.querySelector('.topbar');

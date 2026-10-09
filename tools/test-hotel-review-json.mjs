@@ -233,9 +233,12 @@ assert.match(rendered, /hrj-review-analysis__summary-label">핵심 요약<\/div>
 assert.match(rendered, /hrj-room-card__title">객실 선택<\/strong>/);
 assert.match(rendered, /객실 선택 가이드/);
 assert.match(rendered, /도심 여행용 호텔/);
-assert.match(rendered, /객실·요금 확인하기/);
+assert.match(rendered, /잔여 객실 확인하기/);
 assert.match(rendered, /hrj-basic-info__cta/);
-assert.match(rendered, /hrj-basic-info__action[\s\S]*?객실·요금 확인하기[\s\S]*?<p class="post-affiliate-disclosure">제휴 안내<\/p>/);
+assert.match(rendered, /hrj-basic-info__action[\s\S]*?잔여 객실 확인하기[\s\S]*?<p class="post-affiliate-disclosure">제휴 안내<\/p>/);
+assert.match(rendered, /data-hrj-inline-booking-cta/);
+assert.match(rendered, /hrj-booking-cta__icon/);
+assert.match(rendered, /data-hrj-mobile-booking-cta/);
 assert.equal((rendered.match(/제휴 안내/g) || []).length, 1);
 assert.doesNotMatch(rendered, /객실 타입과 요금은 예약 시점에 따라 달라질 수 있습니다/);
 assert.match(rendered, /hrj-booking-overview/);

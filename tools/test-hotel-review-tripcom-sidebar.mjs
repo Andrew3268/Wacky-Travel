@@ -23,7 +23,7 @@ assert.doesNotMatch(html, /hrj-sidebar/);
 assert.doesNotMatch(html, /hrj-sidecard--tripcom/);
 assert.doesNotMatch(html, /kr\.trip\.com\/partners\/ad\/S19906483/);
 assert.match(html, /hrj-basic-info__cta/);
-assert.match(html, /객실·요금 확인하기/);
+assert.match(html, /잔여 객실 확인하기/);
 
 const fallback = renderHotelReviewLayout(sample, { tripcomSidebarAdUrl: '' });
 assert.doesNotMatch(fallback, /hrj-sidebar/);
