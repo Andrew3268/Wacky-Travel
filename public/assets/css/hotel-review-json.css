@@ -650,3 +650,61 @@
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion{margin-top:42px;padding-top:20px}
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__text{font-size:15px;line-height:1.75}
 }
+
+/* Review analysis + room guide editorial renewal v55 */
+.hotel-review-json-page .hrj-review-analysis{margin:34px 0 30px;padding-top:0}
+.hotel-review-json-page .hrj-review-analysis__title{margin:0 0 26px;font-size:18px;line-height:1.5;color:#363a3d;font-weight:400}
+.hotel-review-json-page .hrj-review-analysis__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:42px;padding:28px 0 8px;border-top:1px solid var(--hrj-line)}
+.hotel-review-json-page .hrj-review-box{min-width:0;padding:0;border:0;border-radius:0;background:transparent}
+.hotel-review-json-page .hrj-review-box--cons{padding-left:42px;border-left:1px solid var(--hrj-line);background:transparent}
+.hotel-review-json-page .hrj-review-box__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 22px}
+.hotel-review-json-page .hrj-review-box__label{display:flex;align-items:center;gap:9px;margin:0;font-size:15px;line-height:1.5;font-weight:760;letter-spacing:-.015em;color:#2f6c55}
+.hotel-review-json-page .hrj-review-box--cons .hrj-review-box__label{color:#7a5a52}
+.hotel-review-json-page .hrj-review-box__dot{width:8px;height:8px;flex:0 0 8px;border-radius:999px;background:currentColor;opacity:.82}
+.hotel-review-json-page .hrj-review-box__count{flex:0 0 auto;color:#8b9095;font-size:15px;line-height:1.4;font-weight:650}
+.hotel-review-json-page .hrj-review-item{padding:19px 0 20px;border-top:1px solid var(--hrj-line)}
+.hotel-review-json-page .hrj-review-item:first-child{padding-top:0;border-top:0}
+.hotel-review-json-page .hrj-review-item+.hrj-review-item{margin-top:0;padding-top:19px;border-top:1px solid var(--hrj-line)}
+.hotel-review-json-page .hrj-review-item__title{margin:0;font-size:17px;line-height:1.5;color:#1f2224;font-weight:720;letter-spacing:-.02em}
+.hotel-review-json-page .hrj-review-item__text{margin-top:7px;font-size:15px;line-height:1.78;color:#565b5f;letter-spacing:-.012em;word-break:keep-all}
+.hotel-review-json-page .hrj-review-analysis__summary{display:grid;grid-template-columns:118px minmax(0,1fr);gap:24px;align-items:start;margin-top:30px;padding:0;border:0;border-radius:0;background:transparent;color:inherit}
+.hotel-review-json-page .hrj-review-analysis__summary-label{display:flex;align-items:center;min-height:24px;color:#1f2224;font-size:15px;line-height:1.5;font-weight:720;letter-spacing:-.015em}
+.hotel-review-json-page .hrj-review-analysis .hrj-review-analysis__summary-text{margin:0;color:#4f5458;font-size:15px;line-height:1.8;letter-spacing:-.012em;word-break:keep-all}
+
+.hotel-review-json-page .hrj-room-card{margin:54px 0 0;padding-top:34px;border:0;border-top:1px solid var(--hrj-line);border-radius:0;overflow:visible;background:transparent}
+.hotel-review-json-page .hrj-room-card__top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:0 0 22px;padding:0;border:0;background:transparent}
+.hotel-review-json-page .hrj-room-card__title{display:flex;align-items:center;gap:12px;margin:0;color:#1f2224;font-size:20px;line-height:1.45;font-weight:760;letter-spacing:-.025em}
+.hotel-review-json-page .hrj-room-card__title::before{content:"";width:6px;height:26px;flex:0 0 6px;border-radius:999px;background:#5865d8}
+.hotel-review-json-page .hrj-room-card__top>span{color:#878d93;font-size:15px;line-height:1.5;white-space:nowrap}
+.hotel-review-json-page .hrj-room-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-top:1px solid var(--hrj-line);border-bottom:1px solid var(--hrj-line)}
+.hotel-review-json-page .hrj-room-option{min-width:0;padding:24px 22px 26px;border:0;border-left:1px solid var(--hrj-line)}
+.hotel-review-json-page .hrj-room-option:first-child{border-left:0}
+.hotel-review-json-page .hrj-room-option__title{margin:0;font-size:16px;line-height:1.45;font-weight:720;letter-spacing:-.018em;color:#1f2224}
+.hotel-review-json-page .hrj-room-option__desc{margin-top:10px;font-size:15px;line-height:1.75;color:#565b5f;letter-spacing:-.01em;word-break:keep-all}
+
+@media(max-width:720px){
+  .hotel-review-json-page .hrj-review-analysis__title{margin-bottom:22px;font-size:17px}
+  .hotel-review-json-page .hrj-review-analysis__grid{grid-template-columns:1fr;gap:34px;padding-top:24px}
+  .hotel-review-json-page .hrj-review-box--cons{padding-left:0;padding-top:30px;border-left:0;border-top:1px solid var(--hrj-line)}
+  .hotel-review-json-page .hrj-review-box__head{margin-bottom:18px}
+  .hotel-review-json-page .hrj-review-item__title{font-size:16px}
+  .hotel-review-json-page .hrj-review-item__text{font-size:14px}
+  .hotel-review-json-page .hrj-review-analysis__summary{grid-template-columns:1fr;gap:10px;margin-top:24px;padding:0;border:0}
+  .hotel-review-json-page .hrj-review-analysis .hrj-review-analysis__summary-text{font-size:14px}
+  .hotel-review-json-page .hrj-room-card{margin-top:44px;padding-top:30px}
+  .hotel-review-json-page .hrj-room-card__top{align-items:flex-start;flex-direction:column;gap:6px}
+  .hotel-review-json-page .hrj-room-card__title{font-size:18px}
+  .hotel-review-json-page .hrj-room-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hotel-review-json-page .hrj-room-option{padding:20px 16px 22px}
+  .hotel-review-json-page .hrj-room-option:nth-child(odd){border-left:0}
+  .hotel-review-json-page .hrj-room-option:nth-child(even){border-left:1px solid var(--hrj-line)}
+  .hotel-review-json-page .hrj-room-option:nth-child(n+3){border-top:1px solid var(--hrj-line)}
+  .hotel-review-json-page .hrj-room-option__title{font-size:15px}
+  .hotel-review-json-page .hrj-room-option__desc{font-size:13px}
+}
+@media(max-width:420px){
+  .hotel-review-json-page .hrj-room-grid{grid-template-columns:1fr}
+  .hotel-review-json-page .hrj-room-option,.hotel-review-json-page .hrj-room-option:nth-child(even),.hotel-review-json-page .hrj-room-option:nth-child(odd){border-left:0}
+  .hotel-review-json-page .hrj-room-option:nth-child(n+2){border-top:1px solid var(--hrj-line)}
+}
+
