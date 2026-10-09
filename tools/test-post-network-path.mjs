@@ -3,13 +3,16 @@ import assert from 'node:assert/strict';
 
 const source = fs.readFileSync('functions/post/[slug].js', 'utf8');
 
-assert.match(source, /POST_RENDER_VERSION = "20260928-post-layout-v70"/);
+assert.match(source, /POST_RENDER_VERSION = "20261009-post-layout-v72"/);
 assert.match(source, /const relatedRowsPromise =/);
 assert.match(source, /const popularRowsPromise =/);
 assert.match(source, /const destinationDataPromise =/);
 assert.match(source, /await Promise\.all\(\[/);
 assert.match(source, /x-blog-render-version/);
 assert.match(source, /x-post-style-bundle/);
+assert.match(source, /cacheKeyUrl = `\$\{origin\}\/post\/\$\{encodeURIComponent\(slug\)\}\/\?v=\$\{encodeURIComponent\(updatedAt\)\}&r=\$\{POST_RENDER_VERSION\}`/);
+assert.match(source, /hotel-review-json\.css\?v=\$\{encodeURIComponent\(POST_RENDER_VERSION\)\}/);
+assert.match(source, /hotel-review-map\.js\?v=\$\{encodeURIComponent\(POST_RENDER_VERSION\)\}/);
 assert.match(
   source,
   /\$\{isDraftPreview \? `<script src="\/assets\/js\/admin-ui\.js\?v=20260721NoHeaderLogoutV2" defer><\/script>` : ""\}/,

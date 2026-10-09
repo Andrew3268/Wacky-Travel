@@ -101,11 +101,17 @@ assert.doesNotMatch(css, /hrj-basic-info__fact-value--accent/);
 assert.doesNotMatch(css, /hrj-basic-info__feature-icon/);
 assert.doesNotMatch(css, /\.hrj-mobile-decision/);
 assert.doesNotMatch(css, /\.hrj-mobile-toc/);
-assert.match(post, /hotel-review-json\.css\?v=20261008-map-panels-bottom0-attribution-v52/);
+assert.match(post, /hotel-review-json\.css\?v=\$\{encodeURIComponent\(POST_RENDER_VERSION\)\}/);
 assert.match(css, /hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.doesNotMatch(css, /hrj-basic-info__title\{[^}]*word-break:/);
 assert.match(css, /hrj-basic-info__value\{[^}]*font-size:15px/);
 assert.match(css, /\.hotel-review-json-page \.hrj-chapter \.hrj-feature-item__title\{[^}]*margin:0/);
+assert.match(css, /hrj-location-summary__value\{[^}]*color:#111315/);
+assert.doesNotMatch(css, /hrj-location-summary__row:first-child \.hrj-location-summary__value\{[^}]*color:/);
+assert.doesNotMatch(css, /hrj-location-summary__row:last-child \.hrj-location-summary__value\{[^}]*color:/);
+assert.match(css, /hrj-map-note\{[^}]*padding:12px 14px[^}]*border:1px solid #dedbd5[^}]*border-left:3px solid #9ca6ae[^}]*border-radius:10px[^}]*background:#faf9f7/);
+assert.match(css, /hrj-feature-item\{[^}]*align-items:start/);
+assert.match(css, /hrj-feature-item__title\.hrj-section-subheading\{[^}]*align-self:start[^}]*align-items:flex-start/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:25px/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__facts-grid\{[^}]*grid-template-columns:1fr/);
@@ -122,7 +128,7 @@ assert.match(css, /hrj-location-fit__head \.hrj-section-subheading::before\{[^}]
 assert.doesNotMatch(css, /hrj-location-fit__icon/);
 assert.match(css, /hrj-fit-criterion\{[^}]*border-top:1px solid var\(--hrj-line\)/);
 assert.match(css, /@media\(max-width:460px\)\{[\s\S]*?hrj-basic-info__fact-value\{[^}]*font-size:14px/);
-assert.match(post, /hotel-review-map\.js\?v=20261008-map-panels-bottom0-attribution-v52/);
+assert.match(post, /hotel-review-map\.js\?v=\$\{encodeURIComponent\(POST_RENDER_VERSION\)\}/);
 assert.match(css, /@media\(max-width:720px\)|@media \(max-width:720px\)/);
 
 // Desktop hotel-review typography must not fall below 15px.
@@ -275,7 +281,7 @@ assert.match(mapJs, /map\.on\("click"/);
 assert.match(mapJs, /map\.getBoundsZoom\(/);
 assert.match(mapJs, /map\.setView\(hotelLatLng/);
 assert.match(mapJs, /animate: false/);
-assert.match(post, /POST_RENDER_VERSION = "20260928-post-layout-v70"/);
+assert.match(post, /POST_RENDER_VERSION = "20261009-post-layout-v72"/);
 assert.match(post, /max-age=0, s-maxage=600, must-revalidate/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");
