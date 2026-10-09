@@ -115,7 +115,8 @@ assert.match(css, /\.hotel-review-json-page \.hrj-chapter \.hrj-feature-item__ti
 assert.match(css, /hrj-location-summary__value\{[^}]*color:#111315/);
 assert.doesNotMatch(css, /hrj-location-summary__row:first-child \.hrj-location-summary__value\{[^}]*color:/);
 assert.doesNotMatch(css, /hrj-location-summary__row:last-child \.hrj-location-summary__value\{[^}]*color:/);
-assert.match(css, /hrj-map-note\{[^}]*padding:12px 14px[^}]*border:1px solid #dedbd5[^}]*border-left:3px solid #9ca6ae[^}]*border-radius:10px[^}]*background:#faf9f7/);
+assert.match(css, /hrj-map-note\{[^}]*display:flex[^}]*padding:0[^}]*border:0[^}]*background:transparent[^}]*font-size:15px/);
+assert.match(css, /hrj-map-note::before\{[^}]*content:"※"[^}]*font-size:15px/);
 assert.match(css, /hrj-feature-item\{[^}]*align-items:start/);
 assert.match(css, /hrj-feature-item__title\.hrj-section-subheading\{[^}]*align-self:start[^}]*align-items:flex-start/);
 assert.match(css, /@media\(max-width:820px\)\{[\s\S]*?hrj-basic-info__title\{[^}]*font-size:25px/);
@@ -287,7 +288,7 @@ assert.match(mapJs, /map\.on\("click"/);
 assert.match(mapJs, /map\.getBoundsZoom\(/);
 assert.match(mapJs, /map\.setView\(hotelLatLng/);
 assert.match(mapJs, /animate: false/);
-assert.match(post, /POST_RENDER_VERSION = "20261009-post-layout-v73"/);
+assert.match(post, /POST_RENDER_VERSION = "20261009-post-layout-v74"/);
 assert.match(post, /max-age=0, s-maxage=600, must-revalidate/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");

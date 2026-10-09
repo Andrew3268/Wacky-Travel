@@ -93,7 +93,8 @@
 .hotel-review-json-page .hrj-map-place__travel{display:flex;align-items:center;gap:8px;margin-top:4px;color:#7b756e;font-size:15px;font-weight:550;line-height:1.25;white-space:nowrap}
 .hotel-review-json-page .hrj-map-place__travel span+span{position:relative;padding-left:8px}
 .hotel-review-json-page .hrj-map-place__travel span+span::before{content:"";position:absolute;left:0;top:50%;width:2px;height:2px;border-radius:50%;background:#b7b1aa;transform:translateY(-50%)}
-.hotel-review-json-page .hrj-map-note{margin:14px 0 0;padding:12px 14px;border:1px solid #dedbd5;border-left:3px solid #9ca6ae;border-radius:10px;background:#faf9f7;color:#666b6e;font-size:15px;line-height:1.65}
+.hotel-review-json-page .hrj-map-note{display:flex;align-items:flex-start;gap:7px;margin:14px 0 0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;color:#777d82;font-size:15px;line-height:1.7;letter-spacing:-.01em}
+.hotel-review-json-page .hrj-map-note::before{content:"※";flex:0 0 auto;color:#8a8f94;font-size:15px;line-height:1.7;font-weight:600}
 
 /* Leaflet numbered markers + overlay cards v10 */
 .hotel-review-json-page .hrj-map-label-wrap,
@@ -172,7 +173,8 @@
 .hotel-review-json-page .hrj-map-skeleton p{margin:0;font-size:15px;color:#858079}
 @keyframes hrj-map-spin{to{transform:rotate(360deg)}}
 .hotel-review-json-page .hrj-map-place__body strong{display:block;font-size:15px;font-weight:700;line-height:1.45;color:#343230;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hotel-review-json-page .hrj-map-note{margin:14px 0 0;padding:12px 14px;border:1px solid #dedbd5;border-left:3px solid #9ca6ae;border-radius:10px;background:#faf9f7;color:#666b6e;font-size:15px;line-height:1.65}
+.hotel-review-json-page .hrj-map-note{display:flex;align-items:flex-start;gap:7px;margin:14px 0 0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;color:#777d82;font-size:15px;line-height:1.7;letter-spacing:-.01em}
+.hotel-review-json-page .hrj-map-note::before{content:"※";flex:0 0 auto;color:#8a8f94;font-size:15px;line-height:1.7;font-weight:600}
 
 @media(max-width:720px){
   .hotel-review-json-page .hrj-location-map{padding:0}
@@ -708,3 +710,10 @@
   .hotel-review-json-page .hrj-room-option:nth-child(n+2){border-top:1px solid var(--hrj-line)}
 }
 
+
+
+/* Map note minimal notice v56 */
+@media(max-width:720px){
+  .hotel-review-json-page .hrj-map-note{margin-top:12px;font-size:12px;line-height:1.65}
+  .hotel-review-json-page .hrj-map-note::before{font-size:12px;line-height:1.65}
+}
