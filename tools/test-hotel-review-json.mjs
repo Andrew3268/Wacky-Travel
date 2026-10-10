@@ -155,6 +155,15 @@ const sample = {
         { type: "fitGrid", good: ["관광·맛집·쇼핑을 함께 즐기고 도보 이동 비중이 높은 일정"], bad: ["해변 휴양"] },
         { type: "insight", label: "선택 기준", text: "위치와 외부 동선을 우선하는 일정에 잘 맞습니다." }
       ]
+    },
+    {
+      number: "07",
+      id: "final",
+      label: "마무리",
+      heading: "도심 여행 거점으로 선택할 이유가 분명한 숙소",
+      blocks: [
+        { type: "finalVerdict", eyebrow: "한 문장 정리", title: "동선을 우선하면 선택 가치가 분명한 숙소", text: "도보 관광과 도심 생활권 활용을 우선하는 일정에 잘 맞습니다." }
+      ]
     }
   ]
 };
@@ -240,6 +249,9 @@ assert.match(rendered, /hrj-review-analysis__summary-label">핵심 요약<\/div>
 assert.match(rendered, /hrj-room-card__title">객실 선택 가이드<\/strong>/);
 assert.doesNotMatch(rendered, /hrj-room-card__top[^>]*>[\s\S]*?<span>객실 선택 가이드<\/span>/);
 assert.match(rendered, /도심 여행용 호텔/);
+assert.match(rendered, /07\. 에디터의 선택 포인트/);
+assert.match(rendered, /07 에디터의 선택 포인트/);
+assert.doesNotMatch(rendered, /07\. 마무리|07 마무리/);
 assert.match(rendered, /잔여 객실 확인하기/);
 assert.match(rendered, /hrj-basic-info__cta/);
 assert.match(rendered, /hrj-basic-info__action[\s\S]*?잔여 객실 확인하기[\s\S]*?<p class="post-affiliate-disclosure">제휴 안내<\/p>/);
