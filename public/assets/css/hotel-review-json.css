@@ -158,6 +158,8 @@
 .hotel-review-json-page .hrj-map-tab:hover{border-color:#c8c2ba}
 .hotel-review-json-page .hrj-map-tab.is-active{border-color:#5865d8;background:#5865d8;color:#fff;box-shadow:0 5px 14px rgba(88,101,216,.18)}
 .hotel-review-json-page .hrj-map-tab.is-active span{background:rgba(255,255,255,.16);color:#fff}
+.hotel-review-json-page .hrj-map-tab[data-hrj-map-tab="attractions"].is-active{border-color:#2f67d8;background:#2f67d8;color:#fff;box-shadow:0 5px 14px rgba(47,103,216,.18)}
+.hotel-review-json-page .hrj-map-tab[data-hrj-map-tab="restaurants"].is-active{border-color:#d95070;background:#d95070;color:#fff;box-shadow:0 5px 14px rgba(217,80,112,.18)}
 .hotel-review-json-page .hrj-map-canvas-wrap{position:relative;height:clamp(430px,48vw,500px);border:1px solid #e1ddd7;border-radius:17px;overflow:hidden;background:#ece9e4}
 .hotel-review-json-page .hrj-map-controls{position:absolute;top:12px;right:12px;z-index:500;display:flex;gap:6px;pointer-events:none}
 .hotel-review-json-page .hrj-map-control{pointer-events:auto;appearance:none;min-height:32px;padding:7px 10px;border:1px solid rgba(112,106,98,.24);border-radius:9px;background:rgba(255,255,255,.94);box-shadow:0 4px 12px rgba(17,24,39,.1);color:#514d48;font:600 15px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer;backdrop-filter:blur(6px);transition:background .16s ease,border-color .16s ease,transform .16s ease}
@@ -651,9 +653,9 @@
 .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__list li{padding-left:4px;color:#3f4346;font-size:17px;line-height:1.75}
 .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__list li+li{margin-top:13px}
 .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__list li::marker{color:#55595c;font-size:.75em}
-.hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion{margin-top:52px;padding-top:24px;border-top:1px solid var(--hrj-line)}
-.hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__title{margin:0 0 10px;color:#555a5e;font-size:15px;line-height:1.45;font-weight:700}
-.hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__text{margin:0;max-width:100%;color:#53575a;font-size:16px;line-height:1.78}
+.hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion{display:grid;grid-template-columns:118px minmax(0,1fr);gap:24px;align-items:start;margin-top:30px;padding:0;border:0;border-radius:0;background:transparent;color:inherit}
+.hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__title{display:flex;align-items:center;min-height:24px;margin:0;color:#1f2224;font-size:15px;line-height:1.5;font-weight:720;letter-spacing:-.015em}
+.hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__text{margin:0;max-width:100%;color:#4f5458;font-size:15px;line-height:1.8;letter-spacing:-.012em;word-break:keep-all}
 @media(max-width:720px){
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial{margin-top:32px}
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__group+.hrj-fit-editorial__group{margin-top:40px}
@@ -661,8 +663,8 @@
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__list{padding-left:24px}
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__list li{font-size:16px;line-height:1.72}
   .hotel-review-json-page .hrj-chapter--fit .hrj-fit-editorial__list li+li{margin-top:11px}
-  .hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion{margin-top:42px;padding-top:20px}
-  .hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__text{font-size:15px;line-height:1.75}
+  .hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion{grid-template-columns:1fr;gap:10px;margin-top:24px;padding:0;border:0}
+  .hotel-review-json-page .hrj-chapter--fit .hrj-fit-criterion__text{font-size:14px;line-height:1.8}
 }
 
 /* Review analysis + room guide editorial renewal v55 */
@@ -686,10 +688,9 @@
 .hotel-review-json-page .hrj-review-analysis .hrj-review-analysis__summary-text{margin:0;color:#4f5458;font-size:15px;line-height:1.8;letter-spacing:-.012em;word-break:keep-all}
 
 .hotel-review-json-page .hrj-room-card{margin:54px 0 0;padding-top:34px;border:0;border-top:1px solid var(--hrj-line);border-radius:0;overflow:visible;background:transparent}
-.hotel-review-json-page .hrj-room-card__top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:0 0 22px;padding:0;border:0;background:transparent}
+.hotel-review-json-page .hrj-room-card__top{display:flex;align-items:flex-start;justify-content:flex-start;gap:0;margin:0 0 22px;padding:0;border:0;background:transparent}
 .hotel-review-json-page .hrj-room-card__title{display:flex;align-items:center;gap:12px;margin:0;color:#1f2224;font-size:20px;line-height:1.45;font-weight:760;letter-spacing:-.025em}
 .hotel-review-json-page .hrj-room-card__title::before{content:"";width:6px;height:26px;flex:0 0 6px;border-radius:999px;background:#5865d8}
-.hotel-review-json-page .hrj-room-card__top>span{color:#878d93;font-size:15px;line-height:1.5;white-space:nowrap}
 .hotel-review-json-page .hrj-room-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-top:1px solid var(--hrj-line);border-bottom:1px solid var(--hrj-line)}
 .hotel-review-json-page .hrj-room-option{min-width:0;padding:24px 22px 26px;border:0;border-left:1px solid var(--hrj-line)}
 .hotel-review-json-page .hrj-room-option:first-child{border-left:0}
@@ -706,7 +707,7 @@
   .hotel-review-json-page .hrj-review-analysis__summary{grid-template-columns:1fr;gap:10px;margin-top:24px;padding:0;border:0}
   .hotel-review-json-page .hrj-review-analysis .hrj-review-analysis__summary-text{font-size:14px}
   .hotel-review-json-page .hrj-room-card{margin-top:44px;padding-top:30px}
-  .hotel-review-json-page .hrj-room-card__top{align-items:flex-start;flex-direction:column;gap:6px}
+  .hotel-review-json-page .hrj-room-card__top{align-items:flex-start;flex-direction:row;gap:0}
   .hotel-review-json-page .hrj-room-card__title{font-size:18px}
   .hotel-review-json-page .hrj-room-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hotel-review-json-page .hrj-room-option{padding:20px 16px 22px}
