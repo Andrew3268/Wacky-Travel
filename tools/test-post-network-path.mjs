@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 const source = fs.readFileSync('functions/post/[slug].js', 'utf8');
 
-assert.match(source, /POST_RENDER_VERSION = "20261009-post-layout-v76"/);
+assert.match(source, /POST_RENDER_VERSION = "20261009-post-layout-v77"/);
 assert.match(source, /const relatedRowsPromise =/);
 assert.match(source, /const popularRowsPromise =/);
 assert.match(source, /const destinationDataPromise =/);

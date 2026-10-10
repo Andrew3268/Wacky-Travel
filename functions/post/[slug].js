@@ -10,7 +10,7 @@ import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
 import { deriveHotelReviewPostFields, getHotelReviewPlainText, normalizeHotelReviewContentFormat, parseHotelReviewJson, renderHotelReviewLayout, validateHotelReviewData } from "../../lib/posts/hotel-review-json.js";
-const POST_RENDER_VERSION = "20261009-post-layout-v76";
+const POST_RENDER_VERSION = "20261009-post-layout-v77";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -806,7 +806,7 @@ export async function onRequestGet(context) {
   });
 </script>
   ${adsenseRuntimeScript}
-  ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=${encodeURIComponent(POST_RENDER_VERSION)}"></script>` : ""}
+  ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=${encodeURIComponent(POST_RENDER_VERSION)}"></script><script defer src="/assets/js/hotel-review-navigation.js?v=${encodeURIComponent(POST_RENDER_VERSION)}"></script>` : ""}
   ${shouldEnableFloatingToc ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260815-post-toc-v7"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   ${isDraftPreview ? `<script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>` : ""}

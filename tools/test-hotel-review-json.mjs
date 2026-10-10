@@ -239,6 +239,14 @@ assert.match(rendered, /hrj-basic-info__action[\s\S]*?잔여 객실 확인하기
 assert.match(rendered, /data-hrj-inline-booking-cta/);
 assert.match(rendered, /hrj-booking-cta__icon/);
 assert.match(rendered, /data-hrj-mobile-booking-cta/);
+assert.match(rendered, /data-hrj-floating-toc/);
+assert.match(rendered, /data-hrj-mobile-toc-trigger/);
+assert.match(rendered, /data-hrj-mobile-toc-panel/);
+assert.match(rendered, /data-hrj-toc-start/);
+assert.equal((rendered.match(/data-hrj-toc-section/g) || []).length, sample.sections.length);
+for (const tocLabel of ["01 숙박 위치", "02 명소·교통", "06 숙소 선택"]) {
+  assert.match(rendered, new RegExp(tocLabel));
+}
 assert.equal((rendered.match(/제휴 안내/g) || []).length, 1);
 assert.doesNotMatch(rendered, /객실 타입과 요금은 예약 시점에 따라 달라질 수 있습니다/);
 assert.match(rendered, /hrj-booking-overview/);
@@ -316,7 +324,6 @@ assert.doesNotMatch(rendered, /<div class="hrj-decision-section__title">예약 �
 assert.doesNotMatch(rendered, /<div class="hrj-decision-section__title">객실 선택 포인트<\/div>/);
 assert.doesNotMatch(rendered, /hrj-mobile-decision/);
 assert.doesNotMatch(rendered, /hrj-sidebar/);
-assert.doesNotMatch(rendered, /hrj-mobile-toc/);
 assert.doesNotMatch(rendered, /이 글의 목차/);
 assert.doesNotMatch(rendered, /innerHTML|document\.getElementById|<script/i);
 assert.match(getHotelReviewPlainText(sample), /객실별 차이가 있습니다/);
