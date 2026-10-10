@@ -185,6 +185,11 @@ const rendered = renderHotelReviewLayout(sample, {
 });
 assert.match(rendered, /class="hotel-review-json-page"/);
 assert.match(rendered, /<h1 class="hrj-title">샘플 호텔 리뷰<\/h1>/);
+assert.match(rendered, /class="hrj-meta post-author-profile"/);
+assert.match(rendered, /class="post-author-profile__avatar"/);
+assert.match(rendered, /Be Stayable Editor/);
+assert.match(rendered, /수정 2026-09-21/);
+assert.doesNotMatch(rendered, /hrj-meta__tag/);
 assert.match(rendered, /hrj-chapter--location/);
 assert.match(rendered, /class="hrj-location-summary"/);
 assert.doesNotMatch(rendered, /data-hrj-location-summary-copy|hrj-location-summary__copy|위치 요약 복사/);
