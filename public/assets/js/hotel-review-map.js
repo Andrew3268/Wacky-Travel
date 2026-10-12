@@ -1,7 +1,7 @@
 (() => {
   const MAP_SELECTOR = "[data-hrj-location-map]";
-  const LEAFLET_CSS = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-  const LEAFLET_JS = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+  const LEAFLET_CSS = "/assets/vendor/leaflet/leaflet.css";
+  const LEAFLET_JS = "/assets/vendor/leaflet/leaflet.js";
   let leafletPromise = null;
 
   const text = (value = "") => String(value ?? "").trim();

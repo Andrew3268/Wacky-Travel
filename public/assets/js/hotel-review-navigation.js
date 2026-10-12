@@ -18,6 +18,8 @@
     let activeId = "";
     let ticking = false;
     let panelOpen = false;
+    let previousOverflow = "";
+    let previousTriggerFocus = null;
 
     const topBoundary = () => {
       if (!topbar) return 0;
@@ -38,7 +40,7 @@
       mobileTrigger.setAttribute("aria-label", currentLabel ? `목차 열기, 현재 ${currentLabel}` : "목차 열기");
     };
 
-    const closePanel = () => {
+    const closePanel = ({ restoreFocus = false } = {}) => {
       if (!panelOpen) return;
       panelOpen = false;
       mobilePanel.classList.remove("is-open");
@@ -46,17 +48,24 @@
       mobilePanel.setAttribute("aria-hidden", "true");
       mobileBackdrop.setAttribute("aria-hidden", "true");
       mobileTrigger.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = previousOverflow;
+      page.removeAttribute("inert");
+      if (restoreFocus && previousTriggerFocus) previousTriggerFocus.focus({ preventScroll: true });
+      previousTriggerFocus = null;
     };
 
     const openPanel = () => {
       panelOpen = true;
+      previousTriggerFocus = document.activeElement === mobileTrigger ? mobileTrigger : document.activeElement;
+      previousOverflow = document.body.style.overflow;
       mobilePanel.classList.add("is-open");
       mobileBackdrop.classList.add("is-open");
       mobilePanel.setAttribute("aria-hidden", "false");
       mobileBackdrop.setAttribute("aria-hidden", "false");
       mobileTrigger.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
       const activeLink = mobilePanel.querySelector(".hrj-toc__link.is-active") || mobilePanel.querySelector(".hrj-toc__link");
-      activeLink?.focus({ preventScroll: true });
+      (activeLink || mobilePanel).focus({ preventScroll: true });
     };
 
     const sync = () => {
@@ -91,10 +100,9 @@
       else openPanel();
     });
     mobileClose?.addEventListener("click", () => {
-      closePanel();
-      mobileTrigger.focus({ preventScroll: true });
+      closePanel({ restoreFocus: true });
     });
-    mobileBackdrop.addEventListener("click", closePanel);
+    mobileBackdrop.addEventListener("click", () => closePanel({ restoreFocus: true }));
 
     links.forEach((link) => {
       link.addEventListener("click", (event) => {
@@ -103,17 +111,29 @@
         if (!target) return;
         event.preventDefault();
         closePanel();
+        target.setAttribute("tabindex", "-1");
         target.scrollIntoView({
           behavior: window.matchMedia(REDUCED_MOTION).matches ? "auto" : "smooth",
           block: "start"
         });
+        window.setTimeout(() => target.focus({ preventScroll: true }), window.matchMedia(REDUCED_MOTION).matches ? 0 : 300);
       });
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || !panelOpen) return;
-      closePanel();
-      mobileTrigger.focus({ preventScroll: true });
+      if (!panelOpen) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closePanel({ restoreFocus: true });
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(mobilePanel.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter((el) => !el.hidden);
+      if (!focusable.length) { event.preventDefault(); mobilePanel.focus(); return; }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     });
 
     window.addEventListener("scroll", requestSync, { passive: true });

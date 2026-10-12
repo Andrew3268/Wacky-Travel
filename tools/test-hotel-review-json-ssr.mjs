@@ -335,7 +335,7 @@ assert.match(mapJs, /map\.on\("click"/);
 assert.match(mapJs, /map\.getBoundsZoom\(/);
 assert.match(mapJs, /map\.setView\(hotelLatLng/);
 assert.match(mapJs, /animate: false/);
-assert.match(post, /POST_RENDER_VERSION = "20261010-post-layout-v80"/);
+assert.match(post, /POST_RENDER_VERSION = "20261010-post-layout-v85"/);
 assert.match(post, /max-age=0, s-maxage=600, must-revalidate/);
 
 console.log("Hotel review JSON SSR integration check passed: v1.1 map data, lazy Leaflet runtime, attribution, admin validation, renderer branch, scoped CSS, and v1.0 fallback wiring are present.");

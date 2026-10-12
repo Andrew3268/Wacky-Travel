@@ -1,0 +1,43 @@
+Be Stayable — Phase 8 Final SEO / Performance / Regression Audit
+Date: 2026-10-10
+Baseline: bestayable-editor-selection-v62
+Final render version: 20261010-post-layout-v85
+
+[FINAL STATUS]
+PASS — full npm check suite
+PASS — SEO audit: 181 HTML / 155 indexable static routes / 0 errors / 0 warnings
+PASS — JavaScript syntax: 137 files
+PASS — hotel review JSON v1.1 + v1.0 compatibility
+PASS — hotel review SSR integration
+PASS — SEO index stability
+PASS — Phase 8 final integration assertions
+PASS — static destination routing / sitemap guards / internal trailing slash / Search Console guards
+PASS — accessibility regression: semantic breadcrumb, mobile TOC dialog, ESC, focus return, Tab focus trap, section focus
+PASS — Leaflet application loader no longer calls unpkg CDN directly
+
+[LEAFLET SELF-HOSTING]
+Leaflet 1.9.4 is pinned in package.json/package-lock.json.
+After npm ci, npm run dev/build/deploy automatically runs prepare:vendor and copies:
+  node_modules/leaflet/dist/leaflet.js
+  node_modules/leaflet/dist/leaflet.css
+  node_modules/leaflet/dist/images/*
+to:
+  public/assets/vendor/leaflet/
+The runtime loader references only /assets/vendor/leaflet/leaflet.js and leaflet.css.
+OpenStreetMap map tiles remain remote by design.
+
+[DEPLOY PACKAGE RULES]
+- Full project package, not a patch package
+- node_modules excluded
+- package.json included
+- package-lock.json included
+- .md files excluded
+- prompt-like JSON files: none detected
+- invalid replacement-character/control-character paths: 0
+
+[LOCAL / PRODUCTION COMMAND]
+1. npm ci
+2. npm run check
+3. npm run deploy
+
+Note: npm run deploy invokes predeploy, which prepares the self-hosted Leaflet vendor assets before the final checks/deployment.

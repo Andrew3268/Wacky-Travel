@@ -10,7 +10,7 @@ import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
 import { deriveHotelReviewPostFields, getHotelReviewPlainText, normalizeHotelReviewContentFormat, parseHotelReviewJson, renderHotelReviewLayout, validateHotelReviewData } from "../../lib/posts/hotel-review-json.js";
-const POST_RENDER_VERSION = "20261010-post-layout-v80";
+const POST_RENDER_VERSION = "20261010-post-layout-v85";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -658,6 +658,7 @@ export async function onRequestGet(context) {
   ${isJsonHotelReviewPost
     ? renderHotelReviewLayout(parsedHotelReviewData, {
         authorName,
+        destinationSlug: String(row.destination_slug || "").trim(),
         publishedDate: formatKoreanDate(row.published_at) || publishedDate,
         updatedDate: formatKoreanDate(publicModifiedAt) || updatedDate,
         publishedIso,
