@@ -97,7 +97,9 @@
     "d1:migrate:seo-archive-state:remote": "wrangler d1 execute wacky-travel-db --remote --file=./db/migrations/025_seo_archive_index_state.sql",
     "check:seo-index-stability": "node ./tools/test-seo-index-stability.mjs",
     "prepare:vendor": "node ./tools/prepare-vendor-assets.mjs",
-    "check:phase8-final": "node ./tools/test-phase8-final.mjs"
+    "check:phase8-final": "node ./tools/test-phase8-final.mjs",
+    "postinstall": "npm run prepare:vendor",
+    "check:leaflet-vendor": "node ./tools/check-leaflet-vendor.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.77.0"

@@ -17,4 +17,13 @@ assert.match(nav, /document\.body\.style\.overflow = "hidden"/);
 assert.match(post, /POST_RENDER_VERSION = "20261010-post-layout-v85"/);
 assert.equal(pkg.dependencies?.leaflet, "1.9.4");
 assert.ok(pkg.scripts?.["prepare:vendor"]);
+
+for (const vendorPath of [
+  "public/assets/vendor/leaflet/leaflet.js",
+  "public/assets/vendor/leaflet/leaflet.css"
+]) {
+  const info = await stat(new URL(`../${vendorPath}`, import.meta.url));
+  assert.ok(info.isFile() && info.size > 0, `${vendorPath} must exist in Git source`);
+}
+assert.equal(pkg.scripts?.postinstall, "npm run prepare:vendor");
 console.log("[phase8] final integration assertions passed");

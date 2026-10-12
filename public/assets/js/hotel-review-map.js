@@ -2,6 +2,8 @@
   const MAP_SELECTOR = "[data-hrj-location-map]";
   const LEAFLET_CSS = "/assets/vendor/leaflet/leaflet.css";
   const LEAFLET_JS = "/assets/vendor/leaflet/leaflet.js";
+  const LEAFLET_CDN_CSS = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css";
+  const LEAFLET_CDN_JS = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js";
   let leafletPromise = null;
 
   const text = (value = "") => String(value ?? "").trim();
@@ -14,34 +16,52 @@
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
+  function loadLeafletAssets(cssHref, jsSrc, source = "local") {
+    return new Promise((resolve, reject) => {
+      const oldCss = document.querySelector('link[data-hrj-leaflet-css]');
+      if (oldCss && oldCss.href !== new URL(cssHref, location.href).href) oldCss.remove();
+      if (!document.querySelector(`link[data-hrj-leaflet-css][href="${new URL(cssHref, location.href).href}"]`)) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = cssHref;
+        link.dataset.hrjLeafletCss = "1";
+        link.dataset.hrjLeafletSource = source;
+        document.head.appendChild(link);
+      }
+
+      const oldScript = document.querySelector('script[data-hrj-leaflet-js]');
+      if (oldScript) oldScript.remove();
+
+      const script = document.createElement("script");
+      script.src = jsSrc;
+      script.async = true;
+      script.dataset.hrjLeafletJs = "1";
+      script.dataset.hrjLeafletSource = source;
+      script.onload = async () => {
+        try {
+          if (window.L?.map) return resolve(window.L);
+          if (window.__BESTAYABLE_LEAFLET_READY__) {
+            const leaflet = await window.__BESTAYABLE_LEAFLET_READY__;
+            if (leaflet?.map) return resolve(leaflet);
+          }
+          reject(new Error(`Leaflet 초기화 실패 (${source})`));
+        } catch (error) {
+          reject(error);
+        }
+      };
+      script.onerror = () => reject(new Error(`Leaflet 로드 실패 (${source})`));
+      document.head.appendChild(script);
+    });
+  }
+
   function ensureLeaflet() {
     if (window.L?.map) return Promise.resolve(window.L);
     if (leafletPromise) return leafletPromise;
 
-    leafletPromise = new Promise((resolve, reject) => {
-      if (!document.querySelector('link[data-hrj-leaflet-css]')) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = LEAFLET_CSS;
-        link.dataset.hrjLeafletCss = "1";
-        document.head.appendChild(link);
-      }
-
-      const existing = document.querySelector('script[data-hrj-leaflet-js]');
-      if (existing) {
-        existing.addEventListener("load", () => resolve(window.L), { once: true });
-        existing.addEventListener("error", () => reject(new Error("Leaflet 로드 실패")), { once: true });
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = LEAFLET_JS;
-      script.async = true;
-      script.dataset.hrjLeafletJs = "1";
-      script.onload = () => resolve(window.L);
-      script.onerror = () => reject(new Error("Leaflet 로드 실패"));
-      document.head.appendChild(script);
-    });
+    // Git/Cloudflare 배포에서는 self-host 파일을 우선 사용한다.
+    // 정적 vendor 자산이 누락된 예외 상황에서만 CDN으로 1회 폴백한다.
+    leafletPromise = loadLeafletAssets(LEAFLET_CSS, LEAFLET_JS, "local")
+      .catch(() => loadLeafletAssets(LEAFLET_CDN_CSS, LEAFLET_CDN_JS, "cdn-fallback"));
 
     return leafletPromise;
   }
