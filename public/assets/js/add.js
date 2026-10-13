@@ -3595,6 +3595,7 @@ function renderPreviewHotelKeyPoints(value = []) {
 function renderPreview() {
   const previewEl = $("previewContent");
   if (!previewEl) return;
+  if (window.HotelTop5JsonEditor?.isJsonMode?.()) { previewEl.innerHTML = window.HotelTop5JsonEditor.renderAdminPreview?.() || ""; return; }
   if (window.HotelReviewJsonEditor?.isJsonMode?.()) {
     previewEl.innerHTML = window.HotelReviewJsonEditor.renderAdminPreview?.() || '<div class="hotel-review-json-preview"><div class="hotel-review-json-preview__paper"><p>호텔 리뷰 JSON 파일을 업로드하면 미리보기가 표시됩니다.</p></div></div>';
     return;
@@ -3777,6 +3778,9 @@ async function save() {
 
   const title = $("title").value.trim();
   const normalizedContentType = normalizeContentType($("content_type")?.value || "");
+  const isHotelTop5Json = Boolean(window.HotelTop5JsonEditor?.isJsonMode?.());
+  const top5Validation = window.HotelTop5JsonEditor?.validateForSave?.() || {ok:true,errors:[]};
+  if (!top5Validation.ok) { statusEl.textContent = top5Validation.errors?.[0] || "TOP 5 JSON을 확인해 주세요."; return; }
   const isHotelReviewJson = Boolean(window.HotelReviewJsonEditor?.isJsonMode?.());
   const hotelJsonValidation = window.HotelReviewJsonEditor?.validateForSave?.() || { ok: true, errors: [] };
   if (!hotelJsonValidation.ok) {
@@ -3790,7 +3794,7 @@ async function save() {
     $("hotelReviewTripcomCode")?.focus();
     return;
   }
-  const slug = isHotelReviewJson ? (window.HotelReviewJsonEditor?.getSlug?.() || "") : slugify(title);
+  const slug = isHotelTop5Json ? window.HotelTop5JsonEditor.getSlug() : isHotelReviewJson ? (window.HotelReviewJsonEditor?.getSlug?.() || "") : slugify(title);
   const shouldSaveHotelHero = normalizedContentType === "hotel_intro";
   const shouldSaveRecommendationCategory = normalizedContentType === "top5_series";
   const selectedRecommendationCategory = getSelectedRecommendationCategory();
@@ -3810,7 +3814,7 @@ async function save() {
     return;
   }
 
-  if (normalizedContentType === "top5_series" && window.StyleHotelEditor?.isActive()) {
+  if (normalizedContentType === "top5_series" && !isHotelTop5Json && window.StyleHotelEditor?.isActive()) {
     const styleHotelValidation = window.StyleHotelEditor.validateAndSync();
     if (!styleHotelValidation.ok) {
       statusEl.textContent = styleHotelValidation.error || "호텔별 본문 입력 내용을 확인해 주세요.";
@@ -3819,7 +3823,7 @@ async function save() {
     }
   }
 
-  const inlineImageValidation = isHotelReviewJson ? { ok: true } : collectInlineImageFormData({ validate: true });
+  const inlineImageValidation = (isHotelReviewJson || isHotelTop5Json) ? { ok: true } : collectInlineImageFormData({ validate: true });
   if (!inlineImageValidation.ok) {
     statusEl.textContent = inlineImageValidation.error || "아고다 본문 이미지 정보를 확인해 주세요.";
     const invalidIndex = inlineImageValidation.invalidIndex || 1;
@@ -3834,6 +3838,7 @@ async function save() {
     category: "",
     content_type: normalizedContentType,
     ...(window.HotelReviewJsonEditor?.getPayload?.() || { content_format: "markdown", content_json: "" }),
+    ...(isHotelTop5Json ? window.HotelTop5JsonEditor.getPayload() : {}),
     destination_slug: $("destination_slug")?.value.trim() || "",
     region_slug: $("region_slug")?.value.trim() || "",
     region_name: getRegionLabel(getSelectedRegion()),
@@ -3864,11 +3869,19 @@ async function save() {
     enable_sidebar_ad: Boolean($("enable_sidebar_ad")?.checked),
     enable_inarticle_ads: Boolean($("enable_inarticle_ads")?.checked),
     tags: parseTags($("tags").value),
-    content_md: isHotelReviewJson ? "" : buildContentWithMetaTokens($("content_md").value),
-    faq_md: isHotelReviewJson ? "" : ($("faq_md") ? $("faq_md").value : "")
+    content_md: (isHotelReviewJson || isHotelTop5Json) ? "" : buildContentWithMetaTokens($("content_md").value),
+    faq_md: (isHotelReviewJson || isHotelTop5Json) ? "" : ($("faq_md") ? $("faq_md").value : "")
   };
 
-  const hasBodyContent = isHotelReviewJson ? Boolean(payload.content_json?.trim()) : Boolean(payload.content_md.trim());
+  if (isHotelTop5Json) {
+    const top5 = window.HotelTop5JsonEditor.getData();
+    if (payload.destination_slug && payload.destination_slug !== top5.destination.slug) { statusEl.textContent = "선택한 도시와 JSON 도시가 다릅니다."; return; }
+    if (payload.recommendation_category_slug && payload.recommendation_category_slug !== top5.recommendationCategory.slug) { statusEl.textContent = "선택한 추천 카테고리와 JSON 카테고리가 다릅니다."; return; }
+    Object.assign(payload, { slug:top5.slug, title:top5.article.title, content_type:'top5_series', content_format:'json', content_json:JSON.stringify(top5), content_md:'',faq_md:'',
+      destination_slug:top5.destination.slug, recommendation_category_slug:top5.recommendationCategory.slug,
+      meta_description:top5.seo.description,summary:top5.article.subtitle || top5.article.intro[0],focus_keyword:top5.seo.focusKeyword||'' });
+  }
+  const hasBodyContent = (isHotelReviewJson || isHotelTop5Json) ? Boolean(payload.content_json?.trim()) : Boolean(payload.content_md.trim());
   if (!slug || !title || !hasBodyContent) {
     statusEl.textContent = isHotelReviewJson ? "JSON 파일의 slug·제목·본문 데이터를 확인해 주세요." : "제목과 본문은 필수입니다.";
     return;
@@ -4056,6 +4069,9 @@ async function loadHotelCurationItems(selectedMood=[]){
 function syncHotelCurationCardVisibility(){const show=isHotelIntroContentSelected();document.querySelectorAll('.editor-hotel-curation-card').forEach(card=>{card.hidden=!show;card.setAttribute('aria-hidden',show?'false':'true');});}
 document.addEventListener('DOMContentLoaded',()=>{loadHotelCurationItems();syncHotelCurationCardVisibility();$('content_type')?.addEventListener('change',syncHotelCurationCardVisibility);});
 
+
+// TOP 5 JSON 업로드·원문 편집 시 관리자 미리보기를 즉시 갱신합니다.
+document.addEventListener("hotel-top5-json-change", () => { try { renderPreview(); } catch (_) {} });
 
 // Editor Tip: shared implementation; keep server/add/edit copies identical.
 function readEditorTip(lines, start) {

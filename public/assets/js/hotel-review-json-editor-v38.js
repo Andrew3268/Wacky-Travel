@@ -319,6 +319,7 @@
   }
 
   function loadFromServer(item = {}) {
+    if (normalizeContentType(item.content_type || "") !== "hotel_intro") { data = null; loadedLegacy = false; syncVisibility(); return; }
     setField("hotelReviewPickLabel", text(item.hotel_pick_label || ""));
     setField("hotelReviewPriceUrl", text(item.hotel_hero?.price_url || ""));
     setField("heroHotelPriceUrl", text(item.hotel_hero?.price_url || ""));

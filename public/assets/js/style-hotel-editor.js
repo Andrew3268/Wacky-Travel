@@ -483,7 +483,7 @@
 
   function syncVisibility(explicitType) {
     const contentType = explicitType !== undefined ? explicitType : $("content_type")?.value;
-    const nextActive = isTop5Type(contentType);
+    const nextActive = isTop5Type(contentType) && $("content_format")?.value !== "json";
     const standard = $("standardContentMarkdownEditor");
     const structured = $("styleHotelMarkdownEditor");
     const backing = $("content_md");

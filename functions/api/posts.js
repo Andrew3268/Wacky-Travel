@@ -7,6 +7,7 @@ import { normalizeAffiliateDisclosure, ensureAffiliateDisclosureColumn } from ".
 import { normalizeContentLinkSettings, ensureContentLinkSettingsColumn } from "../../lib/posts/content-link-settings.js";
 import { deriveHotelReviewPostFields, normalizeHotelReviewContentFormat, validateHotelReviewJson } from "../../lib/posts/hotel-review-json.js";
 import { normalizeTripcomSidebarAd } from "../../lib/posts/tripcom-sidebar-ad.js";
+import { validateHotelTop5Json, deriveHotelTop5PostFields } from "../../lib/posts/hotel-top5-json.js";
 
 function clampInt(value, fallback, min, max) {
   const num = Number.parseInt(String(value || ""), 10);
@@ -531,10 +532,19 @@ export async function onRequestPost(context) {
   }
 
   const incomingContentType = normalizeContentType(body.content_type || "travel_tip");
-  const incomingContentFormat = incomingContentType === "hotel_intro"
+  const incomingContentFormat = ["hotel_intro", "top5_series"].includes(incomingContentType)
     ? normalizeHotelReviewContentFormat(body.content_format || (body.content_json ? "json" : "markdown"))
     : "markdown";
   let normalizedContentJson = "";
+  if (incomingContentType === "top5_series" && incomingContentFormat === "json") {
+    const result = validateHotelTop5Json(body.content_json);
+    if (!result.ok) return okJson({ message: result.errors[0], errors: result.errors }, { status: 400 });
+    if (body.slug && String(body.slug).trim() !== result.data.slug) return okJson({ message: "입력한 slug와 JSON slug가 일치하지 않습니다." }, { status: 400 });
+    if (body.destination_slug && body.destination_slug !== result.data.destination.slug) return okJson({ message: "선택한 도시와 JSON 도시가 다릅니다." }, { status: 400 });
+    if (body.recommendation_category_slug && body.recommendation_category_slug !== result.data.recommendationCategory.slug) return okJson({ message: "선택한 추천 카테고리와 JSON 카테고리가 다릅니다." }, { status: 400 });
+    normalizedContentJson = JSON.stringify(result.data);
+    body = { ...body, ...deriveHotelTop5PostFields(result.data), hotel_slug:"" };
+  }
   if (incomingContentType === "hotel_intro" && incomingContentFormat === "json") {
     const validation = validateHotelReviewJson(body.content_json);
     if (!validation.ok) {
@@ -570,7 +580,7 @@ export async function onRequestPost(context) {
   const focusKeyword = String(body.focus_keyword || "").trim();
   const longtailKeywords = Array.isArray(body.longtail_keywords) ? body.longtail_keywords : [];
   const contentMd = String(body.content_md || "").trim();
-  const contentFormat = incomingContentType === "hotel_intro" ? incomingContentFormat : "markdown";
+  const contentFormat = ["hotel_intro", "top5_series"].includes(incomingContentType) ? incomingContentFormat : "markdown";
   const contentJson = contentFormat === "json" ? normalizedContentJson : "";
   const faqMd = String(body.faq_md || "").trim();
   const enableSidebarAd = body.enable_sidebar_ad === true ? 1 : 0;
@@ -608,7 +618,11 @@ export async function onRequestPost(context) {
 
   const now = new Date().toISOString();
   await ensurePostRegionColumns(env.TRAVEL_DB);
-  hotelSlug = await syncHotelHeroData(env.TRAVEL_DB, body, { destinationSlug, regionSlug, regionName, fallbackSlug: slug, title, now });
+  if (contentType === "top5_series" && contentFormat === "json") {
+    const conflict = await env.TRAVEL_DB.prepare("SELECT slug FROM posts WHERE slug = ? LIMIT 1").bind(slug).first();
+    if (conflict) return okJson({ message: "이미 등록된 slug입니다. 기존 글은 수정 화면에서 변경해 주세요." }, { status: 409 });
+  }
+  hotelSlug = contentType === "top5_series" ? "" : await syncHotelHeroData(env.TRAVEL_DB, body, { destinationSlug, regionSlug, regionName, fallbackSlug: slug, title, now });
 
   await env.TRAVEL_DB.prepare(`
     INSERT INTO posts (

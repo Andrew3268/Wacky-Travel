@@ -1,0 +1,26 @@
+[Be Stayable TOP 5 JSON 작성 요청 템플릿]
+사용할 프롬프트: BeStayable_TOP5_JSON_작성_프롬프트_v1.0.txt
+스키마: BeStayable_hotel-top5-v1.0.schema.json
+
+MODE=RESEARCH
+목표 제목/메인 검색어: 오사카 난바역 근처 호텔 추천 TOP 5
+국가명: 일본
+도시·지역명: 오사카 난바
+DESTINATION_SLUG: (실제 프로젝트 값 입력)
+RECOMMENDATION_CATEGORY_SLUG: (실제 등록값 입력)
+ARTICLE_SLUG: osaka-namba-station-hotels-top5
+검색 의도: 난바역 교통 접근성이 좋은 호텔 비교
+주요 독자: 첫 오사카 여행자, 2박 3일 일정
+여행 조건: 역 접근성, 관광 동선, 공항 이동 우선
+호텔 후보: (실제 후보 5개를 기재하거나 '후보 조사 허용'이라고 명시)
+공식/지도/후기 참고 링크: (실제 조사 자료 URL 입력)
+검증된 예약 링크: (선택. 실제 링크만)
+사용 허가된 호텔 이미지: (선택. 출처/크레딧 포함)
+이미 존재하는 내부 관련 글: (선택. 실제 경로만)
+조사 확인 날짜: (실제 조사한 YYYY-MM-DD)
+
+사용 순서
+1. 먼저 MODE=RESEARCH로 확인하고 자료·누락 정보를 검수합니다.
+2. 필요한 정보를 보강하고 MODE=JSON으로 다시 실행합니다.
+3. JSON 결과를 hotel-top5-v1.0.schema.json으로 검증합니다.
+4. 최종 JSON만 관리자에서 등록·수정하는 방식은 후속 Phase 5~7 구현 이후 사용할 수 있습니다.

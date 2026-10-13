@@ -10,7 +10,10 @@ import { DEFAULT_SITE_ORIGIN, getSiteOrigin } from "../../lib/seo/site-url.js";
 import { normalizeContentType } from "../../lib/travel/travel-settings.js";
 import { GOOGLE_TAG_HTML } from "../../lib/analytics/google-tag.js";
 import { deriveHotelReviewPostFields, getHotelReviewPlainText, normalizeHotelReviewContentFormat, parseHotelReviewJson, renderHotelReviewLayout, validateHotelReviewData } from "../../lib/posts/hotel-review-json.js";
+import { parseHotelTop5Json, validateHotelTop5Json, deriveHotelTop5PostFields, getHotelTop5PlainText } from "../../lib/posts/hotel-top5-json.js";
+import { buildTop5ItemList, renderHotelTop5Layout } from "../../lib/posts/hotel-top5-renderer.js";
 const POST_RENDER_VERSION = "20261010-post-layout-v85";
+const TOP5_RENDER_VERSION = "20261013-top5-phase11-v1";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",
@@ -243,6 +246,23 @@ export async function onRequestGet(context) {
       const isJsonHotelReviewPost = Boolean(isHotelIntroPost && contentFormat === "json" && parsedHotelReviewData && hotelReviewValidation.ok);
       const hotelReviewDerived = isJsonHotelReviewPost ? deriveHotelReviewPostFields(parsedHotelReviewData, row) : null;
       const hotelReviewPlainText = isJsonHotelReviewPost ? getHotelReviewPlainText(parsedHotelReviewData) : "";
+      const parsedTop5Data = isTop5SeriesPost && contentFormat === "json" ? parseHotelTop5Json(row.content_json || "") : null;
+      const top5Validation = parsedTop5Data ? validateHotelTop5Json(parsedTop5Data) : { ok:false, errors:[] };
+      // JSON 형식으로 저장한 게시글의 원문이 손상되어도 Markdown으로 폴백해 노출하지 않는다.
+      if (isTop5SeriesPost && contentFormat === "json" && !top5Validation.ok) {
+        return okHtml(renderNotFound(slug), { status: 404, headers:{ 'cache-control':'no-store' } });
+      }
+      const isJsonTop5Post = Boolean(isTop5SeriesPost && contentFormat === "json" && top5Validation.ok);
+      const top5Derived = isJsonTop5Post ? deriveHotelTop5PostFields(parsedTop5Data) : null;
+      const top5PlainText = isJsonTop5Post ? getHotelTop5PlainText(parsedTop5Data) : "";
+      const top5LinkedSlugs = isJsonTop5Post
+        ? [...new Set([...parsedTop5Data.hotels.map(h=>h.hotelReviewSlug),...((parsedTop5Data.relatedContent||[]).map(r=>String(r.path||'').match(/^\/post\/([a-z0-9-]+)\/$/)?.[1]))].filter(Boolean))]
+        : [];
+      const top5LinkedPromise = top5LinkedSlugs.length
+        ? env.TRAVEL_DB.prepare(`SELECT slug, content_type FROM posts WHERE status = 'published' AND slug IN (${top5LinkedSlugs.map(()=>'?').join(',')})`).bind(...top5LinkedSlugs).all()
+            .then(x=>x?.results||[]).catch(()=>[])
+        : Promise.resolve([]);
+
 
       // 공개 post의 부가 데이터는 서로 의존하지 않으므로 동시에 조회합니다.
       // 캐시 MISS에서 D1 왕복이 직렬로 누적되어 첫 HTML 응답이 늦어지는 것을 방지합니다.
@@ -279,13 +299,15 @@ export async function onRequestGet(context) {
 
       const adConfig = buildAdsenseConfig(env);
       const cleanContentMd = stripSeoMetaTokenLines(row.content_md || "");
-      const contentTextLength = isJsonHotelReviewPost
+      const contentTextLength = isJsonTop5Post
+        ? top5PlainText.replace(/\s+/g, "").length
+        : isJsonHotelReviewPost
         ? hotelReviewPlainText.replace(/\s+/g, "").length
         : stripMarkdown(stripStyleHotelTokens(stripInlineImageTokens(cleanContentMd))).replace(/\s+/g, "").length;
       const shouldShowSidebarAd = !isDraftPreview && toBool(row.enable_sidebar_ad, false);
-      const shouldShowInarticleAds = !isDraftPreview && !isJsonHotelReviewPost && toBool(row.enable_inarticle_ads, false);
+      const shouldShowInarticleAds = !isDraftPreview && !isJsonHotelReviewPost && !isJsonTop5Post && toBool(row.enable_inarticle_ads, false);
       const inArticleAds = shouldShowInarticleAds ? buildInArticleAds(adConfig, 2) : [];
-      const renderedBodyHtml = isJsonHotelReviewPost ? "" : buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
+      const renderedBodyHtml = isJsonHotelReviewPost || isJsonTop5Post ? "" : buildArticleBodyHtml(cleanContentMd, inArticleAds, contentTextLength, env, {
         isRecommendedHotelReviewPost,
         useUnifiedHotelSectionHeading: isRecommendedHotelReviewPost || isTop5SeriesPost,
         styleHotelSeries: isTop5SeriesPost,
@@ -293,7 +315,7 @@ export async function onRequestGet(context) {
         contentLinkSettings: row.content_link_settings_json || "[]",
         origin
       });
-      const bodyHtml = !isJsonHotelReviewPost && isTravelTipPost
+      const bodyHtml = !isJsonHotelReviewPost && !isJsonTop5Post && isTravelTipPost
         ? renderedBodyHtml.replace(/<h2\b[^>]*>/i, (tag) => (
             tag.includes('class="')
               ? tag.replace('class="', 'class="post-h2--travel-tip-first ')
@@ -312,11 +334,23 @@ export async function onRequestGet(context) {
       const relatedPostsHtml = renderRelatedPostsSection(relatedRows, row.category);
       const popularPostsHtml = renderPopularPosts(popularRows);
       const sidebarAdHtml = shouldShowSidebarAd ? renderSidebarAd(adConfig) : "";
+      const top5LinkedRows = await top5LinkedPromise;
+      const top5PublishedHotelReviews = new Set(top5LinkedRows.filter(r=>normalizeContentType(r.content_type)==='hotel_intro').map(r=>r.slug));
+      const top5PublishedPosts = new Set(top5LinkedRows.map(r=>r.slug));
+      const top5RelatedLinks = isJsonTop5Post ? (parsedTop5Data.relatedContent||[]).filter(item=>{
+        const path=String(item.path||'');
+        if (!/^\/(?:[a-z0-9-]+\/)*$/.test(path)) return false;
+        const match=path.match(/^\/post\/([a-z0-9-]+)\/$/);
+        return !match || top5PublishedPosts.has(match[1]);
+      }) : [];
+
       const adsenseHeadScript = renderAdsenseHeadScript(adConfig, shouldShowSidebarAd || shouldShowInarticleAds);
       const adsenseRuntimeScript = renderAdsenseRuntimeScript(adConfig, shouldShowSidebarAd || shouldShowInarticleAds);
 
-      const titleText = String(hotelReviewDerived?.title || row.title || "").trim();
-      const descriptionText = isJsonHotelReviewPost
+      const titleText = String(top5Derived?.title || hotelReviewDerived?.title || row.title || "").trim();
+      const descriptionText = isJsonTop5Post
+        ? String(top5Derived?.meta_description || titleText).trim()
+        : isJsonHotelReviewPost
         ? String(hotelReviewDerived?.meta_description || hotelReviewDerived?.summary || titleText).trim()
         : buildDescription(
             row.meta_description,
@@ -324,8 +358,8 @@ export async function onRequestGet(context) {
             stripStyleHotelTokens(cleanContentMd),
             titleText
           );
-      const seoTitleText = isJsonHotelReviewPost ? String(hotelReviewDerived?.seo_title || titleText).trim() : titleText;
-      const pageTitle = `${isDraftPreview ? "[초안 미리보기] " : ""}${seoTitleText} | ${siteName}`;
+      const seoTitleText = isJsonTop5Post ? String(parsedTop5Data.seo.title || titleText).trim() : isJsonHotelReviewPost ? String(hotelReviewDerived?.seo_title || titleText).trim() : titleText;
+      const pageTitle = `${isDraftPreview ? "[초안 미리보기] " : ""}${seoTitleText}${seoTitleText.includes(siteName) ? "" : ` | ${siteName}`}`;
       const robotsContent = isDraftPreview
         ? "noindex,nofollow,noarchive,nosnippet"
         : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
@@ -429,9 +463,13 @@ export async function onRequestGet(context) {
         url: canonical.toString(),
         inLanguage: "ko-KR",
         articleSection: row.category || "블로그",
-        wordCount: (isJsonHotelReviewPost ? hotelReviewPlainText : stripMarkdown(cleanContentMd)).split(/\s+/).filter(Boolean).length,
+        wordCount: (isJsonTop5Post ? top5PlainText : isJsonHotelReviewPost ? hotelReviewPlainText : stripMarkdown(cleanContentMd)).split(/\s+/).filter(Boolean).length,
         ...(hotelAboutJsonLd ? { about: hotelAboutJsonLd } : {})
       };
+
+      const top5ItemListJsonLd = isJsonTop5Post
+        ? buildTop5ItemList(parsedTop5Data, canonical.toString(), top5PublishedHotelReviews)
+        : null;
 
       const webPageJsonLd = {
         "@context": "https://schema.org",
@@ -626,6 +664,8 @@ export async function onRequestGet(context) {
   <link rel="stylesheet" href="/assets/css/site-header.css?v=20260901-h2-v2" />
   <link rel="stylesheet" href="/assets/css/responsive-typography.css?v=20260908-global-type-v1" />`}
   ${isJsonHotelReviewPost ? `<link rel="stylesheet" href="/assets/css/hotel-review-json.css?v=${encodeURIComponent(POST_RENDER_VERSION)}" />` : ""}
+  ${isJsonTop5Post ? `<link rel="stylesheet" href="/assets/css/hotel-top5-public.css?v=${encodeURIComponent(TOP5_RENDER_VERSION)}" />` : ""}
+  ${isJsonTop5Post && parsedTop5Data.locationComparison?.enabled && parsedTop5Data.hotels.every(h=>h.hotel?.coordinates) ? `<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css" />` : ""}
 <style>
     .post-body,
     .post-body .post-content { counter-reset: none !important; }
@@ -648,6 +688,7 @@ export async function onRequestGet(context) {
   ${jsonld(blogPostingJsonLd)}
   ${jsonld(breadcrumbJsonLd)}
   ${jsonld(webPageJsonLd)}
+  ${top5ItemListJsonLd ? jsonld(top5ItemListJsonLd) : ""}
   ${faqJsonLd ? jsonld(faqJsonLd) : ""}
 </head>
 <body class="${escapeHtml(bodyClassName)}">
@@ -655,7 +696,15 @@ export async function onRequestGet(context) {
   ${topbar()}
   ${homeSearchOverlay()}
 
-  ${isJsonHotelReviewPost
+  ${isJsonTop5Post
+    ? renderHotelTop5Layout(parsedTop5Data, {
+        origin, canonical:canonical.toString(),
+        publishedReviews:top5PublishedHotelReviews,
+        relatedLinks:top5RelatedLinks,
+        draftPreviewBannerHtml,
+        affiliateDisclosureHtml
+      })
+    : isJsonHotelReviewPost
     ? renderHotelReviewLayout(parsedHotelReviewData, {
         authorName,
         destinationSlug: String(row.destination_slug || "").trim(),
@@ -811,6 +860,8 @@ export async function onRequestGet(context) {
 </script>
   ${adsenseRuntimeScript}
   ${isJsonHotelReviewPost ? `<script defer src="/assets/js/hotel-review-map.js?v=${encodeURIComponent(POST_RENDER_VERSION)}"></script><script defer src="/assets/js/hotel-review-navigation.js?v=${encodeURIComponent(POST_RENDER_VERSION)}"></script>` : ""}
+  ${isJsonTop5Post && parsedTop5Data.locationComparison?.enabled && parsedTop5Data.hotels.every(h=>h.hotel?.coordinates) ? `<script defer src="/assets/vendor/leaflet/leaflet.js"></script>` : ""}
+  ${isJsonTop5Post ? `<script defer src="/assets/js/hotel-top5-public.js?v=${encodeURIComponent(TOP5_RENDER_VERSION)}"></script>` : ""}
   ${shouldEnableFloatingToc ? `<script defer src="/assets/js/guide-toc-floating.js?v=20260815-post-toc-v7"></script>` : ""}
   <script defer src="/assets/js/site-header.js?v=20260723-search-guard-v1"></script>
   ${isDraftPreview ? `<script src="/assets/js/admin-ui.js?v=20260721NoHeaderLogoutV2" defer></script>` : ""}
@@ -825,7 +876,7 @@ export async function onRequestGet(context) {
 
       res.headers.set("x-blog-cache-version", updatedAt);
       res.headers.set("x-blog-render-version", POST_RENDER_VERSION);
-      res.headers.set("x-post-style-bundle", isJsonHotelReviewPost ? "hotel-review-json" : (isTravelTipPost ? "post-public" : "legacy-post"));
+      res.headers.set("x-post-style-bundle", isJsonTop5Post ? "hotel-top5-json" : isJsonHotelReviewPost ? "hotel-review-json" : (isTravelTipPost ? "post-public" : "legacy-post"));
       if (isDraftPreview) res.headers.set("x-draft-preview", "1");
       return res;
   };
