@@ -13,7 +13,7 @@ import { deriveHotelReviewPostFields, getHotelReviewPlainText, normalizeHotelRev
 import { parseHotelTop5Json, validateHotelTop5Json, deriveHotelTop5PostFields, getHotelTop5PlainText } from "../../lib/posts/hotel-top5-json.js";
 import { buildTop5ItemList, renderHotelTop5Layout } from "../../lib/posts/hotel-top5-renderer.js";
 const POST_RENDER_VERSION = "20261010-post-layout-v85";
-const TOP5_RENDER_VERSION = "20261013-top5-phase11-v1";
+const TOP5_RENDER_VERSION = "20261014-top5-square-image-v2";
 const HOTEL_HERO_BADGE_OPTIONS = Object.freeze([
   "훌륭한 위치",
   "뚜벅이 최적",

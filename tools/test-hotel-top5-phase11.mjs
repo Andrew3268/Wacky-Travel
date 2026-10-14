@@ -17,6 +17,24 @@ assert.equal((html.match(/class="bt5-editorial"/g)||[]).length,5);
 assert.equal((html.match(/class="bt5-analysis"/g)||[]).length,5);
 assert.ok(html.indexOf('bt5-editorial')<html.indexOf('bt5-analysis'));
 assert.equal(buildTop5ItemList(sample,'https://bestayable.com/post/'+sample.slug+'/').itemListElement.length,5);
+
+// Square-image layout must preserve all five hotel sections and their editorial/analysis content.
+const imageSample=structuredClone(sample);
+imageSample.hotels.forEach((hotel,index)=>{
+ hotel.image={src:`https://example.com/top5-test-hotel-${index+1}.jpg`,alt:`Hotel ${index+1}`};
+});
+const imageHtml=renderHotelTop5Layout(imageSample,{canonical:'https://bestayable.com/post/square-image-test/'});
+assert.equal((imageHtml.match(/bt5-hotel__intro--with-image/g)||[]).length,5);
+assert.equal((imageHtml.match(/class="bt5-hotel__photo"/g)||[]).length,5);
+assert.equal((imageHtml.match(/class="bt5-editorial"/g)||[]).length,5);
+assert.equal((imageHtml.match(/class="bt5-analysis"/g)||[]).length,5);
+assert.ok(imageHtml.indexOf('bt5-hotel__intro-copy')<imageHtml.indexOf('bt5-hotel__photo'));
+const top5Css=readFileSync('public/assets/css/hotel-top5-public.css','utf8');
+assert.match(top5Css,/grid-template-columns:minmax\(0,310px\) minmax\(0,1fr\)/);
+assert.match(top5Css,/aspect-ratio:1 \/ 1/);
+assert.match(top5Css,/@media\(max-width:767px\)/);
+assert.ok(!html.includes('bt5-hotel__intro--with-image'),'Missing photos must not reserve a photo column');
+
 const withMap=structuredClone(sample);
 withMap.locationComparison.enabled=true;
 withMap.hotels.forEach((h,i)=>{h.hotel.coordinates={lat:34.66+(i*.002),lng:135.50+(i*.002)};});
